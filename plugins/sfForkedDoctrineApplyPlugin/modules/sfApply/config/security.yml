@@ -1,0 +1,12 @@
+settings:
+  is_secure: true
+editEmail:
+  is_secure: true
+resetRequest:
+ is_secure: false
+apply:
+ is_secure: false
+reset:
+ is_secure: false
+confirm:
+ is_secure: false
