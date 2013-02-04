@@ -22,41 +22,47 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property sfGuardUserProfile $Profile
+ * @property Doctrine_Collection $GuardDocumentAssignment
+ * @property Doctrine_Collection $GuardEIAssignment
  * 
- * @method string                getFirstName()             Returns the current record's "first_name" value
- * @method string                getLastName()              Returns the current record's "last_name" value
- * @method string                getEmailAddress()          Returns the current record's "email_address" value
- * @method string                getUsername()              Returns the current record's "username" value
- * @method string                getAlgorithm()             Returns the current record's "algorithm" value
- * @method string                getSalt()                  Returns the current record's "salt" value
- * @method string                getPassword()              Returns the current record's "password" value
- * @method boolean               getIsActive()              Returns the current record's "is_active" value
- * @method boolean               getIsSuperAdmin()          Returns the current record's "is_super_admin" value
- * @method timestamp             getLastLogin()             Returns the current record's "last_login" value
- * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
- * @method Doctrine_Collection   getPermissions()           Returns the current record's "Permissions" collection
- * @method Doctrine_Collection   getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
- * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
- * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
- * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
- * @method sfGuardUserProfile    getProfile()               Returns the current record's "Profile" value
- * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
- * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
- * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
- * @method sfGuardUser           setUsername()              Sets the current record's "username" value
- * @method sfGuardUser           setAlgorithm()             Sets the current record's "algorithm" value
- * @method sfGuardUser           setSalt()                  Sets the current record's "salt" value
- * @method sfGuardUser           setPassword()              Sets the current record's "password" value
- * @method sfGuardUser           setIsActive()              Sets the current record's "is_active" value
- * @method sfGuardUser           setIsSuperAdmin()          Sets the current record's "is_super_admin" value
- * @method sfGuardUser           setLastLogin()             Sets the current record's "last_login" value
- * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
- * @method sfGuardUser           setPermissions()           Sets the current record's "Permissions" collection
- * @method sfGuardUser           setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
- * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
- * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
- * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
- * @method sfGuardUser           setProfile()               Sets the current record's "Profile" value
+ * @method string                getFirstName()               Returns the current record's "first_name" value
+ * @method string                getLastName()                Returns the current record's "last_name" value
+ * @method string                getEmailAddress()            Returns the current record's "email_address" value
+ * @method string                getUsername()                Returns the current record's "username" value
+ * @method string                getAlgorithm()               Returns the current record's "algorithm" value
+ * @method string                getSalt()                    Returns the current record's "salt" value
+ * @method string                getPassword()                Returns the current record's "password" value
+ * @method boolean               getIsActive()                Returns the current record's "is_active" value
+ * @method boolean               getIsSuperAdmin()            Returns the current record's "is_super_admin" value
+ * @method timestamp             getLastLogin()               Returns the current record's "last_login" value
+ * @method Doctrine_Collection   getGroups()                  Returns the current record's "Groups" collection
+ * @method Doctrine_Collection   getPermissions()             Returns the current record's "Permissions" collection
+ * @method Doctrine_Collection   getSfGuardUserPermission()   Returns the current record's "sfGuardUserPermission" collection
+ * @method Doctrine_Collection   getSfGuardUserGroup()        Returns the current record's "sfGuardUserGroup" collection
+ * @method sfGuardRememberKey    getRememberKeys()            Returns the current record's "RememberKeys" value
+ * @method sfGuardForgotPassword getForgotPassword()          Returns the current record's "ForgotPassword" value
+ * @method sfGuardUserProfile    getProfile()                 Returns the current record's "Profile" value
+ * @method Doctrine_Collection   getGuardDocumentAssignment() Returns the current record's "GuardDocumentAssignment" collection
+ * @method Doctrine_Collection   getGuardEIAssignment()       Returns the current record's "GuardEIAssignment" collection
+ * @method sfGuardUser           setFirstName()               Sets the current record's "first_name" value
+ * @method sfGuardUser           setLastName()                Sets the current record's "last_name" value
+ * @method sfGuardUser           setEmailAddress()            Sets the current record's "email_address" value
+ * @method sfGuardUser           setUsername()                Sets the current record's "username" value
+ * @method sfGuardUser           setAlgorithm()               Sets the current record's "algorithm" value
+ * @method sfGuardUser           setSalt()                    Sets the current record's "salt" value
+ * @method sfGuardUser           setPassword()                Sets the current record's "password" value
+ * @method sfGuardUser           setIsActive()                Sets the current record's "is_active" value
+ * @method sfGuardUser           setIsSuperAdmin()            Sets the current record's "is_super_admin" value
+ * @method sfGuardUser           setLastLogin()               Sets the current record's "last_login" value
+ * @method sfGuardUser           setGroups()                  Sets the current record's "Groups" collection
+ * @method sfGuardUser           setPermissions()             Sets the current record's "Permissions" collection
+ * @method sfGuardUser           setSfGuardUserPermission()   Sets the current record's "sfGuardUserPermission" collection
+ * @method sfGuardUser           setSfGuardUserGroup()        Sets the current record's "sfGuardUserGroup" collection
+ * @method sfGuardUser           setRememberKeys()            Sets the current record's "RememberKeys" value
+ * @method sfGuardUser           setForgotPassword()          Sets the current record's "ForgotPassword" value
+ * @method sfGuardUser           setProfile()                 Sets the current record's "Profile" value
+ * @method sfGuardUser           setGuardDocumentAssignment() Sets the current record's "GuardDocumentAssignment" collection
+ * @method sfGuardUser           setGuardEIAssignment()       Sets the current record's "GuardEIAssignment" collection
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -155,6 +161,14 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasOne('sfGuardUserProfile as Profile', array(
              'local' => 'id',
              'foreign' => 'user_id'));
+
+        $this->hasMany('TaskAssignment as GuardDocumentAssignment', array(
+             'local' => 'id',
+             'foreign' => 'user_assigned'));
+
+        $this->hasMany('EITaskAssignment as GuardEIAssignment', array(
+             'local' => 'id',
+             'foreign' => 'user_assigned'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

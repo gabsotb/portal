@@ -1,24 +1,272 @@
-### Author - Boniface Irunguh
-### Email - Mwendia.bonface4@gmail.com
-### Purpose - This file describes the Tables to be created for the RDB E-portal System. Uses Doctrine ORM
-##################################### Database Tables  ##################################################
-###Investment application table - Stores details of the investor
-InvestmentApplication: 
- actAs: {Timestampable: ~}
+##This File Describes the Database for the Investment Registration,EIA processes and Import and Export Exemptions
+#Author - Boniface Irunguh
+##Company - Smartline Solutions. All Rights Reserved
+##Email - Mwendia.bonface4@gmail.com
+######### Start Investment Registration Certificate Tables #########################
+InvestmentApplication: ## Contains the application details from the investors
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
  columns:
-  business_name: {type: string(255), notnull: true}
-  email_address: {type: string(255), notnull: true}
-  phone_number: {type: string(255), notnull: false}
+  company_name: {type: string(255), notnull: true}  
+  registration_number: {type: string(255), notnull: true,  unique: true}
+  company_address: {type: string(255), notnull: true}
+  job_created: {type: integer, notnull: true}
+  job_category: {type: string(400), notnull: true}
+  company_legal_nature: {type: string(400), notnull: true}
+  company_representative: {type: string(255), notnull: true}
   application_letter: {type: string(255), notnull: true}
+  incorporation_certificate: {type: string(255), notnull: true}
+  shareholding_list: {type: string(255), notnull: true}
+  username_id: {type: integer, notnull: true}
+### Stores the Business Proposal of the user applying for the investment certificate
+BusinessPlan:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  investment_id: {type: integer, notnull: true}
   executive_summary: {type: string(400), notnull: true}
   promoter_profile: {type: string(400), notnull: true}
-  project_backgroud: {type: string(400), notnull: true}
-  market_study: {type: string(400), notnull: true}
-  investment_plan: {type: string(400), notnull: true}
+  project_background: {type: string(400), notnull: true}
   equity_financing: {type: string(400), notnull: true}
-  income_expenditure: {type: string(400), notnull: true}
-  balance_sheet: {type: string(400), notnull: true}
-  cash_flow: {type: string(400), notnull: true}
+  income_statement: {type: string(400), notnull: true}
+  cashflow_statement: {type: string(400), notnull: true}
   payback_period: {type: string(400), notnull: true}
-  loan_amortazation: {type: string(400), notnull: true}
-  username_logged: {type: string(255), notnull: true}
+  npv: {type: string(400), notnull: true}
+  loan_amortization: {type: string(400), notnull: true}
+  implementation_plan: {type: string(400), notnull: true}
+  notes: {type: string(400), notnull: true}
+ relations:
+  InvestmentApplication: {local: investment_id, foreign:id , foreignAlias: InvestmentBusinessPlan}
+# Contains a summary of the application from the InvestmentApplication and Business Plan Tables
+ProjectSummary:
+ actAs:
+  Timestampable: ~
+  Signable: #to monitor the user editing and updating this record
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string} 
+ columns:
+  investment_id: {type: integer, notnull: true}
+  business_sector: {type: string(255), notnull: true}
+  techinical_viability: {type: string(400), notnull: true}
+  planned_investment: {type: string(400), notnull: true}
+  employment_created: {type: string(400), notnull: true}
+  job_categories: {type: string(400), notnull: true}
+ relations:
+  InvestmentApplication: {local:investment_id, foreign: id, foreignAlias: InvestmentSummary }
+#Table records the tasks assigned to a user, the status and user to whom the task is assigned to is recorded in this table   
+TaskAssignment: 
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  user_assigned: {type: integer, notnull: true}
+  user_assigning: {type: string(255), notnull: true}
+  investmentapp_id: {type: integer, notnull: true }
+  instructions: {type: string(255), notnull: true}
+  duedate: {type: timestamp, notnull: true}
+  work_status: {type: string(255), notnull: true}
+ relations:
+  InvestmentApplication: {local: investmentapp_id, foreign: id, foreignAlias: ApplicationAssigment , onDelete: CASCADE}
+  sfGuardUser: {local: user_assigned, foreign: id, foreignAlias: GuardDocumentAssignment}
+#  sf_guard_user: {local: business_id, foreign: id, foreignAlias: InvestmentDocument}
+BusinessApplicationStatus: # Shows business application status, pending,processing,accepted or rejected, payment,issuing,done
+ actAs: {Timestampable: ~}
+ columns:
+  business_id: {type: integer, notnull:true}
+  application_status: {type: string(255), notnull: true}
+  comment: {type: string(255), notnull: false}
+ relations:
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentAppBusinesStatus}
+ApprovedApplications: # Shows approved businesses application
+ actAs: {Timestampable: ~}
+ columns:
+  business_id: {type: integer, notnull:true}
+  comment: {type: string(255), notnull: false}
+ relations:
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentApprovedBusiness}
+RejectedApplications: # Shows rejected businesses application
+ actAs: {Timestampable: ~}
+ columns:
+  business_id: {type: integer, notnull:true}
+  comment: {type: string(255), notnull: false}
+ relations:
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentRejectedBusiness}
+##Used to simulate the user payment status from the financial business registration system
+Payment:
+ actAs:
+  Timestampable: ~
+  Signable: #to monitor the user editing and updating this record
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  business_id: {type: integer, notnull: true}
+  payment_status: {type: string(255), notnull: true, default: notpaid}
+  slip_number: {type: integer, notnull: true}
+ relations:
+  InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate}  
+## Records the certificates issued to the investor by the RDB staff after successful completion of Investment Certificate application  
+InvestmentCertificate:
+ actAs:
+  Timestampable: ~
+ columns:
+  serial_number: {type: integer, notnull: true, unique: true}
+  business_id: {type: integer, notnull: true, unique: true}
+ relations:
+  InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate}
+####################################### End Investment Certificate Registration Tables ##############################
+#################################################
+########################################### Start EIA Certificate Application Process Tables ##########################
+### Record The User applying for the EIA Certificate
+EIApplication:
+ actAs:
+  Timestampable: ~
+  Signable: #to monitor the user editing and updating this record
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  company_regno: {type: string(255), notnull: true, unique: true}
+  developer_name: {type: string(255), notnull: true}
+  developer_title: {type: string(255), notnull: true}
+  developer_address: {type: string(255), notnull: true}
+  project_name: {type: string(255), notnull: true}
+  project_purpose: {type: string(400), notnull: true}
+  project_nature: {type: string(400), notnull: true}
+  project_site: {type: string(400), notnull: true}
+  project_sitelaws: {type: string(400), notnull: true}
+  environment_impacts: {type: string(400), notnull: true}
+  other_alternatives: {type: string(400), notnull: false}
+  other_information: {type: string(400), notnull: false}
+  user_id: {type: integer, notnull: true}
+## Track the status of EIA Application   
+EIApplicationStatus:
+ actAs:
+  Timestampable: ~
+ columns:
+  company_id: {type: integer, notnull: true}
+  application_status: {type: string(255), notnull: true}
+  comments: {type: string(255), notnull: true}
+ relations:
+  EIApplication: {local:company_id, foreign: id, foreignAlias: EIApplicationStatus, onDelete:CASCADE }
+#### Record the user who has been assigned the task of processing this application
+EITaskAssignment: 
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  user_assigned: {type: integer, notnull: true}
+  user_assigning: {type: string(255), notnull: true}
+  company_id: {type: integer, notnull: true }
+  instructions: {type: string(255), notnull: true}
+  duedate: {type: timestamp, notnull: true}
+  work_status: {type: string(255), notnull: true}
+ relations:
+  EIApplication: {local: company_id, foreign: id, foreignAlias: ApplicationAssigment , onDelete: CASCADE}
+  sfGuardUser: {local: user_assigned, foreign: id, foreignAlias: GuardEIAssignment} 
+#### Record the EIA Project Impact level, L1, L2 or L3
+ProjectImpact:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  company_id: {type: integer, notnull: true}
+  impact_level: {type: string(255), notnull: true}
+  comments: {type: string(400), notnull: false}
+ relations:
+  EIApplication: {local:company_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE }
+#### Records information of TOR with assistant from an EI Expert
+Tor:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  impact_id: {type: integer, notnull: true}
+  issues_assessed: {type: string(400), notnull: true}
+  specific_tasks: {type: string(400), notnull: true}
+  stake_holders: {type: string(400), notnull: true}
+  experts: {type: string(400), notnull: true}
+ relations:
+   ProjectImpact: {local:impact_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE }
+### Records The status of TOR submission, can be either rejected or approved
+TorStatus:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  tor_id: {type: integer, notnull: true}
+  status: {type: string(255), notnull: true}
+  comments: {type: string(400), notnull: false}
+ relations:
+  Tor: {local: tor_id,  foreign: id, foreignAlias: TorStatus, onDelete:CASCADE}
+#### Allow a user to upload EI and EMP documents if TOR is accepted
+EIReport:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  company_id: {type: integer, notnull: true, unique: true}
+  ei_doc: {type: string(255), notnull: true}
+  emp_doc: {type: string(255), notnull: true}
+ relations:
+  EIApplication: {local:company_id, foreign: id, foreignAlias: EIAStudyUploads, onDelete:CASCADE }
+## Allow a RDB staff record public hearing report of a certain project
+PublicHearing:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  company_id: {type: integer, notnull: true}
+  report: {type: string(800), notnull: true}
+ relations:
+  EIApplication: {local:company_id, foreign: id, foreignAlias: EIAStudyUploads, onDelete:CASCADE }
+### Allow an RDB to record the decision from executive commitee after they have reviewed the project
+EIApplicationDecision:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  eireport_id: {type: integer, notnull: true}
+  status: {type: string(255), notnull: true}
+  comments: {type: string(255), notnull: true}
+ relations:
+  EIReport: {local:eireport_id, foreign: id, foreignAlias: StudyDecision, onDelete:CASCADE }
+### Record the EIA Certificate
+EIACertificate:
+ actAs:
+  Timestampable: ~
+ columns:
+  serial_number: {type: integer, notnull: true, unique: true}
+  company_id: {type: integer, notnull: true, unique: true}
+ relations:
+  EIApplication: {local: company_id, foreign:id , foreignAlias: EIACertificate}
+############################ End EIA Certificate Application Process Tables ###############################
+Messages:
+ actAs: {Timestampable: ~}
+ columns:
+  sender: {type: string(255), notnull: true}
+  recepient: {type: string(255), notnull: true}
+  message: {type: string(255), notnull: true}
+  attachement: {type: string(255), notnull: true}
+  
+############################## End ############################################################
