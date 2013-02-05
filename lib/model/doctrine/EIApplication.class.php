@@ -12,5 +12,23 @@
  */
 class EIApplication extends BaseEIApplication
 {
-
+   //method to count active applications
+  public function countEIApplications(Doctrine_Query $q = null)  
+  {
+   return $this->addActiveApplications($q)->count();
+  }
+  //execute query
+  public function addActiveEIApplications(Doctrine_Query $q = null)
+  {
+    $userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+    if(is_null($q))
+	{
+	 $q = Doctrine_Query::create()
+	 ->from('EIApplication a')
+	 ->addWhere('a.user_id', $userid);
+	 $q->execute();
+	 
+	}
+	return $q;
+  }
 }

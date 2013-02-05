@@ -12,5 +12,5 @@
  */
 class InvestmentApplication extends BaseInvestmentApplication
 {
-
+ 
 }

@@ -1,17 +1,16 @@
 <?php use_helper('I18N') ?>
 <div id="logo" class="center">
-   <img  src="<?php sfConfig::get('sf_web_dir')?>/rdbeportal/web/images/logordb.png" alt ="LOGO" /> 
+   <img  src="<?php sfConfig::get('sf_web_dir')?>/portal/web/images/logordb.png" alt ="LOGO" /> 
   </div>
 <div id="login">
 <form id="loginform" class="form-vertical no-padding no-margin" action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
       <p class="center">Enter your username and password.</p>
       <div class="control-group">
-        <div class="controls">
-          <div class="input-prepend">
-			 <?php echo $form ?>
-			
-          </div>
-        </div>
+	  <table>
+		  <tbody>
+		  <?php echo $form ?>
+		 </tbody>
+	 </table>
       </div>
       <div class="control-group">
         

@@ -12,9 +12,19 @@ class investmentappActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->investment_applications = Doctrine_Core::getTable('InvestmentApplication')
-      ->createQuery('a')
-      ->execute();
+   /*
+   We need to transfer the model access code to the model class to fully comply with MVC
+   */
+   //call method to count and the current logged in user applications for Investment Certificates
+    $this->investment_applications = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplications();
+	//now call this method to check if the user has any EIA Certificate applications
+	$this->eia_applications = Doctrine_Core::getTable('InvestmentApplication')->getEIApplications();
+	///////////// Below is for the overall report  ///////////////////////
+	 //Get total Investment Certificate Applications
+	$this->overall_investmentapps = Doctrine_Core::getTable('InvestmentApplication')->getTotalInvestmentApplications();
+	//Get total EIA Certificates 
+	$this->overall_ieapplications = Doctrine_Core::getTable('InvestmentApplication')->getOverallEIATotal();
+	//Get Total Tax Exemptions Grantet to Investors with Certificates IGNORE FOR NOW
   }
 
   public function executeShow(sfWebRequest $request)

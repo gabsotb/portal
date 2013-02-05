@@ -16,4 +16,49 @@ class InvestmentApplicationTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('InvestmentApplication');
     }
+	// This method selects data from the investment table and returns it to the controller if called
+	public function getTotalInvestmentApplications(Doctrine_Query $query = null)
+	{
+	 if($query == null)
+	 {
+	   //execute a select statement to return data in InvestmentApplication table
+	  $q = Doctrine_Core::getTable('InvestmentApplication')
+	     ->createQuery('a')
+        ->execute();
+		return $q;
+	 }
+	}
+	//now we need to check if there are any application for this user and if not show a button for applying and appropriate message.
+	public function getUserInvestmentApplications()
+	{
+	 $userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+	// let use the doctrine manager secure 
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM investment_application 
+		where username_id= '$userid'
+		");
+		return $query; 
+	}
+	//call method to get this user applications
+	public function getEIApplications()
+	{
+	 return Doctrine_Core::getTable('EIApplication')->getUserEIApplications();
+	}
+	//
+	
+	////
+	/* Below Method will be called to calculate Overall EIA and Tax Exemptions */
+	public function getOverallEIATotal() // EIA Total Certificates Issued
+	{
+	return Doctrine_Core::getTable('EIApplication')->getTotalIEApplications();
+	}
+	public function getOverallTaxExemptionGranted() // Total Tax exemptions granted
+	{
+	 // Here we need to connect to the one stop center system and query for tax exemptions done by customs.
+	 //we just ignore this and put 0 inside the view
+	  
+	}
+    /* End Overall Methods */	
+ 
+	
+	
 }

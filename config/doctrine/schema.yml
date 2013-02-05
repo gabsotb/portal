@@ -20,6 +20,7 @@ InvestmentApplication: ## Contains the application details from the investors
   application_letter: {type: string(255), notnull: true}
   incorporation_certificate: {type: string(255), notnull: true}
   shareholding_list: {type: string(255), notnull: true}
+  company_logo: {type: string(255), notnull: false}
   username_id: {type: integer, notnull: true}
 ### Stores the Business Proposal of the user applying for the investment certificate
 BusinessPlan:
@@ -89,6 +90,7 @@ ApprovedApplications: # Shows approved businesses application
  actAs: {Timestampable: ~}
  columns:
   business_id: {type: integer, notnull:true}
+  application_type: {type: string(255), notnull: true}
   comment: {type: string(255), notnull: false}
  relations:
   InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentApprovedBusiness}
@@ -96,6 +98,7 @@ RejectedApplications: # Shows rejected businesses application
  actAs: {Timestampable: ~}
  columns:
   business_id: {type: integer, notnull:true}
+  application_type: {type: string(255), notnull: true}
   comment: {type: string(255), notnull: false}
  relations:
   InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentRejectedBusiness}
@@ -270,3 +273,8 @@ Messages:
   attachement: {type: string(255), notnull: true}
   
 ############################## End ############################################################
+Session:
+ columns:
+  id: { type: string(32), primary: true, notnull: true }
+  sessiondata: { type: string(4000), notnull: true }
+  time: { type: integer(4), notnull: true }

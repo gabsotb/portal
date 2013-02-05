@@ -32,7 +32,7 @@
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
 				<a class="brand" href="index.html">
-				<img  src="<?php sfConfig::get('sf_web_dir')?>/rdbeportal/web/images/logordb.png" alt ="LOGO" />
+				<img  src="<?php sfConfig::get('sf_web_dir')?>/portal/web/images/logordb.png" alt ="LOGO" />
 				</a>
 				<!-- END LOGO -->
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -296,12 +296,13 @@
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">
 							E-portal user Dashboard
-							<small>Register for EIA and Investment Certificate</small>
+							
 						</h3>
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="index.html">Home</a> <span class="divider">/</span>
+								<a href="index.html">Dashboard</a> <span class="divider">/</span>
+								<b>Register for EIA and Investment Certificate</b>
 							</li>
 							<li><a href="#"></a></li>
 						</ul>

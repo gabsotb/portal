@@ -15,6 +15,7 @@
  * @property string $application_letter
  * @property string $incorporation_certificate
  * @property string $shareholding_list
+ * @property string $company_logo
  * @property integer $username_id
  * @property Doctrine_Collection $InvestmentBusinessPlan
  * @property Doctrine_Collection $InvestmentSummary
@@ -34,6 +35,7 @@
  * @method string                getApplicationLetter()          Returns the current record's "application_letter" value
  * @method string                getIncorporationCertificate()   Returns the current record's "incorporation_certificate" value
  * @method string                getShareholdingList()           Returns the current record's "shareholding_list" value
+ * @method string                getCompanyLogo()                Returns the current record's "company_logo" value
  * @method integer               getUsernameId()                 Returns the current record's "username_id" value
  * @method Doctrine_Collection   getInvestmentBusinessPlan()     Returns the current record's "InvestmentBusinessPlan" collection
  * @method Doctrine_Collection   getInvestmentSummary()          Returns the current record's "InvestmentSummary" collection
@@ -52,6 +54,7 @@
  * @method InvestmentApplication setApplicationLetter()          Sets the current record's "application_letter" value
  * @method InvestmentApplication setIncorporationCertificate()   Sets the current record's "incorporation_certificate" value
  * @method InvestmentApplication setShareholdingList()           Sets the current record's "shareholding_list" value
+ * @method InvestmentApplication setCompanyLogo()                Sets the current record's "company_logo" value
  * @method InvestmentApplication setUsernameId()                 Sets the current record's "username_id" value
  * @method InvestmentApplication setInvestmentBusinessPlan()     Sets the current record's "InvestmentBusinessPlan" collection
  * @method InvestmentApplication setInvestmentSummary()          Sets the current record's "InvestmentSummary" collection
@@ -119,6 +122,11 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
         $this->hasColumn('shareholding_list', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('company_logo', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('username_id', 'integer', null, array(
