@@ -265,7 +265,10 @@ $(function () {
 														      </div>
 															<?php endif; ?>
 															
-												              <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+												     <a href="<?php echo url_for('investmentapp/new') ?>">
+													 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+													 </a>
+															   
 											  </div><!-- End Investment Certificate Application Widget -->
 												<!-- Begin EIA Certificate application widget -->
 												 <div class="widget">
