@@ -1,3 +1,4 @@
+
 <?php use_helper('I18N') ?>
 <div id="logo" class="center">
    <img  src="<?php sfConfig::get('sf_web_dir')?>/portal/web/images/logordb.png" alt ="LOGO" /> 
@@ -8,7 +9,7 @@
       <div class="control-group">
 	  <table>
 		  <tbody>
-		  <?php echo $form ?>
+		 <?php echo $form ?>
 		 </tbody>
 	 </table>
       </div>

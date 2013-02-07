@@ -14,7 +14,6 @@ abstract class BaseTaskAssignmentFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'user_assigned'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
-      'user_assigning'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'investmentapp_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'), 'add_empty' => true)),
       'instructions'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'duedate'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
@@ -27,7 +26,6 @@ abstract class BaseTaskAssignmentFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'user_assigned'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('sfGuardUser'), 'column' => 'id')),
-      'user_assigning'   => new sfValidatorPass(array('required' => false)),
       'investmentapp_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('InvestmentApplication'), 'column' => 'id')),
       'instructions'     => new sfValidatorPass(array('required' => false)),
       'duedate'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -57,7 +55,6 @@ abstract class BaseTaskAssignmentFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'               => 'Number',
       'user_assigned'    => 'ForeignKey',
-      'user_assigning'   => 'Text',
       'investmentapp_id' => 'ForeignKey',
       'instructions'     => 'Text',
       'duedate'          => 'Date',

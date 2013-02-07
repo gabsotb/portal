@@ -17,7 +17,6 @@
  * @property string $environment_impacts
  * @property string $other_alternatives
  * @property string $other_information
- * @property integer $user_id
  * @property Doctrine_Collection $EIApplicationStatus
  * @property Doctrine_Collection $ApplicationAssigment
  * @property Doctrine_Collection $EIAProjectImpact
@@ -36,7 +35,6 @@
  * @method string              getEnvironmentImpacts()   Returns the current record's "environment_impacts" value
  * @method string              getOtherAlternatives()    Returns the current record's "other_alternatives" value
  * @method string              getOtherInformation()     Returns the current record's "other_information" value
- * @method integer             getUserId()               Returns the current record's "user_id" value
  * @method Doctrine_Collection getEIApplicationStatus()  Returns the current record's "EIApplicationStatus" collection
  * @method Doctrine_Collection getApplicationAssigment() Returns the current record's "ApplicationAssigment" collection
  * @method Doctrine_Collection getEIAProjectImpact()     Returns the current record's "EIAProjectImpact" collection
@@ -54,7 +52,6 @@
  * @method EIApplication       setEnvironmentImpacts()   Sets the current record's "environment_impacts" value
  * @method EIApplication       setOtherAlternatives()    Sets the current record's "other_alternatives" value
  * @method EIApplication       setOtherInformation()     Sets the current record's "other_information" value
- * @method EIApplication       setUserId()               Sets the current record's "user_id" value
  * @method EIApplication       setEIApplicationStatus()  Sets the current record's "EIApplicationStatus" collection
  * @method EIApplication       setApplicationAssigment() Sets the current record's "ApplicationAssigment" collection
  * @method EIApplication       setEIAProjectImpact()     Sets the current record's "EIAProjectImpact" collection
@@ -131,10 +128,6 @@ abstract class BaseEIApplication extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 400,
-             ));
-        $this->hasColumn('user_id', 'integer', null, array(
-             'type' => 'integer',
-             'notnull' => true,
              ));
     }
 

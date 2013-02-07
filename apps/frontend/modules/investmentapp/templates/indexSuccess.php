@@ -219,7 +219,7 @@ $(function () {
 																<!-- table to list company information -->
 																   <div class="widget">
 														<div class="widget-title">
-															<h4><i class="icon-reorder"></i>Progress Monitor <?php print 'count is '.count($investment_applications) ?></h4>
+															<h4><i class="icon-reorder"></i>Progress Monitor</h4>
 															 
 														</div>
 														<div class="widget-body">
@@ -234,16 +234,21 @@ $(function () {
 																	</tr>
 																</thead>
 																<tbody>
+																  
 																	<tr>
-																		<td>Boniboy Construction Ltd</td>
-																		<td><span class="label label-success">Awaiting</span></td>
+																		<?php foreach($applications as $apps): ?>
+																		<?php $point = $apps['percentage'] ?>
+																		<?php $commentI = $apps['comment'] ?>
+																		 <td><?php echo $apps['name'] ?></td>
+																		  <td><span class="label label-success"><?php echo $apps['application_status'] ?></span></td>
+																		<?php endforeach; ?>
 																	</tr>
 																	
 																</tbody>
 															</table>
 															</div>
 															<div class="progress progress-striped active">
-																<div style="width: 7%;" class="bar"></div>
+																<div style="width: <?php echo $point?>%;" class="bar"></div>
 															</div>									
 															
 														</div>
@@ -252,7 +257,7 @@ $(function () {
 																<div class="alert alert-block alert-info fade in">
 																	<h4 class="alert-heading">Comments</h4>
 																	<p>
-																		Your application is awaiting assignment to RDB staff
+																		<?php echo $commentI  ?>
 																	</p>
 																</div>
 																

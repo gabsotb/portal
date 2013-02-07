@@ -13,7 +13,7 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
   public function setup()
   {
     $this->setWidgets(array(
-      'company_name'              => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'name'                      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'registration_number'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'company_address'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'job_created'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -24,7 +24,6 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
       'incorporation_certificate' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'shareholding_list'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'company_logo'              => new sfWidgetFormFilterInput(),
-      'username_id'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'created_at'                => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'                => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'created_by'                => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -32,7 +31,7 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
     ));
 
     $this->setValidators(array(
-      'company_name'              => new sfValidatorPass(array('required' => false)),
+      'name'                      => new sfValidatorPass(array('required' => false)),
       'registration_number'       => new sfValidatorPass(array('required' => false)),
       'company_address'           => new sfValidatorPass(array('required' => false)),
       'job_created'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -43,7 +42,6 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
       'incorporation_certificate' => new sfValidatorPass(array('required' => false)),
       'shareholding_list'         => new sfValidatorPass(array('required' => false)),
       'company_logo'              => new sfValidatorPass(array('required' => false)),
-      'username_id'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at'                => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'                => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'created_by'                => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Creator'), 'column' => 'id')),
@@ -68,7 +66,7 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
   {
     return array(
       'id'                        => 'Number',
-      'company_name'              => 'Text',
+      'name'                      => 'Text',
       'registration_number'       => 'Text',
       'company_address'           => 'Text',
       'job_created'               => 'Number',
@@ -79,7 +77,6 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
       'incorporation_certificate' => 'Text',
       'shareholding_list'         => 'Text',
       'company_logo'              => 'Text',
-      'username_id'               => 'Number',
       'created_at'                => 'Date',
       'updated_at'                => 'Date',
       'created_by'                => 'ForeignKey',

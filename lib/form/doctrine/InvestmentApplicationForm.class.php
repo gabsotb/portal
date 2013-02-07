@@ -10,6 +10,9 @@
  */
 class InvestmentApplicationForm extends BaseInvestmentApplicationForm
 {
+  
+   //here we want to get current username and set it to our database using Dependency Injection
+  
   public function generateNumbers()
   {
    $numbers = array();
@@ -28,11 +31,7 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
    //$this->widgetSchema = new sfWidgetFormSelect(array('choices' => date('Y-m-d H:i:s')));
    //set default date and time
    $this->setDefault('created_at',date('Y-m-d H:i:s')); 
-  
-   //here we want to get current username and set it to our database
-  $userid = sfContext::getInstance()->getUser()->getGuardUser()->getId();
- // $userid = null;
-   $this->setDefault('username_id',$userid)	;
+  // unset($this['username_id']);
    //unset some fields
    unset($this['updated_at'], $this['created_by'], $this['updated_by']);
    ////
@@ -154,7 +153,7 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
   $this->validatorSchema->setOption('allow_extra_fields', true);
   $this->validatorSchema->setOption('filter_extra_fields', false); */
   //customize error messages
-  $this->validatorSchema['company_name']  = new sfValidatorString(array(), array('required' => 'Please Provide Company name'));
+  $this->validatorSchema['name']  = new sfValidatorString(array(), array('required' => 'Please Provide Company name'));
   $this->validatorSchema['registration_number']  = new sfValidatorString(array(),array('required' => 'The Company Registration Number is Required?'));
   $this->validatorSchema['company_address']  = new sfValidatorString(array(), array('required' => 'The Company Address Cannot be Empty'));
   $this->validatorSchema['job_created']  = new sfValidatorString(array(), array('required' => 'Please Provide The Number of Jobs Your Company wil Create'));

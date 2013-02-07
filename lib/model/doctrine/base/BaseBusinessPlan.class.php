@@ -59,6 +59,7 @@ abstract class BaseBusinessPlan extends sfDoctrineRecord
         $this->hasColumn('investment_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             'unique' => true,
              ));
         $this->hasColumn('executive_summary', 'string', 400, array(
              'type' => 'string',

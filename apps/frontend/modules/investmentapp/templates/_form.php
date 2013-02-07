@@ -6,75 +6,7 @@
 		
     <tbody>
 		 
-		  <div class="controls">
-		   
-			<?php echo $form['company_name']->renderRow(
-				array('class' =>'span6 popovers' , 'data-trigger'=>'hover', 'data-original-title'=>'Please Enter Company Name Here', 'size' => '60px')) ?>
-		</div>
-		
-        
-		  <div class="controls">
-			<?php echo $form['registration_number']->renderRow(
-				array('class' =>'span6 popovers' , 'data-trigger'=>'hover', 'data-original-title'=>'Please Provide Company Registration Number', 'size' => '60px')) ?>
-		
-		</div>
-       
-		  <div class="controls">
-			<?php echo $form['company_address']->renderRow(
-				array('class' =>'span6 popovers' , 'data-trigger'=>'hover', 'data-original-title'=>'Please Provide Company Address', 'size' => '60px')) ?>
-		</div>
-		
-       
-		  <div class="controls">
-			<?php echo $form['job_created']->renderRow() ?>
-		
-		</div>			
-	   
-		  <div class="controls">
-			<?php echo $form['job_category']->renderRow(
-				array('class' =>'span6 popovers' , 'data-trigger'=>'hover', 'data-original-title'=>'Please Provide Jobs Categories that will be  Created by your Company', 
-				'rows' => '5', 'cols' => '30')) ?>
-		
-		</div>	
-         
-		  <div class="controls">
-			<?php echo $form['company_legal_nature']->renderRow(
-				array('class' =>'span6 popovers' , 'data-trigger'=>'hover', 'data-original-title'=>'Your Company Legal Nature', 'size' => '60px')) ?>
-		
-		</div>
-       
-		  <div class="controls">
-			<?php echo $form['company_representative']->renderRow(
-				array('class' =>'span6 popovers' , 'data-trigger'=>'hover', 'data-original-title'=>'The Company Representative', 'size' => '60px')) ?>
-		
-		</div>	
-       
-		  <div class="controls">
-			<?php echo $form['application_letter']->renderRow(
-				array('class' =>'default')) ?> 				
-		</div>	
-       
-		  <div class="controls">
-			<?php echo $form['incorporation_certificate']->renderRow(
-				array('class' =>'default')) ?>
-		
-		</div>	
-      
-		  <div class="controls">
-			<?php echo $form['shareholding_list']->renderRow(
-				array('class' =>'default')) ?>
-		</div>
-		
-		  <div class="controls">
-			<?php echo $form['company_logo']->renderRow(
-				array('class' =>'default' )) ?>
-		</div>
-		
-		  <div class="controls">
-		  
-			<?php echo $form['username_id']->renderRow(
-				array('class' =>'span6 popovers' , 'data-trigger'=>'hover', 'data-original-title'=>'User Logged in ID')) ?>
-		</div>
+		<?php echo $form ?>
 		
      <div class="form-actions">
       <tfoot>
@@ -90,6 +22,7 @@
             &nbsp;<?php echo link_to('Delete', 'investmentapp/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
           <?php endif; ?>
           <input type="submit" class="btn btn-primary" value="Submit" />
+		  <?php //$form->validatorSchema->setOption('allow_extra_fields', true); ?>
         </td>
       </tr>
     </tfoot>               

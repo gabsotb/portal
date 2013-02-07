@@ -13,29 +13,27 @@ abstract class BaseEITaskAssignmentFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'user_assigned'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
-      'user_assigning' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'company_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIApplication'), 'add_empty' => true)),
-      'instructions'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'duedate'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'work_status'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'created_at'     => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'updated_at'     => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'created_by'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
-      'updated_by'     => new sfWidgetFormFilterInput(),
+      'user_assigned' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
+      'company_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIApplication'), 'add_empty' => true)),
+      'instructions'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'duedate'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'work_status'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'created_at'    => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'    => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'created_by'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
+      'updated_by'    => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'user_assigned'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('sfGuardUser'), 'column' => 'id')),
-      'user_assigning' => new sfValidatorPass(array('required' => false)),
-      'company_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('EIApplication'), 'column' => 'id')),
-      'instructions'   => new sfValidatorPass(array('required' => false)),
-      'duedate'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'work_status'    => new sfValidatorPass(array('required' => false)),
-      'created_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'updated_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'created_by'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Creator'), 'column' => 'id')),
-      'updated_by'     => new sfValidatorPass(array('required' => false)),
+      'user_assigned' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('sfGuardUser'), 'column' => 'id')),
+      'company_id'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('EIApplication'), 'column' => 'id')),
+      'instructions'  => new sfValidatorPass(array('required' => false)),
+      'duedate'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'work_status'   => new sfValidatorPass(array('required' => false)),
+      'created_at'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'updated_at'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'created_by'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Creator'), 'column' => 'id')),
+      'updated_by'    => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('ei_task_assignment_filters[%s]');
@@ -55,17 +53,16 @@ abstract class BaseEITaskAssignmentFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'             => 'Number',
-      'user_assigned'  => 'ForeignKey',
-      'user_assigning' => 'Text',
-      'company_id'     => 'ForeignKey',
-      'instructions'   => 'Text',
-      'duedate'        => 'Date',
-      'work_status'    => 'Text',
-      'created_at'     => 'Date',
-      'updated_at'     => 'Date',
-      'created_by'     => 'ForeignKey',
-      'updated_by'     => 'Text',
+      'id'            => 'Number',
+      'user_assigned' => 'ForeignKey',
+      'company_id'    => 'ForeignKey',
+      'instructions'  => 'Text',
+      'duedate'       => 'Date',
+      'work_status'   => 'Text',
+      'created_at'    => 'Date',
+      'updated_at'    => 'Date',
+      'created_by'    => 'ForeignKey',
+      'updated_by'    => 'Text',
     );
   }
 }

@@ -18,10 +18,10 @@ class EIApplicationTable extends Doctrine_Table
     }
 	public function getUserEIApplications(Doctrine_Query $query = null)
 	{
-	$userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+	$userid = sfContext::getInstance()->getUser()->getGuardUser()->getUsername(); // get the username of the user logged
 	// let use the doctrine manager secure 
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM e_i_application 
-		where user_id= '$userid'
+		where updated_by= '$userid'
 		");
 		return $query; 
 	}

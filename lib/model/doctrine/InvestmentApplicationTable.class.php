@@ -31,10 +31,10 @@ class InvestmentApplicationTable extends Doctrine_Table
 	//now we need to check if there are any application for this user and if not show a button for applying and appropriate message.
 	public function getUserInvestmentApplications()
 	{
-	 $userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+	 $userid = sfContext::getInstance()->getUser()->getGuardUser()->getUsername(); // get the username of the user logged
 	// let use the doctrine manager secure 
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM investment_application 
-		where username_id= '$userid'
+		where updated_by= '$userid'
 		");
 		return $query; 
 	}
@@ -59,6 +59,15 @@ class InvestmentApplicationTable extends Doctrine_Table
 	}
     /* End Overall Methods */	
  
-	
+	/*Method to get applications status for this user*/
+	public function getApplicationStatus()
+	{
+	 $userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT business_application_status.application_status,
+     business_application_status.comment,business_application_status.percentage,investment_application.name FROM business_application_status 
+	 LEFT JOIN investment_application ON business_application_status.business_id = investment_application.id WHERE created_by = '$userid' 
+	 ");
+	 return $query;
+	}
 	
 }

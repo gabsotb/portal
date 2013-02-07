@@ -54,6 +54,10 @@ abstract class BaseBusinessPlanForm extends BaseFormDoctrine
       'updated_by'          => new sfValidatorString(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'BusinessPlan', 'column' => array('investment_id')))
+    );
+
     $this->widgetSchema->setNameFormat('business_plan[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

@@ -10,7 +10,7 @@ InvestmentApplication: ## Contains the application details from the investors
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
-  company_name: {type: string(255), notnull: true}  
+  name: {type: string(255), notnull: true}  
   registration_number: {type: string(255), notnull: true,  unique: true}
   company_address: {type: string(255), notnull: true}
   job_created: {type: integer, notnull: true}
@@ -21,7 +21,6 @@ InvestmentApplication: ## Contains the application details from the investors
   incorporation_certificate: {type: string(255), notnull: true}
   shareholding_list: {type: string(255), notnull: true}
   company_logo: {type: string(255), notnull: false}
-  username_id: {type: integer, notnull: true}
 ### Stores the Business Proposal of the user applying for the investment certificate
 BusinessPlan:
  actAs:
@@ -30,7 +29,7 @@ BusinessPlan:
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
-  investment_id: {type: integer, notnull: true}
+  investment_id: {type: integer, notnull: true, unique: true}
   executive_summary: {type: string(400), notnull: true}
   promoter_profile: {type: string(400), notnull: true}
   project_background: {type: string(400), notnull: true}
@@ -69,7 +68,6 @@ TaskAssignment:
    updated: { name: updated_by,type: string}
  columns:
   user_assigned: {type: integer, notnull: true}
-  user_assigning: {type: string(255), notnull: true}
   investmentapp_id: {type: integer, notnull: true }
   instructions: {type: string(255), notnull: true}
   duedate: {type: timestamp, notnull: true}
@@ -84,6 +82,7 @@ BusinessApplicationStatus: # Shows business application status, pending,processi
   business_id: {type: integer, notnull:true}
   application_status: {type: string(255), notnull: true}
   comment: {type: string(255), notnull: false}
+  percentage: {type: integer, notnull: true}
  relations:
   InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentAppBusinesStatus}
 ApprovedApplications: # Shows approved businesses application
@@ -147,7 +146,6 @@ EIApplication:
   environment_impacts: {type: string(400), notnull: true}
   other_alternatives: {type: string(400), notnull: false}
   other_information: {type: string(400), notnull: false}
-  user_id: {type: integer, notnull: true}
 ## Track the status of EIA Application   
 EIApplicationStatus:
  actAs:
@@ -167,7 +165,6 @@ EITaskAssignment:
    updated: { name: updated_by,type: string}
  columns:
   user_assigned: {type: integer, notnull: true}
-  user_assigning: {type: string(255), notnull: true}
   company_id: {type: integer, notnull: true }
   instructions: {type: string(255), notnull: true}
   duedate: {type: timestamp, notnull: true}
@@ -273,8 +270,14 @@ Messages:
   attachement: {type: string(255), notnull: true}
   
 ############################## End ############################################################
-Session:
+Session: ## Table is used to store sessions for frontend and backend applications
  columns:
   id: { type: string(32), primary: true, notnull: true }
   sessiondata: { type: string(4000), notnull: true }
   time: { type: integer(4), notnull: true }
+###### A Table to Simulate Business Registration System, we use it to confirm if a Business is Registered.
+BusinessRegistration:
+ actAs: {Timestampable: ~}
+ columns:
+  business_name: {type: string(255), notnull: true}
+  business_regno: {type: string(255), notnull: true}

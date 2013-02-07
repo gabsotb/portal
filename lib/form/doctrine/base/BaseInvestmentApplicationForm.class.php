@@ -16,7 +16,7 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                        => new sfWidgetFormInputHidden(),
-      'company_name'              => new sfWidgetFormInputText(),
+      'name'                      => new sfWidgetFormInputText(),
       'registration_number'       => new sfWidgetFormInputText(),
       'company_address'           => new sfWidgetFormInputText(),
       'job_created'               => new sfWidgetFormInputText(),
@@ -27,7 +27,6 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
       'incorporation_certificate' => new sfWidgetFormInputText(),
       'shareholding_list'         => new sfWidgetFormInputText(),
       'company_logo'              => new sfWidgetFormInputText(),
-      'username_id'               => new sfWidgetFormInputText(),
       'created_at'                => new sfWidgetFormDateTime(),
       'updated_at'                => new sfWidgetFormDateTime(),
       'created_by'                => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -36,7 +35,7 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                        => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'company_name'              => new sfValidatorString(array('max_length' => 255)),
+      'name'                      => new sfValidatorString(array('max_length' => 255)),
       'registration_number'       => new sfValidatorString(array('max_length' => 255)),
       'company_address'           => new sfValidatorString(array('max_length' => 255)),
       'job_created'               => new sfValidatorInteger(),
@@ -47,7 +46,6 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
       'incorporation_certificate' => new sfValidatorString(array('max_length' => 255)),
       'shareholding_list'         => new sfValidatorString(array('max_length' => 255)),
       'company_logo'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'username_id'               => new sfValidatorInteger(),
       'created_at'                => new sfValidatorDateTime(),
       'updated_at'                => new sfValidatorDateTime(),
       'created_by'                => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),

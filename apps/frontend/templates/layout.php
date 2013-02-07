@@ -7,19 +7,6 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	<!--<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-	<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<link href="assets/css/style.css" rel="stylesheet" />
-	<link href="assets/css/style_responsive.css" rel="stylesheet" />
-	<link href="assets/css/style_default.css" rel="stylesheet" id="style_color" />
-	<link href="#" rel="stylesheet" id="style_metro" />
-	<link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="assets/gritter/css/jquery.gritter.css" />
-	<link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-	<link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
-	<link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-	<link href="assets/jqvmap/jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css" /> -->
 	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>
 </head>
@@ -311,16 +298,24 @@
 				</div>
 				<?php endif; ?>
 				<!-- END PAGE HEADER-->
+				<?php if($sf_user->isAuthenticated()): ?>
 				<!-- BEGIN PAGE CONTENT-->
 				<div id="page" class="dashboard">
-					
 					<?php echo $sf_content ?>
-					
-					
-					
-					
 				</div>
 				<!-- END PAGE CONTENT-->
+				<?php endif; ?>
+				
+				<!-- Login -->
+				<?php if(!$sf_user->isAuthenticated()): ?>
+				<!-- BEGIN PAGE CONTENT-->
+				<div id="page">
+					<?php echo $sf_content ?>
+				</div>
+				<!-- END PAGE CONTENT-->
+				<?php endif; ?>
+				<!-- End Login -->
+			
 			</div>
 			<!-- END PAGE CONTAINER-->
 		</div>
@@ -333,23 +328,7 @@
 		<div class="span pull-right">
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
-	</div>
-	<!-- END FOOTER -->
-	<!-- BEGIN JAVASCRIPTS -->
-	<!-- Load javascripts at bottom, this will reduce page load time 
-	<script src="assets/js/jquery-1.8.2.min.js"></script>	
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/js/jquery.blockui.js"></script>
-	<!-- ie8 fixes -->
-	<!--[if lt IE 9]>
-	<script src="assets/js/excanvas.js"></script>
-	<script src="assets/js/respond.js"></script>
-	<![endif	
-	<script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>	
-	<script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
-	<script src="assets/fancybox/source/jquery.fancybox.pack.js"></script>
-	<script src="assets/js/app.js"></script>]-->		
+	</div>		
 	<script>
 		jQuery(document).ready(function() {			
 			// initiate layout and plugins
@@ -359,3 +338,4 @@
 </body>
 <!-- END BODY -->
 </html>
+

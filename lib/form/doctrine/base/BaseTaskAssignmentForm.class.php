@@ -17,7 +17,6 @@ abstract class BaseTaskAssignmentForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
       'user_assigned'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => false)),
-      'user_assigning'   => new sfWidgetFormInputText(),
       'investmentapp_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'), 'add_empty' => false)),
       'instructions'     => new sfWidgetFormInputText(),
       'duedate'          => new sfWidgetFormDateTime(),
@@ -31,7 +30,6 @@ abstract class BaseTaskAssignmentForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_assigned'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'))),
-      'user_assigning'   => new sfValidatorString(array('max_length' => 255)),
       'investmentapp_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
       'instructions'     => new sfValidatorString(array('max_length' => 255)),
       'duedate'          => new sfValidatorDateTime(),
