@@ -2,24 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title><?php include_slot('title', 'RDB - Investor Eportal System')
-			?></title>
+	<title><?php include_slot('title', 'RDB - Investor Eportal System') ?></title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
+	<link rel="shortcut icon" href="favicon.png" />
 	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>
 </head>
 <!-- END HEAD -->
-<body class="fixed-top">
+<body>
 	<!-- BEGIN HEADER -->
-	<div id="header" class="navbar navbar-inverse navbar-fixed-top">
+	<?php if($sf_user->isAuthenticated()): ?>
+	<div id="header" class="navbar navbar-inverse">
 		<!-- BEGIN TOP NAVIGATION BAR -->
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
 				<a class="brand" href="index.html">
-				<img  src="<?php sfConfig::get('sf_web_dir')?>/portal/web/images/logordb.png" alt ="LOGO" />
+				<img  src="images/logordb.png" alt ="LOGO" />
 				</a>
 				<!-- END LOGO -->
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -31,7 +32,6 @@
 				</a>          
 				<!-- END RESPONSIVE MENU TOGGLER -->				
 				<div class="top-nav">
-				<?php if($sf_user->isAuthenticated()): ?>
 					<!-- BEGIN QUICK SEARCH FORM -->
 					<form class="navbar-search hidden-phone">
 						<div class="search-input-icon">
@@ -59,10 +59,8 @@
 							<!-- END QUICK SEARCH RESULT PREVIEW -->
 						</div>
 					</form>
-					<?php endif ;?>
 					<!-- END QUICK SEARCH FORM -->
-					<!-- BEGIN TOP NAVIGATION MENU -->
-                    <?php if($sf_user->isAuthenticated()): ?>					
+					<!-- BEGIN TOP NAVIGATION MENU -->				
 					<ul class="nav pull-right" id="top_menu">
 						<!-- BEGIN NOTIFICATION DROPDOWN -->	
 						<li class="dropdown" id="header_notification_bar">
@@ -114,7 +112,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="./assets/img/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Lisa Wong</span>
 									<span class="time">Just Now</span>
@@ -126,7 +124,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="./assets/img/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Alina Fionovna</span>
 									<span class="time">16 mins</span>
@@ -138,7 +136,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="./assets/img/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Mila Rock</span>
 									<span class="time">2 hrs</span>
@@ -181,12 +179,11 @@
 								<li><a href="#"><i class="icon-tasks"></i> Tasks</a></li>
 								<li><a href="#"><i class="icon-ok"></i> Calendar</a></li>
 								<li class="divider"></li>
-								<li><i class="icon-key"></i><?php echo link_to('Logout','sf_guard_signout');?></li>
+								<li><?php echo link_to('<i class="icon-key"></i> Logout','@sf_guard_signout'); ?></li>
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
 					</ul> 
-					<?php endif; ?>
 					<!-- END TOP NAVIGATION MENU -->	
 				</div>
 			</div>
@@ -196,7 +193,6 @@
 	<!-- END HEADER -->
 	<!-- BEGIN CONTAINER -->
 	<div id="container" class="row-fluid">
-	<?php if($sf_user->isAuthenticated()): ?>
 		<!-- BEGIN SIDEBAR -->
 		<div id="sidebar" class="nav-collapse collapse">
 			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
@@ -208,115 +204,54 @@
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			<!-- BEGIN SIDEBAR MENU -->
 			<ul>
-				<li class="active">
-					<a href="#">
-					<i class="icon-home"></i> Dashboard
-					</a>					
-				</li>
+				<li class="active"><?php echo link_to('<i class="icon-home"></i> Dashboard', '@homepage') ?> </li>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bookmark-empty"></i> Investment Certificate
+					<i class="icon-table"></i> Investment Certificate
 					<span class="arrow"></span>
-					</a>
+					</a>					
 					<ul class="sub">
-						<li><a class="" href="#">Application Form</a></li>
-						<li><a class="" href="#">Business Proposal</a></li>
+						<li class=""><a href="#"><i class="icon-tag"></i>Application Form</a></li>
+						<li class=""><a href="#"><i class="icon-tag"></i>Business Proposal</a></li>
 					</ul>
 				</li>
-				<li><a class="" href="#"><i class="icon-table"></i> EIA Certificate</a></li>
-				<li class=""><a class="" href="#"><i class="icon-table"></i> <?php echo "Help" ?></a></li>
-				<li> <?php echo link_to('Logout','sf_guard_signout');?></li>
+				<li><a  href="#"><i class="icon-table"></i> EIA Certificate</a></li>
+				<li class="">
+					<a href="" >
+					<i class="icon-lightbulb"></i> Help
+					</a>
+				</li>				
+				<li> <?php echo link_to('<i class="icon-lock"></i> Logout','@sf_guard_signout'); ?></li>
 			</ul>
 		</div>
-		<?php endif; ?>
 		<!-- END SIDEBAR -->
 		<!-- BEGIN PAGE -->
 		<div id="body">
-		<?php if($sf_user->isAuthenticated()): ?>
-			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-			<div id="widget-config" class="modal hide">
-				<div class="modal-header">
-					<button data-dismiss="modal" class="close" type="button">×</button>
-					<h3>Widget Settings</h3>
-				</div>
-				<div class="modal-body">
-					<p>Here will be a configuration form</p>
-				</div>
-			</div>
-		<?php endif; ?>
-			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
 			<!-- BEGIN PAGE CONTAINER-->			
 			<div class="container-fluid">
-			<?php if($sf_user->isAuthenticated()): ?>
-				<!-- BEGIN PAGE HEADER-->
-				<div class="row-fluid">
-					<div class="span12">
-						<!-- BEGIN STYLE CUSTOMIZER-->
-						<div id="styler" class="hidden-phone">
-							<i class="icon-cog"></i>
-							<span class="settings">
-								<span class="text">Style:</span>
-								<span class="colors">
-									<span class="color-default" data-style="default">
-									</span>
-									<span class="color-grey" data-style="grey">
-									</span>
-									<span class="color-navygrey" data-style="navygrey">
-									</span>											
-									<span class="color-red" data-style="red">
-									</span>	
-								</span>
-								<span class="layout">
-									<label class="hidden-phone">
-									<input type="checkbox" class="header" checked value="" />Sticky Header
-									</label><br />
-									<label><input type="checkbox" class="metro" value="" />Metro Style</label>
-									<span class="space5"></span>
-									<a class="btn fancybox-button" data-rel="fancybox-button" title="Conquer Large Desktop Preview"  href="assets/img/demo/desktop.png"><i class="icon-eye-open"></i> Screenshots</a>
-									<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Notebook Preview" href="assets/img/demo/notebook.png"></a>
-									<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Tablet Preview"  href="assets/img/demo/tablet.png"></a>
-									<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Phone Preview"  href="assets/img/demo/phone.png"></a>
-								</span>
-							</span>
-						</div>
-						<!-- END STYLE CUSTOMIZER-->    
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">
-							E-portal user Dashboard
-							
-						</h3>
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home"></i>
-								<a href="index.html">Dashboard</a> <span class="divider">/</span>
-								<b>Register for EIA and Investment Certificate</b>
-							</li>
-							<li><a href="#"></a></li>
-						</ul>
-						<!-- END PAGE TITLE & BREADCRUMB-->
-					</div>
+	<?php endif ?>
+				<?php if ($sf_user->hasFlash('notice')): ?>
+				<div class="flash_notice">
+					<?php echo $sf_user->getFlash('notice') ?>
 				</div>
-				<?php endif; ?>
-				<!-- END PAGE HEADER-->
-				<?php if($sf_user->isAuthenticated()): ?>
-				<!-- BEGIN PAGE CONTENT-->
-				<div id="page" class="dashboard">
-					<?php echo $sf_content ?>
-				</div>
-				<!-- END PAGE CONTENT-->
-				<?php endif; ?>
-				
-				<!-- Login -->
-				<?php if(!$sf_user->isAuthenticated()): ?>
-				<!-- BEGIN PAGE CONTENT-->
-				<div id="page">
-					<?php echo $sf_content ?>
-				</div>
-				<!-- END PAGE CONTENT-->
-				<?php endif; ?>
-				<!-- End Login -->
+				<?php endif ?>	
 			
-			</div>
+				<?php if ($sf_user->hasFlash('error')): ?>
+				<div class="flash_error">
+					<?php echo $sf_user->getFlash('error') ?>
+				</div>
+				<?php endif ?>
+			
+					<?php echo $sf_content ?>
+				<?php if($sf_user->isAuthenticated()): ?>	
+				</div>
+				<!-- END PAGE CONTENT-->
+
+				
+				
+			
+			
 			<!-- END PAGE CONTAINER-->
 		</div>
 		<!-- END PAGE -->
@@ -324,11 +259,12 @@
 	<!-- END CONTAINER -->
 	<!-- BEGIN FOOTER -->
 	<div id="footer">
-		2012 &copy; Rwanda Development Board. All Rights Reserved.
+		2013 &copy; Rwanda Development Board. All Rights Reserved.
 		<div class="span pull-right">
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
-	</div>		
+	</div>	
+				<?php endif ?>
 	<script>
 		jQuery(document).ready(function() {			
 			// initiate layout and plugins
