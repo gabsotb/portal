@@ -91,21 +91,17 @@
 															<?php echo $form->renderHiddenFields(); ?>
 														</div> 
 												 
-												<div class="block-hint pull-right">
-													<?php $routes = $sf_context->getRouting()->getRoutes() ?>
-													<?php if (isset($routes['sf_guard_forgot_password'])): ?>
-													<a href="<?php echo url_for('@sf_guard_forgot_password') ?>"  id="forget-password">
-														<?php echo __('Forgot your password?', null, 'sf_guard') ?>
-													</a>
-													<?php endif; ?>
-
-													<?php if (isset($routes['sf_guard_register'])): ?>
-													&nbsp; <a href="<?php echo url_for('@sf_guard_register') ?>" id="forget-password"><?php echo __('Want to register?', null, 'sf_guard') ?></a>
-													<?php endif; ?>
-													<div class="clearfix space5"></div>
+											<div class="block-hint pull-right">
+											  <?php $routes = $sf_context->getRouting()->getRoutes() ?>
+												<?php if (isset($routes['sf_guard_password_reset'])): ?>
+												<a href="<?php echo url_for('@sf_guard_password_reset') ?>"><?php echo __('Forgot password?', null, 'sf_guard') ?></a>
+												<?php if (isset($routes['apply'])): ?>
+												&nbsp; &nbsp;&nbsp;<a href="<?php echo url_for('@apply') ?>"><?php echo __('Want to register?', null, 'sf_guard') ?></a>
+											  <?php endif; ?>
+											  <?php endif; ?>
+											  </div>
 												</div>
-												<!--</div>
-											</div>	-->
+											</div>
 											<input type="submit" id="login-btn" class="btn btn-block btn-inverse" value="<?php echo __('Signin', null, 'sf_guard') ?>" />
 										</form>
 									</div>

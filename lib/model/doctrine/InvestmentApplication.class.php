@@ -12,5 +12,34 @@
  */
 class InvestmentApplication extends BaseInvestmentApplication
 {
-
+   // We want to Override this method and check if this business is registered. Simple Simulation
+   //If not we display appropriate message informing the user of the error
+  public function save(Doctrine_Connection $conn = null)
+  {
+   $conn = $conn ? $conn : $this->getTable()->getConnection();
+   $conn->beginTransaction();
+		  try
+		  {
+			  
+			  ///
+			  $ret = parent::save($conn);
+				$conn->commit();
+				return $ret ;
+			
+		  }
+		  catch(Exception $e)
+		  {
+		  $conn->rollBack();
+		  throw $e;
+		  }
+  }
+  //This function will do the job, check if submitted Business name and Registration number exists
+  public function validateBusiness($name, $regno)
+  {
+   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM business_registration WHERE business_name = '$name'
+   AND business_regno = '$regno'");
+  // print_r($query); exit;
+   return $query;
+  }
+  
 }
