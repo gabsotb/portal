@@ -23,13 +23,15 @@ test:
     etag:                   false
 
 all:
-  .settings:
-    # Form security secret (CSRF protection)
-    csrf_secret:            cabee04d88f0b0d1916b8c88141e9f3bd290a5a0
-
-    # Output escaping settings
-    escaping_strategy:      true
-    escaping_method:        ESC_SPECIALCHARS
-
-    # Enable the database manager
-    use_database:           true
+ .settings:
+  # Form security secret (CSRF protection)
+  csrf_secret:            cabee04d88f0b0d1916b8c88141e9f3bd290a5a0
+  # Output escaping settings
+  escaping_strategy:      true
+  escaping_method:        ESC_SPECIALCHARS
+  # Enable the database manager
+  use_database:           true
+  enabled_modules: [default,sfGuardAuth,sfGuardUser,sfApply]
+ .actions:
+  login_module: sfGuardAuth
+  login_action: signin

@@ -38,7 +38,7 @@ all:
  storage:
   class: sfPDOSessionStorage
   param:
-   session_name: sf_backend         
+   session_name: sf_frontend         
    db_table:    session              # Name of the table storing the sessions
    database:    doctrine               # Name of the database connection to use
    # Optional parameters

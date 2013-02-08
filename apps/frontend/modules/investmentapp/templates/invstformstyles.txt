@@ -1,0 +1,82 @@
+	<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['name']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Enter A Valid Business Name, The Name entered will be verified and counter checked
+					from the business registration system. Make sure you have a registered name' , 'data-original-title' => 'Business Name')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['registration_number']->renderRow(array('class' => 'span6 popovers' , 'data-content' => 'Enter Business Registration Number. This is the Number that was issued when
+					you registered your business' , 'data-trigger' => 'hover', 'data-original-title' => 'Business Number')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['company_address']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Enter Current Business Location. 
+					This should be the physical location where you intend to start your
+					business operations.', 'data-original-title' => 'Company Address')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['job_created']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Provide The Number of Jobs Your Business will create', 'data-original-title' => 'No of Jobs')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['job_category']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Provide Category of Jobs Created by your Business', 'data-original-title' => 'Job Categories')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['company_legal_nature']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'What is your Company Legal Nature', 'data-original-title' => 'Business Legal Status')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['company_representative']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Who is your Company Representative?', 'data-original-title' => 'Company Representatives')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['application_letter']->renderRow(array('class' => 'default')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['incorporation_certificate']->renderRow(array('class' => 'default')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['shareholding_list']->renderRow(array('class' => 'default')) ?>
+				</div>
+			</div>
+		</div>
+	   <div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['company_logo']->renderRow(array('class' => 'default')) ?>
+					<?php echo $form->renderHiddenFields(); ?>
+				</div>
+			</div>
+		</div>

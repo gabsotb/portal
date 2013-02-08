@@ -12,5 +12,54 @@
  */
 class TaskAssignment extends BaseTaskAssignment
 {
-
+    public function save(Doctrine_Connection $conn = null)
+	  {
+	   $conn = $conn ? $conn : $this->getTable()->getConnection();
+	   $conn->beginTransaction();
+			  try
+			  {
+				  //we will override this method. we update the application status of this investor. for now we use coded status
+				  //later we will try and find a better solution
+				  $businessStatus = new BusinessApplicationStatus();
+				  //we retrieve the neccessary values from this model
+				  $id = $this->getInvestmentappId() ;
+					  //$name = $this->getUserAssigned();
+					 // print $name ; exit;
+				  
+				  // pass id of the item to update
+				  $this->updateStatus($id);
+			      $this->updateComment($id);
+				  $value = 30 ;
+				  $this->updateValue($id, $value );
+				 // exit;
+				  ///
+				  $ret = parent::save($conn);
+					$conn->commit();
+					return $ret ;
+				
+			  }
+			  catch(Exception $e)
+			  {
+			  $conn->rollBack();
+			  throw $e;
+			  }
+	  }
+	   //this method is used to update the status of a business application during form submission
+  public function updateStatus($id)
+  {
+   /* $q = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("UPDATE business_application_status SET application_status = 'Processing' WHERE id ='$id'
+	"); */
+	$query = Doctrine_Core::getTable('BusinessApplicationStatus')->updateStatus($id);
+	
+  }
+  //update the comment
+  public function updateComment($id,$name)
+  {
+   $query = Doctrine_Core::getTable('BusinessApplicationStatus')->updateComment($id);
+  }
+  //update value
+  public function updateValue($id,$value)
+  {
+   $query = Doctrine_Core::getTable('BusinessApplicationStatus')->updateValue($id,$value);
+  }
 }

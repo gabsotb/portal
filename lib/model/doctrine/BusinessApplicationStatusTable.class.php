@@ -16,4 +16,38 @@ class BusinessApplicationStatusTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('BusinessApplicationStatus');
     }
+	/*
+	These methods are used to manually update the status of application. Seems sysmfony has no good way to implement a workflow
+	hence we have to work with functions and look for a better solution later.
+	*/
+	//update the status of the user application
+	public function updateStatus($id)
+	{
+	 $value = "assigned";
+	 //query
+	 $q = Doctrine_Query::create()
+	 ->UPDATE('BusinessApplicationStatus')
+	 ->SET('application_status', '?' , $value)
+	 ->WHERE('business_id = ?', $id);
+	 $q->execute();
+	}
+	//update the comment
+	public function updateComment($id)
+	{
+	 $value = "Your Document has been assigned to a RDB Data Admin Staff ";
+	 //query
+	 $q = Doctrine_Query::create()
+	 ->UPDATE('BusinessApplicationStatus')
+	 ->SET('comment', '?' , $value)
+	 ->WHERE('business_id = ?', $id);
+	 $q->execute();
+	}
+	public function updateValue($id,$value)
+	{
+	 $q = Doctrine_Query::create()
+	 ->UPDATE('BusinessApplicationStatus')
+	 ->SET('percentage', '?' , $value)
+	 ->WHERE('business_id = ?', $id);
+	 $q->execute();
+	}
 }
