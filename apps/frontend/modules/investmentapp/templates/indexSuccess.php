@@ -1,3 +1,4 @@
+
 <h1>Investment applications List</h1>
 
 <table>
@@ -48,6 +49,7 @@
       <td><?php echo $investment_application->getUpdatedAt() ?></td>
     </tr>
     <?php endforeach; ?>
+	
   </tbody>
 </table>
 
