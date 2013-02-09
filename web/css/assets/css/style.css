@@ -310,7 +310,7 @@ background: #ffffff url('../img/line.jpg') repeat-y;
   margin-top: 7px;
   margin-left: 215px; 
   min-height: 600px;    
-  background: #f7f7f7 url("../images/body-bg.png");  
+  background: #f7f7f7 url("../img/body-bg.png");  
   border-bottom: 2px solid #ddd; 
   padding: 8px 8px 100px;
 }
@@ -1315,8 +1315,8 @@ ul.item-list.todo li .actions {
 }  
 
 #login {
-
-  background-image:url("../img/body-bg.png"); 
+	background-color: #515255;
+  /*background-image:url("../img/photo.jpg"); */
   width: 247px;
   margin: 0 auto; 
   padding: 20px;

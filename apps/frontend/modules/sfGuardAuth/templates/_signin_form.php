@@ -7,8 +7,8 @@
 	<img src="images/logo.gif" alt='logo'>
 </div>
 
-		<div class="row-fluid">
-			<div class="span8" id="right-column">
+		<div class="row-fluid " style="background: url('images/body-bg.png'); border-radius: 8px; margin: 20px 10px 10px 0px; height: 300px; ">
+			<div class="span8" style="margin: 50px 0px 5px;" >
 				<div class="widget">
 					<div class="widget-title">
 						<h4>
@@ -50,55 +50,49 @@
 				</div>
 			</div>
 			
-			
-			<div class="span4" >
+			<div class="span4" style=" margin: 50px 0px 5px;" >
+				<div id="login"  >
 				
-				<div class="widget">
-					<div class="widget-title">
-						<h4><i class="icon-user"></i> Log In </h4>
-					</div>
-						<div class="widget-body">
-						
-							<form action="<?php echo url_for('@sf_guard_signin') ?>" method="post" class="form-vertical" id="loginform">
-								<p class="center"> Enter your username and password</p>
-									<div class="control-group">
-										<div class="controls">
-											<div class="input-prepend">
-												<span class="add-on">
-													<i class="icon-user"></i>
-												</span>
-												<?php echo $form['username']->render(array('placeholder' => 'Username')) ?>
-											</div>
-										</div>
+					<form action="<?php echo url_for('@sf_guard_signin') ?>" method="post" class="form-vertical no-padding no-margin" id="loginform">
+						<p class="center"> Enter your username and password</p>
+							<div class="control-group">
+								<div class="controls">
+									<div class="input-prepend">
+										<span class="add-on">
+											<i class="icon-user"></i>
+										</span>
+										<?php echo $form['username']->render(array('placeholder' => 'Username')) ?>
 									</div>
-									
-									<div class="control-group">
-										<div class="controls">
-											<div class="input-prepend">
-												<span class="add-on">
-													<i class="icon-lock"></i>
-												</span>
-												<?php echo $form['password']->render(array('placeholder' => 'Password')) ?>
-												<?php echo $form->renderHiddenFields(); ?>
-											</div> 
-									 
-										<div class="block-hint pull-right">
-										<?php $routes = $sf_context->getRouting()->getRoutes() ?>
-										<?php if (isset($routes['sf_guard_password_reset'])): ?>
-										<a href="<?php echo url_for('@sf_guard_password_reset') ?>" id="forget-password"><?php echo __('Forgot password?', null, 'sf_guard') ?></a>
-										<?php if (isset($routes['apply'])): ?>
-										&nbsp; &nbsp;&nbsp;<a href="<?php echo url_for('@apply') ?>" id="forget-password"><?php echo __('Want to register?', null, 'sf_guard') ?></a>
-										<?php endif; ?>
-										<?php endif; ?>
-										</div>
-										</div>
-									</div>
-								
-								<input type="submit" id="login-btn" class="btn btn-block btn-inverse" value="<?php echo __('Signin', null, 'sf_guard') ?>" />
-							</form>
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<div class="controls">
+									<div class="input-prepend">
+										<span class="add-on">
+											<i class="icon-lock"></i>
+										</span>
+										<?php echo $form['password']->render(array('placeholder' => 'Password')) ?>
+										<?php echo $form->renderHiddenFields(); ?>
+									</div> 
+							 
+								<div class="block-hint ">
+								<?php $routes = $sf_context->getRouting()->getRoutes() ?>
+								<?php if (isset($routes['sf_guard_password_reset'])): ?>
+								<a href="<?php echo url_for('@sf_guard_password_reset') ?>" id="forget-password"><?php echo __('Forgot password?', null, 'sf_guard') ?></a>
+								<?php if (isset($routes['apply'])): ?>
+								&nbsp; &nbsp;&nbsp;<a href="<?php echo url_for('@apply') ?>" class="small"><?php echo __('Want to register?', null, 'sf_guard') ?></a>
+								<?php endif; ?>
+								<?php endif; ?>
+								</div>
+								</div>
+							</div>
+							<input type="submit" id="login-btn" class="btn btn-block btn-inverse" value="<?php echo __('Signin', null, 'sf_guard') ?>" />
+
+					</form>
 						
-						</div>
-				</div>	
+				</div>
+			
 				
 			</div>	
 			
@@ -106,4 +100,6 @@
 		</div>
 
 	
-				
+	<div id="footer" style="margin: 20px;">
+		2013 &copy; Rwanda Development Board. All Rights Reserved.
+	</div>			
