@@ -95,7 +95,7 @@ $(function () {
 						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
 							<div class="stats-overview block clearfix">
 								<div class="details">
-									<img  src="<?php sfConfig::get('sf_web_dir')?>/portal/web/images/logordb.png" alt ="LOGO" />
+									<img  src="images/logordb.png" alt ="LOGO" />
 								</div>
 							</div>
 						</div>
