@@ -70,4 +70,16 @@ class InvestmentApplicationTable extends Doctrine_Table
 	 return $query;
 	}
 	
+	//now we use this method to retrieve applications that is not yet assigned to any RDB data admin
+	public function getUnassignedApplications($status)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name, 
+	 business_plan.created_at, business_plan.updated_by, business_application_status.business_id
+ FROM business_plan LEFT JOIN investment_application ON business_plan.investment_id  = investment_application.id
+LEFT JOIN  business_application_status ON business_plan.id = business_application_status.business_id 
+WHERE business_application_status.application_status = '$status' 
+");
+return $query;
+	}
+	
 }

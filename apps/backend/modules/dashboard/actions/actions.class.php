@@ -18,5 +18,8 @@ class dashboardActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     //$this->forward('default', 'module');
+	//we call method to select records from InvestmentApplications submitted who's status is submitted i.e. not assigned to a staff.
+	 $status = 'submitted';
+	$this->new_applications = Doctrine_Core::getTable('InvestmentApplication')->getUnassignedApplications($status); // pass status for the where clause
   }
 }
