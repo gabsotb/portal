@@ -112,7 +112,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="images/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Lisa Wong</span>
 									<span class="time">Just Now</span>
@@ -124,7 +124,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="images/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Alina Fionovna</span>
 									<span class="time">16 mins</span>
@@ -136,7 +136,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="images/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Mila Rock</span>
 									<span class="time">2 hrs</span>

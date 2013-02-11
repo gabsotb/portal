@@ -98,6 +98,9 @@ img.center {
   font-style: italic !important;
 }
 
+.error_list{
+color: #ff0000;
+}
 i.big {
   font-size: 20px;
 }
@@ -293,6 +296,7 @@ background: #ffffff url('../img/line.jpg') repeat-y;
 
 /* main container */
 #container {
+background: url('../img/bgColor.jpg') repeat-x;
 }
 
 .fixed-top #container {
@@ -463,8 +467,7 @@ background: #ffffff url('../img/line.jpg') repeat-y;
   font-size: 12px;
   color: #999;
   text-align:center;
- /* position: relative;*/
-  /* bottom: -50px; */
+
 }
 
 #footer .go-top { 
@@ -1315,8 +1318,8 @@ ul.item-list.todo li .actions {
 }  
 
 #login {
-	background-color: #515255;
-  /*background-image:url("../img/photo.jpg"); */
+
+  background-image:url("../img/body-bg.png"); 
   width: 247px;
   margin: 0 auto; 
   padding: 20px;
