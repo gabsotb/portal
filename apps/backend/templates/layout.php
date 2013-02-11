@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title><?php include_slot('title', 'RDB - Investor Eportal System - Administration')
-			?></title>
+	<title><?php include_slot('title', 'RDB - Investor Eportal System - Administration') ?></title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -19,7 +18,7 @@
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
 				<a class="brand" href="index.html">
-				<img  src="<?php sfConfig::get('sf_web_dir')?>/portal/web/images/logordb.png" alt ="LOGO" />
+				<img  src="/images/logordb.png" alt ="LOGO" />
 				</a>
 				<!-- END LOGO -->
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -114,7 +113,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="./assets/img/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Lisa Wong</span>
 									<span class="time">Just Now</span>
@@ -126,7 +125,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="./assets/img/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Alina Fionovna</span>
 									<span class="time">16 mins</span>
@@ -138,7 +137,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="./assets/img/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Mila Rock</span>
 									<span class="time">2 hrs</span>

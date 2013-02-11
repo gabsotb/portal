@@ -6,7 +6,7 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	<link rel="shortcut icon" href="favicon.png" />
+	<link rel="shortcut icon" href="/favicon.png" />
 	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>
 </head>
@@ -20,7 +20,7 @@
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
 				<a class="brand" href="index.html">
-				<img  src="images/logordb.png" alt ="LOGO" />
+				<img  src="/images/logordb.png" alt ="LOGO" />
 				</a>
 				<!-- END LOGO -->
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -112,7 +112,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="images/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Lisa Wong</span>
 									<span class="time">Just Now</span>
@@ -124,7 +124,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="images/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Alina Fionovna</span>
 									<span class="time">16 mins</span>
@@ -136,7 +136,7 @@
 								</li>
 								<li>
 									<a href="#">
-									<span class="photo"><img src="images/avatar-mini.png" alt="avatar"/></span>
+									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
 									<span class="subject">
 									<span class="from">Mila Rock</span>
 									<span class="time">2 hrs</span>
