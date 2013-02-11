@@ -12,9 +12,9 @@ generator:
 
     config:
       list:
-        title: Permission list
-        display: [=name, description, created_at, updated_at]
-
+        title: Users Permission list
+        display: [=name, description, created_at]
+      filter: {display: [users_list,groups_list]}
       edit:
         title: Editing Permission "%%name%%"
 

@@ -3,3 +3,7 @@
 
 # default values
 #all:
+ #error_management: ## Enable error logging modules
+ ## record_php_error: true
+ # ask_user_to_comment: true
+ # after_comment_route: @homepage 

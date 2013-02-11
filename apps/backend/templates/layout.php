@@ -209,23 +209,27 @@
 			<!-- BEGIN SIDEBAR MENU -->
 			<ul>
 				<li class="active">
-					<a href="#">
+					<a href="<?php echo url_for('dashboard/index') ?>">
 					<i class="icon-home"></i> Dashboard
 					</a>					
 				</li>
+				<!-- We need to only show this if the user has adequate rights to manage and create users -->
+				<?php if($sf_user->hasCredential('assignJob')) {?>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
 					<i class="icon-bookmark-empty"></i> User Management
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li><a class="" href="#">User Accounts</a></li>
-						<li><a class="" href="#">User Groups</a></li>
-						<li><a class="" href="#">Groups Permissions</a></li>
+						<li><a class="" href="<?php echo url_for('sf_guard_users') ?>">User Accounts</a></li>
+						<li><a class="" href="<?php echo url_for('sf_guard_user_groups') ?>">User Groups</a></li>
+						<li><a class="" href="<?php echo url_for('sf_guard_user_permissions') ?>">Groups Permissions</a></li>
 					</ul>
 				</li>
-				<li class=""><a class="" href="#"><i class="icon-table"></i> <?php echo "Help" ?></a></li>
-				<li> <?php echo link_to('Logout','sf_guard_signout');?></li>
+				<?php } ?>
+				<!-- end -->
+				<li class=""><a class="" href="#"><i class="icon-table"></i> Help</a></li>
+				<li><a class="" href="<?php echo url_for('sf_guard_signout');?>"> <i class="icon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 		<?php endif; ?>
@@ -280,19 +284,55 @@
 							</span>
 						</div>
 						<!-- END STYLE CUSTOMIZER-->    
+						<?php if($sf_user->hasCredential('assignJob'))
+						 // we check if the user has valid credentials to be able to see this menu
+						{ ?>
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">
-							E-portal Administration Dashboard
-							
-						</h3>
+						<h3 class="page-title">E-portal Administration Dashboard </h3>
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="index.html">Dashboard</a> <span class="divider">/</span>
+								<a href="<?php echo url_for('dashboard/index') ?>">Admin Dashboard</a> <span class="divider">/</span>
 								<b>Manage System Operations. View and Create System Users</b>
 							</li>
+							
 							<li><a href="#"></a></li>
 						</ul>
+						<?php } 
+						?>
+						<?php if($sf_user->hasCredential('investmentcert'))
+						 // we check if the user has valid credentials to be able to see this menu
+						{ ?>
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
+						<h3 class="page-title">E-portal Investment Certificate Administrator Dashboard  </h3>
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home"></i>
+								<a href="<?php echo url_for('dashboard/index') ?>">Data Administrator Dashboard</a> <span class="divider">/</span>
+								<b>View Jobs assigned to you. Process Investment Certificates Tasks Assigned to you.</b>
+							</li>
+							
+							<li><a href="#"></a></li>
+						</ul>
+						<?php } 
+						?>
+						<!-- END PAGE TITLE & BREADCRUMB-->
+							<?php if($sf_user->hasCredential('eiacert'))
+						 // we check if the user has valid credentials to be able to see this menu
+						{ ?>
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
+						<h3 class="page-title">E-portal EIA Certificate Administrator Dashboard </h3>
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home"></i>
+								<a href="<?php echo url_for('dashboard/index') ?>">Data Administrator Dashboard</a> <span class="divider">/</span>
+								<b>View Jobs assigned to you. Process EIA Certificates Tasks Assigned to you.</b>
+							</li>
+							
+							<li><a href="#"></a></li>
+						</ul>
+						<?php } 
+						?>
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>
 				</div>

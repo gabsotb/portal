@@ -44,6 +44,11 @@ class TaskAssignment extends BaseTaskAssignment
 			  throw $e;
 			  }
 	  }
+  //my custom toString method
+  public function __toString()
+  {
+    return sprintf('%s',$this->getName());
+  }
 	   //this method is used to update the status of a business application during form submission
   public function updateStatus($id)
   {
@@ -53,7 +58,7 @@ class TaskAssignment extends BaseTaskAssignment
 	
   }
   //update the comment
-  public function updateComment($id,$name)
+  public function updateComment($id)
   {
    $query = Doctrine_Core::getTable('BusinessApplicationStatus')->updateComment($id);
   }

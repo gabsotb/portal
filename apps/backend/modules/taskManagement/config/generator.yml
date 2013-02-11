@@ -1,0 +1,28 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           TaskAssignment
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          task_assignment_taskManagement
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  {user_assigned: [label: User Assigned, help: The User who is responsible for processing this record]}
+      list:
+       title: Data admin Jobs Management
+       layout: tabular
+       display: [=sfGuard_user, investment_application, instructions, duedate, work_status]
+       fields: 
+        sfGuard_user: {label: User Assigned}
+        investment_application: {label: For Business}
+       max_per_page: 10	   
+      filter:  {display: [user_assigned]}
+      form:    ~
+      edit:    {title: Edit Job Assigned To %%sfGuard_user%%}
+      new:     {title: Assign A New Task To a Data Admin}

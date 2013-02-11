@@ -15,8 +15,9 @@ generator:
         password_again: { label: "Password (again)" }
 
       list:
-        title:   User list
-        display: [=username, created_at, updated_at, last_login]
+        title:   System User Record Management
+        display: [=username, created_at,last_login]
+      filter: {display: [is_active,groups_list,permissions_list]}
 
       form:
         class: sfGuardUserAdminForm

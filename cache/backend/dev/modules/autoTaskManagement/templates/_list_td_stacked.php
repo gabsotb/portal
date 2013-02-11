@@ -1,0 +1,3 @@
+<td colspan="5">
+  <?php echo __('%%sfGuard_user%% - %%investment_application%% - %%instructions%% - %%duedate%% - %%work_status%%', array('%%sfGuard_user%%' => link_to($task_assignment->getSfGuardUser(), 'task_assignment_taskManagement_edit', $task_assignment), '%%investment_application%%' => $task_assignment->getInvestmentApplication(), '%%instructions%%' => $task_assignment->getInstructions(), '%%duedate%%' => false !== strtotime($task_assignment->getDuedate()) ? format_date($task_assignment->getDuedate(), "f") : '&nbsp;', '%%work_status%%' => $task_assignment->getWorkStatus()), 'messages') ?>
+</td>

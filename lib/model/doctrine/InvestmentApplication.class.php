@@ -17,6 +17,7 @@ class InvestmentApplication extends BaseInvestmentApplication
   {
     return sprintf('%s',$this->getName());
   }
+
    // We want to Override this method and check if this business is registered. Simple Simulation
    //If not we display appropriate message informing the user of the error
   public function save(Doctrine_Connection $conn = null)
