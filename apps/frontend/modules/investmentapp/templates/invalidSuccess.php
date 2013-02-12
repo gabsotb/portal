@@ -9,7 +9,8 @@
 										
 										<h4 class="alert-heading">Error Detected!</h4>
 										<p>
-											Sorry, You Business is Not registered. Please Register your Business.Only Registered Businesses that can apply 
+											Sorry, You Business is Not registered. Please Register your Business. <br/>
+											Only Registered Businesses that can apply 
 											for Investment Certificates or EIA Certificates.
 										</p>
 										<p>

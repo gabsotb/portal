@@ -220,7 +220,7 @@
 					<a href="" >
 					<i class="icon-lightbulb"></i> Help
 					</a>
-				</li>				
+				</li>						
 				<li> <?php echo link_to('<i class="icon-lock"></i> Logout','@sf_guard_signout'); ?></li>
 			</ul>
 		</div>

@@ -14,8 +14,15 @@ generator:
     config:
       actions: ~
       fields:  {user_assigned: [label: User Assigned, help: The User who is responsible for processing this record]}
-      list:    ~
+      list:
+       title: Data admin Jobs Management
+       layout: tabular
+       display: [=sfGuard_user, investment_application, instructions, duedate, work_status]
+       fields: 
+        sfGuard_user: {label: User Assigned}
+        investment_application: {label: For Business}
+       max_per_page: 10	   
       filter:  {display: [user_assigned]}
       form:    ~
-      edit:    {title: Edit Job Assigned To %%investmentapp_id%%}
+      edit:    {title: Edit Job Assigned To %%sfGuard_user%%}
       new:     {title: Assign A New Task To a Data Admin}
