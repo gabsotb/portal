@@ -220,7 +220,7 @@
 					<a href="" >
 					<i class="icon-lightbulb"></i> Help
 					</a>
-				</li>						
+				</li>				
 				<li> <?php echo link_to('<i class="icon-lock"></i> Logout','@sf_guard_signout'); ?></li>
 			</ul>
 		</div>
@@ -231,6 +231,11 @@
 			<!-- BEGIN PAGE CONTAINER-->			
 			<div class="container-fluid">
 	<?php endif ?>
+				<?php if(!$sf_user->isAuthenticated()): ?>
+					<div  style="padding: 0px 450px 0px; background: url('/images/bgColor.jpg') repeat-x;  margin: 10px 15px 0px; border-radius: 8px;">
+					<img src="/images/logo_1.png" alt='logo'>
+					</div>
+				<?php endif ?>
 				<?php if ($sf_user->hasFlash('notice')): ?>
 				<div class="flash_notice">
 					<?php echo $sf_user->getFlash('notice') ?>
@@ -244,6 +249,11 @@
 				<?php endif ?>
 			
 					<?php echo $sf_content ?>
+				<?php if(!$sf_user->isAuthenticated()): ?>
+				<div id="footer" style="margin: 20px; background: url('/images/bgColor.jpg') repeat-x; border-radius: 8px;">
+				2013 &copy; Rwanda Development Board. All Rights Reserved.
+				</div>
+				<?php endif ?>
 				<?php if($sf_user->isAuthenticated()): ?>	
 				</div>
 				<!-- END PAGE CONTENT-->
