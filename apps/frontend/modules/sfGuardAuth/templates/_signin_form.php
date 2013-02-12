@@ -75,9 +75,9 @@
 									<?php echo $form['password']->render(array('placeholder' => 'Password','class' => 'span10 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Enter your Password')) ?>
 									<?php echo $form->renderHiddenFields(); ?>
 								</div>
-									<div class="block-hint ">
+									<div class="block-hint pull-right">
 									<?php $routes = $sf_context->getRouting()->getRoutes() ?>
-									<?php if (isset($routes['@sf_guard_password_reset'])): ?>
+									<?php if (isset($routes['sf_guard_password_reset'])): ?>
 									<a href="<?php echo url_for('@sf_guard_password_reset') ?>" id="forget-password"><?php echo __('Forgot password?', null, 'sf_guard') ?></a>
 									<?php if (isset($routes['apply'])): ?>
 									&nbsp; &nbsp;&nbsp;<a href="<?php echo url_for('@apply') ?>" class="small"><?php echo __('Want to register?', null, 'sf_guard') ?></a>
@@ -85,7 +85,7 @@
 									<?php endif; ?>
 									<?php endif; ?>
 									</div>
-								
+									<div class="clearfix space5"></div>
 								</div>
 							</div> 
 						
