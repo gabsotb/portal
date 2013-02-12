@@ -3,9 +3,7 @@
 <?php use_javascripts_for_form($form) ?>
 <?php slot('title', 'Login') ?>
 
-<div  style="padding: 0px 450px 0px; background: url('/images/bgColor.jpg') repeat-x;  margin: 70px 15px 0px; border-radius: 8px;">
-	<img src="/images/logo_1.png" alt='logo'>
-</div>
+
 
 		<div class="row-fluid" style="margin: 20px auto 5px;  background: url('/images/bgColor.jpg') repeat-x; padding: 10px 9px 35px; border-radius:8px; width: 1100px;">
 			<div class="span6" style="background: url('/images/body-bg.png'); border-radius: 8px; margin: 42px 10px 10px 50px;  padding:8px;">
@@ -75,9 +73,9 @@
 									<?php echo $form['password']->render(array('placeholder' => 'Password','class' => 'span10 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Enter your Password')) ?>
 									<?php echo $form->renderHiddenFields(); ?>
 								</div>
-									<div class="block-hint ">
+									<div class="block-hint pull-right">
 									<?php $routes = $sf_context->getRouting()->getRoutes() ?>
-									<?php if (isset($routes['@sf_guard_password_reset'])): ?>
+									<?php if (isset($routes['sf_guard_password_reset'])): ?>
 									<a href="<?php echo url_for('@sf_guard_password_reset') ?>" id="forget-password"><?php echo __('Forgot password?', null, 'sf_guard') ?></a>
 									<?php if (isset($routes['apply'])): ?>
 									&nbsp; &nbsp;&nbsp;<a href="<?php echo url_for('@apply') ?>" class="small"><?php echo __('Want to register?', null, 'sf_guard') ?></a>
@@ -85,7 +83,7 @@
 									<?php endif; ?>
 									<?php endif; ?>
 									</div>
-								
+									<div class="clearfix space5"></div>
 								</div>
 							</div> 
 						
@@ -102,6 +100,4 @@
 		</div>
 
 	
-	<div id="footer" style="margin: 20px; background: url('/images/bgColor.jpg') repeat-x; border-radius: 8px;">
-		2013 &copy; Rwanda Development Board. All Rights Reserved.
-	</div>			
+	
