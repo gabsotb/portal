@@ -28,4 +28,39 @@ class dashboardActions extends sfActions
    $this->mytasks = Doctrine_Core::getTable('TaskAssignment')->getUserTasks($userId) ;
 	
   } 
+    //function download letter of application
+  public function executeDownload1(sfwebRequest $request)
+  {
+   //echo "value is" .$request->getParameter('investmentapp_id'); exit;
+    $blog_user = Doctrine_Core::getTable('InvestmentApplication')->find($request->getParameter('id'));
+    $this->forward404Unless($blog_user);
+
+    header('content-type:');
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename='.basename($blog_user->getApplicationLetter()));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($blog_user->getApplicationLetter()));
+    ob_clean();
+    flush();
+
+    readfile($blog_user->getApplicationLetter());
+
+    return sfView::NONE;
+  }
+  //function for start work
+  public function executeStart(sfWebRequest $request)
+  {
+    
+	$this->value = $request->getParameter('id'); // here we get the parameter 
+	
+	/*Since we have the id of the business, we now retrieve all details for this application for investment certificate from
+	the three tables. InvestmentApplication, BusinessPlan and TaskAssignment*/
+	$this->details = Doctrine_Core::getTable('TaskAssignment')->getApplicationDetails($this->value);
+	 $this->forward404Unless($this->details);
+	
+  }
 }

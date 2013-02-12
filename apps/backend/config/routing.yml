@@ -18,6 +18,9 @@ task_assignment:
 user_tasks:
  url: /mytasks
  param: {module: taskManagement, action: tasks }
+start_work:
+ url: /start
+ param: {module: dashboard, action:start}
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
