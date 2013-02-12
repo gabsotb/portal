@@ -15,7 +15,9 @@ task_assignment:
     prefix_path:          /dataAdminJob
     column:               id
     with_wildcard_routes: true
-
+user_tasks:
+ url: /mytasks
+ param: {module: taskManagement, action: tasks }
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 

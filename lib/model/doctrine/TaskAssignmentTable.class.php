@@ -16,4 +16,14 @@ class TaskAssignmentTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('TaskAssignment');
     }
+	//this method retrieves the user assigned jobs i.e. jobs for the current user
+	public function getUserTasks($userId)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc('SELECT task_assignment.instructions,task_assignment.work_status,
+	 task_assignment.duedate, investment_application.name FROM task_assignment LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id
+	 ') ;
+	 return $query;
+	}
+	
 }

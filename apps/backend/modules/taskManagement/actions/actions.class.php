@@ -13,4 +13,5 @@ require_once dirname(__FILE__).'/../lib/taskManagementGeneratorHelper.class.php'
  */
 class taskManagementActions extends autoTaskManagementActions
 {
+ 
 }
