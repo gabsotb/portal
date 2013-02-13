@@ -221,7 +221,7 @@
 					<i class="icon-lightbulb"></i> Help
 					</a>
 				</li>				
-				<li> <?php echo link_to('<i class="icon-lock"></i> Logout','@sf_guard_signout'); ?></li>
+				<li> <?php echo link_to('<i class="icon-signout"></i> Logout','@sf_guard_signout'); ?></li>
 			</ul>
 		</div>
 		<!-- END SIDEBAR -->

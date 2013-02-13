@@ -1983,3 +1983,11 @@ width:100px;
 .tab-pane > p:last-child {
   margin-bottom: 0px;
 }
+
+.sf_apply_notice{
+	margin: 20px auto 5px;  
+	background: url('../img/bgColor.jpg') repeat-x; 
+	padding: 10px 9px 15px; 
+	border-radius:8px; 
+	width: 500px;
+}

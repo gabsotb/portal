@@ -6,11 +6,13 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
+	<link rel="shortcut icon" href="/favicon.png" />
 	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>
 </head>
 <!-- END HEAD -->
 <body class="fixed-top">
+	<?php if($sf_user->isAuthenticated()): ?>
 	<!-- BEGIN HEADER -->
 	<div id="header" class="navbar navbar-inverse navbar-fixed-top">
 		<!-- BEGIN TOP NAVIGATION BAR -->
@@ -30,7 +32,7 @@
 				</a>          
 				<!-- END RESPONSIVE MENU TOGGLER -->				
 				<div class="top-nav">
-				<?php if($sf_user->isAuthenticated()): ?>
+				
 					<!-- BEGIN QUICK SEARCH FORM -->
 					<form class="navbar-search hidden-phone">
 						<div class="search-input-icon">
@@ -58,10 +60,10 @@
 							<!-- END QUICK SEARCH RESULT PREVIEW -->
 						</div>
 					</form>
-					<?php endif ;?>
+					
 					<!-- END QUICK SEARCH FORM -->
 					<!-- BEGIN TOP NAVIGATION MENU -->
-                    <?php if($sf_user->isAuthenticated()): ?>					
+                    					
 					<ul class="nav pull-right" id="top_menu">
 						<!-- BEGIN NOTIFICATION DROPDOWN -->	
 						<li class="dropdown" id="header_notification_bar">
@@ -180,12 +182,12 @@
 								<li><a href="#"><i class="icon-tasks"></i> Tasks</a></li>
 								<li><a href="#"><i class="icon-ok"></i> Calendar</a></li>
 								<li class="divider"></li>
-								<li><i class="icon-key"></i><?php echo link_to('Logout','sf_guard_signout');?></li>
+								<li><?php echo link_to('<i class="icon-signout"></i> Logout','@sf_guard_signout'); ?></li>
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
 					</ul> 
-					<?php endif; ?>
+					
 					<!-- END TOP NAVIGATION MENU -->	
 				</div>
 			</div>
@@ -195,7 +197,7 @@
 	<!-- END HEADER -->
 	<!-- BEGIN CONTAINER -->
 	<div id="container" class="row-fluid">
-	<?php if($sf_user->isAuthenticated()): ?>
+	
 		<!-- BEGIN SIDEBAR -->
 		<div id="sidebar" class="nav-collapse collapse">
 			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
@@ -207,81 +209,43 @@
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			<!-- BEGIN SIDEBAR MENU -->
 			<ul>
-				<li class="active">
-					<a href="<?php echo url_for('dashboard/index') ?>">
-					<i class="icon-home"></i> Dashboard
-					</a>					
-				</li>
+				<li class="active"><?php echo link_to('<i class="icon-home"></i> Dashboard', '@homepage') ?> </li>
 				<!-- We need to only show this if the user has adequate rights to manage and create users -->
-				<?php if($sf_user->hasCredential('assignJob')) {?>
+				<?php if($sf_user->hasCredential('assignJob')):?>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bookmark-empty"></i> User Management
+					<i class="icon-group"></i> User Management
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li><a class="" href="<?php echo url_for('sf_guard_users') ?>">User Accounts</a></li>
-						<li><a class="" href="<?php echo url_for('sf_guard_user_groups') ?>">User Groups</a></li>
-						<li><a class="" href="<?php echo url_for('sf_guard_user_permissions') ?>">Groups Permissions</a></li>
+						<li class=""><?php echo link_to('<i class="icon-user"></i> User Accounts', '@sf_guard_users') ?> </li>
+						<li class=""><?php echo link_to('<i class="icon-group"></i> User Groups', '@sf_guard_user_groups') ?> </li>
+						<li class=""><?php echo link_to('<i class="icon-filter"></i> Groups Permissions', '@sf_guard_user_permissions') ?> </li>
 					</ul>
 				</li>
-				<?php } ?>
+				<?php endif ?>
 				<!-- end -->
-				<li class=""><a class="" href="#"><i class="icon-table"></i> Help</a></li>
-				<li><a class="" href="<?php echo url_for('sf_guard_signout');?>"> <i class="icon-user"></i>Logout</a></li>
+				
+				<li> <?php echo link_to('<i class="icon-lightbulb"></i> Help','@'); ?></li>
+				<li> <?php echo link_to('<i class="icon-signout"></i> Logout','@sf_guard_signout'); ?></li>
 			</ul>
 		</div>
-		<?php endif; ?>
+		
 		<!-- END SIDEBAR -->
 		<!-- BEGIN PAGE -->
 		<div id="body">
-		<?php if($sf_user->isAuthenticated()): ?>
+		
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-			<div id="widget-config" class="modal hide">
-				<div class="modal-header">
-					<button data-dismiss="modal" class="close" type="button">×</button>
-					<h3>Widget Settings</h3>
-				</div>
-				<div class="modal-body">
-					<p>Here will be a configuration form</p>
-				</div>
-			</div>
-		<?php endif; ?>
+
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE CONTAINER-->			
 			<div class="container-fluid">
-			<?php if($sf_user->isAuthenticated()): ?>
+			
 				<!-- BEGIN PAGE HEADER-->
 				<div class="row-fluid">
 					<div class="span12">
 						<!-- BEGIN STYLE CUSTOMIZER-->
-						<div id="styler" class="hidden-phone">
-							<i class="icon-cog"></i>
-							<span class="settings">
-								<span class="text">Style:</span>
-								<span class="colors">
-									<span class="color-default" data-style="default">
-									</span>
-									<span class="color-grey" data-style="grey">
-									</span>
-									<span class="color-navygrey" data-style="navygrey">
-									</span>											
-									<span class="color-red" data-style="red">
-									</span>	
-								</span>
-								<span class="layout">
-									<label class="hidden-phone">
-									<input type="checkbox" class="header" checked value="" />Sticky Header
-									</label><br />
-									<label><input type="checkbox" class="metro" value="" />Metro Style</label>
-									<span class="space5"></span>
-									<a class="btn fancybox-button" data-rel="fancybox-button" title="Conquer Large Desktop Preview"  href="assets/img/demo/desktop.png"><i class="icon-eye-open"></i> Screenshots</a>
-									<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Notebook Preview" href="assets/img/demo/notebook.png"></a>
-									<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Tablet Preview"  href="assets/img/demo/tablet.png"></a>
-									<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Phone Preview"  href="assets/img/demo/phone.png"></a>
-								</span>
-							</span>
-						</div>
+						
 						<!-- END STYLE CUSTOMIZER-->    
 						<?php if($sf_user->hasCredential('assignJob'))
 						 // we check if the user has valid credentials to be able to see this menu
@@ -335,26 +299,33 @@
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>
 				</div>
-				<?php endif; ?>
-				<!-- END PAGE HEADER-->
-				<?php if($sf_user->isAuthenticated()): ?>
-				<!-- BEGIN PAGE CONTENT-->
-				<div id="page" class="dashboard">
-					<?php echo $sf_content ?>
-				</div>
-				<!-- END PAGE CONTENT-->
-				<?php endif; ?>
 				
-				<!-- Login -->
+				<!-- END PAGE HEADER-->
+				<?php endif ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
-				<!-- BEGIN PAGE CONTENT-->
-				<div id="page">
-					<?php echo $sf_content ?>
+				<div  style="padding: 0px 450px 0px; background: url('/images/bgColor.jpg') repeat-x;  margin: 10px 15px 0px; border-radius: 8px;">
+				<img src="/images/logo_1.png" alt='logo'>
 				</div>
-				<!-- END PAGE CONTENT-->
-				<?php endif; ?>
-				<!-- End Login -->
+				<?php endif ?>
+				<?php if ($sf_user->hasFlash('notice')): ?>
+				<div class="flash_notice">
+					<?php echo $sf_user->getFlash('notice') ?>
+				</div>
+				<?php endif ?>	
 			
+				<?php if ($sf_user->hasFlash('error')): ?>
+				<div class="flash_error">
+					<?php echo $sf_user->getFlash('error') ?>
+				</div>
+				<?php endif ?>
+			
+					<?php echo $sf_content ?>
+				<?php if(!$sf_user->isAuthenticated()): ?>
+				<div id="footer" style="margin: 20px; background: url('/images/bgColor.jpg') repeat-x; border-radius: 8px;">
+				2013 &copy; Rwanda Development Board. All Rights Reserved.
+				</div>
+				<?php endif ?>
+			<?php if($sf_user->isAuthenticated()): ?>
 			</div>
 			<!-- END PAGE CONTAINER-->
 		</div>
@@ -367,7 +338,8 @@
 		<div class="span pull-right">
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
-	</div>		
+	</div>
+	<?php endif ?>
 	<script>
 		jQuery(document).ready(function() {			
 			// initiate layout and plugins
