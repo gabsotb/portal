@@ -27,8 +27,10 @@ class TaskAssignment extends BaseTaskAssignment
 					 // print $name ; exit;
 				  
 				  // pass id of the item to update
-				  $this->updateStatus($id);
-			      $this->updateComment($id);
+				  $value = "assigned";
+				  $this->updateStatus($id,$value );
+				  $value = "Your Document has been assigned to a RDB Data Admin Staff ";
+			      $this->updateComment($id,$value);
 				  $value = 30 ;
 				  $this->updateValue($id, $value );
 				 // exit;
@@ -54,13 +56,13 @@ class TaskAssignment extends BaseTaskAssignment
   {
    /* $q = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("UPDATE business_application_status SET application_status = 'Processing' WHERE id ='$id'
 	"); */
-	$query = Doctrine_Core::getTable('BusinessApplicationStatus')->updateStatus($id);
+	$query = Doctrine_Core::getTable('BusinessApplicationStatus')->updateStatus($id,$value);
 	
   }
   //update the comment
   public function updateComment($id)
   {
-   $query = Doctrine_Core::getTable('BusinessApplicationStatus')->updateComment($id);
+   $query = Doctrine_Core::getTable('BusinessApplicationStatus')->updateComment($id,$value);
   }
   //update value
   public function updateValue($id,$value)

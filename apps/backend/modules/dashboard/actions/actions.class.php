@@ -25,7 +25,9 @@ class dashboardActions extends sfActions
 	//action to retrieve assigned tasks for currently logged in admin
 	//let us retrieve the id of logged in user
    $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
-   $this->mytasks = Doctrine_Core::getTable('TaskAssignment')->getUserTasks($userId) ;
+   //echo $userId; exit;
+   $this->mytasks = Doctrine_Core::getTable('TaskAssignment')->getUserTasks($userId);
+   $this->mytasksnotcomplete = Doctrine_Core::getTable('TaskAssignment')->getUserTasksNotComplete($userId);
 	
   } 
     //function download letter of application
@@ -60,7 +62,7 @@ class dashboardActions extends sfActions
 	/*Since we have the id of the business, we now retrieve all details for this application for investment certificate from
 	the three tables. InvestmentApplication, BusinessPlan and TaskAssignment*/
 	$this->details = Doctrine_Core::getTable('TaskAssignment')->getApplicationDetails($this->value);
-	 $this->forward404Unless($this->details);
+	$this->forward404Unless($this->details);
 	
   }
 }

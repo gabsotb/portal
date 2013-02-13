@@ -20,10 +20,10 @@ class BusinessApplicationStatusTable extends Doctrine_Table
 	These methods are used to manually update the status of application. Seems sysmfony has no good way to implement a workflow
 	hence we have to work with functions and look for a better solution later.
 	*/
-	//update the status of the user application
-	public function updateStatus($id)
+	// 1.  update the status of the user application after the Documents Have Been Assigned to RDB Staff
+	public function updateStatus($id,$value)
 	{
-	 $value = "assigned";
+	 
 	 //query
 	 $q = Doctrine_Query::create()
 	 ->UPDATE('BusinessApplicationStatus')
@@ -32,9 +32,9 @@ class BusinessApplicationStatusTable extends Doctrine_Table
 	 $q->execute();
 	}
 	//update the comment
-	public function updateComment($id)
+	public function updateComment($id,$value )
 	{
-	 $value = "Your Document has been assigned to a RDB Data Admin Staff ";
+	 
 	 //query
 	 $q = Doctrine_Query::create()
 	 ->UPDATE('BusinessApplicationStatus')
@@ -50,4 +50,5 @@ class BusinessApplicationStatusTable extends Doctrine_Table
 	 ->WHERE('business_id = ?', $id);
 	 $q->execute();
 	}
+	// End Updating Functions
 }

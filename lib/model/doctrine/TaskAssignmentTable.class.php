@@ -19,11 +19,23 @@ class TaskAssignmentTable extends Doctrine_Table
 	//this method retrieves the user assigned jobs i.e. jobs for the current user
 	public function getUserTasks($userId)
 	{
-	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc('SELECT  task_assignment.investmentapp_id,
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT  task_assignment.investmentapp_id,
 	 task_assignment.instructions,task_assignment.work_status,
 	 task_assignment.duedate, investment_application.name FROM task_assignment LEFT JOIN investment_application ON 
-	 task_assignment.investmentapp_id = investment_application.id
-	 ') ;
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
+	 task_assignment.work_status = 'notstarted'
+	 ") ;
+	 return $query;
+	}
+	//Get Tasks of this user who's status is not complete
+	public function getUserTasksNotComplete($userId)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT  task_assignment.investmentapp_id,
+	 task_assignment.instructions,task_assignment.work_status,
+	 task_assignment.duedate, investment_application.name, investment_application.company_address FROM task_assignment LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
+	 task_assignment.work_status != 'complete'
+	 ") ;
 	 return $query;
 	}
 	//get all application details for Investment Certificate for a given user
@@ -40,7 +52,36 @@ class TaskAssignmentTable extends Doctrine_Table
 	  LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id WHERE task_assignment.investmentapp_id = '$id'
 	  ") ;
 	  //
+	  //we also need to change the status of business application 
+	  //Task should be started and the investor should see processing and detailed comment
+	  $this->updateBusinessApplicationStatus($id);
+	  $this->updateTaskStatus($id);
 	  return $query;
+	  
+	}
+	//update tasks status on this table for this user i.e. logged in user
+	public function updateTaskStatus($taskId)
+	{
+	 $value = "started";
+	 //
+      $q = Doctrine_Query::create()
+	 ->UPDATE('TaskAssignment')
+	 ->SET('work_status', '?' , $value)
+	 ->WHERE('investmentapp_id = ?', $taskId);
+	 $q->execute();
+	}
+	//update business application status for the user to see that the task has been started
+	public function updateBusinessApplicationStatus($id)
+	{
+	  //Now here we call the 3 functions in the BusinessApplicationStatus Table to update status ,comment and progress bar
+	  /*Values to Set*/
+	  $value1 = "processing";
+	  $value2 = "The RDB Staff is now process and validating you application. 
+	  Please wait for approval of your application";
+	  $value3 = 50;
+	  $q1 = Doctrine_Core::getTable('BusinessApplicationStatus')->updateStatus($id,$value1);
+	  $q2 = Doctrine_Core::getTable('BusinessApplicationStatus')->updateComment($id,$value2 );
+	  $q3 = Doctrine_Core::getTable('BusinessApplicationStatus')->updateValue($id,$value3);
 	  
 	}
 	
