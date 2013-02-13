@@ -1,259 +1,51 @@
-BusinessApplicationStatus:
-  BusinessApplicationStatus_1:
-    InvestmentApplication: InvestmentApplication_1
-    application_status: submitted
-    comment: 'Documents Submitted Successfuly. Awaiting RDB admin to assign your application to a Staff'
-    percentage: '10'
-    created_at: '2013-02-11 09:13:17'
-    updated_at: '2013-02-11 09:13:17'
-BusinessPlan:
-  BusinessPlan_1:
-    InvestmentApplication: InvestmentApplication_1
-    executive_summary: 'Some Short Notes here'
-    promoter_profile: 'Some Short Notes here'
-    project_background: 'Some Short Notes here'
-    equity_financing: 'Some Short Notes here'
-    income_statement: 'Some Short Notes here'
-    cashflow_statement: 'Some Short Notes here'
-    payback_period: 'Some Short Notes here'
-    npv: 'Some Short Notes here'
-    loan_amortization: 'Some Short Notes here'
-    implementation_plan: 'Some Short Notes here'
-    notes: 'Some Short Notes here'
-    created_at: '2013-02-11 09:12:00'
-    updated_at: '2013-02-11 09:13:17'
-    Creator: sfGuardUser_2
-    updated_by: investor
-BusinessRegistration:
-  BusinessRegistration_1:
-    business_name: Smartline
-    business_regno: '26090'
-    created_at: '2013-02-07 15:57:43'
-    updated_at: '2013-02-07 15:57:43'
-  BusinessRegistration_2:
-    business_name: OtbAfrica
-    business_regno: '26091'
-    created_at: '2013-02-07 15:57:43'
-    updated_at: '2013-02-07 15:57:43'
-ApplicationError:
-  ApplicationError_1:
-    message: 'Action "investmentapp/images" does not exist.'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfController.class.php'
-    line: '196'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php(48): sfController->forward('investmentapp', 'images')\n#1 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#2 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#3 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/investmentapp/images/logordb.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:05:26'
-    updated_at: '2013-02-11 09:05:26'
-  ApplicationError_2:
-    message: 'Action "investmentapp/images" does not exist.'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfController.class.php'
-    line: '196'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php(48): sfController->forward('investmentapp', 'images')\n#1 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#2 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#3 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/investmentapp/images/avatar-mini.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:05:27'
-    updated_at: '2013-02-11 09:05:27'
-  ApplicationError_3:
-    message: 'Empty module and/or action after parsing the URL "/investmentapp/favicon.png" (/).'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php'
-    line: '44'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#1 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#2 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/investmentapp/favicon.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:05:27'
-    updated_at: '2013-02-11 09:05:27'
-  ApplicationError_4:
-    message: 'Empty module and/or action after parsing the URL "/investmentapp/favicon.png" (/).'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php'
-    line: '44'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#1 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#2 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/investmentapp/favicon.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:05:28'
-    updated_at: '2013-02-11 09:05:28'
-  ApplicationError_5:
-    message: 'Action "investmentapp/images" does not exist.'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfController.class.php'
-    line: '196'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php(48): sfController->forward('investmentapp', 'images')\n#1 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#2 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#3 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/investmentapp/images/logordb.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:08:05'
-    updated_at: '2013-02-11 09:08:05'
-  ApplicationError_6:
-    message: 'Action "investmentapp/images" does not exist.'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfController.class.php'
-    line: '196'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php(48): sfController->forward('investmentapp', 'images')\n#1 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#2 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#3 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/investmentapp/images/avatar-mini.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:08:05'
-    updated_at: '2013-02-11 09:08:05'
-  ApplicationError_7:
-    message: 'Action "investmentapp/images" does not exist.'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfController.class.php'
-    line: '196'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php(48): sfController->forward('investmentapp', 'images')\n#1 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#2 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#3 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/investmentapp/images/logordb.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:08:56'
-    updated_at: '2013-02-11 09:08:56'
-  ApplicationError_8:
-    message: 'Action "investmentapp/images" does not exist.'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfController.class.php'
-    line: '196'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php(48): sfController->forward('investmentapp', 'images')\n#1 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#2 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#3 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/investmentapp/images/avatar-mini.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:08:56'
-    updated_at: '2013-02-11 09:08:56'
-  ApplicationError_9:
-    message: 'Empty module and/or action after parsing the URL "/businessplan/favicon.png" (/).'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php'
-    line: '44'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#1 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#2 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/businessplan/favicon.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:12:39'
-    updated_at: '2013-02-11 09:12:39'
-  ApplicationError_10:
-    message: 'Action "businessplan/images" does not exist.'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfController.class.php'
-    line: '196'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php(48): sfController->forward('businessplan', 'images')\n#1 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#2 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#3 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/businessplan/images/logordb.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:12:39'
-    updated_at: '2013-02-11 09:12:39'
-  ApplicationError_11:
-    message: 'Action "businessplan/images" does not exist.'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfController.class.php'
-    line: '196'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php(48): sfController->forward('businessplan', 'images')\n#1 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#2 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#3 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/businessplan/images/avatar-mini.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:12:40'
-    updated_at: '2013-02-11 09:12:40'
-  ApplicationError_12:
-    message: 'Empty module and/or action after parsing the URL "/businessplan/favicon.png" (/).'
-    type: sfError404Exception
-    file: 'C:\xampp\htdocs\portal\lib\vendor\lib\controller\sfFrontWebController.class.php'
-    line: '44'
-    trace: "#0 C:\xampp\htdocs\portal\lib\vendor\lib\util\sfContext.class.php(170): sfFrontWebController->dispatch()\n#1 C:\xampp\htdocs\portal\web\index.php(7): sfContext->dispatch()\n#2 {main}"
-    code: '0'
-    module: null
-    action: null
-    uri: 'http://localhost/portal/web/businessplan/favicon.png'
-    user: investor
-    comment: null
-    severity: medium
-    user_agent: 'Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0'
-    created_at: '2013-02-11 09:12:40'
-    updated_at: '2013-02-11 09:12:40'
-InvestmentApplication:
-  InvestmentApplication_1:
-    name: Smartline
-    registration_number: '26090'
-    company_address: Kinamba
-    job_created: '5'
-    job_category: 'Managers, Cooks'
-    company_legal_nature: 'Company is Legal'
-    company_representative: 'James John'
-    application_letter: 32ab703ec1395a8e7352a58393c4eaf190684980.doc
-    incorporation_certificate: 5243bcc42b33a0904d2243d41e614bc60f953145.doc
-    shareholding_list: d8dff94735a661145ce70d9ef70788e7e68d541c.doc
-    company_logo: null
-    created_at: '2013-02-11 09:08:00'
-    updated_at: '2013-02-11 09:12:15'
-    Creator: sfGuardUser_2
-    updated_by: investor
-Session:
-  Session_8hqhhvk5dkv9qeojtk1nd0icl2:
-    id: 8hqhhvk5dkv9qeojtk1nd0icl2
-    sessiondata: ''
-    time: '1360569845'
-  Session_od80andr6roj2mpni74vkau7t6:
-    id: od80andr6roj2mpni74vkau7t6
-    sessiondata: 'symfony/user/sfUser/lastRequest|i:1360570410;symfony/user/sfUser/authenticated|b:1;symfony/user/sfUser/credentials|a:0:{}symfony/user/sfUser/attributes|a:2:{s:30:"symfony/user/sfUser/attributes";a:0:{}s:19:"sfGuardSecurityUser";a:1:{s:7:"user_id";s:1:"2";}}symfony/user/sfUser/culture|s:2:"en";idl_application_error_last_id|s:2:"11";idl_application_error_last_redirect_ts|i:1360570360;'
-    time: '1360570410'
+sfGuardGroup:
+  sfGuardGroup_1:
+    name: investmentcertadmins
+    description: 'These are the RDB data management administrator. There function is to process certificate application assigned to them by department admins'
+    created_at: '2013-02-11 15:57:57'
+    updated_at: '2013-02-11 18:06:57'
+  sfGuardGroup_2:
+    name: 'department admins'
+    description: 'These are the Admins who can assign tasks to data admins'
+    created_at: '2013-02-11 15:58:57'
+    updated_at: '2013-02-11 15:58:57'
+  sfGuardGroup_3:
+    name: eiacertadmins
+    description: 'This is a set of users who can process EIA certificate and issue certificates assigned to them by Department Admins'
+    created_at: '2013-02-11 18:08:54'
+    updated_at: '2013-02-11 18:08:54'
+sfGuardGroupPermission:
+  sfGuardGroupPermission_1_5:
+    Group: sfGuardGroup_1
+    Permission: sfGuardPermission_5
+    created_at: '2013-02-11 18:50:55'
+    updated_at: '2013-02-11 18:50:55'
+  sfGuardGroupPermission_2_1:
+    Group: sfGuardGroup_2
+    Permission: sfGuardPermission_1
+    created_at: '2013-02-11 16:00:31'
+    updated_at: '2013-02-11 16:00:31'
+  sfGuardGroupPermission_3_4:
+    Group: sfGuardGroup_3
+    Permission: sfGuardPermission_4
+    created_at: '2013-02-11 18:09:52'
+    updated_at: '2013-02-11 18:09:52'
+sfGuardPermission:
+  sfGuardPermission_1:
+    name: assignJob
+    description: 'Permission to Assign a Job to a data admin'
+    created_at: '2013-02-11 16:00:31'
+    updated_at: '2013-02-11 16:00:31'
+  sfGuardPermission_4:
+    name: eiacert
+    description: 'Permission for EIA document processing'
+    created_at: '2013-02-11 18:09:52'
+    updated_at: '2013-02-11 18:09:52'
+  sfGuardPermission_5:
+    name: investmentcert
+    description: 'Permission for Investment Certificate issues'
+    created_at: '2013-02-11 18:10:41'
+    updated_at: '2013-02-11 18:10:41'
 sfGuardUser:
   sfGuardUser_1:
     first_name: Admin
@@ -261,36 +53,117 @@ sfGuardUser:
     email_address: admin@gmail.com
     username: admin
     algorithm: sha1
-    salt: 28671afdaf3df3d012836f3a7125f824
-    password: ab00496eff3e935389f6015269a028a9f36b69cd
+    salt: 0c0a8c48ef139c954f1d4a94a27c596d
+    password: admin
     is_active: true
     is_super_admin: false
-    last_login: null
-    created_at: '2013-02-11 09:01:47'
-    updated_at: '2013-02-11 09:01:47'
+    last_login: '2013-02-13 15:40:37'
+    created_at: '2013-02-11 14:40:30'
+    updated_at: '2013-02-13 15:40:37'
   sfGuardUser_2:
     first_name: Investor
     last_name: Investor
     email_address: investor@gmail.com
     username: investor
     algorithm: sha1
-    salt: eb36f28cf935d430b83501caf8298a1d
-    password: a51bc2e939aab2603fa64f6242fc54d8ee7d59ff
+    salt: 34ee4498771273e07acc9ec759ccb2fd
+    password: investor
     is_active: true
     is_super_admin: false
-    last_login: '2013-02-11 09:04:06'
-    created_at: '2013-02-11 09:02:34'
-    updated_at: '2013-02-11 09:04:06'
+    last_login: '2013-02-13 09:31:50'
+    created_at: '2013-02-11 14:47:34'
+    updated_at: '2013-02-13 09:31:50'
   sfGuardUser_3:
+    first_name: Venessa
+    last_name: Bonie
+    email_address: venessa@gmail.com
+    username: venessa
+    algorithm: sha1
+    salt: 158c19be6adba06a5834ba80c2d745c0
+    password: venessa
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-02-11 19:20:49'
+    created_at: '2013-02-11 15:53:27'
+    updated_at: '2013-02-11 19:20:49'
+  sfGuardUser_5:
     first_name: Boniface
-    last_name: Irunguh
-    email_address: boniface@gmail.com
+    last_name: Irungu
+    email_address: irungu@gmail.com
     username: boniface
     algorithm: sha1
-    salt: 0538188a44772eae777bc2a926a0056c
-    password: ef40a4031fe0609d615165f124aade3fc8aacbde
+    salt: f5de406cba10ea73fe17264545b9d5f7
+    password: boniface
     is_active: true
     is_super_admin: false
-    last_login: null
-    created_at: '2013-02-11 09:03:27'
-    updated_at: '2013-02-11 09:03:27'
+    last_login: '2013-02-13 11:52:12'
+    created_at: '2013-02-11 18:53:19'
+    updated_at: '2013-02-13 11:52:12'
+  sfGuardUser_6:
+    first_name: Munira
+    last_name: Masika
+    email_address: munira@gmail.com
+    username: munira
+    algorithm: sha1
+    salt: a8ef1a86054b381e871e71464bb395d1
+    password: munira
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-02-12 10:23:55'
+    created_at: '2013-02-11 18:56:37'
+    updated_at: '2013-02-12 10:23:55'
+  sfGuardUser_7:
+    first_name: Investor2
+    last_name: Investor2
+    email_address: investor2@gmail.com
+    username: investor2
+    algorithm: sha1
+    salt: b3e5a86974794277ed3df359e580036b
+    password: investor2
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-02-13 09:38:16'
+    created_at: '2013-02-13 09:37:05'
+    updated_at: '2013-02-13 09:38:16'
+sfGuardUserGroup:
+  sfGuardUserGroup_1_2:
+    User: sfGuardUser_1
+    Group: sfGuardGroup_2
+    created_at: '2013-02-11 15:58:57'
+    updated_at: '2013-02-11 15:58:57'
+  sfGuardUserGroup_3_1:
+    User: sfGuardUser_3
+    Group: sfGuardGroup_1
+    created_at: '2013-02-11 15:57:57'
+    updated_at: '2013-02-11 15:57:57'
+  sfGuardUserGroup_5_1:
+    User: sfGuardUser_5
+    Group: sfGuardGroup_1
+    created_at: '2013-02-11 18:53:19'
+    updated_at: '2013-02-11 18:53:19'
+  sfGuardUserGroup_6_3:
+    User: sfGuardUser_6
+    Group: sfGuardGroup_3
+    created_at: '2013-02-11 18:56:37'
+    updated_at: '2013-02-11 18:56:37'
+sfGuardUserPermission:
+  sfGuardUserPermission_5_5:
+    User: sfGuardUser_5
+    Permission: sfGuardPermission_5
+    created_at: '2013-02-11 18:53:19'
+    updated_at: '2013-02-11 18:53:19'
+  sfGuardUserPermission_6_4:
+    User: sfGuardUser_6
+    Permission: sfGuardPermission_4
+    created_at: '2013-02-11 18:56:37'
+    updated_at: '2013-02-11 18:56:37'
+sfGuardUserProfile:
+  sfGuardUserProfile_2:
+    User: sfGuardUser_2
+    email_new: null
+    firstname: null
+    lastname: null
+    validate_at: '2013-02-12 15:34:19'
+    validate: r5fed2d86cb890f01d227e2cb2345e9b3
+    created_at: '2013-02-12 15:34:19'
+    updated_at: '2013-02-12 15:34:19'

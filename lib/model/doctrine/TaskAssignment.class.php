@@ -52,7 +52,7 @@ class TaskAssignment extends BaseTaskAssignment
     return sprintf('%s',$this->getName());
   }
 	   //this method is used to update the status of a business application during form submission
-  public function updateStatus($id)
+  public function updateStatus($id,$value)
   {
    /* $q = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("UPDATE business_application_status SET application_status = 'Processing' WHERE id ='$id'
 	"); */
@@ -60,7 +60,7 @@ class TaskAssignment extends BaseTaskAssignment
 	
   }
   //update the comment
-  public function updateComment($id)
+  public function updateComment($id,$value)
   {
    $query = Doctrine_Core::getTable('BusinessApplicationStatus')->updateComment($id,$value);
   }
