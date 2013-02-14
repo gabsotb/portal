@@ -21,6 +21,9 @@ user_tasks:
 start_work:
  url: /start
  param: {module: dashboard, action:start}
+make_report: #Route for creating a new Project Summary Report
+ url: /make/report
+ param: {module: projectSummary, action: new}
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 

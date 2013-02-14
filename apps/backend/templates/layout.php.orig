@@ -211,7 +211,11 @@
 			<ul>
 				<li class="active"><?php echo link_to('<i class="icon-home"></i> Dashboard', '@homepage') ?> </li>
 				<!-- We need to only show this if the user has adequate rights to manage and create users -->
+<<<<<<< HEAD
 				<?php if($sf_user->hasCredential('assignJob')):?>
+=======
+				<?php if($sf_user->hasCredential('assignJob')) {   ?>
+>>>>>>> 5952c766f829283560078dc44f7d0fdcb549e666
 				<li class="has-sub">
 					<a href="javascript:;" class="">
 					<i class="icon-group"></i> User Management
@@ -247,9 +251,8 @@
 						<!-- BEGIN STYLE CUSTOMIZER-->
 						
 						<!-- END STYLE CUSTOMIZER-->    
-						<?php if($sf_user->hasCredential('assignJob'))
-						 // we check if the user has valid credentials to be able to see this menu
-						{ ?>
+						
+						 <!-- we check if the user has valid credentials to be able to see this menu -->
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">E-portal Administration Dashboard </h3>
 						<ul class="breadcrumb">
