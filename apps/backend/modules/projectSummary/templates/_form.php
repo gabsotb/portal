@@ -11,9 +11,9 @@
 	  <tfoot>
       <tr>
         <td colspan="2">
-          &nbsp;<a href="<?php echo url_for('dashboard/index') ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+          &nbsp;<a href="<?php echo url_for('projectSummary/show?id='.$form->getObject()->getId()) ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
           <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'projectSummary/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
+            &nbsp;<?php //echo link_to('Delete', 'projectSummary/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
           <?php endif; ?>
           <input class="btn btn-primary" type="submit" value="Save" />
         </td>

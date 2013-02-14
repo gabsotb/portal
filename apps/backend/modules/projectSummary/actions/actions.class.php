@@ -58,6 +58,7 @@ class projectSummaryActions extends sfActions
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
+	
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -77,7 +78,123 @@ class projectSummaryActions extends sfActions
     {
       $project_summary = $form->save();
 
-      $this->redirect('projectSummary/edit?id='.$project_summary->getId());
+      //$this->redirect('projectSummary/edit?id='.$project_summary->getId());
+	  //After Saving this report, we redirect the user to show success
+	   $this->redirect('projectSummary/show?id='.$project_summary->getId());
     }
+  }
+  //This action is called when the data admins decides to accept this application
+  public function executeAccept(sfWebRequest $request)
+  {
+    //we will validate this business and make sure that it is valid
+	 $this->validate = Doctrine_Core::getTable('ProjectSummary')->find(array($request->getParameter('id')));
+	 //now let us call a method to retrieve information about this investor
+	 $query = Doctrine_Core::getTable('ProjectSummary')->getApplicantDetails($request->getParameter('id'));
+	// print_r($query); exit;
+	 $company = "default" ;
+	 $fname = "default";
+	 $lname = "default";
+	 $address = "default";
+	 $date  = date('l jS  F Y');
+	 $userF = sfContext::getInstance()->getUser()->getGuardUser()->getFirstName();
+	 $userL = sfContext::getInstance()->getUser()->getGuardUser()->getLastName();
+	 //loop through the result returned
+	 foreach($query as $q)
+	 {
+	  $company = $q['name'];
+	  $fname = $q['first_name'];
+	  $lname = $q['last_name'];
+	  $address = $q['company_address'];
+	 }
+     $this->forward404Unless($this->validate);
+   //execute action for printing pdf document of this report
+	  $config = sfTCPDFPluginConfigHandler::loadConfig();
+          sfTCPDFPluginConfigHandler::includeLangFile($this->getUser()->getCulture());
+
+          $doc_title    = "RDB - Appliaction For Investment Certificates";
+          $doc_subject  = "Letter Of Acceptance";
+          $doc_keywords = "test keywords";
+          $htmlcontent  = "&lt; &euro; €אטילעש &copy; &gt;<br />
+		<p>
+		 
+		
+		</p>";
+
+          //create new PDF document (document units are set by default to millimeters)
+          $pdf = new sfTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true);
+
+          // set document information
+          $pdf->SetCreator(PDF_CREATOR);
+          $pdf->SetAuthor(PDF_AUTHOR);
+          $pdf->SetTitle($doc_title);
+          $pdf->SetSubject($doc_subject);
+          $pdf->SetKeywords($doc_keywords);
+
+          $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+
+          //set margins
+          $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+
+          //set auto page breaks
+          $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+          $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+          $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+          $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO); //set image scale factor
+
+          $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+          $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+          //initialize document
+          $pdf->AliasNbPages();
+          $pdf->AddPage();
+         
+
+          // add page header/footer
+          $pdf->setPrintHeader(true);
+          $pdf->setPrintFooter(true);
+
+         // Set some content to print
+$html = <<<EOD
+   <i>Mr/Ms $fname $lname </i> <br/>
+   <i>$company</i><br/>
+   <i>$address</i><br/>
+   <i>Date: $date </i>
+   
+<h2>RE: Application For Investment Certificate</h2>
+<p>We are pleased to inform you that your company's application for investment registration was approved by RDB
+And Administrative fee of five hundred united states dollars(USD 500) or its equivalence in Rwanda Francs is required for
+us to process your Investment Certificate. Kindly pay this into our account No. 0281441-77 USD and 0281460-96 RWF at the Bank of Kigali
+and transmit proof of payment to us at your earliest.</p>
+
+<p>However, we would like to inform you that the imported equipment will be subject to East African Customs Management
+Act regulations. We also take this opportunity to inform you that w have assigned MR. Ronald NGABO contact phone 0712122743
+to be your focal point on all issues pertaining to this project</p>
+
+<p>In the meantime, may we take this opportunity to welcome your company to investors registered with RDB, Please accept our
+best wishes for future prosperity to you and your company.</p>
+
+<p><b>Yours Sincerely:</b><br/>
+   <i> $userF $userL</i> <br/>
+   <i>RDB Investment Certificate Officer</i>
+
+<p>
+EOD;
+
+// Print text using writeHTMLCell()
+$pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+
+// ---------------------------------------------------------
+
+// Close and output PDF document
+// This method has several options, check the source code documentation for more information.
+$pdf->Output('letterofacceptance.pdf', 'I');
+
+          // Stop symfony process
+          throw new sfStopException();
+  }
+  //method for printing testing purpose
+  public function executePrint(sfWebRequest $request)
+  {
+    
   }
 }

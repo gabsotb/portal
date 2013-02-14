@@ -28,7 +28,7 @@ class TaskAssignment extends BaseTaskAssignment
 				  
 				  // pass id of the item to update
 				  $value = "assigned";
-				  $this->updateStatus($id,$value );
+				  $this->updateStatus($id,$value);
 				  $value = "Your Document has been assigned to a RDB Data Admin Staff ";
 			      $this->updateComment($id,$value);
 				  $value = 30 ;

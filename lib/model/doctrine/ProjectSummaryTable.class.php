@@ -16,4 +16,13 @@ class ProjectSummaryTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('ProjectSummary');
     }
+	//get Applicant details for the pdf
+	public function getApplicantDetails($id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name, 
+	 investment_application.company_address, sf_guard_user.first_name,sf_guard_user.last_name  FROM investment_application
+	 LEFT JOIN sf_guard_user ON investment_application.created_by = sf_guard_user.id WHERE
+	 investment_application.id = '$id'"); 
+	 return $query;
+	}
 }

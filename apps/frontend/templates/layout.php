@@ -211,8 +211,8 @@
 					<span class="arrow"></span>
 					</a>					
 					<ul class="sub">
-						<li class=""><a href="#"><i class="icon-tag"></i>Application Form</a></li>
-						<li class=""><a href="#"><i class="icon-tag"></i>Business Proposal</a></li>
+						<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>
+						
 					</ul>
 				</li>
 				<li><a  href="#"><i class="icon-table"></i> EIA Certificate</a></li>

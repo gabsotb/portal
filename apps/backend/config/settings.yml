@@ -5,7 +5,7 @@ prod:
   .settings:
     no_script_name:         false
     logging_enabled:        false
-    enabled_modules: [default,sfGuardAuth,sfGuardGroup, sfGuardPermission, sfGuardUser]
+    enabled_modules: [default,sfGuardAuth,sfGuardGroup, sfGuardPermission, sfGuardUser,sfApply]
   .actions:
    login_module: sfGuardAuth
    login_action: signin
@@ -17,7 +17,7 @@ dev:
     cache:                  false
     no_script_name:         false
     etag:                   false
-    enabled_modules: [default,sfGuardAuth,sfGuardGroup, sfGuardPermission, sfGuardUser]
+    enabled_modules: [default,sfGuardAuth,sfGuardGroup, sfGuardPermission, sfGuardUser,sfApply]
   .actions:
    login_module: sfGuardAuth
    login_action: signin
