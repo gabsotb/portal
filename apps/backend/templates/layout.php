@@ -223,7 +223,7 @@
 						<li class=""><?php echo link_to('<i class="icon-filter"></i> Groups Permissions', '@sf_guard_user_permissions') ?> </li>
 					</ul>
 				</li>
-				<?php endif ?>
+				<?php endif; ?>
 				<!-- end -->
 				
 				<li> <?php echo link_to('<i class="icon-lightbulb"></i> Help','@'); ?></li>
@@ -267,7 +267,7 @@
 				</div>
 				
 				<!-- END PAGE HEADER-->
-				<?php endif ?>
+				<?php endif; ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
 				<div  style="padding: 0px 450px 0px; background: url('/images/bgColor.jpg') repeat-x;  margin: 10px 15px 0px; border-radius: 8px;">
 				<img src="/images/logo_1.png" alt='logo'>
