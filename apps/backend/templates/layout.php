@@ -213,7 +213,7 @@
 					</a>					
 				</li>
 				<!-- We need to only show this if the user has adequate rights to manage and create users -->
-				<?php if($sf_user->hasCredential('assignJob')) {?>
+				<?php if($sf_user->hasCredential('assignJob')) {   ?>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
 					<i class="icon-bookmark-empty"></i> User Management
@@ -283,56 +283,21 @@
 							</span>
 						</div>
 						<!-- END STYLE CUSTOMIZER-->    
-						<?php if($sf_user->hasCredential('assignJob'))
-						 // we check if the user has valid credentials to be able to see this menu
-						{ ?>
+						
+						 <!-- we check if the user has valid credentials to be able to see this menu -->
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">E-portal Administration Dashboard </h3>
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
 								<a href="<?php echo url_for('dashboard/index') ?>">Admin Dashboard</a> <span class="divider">/</span>
-								<b>Manage System Operations. View and Create System Users</b>
+								<b>Manage System Operations</b>
 							</li>
 							
 							<li><a href="#"></a></li>
 						</ul>
-						<?php } 
-						?>
-						<?php if($sf_user->hasCredential('investmentcert'))
-						 // we check if the user has valid credentials to be able to see this menu
-						{ ?>
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">E-portal Investment Certificate Administrator Dashboard  </h3>
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home"></i>
-								<a href="<?php echo url_for('dashboard/index') ?>">Data Administrator Dashboard</a> <span class="divider">/</span>
-								<b>View Jobs assigned to you. Process Investment Certificates Tasks Assigned to you.</b>
-							</li>
-							
-							<li><a href="#"></a></li>
-						</ul>
-						<?php } 
-						?>
-						<!-- END PAGE TITLE & BREADCRUMB-->
-							<?php if($sf_user->hasCredential('eiacert'))
-						 // we check if the user has valid credentials to be able to see this menu
-						{ ?>
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">E-portal EIA Certificate Administrator Dashboard </h3>
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home"></i>
-								<a href="<?php echo url_for('dashboard/index') ?>">Data Administrator Dashboard</a> <span class="divider">/</span>
-								<b>View Jobs assigned to you. Process EIA Certificates Tasks Assigned to you.</b>
-							</li>
-							
-							<li><a href="#"></a></li>
-						</ul>
-						<?php } 
-						?>
-						<!-- END PAGE TITLE & BREADCRUMB-->
+						
+						
 					</div>
 				</div>
 				<?php endif; ?>
