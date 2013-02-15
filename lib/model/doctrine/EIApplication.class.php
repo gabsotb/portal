@@ -31,4 +31,12 @@ class EIApplication extends BaseEIApplication
 	}
 	return $q;
   }
+  
+	public function validateBusiness($name, $regno)
+	{
+	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM business_registration WHERE business_name = '$name'
+	   AND business_regno = '$regno'");
+	  // print_r($query); exit;
+	   return $query;
+	}
 }

@@ -12,5 +12,14 @@ class EIApplicationForm extends BaseEIApplicationForm
 {
   public function configure()
   {
+	unset(
+		$this['created_at'], $this['updated_at'], $this['updated_by'], $this['created_by']
+		);
+	
+	$this->widgetSchema->setlabels(array(
+		'company_regno' => 'Company Registration No.'
+		
+		));
+	
   }
 }

@@ -232,8 +232,8 @@
 			<div class="container-fluid">
 	<?php endif ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
-					<div  style="padding: 0px 450px 0px; background: url('/images/bgColor.jpg') repeat-x;  margin: 10px 15px 0px; border-radius: 8px;">
-					<img src="/images/logo_1.png" alt='logo'>
+					<div  class="header_not_signed_in">
+					<img src="/images/logo_example.png" alt='logo'>
 					</div>
 				<?php endif ?>
 				<?php if ($sf_user->hasFlash('notice')): ?>
@@ -250,10 +250,10 @@
 			
 					<?php echo $sf_content ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
-				<div id="footer" style="margin: 20px; background: url('/images/bgColor.jpg') repeat-x; border-radius: 8px;">
+				<div id="footer" class="footer_not_signed_in">
 				2013 &copy; Rwanda Development Board. All Rights Reserved.
 				</div>
-				<?php endif ?>
+				<?php endif; ?>
 				<?php if($sf_user->isAuthenticated()): ?>	
 				</div>
 				<!-- END PAGE CONTENT-->
@@ -274,7 +274,7 @@
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
 	</div>	
-				<?php endif ?>
+				<?php endif; ?>
 	<script>
 		jQuery(document).ready(function() {			
 			// initiate layout and plugins
