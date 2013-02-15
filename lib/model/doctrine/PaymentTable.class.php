@@ -16,4 +16,16 @@ class PaymentTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Payment');
     }
+	
+	/*
+	This method recieves serial number as a parameter and checks if it exists in the database table for payment simulation
+	*/
+	public function getConfirmPayment($serial)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT slip_number FROM payment
+             WHERE slip_number = '$serial' ");
+			 //
+			 //print_r($query); exit;
+	return $query;
+	}
 }

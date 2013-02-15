@@ -32,6 +32,10 @@ abstract class BaseApprovedApplicationsForm extends BaseFormDoctrine
       'updated_at'       => new sfValidatorDateTime(),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'ApprovedApplications', 'column' => array('business_id')))
+    );
+
     $this->widgetSchema->setNameFormat('approved_applications[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

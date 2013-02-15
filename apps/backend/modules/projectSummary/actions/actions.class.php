@@ -79,6 +79,10 @@ class projectSummaryActions extends sfActions
       $project_summary = $form->save();
 
       //$this->redirect('projectSummary/edit?id='.$project_summary->getId());
+	  //here we will change the status of application. this method we call will change the status of business application and also the status of 
+	  //application
+	  
+	  $this->updatestatus = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus($project_summary->getInvestmentId());
 	  //After Saving this report, we redirect the user to show success
 	   $this->redirect('projectSummary/show?id='.$project_summary->getId());
     }
@@ -187,10 +191,33 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 
 // Close and output PDF document
 // This method has several options, check the source code documentation for more information.
-$pdf->Output('letterofacceptance.pdf', 'I');
+       //$pdf->Output('letterofacceptance.pdf', 'I');
+    /*We need to change the status of application to accepted for the user and and inform him to make payment of 500USD and also send him this pdf letter
+	as a message and an attachment 
+	We also change the status of Task to accepted and show a button for confirming payment. wen the user clicks on it, the system checks
+	if the serial number of receipt is valid and automaticaly generates a certificate if successful other shows an error. The send a message
+	to the client with the cert.  Demm!! This code is complex he he hehe he !!!
+	
+	*/
+	$target_path = "uploads/documents/letterofacceptance.pdf";
+			 
+	    $message = Swift_Message::newInstance()
+			  ->setFrom('admin@rdb.com')
+			  ->setTo('Mwendia.bonface4@gmail.com')
+			  ->setSubject('Application For Investment Certifcate')
+			  ->setBody('We are pleased to inform you that your companys application 
+			  for investment registration was approved by RDB. Please See attached letter. Thankyou')
+			   ->attach(Swift_Attachment::fromPath($target_path));
+			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/;
+			 
 
+			$this->getMailer()->send($message);
+			//after sending email, we also need to change the status of this business application. 
+			$this->updatestatus = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus2($this->validate);
+	       $this->redirect('dashboard/index');
           // Stop symfony process
           throw new sfStopException();
+		  
   }
   //method for printing testing purpose
   public function executePrint(sfWebRequest $request)

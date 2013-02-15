@@ -34,6 +34,10 @@ abstract class BaseBusinessApplicationStatusForm extends BaseFormDoctrine
       'updated_at'         => new sfValidatorDateTime(),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'BusinessApplicationStatus', 'column' => array('business_id')))
+    );
+
     $this->widgetSchema->setNameFormat('business_application_status[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

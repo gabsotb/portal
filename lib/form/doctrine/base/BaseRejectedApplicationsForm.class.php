@@ -32,6 +32,10 @@ abstract class BaseRejectedApplicationsForm extends BaseFormDoctrine
       'updated_at'       => new sfValidatorDateTime(),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'RejectedApplications', 'column' => array('business_id')))
+    );
+
     $this->widgetSchema->setNameFormat('rejected_applications[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
