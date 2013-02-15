@@ -42,6 +42,7 @@ abstract class BasePayment extends sfDoctrineRecord
         $this->hasColumn('slip_number', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             'unique' => true,
              ));
     }
 

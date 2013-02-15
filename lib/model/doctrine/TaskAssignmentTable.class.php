@@ -54,7 +54,14 @@ class TaskAssignmentTable extends Doctrine_Table
 	  //
 	  //we also need to change the status of business application 
 	  //Task should be started and the investor should see processing and detailed comment
-	  $this->updateBusinessApplicationStatus($id);
+	  //set variables to make function reusable 
+	  //Now here we call the 3 functions in the BusinessApplicationStatus Table to update status ,comment and progress bar
+	  /*Values to Set*/
+	  $value1 = "processing";
+	  $value2 = "The RDB Staff is now process and validating you application. 
+	  Please wait. Thankyou";
+	  $value3 = 50;
+	  $this->updateBusinessApplicationStatus($id,$value1,$value2,$value3);
 	  $this->updateTaskStatus($id);
 	  return $query;
 	  
@@ -70,19 +77,90 @@ class TaskAssignmentTable extends Doctrine_Table
 	 ->WHERE('investmentapp_id = ?', $taskId);
 	 $q->execute();
 	}
-	//update business application status for the user to see that the task has been started
-	public function updateBusinessApplicationStatus($id)
+	//this function updates the status of work to reporting i.e. report generation status
+	//within this method we will also update status of BusinessApplicationStatus table for the user to analyze
+	public function updateUserTaskStatus($taskId)
 	{
-	  //Now here we call the 3 functions in the BusinessApplicationStatus Table to update status ,comment and progress bar
-	  /*Values to Set*/
-	  $value1 = "processing";
-	  $value2 = "The RDB Staff is now process and validating you application. 
-	  Please wait for approval of your application";
-	  $value3 = 50;
+	 $work_status = "reporting" ;
+	  $q = Doctrine_Query::create()
+	 ->UPDATE('TaskAssignment')
+	 ->SET('work_status', '?' , $work_status)
+	 ->WHERE('investmentapp_id = ?', $taskId);
+	 $q->execute();
+	 ///call methods for BusinessApplicationStatus update
+	 //set variables
+	  $value1 = "reporting";
+	  $value2 = "The RDB Staff is now analyzing and generating a business proposal summary report. 
+	  Please wait for acceptance of your application. Thankyou";
+	  $value3 = 70;
+	 $this->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+	}
+	//called after sending an email to the user
+	public function updateUserTaskStatus2($taskId)
+	{
+	 $work_status = "awaitingpayment" ;
+	  $q = Doctrine_Query::create()
+	 ->UPDATE('TaskAssignment')
+	 ->SET('work_status', '?' , $work_status)
+	 ->WHERE('investmentapp_id = ?', $taskId);
+	 $q->execute();
+	 ///call methods for BusinessApplicationStatus update
+	 //set variables
+	  $value1 = "accepted";
+	  $value2 = "Your Application for Investment Certificate has been accepted.
+	  An email with further instruction for payment has been sent to your accout email. Thankyou";
+	  $value3 = 80;
+	 $this->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+	}
+	//update business application status for the user to see that the task has been started
+	public function updateBusinessApplicationStatus($id,$value1,$value2,$value3)
+	{
+	  
 	  $q1 = Doctrine_Core::getTable('BusinessApplicationStatus')->updateStatus($id,$value1);
 	  $q2 = Doctrine_Core::getTable('BusinessApplicationStatus')->updateComment($id,$value2 );
 	  $q3 = Doctrine_Core::getTable('BusinessApplicationStatus')->updateValue($id,$value3);
 	  
+	}
+	//the third part comes after confirmation of payment
+	public function updateUserTaskStatus3($taskId)
+	{
+	 $work_status = "paymentconfirmed" ;
+	  $q = Doctrine_Query::create()
+	 ->UPDATE('TaskAssignment')
+	 ->SET('work_status', '?' , $work_status)
+	 ->WHERE('investmentapp_id = ?', $taskId);
+	 $q->execute();
+	 ///call methods for BusinessApplicationStatus update
+	 //set variables
+	  $value1 = "paymentconfirmed";
+	  $value2 = "Your Payment for Administrative Fee has been confirmed. Please wait for your Certificate of
+    investment Thankyou";
+	  $value3 = 90;
+	 $this->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+	}
+	//this method is called after successful confirmation of payment. parameter passed is name of business
+	public function updatingPaymentStatus($businesName)
+	{
+	  $query =  Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT task_assignment.id, task_assignment.investmentapp_id FROM task_assignment
+	   LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id
+	   WHERE investment_application.name = '$businesName'
+	  ");
+	  //
+	  return $query;
+	}
+	/*
+	Before we issue a Certificate, we will confirm the status of payment
+	*/
+	public function getStatus($id)
+	{
+	 $query =  Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT task_assignment.work_status FROM task_assignment
+	   LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id
+	   WHERE investment_application.id = '$id'
+	  ");
+	  //
+	  return $query;
 	}
 	
 }

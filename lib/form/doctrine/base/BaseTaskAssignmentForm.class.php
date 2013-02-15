@@ -40,6 +40,10 @@ abstract class BaseTaskAssignmentForm extends BaseFormDoctrine
       'updated_by'       => new sfValidatorString(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'TaskAssignment', 'column' => array('investmentapp_id')))
+    );
+
     $this->widgetSchema->setNameFormat('task_assignment[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

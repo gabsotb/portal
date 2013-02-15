@@ -41,6 +41,7 @@ abstract class BaseProjectSummary extends sfDoctrineRecord
         $this->hasColumn('investment_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             'unique' => true,
              ));
         $this->hasColumn('business_sector', 'string', 255, array(
              'type' => 'string',

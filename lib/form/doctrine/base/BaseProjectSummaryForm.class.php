@@ -42,6 +42,10 @@ abstract class BaseProjectSummaryForm extends BaseFormDoctrine
       'updated_by'           => new sfValidatorString(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'ProjectSummary', 'column' => array('investment_id')))
+    );
+
     $this->widgetSchema->setNameFormat('project_summary[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

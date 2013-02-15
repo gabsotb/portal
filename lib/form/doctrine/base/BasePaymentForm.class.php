@@ -36,6 +36,10 @@ abstract class BasePaymentForm extends BaseFormDoctrine
       'updated_by'     => new sfValidatorString(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'Payment', 'column' => array('slip_number')))
+    );
+
     $this->widgetSchema->setNameFormat('payment[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

@@ -10,7 +10,7 @@ InvestmentApplication: ## Contains the application details from the investors
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
-  name: {type: string(255), notnull: true}  
+  name: {type: string(255), notnull: true, unique: true}  
   registration_number: {type: string(255), notnull: true,  unique: true}
   company_address: {type: string(255), notnull: true}
   job_created: {type: integer, notnull: true}
@@ -51,7 +51,7 @@ ProjectSummary:
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string} 
  columns:
-  investment_id: {type: integer, notnull: true}
+  investment_id: {type: integer, notnull: true, unique: true}
   business_sector: {type: string(255), notnull: true}
   techinical_viability: {type: string(400), notnull: true}
   planned_investment: {type: string(400), notnull: true}
@@ -68,7 +68,7 @@ TaskAssignment:
    updated: { name: updated_by,type: string}
  columns:
   user_assigned: {type: integer, notnull: true}
-  investmentapp_id: {type: integer, notnull: true }
+  investmentapp_id: {type: integer, notnull: true, unique: true }
   instructions: {type: string(255), notnull: true}
   duedate: {type: timestamp, notnull: true}
   work_status: {type: string(255), notnull: true}
@@ -79,7 +79,7 @@ TaskAssignment:
 BusinessApplicationStatus: # Shows business application status, pending,processing,accepted or rejected, payment,issuing,done
  actAs: {Timestampable: ~}
  columns:
-  business_id: {type: integer, notnull:true}
+  business_id: {type: integer, notnull:true, unique: true}
   application_status: {type: string(255), notnull: true}
   comment: {type: string(255), notnull: false}
   percentage: {type: integer, notnull: true}
@@ -88,7 +88,7 @@ BusinessApplicationStatus: # Shows business application status, pending,processi
 ApprovedApplications: # Shows approved businesses application
  actAs: {Timestampable: ~}
  columns:
-  business_id: {type: integer, notnull:true}
+  business_id: {type: integer, notnull:true, , unique: true}
   application_type: {type: string(255), notnull: true}
   comment: {type: string(255), notnull: false}
  relations:
@@ -96,7 +96,7 @@ ApprovedApplications: # Shows approved businesses application
 RejectedApplications: # Shows rejected businesses application
  actAs: {Timestampable: ~}
  columns:
-  business_id: {type: integer, notnull:true}
+  business_id: {type: integer, notnull:true, unique: true}
   application_type: {type: string(255), notnull: true}
   comment: {type: string(255), notnull: false}
  relations:
@@ -111,7 +111,7 @@ Payment:
  columns:
   business_id: {type: integer, notnull: true}
   payment_status: {type: string(255), notnull: true, default: notpaid}
-  slip_number: {type: integer, notnull: true}
+  slip_number: {type: integer, notnull: true, unique: true}
  relations:
   InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate}  
 ## Records the certificates issued to the investor by the RDB staff after successful completion of Investment Certificate application  
