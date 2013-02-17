@@ -6,7 +6,7 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	<link rel="shortcut icon" href="/favicon.png" />
+	<link rel="shortcut icon" href="<?php sfConfig::get('sf_web_dir')?>/portal/web/favicon.png" />
 	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>
 </head>
