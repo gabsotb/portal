@@ -5,7 +5,7 @@
 
 
 
-		<div class="row-fluid" style="margin: 20px auto 5px;  background: url('/images/bgColor.jpg') repeat-x; padding: 10px 9px 35px; border-radius:8px; width:500px;">
+		<div class="row-fluid" style="margin: 20px auto 5px;  background: url('<?php sfConfig::get('sf_web_dir')?>/portal/web/images/bgColor.jpg') repeat-x; padding: 10px 9px 35px; border-radius:8px; width:500px;">
 	
 			
 			<div class="span8" style=" margin: 50px auto; ">
