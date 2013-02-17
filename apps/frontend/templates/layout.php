@@ -253,7 +253,7 @@
 				<div id="footer" style="margin: 20px; background: url('<?php sfConfig::get('sf_web_dir')?>/portal/web/images/bgColor.jpg') repeat-x; border-radius: 8px;">
 				2013 &copy; Rwanda Development Board. All Rights Reserved.
 				</div>
-				<?php endif ?>
+				<?php endif; ?>
 				<?php if($sf_user->isAuthenticated()): ?>	
 				</div>
 				<!-- END PAGE CONTENT-->
@@ -274,7 +274,7 @@
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
 	</div>	
-				<?php endif ?>
+				<?php endif; ?>
 	<script>
 		jQuery(document).ready(function() {			
 			// initiate layout and plugins

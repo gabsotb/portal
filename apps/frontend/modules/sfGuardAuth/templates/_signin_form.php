@@ -58,7 +58,7 @@
 								<?php echo $form['username']->renderError() ?>
 								<div class="controls">
 									<div class="input-prepend">
-										<?php echo $form['username']->renderlabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+										<?php echo $form['username']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
 										<?php echo $form['username']->render(array('placeholder' => 'Username' ,'class' => 'span10 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Enter your Username')) ?>
 									</div>
 								</div>
@@ -69,7 +69,7 @@
 								
 								<div class="controls">
 								<div class="input-prepend">
-									<?php echo $form['password']->renderlabel('<i class="icon-lock"></i>',array('class' => 'add-on')) ?>
+									<?php echo $form['password']->renderLabel('<i class="icon-lock"></i>',array('class' => 'add-on')) ?>
 									<?php echo $form['password']->render(array('placeholder' => 'Password','class' => 'span10 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Enter your Password')) ?>
 									<?php echo $form->renderHiddenFields(); ?>
 								</div>

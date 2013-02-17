@@ -223,7 +223,7 @@
 						<li class=""><?php echo link_to('<i class="icon-filter"></i> Groups Permissions', '@sf_guard_user_permissions') ?> </li>
 					</ul>
 				</li>
-				<?php endif; ?>
+				<?php endif ?>
 				<!-- end -->
 				
 				<li> <?php echo link_to('<i class="icon-lightbulb"></i> Help','@'); ?></li>
@@ -247,9 +247,10 @@
 						<!-- BEGIN STYLE CUSTOMIZER-->
 						
 						<!-- END STYLE CUSTOMIZER-->    
-						<?php if($sf_user->hasCredential('assignJob'))
+						<?php 
 						 // we check if the user has valid credentials to be able to see this menu
-						{ ?>
+						 if($sf_user->hasCredential('assignJob')):
+						?>
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">E-portal Administration Dashboard </h3>
 						<ul class="breadcrumb">
@@ -261,11 +262,11 @@
 							
 							<li><a href="#"></a></li>
 						</ul>
-						<?php } 
+						<?php endif; ?>
+						<?php 
+						// we check if the user has valid credentials to be able to see this menu
+						if($sf_user->hasCredential('investmentcert')):
 						?>
-						<?php if($sf_user->hasCredential('investmentcert'))
-						 // we check if the user has valid credentials to be able to see this menu
-						{ ?>
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">E-portal Investment Certificate Administrator Dashboard  </h3>
 						<ul class="breadcrumb">
@@ -277,12 +278,12 @@
 							
 							<li><a href="#"></a></li>
 						</ul>
-						<?php } 
-						?>
+						<?php endif; ?>
 						<!-- END PAGE TITLE & BREADCRUMB-->
-							<?php if($sf_user->hasCredential('eiacert'))
+						<?php 
 						 // we check if the user has valid credentials to be able to see this menu
-						{ ?>
+						 if($sf_user->hasCredential('eiacert')):
+						?>
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">E-portal EIA Certificate Administrator Dashboard </h3>
 						<ul class="breadcrumb">
@@ -294,8 +295,8 @@
 							
 							<li><a href="#"></a></li>
 						</ul>
-						<?php } 
-						?>
+						<?php endif; ?> 
+
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>
 				</div>
@@ -324,7 +325,7 @@
 				<div id="footer" style="margin: 20px; background: url('<?php sfConfig::get('sf_web_dir')?>/portal/web/images/bgColor.jpg') repeat-x; border-radius: 8px;">
 				2013 &copy; Rwanda Development Board. All Rights Reserved.
 				</div>
-				<?php endif ?>
+				<?php endif; ?>
 			<?php if($sf_user->isAuthenticated()): ?>
 			</div>
 			<!-- END PAGE CONTAINER-->
@@ -339,7 +340,7 @@
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
 	</div>
-	<?php endif ?>
+	<?php endif; ?>
 	<script>
 		jQuery(document).ready(function() {			
 			// initiate layout and plugins

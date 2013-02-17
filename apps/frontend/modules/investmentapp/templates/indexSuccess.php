@@ -331,7 +331,8 @@ $(function () {
 															for EIA certificate for your account!
 														      </div>
 													  <?php endif; ?>
-													<button type="button" class="btn btn-success">Apply for EIA Certificate</button>
+													<!--<button type="button" class="btn btn-success">Apply for EIA Certificate</button> -->
+													<?php echo button_to('Apply for EIA Certificate','EIA/new',array('class' => 'btn btn-success')); ?>
 												
 											   </div>
 										      	<!-- end EIA -->
