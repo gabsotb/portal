@@ -39,4 +39,43 @@ class EIApplication extends BaseEIApplication
 	  // print_r($query); exit;
 	   return $query;
 	}
+	
+	public function save(Doctrine_Connection $conn = null)
+	  {
+	   $conn = $conn ? $conn : $this->getTable()->getConnection();
+	   $conn->beginTransaction();
+			  try
+			  {
+				
+				  $name = $this->getDeveloperName();  
+				  ///
+					$ret = parent::save($conn);
+					$conn->commit();
+					$this->saveStatus($name);
+					return $ret ;
+				
+			  }
+			  catch(Exception $e)
+			  {
+			  $conn->rollBack();
+			  throw $e;
+			  }
+	  }
+	  
+	  public function saveStatus($name)
+		{
+		    $id= Doctrine_Core::getTable('EIApplication')->getId($name);
+			$status = new EIApplicationStatus();
+			$status->company_id = $id;
+			$status->application_status= "Submitted";
+			$status->comments="Documents Submitted Successfuly. Awaiting RDB admin to assign your application to a Staff";
+			$status->percentage="10";
+			$status->save(); 
+		}
+		
+	public function getStatus()
+	{	
+		$eia= Doctrine_Core::getTable('EIApplication')->getEia();
+		return Doctrine_Core::getTable('EIApplicationStatus')->getStatus($eia['id']);
+	}
 }

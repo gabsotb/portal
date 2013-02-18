@@ -22,7 +22,7 @@ class BusinessPlan extends BaseBusinessPlan
 				  //later we will try and find a better solution
 				  $businessStatus = new BusinessApplicationStatus();
 				  //we retrieve the neccessary values from this model
-				  $businessId = $this->getInvestmentId() ;
+				  $businessId = $this->getInvestmentId();
 				  //hard coded status and comments
 				  $status = "submitted" ;
 				  $comments = "Documents Submitted Successfuly. Awaiting RDB admin to assign your application to a Staff";

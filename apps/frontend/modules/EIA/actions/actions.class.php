@@ -77,14 +77,19 @@ class EIAActions extends sfActions
 		//access values
 		 $name = $allFormValues['developer_name'];
 		 $regno = $allFormValues['company_regno'];
+		 
 		 //class to access method
 		 $business = new EIApplication();
+		 
 		if($business->validateBusiness($name, $regno) == null)
 		{
 			// Invalid Business. Not Registered
 			$this->redirect('investmentapp/invalid');
-		}else{
-			EIA = $form->save();
+		}
+		else
+		{
+			
+			$EIA = $form->save();
 			$this->redirect('EIA/index');
 		}
 	  }

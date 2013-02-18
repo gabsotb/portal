@@ -267,7 +267,7 @@ $(function () {
 															<div class="alert alert-error">
 										                    <strong>Alert!</strong> <br/>There are no applications
 															for investment certificate for your account!
-														      </div>
+															</div>
 															<?php endif; ?>
 															
 												     <a href="<?php echo url_for('investmentapp/new') ?>">
@@ -281,6 +281,7 @@ $(function () {
 																<h4>EIA Certificate Application</h4>						
 															</div>
 																<?php if(count($eia_applications) > 0): ?>
+													<?php foreach($eiaStatus as $eia): ?>
 												  <div class="widget-body">
 																<!-- table to list company information -->
 																
@@ -302,15 +303,16 @@ $(function () {
 																</thead>
 																<tbody>
 																	<tr>
-																		<td>Boniboy Construction Ltd</td>
-																		<td><span class="label label-success">Submitted</span></td>
+																		
+																		<td><?php echo $eia['developer_name'] ?></td>
+																		<td><?php echo $eia['application_status'] ?></td>
 																	</tr>
 																	
 																</tbody>
 															</table>
 															</div>
 															<div class="progress progress-striped progress-success active">
-																<div style="width: 40%;" class="bar"></div>
+																<div style="width: <?php echo $eia['percentage'] ?>%;" class="bar"></div>
 															</div>									
 															
 														</div>
@@ -319,11 +321,12 @@ $(function () {
 																<div class="alert alert-block alert-info fade in">
 																	<h4 class="alert-heading">Comments</h4>
 																	<p>
-																		You application for EIA Certificate submitted
+																		<?php echo $eia['comments'] ?>
 																	</p>
 																</div>
 																
 											   </div>
+											   <?php endforeach ?>
 											   <?php endif; ?>
 											          <?php if(count($eia_applications) <= 0): ?>
 															<div class="alert alert-error">
