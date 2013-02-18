@@ -1,3 +1,110 @@
+InvestmentApplication:
+  InvestmentApplication_1:
+    name: Smartline
+    registration_number: '26090'
+    company_address: Kigali
+    job_created: '4'
+    job_category: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    company_legal_nature: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    company_representative: 'James John'
+    application_letter: 525ecfa5d1ed7d5fa5afc745809f1517a27e60fc.doc
+    incorporation_certificate: c6320c4c18f2abfc4c93980af113b4c295214dc5.doc
+    shareholding_list: 0d5ecc284d2d131005a4f299cfa934b3b574369f.doc
+    company_logo: null
+    created_at: '2013-02-17 20:31:00'
+    updated_at: '2013-02-17 20:32:49'
+    Creator: sfGuardUser_2
+    updated_by: investor
+  InvestmentApplication_2:
+    name: OtbAfrica
+    registration_number: '26091'
+    company_address: Kisumu
+    job_created: '4'
+    job_category: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path byA suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    company_legal_nature: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    company_representative: Irungu
+    application_letter: 65c140434aa2c0b93e6b63349c928fcd8a0fd161.doc
+    incorporation_certificate: f47ad2108f76fdaa3f2b3cc240d8918e03ab8db9.doc
+    shareholding_list: 07c031710efbe621da3768c796d9b87693395e51.doc
+    company_logo: null
+    created_at: '2013-02-17 20:49:00'
+    updated_at: '2013-02-17 20:51:09'
+    Creator: sfGuardUser_6
+    updated_by: investor2
+BusinessPlan:
+  BusinessPlan_1:
+    InvestmentApplication: InvestmentApplication_1
+    executive_summary: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    promoter_profile: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    project_background: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    equity_financing: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    income_statement: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    cashflow_statement: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    payback_period: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    npv: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    loan_amortization: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    implementation_plan: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    notes: 'make sure that you have a valid business registration number. You company must be registered via the Business Registration System'
+    created_at: '2013-02-17 20:33:00'
+    updated_at: '2013-02-17 20:33:36'
+    Creator: sfGuardUser_2
+    updated_by: investor
+  BusinessPlan_2:
+    InvestmentApplication: InvestmentApplication_2
+    executive_summary: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    promoter_profile: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    project_background: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    equity_financing: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    income_statement: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    cashflow_statement: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    payback_period: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    npv: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    loan_amortization: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path byA suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    implementation_plan: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    notes: "A suggestion for the config file (config.php):\r\nIt would be better to use for the definition of the image directory the internal path by"
+    created_at: '2013-02-17 20:51:00'
+    updated_at: '2013-02-17 20:51:53'
+    Creator: sfGuardUser_6
+    updated_by: investor2
+BusinessApplicationStatus:
+  BusinessApplicationStatus_1:
+    InvestmentApplication: InvestmentApplication_1
+    application_status: submitted
+    comment: 'Documents Submitted Successfuly. Awaiting RDB admin to assign your application to a Staff'
+    percentage: '10'
+    created_at: '2013-02-17 20:33:36'
+    updated_at: '2013-02-17 20:33:36'
+  BusinessApplicationStatus_2:
+    InvestmentApplication: InvestmentApplication_2
+    application_status: submitted
+    comment: 'Documents Submitted Successfuly. Awaiting RDB admin to assign your application to a Staff'
+    percentage: '10'
+    created_at: '2013-02-17 20:51:53'
+    updated_at: '2013-02-17 20:51:53'
+BusinessRegistration:
+  BusinessRegistration_1:
+    business_name: Smartline
+    business_regno: '26090'
+    created_at: '2013-02-07 15:57:43'
+    updated_at: '2013-02-07 15:57:43'
+  BusinessRegistration_2:
+    business_name: OtbAfrica
+    business_regno: '26091'
+    created_at: '2013-02-07 15:57:43'
+    updated_at: '2013-02-07 15:57:43'
+Session:
+  Session_4hmfgd0imsiafvfo6umbtgqce7:
+    id: 4hmfgd0imsiafvfo6umbtgqce7
+    sessiondata: ''
+    time: '1361130560'
+  Session_7afajngiqp64kjkleug3p3fkf6:
+    id: 7afajngiqp64kjkleug3p3fkf6
+    sessiondata: 'symfony/user/sfUser/lastRequest|i:1361130725;symfony/user/sfUser/authenticated|b:1;symfony/user/sfUser/credentials|a:0:{}symfony/user/sfUser/attributes|a:2:{s:30:"symfony/user/sfUser/attributes";a:0:{}s:19:"sfGuardSecurityUser";a:1:{s:7:"user_id";s:1:"6";}}symfony/user/sfUser/culture|s:2:"en";'
+    time: '1361130726'
+  Session_v51ikvo3sp6obc1bddpnieoi60:
+    id: v51ikvo3sp6obc1bddpnieoi60
+    sessiondata: ''
+    time: '1361130572'
 sfGuardGroup:
   sfGuardGroup_1:
     name: investmentcertadmins
@@ -15,9 +122,9 @@ sfGuardGroup:
     created_at: '2013-02-11 18:08:54'
     updated_at: '2013-02-11 18:08:54'
 sfGuardGroupPermission:
-  sfGuardGroupPermission_1_5:
+  sfGuardGroupPermission_1_3:
     Group: sfGuardGroup_1
-    Permission: sfGuardPermission_5
+    Permission: sfGuardPermission_3
     created_at: '2013-02-11 18:50:55'
     updated_at: '2013-02-11 18:50:55'
   sfGuardGroupPermission_2_1:
@@ -25,9 +132,9 @@ sfGuardGroupPermission:
     Permission: sfGuardPermission_1
     created_at: '2013-02-11 16:00:31'
     updated_at: '2013-02-11 16:00:31'
-  sfGuardGroupPermission_3_4:
+  sfGuardGroupPermission_3_2:
     Group: sfGuardGroup_3
-    Permission: sfGuardPermission_4
+    Permission: sfGuardPermission_2
     created_at: '2013-02-11 18:09:52'
     updated_at: '2013-02-11 18:09:52'
 sfGuardPermission:
@@ -36,12 +143,12 @@ sfGuardPermission:
     description: 'Permission to Assign a Job to a data admin'
     created_at: '2013-02-11 16:00:31'
     updated_at: '2013-02-11 16:00:31'
-  sfGuardPermission_4:
+  sfGuardPermission_2:
     name: eiacert
     description: 'Permission for EIA document processing'
     created_at: '2013-02-11 18:09:52'
     updated_at: '2013-02-11 18:09:52'
-  sfGuardPermission_5:
+  sfGuardPermission_3:
     name: investmentcert
     description: 'Permission for Investment Certificate issues'
     created_at: '2013-02-11 18:10:41'
@@ -70,9 +177,9 @@ sfGuardUser:
     password: investor
     is_active: true
     is_super_admin: false
-    last_login: '2013-02-13 09:31:50'
+    last_login: '2013-02-17 20:20:38'
     created_at: '2013-02-11 14:47:34'
-    updated_at: '2013-02-13 09:31:50'
+    updated_at: '2013-02-17 20:20:38'
   sfGuardUser_3:
     first_name: Venessa
     last_name: Bonie
@@ -86,7 +193,7 @@ sfGuardUser:
     last_login: '2013-02-11 19:20:49'
     created_at: '2013-02-11 15:53:27'
     updated_at: '2013-02-11 19:20:49'
-  sfGuardUser_5:
+  sfGuardUser_4:
     first_name: Boniface
     last_name: Irungu
     email_address: irungu@gmail.com
@@ -99,7 +206,7 @@ sfGuardUser:
     last_login: '2013-02-13 11:52:12'
     created_at: '2013-02-11 18:53:19'
     updated_at: '2013-02-13 11:52:12'
-  sfGuardUser_6:
+  sfGuardUser_5:
     first_name: Munira
     last_name: Masika
     email_address: munira@gmail.com
@@ -112,7 +219,7 @@ sfGuardUser:
     last_login: '2013-02-12 10:23:55'
     created_at: '2013-02-11 18:56:37'
     updated_at: '2013-02-12 10:23:55'
-  sfGuardUser_7:
+  sfGuardUser_6:
     first_name: Investor2
     last_name: Investor2
     email_address: investor2@gmail.com
@@ -122,9 +229,9 @@ sfGuardUser:
     password: investor2
     is_active: true
     is_super_admin: false
-    last_login: '2013-02-13 09:38:16'
+    last_login: '2013-02-17 20:49:32'
     created_at: '2013-02-13 09:37:05'
-    updated_at: '2013-02-13 09:38:16'
+    updated_at: '2013-02-17 20:49:32'
 sfGuardUserGroup:
   sfGuardUserGroup_1_2:
     User: sfGuardUser_1
@@ -136,29 +243,29 @@ sfGuardUserGroup:
     Group: sfGuardGroup_1
     created_at: '2013-02-11 15:57:57'
     updated_at: '2013-02-11 15:57:57'
-  sfGuardUserGroup_5_1:
-    User: sfGuardUser_5
+  sfGuardUserGroup_4_1:
+    User: sfGuardUser_4
     Group: sfGuardGroup_1
     created_at: '2013-02-11 18:53:19'
     updated_at: '2013-02-11 18:53:19'
-  sfGuardUserGroup_6_3:
-    User: sfGuardUser_6
+  sfGuardUserGroup_5_3:
+    User: sfGuardUser_5
     Group: sfGuardGroup_3
     created_at: '2013-02-11 18:56:37'
     updated_at: '2013-02-11 18:56:37'
 sfGuardUserPermission:
-  sfGuardUserPermission_5_5:
-    User: sfGuardUser_5
-    Permission: sfGuardPermission_5
+  sfGuardUserPermission_4_3:
+    User: sfGuardUser_4
+    Permission: sfGuardPermission_3
     created_at: '2013-02-11 18:53:19'
     updated_at: '2013-02-11 18:53:19'
-  sfGuardUserPermission_6_4:
-    User: sfGuardUser_6
-    Permission: sfGuardPermission_4
+  sfGuardUserPermission_5_2:
+    User: sfGuardUser_5
+    Permission: sfGuardPermission_2
     created_at: '2013-02-11 18:56:37'
     updated_at: '2013-02-11 18:56:37'
 sfGuardUserProfile:
-  sfGuardUserProfile_2:
+  sfGuardUserProfile_1:
     User: sfGuardUser_2
     email_new: null
     firstname: null

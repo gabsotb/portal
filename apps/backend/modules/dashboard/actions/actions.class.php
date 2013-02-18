@@ -155,74 +155,142 @@ class dashboardActions extends sfActions
 	  $cert->save();
 	  print "Maybe successful"; exit; */
 	  ////////////////////////////////////////////////////////////////////////////
+	
+	  ////////////////////////////////////////////////////////////////////////////
 	  //execute action for printing pdf document of this report
-	  $config = sfTCPDFPluginConfigHandler::loadConfig();
-          sfTCPDFPluginConfigHandler::includeLangFile($this->getUser()->getCulture());
-
-          $doc_title    = "RDB - Appliaction For Investment Certificates";
-          $doc_subject  = "Investment Certificate";
-          $doc_keywords = "RDB";
-          $htmlcontent  = "&lt; &euro; €אטילעש &copy; &gt;<br />
-		<p>
-		 
-		
-		</p>";
-
-          //create new PDF document (document units are set by default to millimeters)
+	  /* I have used another class specifically for investment Certificates only */
+	      $config = sfTCPDFPluginConfigHandlerInvstCert::loadConfig('invst_configs');
+          sfTCPDFPluginConfigHandlerInvstCert::includeLangFile($this->getUser()->getCulture());
+	///////////////////////////Certificate Configuration //////////////////////////////////////////////////////////////////////	  
+//create new PDF document (document units are set by default to millimeters)
           $pdf = new sfTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true);
+         // set document information
+/*$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetAuthor('Nicola Asuni');
+$pdf->SetTitle('TCPDF Example 062');
+$pdf->SetSubject('TCPDF Tutorial');
+$pdf->SetKeywords('TCPDF, PDF, example, test, guide'); */
 
-          // set document information
-          $pdf->SetCreator(PDF_CREATOR);
-          $pdf->SetAuthor(PDF_AUTHOR);
-          $pdf->SetTitle($doc_title);
-          $pdf->SetSubject($doc_subject);
-          $pdf->SetKeywords($doc_keywords);
+// set default header data
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 062', PDF_HEADER_STRING);
 
-          $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+// set header and footer fonts
+$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
-          //set margins
-          $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+// set default monospaced font
+$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
-          //set auto page breaks
-          $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-          $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-          $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-          $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO); //set image scale factor
+//set margins
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
-          $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-          $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+// remove default header/footer
+$pdf->setPrintHeader(false);
+$pdf->setPrintFooter(false);
 
-          //initialize document
-          $pdf->AliasNbPages();
-          $pdf->AddPage();
-         
+//set auto page breaks
+//$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+$pdf->SetAutoPageBreak(false);
 
-          // add page header/footer
-          $pdf->setPrintHeader(true);
-          $pdf->setPrintFooter(true);
+//set image scale factor
+$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
-         // Set some content to print
-$html = <<<EOD
-                                          <center><b>Investment Registration Certificate</b></center>
-EOD;
+//set some language-dependent strings
+//$pdf->setLanguageArray($l);
+
+// ---------------------------------------------------------
+
+// set font
+$pdf->SetFont('helvetica', 'B', 20);
+
+// add a page
+$pdf->AddPage();
+
+// start a new XObject Template
+$template_id = $pdf->startTemplate(95, 165);
+
+// create Template content
+// ...................................................................
+
+$border = array('LRTB' => array('width' => 0.1, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+ $img_file = K_PATH_IMAGES.'bg.jpg';
+ 
+$pdf->Image($img_file, 0, 0, 50, 50, 'JPG', '', '', false, 1000, '', false, false, $border, false, false, false);
+ //$img_file2 = 'C:\xampp\htdocs\portal\plugins\sfTCPDFPlugin\lib\tcpdf\images\logo.jpg';
+ //$logo =  sfConfig::get('sf_plugins_dir').DIRECTORY_SEPARATOR.'sfTCPDFPlugin'.DIRECTORY_SEPARATOR.'lib\tcpdf\images\logo.jpg';
+//echo  $logo; exit;
+//Image Calling inside the html has a problem hence we hand code it but we will change it later - Boniface Irunguh
+// ...................................................................
+
+// end the current Template
+$pdf->endTemplate();
+
+// print the selected Template various times
+$pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
+
+// ---------------------------------------------------------
+ // Set some content to print
+$html = '                               <div style="text-align:center"> 
+                                         <img src="C:\xampp\htdocs\portal\plugins\sfTCPDFPlugin\lib\tcpdf\images\logo.jpg" alt="RDB" width="600" height="200" border="0" />
+										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
+										 <p style= "font-size: xx-small;text-align:left ">
+										 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										 No: .....9000000  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										 Date: ....02-18-2013 <br> <br>
+										 
+						                  &nbsp;&nbsp;&nbsp;&nbsp;Issued To ........................................... Represented by ...............................<br/><br/> 
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Sector .................................................. <br/> <br/>
+										&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Planned investment amount ......................................  <br/><br/>
+										 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Total Number of jobs planned....................................  <br/><br/>
+										 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Local jobs ....................... Jobs For expatriates ......................... <br/>
+										&nbsp;&nbsp;&nbsp;&nbsp; This Certificate has been issued to .......................... under the seal of
+										  RDB in accordance <br/>  &nbsp;&nbsp; &nbsp;with law no 26/2005 EAC customs management act atests that  the company is duly <br/>
+										   &nbsp; &nbsp; registered and entitled to the rights and obligations contained in the law
+										  </p>
+										  <p style="text-align:left;font-size: xx-small;">
+										 &nbsp; THE CHIEF EXECUTIVE OFFICER,
+                                          RDB,										  
+										  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										       &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											   
+											                    COMPANY REPRESENTATIVE,
+                             								 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															
+                                                            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                             &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+                                                             &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															Mr Myoung Sool D	 
+										  <br/>
+										&nbsp;  Clare Akamanzi    
+										 </p>
+										    
+										 </div> 
+										
+                                      
+';
 
 // Print text using writeHTMLCell()
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
 
-// ---------------------------------------------------------
+//Close and output PDF document
+$pdf->Output('certificate.pdf', 'I');
 
-// Close and output PDF document
-// This method has several options, check the source code documentation for more information.
-       $pdf->Output('certificate.pdf', 'I');
-    /*We need to change the status of application to accepted for the user and and inform him to make payment of 500USD and also send him this pdf letter
-	as a message and an attachment 
-	We also change the status of Task to accepted and show a button for confirming payment. wen the user clicks on it, the system checks
-	if the serial number of receipt is valid and automaticaly generates a certificate if successful other shows an error. The send a message
-	to the client with the cert.  Demm!! This code is complex he he hehe he !!!
 	
-	
+	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
           // Stop symfony process */
           throw new sfStopException();
-	  ///////////////////////////////////////////////////////////////////////////
+	  
   }
 }

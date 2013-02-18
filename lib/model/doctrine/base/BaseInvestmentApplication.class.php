@@ -74,6 +74,7 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
+             'unique' => true,
              'length' => 255,
              ));
         $this->hasColumn('registration_number', 'string', 255, array(

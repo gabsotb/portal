@@ -35,7 +35,6 @@ abstract class BaseBusinessApplicationStatus extends sfDoctrineRecord
         $this->hasColumn('business_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'unique' => true,
              ));
         $this->hasColumn('application_status', 'string', 255, array(
              'type' => 'string',

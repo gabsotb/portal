@@ -2004,3 +2004,52 @@ margin: 20px;
 background: url('../img/bgColor.jpg') repeat-x; 
 border-radius: 8px;
 }
+/* Custom Styles */
+#Layer1 {
+	position:absolute;
+	width:959px;
+	height:834px;
+	z-index:1;
+	left: 53px;
+	top: 17px;
+}
+#Layer2 {
+	position:absolute;
+	width:366px;
+	height:104px;
+	z-index:2;
+	left: 319px;
+	top: 27px;
+}
+#Layer3 {
+	position:absolute;
+	width:754px;
+	height:35px;
+	z-index:3;
+	left: 151px;
+	top: 144px;
+}
+#Layer4 {
+	position:absolute;
+	width:178px;
+	height:23px;
+	z-index:4;
+	left: 60px;
+	top: 215px;
+}
+#Layer5 {
+	position:absolute;
+	width:169px;
+	height:27px;
+	z-index:1;
+	left: 759px;
+	top: 191px;
+}
+#Layer6 {
+	position:absolute;
+	width:940px;
+	height:557px;
+	z-index:2;
+	left: 12px;
+	top: 262px;
+}

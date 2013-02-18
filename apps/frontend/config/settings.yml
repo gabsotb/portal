@@ -5,6 +5,10 @@ prod:
  .settings:
   no_script_name:         true
   logging_enabled:        false
+  enabled_modules: [default,sfGuardAuth,sfGuardUser,sfApply]
+ .actions:
+  login_module: sfGuardAuth
+  login_action: signin
 dev:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
@@ -12,6 +16,10 @@ dev:
     cache:                  false
     no_script_name:         false
     etag:                   false
+    enabled_modules: [default,sfGuardAuth,sfGuardUser,sfApply]
+  .actions:
+   login_module: sfGuardAuth
+   login_action: signin
 
 test:
   .settings:
@@ -30,7 +38,4 @@ all:
   i18n: true
   # Enable the database manager
   use_database:           true
-  enabled_modules: [default,sfGuardAuth,sfGuardUser,sfApply]
- .actions:
-  login_module: sfGuardAuth
-  login_action: signin
+  

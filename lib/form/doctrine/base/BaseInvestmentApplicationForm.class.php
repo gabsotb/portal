@@ -53,7 +53,10 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'InvestmentApplication', 'column' => array('registration_number')))
+      new sfValidatorAnd(array(
+        new sfValidatorDoctrineUnique(array('model' => 'InvestmentApplication', 'column' => array('name'))),
+        new sfValidatorDoctrineUnique(array('model' => 'InvestmentApplication', 'column' => array('registration_number'))),
+      ))
     );
 
     $this->widgetSchema->setNameFormat('investment_application[%s]');

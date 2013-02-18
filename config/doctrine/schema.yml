@@ -79,7 +79,7 @@ TaskAssignment:
 BusinessApplicationStatus: # Shows business application status, pending,processing,accepted or rejected, payment,issuing,done
  actAs: {Timestampable: ~}
  columns:
-  business_id: {type: integer, notnull:true, unique: true}
+  business_id: {type: integer, notnull:true}
   application_status: {type: string(255), notnull: true}
   comment: {type: string(255), notnull: false}
   percentage: {type: integer, notnull: true}
