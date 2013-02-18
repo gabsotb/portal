@@ -19,6 +19,7 @@ abstract class BaseEIApplicationStatusForm extends BaseFormDoctrine
       'company_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIApplication'), 'add_empty' => false)),
       'application_status' => new sfWidgetFormInputText(),
       'comments'           => new sfWidgetFormInputText(),
+      'percentage'         => new sfWidgetFormInputText(),
       'created_at'         => new sfWidgetFormDateTime(),
       'updated_at'         => new sfWidgetFormDateTime(),
     ));
@@ -28,6 +29,7 @@ abstract class BaseEIApplicationStatusForm extends BaseFormDoctrine
       'company_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIApplication'))),
       'application_status' => new sfValidatorString(array('max_length' => 255)),
       'comments'           => new sfValidatorString(array('max_length' => 255)),
+      'percentage'         => new sfValidatorInteger(),
       'created_at'         => new sfValidatorDateTime(),
       'updated_at'         => new sfValidatorDateTime(),
     ));

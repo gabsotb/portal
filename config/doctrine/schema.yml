@@ -154,6 +154,7 @@ EIApplicationStatus:
   company_id: {type: integer, notnull: true}
   application_status: {type: string(255), notnull: true}
   comments: {type: string(255), notnull: true}
+  percentage: {type: integer, notnull: true}
  relations:
   EIApplication: {local:company_id, foreign: id, foreignAlias: EIApplicationStatus, onDelete:CASCADE }
 #### Record the user who has been assigned the task of processing this application

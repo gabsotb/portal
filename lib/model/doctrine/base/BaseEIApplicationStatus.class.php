@@ -8,15 +8,18 @@
  * @property integer $company_id
  * @property string $application_status
  * @property string $comments
+ * @property integer $percentage
  * @property EIApplication $EIApplication
  * 
  * @method integer             getCompanyId()          Returns the current record's "company_id" value
  * @method string              getApplicationStatus()  Returns the current record's "application_status" value
  * @method string              getComments()           Returns the current record's "comments" value
+ * @method integer             getPercentage()         Returns the current record's "percentage" value
  * @method EIApplication       getEIApplication()      Returns the current record's "EIApplication" value
  * @method EIApplicationStatus setCompanyId()          Sets the current record's "company_id" value
  * @method EIApplicationStatus setApplicationStatus()  Sets the current record's "application_status" value
  * @method EIApplicationStatus setComments()           Sets the current record's "comments" value
+ * @method EIApplicationStatus setPercentage()         Sets the current record's "percentage" value
  * @method EIApplicationStatus setEIApplication()      Sets the current record's "EIApplication" value
  * 
  * @package    rdbeportal
@@ -42,6 +45,10 @@ abstract class BaseEIApplicationStatus extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              'length' => 255,
+             ));
+        $this->hasColumn('percentage', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
              ));
     }
 

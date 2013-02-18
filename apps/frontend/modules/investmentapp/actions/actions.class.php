@@ -27,6 +27,7 @@ class investmentappActions extends sfActions
 	//Get Total Tax Exemptions Grantet to Investors with Certificates IGNORE FOR NOW
 	//Get the Status of application for Investment Certificate for each business for this user
 	$this->applications = Doctrine_Core::getTable('InvestmentApplication')->getApplicationStatus();
+	$this->eiaStatus = Doctrine_Core::getTable('EIApplication')->getStatus();
   }
 
   public function executeShow(sfWebRequest $request)
