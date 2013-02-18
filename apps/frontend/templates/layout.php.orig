@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title><?php include_slot('title', 'RDB - Investor Eportal System - Administration') ?></title>
+	<title><?php include_slot('title', 'RDB - Investor Eportal System') ?></title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -11,16 +11,16 @@
     <?php include_javascripts() ?>
 </head>
 <!-- END HEAD -->
-<body class="fixed-top">
-	<?php if($sf_user->isAuthenticated()): ?>
+<body>
 	<!-- BEGIN HEADER -->
-	<div id="header" class="navbar navbar-inverse navbar-fixed-top">
+	<?php if($sf_user->isAuthenticated()): ?>
+	<div id="header" class="navbar navbar-inverse">
 		<!-- BEGIN TOP NAVIGATION BAR -->
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
 				<a class="brand" href="index.html">
-				<img  src="/images/logordb.png" alt ="LOGO" />
+				<img  src="<?php sfConfig::get('sf_web_dir')?>/portal/web/images/logo.jpg" alt ="LOGO" />
 				</a>
 				<!-- END LOGO -->
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -32,7 +32,6 @@
 				</a>          
 				<!-- END RESPONSIVE MENU TOGGLER -->				
 				<div class="top-nav">
-				
 					<!-- BEGIN QUICK SEARCH FORM -->
 					<form class="navbar-search hidden-phone">
 						<div class="search-input-icon">
@@ -60,10 +59,8 @@
 							<!-- END QUICK SEARCH RESULT PREVIEW -->
 						</div>
 					</form>
-					
 					<!-- END QUICK SEARCH FORM -->
-					<!-- BEGIN TOP NAVIGATION MENU -->
-                    					
+					<!-- BEGIN TOP NAVIGATION MENU -->				
 					<ul class="nav pull-right" id="top_menu">
 						<!-- BEGIN NOTIFICATION DROPDOWN -->	
 						<li class="dropdown" id="header_notification_bar">
@@ -182,12 +179,11 @@
 								<li><a href="#"><i class="icon-tasks"></i> Tasks</a></li>
 								<li><a href="#"><i class="icon-ok"></i> Calendar</a></li>
 								<li class="divider"></li>
-								<li><?php echo link_to('<i class="icon-signout"></i> Logout','@sf_guard_signout'); ?></li>
+								<li><?php echo link_to('<i class="icon-key"></i> Logout','@sf_guard_signout'); ?></li>
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
 					</ul> 
-					
 					<!-- END TOP NAVIGATION MENU -->	
 				</div>
 			</div>
@@ -197,7 +193,6 @@
 	<!-- END HEADER -->
 	<!-- BEGIN CONTAINER -->
 	<div id="container" class="row-fluid">
-	
 		<!-- BEGIN SIDEBAR -->
 		<div id="sidebar" class="nav-collapse collapse">
 			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
@@ -210,71 +205,41 @@
 			<!-- BEGIN SIDEBAR MENU -->
 			<ul>
 				<li class="active"><?php echo link_to('<i class="icon-home"></i> Dashboard', '@homepage') ?> </li>
-				<!-- We need to only show this if the user has adequate rights to manage and create users -->
-<<<<<<< HEAD
-				<?php if($sf_user->hasCredential('assignJob')):?>
-=======
-				<?php if($sf_user->hasCredential('assignJob')) {   ?>
->>>>>>> 5952c766f829283560078dc44f7d0fdcb549e666
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-group"></i> User Management
+					<i class="icon-table"></i> Investment Certificate
 					<span class="arrow"></span>
-					</a>
+					</a>					
 					<ul class="sub">
-						<li class=""><?php echo link_to('<i class="icon-user"></i> User Accounts', '@sf_guard_users') ?> </li>
-						<li class=""><?php echo link_to('<i class="icon-group"></i> User Groups', '@sf_guard_user_groups') ?> </li>
-						<li class=""><?php echo link_to('<i class="icon-filter"></i> Groups Permissions', '@sf_guard_user_permissions') ?> </li>
+						<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>
+						
 					</ul>
 				</li>
-				<?php endif ?>
-				<!-- end -->
-				
-				<li> <?php echo link_to('<i class="icon-lightbulb"></i> Help','@'); ?></li>
+				<li><a  href="#"><i class="icon-table"></i> EIA Certificate</a></li>
+				<li class="">
+					<a href="" >
+					<i class="icon-lightbulb"></i> Help
+					</a>
+				</li>				
 				<li> <?php echo link_to('<i class="icon-signout"></i> Logout','@sf_guard_signout'); ?></li>
 			</ul>
 		</div>
-		
 		<!-- END SIDEBAR -->
 		<!-- BEGIN PAGE -->
 		<div id="body">
-		
-			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 
-			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE CONTAINER-->			
 			<div class="container-fluid">
-			
-				<!-- BEGIN PAGE HEADER-->
-				<div class="row-fluid">
-					<div class="span12">
-						<!-- BEGIN STYLE CUSTOMIZER-->
-						
-						<!-- END STYLE CUSTOMIZER-->    
-						
-						 <!-- we check if the user has valid credentials to be able to see this menu -->
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">E-portal Administration Dashboard </h3>
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home"></i>
-								<a href="<?php echo url_for('dashboard/index') ?>">Admin Dashboard</a> <span class="divider">/</span>
-								<b>Manage System Operations</b>
-							</li>
-							
-							<li><a href="#"></a></li>
-						</ul>
-						
-						
-					</div>
-				</div>
-				
-				<!-- END PAGE HEADER-->
-				<?php endif ?>
+	<?php endif ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
-				<div  style="padding: 0px 450px 0px; background: url('/images/bgColor.jpg') repeat-x;  margin: 10px 15px 0px; border-radius: 8px;">
-				<img src="/images/logo_1.png" alt='logo'>
-				</div>
+<<<<<<< HEAD
+					<div  style="padding: 0px 450px 0px; background: url('<?php sfConfig::get('sf_web_dir')?>/portal/web/images/bgColor.jpg') repeat-x;  margin: 10px 15px 0px; border-radius: 8px;">
+					<img src="<?php sfConfig::get('sf_web_dir')?>/portal/web/images/logo.jpg" alt='logo'>
+=======
+					<div  class="header_not_signed_in">
+					<img src="/images/logo_example.png" alt='logo'>
+>>>>>>> 64900cccbe936c6ffc0bfe86550c69f88de5eca3
+					</div>
 				<?php endif ?>
 				<?php if ($sf_user->hasFlash('notice')): ?>
 				<div class="flash_notice">
@@ -290,12 +255,22 @@
 			
 					<?php echo $sf_content ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
-				<div id="footer" style="margin: 20px; background: url('/images/bgColor.jpg') repeat-x; border-radius: 8px;">
+<<<<<<< HEAD
+				<div id="footer" style="margin: 20px; background: url('<?php sfConfig::get('sf_web_dir')?>/portal/web/images/bgColor.jpg') repeat-x; border-radius: 8px;">
+=======
+				<div id="footer" class="footer_not_signed_in">
+>>>>>>> 64900cccbe936c6ffc0bfe86550c69f88de5eca3
 				2013 &copy; Rwanda Development Board. All Rights Reserved.
 				</div>
-				<?php endif ?>
-			<?php if($sf_user->isAuthenticated()): ?>
-			</div>
+				<?php endif; ?>
+				<?php if($sf_user->isAuthenticated()): ?>	
+				</div>
+				<!-- END PAGE CONTENT-->
+
+				
+				
+			
+			
 			<!-- END PAGE CONTAINER-->
 		</div>
 		<!-- END PAGE -->
@@ -303,12 +278,12 @@
 	<!-- END CONTAINER -->
 	<!-- BEGIN FOOTER -->
 	<div id="footer">
-		2012 &copy; Rwanda Development Board. All Rights Reserved.
+		2013 &copy; Rwanda Development Board. All Rights Reserved.
 		<div class="span pull-right">
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
-	</div>
-	<?php endif ?>
+	</div>	
+				<?php endif; ?>
 	<script>
 		jQuery(document).ready(function() {			
 			// initiate layout and plugins
