@@ -20,6 +20,8 @@ abstract class BaseInvestmentCertificateForm extends BaseFormDoctrine
       'business_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'), 'add_empty' => false)),
       'created_at'    => new sfWidgetFormDateTime(),
       'updated_at'    => new sfWidgetFormDateTime(),
+      'created_by'    => new sfWidgetFormTextarea(),
+      'updated_by'    => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
@@ -28,6 +30,8 @@ abstract class BaseInvestmentCertificateForm extends BaseFormDoctrine
       'business_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),
+      'created_by'    => new sfValidatorString(array('required' => false)),
+      'updated_by'    => new sfValidatorString(array('required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(

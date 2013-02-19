@@ -16,4 +16,50 @@ class InvestmentCertificateTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('InvestmentCertificate');
     }
+	//this method returns the last row serial number. 
+	public function getLastRow()
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc('
+	 SELECT investment_certificate.serial_number FROM investment_certificate ORDER BY investment_certificate.id DESC LIMIT 1
+	 ');
+	 return $query;
+	}
+	/*This method will return details of applicant using the business_id submitted*/
+	public function getApplicantDetails($business_id)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc(
+	  "SELECT  investment_certificate.created_at,investment_certificate.serial_number,
+		 investment_application.name, investment_application.company_representative,investment_application.job_created,
+		 project_summary.business_sector,project_summary.planned_investment, sf_guard_user.first_name,sf_guard_user.last_name
+		 FROM investment_certificate LEFT JOIN  investment_application ON investment_certificate.business_id 
+		LEFT JOIN project_summary ON investment_certificate.business_id = project_summary.investment_id 
+		LEFT JOIN sf_guard_user ON sf_guard_user.id = project_summary.created_by WHERE investment_application.id = '$business_id' "
+	  );
+	  return $query;
+	}
+	/*
+	Method to search for a business given an id
+	*/
+	public function searchBusiness($id)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	  SELECT investment_certificate.id 	FROM investment_certificate WHERE investment_certificate.business_id = '$id'
+	  ");
+	  return $query;
+	}
+	/*
+	 Return a list of Certificates and business details issued by the current logged in user. i.e. data administrator
+	*/
+	public function getAdminIssuedCerts($username)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+		SELECT investment_certificate.serial_number, investment_application.name,
+		investment_application.company_address ,investment_application.company_representative,
+		investment_certificate.created_at		
+		FROM investment_certificate LEFT JOIN investment_application ON investment_certificate.business_id =
+		investment_application.id  WHERE investment_certificate.updated_by = '$username'  
+	  ");
+	  return $query;
+	}
+	  
 }
