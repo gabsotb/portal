@@ -118,6 +118,9 @@ Payment:
 InvestmentCertificate:
  actAs:
   Timestampable: ~
+  Signable: #to monitor the user editing and updating this record
+   created: { name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
  columns:
   serial_number: {type: integer, notnull: true, unique: true}
   business_id: {type: integer, notnull: true, unique: true}

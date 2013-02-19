@@ -199,7 +199,10 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 	to the client with the cert.  Demm!! This code is complex he he hehe he !!!
 	
 	*/
-	$target_path = "uploads/documents/letterofacceptance.pdf";
+	//save pdf
+	$file = $pdf->Output('C:/xampp/htdocs/portal/web/uploads/documents/letter.pdf','F');
+	$target_path = "uploads/documents/letter.pdf";
+	
 			 
 	    $message = Swift_Message::newInstance()
 			  ->setFrom('admin@rdb.com')

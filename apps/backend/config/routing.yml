@@ -40,7 +40,9 @@ task:
 #default_index:
 #  url:   /:module
  # param: { action: index }
-
+investment_certificates:
+ url: /certificates
+ param: {module: investmentcertificates, action: index }
 default:
   url:   /:module/:action/*
 ################### Application Security routing ################################

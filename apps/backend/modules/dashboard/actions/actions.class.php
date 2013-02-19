@@ -136,6 +136,7 @@ class dashboardActions extends sfActions
 		{
 		 $taskId = $r['investmentapp_id'] ;
 		}
+		
 		//we will make sure that this business is legit and have paid
 	$this->status = Doctrine_Core::getTable('TaskAssignment')->getStatus($taskId);
 	 $st = null;
@@ -144,18 +145,136 @@ class dashboardActions extends sfActions
 	  {
 	    $st = $v['work_status'] ;
 	  }
-	  if($st !="paymentconfirmed")
-	  {
-	   $this->forward404();
-	  }
-	  ///if payment is successful, continue
+	  $x = "paymentconfirmed";
+	  $y = "complete" ;
+	 ////
+	 switch($st)
+	 {
+	   case $x :
+	    $this->scorpionPayment($taskId);
+		break;
+	   case  $y:
+		$this->scorpionComplete($taskId);
+		break;
+	   default:
+         $this->forward404();	   
+         	   
+	 }
+	 exit;
+	 
+	  
+  }
+  ///this function will be called inside the switch statement
+  public function scorpionPayment($taskId)
+  {
+      ///if payment is successful, continue
 	  //confirm that this business has not been issued with a Certificate
 	  //
-	 /* $cert = new InvestmentCertificate();
-	  $cert->business_id = $taskId ;
-	  $cert->serial_number = 563646;
-	  $cert->save();
-	  print "Maybe successful"; exit; */
+	 
+	  /*Certificate Values
+	  */
+	  //Incremental Number
+	  $start = 1093 ;
+	  $newNumber = $start + 1;
+	  //We also make sure that the business is not already issued with a certificate if so we just print the existing certificate instead of
+	  //saving a new record
+	  $q = Doctrine_Core::getTable('InvestmentCertificate')->searchBusiness($taskId);
+	  if(count($q) > 0)
+	  {
+	  //since this business has been issued with certificate, we just print it.
+	  //do nothing
+	  }
+	  if(count($q) <= 0)
+	  {
+						//this is the first time therefore we save and print the certificate
+						//but we want to increment it whenever a new record is inserted. hence we fast make sure that the $start number variable
+					  //is not set in the database;
+					  $no = null;
+					  $query = Doctrine_Core::getTable('InvestmentCertificate')->getLastRow();
+					   foreach($query as $q)
+					   {
+						$no = $q['serial_number'];
+					   }
+					  if($no != null)
+					  {
+					   
+					   //we first check and make sure that there exist a number, then we increment it by 1
+					   //and save it.
+						  $cert = new InvestmentCertificate();
+						  $cert->business_id = $taskId ;
+						  $cert->serial_number = $no + 1 ;
+						  $cert->save();
+						  //we then update the Status of application i.e. BusinessApplicationStatus
+						  //now this is the final step of application for investment certificate. 
+						  //we set values
+						  $value1 = "certificateissued"; //status
+						  $value2 = "You have been issued with Investment Registration Certificate.
+       						 Please check your email and download the attached certificate. Thankyou. "; //comment
+						  $value3 = 100; //percentage
+						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+						  //we also update the status of work for this data admin.
+						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);
+					  }
+					  if($no == null)
+					  {
+					   $no = $start ;
+					   //if this is the first record, then we set default value
+					   //and save
+						  $cert = new InvestmentCertificate();
+						  $cert->business_id = $taskId ;
+						  $cert->serial_number = $no + 1 ;
+						  $cert->save();
+						  //we then update the Status of application i.e. BusinessApplicationStatus
+						  //now this is the final step of application for investment certificate. 
+						  $value1 = "certificateissued"; //status
+						  $value2 = "You have been issued with Investment Registration Certificate.
+       						 Please check your email and download the attached certificate. Thankyou. "; //comment
+						  $value3 = 100; //percentage
+						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+						  //we also update the status of work for this data admin.
+						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);
+					  }
+	 
+		
+	  }
+	  
+	  
+	  ////Then we get the Applicant details for printing the certificate. we will use the business_id saved in the InvestmentCertificate Table
+	  $query = Doctrine_Core::getTable('InvestmentCertificate')->getApplicantDetails($taskId);
+	  //loop over the result and set necessary variables
+	  $date = null ;
+	  $year = null ;
+	  $company = null ;
+	  $serial = null;
+	  $rep = null;
+	  $issuerF = null;
+	  $issuerL = null;
+	  $sector = null;
+	  $nofojobs = null;
+	  $expjobs = 0;
+	  $invstment = 0;
+	  foreach($query as $q)
+	  {
+	    $date = $q['created_at'] ;
+		$year = $q['created_at'] ;
+		$company = $q['name'] ;
+		$serial = $q['serial_number'] ;
+		$rep = $q['company_representative'] ;
+		$issuerF = $q['first_name'] ;
+		$issuerL = $q['last_name'] ;
+		$sector = $q['business_sector'] ;
+		$noofjobs = $q['job_created'] ;
+		$invstment = $q['planned_investment'];
+		
+	  }
+	   $d = new DateTime($date);
+	   $day = $d->format('d-m-Y');
+	   ///
+	   $y = new DateTime($year);
+	   $year =  $y->format('Y');
+	  
+	 // $serial = "C/$number/$year";
+	  
 	  ////////////////////////////////////////////////////////////////////////////
 	
 	  ////////////////////////////////////////////////////////////////////////////
@@ -205,7 +324,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('helvetica', 'B', 20);
+$pdf->SetFont('courier', 'I', 18);
 
 // add a page
 $pdf->AddPage();
@@ -238,46 +357,49 @@ $html = '                               <div style="text-align:center">
                                          <img src="C:\xampp\htdocs\portal\plugins\sfTCPDFPlugin\lib\tcpdf\images\logo.jpg" alt="RDB" width="600" height="200" border="0" />
 										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
 										 <p style= "font-size: xx-small;text-align:left ">
-										 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										 No: .....9000000  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>C/'.$serial.'/'.$year.'</b>
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										 Date: ....02-18-2013 <br> <br>
-										 
-						                  &nbsp;&nbsp;&nbsp;&nbsp;Issued To ........................................... Represented by ...............................<br/><br/> 
-										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Sector .................................................. <br/> <br/>
-										&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Planned investment amount ......................................  <br/><br/>
-										 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Total Number of jobs planned....................................  <br/><br/>
-										 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Local jobs ....................... Jobs For expatriates ......................... <br/>
-										&nbsp;&nbsp;&nbsp;&nbsp; This Certificate has been issued to .......................... under the seal of
-										  RDB in accordance <br/>  &nbsp;&nbsp; &nbsp;with law no 26/2005 EAC customs management act atests that  the company is duly <br/>
-										   &nbsp; &nbsp; registered and entitled to the rights and obligations contained in the law
-										  </p>
-										  <p style="text-align:left;font-size: xx-small;">
-										 &nbsp; THE CHIEF EXECUTIVE OFFICER,
-                                          RDB,										  
-										  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										       &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											   
-											                    COMPANY REPRESENTATIVE,
-                             								 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-														   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-														   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															
-                                                            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                             &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-                                                             &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															Mr Myoung Sool D	 
-										  <br/>
-										&nbsp;  Clare Akamanzi    
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   Date: <b>'.$day.'</b>
 										 </p>
-										    
+										 <p style= "font-size: xx-small;text-align:left ">
+										&nbsp;&nbsp;&nbsp;Issued To <b>'.$company.'</b> Represented by <b>'.$rep.'</b>
+										 </p>
+										 <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;Business Sector <b>'.$sector.' </b>
+										 </p>
+										  
+										  <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;Planned investment amount <b>'.$invstment.'</b>
+										  </p>
+										  <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;Total Number of jobs planned <b>'.$noofjobs.'</b>
+										  </p>
+										 <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> Jobs For expatriates <b>'.$expjobs.'</b>
+										 </p>
+										  <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;This Certificate has been issued to <b>'.$company.'</b> under the seal of <br/>
+										  &nbsp;&nbsp;&nbsp;RDB in accordance with law no 26/2005 EAC customs management act atests that <br/> &nbsp;&nbsp;&nbsp;the company is duly 
+										  registered and entitled to the rights and obligations <br/> &nbsp;&nbsp;&nbsp;contained in the law.
+										  </p>
+										  <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;&nbsp;THE CHIEF EXECUTIVE OFFICER, 
+										  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMPANY REPRESENTATIVE,
+										  <br/>
+										   &nbsp;&nbsp;&nbsp;&nbsp;RDB,
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   '.$rep.'
+										   <br/>
+										   &nbsp;&nbsp;&nbsp;&nbsp;'.$issuerF.' '.$issuerL.'
+										    <br/>
+										   
+										 </p>
 										 </div> 
 										
                                       
@@ -285,7 +407,7 @@ $html = '                               <div style="text-align:center">
 
 // Print text using writeHTMLCell()
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
-
+         
 //Close and output PDF document
 $pdf->Output('certificate.pdf', 'I');
 
@@ -293,6 +415,188 @@ $pdf->Output('certificate.pdf', 'I');
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
           // Stop symfony process */
           throw new sfStopException();
+  }
+  ///
+  public function scorpionComplete($taskId)
+  {
+     //We also make sure that the business is not already issued with a certificate if so we just print the existing certificate instead of
+	  //saving a new record
+ 
+	  ////Then we get the Applicant details for printing the certificate. we will use the business_id saved in the InvestmentCertificate Table
+	  $query = Doctrine_Core::getTable('InvestmentCertificate')->getApplicantDetails($taskId);
+	  //loop over the result and set necessary variables
+	  $date = null ;
+	  $year = null ;
+	  $company = null ;
+	  $serial = null;
+	  $rep = null;
+	  $issuerF = null;
+	  $issuerL = null;
+	  $sector = null;
+	  $nofojobs = null;
+	  $expjobs = 0;
+	  $invstment = 0;
+	  foreach($query as $q)
+	  {
+	    $date = $q['created_at'] ;
+		$year = $q['created_at'] ;
+		$company = $q['name'] ;
+		$serial = $q['serial_number'] ;
+		$rep = $q['company_representative'] ;
+		$issuerF = $q['first_name'] ;
+		$issuerL = $q['last_name'] ;
+		$sector = $q['business_sector'] ;
+		$noofjobs = $q['job_created'] ;
+		$invstment = $q['planned_investment'];
+		
+	  }
+	   $d = new DateTime($date);
+	   $day = $d->format('d-m-Y');
+	   ///
+	   $y = new DateTime($year);
+	   $year =  $y->format('Y');
 	  
+	 // $serial = "C/$number/$year";
+	  
+	  ////////////////////////////////////////////////////////////////////////////
+	
+	  ////////////////////////////////////////////////////////////////////////////
+	  //execute action for printing pdf document of this report
+	  /* I have used another class specifically for investment Certificates only */
+	      $config = sfTCPDFPluginConfigHandlerInvstCert::loadConfig('invst_configs');
+          sfTCPDFPluginConfigHandlerInvstCert::includeLangFile($this->getUser()->getCulture());
+	///////////////////////////Certificate Configuration //////////////////////////////////////////////////////////////////////	  
+//create new PDF document (document units are set by default to millimeters)
+          $pdf = new sfTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true);
+         // set document information
+/*$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetAuthor('Nicola Asuni');
+$pdf->SetTitle('TCPDF Example 062');
+$pdf->SetSubject('TCPDF Tutorial');
+$pdf->SetKeywords('TCPDF, PDF, example, test, guide'); */
+
+// set default header data
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 062', PDF_HEADER_STRING);
+
+// set header and footer fonts
+$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+// set default monospaced font
+$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+//set margins
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+// remove default header/footer
+$pdf->setPrintHeader(false);
+$pdf->setPrintFooter(false);
+
+//set auto page breaks
+//$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+$pdf->SetAutoPageBreak(false);
+
+//set image scale factor
+$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+//set some language-dependent strings
+//$pdf->setLanguageArray($l);
+
+// ---------------------------------------------------------
+
+// set font
+$pdf->SetFont('courier', 'I', 18);
+
+// add a page
+$pdf->AddPage();
+
+// start a new XObject Template
+$template_id = $pdf->startTemplate(95, 165);
+
+// create Template content
+// ...................................................................
+
+$border = array('LRTB' => array('width' => 0.1, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+ $img_file = K_PATH_IMAGES.'bg.jpg';
+ 
+$pdf->Image($img_file, 0, 0, 50, 50, 'JPG', '', '', false, 1000, '', false, false, $border, false, false, false);
+ //$img_file2 = 'C:\xampp\htdocs\portal\plugins\sfTCPDFPlugin\lib\tcpdf\images\logo.jpg';
+ //$logo =  sfConfig::get('sf_plugins_dir').DIRECTORY_SEPARATOR.'sfTCPDFPlugin'.DIRECTORY_SEPARATOR.'lib\tcpdf\images\logo.jpg';
+//echo  $logo; exit;
+//Image Calling inside the html has a problem hence we hand code it but we will change it later - Boniface Irunguh
+// ...................................................................
+
+// end the current Template
+$pdf->endTemplate();
+
+// print the selected Template various times
+$pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
+
+// ---------------------------------------------------------
+ // Set some content to print
+$html = '                               <div style="text-align:center"> 
+                                         <img src="C:\xampp\htdocs\portal\plugins\sfTCPDFPlugin\lib\tcpdf\images\logo.jpg" alt="RDB" width="600" height="200" border="0" />
+										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
+										 <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>C/'.$serial.'/'.$year.'</b>
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   Date: <b>'.$day.'</b>
+										 </p>
+										 <p style= "font-size: xx-small;text-align:left ">
+										&nbsp;&nbsp;&nbsp;Issued To <b>'.$company.'</b> Represented by <b>'.$rep.'</b>
+										 </p>
+										 <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;Business Sector <b>'.$sector.' </b>
+										 </p>
+										  
+										  <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;Planned investment amount <b>'.$invstment.'</b>
+										  </p>
+										  <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;Total Number of jobs planned <b>'.$noofjobs.'</b>
+										  </p>
+										 <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> Jobs For expatriates <b>'.$expjobs.'</b>
+										 </p>
+										  <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;This Certificate has been issued to <b>'.$company.'</b> under the seal of <br/>
+										  &nbsp;&nbsp;&nbsp;RDB in accordance with law no 26/2005 EAC customs management act atests that <br/> &nbsp;&nbsp;&nbsp;the company is duly 
+										  registered and entitled to the rights and obligations <br/> &nbsp;&nbsp;&nbsp;contained in the law.
+										  </p>
+										  <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;&nbsp;THE CHIEF EXECUTIVE OFFICER, 
+										  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMPANY REPRESENTATIVE,
+										  <br/>
+										   &nbsp;&nbsp;&nbsp;&nbsp;RDB,
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   '.$rep.'
+										   <br/>
+										   &nbsp;&nbsp;&nbsp;&nbsp;'.$issuerF.' '.$issuerL.'
+										    <br/>
+										   
+										 </p>
+										 </div> 
+										
+                                      
+';
+
+// Print text using writeHTMLCell()
+$pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+         
+//Close and output PDF document
+$pdf->Output('certificate.pdf', 'I');
+
+	
+	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
+          // Stop symfony process */
+          throw new sfStopException();
   }
 }

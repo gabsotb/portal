@@ -138,6 +138,16 @@ class TaskAssignmentTable extends Doctrine_Table
 	  $value3 = 90;
 	 $this->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
 	}
+	//the final part is after issuing of certificate.
+	public function updateUserTaskStatus4($taskId)
+	{
+	   $work_status = "complete" ;
+	  $q = Doctrine_Query::create()
+		 ->UPDATE('TaskAssignment')
+		 ->SET('work_status', '?' , $work_status)
+		 ->WHERE('investmentapp_id = ?', $taskId);
+		 $q->execute();
+	}
 	//this method is called after successful confirmation of payment. parameter passed is name of business
 	public function updatingPaymentStatus($businesName)
 	{

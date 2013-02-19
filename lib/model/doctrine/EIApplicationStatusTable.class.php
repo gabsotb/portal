@@ -17,34 +17,7 @@ class EIApplicationStatusTable extends Doctrine_Table
         return Doctrine_Core::getTable('EIApplicationStatus');
     }
 	
-	public function updateCompanyId($companyId, $id)
-	{
-		$q = Doctrine_Query::create()
-			->UPDATE('EIApplicationStatus')
-			->SET('company_id', '?', $companyId)
-			->WHERE('created_by = ?', $id); 
-		
-		return $q->execute();
-	}
-	
-	public function updateApplicationStatus($appStatus)
-	{
-		$q = Doctrine_Query::create()
-			->UPDATE('EIApplicationStatus')
-			->SET('application_status', '?', $appStatus);
-			->WHERE('created_by = ?', $id);	
-		return $q->execute();
-	}
-	
-	public function updateComment($comment)
-	{
-		$q = Doctrine_Query::create()
-			->UPDATE('EIApplicationStatus')
-			->SET('comments', '?',$comment);
-			->WHERE('created_by = ?', $id);
-			
-		return $q->execute();
-	}
+
 	
 
 }

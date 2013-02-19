@@ -53,7 +53,7 @@ default:
   # default data font name
   PDF_FONT_NAME_DATA: "helvetica"
   # default data font size
-  PDF_FONT_SIZE_DATA: "8"
+  PDF_FONT_SIZE_DATA: "3"
   # default monospaced font name
   PDF_FONT_MONOSPACED: "courier"
   # Ratio used to scale the images
