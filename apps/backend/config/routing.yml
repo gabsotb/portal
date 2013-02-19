@@ -1,3 +1,11 @@
+eiaTaskAssign:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                EITaskAssignment
+    module:               EiTaskAssign
+    prefix_path:          /eiassign
+    column:               id
+    with_wildcard_routes: true
 task_assignment_taskManagement:
   class: sfDoctrineRouteCollection
   options:

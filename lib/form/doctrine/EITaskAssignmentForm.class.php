@@ -12,5 +12,9 @@ class EITaskAssignmentForm extends BaseEITaskAssignmentForm
 {
   public function configure()
   {
+	unset(
+		$this['created_by'], $this['updated_by'], $this['created_at'], $this['updated_at']
+	);
   }
+  
 }
