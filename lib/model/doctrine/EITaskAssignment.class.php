@@ -12,5 +12,26 @@
  */
 class EITaskAssignment extends BaseEITaskAssignment
 {
-
+	public function save(Doctrine_Connection $conn = null)
+	  {
+	   $conn = $conn ? $conn : $this->getTable()->getConnection();
+	   $conn->beginTransaction();
+			  try
+			  {
+				
+				
+				  $ret = parent::save($conn);
+					$conn->commit();
+				Doctrine_Core::getTable('EIApplicationStatus')->updateApplicationStatus("assigned",	$this->getCompanyId());
+				Doctrine_Core::getTable('EIApplicationStatus')->updateComment("Your Document has been assigned to a RDB Data Admin Staff",	$this->getCompanyId());
+				Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage("30",	$this->getCompanyId());
+					return $ret ;
+				
+			  }
+			  catch(Exception $e)
+			  {
+			  $conn->rollBack();
+			  throw $e;
+			  }
+	  }
 }

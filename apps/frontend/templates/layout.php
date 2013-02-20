@@ -20,7 +20,7 @@
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
 				<a class="brand" href="#">
-				<img  src="/images/logo.jpg" alt ="LOGO" />
+				<img  src="/images/logo.gif" alt ="LOGO" />
 				</a>
 				<!-- END LOGO -->
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -232,8 +232,8 @@
 			<div class="container-fluid">
 	<?php endif ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
-					<div  style="padding: 0px 450px 0px; background: url('/images/bgColor.jpg') repeat-x;  margin: 10px 15px 0px; border-radius: 8px;">
-					<img src="/images/logo.jpg" alt='logo'>
+					<div class="header_not_signed_in">
+					<img src="/images/logo_example.png" alt='logo'/>
 					</div>
 				<?php endif ?>
 				<?php if ($sf_user->hasFlash('notice')): ?>
@@ -250,7 +250,7 @@
 			
 					<?php echo $sf_content ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
-				<div id="footer" style="margin: 20px; background: url('/images/bgColor.jpg') repeat-x; border-radius: 8px;">
+				<div id="footer" class="footer_not_signed_in">
 				2013 &copy; Rwanda Development Board. All Rights Reserved.
 				</div>
 				<?php endif; ?>

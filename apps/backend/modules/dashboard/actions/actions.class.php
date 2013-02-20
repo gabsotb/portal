@@ -28,8 +28,10 @@ class dashboardActions extends sfActions
    //echo $userId; exit;
    $this->mytasks = Doctrine_Core::getTable('TaskAssignment')->getUserTasks($userId);
    $this->mytasksnotcomplete = Doctrine_Core::getTable('TaskAssignment')->getUserTasksNotComplete($userId);
-   
+   ////////////EIA////////////
    $this->unassigned= Doctrine_Core::getTable('EIApplication')->getApplications('Submitted');
+   $this->jobs= Doctrine_Core::getTable('EITaskAssignment')->getJobs('notstarted');
+   //////////////////////////
    //we need to call a function that we get the status of task assigned to the user logged in.
    //if the user has started and generate a report, the user cannot make a new report again. wen he/she logins in 
    //next time, they will be redirected to the page of accepting application of the investor. we will hide the process button and replace it with

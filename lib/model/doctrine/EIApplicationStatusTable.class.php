@@ -17,8 +17,34 @@ class EIApplicationStatusTable extends Doctrine_Table
         return Doctrine_Core::getTable('EIApplicationStatus');
     }
 	
-
 	
-
+	public function updateApplicationStatus($appStatus,$id)
+	{
+		$q = Doctrine_Query::create()
+			->UPDATE('EIApplicationStatus')
+			->SET('application_status', '?', $appStatus)
+			->WHERE('company_id = ?', $id);	
+		return $q->execute();
+	}
+	
+	public function updateComment($comment,$id)
+	{
+		$q = Doctrine_Query::create()
+			->UPDATE('EIApplicationStatus')
+			->SET('comments', '?',$comment)
+			->WHERE('company_id = ?', $id);
+			
+		return $q->execute();
+	}
+	
+	public function updatePercentage($percent,$id)
+	{
+		$q = Doctrine_Query::create()
+			->UPDATE('EIApplicationStatus')
+			->SET('percentage', '?',$percent)
+			->WHERE('company_id = ?', $id);
+			
+		return $q->execute();
+	}
 }
 		
