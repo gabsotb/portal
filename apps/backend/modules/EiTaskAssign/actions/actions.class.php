@@ -68,4 +68,9 @@ class EiTaskAssignActions extends sfActions
 		$this->redirect('homepage', $task);
 	  }
 	}
+	
+	public function executeAssignment(sfWebRequest $request)
+	{
+		$this->jobs = Doctrine_Core::getTable('EITaskAssignment')->getJob();
+	}
 }
