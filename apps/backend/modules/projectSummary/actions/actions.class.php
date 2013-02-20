@@ -200,7 +200,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 	
 	*/
 	//save pdf
-	$file = $pdf->Output('C:/xampp/htdocs/portal/web/uploads/documents/letter.pdf','F');
+	$file = $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\letter.pdf','F');
 	$target_path = "uploads/documents/letter.pdf";
 	
 			 

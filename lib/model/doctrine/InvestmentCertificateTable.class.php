@@ -61,5 +61,12 @@ class InvestmentCertificateTable extends Doctrine_Table
 	  ");
 	  return $query;
 	}
+	//get the investor email address using passed id
+	public function getInvestorEmail($id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.updated_by, sf_guard_user.email_address
+	 from investment_application left join sf_guard_user on investment_application.created_by = sf_guard_user.id ");
+	 return $query;
+	}
 	  
 }
