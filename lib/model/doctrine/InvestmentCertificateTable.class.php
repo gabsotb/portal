@@ -68,5 +68,6 @@ class InvestmentCertificateTable extends Doctrine_Table
 	 from investment_application left join sf_guard_user on investment_application.created_by = sf_guard_user.id ");
 	 return $query;
 	}
+	//we show user notification for application of investment certificate.
 	  
 }

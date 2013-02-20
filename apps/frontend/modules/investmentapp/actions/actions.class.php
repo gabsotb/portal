@@ -28,6 +28,8 @@ class investmentappActions extends sfActions
 	//Get the Status of application for Investment Certificate for each business for this user
 	$this->applications = Doctrine_Core::getTable('InvestmentApplication')->getApplicationStatus();
 	$this->eiaStatus = Doctrine_Core::getTable('EIApplication')->getStatus();
+	
+	
   }
 
   public function executeShow(sfWebRequest $request)

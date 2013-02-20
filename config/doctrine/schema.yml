@@ -270,9 +270,13 @@ Messages:
  columns:
   sender: {type: string(255), notnull: true}
   recepient: {type: string(255), notnull: true}
-  message: {type: string(255), notnull: true}
+  message: {type: string(4000), notnull: true}
   attachement: {type: string(255), notnull: true}
-  
+Notifications:
+ actAs: {Timestampable: ~}
+ columns:
+  recepient: {type: string(255), notnull: true}
+  message: {type: string(4000), notnull: true}
 ############################## End ############################################################
 Session: ## Table is used to store sessions for frontend and backend applications
  columns:
@@ -285,3 +289,21 @@ BusinessRegistration:
  columns:
   business_name: {type: string(255), notnull: true}
   business_regno: {type: string(255), notnull: true}
+###### Table used to Add more information for user profile
+sfGuardUserProfile:
+ actAs: {Timestampable: ~}
+ columns:
+  user_id: { type: integer , notnull: true}
+  phone_number: { type: string(255), notnull: false }
+  birth_date: { type: string(255), notnull: false }
+  age: { type: integer, notnull: false }
+  country: { type: string(255), notnull: false }
+  thumbnail: {type: string(255), notnull: false}
+ relations:
+  User:
+   class: sfGuardUser
+   local: user_id
+   foreign: id
+   type: one
+   foreignType: one
+   foreignAlias: Profile

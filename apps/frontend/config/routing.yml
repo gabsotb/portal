@@ -5,7 +5,14 @@
 homepage:
   url:   /
   param: { module: investmentapp, action: index }
-
+####Route for message module for frontend
+my_inbox:
+ url: /inbox
+ param: { module: messages, action: index}
+####Route for my certificates
+my_certificate:
+ url: /issued/certificates
+ param: {module: investmentcertificates, action: index }
 # generic rules
 # please, remove them by adding more specific rules
 default_index:

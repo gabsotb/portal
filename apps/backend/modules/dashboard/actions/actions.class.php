@@ -356,7 +356,7 @@ $pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
 // ---------------------------------------------------------
  // Set some content to print
 $html = '                               <div style="text-align:center"> 
-                                         <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/logo.jpg" alt="RDB" width="600" height="200" border="0" />
+                                         <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/rdblogo.jpg" alt="RDB" width="600" height="200" border="0" />
 										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
 										 <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>C/'.$serial.'/'.$year.'</b>
@@ -412,7 +412,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
          
 //Close and output PDF document
 //$pdf->Output('certificate.pdf', 'I');
-$file = $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F'); //save
+$pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F'); //save
 	 
 	 //we will output the file and send it to the Investors email address. Get the email address of the investor
 	 $userEmail = null;
@@ -436,6 +436,7 @@ $file = $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate
 			 
 
 			$this->getMailer()->send($message);
+	 /////////////////////////////////////////////
 	 //
 	
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
@@ -546,7 +547,7 @@ $template_id = $pdf->startTemplate(95, 165);
 // ...................................................................
 
 $border = array('LRTB' => array('width' => 0.1, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
- $img_file = K_PATH_IMAGES.'bg.jpg';
+ $img_file = K_PATH_IMAGES.'cert6.jpg';
  
 $pdf->Image($img_file, 0, 0, 50, 50, 'JPG', '', '', false, 1000, '', false, false, $border, false, false, false);
 
@@ -562,7 +563,7 @@ $pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
 // ---------------------------------------------------------
  // Set some content to print
 $html = '                               <div style="text-align:center"> 
-                                         <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/logo.jpg" alt="RDB" width="600" height="200" border="0" />
+                                         <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/rdblogo.jpg" alt="RDB" width="600" height="200" border="0" />
 										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
 										 <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>C/'.$serial.'/'.$year.'</b>
@@ -617,8 +618,9 @@ $html = '                               <div style="text-align:center">
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
          
 //Close and output PDF document
-     $pdf->Output('certificate.pdf', 'I'); // output 
-	 
+    $pdf->Output('certificate.pdf', 'I'); // output 
+	 /////////////////////////////////////////////////////////
+	 ////////////
 
 	
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
