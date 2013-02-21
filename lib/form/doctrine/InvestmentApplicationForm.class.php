@@ -16,7 +16,7 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
   public function generateNumbers()
   {
    $numbers = array();
-   for ($i = 0; $i < 10; ++$i) 
+   for ($i = 0; $i < 500; ++$i) 
         {
 			$numbers[] = $i;
 		}
@@ -36,7 +36,7 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
    unset($this['updated_at'], $this['created_by'], $this['updated_by']);
    ////
    //change the application_letter column to file input tag
-   $this->widgetSchema->setHelp('application_letter','Only .doc Word Document Supported');
+   $this->widgetSchema->setHelp('application_letter','.doc Supported');
    $this->widgetSchema['application_letter'] = new sfWidgetFormInputFileEditable(array(
    'label'=>'Application Letter',
    'file_src' =>'/uploads/documents'.$this->getObject()->getApplicationLetter(),
@@ -60,34 +60,29 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
    ),array('invalid' => 'Attached Document Format not Supported!.', 'required' => 'Please Attach Application Letter')
    ); 
    ////
-   ////
-   //change the incorporation_certificate column to file input tag
-   $this->widgetSchema->setHelp('incorporation_certificate','Only .doc Word Document Supported');
-   $this->widgetSchema['incorporation_certificate'] = new sfWidgetFormInputFileEditable(array(
+   /////////////////////////////////////////////////////////////////
+       $this->widgetSchema->setHelp('incorporation_certificate','.png, jpeg,jpg and gif supported');
+      $this->widgetSchema['incorporation_certificate'] = new sfWidgetFormInputFileEditable(array(
    'label'=>'Incorporation Certificate',
-   'file_src' =>'/uploads/documents'.$this->getObject()->getIncorporationCertificate(),
+   'file_src' =>'/uploads/logos'.$this->getObject()->getIncorporationCertificate(),
    #'is_image' => true,
    'edit_mode' => !$this->isNew(),
    'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
-   )
-   );
-   $this->validatorSchema['file_delete'] = new sfValidatorPass();
+   ),array('class' => 'default'));
+   $this->validatorSchema['logo_delete'] = new sfValidatorPass();
    //also change the default validator
-  $this->validatorSchema['incorporation_certificate'] = new sfValidatorFile(array(
-   'required' => true,
-   'path' =>sfConfig::get('sf_upload_dir').'/documents',
- //  'mime_types'=> 'web_images',
-   'mime_types' => array('application/msword',
-                    'application/vnd.ms-word',
-                    'application/msword',
-                    'application/msword; charset=binary')//,
-  // 'mime_type_guessers' => array('guessFromFileinfo'),
+   $this->validatorSchema['incorporation_certificate'] = new sfValidatorFile(array(
+   'required' => false,
+   'path' =>sfConfig::get('sf_upload_dir').'/logos',
+   'mime_types'=> 'web_images',
+   ));
    
-   ), array('invalid' => 'Attached Document Format not Supported!.', 'required' => 'Please Attach Certificate of Incorporation')); 
+   
+   ///////////////////////////////////////////////////////////////////////////////
    ////
      ////
    //change the shareholding_list column to file input tag
-   $this->widgetSchema->setHelp('shareholding_list','Only .doc Word Document Supported');
+   $this->widgetSchema->setHelp('shareholding_list','.doc Supported');
    $this->widgetSchema['shareholding_list'] = new sfWidgetFormInputFileEditable(array(
    'label'=>'ShareHolders List',
    'file_src' =>'/uploads/documents'.$this->getObject()->getShareholdingList(),

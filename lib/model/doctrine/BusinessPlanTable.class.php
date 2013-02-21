@@ -16,4 +16,14 @@ class BusinessPlanTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('BusinessPlan');
     }
+	
+	//this method will receive a an id and then query table for the record with the idea from this table, if it returns
+	//null then, that means the user completed step 1 and failed to complete step 2
+	public function getBusinessPlanDetails($investment_id)
+	{
+	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	    SELECT business_plan.investment_id from business_plan where business_plan.investment_id = '$investment_id'
+	   ");
+	   return $query;
+	}
 }

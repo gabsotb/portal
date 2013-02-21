@@ -78,42 +78,45 @@ $(function () {
 });
 		</script>
 <div id="page" class="dashboard">
- <div class="row-fluid stats-overview-cont">
-						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-							<div class="stats-overview block clearfix">
-								<div class="details">
-								  <b>
+		<div class="row-fluid">
+					<div class="span12">    	
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
+						<h3 class="page-title">
+							Dashboard
+							<small>Register and monitor applications for EIA and Investment Certificates Applications.</small>
+						</h3>
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home"></i>
+								<a href="#">Home</a> <span class="divider">/</span>
+							</li>
+							<li>
+							<i class="icon-desktop"></i>
+							<a href="#">Dashboard</a></li> <span class="divider">/</span>
+							<li>
+							<i class="icon-user"></i>
+							<a href="#">
+							   <b>
 								  <font color="blue">
 									<?php $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
                                       print 'Welcome, You are logged in as '.$username;
 									?>
 									</font>
 								</b>
-								</div>
-							</div>
-						</div>
-						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-							<div class="stats-overview block clearfix">
-								<div class="details">
-									<img  src="/images/logo.jpg" alt ="LOGO" />
-								</div>
-							</div>
-						</div>
-						<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
-							<div class="stats-overview block clearfix">
-							<div class="title">Logged in on</div>
-								<div class="details">
-								 <b>
-								  <font color="blue">
+							</a></li>
+							<li class="pull-right dashboard-report-li">
+							<i class="icon-time"></i>
+				              Logged in on <font color="blue">
 									<?php
                                        $date = date("F j, Y");
 									   print $date;
 									?>
 									</font>
-								</b>
-								</div>
-							</div>
-						</div>
+							</li>
+							
+						</ul>
+						<!-- END PAGE TITLE & BREADCRUMB-->
+					</div>
 	</div>
 	<!-- Overview statistics -->
 	<div class="row-fluid">
@@ -263,16 +266,61 @@ $(function () {
 																
 															</div>
 															<?php endif; ?>
-															<?php if(count($investment_applications) <= 0): ?>
+														<?php if(count($investment_applications) <= 0): ?>
 															<div class="alert alert-error">
-										                    <strong>Alert!</strong> <br/>There are no applications
-															for investment certificate for your account!
-															</div>
-															<?php endif; ?>
+															 <!-- if a User has completed step 1 and is yet to complete step 2, we show
+															 a link for completing his application -->
+														    <?php 
+															$user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+															$q = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplicationSubmission($user_id);
+															$investment_id = null;
+															$business_name = null;
+															 //
+															 foreach($q as $res)
+															 {
+															   $investment_id = $res['id'];
+															   $business_name = $res['name'];
+															 }
 															
-												     <a href="<?php echo url_for('investmentapp/new') ?>">
-													 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
-													 </a>
+															//now we pass this to businessplan table method
+															$p = Doctrine_Core::getTable('BusinessPlan')->getBusinessPlanDetails($investment_id);
+															$response = null;
+															//
+															foreach($p as $r)
+															{
+															 $response = $r['invesment_id'];
+															}
+															// 
+															  
+															?>
+														<?php if($investment_id != null){ ?>
+															 <!-- if it is null we show buttons -->
+															 <?php if($response == null) { ?>
+																 <div class="alert alert-block alert-warning fade in">
+																 <strong>Incomplete Applications !</strong> <br/>Please Complete your Initial application
+																 for Investment Certificate for <?php echo $business_name; ?>.  <br/>
+																<a href="<?php echo url_for('businessplan/new?id='.$business_name) ?>"> 
+																<button type="button" class="btn btn-primary">Complete</button>&nbsp;&nbsp;
+																&nbsp;&nbsp;
+																</a>
+																<a href="<?php echo url_for('investmentapp/edit?id='.$investment_id) ?>"> 
+																<button type="button" class="btn btn-success">Review</button>
+																</a>
+																</div>
+															 <?php } ?>
+														 <?php } ?>
+															 <?php if($investment_id == null){ ?>
+															  <strong>Alert!</strong> <br/>There are no applications
+															    for investment certificate for your account! <br/>
+															
+												<!--we will prevent users from applying for certificate if they have pending applications -->
+                                                         
+														 <a href="<?php echo url_for('investmentapp/new') ?>">
+														 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+														 </a>
+														  <?php } ?> 
+															</div>
+														<?php endif; ?>
 															   
 											  </div><!-- End Investment Certificate Application Widget -->
 												<!-- Begin EIA Certificate application widget -->

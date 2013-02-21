@@ -25,7 +25,31 @@ class businessplanActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new BusinessPlanForm();
+   //now we get the parameter passed by the form and make sure the business exists in the database
+   //if not so, we forward to 404
+    $this->business_name = $request->getParameter('id');
+		
+	//we call a function that will check the business name exist if not we 404
+	$query = Doctrine_Core::getTable('InvestmentApplication')->checkBusinessExistance($this->business_name);
+	$business = null;
+	  foreach($query as $q)
+	  { 
+	   $business = $q['name'];
+	  }
+	  //now forward 404
+	  if($business == null)
+	  {
+	  // $this->forward404();
+	  //instead of forwarding to 404, we assume this user has not passed step 1 and we redirect him
+	  $this->redirect('investmentapp/new');
+	  }
+	  if($business != null)
+	  {
+	    $this->form = new BusinessPlanForm();
+	
+	  }
+   
+	
   }
 
   public function executeCreate(sfWebRequest $request)

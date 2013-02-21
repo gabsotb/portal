@@ -175,8 +175,9 @@
 								<li><a href="#"><i class="icon-user"></i> 
 								 <!-- We will echo logged user First Name and Last Name here -->
 								 <?php 
-								       $lastname = sfContext::getInstance()->getUser()->getGuardUser()->getLastName();
-								       $firstname = sfContext::getInstance()->getUser()->getGuardUser()->getFirstName();
+								 //$this->getUser()->getGuardUser()->getProfile()->getFirstName()
+								       $lastname = sfContext::getInstance()->getUser()->getGuardUser()->getFirstName();
+								       $firstname = sfContext::getInstance()->getUser()->getGuardUser()->getLastName();
                                       echo $firstname."\t".$lastname;
 									?>
 								</a></li>
@@ -214,8 +215,54 @@
 					<span class="arrow"></span>
 					</a>					
 					<ul class="sub">
-						<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>
+					<?php
+                     $investment_applications = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplications();
+              
+					?>
+	 <!-- we will also control when to show this link to a user. if a user has pending application, he must
+	  complete them before attempting to submit new applications. -->
+						<?php if(count($investment_applications) <= 0): ?>
+															
+															 <!-- if a User has completed step 1 and is yet to complete step 2, we show
+															 a link for completing his application -->
+														    <?php 
+															$user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+															$q = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplicationSubmission($user_id);
+															$investment_id = null;
+															$business_name = null;
+															 //
+															 foreach($q as $res)
+															 {
+															   $investment_id = $res['id'];
+															   $business_name = $res['name'];
+															 }
+															
+															//now we pass this to businessplan table method
+															$p = Doctrine_Core::getTable('BusinessPlan')->getBusinessPlanDetails($investment_id);
+															$response = null;
+															//
+															foreach($p as $r)
+															{
+															 $response = $r['invesment_id'];
+															}
+															// 
+															  
+															?>
+										<?php if($investment_id != null){ ?>
+															 <!-- if it is null we show buttons -->
+										<?php if($response == null) { ?>
+								<li class=""><a href="<?php echo url_for('businessplan/new?id='.$business_name) ?>"><i class="icon-tag"></i>Complete</a></li>		
+										<?php } ?>
+										
+										<?php if($response != null) { ?>
+										<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>	
+										<?php } ?>
+									<?php } ?>
+															
+								
+					<?php endif; ?>
 						
+			<!-- End control code -->	
 					</ul>
 				</li>
 				<li><a  href="<?php echo url_for('EIA/new') ?>"><i class="icon-table"></i> EIA Certificate</a></li>
