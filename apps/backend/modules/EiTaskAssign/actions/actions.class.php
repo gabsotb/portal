@@ -73,4 +73,23 @@ class EiTaskAssignActions extends sfActions
 	{
 		$this->jobs = Doctrine_Core::getTable('EITaskAssignment')->getJob();
 	}
+	
+	public function executeImpactNew(sfWebRequest $request)
+	{
+		$this->form = new ProjectImpactForm();
+	}
+	
+	public function executeImpactCreate(sfWebRequest $request)
+	{
+		$this->form = new ProjectImpactForm();
+		$this->processForm($request, $this->form);
+		$this->setTemplate('impactNew');
+	}
+	
+	public function executeImpactUpdate(sfWebRequest $request)
+	{
+		$this->form = new ProjectImpactForm($this->getRoute()->getObject());
+		$this->processForm($request, $this->form);
+		$this->setTemplate('impactEdit');
+	}
 }

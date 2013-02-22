@@ -24,7 +24,7 @@ abstract class BaseProjectImpactFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'company_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('EIApplication'), 'column' => 'id')),
-      'impact_level' => new sfValidatorPass(array('required' => false)),
+      'impact_level' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'comments'     => new sfValidatorPass(array('required' => false)),
       'created_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -51,7 +51,7 @@ abstract class BaseProjectImpactFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'           => 'Number',
       'company_id'   => 'ForeignKey',
-      'impact_level' => 'Text',
+      'impact_level' => 'Number',
       'comments'     => 'Text',
       'created_at'   => 'Date',
       'updated_at'   => 'Date',

@@ -12,5 +12,19 @@ class ProjectImpactForm extends BaseProjectImpactForm
 {
   public function configure()
   {
+	unset(
+		$this['created_at'], $this['created_by'], $this['updated_by'], $this['updated_at']
+	);
+	
+	$this->widgetSchema['impact_level'] = new sfWidgetFormChoice(array(
+		'choices' => array_keys(Doctrine_Core::getTable('Projectimpact')->getImpactLevels()),
+		'multiple' => false,
+		'expanded' => false,
+	));	
+	
+	$this->ValidatorSchema['impact_level'] = new sfValidatorChoice(array(
+		'choices' => array_keys(Doctrine_Core::getTable('Projectimpact')->getImpactLevels()),
+	));
+	
   }
 }

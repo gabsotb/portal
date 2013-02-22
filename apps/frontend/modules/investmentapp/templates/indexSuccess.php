@@ -336,7 +336,24 @@ $(function () {
 													  <?php endif; ?>
 													<!--<button type="button" class="btn btn-success">Apply for EIA Certificate</button> -->
 													<?php echo button_to('Apply for EIA Certificate','EIA/new',array('class' => 'btn btn-success')); ?>
-												
+													<?php foreach($impacts as $impact): ?>
+														<?php switch($impact['impact_level']){
+																case 0:
+																	echo button_to('ReApply', 'EIA/edit', array('class' => 'btn')); 
+																	break;
+																case 1:
+																	echo button_to('Download EIA Certificate', '', array('class' => 'btn')); 
+																	break;
+																case 2:
+																	echo button_to('Fill TOR', 'EIA/torNew', array('class' => 'btn')); 
+																	break;
+																case 3:
+																	echo button_to('Fill TOR', 'EIA/torNew', array('class' => 'btn')); 
+																	break;
+															
+															}
+														?>
+													<?php endforeach ?>
 											   </div>
 										      	<!-- end EIA -->
 											</div>

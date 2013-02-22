@@ -16,4 +16,25 @@ class ProjectImpactTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('ProjectImpact');
     }
+	
+	static public $impacts = array(
+		'Reject'  => 0,
+		'level 1' => 1,
+		'level 2' => 2,
+		'level 3' => 3,
+	);
+	
+	public function getImpactLevels()
+	{
+		return self::$impacts;
+	}
+	
+	public function getImpact()
+	{
+		$userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+		$query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT project_impact.impact_level FROM project_impact LEFT JOIN e_i_application ON e_i_application.id = project_impact.company_id WHERE e_i_application.created_by = '$userid' ");
+		
+		return $query;
+	
+	}
 }

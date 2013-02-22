@@ -1,7 +1,8 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 					
-	<?php echo form_tag_for($form,'@eiaTaskAssign',array('class' => 'form-horizontal')) ?>
+	
+	<form action="<?php echo url_for('EiTaskAssign/'.($form->getObject()->isNew() ? 'Create' : 'Update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" class = "form-horizontal">
 		<?php echo $form->renderGlobalErrors() ?>
 		<div class="control-group">
 			<?php echo $form['user_assigned']->renderError() ?>
