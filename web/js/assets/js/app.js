@@ -1241,7 +1241,9 @@ var App = function () {
             jQuery('#forgotform').slideUp(200);
         });
     }
+	
 
+	
     var handleFixInputPlaceholderForIE = function () {
         //fix html5 placeholder attribute for ie7 & ie8
         if (jQuery.browser.msie && jQuery.browser.version.substr(0, 1) <= 9) { // ie7&ie8

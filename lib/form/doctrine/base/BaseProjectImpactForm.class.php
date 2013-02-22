@@ -28,7 +28,7 @@ abstract class BaseProjectImpactForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'company_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIApplication'))),
-      'impact_level' => new sfValidatorString(array('max_length' => 255)),
+      'impact_level' => new sfValidatorInteger(),
       'comments'     => new sfValidatorString(array('max_length' => 400, 'required' => false)),
       'created_at'   => new sfValidatorDateTime(),
       'updated_at'   => new sfValidatorDateTime(),

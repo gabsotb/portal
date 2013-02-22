@@ -94,4 +94,16 @@ class EIAActions extends sfActions
 		}
 	  }
 	}
+	
+	public function executeTorNew(sfWebRequest $request)
+	{
+		$this->form = new TorForm();
+	}
+	
+	public function executeTorCreate(sfWebRequest $request)
+	{
+		$this->form = new TorForm();
+		$this->processForm($request, $this->form);
+		$this->setTemplate('torNew');
+	}
 }

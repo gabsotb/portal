@@ -185,7 +185,7 @@ ProjectImpact:
    updated: { name: updated_by,type: string}
  columns:
   company_id: {type: integer, notnull: true}
-  impact_level: {type: string(255), notnull: true}
+  impact_level: {type: integer, notnull: true}
   comments: {type: string(400), notnull: false}
  relations:
   EIApplication: {local:company_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE }

@@ -1,9 +1,11 @@
 <?php foreach($jobs as $job): ?>
+
 <div class="span12">
 	<h3 class="page-title">Summary for <?php echo $job['developer_name'] ?> <small> Environmental Impact Assessment </small> </h3>
 </div>
 
 <div id="page">
+
 	<div class="row-fluid">
 		<div class="span10" >
 			<div class="widget">
@@ -93,16 +95,24 @@
 							</address>
 							</div>
 							</div>
-						</div>	
+						</div>
+						<div class="form-actions">
+						<?php echo button_to('Assesment','EiTaskAssign/impactNew',array('class' => 'btn btn-success btn-large'))  ?>
+						</div>
 						
+
 				</div>
 			</div>
 		</div>
 		<div class="span2">
 			<div class="well" id="pulsate-regular">
+			<h3> Due On </h3>
 			<?php echo $job['duedate'] ?>
 			</div>
 		</div>
 	</div>
+	
 </div>
+
 <?php endforeach ?>
+

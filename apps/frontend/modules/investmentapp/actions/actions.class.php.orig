@@ -29,8 +29,13 @@ class investmentappActions extends sfActions
 	$this->applications = Doctrine_Core::getTable('InvestmentApplication')->getApplicationStatus();
 	//Get EIA status for current user
 	$this->eiaStatus = Doctrine_Core::getTable('EIApplication')->getStatus();
+<<<<<<< HEAD
 	//Get Project impact
 	$this->impacts = Doctrine_Core::getTable('ProjectImpact')->getImpact();
+=======
+	
+	
+>>>>>>> e784b0f28bbb685fd4afed91afa1b73c22606f63
   }
 
   public function executeShow(sfWebRequest $request)
