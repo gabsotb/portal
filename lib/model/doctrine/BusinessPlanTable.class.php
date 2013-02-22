@@ -26,4 +26,14 @@ class BusinessPlanTable extends Doctrine_Table
 	   ");
 	   return $query;
 	}
+	//we select email addresses for users who have rights to assignjobs to data admins and notify them 
+	public function getUsers($role)
+	{
+	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	    SELECT sf_guard_user.email_address FROM sf_guard_user LEFT JOIN sf_guard_user_permission ON
+		sf_guard_user.id = sf_guard_user_permission.user_id LEFT JOIN sf_guard_permission ON 
+		sf_guard_permission.id = sf_guard_user_permission.permission_id WHERE sf_guard_user_permission.name = '$role'
+	   ");
+	   return $query;
+	}
 }

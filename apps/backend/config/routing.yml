@@ -23,6 +23,11 @@ task_assignment:
     prefix_path:          /dataAdminJob
     column:               id
     with_wildcard_routes: true
+####Route for message module for frontend
+my_inbox:
+ url: /inbox
+ param: { module: messages, action: index}
+
 user_tasks:
  url: /mytasks
  param: {module: taskManagement, action: tasks }

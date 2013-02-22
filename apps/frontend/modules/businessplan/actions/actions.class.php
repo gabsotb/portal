@@ -97,8 +97,42 @@ class businessplanActions extends sfActions
     {
       $business_plan = $form->save();
 
-     // $this->redirect('businessplan/edit?id='.$business_plan->getId());
-	 //redirect to Dashboard
+     //we send message to the investor informing them of successful application
+	 //get the current logged in user email address
+				  $email = sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
+				  $receiver = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+				  $message = Swift_Message::newInstance()
+				  ->setFrom('noreply@rdb.com')
+				  ->setTo($email)
+				  ->setSubject('Application For Investment Certifcate')
+				  ->setBody('We are pleased to inform you that you application for investment certificate has been received. 
+				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window
+				  in your account. Thank you');
+				  $this->getMailer()->send($message);
+				 ///we also send a mail to user inbox account of our system
+				  $msg = new Messages();
+				  //set message content
+				  $sender = "noreply@rdb.com";
+				  $receipient = $receiver;
+				  $content = "We are pleased to inform you that you application for investment certificate has been received. 
+				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window
+				  in your account. Thank you" ;
+				  //
+				  $msg->sender = $sender;
+				  $msg->recepient = $receipient;
+				  $msg->message = $content ;
+				  $msg->created_at = date('Y-m-d H:i:s');
+				  $msg->save();
+				  /////////////Also we add a new notification
+				  $notify = new Notifications();
+				  $notify->recepient = $receipient;
+				  $notify->message = "Yoour application for investment certificate received";
+				  $notify->created_at = date('Y-m-d H:i:s');
+				  $notify->save();
+				  ///we want to also notify managers that this investor has submitted an application for investment certificate so.....
+				  //we will use the business plan table for that purpose
+				  
+	 ////////
 	 $this->redirect('investmentapp/index');
     }
   }

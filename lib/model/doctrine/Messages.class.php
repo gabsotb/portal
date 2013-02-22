@@ -12,5 +12,24 @@
  */
 class Messages extends BaseMessages
 {
-
+    public function save(Doctrine_Connection $conn = null)
+	  {
+	   $conn = $conn ? $conn : $this->getTable()->getConnection();
+	   $conn->beginTransaction();
+			  try
+			  {
+				 
+				 
+				  ///
+				  $ret = parent::save($conn);
+					$conn->commit();
+					return $ret ;
+				
+			  }
+			  catch(Exception $e)
+			  {
+			  $conn->rollBack();
+			  throw $e;
+			  }
+	  }
 }

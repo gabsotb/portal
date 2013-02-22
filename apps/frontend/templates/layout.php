@@ -83,7 +83,7 @@
 							</a>
 							<ul class="dropdown-menu extended notification">
 								<li>
-									<p>Notifications</p>
+									<p>You have <?php echo $no ; ?> notification(s)</p>
 								</li>
 								<?php 
                                    $notification = Doctrine_Core::getTable('Notifications')->getNotifications($user);?>
@@ -124,7 +124,7 @@
 							</a>
 							<ul class="dropdown-menu extended inbox">
 								<li>
-									<p>Your messages</p>
+									<p>You have <?php echo $messages; ?> new message(s)</p>
 								</li>
 								<!-- Now, we show the user his/her messages. maximum of 5 -->
 								<?php 
@@ -254,12 +254,15 @@
 								<li class=""><a href="<?php echo url_for('businessplan/new?id='.$business_name) ?>"><i class="icon-tag"></i>Complete</a></li>		
 										<?php } ?>
 										
-										<?php if($response != null) { ?>
-										<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>	
-										<?php } ?>
+										<?php //if($response != null) { ?>
+										
+										<?php //} ?>
 									<?php } ?>
-															
-								
+									<?php if($investment_id == null){ ?>
+									     <?php if($response == null) { ?>
+										<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>	
+                                         <?php } ?>										
+								    <?php } ?>
 					<?php endif; ?>
 						
 			<!-- End control code -->	

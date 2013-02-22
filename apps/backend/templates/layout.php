@@ -69,36 +69,38 @@
 						<li class="dropdown" id="header_notification_bar">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-warning-sign"></i>
-							<span class="label label-important">15</span>
+							<span class="label label-important">
+							    <?php 
+							   $user = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+							   $countnotification = Doctrine_Core::getTable('Notifications')->countNotifications($user);
+							   $no = 0;
+							   //
+							   foreach($countnotification  as $count)
+							   {
+							    $no = $count['COUNT(notifications.message)'];
+							   }
+							   echo $no;
+							  ?>
+							
+							
+							</span>
 							</a>
 							<ul class="dropdown-menu extended notification">
 								<li>
-									<p>You have 14 new notifications</p>
+									<p>You have <?php echo $no ; ?> notifications</p>
 								</li>
+								<?php 
+                                   $notification = Doctrine_Core::getTable('Notifications')->getNotifications($user);?>
+								<?php foreach($notification as $notify): ?>
 								<li>
 									<a href="#">
 									<span class="label label-success"><i class="icon-plus"></i></span>
-									New user registered. 
-									<span class="small italic">Just now</span>
+									<?php echo $notify['message'] ?> <br/>
+									<span class="small italic"><?php echo $notify['created_at'] ?></span>
 									</a>
 								</li>
-								<li>
-									<a href="#">
-									<span class="label label-important"><i class="icon-bolt"></i></span>
-									Server #12 overloaded. 
-									<span class="small italic">15 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-warning"><i class="icon-bell"></i></span>
-									Server #2 not respoding.
-									<span class="small italic">22 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">See all notifications</a>
-								</li>
+								<?php endforeach; ?>
+								
 							</ul>
 						</li>
 						
@@ -107,50 +109,49 @@
 						<li class="dropdown" id="header_inbox_bar">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-envelope-alt"></i>
-							<span class="label label-success">5</span>
+							<span class="label label-success">
+							  <?php
+							 $messages = 0 ;
+							 //we call a message that will return the number of messages available for the current logged in user
+							 //am not sure if this is the right way???????
+	                         $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+	                         $this->countmsgs = Doctrine_Core::getTable('Messages')->countMessages($username);
+							 foreach( $this->countmsgs as $msg)
+								{
+								 $messages  = $msg['COUNT(message)'];
+								}
+								echo $messages;
+								
+							?>
+							
+							</span>
 							</a>
 							<ul class="dropdown-menu extended inbox">
 								<li>
-									<p>You have 12 new messages</p>
+									<p>You have <?php echo $messages; ?> new messages</p>
 								</li>
+									<!-- Now, we show the user his/her messages. maximum of 5 -->
+								<?php 
+								 $this->msgs = Doctrine_Core::getTable('Messages')->retreiveMessages($username);
+								foreach($this->msgs as $messages):    ?>
 								<li>
-									<a href="#">
-									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
+									<a href="<?php echo url_for('messages/show?id='.$messages['id']) ?>">
+									<!--<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span> -->
 									<span class="subject">
-									<span class="from">Lisa Wong</span>
-									<span class="time">Just Now</span>
+									<span class="from">
+									<?php echo $messages['sender'] ?> </span>
+									<span class="time"><?php echo $messages['created_at'] ?></span>
 									</span>
 									<span class="message">
-									Vivamus sed auctor nibh congue nibh.
+									<?php echo $messages['message'] ?>
+									
 									</span>  
 									</a>
 								</li>
+								<?php endforeach; ?>
+								
 								<li>
-									<a href="#">
-									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
-									<span class="subject">
-									<span class="from">Alina Fionovna</span>
-									<span class="time">16 mins</span>
-									</span>
-									<span class="message">
-									Vivamus sed auctor nibh congue.
-									</span>  
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
-									<span class="subject">
-									<span class="from">Mila Rock</span>
-									<span class="time">2 hrs</span>
-									</span>
-									<span class="message">
-									Vivamus sed auctor nibh congue.
-									</span>  
-									</a>
-								</li>
-								<li>
-									<a href="#">See all messages</a>
+									<a href="<?php echo url_for('my_inbox') ?>">See all messages</a>
 								</li>
 							</ul>
 						</li>
@@ -163,9 +164,8 @@
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="icon-cogs"></i> System Settings</a></li>
-								<li><a href="#"><i class="icon-pushpin"></i> Shortcuts</a></li>
-								<li><a href="#"><i class="icon-trash"></i> Trash</a></li>								
+								<li><a href="<?php echo url_for('settings') ?>"><i class="icon-cogs"></i> Account Settings</a></li>
+								<li><a href="#"><i class="icon-pushpin"></i> Support</a></li>							
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
@@ -177,10 +177,17 @@
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="icon-user"></i> Mark King</a></li>
-								<li><a href="#"><i class="icon-envelope-alt"></i> Inbox</a></li>
-								<li><a href="#"><i class="icon-tasks"></i> Tasks</a></li>
-								<li><a href="#"><i class="icon-ok"></i> Calendar</a></li>
+								<li><a href="#"><i class="icon-user"></i> 
+								
+								 <?php 
+								 //$this->getUser()->getGuardUser()->getProfile()->getFirstName()
+								       $lastname = sfContext::getInstance()->getUser()->getGuardUser()->getFirstName();
+								       $firstname = sfContext::getInstance()->getUser()->getGuardUser()->getLastName();
+                                      echo $firstname."\t".$lastname;
+									?>
+								
+								</a></li>
+								<li><a href="<?php echo url_for('my_inbox') ?>"><i class="icon-envelope-alt"></i> Inbox</a></li>
 								<li class="divider"></li>
 								<li><?php echo link_to('<i class="icon-signout"></i> Logout','@sf_guard_signout'); ?></li>
 							</ul>
@@ -242,33 +249,18 @@
 			<div class="container-fluid">
 			
 				<!-- BEGIN PAGE HEADER-->
-				<div class="row-fluid">
-					<div class="span12">
+				<!--<div class="row-fluid">-->
+					<!--<div class="span12">-->
 						<!-- BEGIN STYLE CUSTOMIZER-->
 						
 						<!-- END STYLE CUSTOMIZER-->    
-						<?php 
-						 // we check if the user has valid credentials to be able to see this menu
-						 if($sf_user->hasCredential('assignJob')):
-						?>
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">E-portal Administration Dashboard </h3>
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home"></i>
-								<a href="<?php echo url_for('dashboard/index') ?>">Admin Dashboard</a> <span class="divider">/</span>
-								<b>Manage System Operations. View and Create System Users</b>
-							</li>
-							
-							<li><a href="#"></a></li>
-						</ul>
-						<?php endif; ?>
+						
 						<?php 
 						// we check if the user has valid credentials to be able to see this menu
 						if($sf_user->hasCredential('investmentcert')):
 						?>
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">E-portal Investment Certificate Administrator Dashboard  </h3>
+						<h3 class="page-title">E-portal Investment Certificate Data Administrator Dashboard  </h3>
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
@@ -285,7 +277,7 @@
 						 if($sf_user->hasCredential('eiacert')):
 						?>
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">E-portal EIA Certificate Administrator Dashboard </h3>
+						<h3 class="page-title">E-portal EIA Certificate Data Administrator Dashboard </h3>
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
@@ -298,9 +290,9 @@
 						<?php endif; ?> 
 
 						<!-- END PAGE TITLE & BREADCRUMB-->
-					</div>
+					<!--</div>-->
 				<!-- END PAGE HEADER-->
-				</div>
+				<!--</div> -->
 			
 				
 				<?php endif; ?>

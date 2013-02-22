@@ -29,7 +29,7 @@ class NotificationsTable extends Doctrine_Table
 	{
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
 	 SELECT notifications.message,notifications.created_at FROM notifications WHERE notifications.recepient = '$username'
-	 ORDER BY notifications.created_at DESC
+	 ORDER BY notifications.created_at DESC LIMIT 3
 	 ");
 	 return $query;
 	}
