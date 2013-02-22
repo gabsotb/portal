@@ -66,36 +66,37 @@
 						<li class="dropdown" id="header_notification_bar">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-warning-sign"></i>
-							<span class="label label-important">15</span>
+							<span class="label label-important">
+							<?php 
+							   $user = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+							   $countnotification = Doctrine_Core::getTable('Notifications')->countNotifications($user);
+							   $no = 0;
+							   //
+							   foreach($countnotification  as $count)
+							   {
+							    $no = $count['COUNT(notifications.message)'];
+							   }
+							 echo $no;
+							?>
+							
+							</span>
 							</a>
 							<ul class="dropdown-menu extended notification">
 								<li>
-									<p>You have 14 new notifications</p>
+									<p>Notifications</p>
 								</li>
+								<?php 
+                                   $notification = Doctrine_Core::getTable('Notifications')->getNotifications($user);?>
+								<?php foreach($notification as $notify): ?>
 								<li>
 									<a href="#">
 									<span class="label label-success"><i class="icon-plus"></i></span>
-									New user registered. 
-									<span class="small italic">Just now</span>
+									<?php echo $notify['message'] ?> <br/>
+									<span class="small italic"><?php echo $notify['created_at'] ?></span>
 									</a>
 								</li>
-								<li>
-									<a href="#">
-									<span class="label label-important"><i class="icon-bolt"></i></span>
-									Server #12 overloaded. 
-									<span class="small italic">15 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-warning"><i class="icon-bell"></i></span>
-									Server #2 not respoding.
-									<span class="small italic">22 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">See all notifications</a>
-								</li>
+								<?php endforeach; ?>
+								
 							</ul>
 						</li>
 						
@@ -104,50 +105,48 @@
 						<li class="dropdown" id="header_inbox_bar">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-envelope-alt"></i>
-							<span class="label label-success">5</span>
+							<span class="label label-success">
+							<?php
+							 $messages = 0 ;
+							 //we call a message that will return the number of messages available for the current logged in user
+							 //am not sure if this is the right way???????
+	                         $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+	                         $this->countmsgs = Doctrine_Core::getTable('Messages')->countMessages($username);
+							 foreach( $this->countmsgs as $msg)
+								{
+								 $messages  = $msg['COUNT(message)'];
+								}
+								echo $messages;
+								
+							?>
+							
+							</span>
 							</a>
 							<ul class="dropdown-menu extended inbox">
 								<li>
-									<p>You have 12 new messages</p>
+									<p>Your messages</p>
 								</li>
+								<!-- Now, we show the user his/her messages. maximum of 5 -->
+								<?php 
+								 $this->msgs = Doctrine_Core::getTable('Messages')->retreiveMessages($username);
+								foreach($this->msgs as $messages):    ?>
 								<li>
-									<a href="#">
-									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
+									<a href="<?php echo url_for('messages/show?id='.$messages['id']) ?>">
+									<!--<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span> -->
 									<span class="subject">
-									<span class="from">Lisa Wong</span>
-									<span class="time">Just Now</span>
+									<span class="from">
+									<?php echo $messages['sender'] ?> </span>
+									<span class="time"><?php echo $messages['created_at'] ?></span>
 									</span>
 									<span class="message">
-									Vivamus sed auctor nibh congue nibh.
+									<?php echo $messages['message'] ?>
+									
 									</span>  
 									</a>
 								</li>
+								<?php endforeach; ?>
 								<li>
-									<a href="#">
-									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
-									<span class="subject">
-									<span class="from">Alina Fionovna</span>
-									<span class="time">16 mins</span>
-									</span>
-									<span class="message">
-									Vivamus sed auctor nibh congue.
-									</span>  
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="photo"><img src="/images/avatar-mini.png" alt="avatar"/></span>
-									<span class="subject">
-									<span class="from">Mila Rock</span>
-									<span class="time">2 hrs</span>
-									</span>
-									<span class="message">
-									Vivamus sed auctor nibh congue.
-									</span>  
-									</a>
-								</li>
-								<li>
-									<a href="#">See all messages</a>
+									<a href="<?php echo url_for('my_inbox') ?>">See all messages</a>
 								</li>
 							</ul>
 						</li>
@@ -160,9 +159,8 @@
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="icon-cogs"></i> System Settings</a></li>
-								<li><a href="#"><i class="icon-pushpin"></i> Shortcuts</a></li>
-								<li><a href="#"><i class="icon-trash"></i> Trash</a></li>								
+								<li><a href="<?php echo url_for('settings') ?>"><i class="icon-cogs"></i> Account Settings</a></li>
+								<li><a href="#"><i class="icon-pushpin"></i> Support</a></li>							
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
@@ -174,10 +172,16 @@
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="icon-user"></i> Mark King</a></li>
-								<li><a href="#"><i class="icon-envelope-alt"></i> Inbox</a></li>
-								<li><a href="#"><i class="icon-tasks"></i> Tasks</a></li>
-								<li><a href="#"><i class="icon-ok"></i> Calendar</a></li>
+								<li><a href="#"><i class="icon-user"></i> 
+								 <!-- We will echo logged user First Name and Last Name here -->
+								 <?php 
+								 //$this->getUser()->getGuardUser()->getProfile()->getFirstName()
+								       $lastname = sfContext::getInstance()->getUser()->getGuardUser()->getFirstName();
+								       $firstname = sfContext::getInstance()->getUser()->getGuardUser()->getLastName();
+                                      echo $firstname."\t".$lastname;
+									?>
+								</a></li>
+								<li><a href="<?php echo url_for('my_inbox') ?>"><i class="icon-envelope-alt"></i> Inbox</a></li>
 								<li class="divider"></li>
 								<li><?php echo link_to('<i class="icon-key"></i> Logout','@sf_guard_signout'); ?></li>
 							</ul>
@@ -211,11 +215,57 @@
 					<span class="arrow"></span>
 					</a>					
 					<ul class="sub">
-						<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>
+					<?php
+                     $investment_applications = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplications();
+              
+					?>
+	 <!-- we will also control when to show this link to a user. if a user has pending application, he must
+	  complete them before attempting to submit new applications. -->
+						<?php if(count($investment_applications) <= 0): ?>
+															
+															 <!-- if a User has completed step 1 and is yet to complete step 2, we show
+															 a link for completing his application -->
+														    <?php 
+															$user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+															$q = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplicationSubmission($user_id);
+															$investment_id = null;
+															$business_name = null;
+															 //
+															 foreach($q as $res)
+															 {
+															   $investment_id = $res['id'];
+															   $business_name = $res['name'];
+															 }
+															
+															//now we pass this to businessplan table method
+															$p = Doctrine_Core::getTable('BusinessPlan')->getBusinessPlanDetails($investment_id);
+															$response = null;
+															//
+															foreach($p as $r)
+															{
+															 $response = $r['invesment_id'];
+															}
+															// 
+															  
+															?>
+										<?php if($investment_id != null){ ?>
+															 <!-- if it is null we show buttons -->
+										<?php if($response == null) { ?>
+								<li class=""><a href="<?php echo url_for('businessplan/new?id='.$business_name) ?>"><i class="icon-tag"></i>Complete</a></li>		
+										<?php } ?>
+										
+										<?php if($response != null) { ?>
+										<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>	
+										<?php } ?>
+									<?php } ?>
+															
+								
+					<?php endif; ?>
 						
+			<!-- End control code -->	
 					</ul>
 				</li>
-				<li><a  href="#"><i class="icon-table"></i> EIA Certificate</a></li>
+				<li><a  href="<?php echo url_for('EIA/new') ?>"><i class="icon-table"></i> EIA Certificate</a></li>
 				<li class="">
 					<a href="" >
 					<i class="icon-lightbulb"></i> Help

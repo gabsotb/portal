@@ -107,7 +107,13 @@ class investmentappActions extends sfActions
     if ($form->isValid())
     {
      $investment_application = $form->save();
-	 $this->redirect('businessplan/new');
+	 ///we will retrieve the value of business name from the form
+	 $this->form = new InvestmentApplicationForm();
+	 $allFormValues = $request->getParameter($this->form->getName());
+	 //access values
+     $name = $allFormValues['name'];
+	 
+	 $this->redirect('businessplan/new?id='.$name);
     }
   }
   ////now this is tricky he he he 

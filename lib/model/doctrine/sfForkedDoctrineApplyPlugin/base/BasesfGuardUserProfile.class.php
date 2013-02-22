@@ -11,22 +11,37 @@
  * @property string $lastname
  * @property timestamp $validate_at
  * @property string $validate
+ * @property string $phone_number
+ * @property string $birth_date
+ * @property integer $age
+ * @property string $country
+ * @property string $thumbnail
  * @property sfGuardUser $User
  * 
- * @method integer            getUserId()      Returns the current record's "user_id" value
- * @method string             getEmailNew()    Returns the current record's "email_new" value
- * @method string             getFirstname()   Returns the current record's "firstname" value
- * @method string             getLastname()    Returns the current record's "lastname" value
- * @method timestamp          getValidateAt()  Returns the current record's "validate_at" value
- * @method string             getValidate()    Returns the current record's "validate" value
- * @method sfGuardUser        getUser()        Returns the current record's "User" value
- * @method sfGuardUserProfile setUserId()      Sets the current record's "user_id" value
- * @method sfGuardUserProfile setEmailNew()    Sets the current record's "email_new" value
- * @method sfGuardUserProfile setFirstname()   Sets the current record's "firstname" value
- * @method sfGuardUserProfile setLastname()    Sets the current record's "lastname" value
- * @method sfGuardUserProfile setValidateAt()  Sets the current record's "validate_at" value
- * @method sfGuardUserProfile setValidate()    Sets the current record's "validate" value
- * @method sfGuardUserProfile setUser()        Sets the current record's "User" value
+ * @method integer            getUserId()       Returns the current record's "user_id" value
+ * @method string             getEmailNew()     Returns the current record's "email_new" value
+ * @method string             getFirstname()    Returns the current record's "firstname" value
+ * @method string             getLastname()     Returns the current record's "lastname" value
+ * @method timestamp          getValidateAt()   Returns the current record's "validate_at" value
+ * @method string             getValidate()     Returns the current record's "validate" value
+ * @method string             getPhoneNumber()  Returns the current record's "phone_number" value
+ * @method string             getBirthDate()    Returns the current record's "birth_date" value
+ * @method integer            getAge()          Returns the current record's "age" value
+ * @method string             getCountry()      Returns the current record's "country" value
+ * @method string             getThumbnail()    Returns the current record's "thumbnail" value
+ * @method sfGuardUser        getUser()         Returns the current record's "User" value
+ * @method sfGuardUserProfile setUserId()       Sets the current record's "user_id" value
+ * @method sfGuardUserProfile setEmailNew()     Sets the current record's "email_new" value
+ * @method sfGuardUserProfile setFirstname()    Sets the current record's "firstname" value
+ * @method sfGuardUserProfile setLastname()     Sets the current record's "lastname" value
+ * @method sfGuardUserProfile setValidateAt()   Sets the current record's "validate_at" value
+ * @method sfGuardUserProfile setValidate()     Sets the current record's "validate" value
+ * @method sfGuardUserProfile setPhoneNumber()  Sets the current record's "phone_number" value
+ * @method sfGuardUserProfile setBirthDate()    Sets the current record's "birth_date" value
+ * @method sfGuardUserProfile setAge()          Sets the current record's "age" value
+ * @method sfGuardUserProfile setCountry()      Sets the current record's "country" value
+ * @method sfGuardUserProfile setThumbnail()    Sets the current record's "thumbnail" value
+ * @method sfGuardUserProfile setUser()         Sets the current record's "User" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -62,6 +77,30 @@ abstract class BasesfGuardUserProfile extends sfDoctrineRecord
         $this->hasColumn('validate', 'string', 33, array(
              'type' => 'string',
              'length' => 33,
+             ));
+        $this->hasColumn('phone_number', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('birth_date', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('age', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => false,
+             ));
+        $this->hasColumn('country', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('thumbnail', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
 
 

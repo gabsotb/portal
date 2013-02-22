@@ -90,7 +90,7 @@ class EIAActions extends sfActions
 		{
 			
 			$EIA = $form->save();
-			$this->redirect('EIA/index');
+			$this->redirect('investmentapp/index');
 		}
 	  }
 	}

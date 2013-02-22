@@ -13,25 +13,35 @@ abstract class BasesfGuardUserProfileFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
-      'email_new'   => new sfWidgetFormFilterInput(),
-      'firstname'   => new sfWidgetFormFilterInput(),
-      'lastname'    => new sfWidgetFormFilterInput(),
-      'validate_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'validate'    => new sfWidgetFormFilterInput(),
-      'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'user_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
+      'email_new'    => new sfWidgetFormFilterInput(),
+      'firstname'    => new sfWidgetFormFilterInput(),
+      'lastname'     => new sfWidgetFormFilterInput(),
+      'validate_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'validate'     => new sfWidgetFormFilterInput(),
+      'phone_number' => new sfWidgetFormFilterInput(),
+      'birth_date'   => new sfWidgetFormFilterInput(),
+      'age'          => new sfWidgetFormFilterInput(),
+      'country'      => new sfWidgetFormFilterInput(),
+      'thumbnail'    => new sfWidgetFormFilterInput(),
+      'created_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'user_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
-      'email_new'   => new sfValidatorPass(array('required' => false)),
-      'firstname'   => new sfValidatorPass(array('required' => false)),
-      'lastname'    => new sfValidatorPass(array('required' => false)),
-      'validate_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'validate'    => new sfValidatorPass(array('required' => false)),
-      'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'user_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
+      'email_new'    => new sfValidatorPass(array('required' => false)),
+      'firstname'    => new sfValidatorPass(array('required' => false)),
+      'lastname'     => new sfValidatorPass(array('required' => false)),
+      'validate_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'validate'     => new sfValidatorPass(array('required' => false)),
+      'phone_number' => new sfValidatorPass(array('required' => false)),
+      'birth_date'   => new sfValidatorPass(array('required' => false)),
+      'age'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'country'      => new sfValidatorPass(array('required' => false)),
+      'thumbnail'    => new sfValidatorPass(array('required' => false)),
+      'created_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'updated_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_profile_filters[%s]');
@@ -51,15 +61,20 @@ abstract class BasesfGuardUserProfileFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'          => 'Number',
-      'user_id'     => 'ForeignKey',
-      'email_new'   => 'Text',
-      'firstname'   => 'Text',
-      'lastname'    => 'Text',
-      'validate_at' => 'Date',
-      'validate'    => 'Text',
-      'created_at'  => 'Date',
-      'updated_at'  => 'Date',
+      'id'           => 'Number',
+      'user_id'      => 'ForeignKey',
+      'email_new'    => 'Text',
+      'firstname'    => 'Text',
+      'lastname'     => 'Text',
+      'validate_at'  => 'Date',
+      'validate'     => 'Text',
+      'phone_number' => 'Text',
+      'birth_date'   => 'Text',
+      'age'          => 'Number',
+      'country'      => 'Text',
+      'thumbnail'    => 'Text',
+      'created_at'   => 'Date',
+      'updated_at'   => 'Date',
     );
   }
 }

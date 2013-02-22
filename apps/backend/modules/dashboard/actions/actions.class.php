@@ -96,6 +96,7 @@ class dashboardActions extends sfActions
 		if($serial != $params )
 		{
 		 //not paid
+
 		 $this->redirect('dashboard/notpaid?serial='.$params);
 		}
 		//else if equal
@@ -341,9 +342,8 @@ $border = array('LRTB' => array('width' => 0.1, 'cap' => 'square', 'join' => 'mi
  $img_file = K_PATH_IMAGES.'bg.jpg';
  
 $pdf->Image($img_file, 0, 0, 50, 50, 'JPG', '', '', false, 1000, '', false, false, $border, false, false, false);
- //$img_file2 = 'C:\xampp\htdocs\portal\plugins\sfTCPDFPlugin\lib\tcpdf\images\logo.jpg';
- //$logo =  sfConfig::get('sf_plugins_dir').DIRECTORY_SEPARATOR.'sfTCPDFPlugin'.DIRECTORY_SEPARATOR.'lib\tcpdf\images\logo.jpg';
-//echo  $logo; exit;
+ 
+ 
 //Image Calling inside the html has a problem hence we hand code it but we will change it later - Boniface Irunguh
 // ...................................................................
 
@@ -356,7 +356,7 @@ $pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
 // ---------------------------------------------------------
  // Set some content to print
 $html = '                               <div style="text-align:center"> 
-                                         <img src="C:\xampp\htdocs\portal\plugins\sfTCPDFPlugin\lib\tcpdf\images\logo.jpg" alt="RDB" width="600" height="200" border="0" />
+                                         <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/rdblogo.jpg" alt="RDB" width="600" height="200" border="0" />
 										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
 										 <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>C/'.$serial.'/'.$year.'</b>
@@ -411,8 +411,33 @@ $html = '                               <div style="text-align:center">
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
          
 //Close and output PDF document
-$pdf->Output('certificate.pdf', 'I');
+//$pdf->Output('certificate.pdf', 'I');
+$pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F'); //save
+	 
+	 //we will output the file and send it to the Investors email address. Get the email address of the investor
+	 $userEmail = null;
+	 $email = Doctrine_Core::getTable('InvestmentCertificate')->getInvestorEmail($taskId);
+	 //get email
+	 foreach($email as $em)
+	 {
+	    $userEmail = $em['email_address'] ;
+	 }
+	 //
+	 $target_path = "uploads/documents/certificate.pdf";
+	
+			 
+	    $message = Swift_Message::newInstance()
+			  ->setFrom('admin@rdb.com')
+			  ->setTo($userEmail)
+			  ->setSubject('Investment Certifcate')
+			  ->setBody('You have been issued with Investment Registration Certificate. Please download it. Thankyou')
+			   ->attach(Swift_Attachment::fromPath($target_path));
+			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/;
+			 
 
+			$this->getMailer()->send($message);
+	 /////////////////////////////////////////////
+	 //
 	
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
           // Stop symfony process */
@@ -500,6 +525,7 @@ $pdf->setPrintFooter(false);
 //$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 $pdf->SetAutoPageBreak(false);
 
+
 //set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
@@ -521,12 +547,10 @@ $template_id = $pdf->startTemplate(95, 165);
 // ...................................................................
 
 $border = array('LRTB' => array('width' => 0.1, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
- $img_file = K_PATH_IMAGES.'bg.jpg';
+ $img_file = K_PATH_IMAGES.'cert6.jpg';
  
 $pdf->Image($img_file, 0, 0, 50, 50, 'JPG', '', '', false, 1000, '', false, false, $border, false, false, false);
- //$img_file2 = 'C:\xampp\htdocs\portal\plugins\sfTCPDFPlugin\lib\tcpdf\images\logo.jpg';
- //$logo =  sfConfig::get('sf_plugins_dir').DIRECTORY_SEPARATOR.'sfTCPDFPlugin'.DIRECTORY_SEPARATOR.'lib\tcpdf\images\logo.jpg';
-//echo  $logo; exit;
+
 //Image Calling inside the html has a problem hence we hand code it but we will change it later - Boniface Irunguh
 // ...................................................................
 
@@ -539,7 +563,7 @@ $pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
 // ---------------------------------------------------------
  // Set some content to print
 $html = '                               <div style="text-align:center"> 
-                                         <img src="C:\xampp\htdocs\portal\plugins\sfTCPDFPlugin\lib\tcpdf\images\logo.jpg" alt="RDB" width="600" height="200" border="0" />
+                                         <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/rdblogo.jpg" alt="RDB" width="600" height="200" border="0" />
 										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
 										 <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>C/'.$serial.'/'.$year.'</b>
@@ -594,7 +618,9 @@ $html = '                               <div style="text-align:center">
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
          
 //Close and output PDF document
-$pdf->Output('certificate.pdf', 'I');
+    $pdf->Output('certificate.pdf', 'I'); // output 
+	 /////////////////////////////////////////////////////////
+	 ////////////
 
 	
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
