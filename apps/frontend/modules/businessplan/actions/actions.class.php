@@ -126,13 +126,31 @@ class businessplanActions extends sfActions
 				  /////////////Also we add a new notification
 				  $notify = new Notifications();
 				  $notify->recepient = $receipient;
-				  $notify->message = "Yoour application for investment certificate received";
+				  $notify->message = "Your application for investment certificate received";
 				  $notify->created_at = date('Y-m-d H:i:s');
 				  $notify->save();
 				  ///we want to also notify managers that this investor has submitted an application for investment certificate so.....
 				  //we will use the business plan table for that purpose
+				  //get email admin addresses
+				  $adminaddresses = array() ;
+				  $role = "departmentadmins";
+				  $admins = Doctrine_Core::getTable('BusinessPlan')->getUsers($role);
+				  //
+				  foreach($admins as $v)
+				  {
+				    $adminaddresses  [] = $v['email_address'];
+				  }
+				  //send mail to admins
+				  $this->getMailer()->composeAndSend('noreply@ttfa.net',
+										$adminaddresses ,
+										'New Application for Investment Certificate ',
+										"A New application for Investment Certificate has been received.\n".
+										 "Please login to your account and assign it to a data admin staff. Use the link below\n".
+										 "http://198.154.203.38:8234/backend.php"
+													  ); 
+				  //////////////////////////////////////////
 				  
-	 ////////
+	             /////////////////////////////////////////////////
 	 $this->redirect('investmentapp/index');
     }
   }

@@ -243,14 +243,17 @@
 									<div class="stats-overview block clearfix">
 										<div class="display stat good huge">
 											<span class="line-chart">2,6,8,12, 11, 15, 16, 11, 16, 11, 10, 3, 7, 8, 12, 19</span>
-											<div class="percent">+16%</div>
+											<div class="percent"></div>
 										</div>
 										<div class="details">
-											<div class="title">Completed Tasks</div>
-											<div class="numbers">1800</div>
-											<div class="progress progress-warning">
-												<div class="bar" style="width: 16%"></div>
+											<div class="title">
+											View Your
+											<a href="<?php echo url_for('investment_certificates') ?>">
+											Completed Tasks
+											</a>
 											</div>
+											<div class="numbers">1</div>
+											
 										</div>
 									</div>
 								</div>
@@ -261,11 +264,25 @@
 											
 										</div>
 										<div class="details">
-											<div class="title"> Inbox Messages</div>
-											<div class="numbers">6 unread</div>
-											<div class="progress progress-success">
-												<div class="bar" style="width: 16%"></div>
-											</div>
+											<div class="title"> Your Inbox Messages. You have</div>
+											<div class="numbers">
+												<?php
+											 $messages = 0 ;
+											 //we call a message that will return the number of messages available for the current logged in user
+											 //am not sure if this is the right way???????
+											 $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+											 $this->countmsgs = Doctrine_Core::getTable('Messages')->countMessages($username);
+											 
+											 foreach( $this->countmsgs as $msg)
+												{
+												 $messages  = $msg['COUNT(message)'];
+												}
+												
+								               
+							                     ?>
+											<a href="<?php echo url_for('my_inbox') ?>"> <?php echo $messages; ?>  Messages </a>
+											 </div>
+											
 										</div>
 									</div>
 								</div>
@@ -280,12 +297,7 @@
 							<div class="widget">
 								<div class="widget-title">
 									<h4><i class="icon-shopping-cart"></i>Available Jobs For Investment Certificates Applications</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
-									<a href="javascript:;" class="icon-refresh"></a>		
-									<a href="javascript:;" class="icon-remove"></a>
-									</span>							
+															
 								</div>
 								<div class="widget-body">
 								<?php if(count($mytasks) != null) : ?>
@@ -332,11 +344,7 @@
 							<div class="widget">
 								<div class="widget-title">
 									<h4><i class="icon-bell"></i>Task Monitor Notifications</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
-									<a href="javascript:;" class="icon-refresh"></a>
-									</span>							
+															
 								</div>
 								<div class="widget-body">
 								<?php if(count($mytasks) != null) : ?>
@@ -377,12 +385,7 @@
 							<div class="widget">
 								<div class="widget-title">
 									<h4><i class="icon-reorder"></i>Table - Showing Tasks Not Yet Complete But Started</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
-									<a href="javascript:;" class="icon-refresh"></a>		
-									<a href="javascript:;" class="icon-remove"></a>
-									</span>							
+															
 								</div>
 								<div class="widget-body">
 								  <?php if(count($mytasksnotcomplete) != 0): ?> <!-- Show this if result is not null -->
@@ -515,9 +518,7 @@
 							<div class="widget">
 								<div class="widget-title">
 									<h4><i class="icon-shopping-cart"></i>Available Jobs For EIA Certificates Applications</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-									</span>							
+														
 								</div>
 								<div class="widget-body">
 									<?php if(count($jobs) <= 0): ?>

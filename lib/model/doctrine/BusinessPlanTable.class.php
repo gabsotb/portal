@@ -22,7 +22,9 @@ class BusinessPlanTable extends Doctrine_Table
 	public function getBusinessPlanDetails($investment_id)
 	{
 	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	    SELECT business_plan.investment_id from business_plan where business_plan.investment_id = '$investment_id'
+	    SELECT business_plan.investment_id from business_plan 
+		LEFT JOIN business_application_status ON  business_plan.investment_id = business_application_status.business_id
+		where business_plan.investment_id = '$investment_id' and business_application_status.application_status != 'certificateissued'
 	   ");
 	   return $query;
 	}
@@ -30,9 +32,10 @@ class BusinessPlanTable extends Doctrine_Table
 	public function getUsers($role)
 	{
 	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	    SELECT sf_guard_user.email_address FROM sf_guard_user LEFT JOIN sf_guard_user_permission ON
-		sf_guard_user.id = sf_guard_user_permission.user_id LEFT JOIN sf_guard_permission ON 
-		sf_guard_permission.id = sf_guard_user_permission.permission_id WHERE sf_guard_user_permission.name = '$role'
+	    SELECT sf_guard_user.email_address,sf_guard_user.username
+		from sf_guard_user_group left join sf_guard_group on sf_guard_user_group.group_id = sf_guard_group.id
+		left join sf_guard_user on sf_guard_user_group.user_id = sf_guard_user.id
+		 where sf_guard_group.name = '$role'
 	   ");
 	   return $query;
 	}

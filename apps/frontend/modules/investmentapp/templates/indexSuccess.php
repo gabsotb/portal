@@ -309,9 +309,30 @@ $(function () {
 																</div>
 															 <?php } ?>
 														 <?php } ?>
-															 <?php if($investment_id == null){ ?>
-															  <strong>Alert!</strong> <br/>There are no applications
-															    for investment certificate for your account! <br/>
+															 <?php if($investment_id == null){ 
+															 $value = 0;
+															
+															 ?>
+															 <!-- We have a situation where a user has completed application 1 and wants to a apply for a 
+															 certificate for another business we will show this message -->
+															   <?php 
+															   foreach($checkCertificationStatus as $status)
+															    {
+															      $value = $status['COUNT(investment_application.id)'] ;
+																 
+															    }
+																?>
+																<?php if($value > 0) { ?>
+																  <strong>Alert!</strong> <br/>There are no New applications
+																		for investment certificate for your account! However your have <?php echo $value; ?>
+																		complete application(s) for Investment Certificate. Click Button Below to apply for 
+																		Certification of another business. 
+																<br/> 
+																<?php } ?>
+															    <?php if($value <= 0) { ?>
+																	  <strong>Alert!</strong> <br/>There are no applications
+																		for investment certificate for your account! <br/>
+																<?php } ?>
 															
 												<!--we will prevent users from applying for certificate if they have pending applications -->
                                                          

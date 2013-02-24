@@ -5,7 +5,7 @@ sfGuardGroup:
     created_at: '2013-02-11 15:57:57'
     updated_at: '2013-02-11 18:06:57'
   sfGuardGroup_2:
-    name: 'department admins'
+    name: 'departmentadmins'
     description: 'These are the Admins who can assign tasks to data admins'
     created_at: '2013-02-11 15:58:57'
     updated_at: '2013-02-11 15:58:57'
@@ -50,7 +50,7 @@ sfGuardUser:
   sfGuardUser_1:
     first_name: Admin
     last_name: Admin
-    email_address: admin@gmail.com
+    email_address: support@otbafrica.com
     username: admin
     algorithm: sha1
     salt: 0c0a8c48ef139c954f1d4a94a27c596d
