@@ -18,5 +18,6 @@ class ProjectSummaryForm extends BaseProjectSummaryForm
    $this->widgetSchema->setLabels(array(
 			  'created_at'    => 'Date'
 			));
+	
   }
 }

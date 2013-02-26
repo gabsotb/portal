@@ -28,8 +28,11 @@ class projectSummaryActions extends sfActions
     //we validate the ID passed is Valid and Exist, Later we use token to hide the ID from Hackers. if 
 	//some1 tries to access this url with a valid ID we forward to 404 page
     $this->validate = Doctrine_Core::getTable('InvestmentApplication')->find(array($request->getParameter('id')));
+	//we also set the values for the form. to the business that the user is working on.
+	//we use the id 2 passed and 
 	$this->form = new ProjectSummaryForm();
 	$this->forward404Unless($this->validate);
+
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -111,6 +114,16 @@ class projectSummaryActions extends sfActions
 	  $address = $q['company_address'];
 	 }
      $this->forward404Unless($this->validate);
+	 ///we get email address of the applicant
+	  //we will output the file and send it to the Investors email address. Get the email address of the investor
+	 $userEmail = null;
+	 $email = Doctrine_Core::getTable('InvestmentCertificate')->getInvestorEmail($request->getParameter('id'));
+	 //get email
+	 foreach($email as $em)
+	 {
+	    $userEmail = $em['email_address'] ;
+	 }
+	 
    //execute action for printing pdf document of this report
 	  $config = sfTCPDFPluginConfigHandler::loadConfig();
           sfTCPDFPluginConfigHandler::includeLangFile($this->getUser()->getCulture());
@@ -206,7 +219,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 			 
 	    $message = Swift_Message::newInstance()
 			  ->setFrom('admin@rdb.com')
-			  ->setTo('Mwendia.bonface4@gmail.com')
+			  ->setTo($userEmail)
 			  ->setSubject('Application For Investment Certifcate')
 			  ->setBody('We are pleased to inform you that your companys application 
 			  for investment registration was approved by RDB. Please See attached letter. Thankyou')

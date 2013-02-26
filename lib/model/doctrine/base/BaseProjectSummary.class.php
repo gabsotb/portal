@@ -8,16 +8,16 @@
  * @property integer $investment_id
  * @property string $business_sector
  * @property string $techinical_viability
- * @property string $planned_investment
- * @property string $employment_created
+ * @property integer $planned_investment
+ * @property integer $employment_created
  * @property string $job_categories
  * @property InvestmentApplication $InvestmentApplication
  * 
  * @method integer               getInvestmentId()          Returns the current record's "investment_id" value
  * @method string                getBusinessSector()        Returns the current record's "business_sector" value
  * @method string                getTechinicalViability()   Returns the current record's "techinical_viability" value
- * @method string                getPlannedInvestment()     Returns the current record's "planned_investment" value
- * @method string                getEmploymentCreated()     Returns the current record's "employment_created" value
+ * @method integer               getPlannedInvestment()     Returns the current record's "planned_investment" value
+ * @method integer               getEmploymentCreated()     Returns the current record's "employment_created" value
  * @method string                getJobCategories()         Returns the current record's "job_categories" value
  * @method InvestmentApplication getInvestmentApplication() Returns the current record's "InvestmentApplication" value
  * @method ProjectSummary        setInvestmentId()          Sets the current record's "investment_id" value
@@ -53,15 +53,13 @@ abstract class BaseProjectSummary extends sfDoctrineRecord
              'notnull' => true,
              'length' => 400,
              ));
-        $this->hasColumn('planned_investment', 'string', 400, array(
-             'type' => 'string',
+        $this->hasColumn('planned_investment', 'integer', null, array(
+             'type' => 'integer',
              'notnull' => true,
-             'length' => 400,
              ));
-        $this->hasColumn('employment_created', 'string', 400, array(
-             'type' => 'string',
+        $this->hasColumn('employment_created', 'integer', null, array(
+             'type' => 'integer',
              'notnull' => true,
-             'length' => 400,
              ));
         $this->hasColumn('job_categories', 'string', 400, array(
              'type' => 'string',

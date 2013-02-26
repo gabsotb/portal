@@ -54,8 +54,8 @@ ProjectSummary:
   investment_id: {type: integer, notnull: true, unique: true}
   business_sector: {type: string(255), notnull: true}
   techinical_viability: {type: string(400), notnull: true}
-  planned_investment: {type: string(400), notnull: true}
-  employment_created: {type: string(400), notnull: true}
+  planned_investment: {type: integer, notnull: true}
+  employment_created: {type: integer, notnull: true}
   job_categories: {type: string(400), notnull: true}
  relations:
   InvestmentApplication: {local:investment_id, foreign: id, foreignAlias: InvestmentSummary }
@@ -112,8 +112,8 @@ Payment:
   business_id: {type: integer, notnull: true}
   payment_status: {type: string(255), notnull: true, default: notpaid}
   slip_number: {type: integer, notnull: true, unique: true}
- relations:
-  InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate}  
+# relations:
+#  InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate}  
 ## Records the certificates issued to the investor by the RDB staff after successful completion of Investment Certificate application  
 InvestmentCertificate:
  actAs:
@@ -307,3 +307,13 @@ sfGuardUserProfile:
    type: one
    foreignType: one
    foreignAlias: Profile
+Portlets:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  investment_certificate: {type: string(7000), notnull: true}
+  eia_certificate: {type: string(7000), notnull: true}
+  tax_exemptions: {type: string(7000), notnull: true}

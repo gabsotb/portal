@@ -140,7 +140,7 @@
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('dataAdminJob/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign to Staff</button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign to Staff</button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
@@ -156,7 +156,7 @@
 							    <?php  endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="<?php echo url_for('taskManagement/index') ?>" class="btn btn-mini pull-right">View All Assigned Tasks</a>
+										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-mini pull-right">View All Assigned Tasks</a>
 									</div>
 								</div>
 							</div>

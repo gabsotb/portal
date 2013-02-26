@@ -23,24 +23,40 @@
 									<a href="#EIA" data-toggle="tab">EIA Info</a>
 								</li>
 								<li class="active">
-									<a href="IC" data-toggle="tab">Inv. Cert</a>
+									<a href="#IC" data-toggle="tab">Inv. Cert</a>
 								</li>
 							</ul>
 							<div class="tab-content">
-								<div class="tab-pane active" id="IC">
-									<p> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-
-									<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. sed diam nonummy nibh euismod.</P>
+							<?php 
+							// retrieve the portlets information
+                             $data = Doctrine_Core::getTable('Portlets')->getPortlets();
+							 ///variables
+							 $invest = null;
+							 $eia = null;
+							 $tax = null;
+							 ///
+							 foreach($data as $d)
+							 {
+							   $invest = $d['investment_certificate'];
+							   $eia = $d['eia_certificate'];
+							   $tax = $d['tax_exemptions'];
+							 }
+							?>
+							
+								<div class="tab-pane active a" id="IC">
+									<p>
+									<?php echo $invest; ?>
+									</p>
 								</div>
 								<div class="tab-pane" id="EIA">
-									<p> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-
-									<p style="color: red;">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. sed diam nonummy nibh euismod.</P>
+									<p>
+									<?php echo  $eia; ?>
+									</p>
 								</div>
 								<div class="tab-pane" id="Tax">
-									<p> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-
-									<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. sed diam nonummy nibh euismod.</P>
+									<p>
+									<?php echo $tax; ?>
+									</p>
 								</div>
 							</div>
 						</div>

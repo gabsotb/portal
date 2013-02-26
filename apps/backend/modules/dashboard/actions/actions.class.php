@@ -431,7 +431,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 	    $message = Swift_Message::newInstance()
 			  ->setFrom('admin@rdb.com')
 			  ->setTo($userEmail)
-			  ->setSubject('Investment Certifcate')
+			  ->setSubject('Investment Certificate')
 			  ->setBody('You have been issued with Investment Registration Certificate. Please download it. Thankyou')
 			   ->attach(Swift_Attachment::fromPath($target_path));
 			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/;

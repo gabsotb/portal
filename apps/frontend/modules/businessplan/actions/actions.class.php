@@ -45,7 +45,9 @@ class businessplanActions extends sfActions
 	  }
 	  if($business != null)
 	  {
+	    
 	    $this->form = new BusinessPlanForm();
+		
 	
 	  }
    
@@ -135,13 +137,31 @@ class businessplanActions extends sfActions
 				  $adminaddresses = array() ;
 				  $role = "departmentadmins";
 				  $admins = Doctrine_Core::getTable('BusinessPlan')->getUsers($role);
+				  $admincontent = "A New application for Investment Certificate has been received.\n".
+										 "from '$receipient' Please Assign it to a data administrator";
+				 $adminnotification = "New Application for Investment Certificate";						 
+				  //
 				  //
 				  foreach($admins as $v)
 				  {
 				    $adminaddresses  [] = $v['email_address'];
+					//System Internal Notifications
+					//Messages to All Admins
+			          $msg->sender = "noreply@rbb.com";
+					  $msg->recepient = $v['username'];
+					  $msg->message = $admincontent;
+					  $msg->created_at = date('Y-m-d H:i:s');
+					  
+					//Notifications to All Admins
+					 $notify->recepient = $v['username'];
+				     $notify->message = $adminnotification;
+				     $notify->created_at = date('Y-m-d H:i:s');
 				  }
+				  //
+				   $msg->save();
+				   $notify->save();
 				  //send mail to admins
-				  $this->getMailer()->composeAndSend('noreply@ttfa.net',
+				  $this->getMailer()->composeAndSend('noreply@rdb.com',
 										$adminaddresses ,
 										'New Application for Investment Certificate ',
 										"A New application for Investment Certificate has been received.\n".
@@ -149,6 +169,7 @@ class businessplanActions extends sfActions
 										 "http://198.154.203.38:8234/backend.php"
 													  ); 
 				  //////////////////////////////////////////
+				  
 				  
 	             /////////////////////////////////////////////////
 	 $this->redirect('investmentapp/index');

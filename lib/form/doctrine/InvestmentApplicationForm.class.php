@@ -22,12 +22,21 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
 		}
 		return $numbers;
   }
+  public function legalNatureValues()
+  {
+   $natures = array("Private Limited","Private Limited Liability","Public Limited ","Public Limited Liability");
+   return $natures;
+   
+  }
  // protected static $numbers =  generateNumbers();
   
   public function configure()
   {
    //Labels
    $this->widgetSchema->setLabel('created_at', 'Date');
+   $this->widgetSchema->setLabel('registration_number','TIN Number');
+   $this->widgetSchema->setLabel('name','Company Name');
+   //$this->widgetSchema->setLabel('job_created', 'Jobs Created');
    //$this->widgetSchema = new sfWidgetFormSelect(array('choices' => date('Y-m-d H:i:s')));
    //set default date and time
    $this->setDefault('created_at',date('Y-m-d H:i:s')); 
@@ -132,6 +141,8 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
 		//print_r ($numbers); exit;
   
    $this->widgetSchema['job_created'] = new sfWidgetFormSelect(array('choices' => self::generateNumbers()));
+   $this->widgetSchema['company_legal_nature'] = new sfWidgetFormSelect(array('choices' => self::legalNatureValues()));
+   
    
    //validators overriding
   /*$this->setValidators(array(

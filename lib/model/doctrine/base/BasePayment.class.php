@@ -8,16 +8,13 @@
  * @property integer $business_id
  * @property string $payment_status
  * @property integer $slip_number
- * @property InvestmentApplication $InvestmentApplication
  * 
- * @method integer               getBusinessId()            Returns the current record's "business_id" value
- * @method string                getPaymentStatus()         Returns the current record's "payment_status" value
- * @method integer               getSlipNumber()            Returns the current record's "slip_number" value
- * @method InvestmentApplication getInvestmentApplication() Returns the current record's "InvestmentApplication" value
- * @method Payment               setBusinessId()            Sets the current record's "business_id" value
- * @method Payment               setPaymentStatus()         Sets the current record's "payment_status" value
- * @method Payment               setSlipNumber()            Sets the current record's "slip_number" value
- * @method Payment               setInvestmentApplication() Sets the current record's "InvestmentApplication" value
+ * @method integer getBusinessId()     Returns the current record's "business_id" value
+ * @method string  getPaymentStatus()  Returns the current record's "payment_status" value
+ * @method integer getSlipNumber()     Returns the current record's "slip_number" value
+ * @method Payment setBusinessId()     Sets the current record's "business_id" value
+ * @method Payment setPaymentStatus()  Sets the current record's "payment_status" value
+ * @method Payment setSlipNumber()     Sets the current record's "slip_number" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -49,10 +46,6 @@ abstract class BasePayment extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('InvestmentApplication', array(
-             'local' => 'business_id',
-             'foreign' => 'id'));
-
         $timestampable0 = new Doctrine_Template_Timestampable();
         $signable0 = new Doctrine_Template_Signable(array(
              'created:{ name' => 'created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}',
