@@ -16,4 +16,14 @@ class TorStatusTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('TorStatus');
     }
+	
+	static public $decisions = array(
+		'Reject',
+		'Approve',
+	);
+	
+	public function getDecisions()
+	{
+		return self::$decisions;
+	}
 }

@@ -31,6 +31,8 @@ class dashboardActions extends sfActions
    ////////////EIA////////////
    $this->unassigned= Doctrine_Core::getTable('EIApplication')->getApplications('Submitted');
    $this->jobs= Doctrine_Core::getTable('EITaskAssignment')->getJobs('notstarted');
+   //////////TOR/////
+   $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
    //////////////////////////
    //we need to call a function that we get the status of task assigned to the user logged in.
    //if the user has started and generate a report, the user cannot make a new report again. wen he/she logins in 

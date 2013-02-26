@@ -28,7 +28,7 @@ abstract class BaseTorStatusForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'tor_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Tor'))),
-      'status'     => new sfValidatorString(array('max_length' => 255)),
+      'status'     => new sfValidatorInteger(),
       'comments'   => new sfValidatorString(array('max_length' => 400, 'required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),

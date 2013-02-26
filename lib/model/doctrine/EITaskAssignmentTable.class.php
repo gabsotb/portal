@@ -34,4 +34,14 @@ class EITaskAssignmentTable extends Doctrine_Table
 		
 		return $query;
 	}
+	
+	public function updateWorkStatus($Status,$id)
+	{
+		$q = Doctrine_Query::create()
+			->UPDATE('EITaskAssignment')
+			->SET('work_status', '?', $Status)
+			->WHERE('user_assigned = ?', $id);	
+		return $q->execute();
+	}
+		
 }

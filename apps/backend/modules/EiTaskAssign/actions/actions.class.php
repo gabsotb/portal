@@ -92,4 +92,5 @@ class EiTaskAssignActions extends sfActions
 		$this->processForm($request, $this->form);
 		$this->setTemplate('impactEdit');
 	}
+	
 }

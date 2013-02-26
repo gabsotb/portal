@@ -2,8 +2,10 @@
 # http://www.symfony-project.org/reference/1_4/en/11-App
 
 # default values
-#all:
+ #all:
  #error_management: ## Enable error logging modules
  ## record_php_error: true
  # ask_user_to_comment: true
  # after_comment_route: @homepage 
+all:
+  most_recent_dates: 10
