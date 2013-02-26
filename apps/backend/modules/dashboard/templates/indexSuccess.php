@@ -195,7 +195,7 @@
 										<tbody>
 											<tr>
 												
-												<td><?php echo $unassign['developer_name'] ?> </td>
+												<td><?php echo $unassign['name'] ?> </td>
 												<td><?php echo $unassign['created_at'] ?></td>
 												<td><?php echo $unassign['first_name'] ?></td>
 											
@@ -540,7 +540,7 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td><?php echo $job['developer_name'] ?></td>
+												<td><?php echo $job['name'] ?></td>
 												<td><?php echo $job['instructions'] ?></td>
 												<td><?php echo $job['duedate'] ?></td>
 												<td><?php echo $job['updated_by'] ?></td>

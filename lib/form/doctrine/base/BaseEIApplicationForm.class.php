@@ -16,8 +16,8 @@ abstract class BaseEIApplicationForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
+      'name'                => new sfWidgetFormInputText(),
       'company_regno'       => new sfWidgetFormInputText(),
-      'developer_name'      => new sfWidgetFormInputText(),
       'developer_title'     => new sfWidgetFormInputText(),
       'developer_address'   => new sfWidgetFormInputText(),
       'project_name'        => new sfWidgetFormInputText(),
@@ -36,8 +36,8 @@ abstract class BaseEIApplicationForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'name'                => new sfValidatorString(array('max_length' => 255)),
       'company_regno'       => new sfValidatorString(array('max_length' => 255)),
-      'developer_name'      => new sfValidatorString(array('max_length' => 255)),
       'developer_title'     => new sfValidatorString(array('max_length' => 255)),
       'developer_address'   => new sfValidatorString(array('max_length' => 255)),
       'project_name'        => new sfValidatorString(array('max_length' => 255)),

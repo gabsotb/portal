@@ -230,6 +230,7 @@
 						<li class=""><?php echo link_to('<i class="icon-filter"></i> Groups Permissions', '@sf_guard_user_permissions') ?> </li>
 					</ul>
 				</li>
+				<li class=""><?php echo link_to('<i class="icon-user"></i> Information Portlets', 'information_portlets') ?> </li>
 				<?php endif ?>
 				<!-- end -->
 				

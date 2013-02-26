@@ -26,7 +26,7 @@ class BusinessPlanForm extends BaseBusinessPlanForm
     ////
     /* $this->widgetSchema['investment_id'] =  new sfWidgetFormSelect(array(
 	  'multiple' => 'false',
-	  'choices'  => $this->getBusiness("company3"),
+	  'choices'  => $this->getBusiness("edwincompany"),
 	  'default'  => array('en', 0)
 	));	*/
   }

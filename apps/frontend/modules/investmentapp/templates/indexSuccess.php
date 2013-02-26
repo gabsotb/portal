@@ -373,7 +373,7 @@ $(function () {
 																<tbody>
 																	<tr>
 																		
-																		<td><?php echo $eia['developer_name'] ?></td>
+																		<td><?php echo $eia['name'] ?></td>
 																		<td><?php echo $eia['application_status'] ?></td>
 																	</tr>
 																	

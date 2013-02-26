@@ -1,7 +1,7 @@
 <?php foreach($jobs as $job): ?>
 
 <div class="span12">
-	<h3 class="page-title">Summary for <?php echo $job['developer_name'] ?> <small> Environmental Impact Assessment </small> </h3>
+	<h3 class="page-title">Summary for <?php echo $job['name'] ?> <small> Environmental Impact Assessment </small> </h3>
 </div>
 
 <div id="page">
@@ -86,7 +86,7 @@
 							<strong> Company RegNo. </strong>
 							<?php echo $job['company_regno'] ?><br/>
 							<strong> Developer's Name </strong>
-							<?php echo $job['developer_name'] ?><br/>
+							<?php echo $job['name'] ?><br/>
 							<strong> Developer's Title </strong>
 							<?php echo $job['developer_title'] ?><br/>
 							<address>

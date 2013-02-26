@@ -75,7 +75,7 @@ class EIAActions extends sfActions
 	  {
 		$allFormValues = $request->getParameter($this->form->getName());
 		//access values
-		 $name = $allFormValues['developer_name'];
+		 $name = $allFormValues['name'];
 		 $regno = $allFormValues['company_regno'];
 		 
 		 //class to access method

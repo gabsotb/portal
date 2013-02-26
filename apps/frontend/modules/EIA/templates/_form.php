@@ -7,10 +7,10 @@
    
 		<?php echo $form->renderGlobalErrors() ?> 
 		<div class="control-group">
-			<?php $form['developer_name']->renderError() ?>
-			<?php $form['developer_name']->renderLabel() ?>
+			<?php $form['name']->renderError() ?>
+			<?php $form['name']->renderLabel() ?>
 			<div class="controls">
-				<?php echo $form['developer_name']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Enter A Valid developer Name, The Name entered will be verified and counter checked
+				<?php echo $form['name']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Enter A Valid developer Name, The Name entered will be verified and counter checked
 				from the business registration system. Make sure you have a registered name' , 'data-original-title' => 'Developer Name')) ?>
 			</div>
 		</div>

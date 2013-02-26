@@ -47,7 +47,7 @@ class EIApplication extends BaseEIApplication
 			  try
 			  {
 				
-				  $name = $this->getDeveloperName();  
+				  $name = $this->getName();  
 				  ///
 					$ret = parent::save($conn);
 					$conn->commit();

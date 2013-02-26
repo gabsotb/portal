@@ -423,7 +423,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 	    $userEmail = $em['email_address'] ;
 	 }
 	 //
-	 $target_path = "uploads/documents/certificate.pdf";
+	   /*$target_path = "uploads/documents/certificate.pdf";
 	
 			 
 	    $message = Swift_Message::newInstance()
@@ -435,7 +435,14 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/;
 			 
 
-			$this->getMailer()->send($message);
+			$this->getMailer()->send($message); */
+			$this->getMailer()->composeAndSend('noreply@rdb.com',
+										$userEmail ,
+										'Investment Registration Certificate ',
+										"Congratulations! You Have been Issued with The Investment Registration Certificate. \n
+										You are advised to come and collect it at our Offices at Rwanda Development Board (RDB). Thankyou and
+										welcome."
+													  ); 
 	 /////////////////////////////////////////////
 	 //
 	

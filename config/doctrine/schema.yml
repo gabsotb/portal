@@ -137,8 +137,8 @@ EIApplication:
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
+  name: {type: string(255), notnull: true}
   company_regno: {type: string(255), notnull: true, unique: true}
-  developer_name: {type: string(255), notnull: true}
   developer_title: {type: string(255), notnull: true}
   developer_address: {type: string(255), notnull: true}
   project_name: {type: string(255), notnull: true}

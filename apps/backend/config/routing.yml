@@ -40,6 +40,9 @@ make_report: #Route for creating a new Project Summary Report
 investment_cert_task:
  url: /certificate/taskAssign
  param: { module: InvestmentCertTaskAssignment, action: index }
+information_portlets:
+ url: /information/portlets
+ param: { module: portlets, action: index }
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
