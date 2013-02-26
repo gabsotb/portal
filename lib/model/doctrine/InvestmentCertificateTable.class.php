@@ -64,8 +64,11 @@ class InvestmentCertificateTable extends Doctrine_Table
 	//get the investor email address using passed id
 	public function getInvestorEmail($id)
 	{
-	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.updated_by, sf_guard_user.email_address
-	 from investment_application left join sf_guard_user on investment_application.created_by = sf_guard_user.id ");
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.updated_by,
+	 sf_guard_user.email_address
+	 from investment_application left join sf_guard_user on investment_application.created_by = sf_guard_user.id 
+	 where investment_application.id = '$id'
+	 ");
 	 return $query;
 	}
 	//we show user notification for application of investment certificate.

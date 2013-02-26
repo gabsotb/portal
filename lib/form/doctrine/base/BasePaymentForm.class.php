@@ -16,7 +16,7 @@ abstract class BasePaymentForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'             => new sfWidgetFormInputHidden(),
-      'business_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'), 'add_empty' => false)),
+      'business_id'    => new sfWidgetFormInputText(),
       'payment_status' => new sfWidgetFormInputText(),
       'slip_number'    => new sfWidgetFormInputText(),
       'created_at'     => new sfWidgetFormDateTime(),
@@ -27,7 +27,7 @@ abstract class BasePaymentForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'business_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
+      'business_id'    => new sfValidatorInteger(),
       'payment_status' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'slip_number'    => new sfValidatorInteger(),
       'created_at'     => new sfValidatorDateTime(),

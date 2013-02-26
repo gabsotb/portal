@@ -172,5 +172,24 @@ class TaskAssignmentTable extends Doctrine_Table
 	  //
 	  return $query;
 	}
+	/*We use this method to retrieve tasks which this looged administrator has assigned to data admins*/
+	public function getAssignedTasks($username)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	  SELECT task_assignment.id, sf_guard_user.username,investment_application.name,task_assignment.work_status,task_assignment.duedate, task_assignment.instructions,
+	  task_assignment.created_at from task_assignment left join sf_guard_user on task_assignment.user_assigned = sf_guard_user.id
+	  left join investment_application on task_assignment.investmentapp_id = investment_application.id
+	  where task_assignment.updated_by = '$username' 
+	  ");
+	  return $query;
+	}
+	//This method will return the email address of a user 
+	public function getUserEmailAddress($id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	 SELECT email_address,username from sf_guard_user where sf_guard_user.id = '$id'
+	 ");
+	 return $query;
+	}
 	
 }

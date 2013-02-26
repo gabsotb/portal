@@ -156,7 +156,7 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'business_id'));
 
-        $this->hasMany('Payment as InvestmentCertificate', array(
+        $this->hasMany('InvestmentCertificate', array(
              'local' => 'id',
              'foreign' => 'business_id'));
 
