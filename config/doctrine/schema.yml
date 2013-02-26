@@ -213,7 +213,7 @@ TorStatus:
    updated: { name: updated_by,type: string}
  columns:
   tor_id: {type: integer, notnull: true}
-  status: {type: string(255), notnull: true}
+  status: {type: integer(1), notnull: true}
   comments: {type: string(400), notnull: false}
  relations:
   Tor: {local: tor_id,  foreign: id, foreignAlias: TorStatus, onDelete:CASCADE}

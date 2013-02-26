@@ -12,5 +12,19 @@ class TorStatusForm extends BaseTorStatusForm
 {
   public function configure()
   {
+		unset(
+			$this['created_at'], $this['created_by'],
+			$this['updated_by'], $this['updated_at']
+		);
+		
+		$this->widgetSchema['status'] = new sfWidgetFormChoice(array(
+		'choices' => Doctrine_Core::getTable('TorStatus')->getDecisions(),
+		'multiple' => false, 
+		'expanded' => false,
+		));	
+		
+		$this->validatorSchema['status'] = new sfValidatorChoice(array(
+		'choices' => array_keys(Doctrine_Core::getTable('TorStatus')->getDecisions()),
+		));
   }
 }

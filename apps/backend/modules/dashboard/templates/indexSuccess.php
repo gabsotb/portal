@@ -524,7 +524,7 @@
 									<?php if(count($jobs) <= 0): ?>
 									<div class="alert alert-info">
 										<p><strong>Information!</strong> <br/> No jobs assigned.</p>
-										<p>Reload the Page or try Again Later</p>
+										<p>Reload the Page or Try Again Later</p>
 									</div>
 									<?php endif ?>
 									<?php foreach($jobs as $job ): ?>
@@ -559,6 +559,42 @@
 							</div>
 						</div> 
 					</div>
+				<div class="row-fluid">
+					<div class="span8">
+						<div class="widget">
+							<div class="widget-title">
+								<h4><i class="icon-reorder"></i> Recent T.O.R Applications </h4>
+							</div>
+							<div class="widget-body">
+								<?php if(count($tors) <= 0): ?>
+								<div class="alert alert-info">
+									<p><strong>Information!</strong> <br/> No Recent T.O.R Applications Found</p>
+										<p>Reload the Page or Try Again Later</p>
+									</div>
+									<?php endif ?>
+							<? endif ?>
+							<?php foreach($tors as $tor): ?>
+							<table class="table table-striped table-bordered table-advance table-hover">
+								<thead>
+									<tr>
+										<th> Developer's Name </th>
+										<th> User's Name </th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><?php echo link_to($tor['developer_name'],'tor2/show?id='.$tor['id']) ?></td>
+										<td><?php echo $tor['updated_by'] ?></td>
+										<td><?php echo button_to('View','tor2/show?id='.$tor['id'],array('class' => 'btn btn-inverse')) ?></td>
+									</tr>
+								</tbody>
+							</table>
+							<?php endforeach ?>
+							</div>
+						</div>
+					</div>
+				</div>
 					
 <?php endif; ?>		
 <!-- ********************************************************************** -->

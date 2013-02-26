@@ -36,6 +36,8 @@ class ProjectImpact extends BaseProjectImpact
 					}
 					Doctrine_Core::getTable('EIApplicationStatus')->updateComment("Your Document has been processed.{$level} ",	$this->getCompanyId());
 					Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage("50",	$this->getCompanyId());
+					
+					Doctrine_Core::getTable('EITaskAssignment')->updateWorkStatus("processed",sfContext::getInstance()->getUser()->getGuardUser()->getId());
 						
 					return $ret ;
 					
