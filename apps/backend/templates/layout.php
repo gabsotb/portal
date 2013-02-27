@@ -230,11 +230,33 @@
 						<li class=""><?php echo link_to('<i class="icon-filter"></i> Groups Permissions', '@sf_guard_user_permissions') ?> </li>
 					</ul>
 				</li>
+				<li class="has-sub">
+					<a href="javascript:;" class="">
+					<i class="icon-bar-chart"></i> Approve Requests
+					<span class="arrow"></span>
+					</a>
+					<ul class="sub">
+						<li class=""><a href ="#"><i class="icon-fire"></i> Investment Certificates </a></li>
+						<li class=""> <a href ="#"><i class="icon-fire"></i> EIA Certificates </a></li>
+					</ul>
+				</li>
 				<li class=""><?php echo link_to('<i class="icon-user"></i> Information Portlets', 'information_portlets') ?> </li>
 				<?php endif ?>
 				<!-- end -->
-				
+				<li class="has-sub">
+					<a href="javascript:;" class="">
+					<i class="icon-bar-chart"></i> Reporting
+					<span class="arrow"></span>
+					</a>
+					<ul class="sub">
+						<li class=""><a href ="#"><i class="icon-fire"></i> Investment Certificates </a></li>
+						<li class=""> <a href ="#"><i class="icon-fire"></i> EIA Certificates </a></li>
+						<li class="">  <a href ="#"><i class="icon-fire"></i> Tax Exemptions</a> </li>
+					</ul>
+				</li>
 				<li> <?php echo link_to('<i class="icon-lightbulb"></i> Help','@'); ?></li>
+				
+				<!--<li class="">  <a href ="<?php //echo url_for('sfKoreroChannel/index') ?>"><i class="icon-fire"></i> Managers Channel</a> </li>-->
 				<li> <?php echo link_to('<i class="icon-signout"></i> Logout','@sf_guard_signout'); ?></li>
 			</ul>
 		</div>

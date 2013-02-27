@@ -294,6 +294,7 @@ $(function () {
 															  
 															?>
 														<?php if($investment_id != null){ ?>
+														 <?php echo "heheheheh"; ?>
 															 <!-- if it is null we show buttons -->
 															 <?php if($response == null) { ?>
 																 <div class="alert alert-block alert-warning fade in">

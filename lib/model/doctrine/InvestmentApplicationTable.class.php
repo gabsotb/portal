@@ -95,13 +95,18 @@ class InvestmentApplicationTable extends Doctrine_Table
 	//get the current logged in user InvestmentApplication submission
 	public function getUserInvestmentApplicationSubmission($user_id)
 	{
-	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc(
+	   /* $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc(
 	   "SELECT investment_application.id, investment_application.name from investment_application 
 	   LEFT JOIN business_application_status ON  investment_application.id = business_application_status.business_id
 	   where investment_application.created_by = '$user_id' 
 	   and business_application_status.application_status != 'certificateissued'
 	   ORDER BY investment_application.created_at DESC LIMIT 1
-	   " 
+	   " */
+	   //This method is supposed to counter check that a given id exist in two tables. ie InvestmentApplicationTable and BusinessPlanTable
+	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	    SELECT investment_application.id, investment_application.name,business_plan.investment_id from investment_application 
+	   LEFT JOIN business_plan ON  investment_application.id = business_plan.investment_id
+	   where investment_application.created_by = '$user_id' "
 	   );
 	   return $query;
 	}

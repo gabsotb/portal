@@ -11,6 +11,7 @@
  * @property string $lastname
  * @property timestamp $validate_at
  * @property string $validate
+ * @property string $id_passport
  * @property string $phone_number
  * @property string $birth_date
  * @property integer $age
@@ -24,6 +25,7 @@
  * @method string             getLastname()     Returns the current record's "lastname" value
  * @method timestamp          getValidateAt()   Returns the current record's "validate_at" value
  * @method string             getValidate()     Returns the current record's "validate" value
+ * @method string             getIdPassport()   Returns the current record's "id_passport" value
  * @method string             getPhoneNumber()  Returns the current record's "phone_number" value
  * @method string             getBirthDate()    Returns the current record's "birth_date" value
  * @method integer            getAge()          Returns the current record's "age" value
@@ -36,6 +38,7 @@
  * @method sfGuardUserProfile setLastname()     Sets the current record's "lastname" value
  * @method sfGuardUserProfile setValidateAt()   Sets the current record's "validate_at" value
  * @method sfGuardUserProfile setValidate()     Sets the current record's "validate" value
+ * @method sfGuardUserProfile setIdPassport()   Sets the current record's "id_passport" value
  * @method sfGuardUserProfile setPhoneNumber()  Sets the current record's "phone_number" value
  * @method sfGuardUserProfile setBirthDate()    Sets the current record's "birth_date" value
  * @method sfGuardUserProfile setAge()          Sets the current record's "age" value
@@ -77,6 +80,11 @@ abstract class BasesfGuardUserProfile extends sfDoctrineRecord
         $this->hasColumn('validate', 'string', 33, array(
              'type' => 'string',
              'length' => 33,
+             ));
+        $this->hasColumn('id_passport', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
              ));
         $this->hasColumn('phone_number', 'string', 255, array(
              'type' => 'string',

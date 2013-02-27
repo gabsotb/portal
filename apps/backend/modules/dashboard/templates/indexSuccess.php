@@ -1,4 +1,92 @@
-
+<!--some Javascripts for Loading High Charts Graph -->
+ <script type="text/javascript">
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'cont',
+                type: 'column',
+				height: 500,
+				width: 700
+            },
+            title: {
+                text: 'RDB Tasks Performance Analysis. Year 2013'
+            },
+            subtitle: {
+                text: 'Source: Rwanda Development Board'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Items Processed'
+                }
+            },
+			credits:
+				{
+					enabled: false
+				},
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y +' ';
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'Investment Certificates',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+    
+            }, {
+                name: 'EIA Certificates',
+                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    
+            }, {
+                name: 'Tax Exemptions',
+                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+    
+            }, {
+                name: 'Visa Issued',
+                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+    
+            }]
+        });
+    });
+    
+});
+		</script>
+<!-- End js code -->
 <div id="page" class="dashboard">
 <!-- ******************************************************************* -->
 <?php if($sf_user->hasCredential('assignJob')): ?>
@@ -119,45 +207,47 @@
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-shopping-cart"></i>Recent Applications  Investment Certificates</h4>						
+									<h4>Recent Applications  Investment Certificates</h4>						
 								</div>
 								<div class="widget-body">
+								<?php if(count($new_applications) <= 0): ?>
+								<div class="alert alert-info">
+										<strong>Information!</strong> <br/>Seems like all applications
+										for Investment Certificate have been assigned to data admins or there are no new applications.
+										I will try later... 
+								</div>
+							    <?php  endif; ?>
 								<?php if(count($new_applications) != null) : ?>
-									<table class="table table-striped table-bordered table-advance table-hover">
+									<table class="table table-striped table-bordered" id="investment_applications_manager">
 										<thead>
 											<tr>
-												<th><i class="icon-user"></i> <span class="hidden-phone">From</span></th>
+												<th><i class="icon-user"></i> <span class="hidden-phone">Submitted by</span></th>
 												<th><i class="icon-briefcase"></i> <span class="hidden-phone ">Business Name</span></th>
-												<th><i class=""> </i><span class="hidden-phone">Submitted On</span></th>
-												<th></th>
+												<th><i class="icon-time"> </i><span class="hidden-phone">Submitted On</span></th>
+												<th>Actions</th>
 											</tr>
 										</thead>
 										<tbody>
 										  <?php foreach($new_applications as $available): ?>
-											<tr>
+											<tr class="odd gradeX">
 												<td class="highlight">
 													<?php echo $available['updated_by'] ?>
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign to Staff</button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
 										</tbody>
 									</table>
-								<?php endif; ?>
-							    <?php if(count($new_applications) <= 0): ?>
-								<div class="alert alert-info">
-										<strong>Information!</strong> <br/>Sorry, I found no record to display. Seems like all applications
-										for Investment Certificate have been assigned to data admins or there are no new applications.
-										I will try later... 
-								</div>
-							    <?php  endif; ?>
+								
+							    
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-mini pull-right">View All Assigned Tasks</a>
+										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
+									<?php endif; ?>
 								</div>
 							</div>
 							<!-- END RECENT ORDERS PORTLET-->
@@ -166,53 +256,91 @@
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-shopping-cart"></i>Recent Applications for  EIA Certificates</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-					
-									<a href="javascript:;" class="icon-refresh"></a>		
-									
-									</span>							
+									<h4>Recent Applications for  EIA Certificates</h4>						
 								</div>
 								<div class="widget-body">
 									<?php if(count($unassigned) <= 0): ?>
-									<div class="alert alert-info">
-										<p><strong>Information!</strong> <br/> No record to display. Seems like all applications
-										for Enviromental Impact Assessment Certificate have been assigned to data admins or there are no new applications.</p>
-										<p> Try Again Later</p>
+									<div class="alert alert-block alert-success fade in">
+										<p><strong>Information!</strong> <br/>Seems like all applications
+										for EIA Certificate have been assigned to data admins or there are no new applications.
+										I will try later... </p>
+										 
 									</div>
 									<?php endif ?>
-									<table class="table table-striped table-bordered table-advance table-hover">
+									<?php if(count($unassigned) > 0): ?>
+									<table class="table table-striped table-bordered" id="eia_manager">
 										<?php foreach($unassigned as $unassign): ?>
 										<thead>
-											<tr>
+											<tr class="odd gradeX">
+											  <th><i class="icon-user"> </i><span class="hidden-phone">Submitted By</span></th>
 												<th><i class="icon-truck"></i> <span class="hidden-phone ">Developer's Name</span></th>
 												<th><i class="icon-time"> </i><span class="hidden-phone">Submitted On</span></th>
-												<th><i class="icon-user"> </i><span class="hidden-phone">Submitted By</span></th>
-												<th></th>
+												<th>Actions</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												
+												<td><?php echo $unassign['first_name'] ?></td>
 												<td><?php echo $unassign['name'] ?> </td>
 												<td><?php echo $unassign['created_at'] ?></td>
-												<td><?php echo $unassign['first_name'] ?></td>
-											
-												<td><?php echo button_to('Assign to Staff','EiTaskAssign/new',array('class' => 'btn btn-inverse')) ?></td>
+												<td> <a href="<?php echo url_for('EiTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+									
 											</tr>
 											
 											
 										</tbody>
 										<?php endforeach ?>
 									</table>
+									
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="#" class="btn btn-mini pull-right">View All</a>
+										<a href="#" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
+									<?php endif; ?>
 								</div>
 							</div>
-					</div>	</div>				
+					</div>	</div>		
+         <div class="row-fluid">
+                 <div class="span8">
+						<div class="widget">
+						          <div class="widget-title">
+									<h4><i class="icon-signal"></i>RDB Task Processing Performance Pie Chart</h4>
+															
+								</div>
+								<div id="cont" class="widget-body">
+									
+								</div>
+							</div>
+							
+				 </div>
+				 <div class="span4">
+					 <div class="widget">
+					     <div class="widget-title">
+									<h4><i class="icon-bell"></i>Notifications</h4>
+									<span class="tools">
+									<a href="javascript:;" class="icon-chevron-down"></a>
+									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
+									<a href="javascript:;" class="icon-refresh"></a>
+									</span>							
+						 </div>
+						 <div class="widget-body">
+						  <ul class="item-list scroller padding" data-height="307" data-always-visible="1">
+							   <li>
+									<span class="label label-success"><i class="icon-bell"></i></span>
+									<span>New user registered.</span>
+									<span class="small italic">Just now</span>
+								</li>
+								<li>
+									<span class="label label-success"><i class="icon-bell"></i></span>
+									<span>Certificate issued to Investor A</span>
+									<span class="small italic">15 mins ago</span>
+								</li>
+						  </ul>
+						 </div>
+					 </div>
+				 </div>
+				 
+	     </div>			
 <?php endif; ?>
 <!-- ********************************************************************** -->
 
@@ -446,7 +574,7 @@
 								
 								</div>
 							</div>
-							<!-- END EXAMPLE TABLE PORTLET-->
+							
 						</div>
 					</div>
 					<!-- End showing tasks -->
@@ -526,7 +654,7 @@
 										<p><strong>Information!</strong> <br/> No jobs assigned.</p>
 										<p>Reload the Page or Try Again Later</p>
 									</div>
-									<?php endif ?>
+									<?php endif; ?>
 									<?php foreach($jobs as $job ): ?>
 									<table class="table table-striped table-bordered table-advance table-hover">
 										<thead>
@@ -550,7 +678,7 @@
 											
 										</tbody>
 									</table>
-									<?php endforeach ?>
+									<?php endforeach; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="#" class="btn btn-mini pull-right">View All</a>
@@ -571,8 +699,8 @@
 									<p><strong>Information!</strong> <br/> No Recent T.O.R Applications Found</p>
 										<p>Reload the Page or Try Again Later</p>
 									</div>
-									<?php endif ?>
-							<? endif ?>
+									<?php endif; ?>
+							<? //endif; ?>
 							<?php foreach($tors as $tor): ?>
 							<table class="table table-striped table-bordered table-advance table-hover">
 								<thead>
@@ -584,7 +712,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><?php echo link_to($tor['developer_name'],'tor2/show?id='.$tor['id']) ?></td>
+										<td><?php echo link_to($tor['name'],'tor2/show?id='.$tor['id']) ?></td>
 										<td><?php echo $tor['updated_by'] ?></td>
 										<td><?php echo button_to('View','tor2/show?id='.$tor['id'],array('class' => 'btn btn-inverse')) ?></td>
 									</tr>

@@ -294,6 +294,7 @@ sfGuardUserProfile:
  actAs: {Timestampable: ~}
  columns:
   user_id: { type: integer , notnull: true}
+  id_passport: { type: string(255), notnull: true }
   phone_number: { type: string(255), notnull: false }
   birth_date: { type: string(255), notnull: false }
   age: { type: integer, notnull: false }
