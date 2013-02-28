@@ -11,7 +11,7 @@ class ProjectConfiguration extends sfProjectConfiguration
 	
 	//
 	$this->enablePlugins(array('sfDoctrinePlugin','sfDoctrineGuardPlugin', 'sfForkedDoctrineApplyPlugin' ,'sfFormExtraPlugin' ,
-	'sfDoctrineActAsSignablePlugin', 'sfThemeGeneratorPlugin', 'sfTCPDFPlugin'
+	'sfDoctrineActAsSignablePlugin', 'sfThemeGeneratorPlugin', 'sfTCPDFPlugin', 'sfKoreroPlugin'
 	)) ;
 	
 	

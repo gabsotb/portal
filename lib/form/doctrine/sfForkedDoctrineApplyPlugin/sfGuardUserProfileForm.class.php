@@ -12,5 +12,23 @@ class sfGuardUserProfileForm extends PluginsfGuardUserProfileForm
 {
   public function configure()
   {
+   // $this->widgetSchema->setLabel('id_passport', 'ID or Passport Copy');
+	//$this->widgetSchema->setHelp('id_passport','.png, jpeg,jpg and gif supported');
+	///change field to file upload field
+	$this->widgetSchema['id_passport'] = new sfWidgetFormInputFileEditable(array(
+   'label'=>'Identity Card or Passport',
+   'file_src' =>'/uploads/logos'.$this->getObject()->getIdPassport(),
+   #'is_image' => true,
+   'edit_mode' => !$this->isNew(),
+   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
+   ),array('class' => 'default'));
+   $this->validatorSchema['logo_delete'] = new sfValidatorPass();
+   //also change the default validator
+   $this->validatorSchema['id_passport'] = new sfValidatorFile(array(
+   'required' => false,
+   'path' =>sfConfig::get('sf_upload_dir').'/logos',
+   'mime_types'=> 'web_images',
+   ));
+	
   }
 }

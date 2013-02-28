@@ -1851,11 +1851,16 @@ var App = function () {
             return;
         }
 
-        if ($('.wysihtml5').size() > 0) {
+      /*  if ($('.wysihtml5').size() > 0) {
             $('.wysihtml5').wysihtml5();
-        }
-    }
-
+        } */
+		$(".wysihtml5").each(function(){$(this).wysihtml5();});
+		
+		
+  }
+   //
+    // var editor = new wysihtml5.Editor('.wysihtml6');
+	//
     var handleToggleButtons = function () {
         if (!jQuery().toggleButtons) {
             return;
@@ -1909,7 +1914,7 @@ var App = function () {
             return;
         }
 
-        $('#sample_1').dataTable({
+        $('#investment_applications_manager').dataTable({
             "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
             "sPaginationType": "bootstrap",
             "oLanguage": {
@@ -1924,7 +1929,55 @@ var App = function () {
                 'aTargets': [0]
             }]
         });
-
+		/////
+		  $('#eia_manager').dataTable({
+            "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+            "sPaginationType": "bootstrap",
+            "oLanguage": {
+                "sLengthMenu": "_MENU_ records per page",
+                "oPaginate": {
+                    "sPrevious": "Prev",
+                    "sNext": "Next"
+                }
+            },
+            "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [0]
+            }]
+        });
+         /////
+		   $('#tasks_monitor').dataTable({
+            "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+            "sPaginationType": "bootstrap",
+            "oLanguage": {
+                "sLengthMenu": "_MENU_ records per page",
+                "oPaginate": {
+                    "sPrevious": "Prev",
+                    "sNext": "Next"
+                }
+            },
+            "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [0]
+            }]
+        });
+		//
+		  $('#investmentsupervisordone').dataTable({
+            "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+            "sPaginationType": "bootstrap",
+            "oLanguage": {
+                "sLengthMenu": "_MENU_ records per page",
+                "oPaginate": {
+                    "sPrevious": "Prev",
+                    "sNext": "Next"
+                }
+            },
+            "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [0]
+            }]
+        });
+		 //
         jQuery('.group-checkable').change(function () {
             var set = jQuery(this).attr("data-set");
             var checked = jQuery(this).is(":checked");
@@ -2143,6 +2196,7 @@ var App = function () {
             handlePopover(); // handles bootstrap popovers
             handleToggleButtons(); // handles form toogle buttons
             handleWysihtml5(); //handles WYSIWYG Editor 
+			//handleWysihtml6();
             handleDateTimePickers(); //handles form timepickers
             handleColorPicker(); // handles form color pickers
             handleFancyBox(); // handles fancy box image previews

@@ -9,91 +9,91 @@
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['investment_id']->renderRow(array('class' => 'span6 chosen')) ?>
+					<?php echo $form['investment_id']->render() ?>
+				</div>
+			</div>
+		</div> 
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['executive_summary']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['executive_summary']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Executive Summary. More tips later', 'data-original-title' => 'Executive Summary')) ?>
+					<?php echo $form['promoter_profile']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['promoter_profile']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Enter Promoter Profile Details. More tips later', 'data-original-title' => 'Promoter Profile')) ?>
+					<?php echo $form['project_background']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['project_background']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Ente Project Background. More tips later', 'data-original-title' => 'Project Background')) ?>
+					<?php echo $form['equity_financing']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['equity_financing']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Enter Equity Financing. More tips later', 'data-original-title' => 'Equity Financing')) ?>
+					<?php echo $form['income_statement']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['income_statement']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Enter Income Statement Information. More tips later', 'data-original-title' => 'Income Statement')) ?>
+					<?php echo $form['cashflow_statement']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['cashflow_statement']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Enter Cash flow Information. More tips later', 'data-original-title' => 'CashFlow Statements')) ?>
+					<?php echo $form['payback_period']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['payback_period']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'What is your Project payback period', 'data-original-title' => 'Payback Period')) ?>
+					<?php echo $form['npv']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['npv']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Enter NPV. More tips later', 'data-original-title' => 'NPV')) ?>
+					<?php echo $form['loan_amortization']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['loan_amortization']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Loan Amortization Information . More tips later', 'data-original-title' => 'Loan Amortazation')) ?>
+					<?php echo $form['implementation_plan']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['implementation_plan']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'What is your project implementation plan. More tips later', 'data-original-title' => 'Implementation Plan')) ?>
+					<?php echo $form['notes']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['notes']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Enter Necessary Notes. More tips later', 'data-original-title' => 'Notes')) ?>
-				</div>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-					<?php echo $form['created_at']->renderRow(array('class' => 'span6 popovers')) ?>
+					
 					<?php echo $form->renderHiddenFields(); ?>
 				</div>
 			</div>

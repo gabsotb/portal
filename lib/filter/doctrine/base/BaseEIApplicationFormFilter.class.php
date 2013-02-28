@@ -13,8 +13,8 @@ abstract class BaseEIApplicationFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'name'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'company_regno'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'developer_name'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'developer_title'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'developer_address'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'project_name'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -32,8 +32,8 @@ abstract class BaseEIApplicationFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'name'                => new sfValidatorPass(array('required' => false)),
       'company_regno'       => new sfValidatorPass(array('required' => false)),
-      'developer_name'      => new sfValidatorPass(array('required' => false)),
       'developer_title'     => new sfValidatorPass(array('required' => false)),
       'developer_address'   => new sfValidatorPass(array('required' => false)),
       'project_name'        => new sfValidatorPass(array('required' => false)),
@@ -68,8 +68,8 @@ abstract class BaseEIApplicationFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                  => 'Number',
+      'name'                => 'Text',
       'company_regno'       => 'Text',
-      'developer_name'      => 'Text',
       'developer_title'     => 'Text',
       'developer_address'   => 'Text',
       'project_name'        => 'Text',

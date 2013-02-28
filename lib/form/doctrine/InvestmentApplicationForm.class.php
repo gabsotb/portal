@@ -42,7 +42,7 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
    $this->setDefault('created_at',date('Y-m-d H:i:s')); 
   // unset($this['username_id']);
    //unset some fields
-   unset($this['updated_at'], $this['created_by'], $this['updated_by']);
+   unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by']);
    ////
    //change the application_letter column to file input tag
    $this->widgetSchema->setHelp('application_letter','.doc Supported');
@@ -77,7 +77,7 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
    #'is_image' => true,
    'edit_mode' => !$this->isNew(),
    'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
-   ),array('class' => 'default'));
+   ));
    $this->validatorSchema['logo_delete'] = new sfValidatorPass();
    //also change the default validator
    $this->validatorSchema['incorporation_certificate'] = new sfValidatorFile(array(
@@ -125,7 +125,7 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
    #'is_image' => true,
    'edit_mode' => !$this->isNew(),
    'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
-   ),array('class' => 'default'));
+   ));
    $this->validatorSchema['logo_delete'] = new sfValidatorPass();
    //also change the default validator
    $this->validatorSchema['company_logo'] = new sfValidatorFile(array(

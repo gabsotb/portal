@@ -34,11 +34,7 @@ class dashboardActions extends sfActions
    //////////TOR/////
    $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
    //////////////////////////
-   //we need to call a function that we get the status of task assigned to the user logged in.
-   //if the user has started and generate a report, the user cannot make a new report again. wen he/she logins in 
-   //next time, they will be redirected to the page of accepting application of the investor. we will hide the process button and replace it with
-   //show report button
-   //so lets create a function that retrieves the status of application after a user has clicked make report. 
+ 
    	
   } 
     //function download letter of application
@@ -425,7 +421,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 	    $userEmail = $em['email_address'] ;
 	 }
 	 //
-	 $target_path = "uploads/documents/certificate.pdf";
+	   /*$target_path = "uploads/documents/certificate.pdf";
 	
 			 
 	    $message = Swift_Message::newInstance()
@@ -437,7 +433,14 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/;
 			 
 
-			$this->getMailer()->send($message);
+			$this->getMailer()->send($message); */
+			$this->getMailer()->composeAndSend('noreply@rdb.com',
+										$userEmail ,
+										'Investment Registration Certificate ',
+										"Congratulations! You Have been Issued with The Investment Registration Certificate. \n
+										You are advised to come and collect it at our Offices at Rwanda Development Board (RDB). Thankyou and
+										welcome."
+													  ); 
 	 /////////////////////////////////////////////
 	 //
 	

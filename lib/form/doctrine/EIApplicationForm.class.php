@@ -17,9 +17,10 @@ class EIApplicationForm extends BaseEIApplicationForm
 		);
 	
 	$this->widgetSchema->setlabels(array(
-		'company_regno' => 'Company Registration No.'
+		'company_regno' => 'Tin Number.'
 		
 		));
+		
 	
   }
 }

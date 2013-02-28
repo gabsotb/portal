@@ -32,9 +32,24 @@ make_report: #Route for creating a new Project Summary Report
 investment_cert_task:
  url: /certificate/taskAssign
  param: { module: InvestmentCertTaskAssignment, action: index }
+information_portlets:
+ url: /information/portlets
+ param: { module: portlets, action: index }
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
+channel:
+  class:   sfDoctrineRouteCollection
+  options: { model: sfKoreroChannel, module: sfKoreroChannel, prefix_path: /channel }
 
+channel_show_channel:
+  url:     /channel/:slug
+  class:   sfDoctrineRoute
+  options: { model: sfKoreroChannel, type: object }
+  param:   { module: sfKoreroChannel, action: show }
+
+message:
+  class:   sfDoctrineRouteCollection
+  options: { model: sfKoreroMessage, module: sfKoreroMessage, prefix_path: /message }
 # default rules
 homepage:
   url:   /

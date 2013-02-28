@@ -7,10 +7,18 @@ Portlets:
     updated_at: '2013-02-25 19:09:58'
     updated_by: null
 Session:
-  Session_pikjaqag6ogootssb6gnamgrv5:
-    id: pikjaqag6ogootssb6gnamgrv5
-    sessiondata: 'symfony/user/sfUser/lastRequest|i:1361808651;symfony/user/sfUser/authenticated|b:0;symfony/user/sfUser/credentials|a:0:{}symfony/user/sfUser/attributes|a:1:{s:30:"symfony/user/sfUser/attributes";a:1:{s:7:"referer";s:36:"http://localhost:81/frontend_dev.php";}}symfony/user/sfUser/culture|s:2:"en";'
-    time: '1361808651'
+  Session_96idqmkbm43ubggmcnmbcsra24:
+    id: 96idqmkbm43ubggmcnmbcsra24
+    sessiondata: ''
+    time: '1362035549'
+  Session_ieoaucimet8rkkk3sk63f0r8i7:
+    id: ieoaucimet8rkkk3sk63f0r8i7
+    sessiondata: 'symfony/user/sfUser/lastRequest|i:1362035933;symfony/user/sfUser/authenticated|b:1;symfony/user/sfUser/credentials|a:1:{i:0;s:16:"investmentassign";}symfony/user/sfUser/attributes|a:5:{s:30:"symfony/user/sfUser/attributes";a:0:{}s:12:"admin_module";a:3:{s:16:"sfGuardUser.sort";a:2:{i:0;N;i:1;N;}s:17:"sfGuardGroup.sort";a:2:{i:0;N;i:1;N;}s:22:"sfGuardPermission.sort";a:2:{i:0;N;i:1;N;}}s:25:"symfony/user/sfUser/flash";a:0:{}s:32:"symfony/user/sfUser/flash/remove";a:0:{}s:19:"sfGuardSecurityUser";a:1:{s:7:"user_id";s:1:"7";}}symfony/user/sfUser/culture|s:2:"en";'
+    time: '1362035934'
+  Session_ne6dkoonqb6imdf6hdn9foplf7:
+    id: ne6dkoonqb6imdf6hdn9foplf7
+    sessiondata: ''
+    time: '1362035527'
 sfGuardGroup:
   sfGuardGroup_1:
     name: investmentcertadmins
@@ -27,6 +35,16 @@ sfGuardGroup:
     description: 'This is a set of users who can process EIA certificate and issue certificates assigned to them by Department Admins'
     created_at: '2013-02-11 18:08:54'
     updated_at: '2013-02-11 18:08:54'
+  sfGuardGroup_4:
+    name: investmentsupervisors
+    description: 'These are supervisors who assign tasks to data admins to process Investment Certificate Applications. They Monitor and supervisor Investment Certificate Registration Assigned to investment data admins'
+    created_at: '2013-02-28 07:56:15'
+    updated_at: '2013-02-28 07:56:15'
+  sfGuardGroup_5:
+    name: eiasupervisors
+    description: 'These are Supervisors who assign tasks to data admins responsible for processing applications for EIA Certificates. '
+    created_at: '2013-02-28 07:58:20'
+    updated_at: '2013-02-28 07:58:20'
 sfGuardGroupPermission:
   sfGuardGroupPermission_1_3:
     Group: sfGuardGroup_1
@@ -43,6 +61,16 @@ sfGuardGroupPermission:
     Permission: sfGuardPermission_2
     created_at: '2013-02-11 18:09:52'
     updated_at: '2013-02-11 18:09:52'
+  sfGuardGroupPermission_4_4:
+    Group: sfGuardGroup_4
+    Permission: sfGuardPermission_4
+    created_at: '2013-02-28 07:59:34'
+    updated_at: '2013-02-28 07:59:34'
+  sfGuardGroupPermission_5_5:
+    Group: sfGuardGroup_5
+    Permission: sfGuardPermission_5
+    created_at: '2013-02-28 08:00:20'
+    updated_at: '2013-02-28 08:00:20'
 sfGuardPermission:
   sfGuardPermission_1:
     name: assignJob
@@ -59,6 +87,16 @@ sfGuardPermission:
     description: 'Permission for Investment Certificate issues'
     created_at: '2013-02-11 18:10:41'
     updated_at: '2013-02-11 18:10:41'
+  sfGuardPermission_4:
+    name: investmentassign
+    description: 'Permission for supervisors who are responsible for assigning tasks to data administrators'
+    created_at: '2013-02-28 07:59:34'
+    updated_at: '2013-02-28 07:59:34'
+  sfGuardPermission_5:
+    name: eiaassign
+    description: 'Permission for EIA Supervisors who assign jobs to eia data administrators'
+    created_at: '2013-02-28 08:00:20'
+    updated_at: '2013-02-28 08:00:20'
 sfGuardUser:
   sfGuardUser_1:
     first_name: Admin
@@ -70,9 +108,9 @@ sfGuardUser:
     password: manager
     is_active: true
     is_super_admin: false
-    last_login: '2013-02-13 15:40:37'
+    last_login: '2013-02-28 07:45:17'
     created_at: '2013-02-11 14:40:30'
-    updated_at: '2013-02-13 15:40:37'
+    updated_at: '2013-02-28 07:45:17'
   sfGuardUser_2:
     first_name: Investor
     last_name: Investor
@@ -93,7 +131,7 @@ sfGuardUser:
     username: venessa
     algorithm: sha1
     salt: 158c19be6adba06a5834ba80c2d745c0
-    password: 60c689668d4e6fc867b86f6b4f5ec581659a0f65
+    password: venessa
     is_active: true
     is_super_admin: false
     last_login: '2013-02-11 19:20:49'
@@ -138,6 +176,32 @@ sfGuardUser:
     last_login: '2013-02-13 09:38:16'
     created_at: '2013-02-13 09:37:05'
     updated_at: '2013-02-13 09:38:16'
+  sfGuardUser_7:
+    first_name: Investment
+    last_name: Supervisor
+    email_address: investsupervisor@otbafrica.com
+    username: investmentsupervisor
+    algorithm: sha1
+    salt: 5f0dff2daa264c29309e21e2ff2e97f3
+    password: investmentsupervisor
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-02-28 08:12:29'
+    created_at: '2013-02-28 07:51:26'
+    updated_at: '2013-02-28 08:12:29'
+  sfGuardUser_8:
+    first_name: Eia
+    last_name: Supervisor
+    email_address: eiasupervisor@otbafrica.com
+    username: eiasupervisor
+    algorithm: sha1
+    salt: 067a15870a52a75a114ae6918d6df349
+    password: eiasupervisor
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2013-02-28 07:52:58'
+    updated_at: '2013-02-28 07:52:58'
 sfGuardUserGroup:
   sfGuardUserGroup_1_2:
     User: sfGuardUser_1
@@ -159,6 +223,16 @@ sfGuardUserGroup:
     Group: sfGuardGroup_3
     created_at: '2013-02-11 18:56:37'
     updated_at: '2013-02-11 18:56:37'
+  sfGuardUserGroup_7_4:
+    User: sfGuardUser_7
+    Group: sfGuardGroup_4
+    created_at: '2013-02-28 07:56:15'
+    updated_at: '2013-02-28 07:56:15'
+  sfGuardUserGroup_8_5:
+    User: sfGuardUser_8
+    Group: sfGuardGroup_5
+    created_at: '2013-02-28 07:58:20'
+    updated_at: '2013-02-28 07:58:20'
 sfGuardUserPermission:
   sfGuardUserPermission_4_3:
     User: sfGuardUser_4
@@ -178,6 +252,7 @@ sfGuardUserProfile:
     lastname: null
     validate_at: '2013-02-12 15:34:19'
     validate: r5fed2d86cb890f01d227e2cb2345e9b3
+    id_passport: ''
     phone_number: null
     birth_date: null
     age: null
@@ -185,3 +260,8 @@ sfGuardUserProfile:
     thumbnail: null
     created_at: '2013-02-12 15:34:19'
     updated_at: '2013-02-12 15:34:19'
+sfKoreroChannel:
+  sfKoreroChannel_1:
+    name: General
+    description: 'General chat channel'
+    slug: general

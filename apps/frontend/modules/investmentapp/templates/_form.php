@@ -34,17 +34,19 @@
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['job_created']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Provide The Number of Jobs Your Business will create', 'data-original-title' => 'No of Jobs')) ?>
+					<?php echo $form['job_created']->renderRow(array('class' => 'span6 chosen'))?>
 				</div>
 			</div>
 		</div>
+		<!-- Job Category section -->
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['job_category']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Please Provide Category of Jobs Created by your Business', 'data-original-title' => 'Job Categories')) ?>
+					<?php echo $form['job_category']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 				</div>
 			</div>
 		</div>
+		<!-- end -->
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
@@ -59,43 +61,46 @@
 				</div>
 			</div>
 		</div>
+		<!-- -->
+		 <div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['application_letter']->renderRow() ?>
+				</div>
+			</div>
+		</div>
+		<!-- -->
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['application_letter']->renderRow(array('class' => 'default')) ?>
+					<?php echo $form['incorporation_certificate']->renderRow() ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['incorporation_certificate']->renderRow(array('class' => 'default')) ?>
+					<?php echo $form['shareholding_list']->renderRow() ?> 
 				</div>
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-					<?php echo $form['shareholding_list']->renderRow(array('class' => 'default')) ?>
-				</div>
+				
 			</div>
 		</div>
 	   <div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['company_logo']->renderRow(array('class' => 'default')) ?>
+					<?php echo $form['company_logo']->renderRow() ?>
 					<?php echo $form->renderHiddenFields(); ?>
 				</div>
 			</div>
 		</div>
-     <div class="control-group">
+    <!-- <div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['created_at']->renderRow(array('class' => 'default')) ?>
-					<?php echo $form->renderHiddenFields(); ?>
+					<?php //echo $form['created_at']->renderRow(array('class' => 'default')) ?>
+					<?php //echo $form->renderHiddenFields(); ?>
 				</div>
 			</div>
-		</div>
+		</div> -->
       <tfoot>
       <tr>
 	  

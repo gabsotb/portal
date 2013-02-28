@@ -84,6 +84,16 @@ class InvestmentApplicationTable extends Doctrine_Table
 	WHERE business_application_status.application_status = '$status' ");
 	return $query;
 	}
+	//get completed jobs for issuance of Investment Registration Certificate
+	public function getCompletedTasksInvestment($status2)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name, 
+	 business_plan.created_at, business_plan.updated_by, business_application_status.business_id
+	 FROM business_plan LEFT JOIN investment_application ON business_plan.investment_id  = investment_application.id
+	LEFT JOIN  business_application_status ON business_plan.id = business_application_status.business_id 
+	WHERE business_application_status.application_status = '$status' ");
+	return $query;
+	}
 	///this function is used to check if a business name exist in investmentapplicationtable before allowing a user to fill in the business plan
 	public function checkBusinessExistance($name)
 	{
@@ -95,13 +105,18 @@ class InvestmentApplicationTable extends Doctrine_Table
 	//get the current logged in user InvestmentApplication submission
 	public function getUserInvestmentApplicationSubmission($user_id)
 	{
-	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc(
+	   /* $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc(
 	   "SELECT investment_application.id, investment_application.name from investment_application 
 	   LEFT JOIN business_application_status ON  investment_application.id = business_application_status.business_id
 	   where investment_application.created_by = '$user_id' 
 	   and business_application_status.application_status != 'certificateissued'
 	   ORDER BY investment_application.created_at DESC LIMIT 1
-	   " 
+	   " */
+	   //This method is supposed to counter check that a given id exist in two tables. ie InvestmentApplicationTable and BusinessPlanTable
+	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	    SELECT investment_application.id, investment_application.name,business_plan.investment_id from investment_application 
+	   LEFT JOIN business_plan ON  investment_application.id = business_plan.investment_id
+	   where investment_application.created_by = '$user_id' "
 	   );
 	   return $query;
 	}
@@ -118,4 +133,37 @@ class InvestmentApplicationTable extends Doctrine_Table
 	   ");
 	   return $query;
 	}
+	//we return id belonging to the current logged in user
+	public function getOnlyUserBusinesses()
+	{
+	  $userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the id of the user logged
+	 
+	  //we will select the investment id for current logged user
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT investment_application.id FROM investment_application WHERE created_by = '$userid' limit 1
+	  ");
+	  $id = null ;
+	  $id2 = null;
+	  foreach($query as $q)
+	  {
+	   $id = $q['id'];
+	  }
+	  //print $id; exit;
+	  $query2 = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT business_plan.investment_id FROM business_plan WHERE investment_id = '$id' limit 1
+	  ");
+	  //
+	  foreach($query2 as $q2)
+	  {
+	   $id2 = $q2['investment_id'] ;
+	  }
+	  ///now check if the two values are not equal, if not we return this value and use to save in BusinessPlanTable and BusinessApplicationStatusTable
+	  if($id != $id2 )
+	  {
+	   return $id;
+	  }
+	
+	  
+	}
+	
 }

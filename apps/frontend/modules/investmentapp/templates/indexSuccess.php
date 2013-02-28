@@ -294,6 +294,7 @@ $(function () {
 															  
 															?>
 														<?php if($investment_id != null){ ?>
+														 <?php echo "heheheheh"; ?>
 															 <!-- if it is null we show buttons -->
 															 <?php if($response == null) { ?>
 																 <div class="alert alert-block alert-warning fade in">
@@ -373,7 +374,7 @@ $(function () {
 																<tbody>
 																	<tr>
 																		
-																		<td><?php echo $status['developer_name'] ?></td>
+																		<td><?php echo $eia['name'] ?></td>
 																		<td><span class="label"><?php echo $status['application_status'] ?></span></td>
 																	</tr>
 																	

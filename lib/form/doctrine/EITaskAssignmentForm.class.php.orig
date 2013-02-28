@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * EITaskAssignment form.
+ *
+ * @package    rdbeportal
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ */
+class EITaskAssignmentForm extends BaseEITaskAssignmentForm
+{
+  public function configure()
+  {
+	unset(
+		$this['created_by'], $this['updated_by'], $this['created_at'], $this['updated_at']
+<<<<<<< HEAD
+	);
+	
+	$this->setDefault('work_status','notstarted' );
+=======
+	);///
+	$this->setDefault('work_status',"notstarted"); 
+>>>>>>> 1ac59023c9d51ebcdb315fe616a2d19d4ff026d1
+  }
+  
+}

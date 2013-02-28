@@ -22,6 +22,7 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property sfGuardUserProfile $Profile
+ * @property Doctrine_Collection $sfKoreroMessage
  * @property Doctrine_Collection $GuardDocumentAssignment
  * @property Doctrine_Collection $GuardEIAssignment
  * 
@@ -42,6 +43,7 @@
  * @method sfGuardRememberKey    getRememberKeys()            Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()          Returns the current record's "ForgotPassword" value
  * @method sfGuardUserProfile    getProfile()                 Returns the current record's "Profile" value
+ * @method Doctrine_Collection   getSfKoreroMessage()         Returns the current record's "sfKoreroMessage" collection
  * @method Doctrine_Collection   getGuardDocumentAssignment() Returns the current record's "GuardDocumentAssignment" collection
  * @method Doctrine_Collection   getGuardEIAssignment()       Returns the current record's "GuardEIAssignment" collection
  * @method sfGuardUser           setFirstName()               Sets the current record's "first_name" value
@@ -61,6 +63,7 @@
  * @method sfGuardUser           setRememberKeys()            Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()          Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setProfile()                 Sets the current record's "Profile" value
+ * @method sfGuardUser           setSfKoreroMessage()         Sets the current record's "sfKoreroMessage" collection
  * @method sfGuardUser           setGuardDocumentAssignment() Sets the current record's "GuardDocumentAssignment" collection
  * @method sfGuardUser           setGuardEIAssignment()       Sets the current record's "GuardEIAssignment" collection
  * 
@@ -159,6 +162,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasOne('sfGuardUserProfile as Profile', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('sfKoreroMessage', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

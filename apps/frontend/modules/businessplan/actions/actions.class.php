@@ -133,43 +133,78 @@ class businessplanActions extends sfActions
 				  $notify->save();
 				  ///we want to also notify managers that this investor has submitted an application for investment certificate so.....
 				  //we will use the business plan table for that purpose
-				  //get email admin addresses
-				  $adminaddresses = array() ;
-				  $role = "departmentadmins";
-				  $admins = Doctrine_Core::getTable('BusinessPlan')->getUsers($role);
-				  $admincontent = "A New application for Investment Certificate has been received.\n".
+				  //get email managers addresses
+				  $manageraddresses = array() ;
+				  $group = "departmentadmins";
+				  $manager = Doctrine_Core::getTable('BusinessPlan')->getUsers($group);
+				  $managercontent = "A New application for Investment Certificate has been received.\n".
 										 "from '$receipient' Please Assign it to a data administrator";
-				 $adminnotification = "New Application for Investment Certificate";						 
+				 $managernotification = "New Application for Investment Certificate";						 
 				  //
 				  //
-				  foreach($admins as $v)
+				  foreach($manager as $v)
 				  {
-				    $adminaddresses  [] = $v['email_address'];
+				    $manageraddresses  [] = $v['email_address'];
 					//System Internal Notifications
-					//Messages to All Admins
-			          $msg->sender = "noreply@rbb.com";
+					//Messages to All Managers
+			          $msg->sender = "noreply@rdb.com";
 					  $msg->recepient = $v['username'];
-					  $msg->message = $admincontent;
+					  $msg->message = $managercontent;
 					  $msg->created_at = date('Y-m-d H:i:s');
 					  
-					//Notifications to All Admins
+					//Notifications to All Managers
 					 $notify->recepient = $v['username'];
-				     $notify->message = $adminnotification;
+				     $notify->message = $managernotification;
 				     $notify->created_at = date('Y-m-d H:i:s');
 				  }
-				  //
 				   $msg->save();
 				   $notify->save();
-				  //send mail to admins
+				  /////we will also notify the supervisors that an application has been submitted and that they should assign it to someone.
+				  //get email address for investment supervisors admins
+				  $msg2 = new Messages(); //Second object
+				  $notify2 = new Notifications(); //second object
+				  
+					  $investsupervisorsaddresses = array() ;
+					  $group = "investmentsupervisors";
+					  $supervisors = Doctrine_Core::getTable('BusinessPlan')->getUsers($group);
+					  $supervisorscontent = "A New application for Investment Certificate has been received.\n".
+											 "from '$receipient' Please Assign it to a data administrator";
+					 $supervisorsnotification = "New Application for Investment Certificate";
+					 //
+				 foreach($supervisors as $v)
+				  {
+				    $investsupervisorsaddresses  [] = $v['email_address'];
+					//System Internal Notifications
+					//Messages to All Managers
+			          $msg2->sender = "noreply@rdb.com";
+					  $msg2->recepient = $v['username'];
+					  $msg2->message = $managercontent;
+					  $msg2->created_at = date('Y-m-d H:i:s');
+					  
+					//Notifications to All Managers
+					 $notify2->recepient = $v['username'];
+				     $notify2->message = $supervisorsnotification;
+				     $notify2->created_at = date('Y-m-d H:i:s');
+				  }
+				  //
+				   $msg2->save();
+				   $notify2->save();
+				  //send mail to managers
 				  $this->getMailer()->composeAndSend('noreply@rdb.com',
-										$adminaddresses ,
-										'New Application for Investment Certificate ',
+										$manageraddresses ,
+										'New Application for Investment Registration Certificate ',
 										"A New application for Investment Certificate has been received.\n".
 										 "Please login to your account and assign it to a data admin staff. Use the link below\n".
 										 "http://198.154.203.38:8234/backend.php"
 													  ); 
 				  //////////////////////////////////////////
-				  
+				  ///send mail to investment registration supervisors
+				  $this->getMailer()->composeAndSend('noreply@rdb.com',
+										$investsupervisorsaddresses ,
+										'New Application for Investment Registration Certificate ',
+										"A New application for Investment Certificate has been received.\n".
+										 "Please login to your account and assign it to a data admin staff. Use the link below\n".
+										 "http://198.154.203.38:8234/backend.php");
 				  
 	             /////////////////////////////////////////////////
 	 $this->redirect('investmentapp/index');

@@ -43,26 +43,38 @@
 								</div>
 								<div class="widget-body">
 								<?php if(count($task_assignments) != null) : ?>
-									<table class="table table-striped table-bordered table-advance table-hover">
+									<table class="table table-striped table-bordered" id="tasks_monitor">
 										<thead>
 											<tr>
-												<th><i class="icon-user"></i> <span class="hidden-phone">User Assigned</span></th>
-												<th><i class="icon-briefcase"></i> <span class="hidden-phone ">Business</span></th>
+												<th><i class="icon-user"></i> <span class="hidden-phone">Assigned To</span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone ">For Business</span></th>
 												<th><span class="hidden-phone">Instructions</span></th>
 												<th><span class="hidden-phone">Work Status</span></th>
 												<th><span class="hidden-phone">Due Date</span></th>
-												<th><span class="hidden-phone">Date</span></th>
+												<th><span class="hidden-phone">Date Assigned</span></th>
 												<th><span class="hidden-phone">Actions</span></th>
 											</tr>
 										</thead>
 										<tbody>
 										  <?php foreach($task_assignments as $available): ?>
-											<tr>
+											<tr class="odd gradeX">
 												<td class="highlight">
 													<?php echo $available['username'] ?></td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['instructions'] ?> </td>
-												<td> <?php echo $available['work_status'] ?> </td>
+												<td> 
+												<!-- we are going to mark this red if not started -->
+												<?php  
+												$status =  $available['work_status'] ;
+												?> 
+												<?php if($status == "notstarted"): ?>
+												  <font color="red"><?php echo $status; ?></font>
+												<?php endif; ?>
+												<!-- else -->
+												<?php if($status != "notstarted"): ?>
+												  <font color="green"><?php echo $status; ?></font>
+												<?php endif; ?>
+												</td>
 												<td> <?php echo $available['duedate'] ?> </td>
 												<td> <?php echo $available['created_at'] ?> </td>
 												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/edit?id='.$available['id'])?>">Edit</a></td>
@@ -77,10 +89,12 @@
 										<strong>Information!</strong> <br/>Sorry, I found no record to display. 
 								</div>
 							    <?php  endif; ?>
+								<?php if(count($task_assignments) > 0): ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>" class="btn btn-primary">Assign Tasks</a>
 									</div>
+								 <?php  endif; ?>
 								</div>
 							</div>
 							<!-- END RECENT ORDERS PORTLET-->
