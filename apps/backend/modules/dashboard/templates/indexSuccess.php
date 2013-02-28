@@ -115,11 +115,11 @@
 		<!-- END STATISTICS -->
 <!-- END OVERVIEW STATISTIC BARS-->
 					<div class="row-fluid">
-						<div class="span6">
+						<div class="span8">
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-shopping-cart"></i>Recent Applications  Investment Certificates</h4>						
+									<h4><i class="icon-reorder"></i>Recent Applications  Investment Certificates</h4>						
 								</div>
 								<div class="widget-body">
 								<?php if(count($new_applications) != null) : ?>
@@ -162,17 +162,13 @@
 							</div>
 							<!-- END RECENT ORDERS PORTLET-->
 						</div>
-						<div class="span6">
+					</div>
+					<div class="row-fluid">
+						<div class="span8">
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-shopping-cart"></i>Recent Applications for  EIA Certificates</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-					
-									<a href="javascript:;" class="icon-refresh"></a>		
-									
-									</span>							
+									<h4><i class="icon-reorder"></i>Recent Applications for  EIA Certificates</h4>
 								</div>
 								<div class="widget-body">
 									<?php if(count($unassigned) <= 0): ?>
@@ -199,20 +195,21 @@
 												<td><?php echo $unassign['created_at'] ?></td>
 												<td><?php echo $unassign['first_name'] ?></td>
 											
-												<td><?php echo button_to('Assign to Staff','EiTaskAssign/new',array('class' => 'btn btn-inverse')) ?></td>
+												<td><?php echo button_to('Assign to Staff','eiaTaskAssign/new',array('class' => 'btn btn-inverse')) ?></td>
 											</tr>
 											
 											
 										</tbody>
-										<?php endforeach ?>
+										<?php endforeach; ?>
 									</table>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="#" class="btn btn-mini pull-right">View All</a>
+										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-mini pull-right">View All</a>
 									</div>
 								</div>
 							</div>
-					</div>	</div>				
+						</div>	
+					</div>				
 <?php endif; ?>
 <!-- ********************************************************************** -->
 
@@ -296,7 +293,7 @@
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-shopping-cart"></i>Available Jobs For Investment Certificates Applications</h4>
+									<h4><i class="icon-reorder"></i>Available Jobs For Investment Certificates Applications</h4>
 															
 								</div>
 								<div class="widget-body">
@@ -517,7 +514,7 @@
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-shopping-cart"></i>Available Jobs For EIA Certificates Applications</h4>
+									<h4><i class="icon-reorder"></i>Available Jobs For EIA Certificates Applications</h4>
 														
 								</div>
 								<div class="widget-body">
@@ -531,7 +528,7 @@
 									<table class="table table-striped table-bordered table-advance table-hover">
 										<thead>
 											<tr>
-												<th><i class="icon-briefcase"></i> <span class="hidden-phone">For Business</span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone">Developer</span></th>
 												<th><i class="icon-user"></i> <span class="hidden-phone ">Instructions</span></th>
 												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Due date</span></th>
 												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Assigned by</span></th>
@@ -544,7 +541,7 @@
 												<td><?php echo $job['instructions'] ?></td>
 												<td><?php echo $job['duedate'] ?></td>
 												<td><?php echo $job['updated_by'] ?></td>
-												<td><?php echo button_to('Process','EiTaskAssign/assignment'); ?></td>
+												<td><?php echo button_to('Process','eiaDataAdmin/showEia?id='.$job['company_id'],array('class' => 'btn btn-inverse')); ?></td>
 											</tr>
 											
 											
@@ -553,7 +550,7 @@
 									<?php endforeach ?>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="#" class="btn btn-mini pull-right">View All</a>
+										<a href="<?php echo url_for('eiaDataAdmin/index') ?>" class="btn btn-mini pull-right">View All</a>
 									</div>
 								</div>
 							</div>
@@ -590,7 +587,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<?php endforeach ?>
+							<?php endforeach; ?>
 							</div>
 						</div>
 					</div>

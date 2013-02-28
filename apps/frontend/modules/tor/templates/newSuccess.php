@@ -1,5 +1,5 @@
 <div class="span12">
-	<h3 class="page-title"> New Application <small>Enviromental Imapct Assessment </small> </h3>
+	<h3 class="page-title"> Terms of Reference <small>Enviromental Imapct Assessment </small> </h3>
 </div>
 
 <div id="page">
