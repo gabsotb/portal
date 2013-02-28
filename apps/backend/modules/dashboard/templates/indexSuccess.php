@@ -105,11 +105,11 @@ $(function () {
 							<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="#">Dashboard</a> <span class="divider">/</span>
+								<a href="<?php echo url_for('dashboard/index')?>">Dashboard</a> <span class="divider">/</span>
 							</li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Manager</a></li> <span class="divider">/</span>
+							<a href="<?php echo url_for('dashboard/index')?>">Manager</a></li> <span class="divider">/</span>
 							<li>
 							<i class="icon-user"></i>
 							<a href="#">

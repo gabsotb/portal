@@ -133,4 +133,37 @@ class InvestmentApplicationTable extends Doctrine_Table
 	   ");
 	   return $query;
 	}
+	//we return id belonging to the current logged in user
+	public function getOnlyUserBusinesses()
+	{
+	  $userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the id of the user logged
+	 
+	  //we will select the investment id for current logged user
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT investment_application.id FROM investment_application WHERE created_by = '$userid' limit 1
+	  ");
+	  $id = null ;
+	  $id2 = null;
+	  foreach($query as $q)
+	  {
+	   $id = $q['id'];
+	  }
+	  //print $id; exit;
+	  $query2 = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT business_plan.investment_id FROM business_plan WHERE investment_id = '$id' limit 1
+	  ");
+	  //
+	  foreach($query2 as $q2)
+	  {
+	   $id2 = $q2['investment_id'] ;
+	  }
+	  ///now check if the two values are not equal, if not we return this value and use to save in BusinessPlanTable and BusinessApplicationStatusTable
+	  if($id != $id2 )
+	  {
+	   return $id;
+	  }
+	
+	  
+	}
+	
 }

@@ -39,4 +39,5 @@ class BusinessPlanTable extends Doctrine_Table
 	   ");
 	   return $query;
 	}
+	
 }

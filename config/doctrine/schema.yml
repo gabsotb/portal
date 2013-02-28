@@ -14,7 +14,7 @@ InvestmentApplication: ## Contains the application details from the investors
   registration_number: {type: string(255), notnull: true,  unique: true}
   company_address: {type: string(255), notnull: true}
   job_created: {type: integer, notnull: true}
-  job_category: {type: string(400), notnull: true}
+  job_category: {type: string(4000), notnull: true}
   company_legal_nature: {type: string(400), notnull: true}
   company_representative: {type: string(255), notnull: true}
   application_letter: {type: string(255), notnull: true}
@@ -30,17 +30,17 @@ BusinessPlan:
    updated: { name: updated_by,type: string}
  columns:
   investment_id: {type: integer, notnull: true, unique: true}
-  executive_summary: {type: string(400), notnull: true}
-  promoter_profile: {type: string(400), notnull: true}
-  project_background: {type: string(400), notnull: true}
-  equity_financing: {type: string(400), notnull: true}
-  income_statement: {type: string(400), notnull: true}
-  cashflow_statement: {type: string(400), notnull: true}
-  payback_period: {type: string(400), notnull: true}
-  npv: {type: string(400), notnull: true}
-  loan_amortization: {type: string(400), notnull: true}
-  implementation_plan: {type: string(400), notnull: true}
-  notes: {type: string(400), notnull: true}
+  executive_summary: {type: string(4000), notnull: true}
+  promoter_profile: {type: string(4000), notnull: true}
+  project_background: {type: string(4000), notnull: true}
+  equity_financing: {type: string(4000), notnull: true}
+  income_statement: {type: string(4000), notnull: true}
+  cashflow_statement: {type: string(4000), notnull: true}
+  payback_period: {type: string(4000), notnull: true}
+  npv: {type: string(4000), notnull: true}
+  loan_amortization: {type: string(4000), notnull: true}
+  implementation_plan: {type: string(4000), notnull: true}
+  notes: {type: string(4000), notnull: true}
  relations:
   InvestmentApplication: {local: investment_id, foreign:id , foreignAlias: InvestmentBusinessPlan}
 # Contains a summary of the application from the InvestmentApplication and Business Plan Tables
@@ -53,10 +53,10 @@ ProjectSummary:
  columns:
   investment_id: {type: integer, notnull: true, unique: true}
   business_sector: {type: string(255), notnull: true}
-  techinical_viability: {type: string(400), notnull: true}
+  techinical_viability: {type: string(4000), notnull: true}
   planned_investment: {type: integer, notnull: true}
   employment_created: {type: integer, notnull: true}
-  job_categories: {type: string(400), notnull: true}
+  job_categories: {type: string(4000), notnull: true}
  relations:
   InvestmentApplication: {local:investment_id, foreign: id, foreignAlias: InvestmentSummary }
 #Table records the tasks assigned to a user, the status and user to whom the task is assigned to is recorded in this table   
@@ -69,7 +69,7 @@ TaskAssignment:
  columns:
   user_assigned: {type: integer, notnull: true}
   investmentapp_id: {type: integer, notnull: true, unique: true }
-  instructions: {type: string(255), notnull: true}
+  instructions: {type: string(1000), notnull: true}
   duedate: {type: timestamp, notnull: true}
   work_status: {type: string(255), notnull: true}
  relations:

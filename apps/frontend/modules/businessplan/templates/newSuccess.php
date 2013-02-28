@@ -1,6 +1,6 @@
 <?php use_helper('I18N') ?>
 <div class="row-fluid">
-			  <div class="span8">
+			  <div class="span12">
 				<div class="widget">
 				 <div class="widget-title">
 					<h4><i class="icon-reorder"></i>Investment Certificates Form</h4>						

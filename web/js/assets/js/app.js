@@ -1851,11 +1851,16 @@ var App = function () {
             return;
         }
 
-        if ($('.wysihtml5').size() > 0) {
+      /*  if ($('.wysihtml5').size() > 0) {
             $('.wysihtml5').wysihtml5();
-        }
-    }
-
+        } */
+		$(".wysihtml5").each(function(){$(this).wysihtml5();});
+		
+		
+  }
+   //
+    // var editor = new wysihtml5.Editor('.wysihtml6');
+	//
     var handleToggleButtons = function () {
         if (!jQuery().toggleButtons) {
             return;
@@ -2191,6 +2196,7 @@ var App = function () {
             handlePopover(); // handles bootstrap popovers
             handleToggleButtons(); // handles form toogle buttons
             handleWysihtml5(); //handles WYSIWYG Editor 
+			//handleWysihtml6();
             handleDateTimePickers(); //handles form timepickers
             handleColorPicker(); // handles form color pickers
             handleFancyBox(); // handles fancy box image previews
