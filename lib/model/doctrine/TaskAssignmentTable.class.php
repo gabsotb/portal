@@ -32,9 +32,22 @@ class TaskAssignmentTable extends Doctrine_Table
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.investmentapp_id,
 	 task_assignment.instructions,task_assignment.work_status,
-	 task_assignment.duedate, investment_application.name, investment_application.company_address FROM task_assignment LEFT JOIN investment_application ON 
+	 task_assignment.duedate, investment_application.name, investment_application.company_address FROM task_assignment 
+	 LEFT JOIN investment_application ON 
 	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
 	 task_assignment.work_status != 'complete' AND task_assignment.work_status != 'notstarted'
+	 ") ;
+	 return $query;
+	}
+	
+	//Get Tasks of this user who's status is  complete
+	public function getUserTasksComplete($userId)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.investmentapp_id,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.user_assigned,
+	 task_assignment.duedate, task_assignment.created_at,investment_application.name FROM task_assignment LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
+	 task_assignment.work_status = 'complete'
 	 ") ;
 	 return $query;
 	}

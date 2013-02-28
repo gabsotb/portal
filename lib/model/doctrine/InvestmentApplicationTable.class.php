@@ -84,6 +84,16 @@ class InvestmentApplicationTable extends Doctrine_Table
 	WHERE business_application_status.application_status = '$status' ");
 	return $query;
 	}
+	//get completed jobs for issuance of Investment Registration Certificate
+	public function getCompletedTasksInvestment($status2)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name, 
+	 business_plan.created_at, business_plan.updated_by, business_application_status.business_id
+	 FROM business_plan LEFT JOIN investment_application ON business_plan.investment_id  = investment_application.id
+	LEFT JOIN  business_application_status ON business_plan.id = business_application_status.business_id 
+	WHERE business_application_status.application_status = '$status' ");
+	return $query;
+	}
 	///this function is used to check if a business name exist in investmentapplicationtable before allowing a user to fill in the business plan
 	public function checkBusinessExistance($name)
 	{

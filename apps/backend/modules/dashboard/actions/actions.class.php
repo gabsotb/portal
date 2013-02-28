@@ -34,11 +34,7 @@ class dashboardActions extends sfActions
    //////////TOR/////
    $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
    //////////////////////////
-   //we need to call a function that we get the status of task assigned to the user logged in.
-   //if the user has started and generate a report, the user cannot make a new report again. wen he/she logins in 
-   //next time, they will be redirected to the page of accepting application of the investor. we will hide the process button and replace it with
-   //show report button
-   //so lets create a function that retrieves the status of application after a user has clicked make report. 
+ 
    	
   } 
     //function download letter of application
