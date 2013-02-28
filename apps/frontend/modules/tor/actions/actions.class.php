@@ -1,32 +1,38 @@
 <?php
 
 /**
- * eia actions.
+ * tor actions.
  *
  * @package    rdbeportal
- * @subpackage eia
+ * @subpackage tor
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class eiaActions extends sfActions
+class torActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->ei_applications = Doctrine_Core::getTable('EIApplication')
+    $this->tors = Doctrine_Core::getTable('Tor')
       ->createQuery('a')
       ->execute();
   }
 
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->tor = Doctrine_Core::getTable('Tor')->find(array($request->getParameter('id')));
+    $this->forward404Unless($this->tor);
+  }
+
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new EIApplicationForm();
+    $this->form = new TorForm();
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
 
-    $this->form = new EIApplicationForm();
+    $this->form = new TorForm();
 
     $this->processForm($request, $this->form);
 
@@ -35,15 +41,15 @@ class eiaActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($ei_application = Doctrine_Core::getTable('EIApplication')->find(array($request->getParameter('id'))), sprintf('Object ei_application does not exist (%s).', $request->getParameter('id')));
-    $this->form = new EIApplicationForm($ei_application);
+    $this->forward404Unless($tor = Doctrine_Core::getTable('Tor')->find(array($request->getParameter('id'))), sprintf('Object tor does not exist (%s).', $request->getParameter('id')));
+    $this->form = new TorForm($tor);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($ei_application = Doctrine_Core::getTable('EIApplication')->find(array($request->getParameter('id'))), sprintf('Object ei_application does not exist (%s).', $request->getParameter('id')));
-    $this->form = new EIApplicationForm($ei_application);
+    $this->forward404Unless($tor = Doctrine_Core::getTable('Tor')->find(array($request->getParameter('id'))), sprintf('Object tor does not exist (%s).', $request->getParameter('id')));
+    $this->form = new TorForm($tor);
 
     $this->processForm($request, $this->form);
 
@@ -54,10 +60,10 @@ class eiaActions extends sfActions
   {
     $request->checkCSRFProtection();
 
-    $this->forward404Unless($ei_application = Doctrine_Core::getTable('EIApplication')->find(array($request->getParameter('id'))), sprintf('Object ei_application does not exist (%s).', $request->getParameter('id')));
-    $ei_application->delete();
+    $this->forward404Unless($tor = Doctrine_Core::getTable('Tor')->find(array($request->getParameter('id'))), sprintf('Object tor does not exist (%s).', $request->getParameter('id')));
+    $tor->delete();
 
-    $this->redirect('eia/index');
+    $this->redirect('tor/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -65,9 +71,9 @@ class eiaActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
-      $ei_application = $form->save();
+      $tor = $form->save();
 
-      $this->redirect('eia/edit?id='.$ei_application->getId());
+      $this->redirect('tor/edit?id='.$tor->getId());
     }
   }
 }

@@ -14,9 +14,14 @@ class EITaskAssignmentForm extends BaseEITaskAssignmentForm
   {
 	unset(
 		$this['created_by'], $this['updated_by'], $this['created_at'], $this['updated_at']
+<<<<<<< HEAD
 	);
 	
 	$this->setDefault('work_status','notstarted' );
+=======
+	);///
+	$this->setDefault('work_status',"notstarted"); 
+>>>>>>> 1ac59023c9d51ebcdb315fe616a2d19d4ff026d1
   }
   
 }

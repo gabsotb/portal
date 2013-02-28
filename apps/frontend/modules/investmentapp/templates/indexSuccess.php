@@ -350,8 +350,8 @@ $(function () {
 															<div class="widget-title">
 																<h4>EIA Certificate Application</h4>						
 															</div>
-																<?php if(count($eia_applications) > 0): ?>
-													<?php foreach($eiaStatus as $eia): ?>
+													<?php if(count($eia_applications) > 0): ?>
+													<?php foreach($eiaStatus as $status): ?>
 												  <div class="widget-body">
 																<!-- table to list company information -->
 																
@@ -375,14 +375,15 @@ $(function () {
 																	<tr>
 																		
 																		<td><?php echo $eia['name'] ?></td>
-																		<td><?php echo $eia['application_status'] ?></td>
+																		<td><span class="label"><?php echo $status['application_status'] ?></span></td>
 																	</tr>
 																	
 																</tbody>
 															</table>
 															</div>
+															
 															<div class="progress progress-striped progress-success active">
-																<div style="width: <?php echo $eia['percentage'] ?>%;" class="bar"></div>
+																<div style="width: <?php echo $status['percentage'] ?>%;" class="bar"></div>
 															</div>									
 															
 														</div>
@@ -391,39 +392,39 @@ $(function () {
 																<div class="alert alert-block alert-info fade in">
 																	<h4 class="alert-heading">Comments</h4>
 																	<p>
-																		<?php echo $eia['comments'] ?>
+																		<?php echo $status['comments'] ?>
 																	</p>
 																</div>
 																
 											   </div>
-											   <?php endforeach ?>
+											   <?php endforeach; ?>
 											   <?php endif; ?>
 											          <?php if(count($eia_applications) <= 0): ?>
 															<div class="alert alert-error">
 										                    <strong>Alert!</strong> <br/>There are no applications
 															for EIA certificate for your account!
-														      </div>
+															</div>
+															
+															<?php echo button_to('Apply for EIA Certificate','eia/new',array('class' => 'btn btn-success')); ?>
 													  <?php endif; ?>
-													<!--<button type="button" class="btn btn-success">Apply for EIA Certificate</button> -->
-													<?php echo button_to('Apply for EIA Certificate','EIA/new',array('class' => 'btn btn-success')); ?>
 													<?php foreach($impacts as $impact): ?>
-														<?php switch($impact['impact_level']){
+														<?php switch($impact->getImpactLevel()){
 																case 0:
-																	echo button_to('ReApply', 'EIA/edit', array('class' => 'btn')); 
+																	echo button_to('ReApply', 'eia/edit?id=', array('class' => 'btn')); 
 																	break;
 																case 1:
 																	echo button_to('Download EIA Certificate', '', array('class' => 'btn')); 
 																	break;
 																case 2:
-																	echo button_to('Fill TOR', 'EIA/torNew', array('class' => 'btn')); 
+																	echo button_to('Fill TOR', 'tor/new', array('class' => 'btn')); 
 																	break;
 																case 3:
-																	echo button_to('Fill TOR', 'EIA/torNew', array('class' => 'btn')); 
+																	echo button_to('Fill TOR', 'tor/new', array('class' => 'btn')); 
 																	break;
-															
+																	
 															}
 														?>
-													<?php endforeach ?>
+													<?php endforeach; ?>
 											   </div>
 										      	<!-- end EIA -->
 											</div>

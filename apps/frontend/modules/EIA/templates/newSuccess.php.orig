@@ -1,9 +1,8 @@
-<div class="span12">
+<<<<<<< HEAD
+<?php slot ('title', 'EIA Application Form') ?>	
 
 <div class="row-fluid">
 		<div class="span9">
-<div id="page">
-	<div class="row-fluid">
 			<div class="widget">
 				<div class="widget-title">
 					<h4><i class="icon-reorder"></i> Fill the following form</h4>
@@ -16,8 +15,21 @@
 							</p>
 					</div>
 					<?php include_partial('form',array('form' => $form)) ?>
+=======
+<div class="span12">
+	<h3 class="page-title"> New Application <small>Enviromental Imapct Assessment </small> </h3>
+</div>
+
+<div id="page">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="widget">
+				<div class="widget-title">
+					<h4> <i class="icon-reorder"></i> Fill in all of the Required fields </h4>
 				</div>
-			</div>
+				<div class="widget-body form">
+					<?php include_partial('form', array('form' => $form)) ?>
+>>>>>>> fe23d66f32447a2ccf970372e561a1808fd50a30
 				</div>
 			</div>
 		</div>

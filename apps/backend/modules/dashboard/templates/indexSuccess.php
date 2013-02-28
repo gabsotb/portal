@@ -740,12 +740,12 @@ $(function () {
 											
 											
 										</tbody>
-										<?php endforeach ?>
+										<?php endforeach; ?>
 									</table>
 									
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="#" class="btn btn-small btn-primary">View All Assigned Tasks</a>
+										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-mini pull-right">View All</a>
 									</div>
 									<?php endif; ?>
 								</div>
@@ -923,7 +923,7 @@ $(function () {
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-shopping-cart"></i>Available Jobs For Investment Certificates Applications</h4>
+									<h4><i class="icon-reorder"></i>Available Jobs For Investment Certificates Applications</h4>
 															
 								</div>
 								<div class="widget-body">
@@ -1144,7 +1144,7 @@ $(function () {
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-shopping-cart"></i>Available Jobs For EIA Certificates Applications</h4>
+									<h4><i class="icon-reorder"></i>Available Jobs For EIA Certificates Applications</h4>
 														
 								</div>
 								<div class="widget-body">
@@ -1158,7 +1158,7 @@ $(function () {
 									<table class="table table-striped table-bordered table-advance table-hover">
 										<thead>
 											<tr>
-												<th><i class="icon-briefcase"></i> <span class="hidden-phone">For Business</span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone">Developer</span></th>
 												<th><i class="icon-user"></i> <span class="hidden-phone ">Instructions</span></th>
 												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Due date</span></th>
 												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Assigned by</span></th>
@@ -1171,7 +1171,7 @@ $(function () {
 												<td><?php echo $job['instructions'] ?></td>
 												<td><?php echo $job['duedate'] ?></td>
 												<td><?php echo $job['updated_by'] ?></td>
-												<td><?php echo button_to('Process','EiTaskAssign/assignment'); ?></td>
+												<td><?php echo button_to('Process','eiaDataAdmin/showEia?id='.$job['company_id'],array('class' => 'btn btn-inverse')); ?></td>
 											</tr>
 											
 											
@@ -1180,7 +1180,7 @@ $(function () {
 									<?php endforeach; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="#" class="btn btn-mini pull-right">View All</a>
+										<a href="<?php echo url_for('eiaDataAdmin/index') ?>" class="btn btn-mini pull-right">View All</a>
 									</div>
 								</div>
 							</div>
@@ -1217,7 +1217,7 @@ $(function () {
 									</tr>
 								</tbody>
 							</table>
-							<?php endforeach ?>
+							<?php endforeach; ?>
 							</div>
 						</div>
 					</div>

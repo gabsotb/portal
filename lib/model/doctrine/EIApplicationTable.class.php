@@ -64,6 +64,17 @@ class EIApplicationTable extends Doctrine_Table
 		
 
 	}
+	
+	//public function getStatus()
+	//{
+		//$userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+		//$q = $this->createQuery('e')
+		  //->leftJoin('e.EIApplicationStatus s')
+		  //->where('e.created_by = ?', $userid);
+
+		//return $q->execute();
+	//}
+	
 	//Methods returns array for eia app with the past var status
 	public function getApplications($status)
 	{

@@ -37,4 +37,14 @@ class ProjectImpactTable extends Doctrine_Table
 		return $query;
 	
 	}
+	
+	public function getImpacts()
+	{
+		$userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+		$q = $this->createQuery('i')
+		  ->leftJoin('i.EIApplication e')
+		  ->where('e.created_by = ?', $userid);
+
+		return $q->execute();
+	}
 }

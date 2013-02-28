@@ -17,7 +17,7 @@ class EITaskAssignmentTable extends Doctrine_Table
         return Doctrine_Core::getTable('EITaskAssignment');
     }
 	
-	public function getJobs($status)
+	public function getJobs($status=NULL)
 	{
 		$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 		$query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT e_i_task_assignment.instructions, e_i_task_assignment.duedate, e_i_task_assignment.updated_by, e_i_application.name FROM e_i_task_assignment LEFT JOIN e_i_application ON e_i_task_assignment.company_id = e_i_application.id WHERE user_assigned = '$userId'
@@ -43,5 +43,14 @@ class EITaskAssignmentTable extends Doctrine_Table
 			->WHERE('user_assigned = ?', $id);	
 		return $q->execute();
 	}
+	
+	public function getTasks()
+	{
+		$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+		$q = Doctrine_Query::create()
+			->from('EITaskAssignment t')
+			->where('t.user_assigned = ?', $userId);
 		
+		return $q->execute();
+	}
 }
