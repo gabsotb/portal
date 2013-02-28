@@ -61,60 +61,60 @@ abstract class BaseBusinessPlan extends sfDoctrineRecord
              'notnull' => true,
              'unique' => true,
              ));
-        $this->hasColumn('executive_summary', 'string', 400, array(
+        $this->hasColumn('executive_summary', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
-        $this->hasColumn('promoter_profile', 'string', 400, array(
+        $this->hasColumn('promoter_profile', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
-        $this->hasColumn('project_background', 'string', 400, array(
+        $this->hasColumn('project_background', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
-        $this->hasColumn('equity_financing', 'string', 400, array(
+        $this->hasColumn('equity_financing', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
-        $this->hasColumn('income_statement', 'string', 400, array(
+        $this->hasColumn('income_statement', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
-        $this->hasColumn('cashflow_statement', 'string', 400, array(
+        $this->hasColumn('cashflow_statement', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
-        $this->hasColumn('payback_period', 'string', 400, array(
+        $this->hasColumn('payback_period', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
-        $this->hasColumn('npv', 'string', 400, array(
+        $this->hasColumn('npv', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
-        $this->hasColumn('loan_amortization', 'string', 400, array(
+        $this->hasColumn('loan_amortization', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
-        $this->hasColumn('implementation_plan', 'string', 400, array(
+        $this->hasColumn('implementation_plan', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
-        $this->hasColumn('notes', 'string', 400, array(
+        $this->hasColumn('notes', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
     }
 

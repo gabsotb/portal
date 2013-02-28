@@ -39,7 +39,7 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
       'registration_number'       => new sfValidatorString(array('max_length' => 255)),
       'company_address'           => new sfValidatorString(array('max_length' => 255)),
       'job_created'               => new sfValidatorInteger(),
-      'job_category'              => new sfValidatorString(array('max_length' => 400)),
+      'job_category'              => new sfValidatorString(array('max_length' => 4000)),
       'company_legal_nature'      => new sfValidatorString(array('max_length' => 400)),
       'company_representative'    => new sfValidatorString(array('max_length' => 255)),
       'application_letter'        => new sfValidatorString(array('max_length' => 255)),

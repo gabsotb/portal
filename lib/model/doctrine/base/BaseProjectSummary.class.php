@@ -48,10 +48,10 @@ abstract class BaseProjectSummary extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('techinical_viability', 'string', 400, array(
+        $this->hasColumn('techinical_viability', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
         $this->hasColumn('planned_investment', 'integer', null, array(
              'type' => 'integer',
@@ -61,10 +61,10 @@ abstract class BaseProjectSummary extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('job_categories', 'string', 400, array(
+        $this->hasColumn('job_categories', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
     }
 
