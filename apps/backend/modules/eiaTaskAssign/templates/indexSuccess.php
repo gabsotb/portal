@@ -48,7 +48,7 @@
 						<?php endforeach; ?>
 					  </tbody>
 					</table>
-					  <a href="<?php echo url_for('eiaTaskAssign/new') ?>" class="btn btn-primary">New Task</a>
+					 
 				</div>
 			</div>
 		</div>

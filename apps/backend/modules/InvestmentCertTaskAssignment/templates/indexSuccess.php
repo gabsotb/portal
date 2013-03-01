@@ -1,4 +1,4 @@
-<?php if($sf_user->hasCredential('assignJob')): ?>
+<?php //if($sf_user->hasCredential('assignJob') && $sf_user->hasCredential('investmentsupervisros')): ?>
 <div id="page" class="dashboard">
  <div class="row-fluid">
        <div class="span12">
@@ -103,4 +103,4 @@
 
   </div>
   </div>
-<?php endif; ?>
+<?php //endif; ?>

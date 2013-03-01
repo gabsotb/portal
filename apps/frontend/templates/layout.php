@@ -268,7 +268,7 @@
 			<!-- End control code -->	
 					</ul>
 				</li>
-				<li><a  href="<?php echo url_for('EIA/new') ?>"><i class="icon-table"></i> EIA Certificate</a></li>
+				<li><a  href="<?php echo url_for('eia/new') ?>"><i class="icon-table"></i> EIA Certificate</a></li>
 				<li class="">
 					<a href="" >
 					<i class="icon-lightbulb"></i> Help

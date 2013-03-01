@@ -1,6 +1,6 @@
 
 <div class="span12">
-	<h3 class="page-title">Summary for <?php echo $eia->getDeveloperName(); ?> <small> Environmental Impact Assessment </small> </h3>
+	<h3 class="page-title">Summary for <?php echo $eia->getName(); ?> <small> Environmental Impact Assessment </small> </h3>
 </div>
 
 <div id="page">
@@ -82,7 +82,7 @@
 							<strong> Company RegNo. </strong>
 							<?php echo $eia->getCompanyRegno(); ?><br/>
 							<strong> Developer's Name </strong>
-							<?php echo $eia->getDeveloperName() ?><br/>
+							<?php echo $eia->getName() ?><br/>
 							<strong> Developer's Title </strong>
 							<?php echo $eia->getDeveloperTitle(); ?><br/>
 							<address>
@@ -93,7 +93,7 @@
 							</div>
 						</div>
 						<div class="form-actions">
-						<?php echo button_to('Assesment','projectImpact/new?name='.$eia->getDeveloperName(),array('class' => 'btn btn-success btn-large'))  ?>
+						<?php echo button_to('Assesment','projectImpact/new?name='.$eia->getName(),array('class' => 'btn btn-success btn-large'))  ?>
 						</div>
 						
 

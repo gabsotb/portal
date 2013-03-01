@@ -22,7 +22,7 @@
       <div class="control-group">
         <?php echo $form['issues_assessed']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['issues_assessed']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter issues assessed', 'data-original-title' => 'Issues assessed' )) ?>
+		<?php echo $form['issues_assessed']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['issues_assessed']->renderError() ?></span>
           
         </div>
@@ -30,7 +30,7 @@
       <div class="control-group">
         <?php echo $form['specific_tasks']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['specific_tasks']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter specifc tasks', 'data-original-title' => 'Specific tasks' )) ?>
+		<?php echo $form['specific_tasks']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['specific_tasks']->renderError() ?></span>
           
         </div>
@@ -38,7 +38,7 @@
       <div class="control-group">
         <?php echo $form['stake_holders']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['stake_holders']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter the number of stake holders', 'data-original-title' => 'Stake holders' )) ?>
+		<?php echo $form['stake_holders']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['stake_holders']->renderError() ?></span>
           
         </div>
@@ -46,16 +46,8 @@
       <div class="control-group">
         <?php echo $form['experts']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['experts']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter EIA experts consulted', 'data-original-title' => 'Experts' )) ?>
+		<?php echo $form['experts']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['experts']->renderError() ?></span>
-          
-        </div>
-      </div>
-      <div class="control-group">
-        <?php echo $form['updated_by']->renderLabel(NULL,array('class' => 'control-label')) ?>
-        <div class="controls">
-		<?php echo $form['updated_by']->render(array('class' => 'span6' )) ?>
-          <span class="help-inline"><?php echo $form['updated_by']->renderError() ?></span>
           
         </div>
       </div>

@@ -374,7 +374,7 @@ $(function () {
 																<tbody>
 																	<tr>
 																		
-																		<td><?php echo $eia['name'] ?></td>
+																		<td><?php echo $status['name'] ?></td>
 																		<td><span class="label"><?php echo $status['application_status'] ?></span></td>
 																	</tr>
 																	
@@ -413,7 +413,7 @@ $(function () {
 																	echo button_to('ReApply', 'eia/edit?id=', array('class' => 'btn')); 
 																	break;
 																case 1:
-																	echo button_to('Download EIA Certificate', '', array('class' => 'btn')); 
+																	echo button_to('Download Clearance Letter', '@homepage', array('class' => 'btn')); 
 																	break;
 																case 2:
 																	echo button_to('Fill TOR', 'tor/new', array('class' => 'btn')); 

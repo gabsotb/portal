@@ -298,7 +298,7 @@ $(function () {
 												<td><?php echo $unassign['first_name'] ?></td>
 												<td><?php echo $unassign['name'] ?> </td>
 												<td><?php echo $unassign['created_at'] ?></td>
-												<td> <a href="<?php echo url_for('EiTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('eiaTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 									
 											</tr>
 											
@@ -504,11 +504,12 @@ $(function () {
 									</table>
 								
 							    
+									
+									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
-									<?php endif; ?>
 								</div>
 							</div>
 							<!-- END RECENT ORDERS PORTLET-->
@@ -734,7 +735,7 @@ $(function () {
 												<td><?php echo $unassign['first_name'] ?></td>
 												<td><?php echo $unassign['name'] ?> </td>
 												<td><?php echo $unassign['created_at'] ?></td>
-												<td> <a href="<?php echo url_for('EiTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('eiaTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 									
 											</tr>
 											
@@ -743,11 +744,12 @@ $(function () {
 										<?php endforeach; ?>
 									</table>
 									
+									
+									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-mini pull-right">View All</a>
 									</div>
-									<?php endif; ?>
 								</div>
 							</div>
 							<!-- END RECENT ORDERS PORTLET-->
@@ -1199,7 +1201,7 @@ $(function () {
 										<p>Reload the Page or Try Again Later</p>
 									</div>
 									<?php endif; ?>
-							<? //endif; ?>
+							
 							<?php foreach($tors as $tor): ?>
 							<table class="table table-striped table-bordered table-advance table-hover">
 								<thead>
