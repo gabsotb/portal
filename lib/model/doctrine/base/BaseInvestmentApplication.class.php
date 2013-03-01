@@ -92,10 +92,10 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('job_category', 'string', 400, array(
+        $this->hasColumn('job_category', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 4000,
              ));
         $this->hasColumn('company_legal_nature', 'string', 400, array(
              'type' => 'string',

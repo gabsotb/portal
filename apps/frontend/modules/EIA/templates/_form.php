@@ -5,8 +5,10 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-
-    
+	<div class="alert alert-block alert-info fade in">
+		<h4 class="alert-heading">Info</h4>
+		<p> Please fill in the following fields</p>
+	</div>
     <div class="control-group error">
       <?php echo $form->renderGlobalErrors() ?>
 	</div>
@@ -19,10 +21,10 @@
         </div>
       </div>
       <div class="control-group">
-        <?php echo $form['developer_name']->renderLabel(NULL,array('class' => 'control-label')) ?>
+        <?php echo $form['name']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['developer_name']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter your Company Name. This will be verified by the Business Registration System', 'data-original-title' => 'Company Name.' )) ?>
-          <span class="help-inline"><?php echo $form['developer_name']->renderError() ?> </span>
+		<?php echo $form['name']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter your Company Name. This will be verified by the Business Registration System', 'data-original-title' => 'Company Name.' )) ?>
+          <span class="help-inline"><?php echo $form['name']->renderError() ?> </span>
           
         </div>
       </div>

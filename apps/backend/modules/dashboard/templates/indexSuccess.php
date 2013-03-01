@@ -298,7 +298,7 @@ $(function () {
 												<td><?php echo $unassign['first_name'] ?></td>
 												<td><?php echo $unassign['name'] ?> </td>
 												<td><?php echo $unassign['created_at'] ?></td>
-												<td> <a href="<?php echo url_for('EiTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('eiaTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 									
 											</tr>
 											
@@ -734,7 +734,7 @@ $(function () {
 												<td><?php echo $unassign['first_name'] ?></td>
 												<td><?php echo $unassign['name'] ?> </td>
 												<td><?php echo $unassign['created_at'] ?></td>
-												<td> <a href="<?php echo url_for('EiTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('eiaTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 									
 											</tr>
 											
@@ -1199,7 +1199,7 @@ $(function () {
 										<p>Reload the Page or Try Again Later</p>
 									</div>
 									<?php endif; ?>
-							<? //endif; ?>
+							
 							<?php foreach($tors as $tor): ?>
 							<table class="table table-striped table-bordered table-advance table-hover">
 								<thead>

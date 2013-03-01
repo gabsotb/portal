@@ -41,7 +41,7 @@
 							<td><?php echo $task->getInstructions() ?></td>
 							<td><?php echo date('D, j M y g:i a',$task->getDateTimeobject('duedate')->format('U'))  ?></td>
 							<td><span class="label <?php echo $label ?>"><?php echo $task->getWorkStatus() ?></span></td>
-							<td><?php echo $task->getEIApplication()->getDeveloperName() ?></td>
+							<td><?php echo $task->getEIApplication()->getName() ?></td>
 							<td><?php echo $task->getSfGuardUser() ?></td>
 							<td><?php echo  button_to('Process', 'eiaDataAdmin/showEia?id='.$task->getCompanyId(),array('class' => 'btn')); ?></td>
 						</tbody>
