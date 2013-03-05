@@ -22,10 +22,10 @@
       </div>
 	  
       <div class="control-group">
-        <?php echo $form['company_regno']->renderLabel(NULL,array('class' => 'control-label')) ?>
+        <?php echo $form['name']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['company_regno']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter your Company Registration Number. This will be verified by the Business Registration System', 'data-original-title' => 'Company RegNo.' )) ?>
-        <span class="help-inline">  <?php echo $form['company_regno']->renderError() ?> </span>
+		<?php echo $form['name']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter your Company Name. This will be verified by the Business Registration System', 'data-original-title' => 'Company Name.' )) ?>
+          <span class="help-inline"><?php echo $form['name']->renderError() ?> </span>
           
         </div>
       </div>

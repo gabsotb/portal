@@ -73,7 +73,7 @@ class torActions extends sfActions
     {
       $tor = $form->save();
 
-      $this->redirect('tor/edit?id='.$tor->getId());
+      $this->redirect('@homepage');
     }
   }
 }
