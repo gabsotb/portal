@@ -83,4 +83,10 @@ class EIApplicationTable extends Doctrine_Table
 		
 		return $query;
 	}
+	
+	//public function getApplications($status)
+	//{
+		//$q = $this->createQuery('e')
+		//->leftJoin('e.EIApplicationStatus s')
+		//->where('
 }
