@@ -7,15 +7,16 @@
  * 
  * @property string $name
  * @property string $registration_number
- * @property string $company_address
- * @property integer $job_created
- * @property string $job_category
- * @property string $company_legal_nature
- * @property string $company_representative
- * @property string $application_letter
- * @property string $incorporation_certificate
- * @property string $shareholding_list
- * @property string $company_logo
+ * @property string $title_in_company
+ * @property string $business_sector
+ * @property string $business_category
+ * @property string $office_telephone
+ * @property string $fax
+ * @property string $post_box
+ * @property string $location
+ * @property string $sector
+ * @property string $district
+ * @property string $city_province
  * @property Doctrine_Collection $InvestmentBusinessPlan
  * @property Doctrine_Collection $InvestmentSummary
  * @property Doctrine_Collection $ApplicationAssigment
@@ -26,15 +27,16 @@
  * 
  * @method string                getName()                       Returns the current record's "name" value
  * @method string                getRegistrationNumber()         Returns the current record's "registration_number" value
- * @method string                getCompanyAddress()             Returns the current record's "company_address" value
- * @method integer               getJobCreated()                 Returns the current record's "job_created" value
- * @method string                getJobCategory()                Returns the current record's "job_category" value
- * @method string                getCompanyLegalNature()         Returns the current record's "company_legal_nature" value
- * @method string                getCompanyRepresentative()      Returns the current record's "company_representative" value
- * @method string                getApplicationLetter()          Returns the current record's "application_letter" value
- * @method string                getIncorporationCertificate()   Returns the current record's "incorporation_certificate" value
- * @method string                getShareholdingList()           Returns the current record's "shareholding_list" value
- * @method string                getCompanyLogo()                Returns the current record's "company_logo" value
+ * @method string                getTitleInCompany()             Returns the current record's "title_in_company" value
+ * @method string                getBusinessSector()             Returns the current record's "business_sector" value
+ * @method string                getBusinessCategory()           Returns the current record's "business_category" value
+ * @method string                getOfficeTelephone()            Returns the current record's "office_telephone" value
+ * @method string                getFax()                        Returns the current record's "fax" value
+ * @method string                getPostBox()                    Returns the current record's "post_box" value
+ * @method string                getLocation()                   Returns the current record's "location" value
+ * @method string                getSector()                     Returns the current record's "sector" value
+ * @method string                getDistrict()                   Returns the current record's "district" value
+ * @method string                getCityProvince()               Returns the current record's "city_province" value
  * @method Doctrine_Collection   getInvestmentBusinessPlan()     Returns the current record's "InvestmentBusinessPlan" collection
  * @method Doctrine_Collection   getInvestmentSummary()          Returns the current record's "InvestmentSummary" collection
  * @method Doctrine_Collection   getApplicationAssigment()       Returns the current record's "ApplicationAssigment" collection
@@ -44,15 +46,16 @@
  * @method Doctrine_Collection   getInvestmentCertificate()      Returns the current record's "InvestmentCertificate" collection
  * @method InvestmentApplication setName()                       Sets the current record's "name" value
  * @method InvestmentApplication setRegistrationNumber()         Sets the current record's "registration_number" value
- * @method InvestmentApplication setCompanyAddress()             Sets the current record's "company_address" value
- * @method InvestmentApplication setJobCreated()                 Sets the current record's "job_created" value
- * @method InvestmentApplication setJobCategory()                Sets the current record's "job_category" value
- * @method InvestmentApplication setCompanyLegalNature()         Sets the current record's "company_legal_nature" value
- * @method InvestmentApplication setCompanyRepresentative()      Sets the current record's "company_representative" value
- * @method InvestmentApplication setApplicationLetter()          Sets the current record's "application_letter" value
- * @method InvestmentApplication setIncorporationCertificate()   Sets the current record's "incorporation_certificate" value
- * @method InvestmentApplication setShareholdingList()           Sets the current record's "shareholding_list" value
- * @method InvestmentApplication setCompanyLogo()                Sets the current record's "company_logo" value
+ * @method InvestmentApplication setTitleInCompany()             Sets the current record's "title_in_company" value
+ * @method InvestmentApplication setBusinessSector()             Sets the current record's "business_sector" value
+ * @method InvestmentApplication setBusinessCategory()           Sets the current record's "business_category" value
+ * @method InvestmentApplication setOfficeTelephone()            Sets the current record's "office_telephone" value
+ * @method InvestmentApplication setFax()                        Sets the current record's "fax" value
+ * @method InvestmentApplication setPostBox()                    Sets the current record's "post_box" value
+ * @method InvestmentApplication setLocation()                   Sets the current record's "location" value
+ * @method InvestmentApplication setSector()                     Sets the current record's "sector" value
+ * @method InvestmentApplication setDistrict()                   Sets the current record's "district" value
+ * @method InvestmentApplication setCityProvince()               Sets the current record's "city_province" value
  * @method InvestmentApplication setInvestmentBusinessPlan()     Sets the current record's "InvestmentBusinessPlan" collection
  * @method InvestmentApplication setInvestmentSummary()          Sets the current record's "InvestmentSummary" collection
  * @method InvestmentApplication setApplicationAssigment()       Sets the current record's "ApplicationAssigment" collection
@@ -83,48 +86,54 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              'unique' => true,
              'length' => 255,
              ));
-        $this->hasColumn('company_address', 'string', 255, array(
+        $this->hasColumn('title_in_company', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('job_created', 'integer', null, array(
-             'type' => 'integer',
-             'notnull' => true,
-             ));
-        $this->hasColumn('job_category', 'string', 4000, array(
-             'type' => 'string',
-             'notnull' => true,
-             'length' => 4000,
-             ));
-        $this->hasColumn('company_legal_nature', 'string', 400, array(
-             'type' => 'string',
-             'notnull' => true,
-             'length' => 400,
-             ));
-        $this->hasColumn('company_representative', 'string', 255, array(
+        $this->hasColumn('business_sector', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('application_letter', 'string', 255, array(
+        $this->hasColumn('business_category', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('incorporation_certificate', 'string', 255, array(
+        $this->hasColumn('office_telephone', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('shareholding_list', 'string', 255, array(
+        $this->hasColumn('fax', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('company_logo', 'string', 255, array(
+        $this->hasColumn('post_box', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('location', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('sector', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('district', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('city_province', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
              'length' => 255,
              ));
     }

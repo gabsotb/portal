@@ -26,7 +26,87 @@ class BusinessPlanForm extends BaseBusinessPlanForm
     $this->setDefault('investment_id', $id);	
 	//$this->widgetSchema['company_legal_nature'] = new sfWidgetFormSelect(array('choices' => self::legalNatureValues()));
 	$this->widgetSchema['investment_id'] = new sfWidgetFormInputHidden() ;
-    ////
+	$this->widgetSchema['exemption_raw_materials'] = new sfWidgetFormTextarea();
+	$this->widgetSchema['additional_incentives'] = new sfWidgetFormTextarea();
+	$this->widgetSchema['visa_work_permits'] = new sfWidgetFormTextarea();
+	//set labels
+	$this->widgetSchema['project_brief']->setLabel('Summary of Your Project. i.e. Project Brief');
+	////////////////
+	 $this->widgetSchema['exemption_on_machinery'] = new sfWidgetFormInputFileEditable(array(
+	  # 'label'=>'ShareHolders List',
+	   'file_src' =>'/uploads/documents'.$this->getObject()->getExemptionOnMachinery(),
+	   #'is_image' => true,
+	   'edit_mode' => !$this->isNew(),
+	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
+	   ));
+	   //also change the default validator
+	  $this->validatorSchema['exemption_on_machinery'] = new sfValidatorFile(array(
+	   'required' => false,
+	   'path' =>sfConfig::get('sf_upload_dir').'/documents',
+	   )); 
+	   ///
+	     $this->widgetSchema['land_ownership_document'] = new sfWidgetFormInputFileEditable(array(
+	  # 'label'=>'ShareHolders List',
+	   'file_src' =>'/uploads/documents'.$this->getObject()->getLandOwnershipDocument(),
+	   #'is_image' => true,
+	   'edit_mode' => !$this->isNew(),
+	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
+	   )
+	   );
+	   $this->validatorSchema['land_ownership_document'] = new sfValidatorFile(array(
+	   'required' => false,
+	   'path' =>sfConfig::get('sf_upload_dir').'/documents',
+	   ));
+	   ///
+	     $this->widgetSchema['bill_of_quantiy'] = new sfWidgetFormInputFileEditable(array(
+	  # 'label'=>'ShareHolders List',
+	   'file_src' =>'/uploads/documents'.$this->getObject()->getBillOfQuantiy(),
+	   #'is_image' => true,
+	   'edit_mode' => !$this->isNew(),
+	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
+	   )
+	   );
+	     $this->validatorSchema['bill_of_quantiy'] = new sfValidatorFile(array(
+	   'required' => false,
+	   'path' =>sfConfig::get('sf_upload_dir').'/documents',
+	   ));
+	   //
+	        $this->widgetSchema['construction_permits'] = new sfWidgetFormInputFileEditable(array(
+	  # 'label'=>'ShareHolders List',
+	   'file_src' =>'/uploads/documents'.$this->getObject()->getConstructionPermits(),
+	   #'is_image' => true,
+	   'edit_mode' => !$this->isNew(),
+	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
+	   )
+	   );
+	   //
+	     $this->validatorSchema['construction_permits'] = new sfValidatorFile(array(
+	   'required' => false,
+	   'path' =>sfConfig::get('sf_upload_dir').'/documents',
+	   ));
+	   //
+	   $this->widgetSchema['drawings'] = new sfWidgetFormInputFileEditable(array(
+	  # 'label'=>'ShareHolders List',
+	   'file_src' =>'/uploads/documents'.$this->getObject()->getDrawings(),
+	   #'is_image' => true,
+	   'edit_mode' => !$this->isNew(),
+	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
+	   )
+	   );
+	   //
+	     $this->validatorSchema['drawings'] = new sfValidatorFile(array(
+	   'required' => false,
+	   'path' =>sfConfig::get('sf_upload_dir').'/documents',
+	   ));
+	   //
+	    $this->validatorSchema['file_delete'] = new sfValidatorPass();
+		//Input choice
+		$this->widgetSchema['investment_allowances'] = new sfWidgetFormChoice(array(
+		#  'label' => 'Category',
+		  'choices'  => Doctrine_Core::getTable('BusinessPlan')->getAllowance(),
+		  'expanded' => false,
+		));
+    ////////////
     unset($this['updated_at'],$this['updated_by'], $this['created_by'],$this['created_at'] );
   }
   

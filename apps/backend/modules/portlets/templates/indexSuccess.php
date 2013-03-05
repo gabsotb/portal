@@ -42,7 +42,12 @@
 						</ul>
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>
-				<div class="span11">
+				
+
+  				
+	</div>
+<div class="row-fluid">	
+ <div class="span12">
 				   
 				   <div class="widget">
 								<div class="widget-title">
@@ -50,26 +55,24 @@
 															
 								</div>
 								<div class="widget-body">
-									<table class="table table-striped table-bordered" id="sample_1">
+									<table  class="table table-striped table-bordered" id="sample_1">
 									  <thead>
 										<tr>
 										  
 										  <th>Investment certificate</th>
 										  <th>Eia certificate</th>
 										  <th>Tax exemptions</th>
-										  <th>Date</th>
 										  <th>Actions</th>
 										  
 										</tr>
 									  </thead>
 									  <tbody>
 										<?php foreach ($portletss as $portlets): ?>
-										<tr>
+										<tr class="odd gradeX">
 										  
 										  <td><?php echo $portlets->getInvestmentCertificate() ?></td>
 										  <td><?php echo $portlets->getEiaCertificate() ?></td>
 										  <td><?php echo $portlets->getTaxExemptions() ?></td>
-										  <td><?php echo $portlets->getCreatedAt() ?></td>
 										  <td><a href="<?php echo url_for('portlets/show?id='.$portlets->getId()) ?>"><button class="btn"><i class="icon-eye-open"></i> View</button></a></td>
 										</tr>
 										<?php endforeach; ?>
@@ -87,9 +90,8 @@
 				
 				
 				</div>
-
-  				
-	</div>
+</div>	
+	
 </div>
 
 

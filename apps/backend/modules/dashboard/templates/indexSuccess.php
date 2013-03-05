@@ -1,3 +1,4 @@
+
 <!--some Javascripts for Loading High Charts Graph -->
  <script type="text/javascript">
 $(function () {
@@ -222,7 +223,7 @@ $(function () {
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4>Recent Applications  Investment Certificates</h4>						
+									<h4>Recent Applications For Investment Certificates</h4>						
 								</div>
 								<div class="widget-body">
 								<?php if(count($new_applications) <= 0): ?>
@@ -250,19 +251,17 @@ $(function () {
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?business='.$available['name'].'& group =investmentcertadmins') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
 										</tbody>
 									</table>
-								
-							    
+									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
-									<?php endif; ?>
 								</div>
 							</div>
 							<!-- END RECENT ORDERS PORTLET-->
@@ -306,12 +305,11 @@ $(function () {
 										</tbody>
 										<?php endforeach ?>
 									</table>
-									
+									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="#" class="btn btn-small btn-primary">View All Assigned Tasks</a>
+										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
-									<?php endif; ?>
 								</div>
 							</div>
 					</div>	</div>		

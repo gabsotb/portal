@@ -32,7 +32,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.investmentapp_id,
 	 task_assignment.instructions,task_assignment.work_status,
-	 task_assignment.duedate, investment_application.name, investment_application.company_address FROM task_assignment 
+	 task_assignment.duedate, investment_application.name, investment_application.location FROM task_assignment 
 	 LEFT JOIN investment_application ON 
 	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
 	 task_assignment.work_status != 'complete' AND task_assignment.work_status != 'notstarted'
@@ -185,7 +185,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	  //
 	  return $query;
 	}
-	/*We use this method to retrieve tasks which this looged administrator has assigned to data admins*/
+	/*We use this method to retrieve tasks which this logged administrator has assigned to data admins*/
 	public function getAssignedTasks($username)
 	{
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
@@ -203,6 +203,40 @@ class TaskAssignmentTable extends Doctrine_Table
 	 SELECT email_address,username from sf_guard_user where sf_guard_user.id = '$id'
 	 ");
 	 return $query;
+	}
+	//we will create a function that will return only the id and name of a user who belongs to investment certificate data admins or eia data admins 
+	public function getDataAdmins($group)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	    SELECT sf_guard_user.id,sf_guard_user.username
+		from sf_guard_user_group left join sf_guard_group on sf_guard_user_group.group_id = sf_guard_group.id
+		left join sf_guard_user on sf_guard_user_group.user_id = sf_guard_user.id
+		 where sf_guard_group.name = '$group'
+	   ");
+	   $values = null;
+	    foreach($query as $q)
+		{
+		 $values = array($q['id'] => $q['username']);
+		}
+		//
+	
+	 return $values;
+	}
+	//we also want to make sure that the select dropdown box contains the correct business name for the admin to easily assign job to a data admin
+	//
+	public function getCompanyName($name)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	    SELECT investment_application.id,investment_application.name
+		from investment_application 
+		 where investment_application.name = '$name'
+	   ");
+	   $values = null;
+	    foreach($query as $q)
+		{
+		 $values = array($q['id'] => $q['name']);
+		}
+	 return $values;
 	}
 	
 }

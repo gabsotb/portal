@@ -16,6 +16,18 @@ class InvestmentApplicationTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('InvestmentApplication');
     }
+	//we set default fields for Category
+	static public $category = array(
+    'new' => 'New',
+    'restructuring' => 'Restructuring',
+    'expansion' => 'Expansion',
+	'reinvestment' => 'Reinvestment',
+  );
+  ///
+  public function getCategories()
+  {
+   return self::$category ;
+  }
 	// This method selects data from the investment table and returns it to the controller if called
 	public function getTotalInvestmentApplications(Doctrine_Query $query = null)
 	{
@@ -34,11 +46,12 @@ class InvestmentApplicationTable extends Doctrine_Table
 	 $userid = sfContext::getInstance()->getUser()->getGuardUser()->getUsername(); // get the username of the user logged
 	// let use the doctrine manager secure 
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT 
-	  business_plan.investment_id, business_plan.executive_summary,business_plan.promoter_profile,business_plan.project_background,business_plan.equity_financing,business_plan.income_statement,
-	  business_plan.cashflow_statement,business_plan.payback_period,business_plan.npv,business_plan.loan_amortization,business_plan.implementation_plan,business_plan.notes
+	  business_plan.investment_id, business_plan.project_brief
 	  FROM business_plan 
-	  left join business_application_status on business_plan.investment_id = business_application_status.business_id
-		where business_plan.updated_by = '$userid' and business_application_status.application_status != 'certificateissued'
+	  left join business_application_status on 
+	  business_plan.investment_id = business_application_status.business_id where 
+	  business_plan.updated_by = '$userid' 
+	  and business_application_status.application_status != 'certificateissued'
 		");
 		return $query; 
 	}
@@ -164,6 +177,19 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  }
 	
 	  
+	}
+	//a custom method to retrieve business id given a business name
+	public function getBusinessId($name)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT investment_application.id FROM investment_application WHERE investment_application.name = '$name' limit 1
+	  ");
+	  $id = 0;
+	  foreach( $query as $q)
+	  {
+	   $id = $q['id'] ;
+	  }
+	  return $id;
 	}
 	
 }

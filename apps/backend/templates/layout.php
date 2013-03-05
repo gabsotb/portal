@@ -9,6 +9,7 @@
 	<link rel="shortcut icon" href="/favicon.png" />
 	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>
+		
 </head>
 <!-- END HEAD -->
 <body class="fixed-top">
@@ -359,13 +360,14 @@
 		</div>
 	</div>
 	<?php endif; ?>
-	<script>
+<script>
 		jQuery(document).ready(function() {			
 			// initiate layout and plugins
 			App.init();
 		});
 	</script>
 </body>
+	
 <!-- END BODY -->
 </html>
 

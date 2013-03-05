@@ -12,8 +12,17 @@ class sfGuardUserProfileForm extends PluginsfGuardUserProfileForm
 {
   public function configure()
   {
-   // $this->widgetSchema->setLabel('id_passport', 'ID or Passport Copy');
-	//$this->widgetSchema->setHelp('id_passport','.png, jpeg,jpg and gif supported');
+     $this->widgetSchema['salutation'] = new sfWidgetFormChoice(array(
+	  'label' => 'Salutation',
+	  'choices'  => Doctrine_Core::getTable('sfGuardUserProfile')->getSaluations(),
+	  'expanded' => false,
+    ));
+	///
+	 $this->widgetSchema['citizenship'] = new sfWidgetFormChoice(array(
+	  'label' => 'Countries',
+	  'choices'  => Doctrine_Core::getTable('sfGuardUserProfile')->getCountries(),
+	  'expanded' => false,
+    ));
 	///change field to file upload field
 	$this->widgetSchema['id_passport'] = new sfWidgetFormInputFileEditable(array(
    'label'=>'Identity Card or Passport',

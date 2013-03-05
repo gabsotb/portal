@@ -26,6 +26,101 @@
 				<div class="sf_apply sf_apply_apply" >
 					<?php echo $form->renderGlobalErrors() ?>
 					<form method="post" action="<?php echo url_for('sfApply/apply') ?>" name="sf_apply_apply_form" id="sf_apply_apply_form" class="form-horizontal">
+					     <div class="control-group">
+							 
+								<div class="controls">
+								<div class="input-prepend">
+								<?php echo $form['salutation']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+								</div>
+								<?php echo $form['salutation']->render(array('class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Select Salutation')) ?>
+								<?php echo $form['salutation']->renderError() ?>
+								<span class="label label-important">*********</span>
+								</div>
+							
+						</div>
+						 <div class="control-group">
+							 
+								<div class="controls">
+								<div class="input-prepend">
+								<?php echo $form['surname']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+								</div>
+								<?php echo $form['surname']->render(array('placeholder' => 'Surname','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Enter your Surname')) ?>
+								<?php echo $form['surname']->renderError() ?>
+								<span class="label label-important">*********</span>
+								</div>
+							
+						</div>
+					    <div class="control-group">
+							 
+								<div class="controls">
+								<div class="input-prepend">
+								<?php echo $form['firstname']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+								</div>
+								<?php echo $form['firstname']->render(array('placeholder' => 'First Name','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Enter your first name')) ?>
+								<?php echo $form['firstname']->renderError() ?>
+								<span class="label label-important">*********</span>
+								</div>
+							
+						</div>
+
+						
+						<div class="control-group">
+							
+								<div class="controls">
+								<div class="input-prepend">
+								<?php echo $form['lastname']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+								</div>
+								<?php echo $form['lastname']->render(array('placeholder' => 'Last Name','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Enter your last name')) ?><?php echo $form['lastname']->renderError() ?>
+								<span class="label label-important">*********</span>
+								</div>
+							
+						</div>
+						 <div class="control-group">
+							 
+								<div class="controls">
+								<div class="input-prepend">
+								<?php echo $form['citizenship']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+								</div>
+								<?php echo $form['citizenship']->render(array('placeholder' => 'Country','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Your Citizenship/Country')) ?>
+								<?php echo $form['citizenship']->renderError() ?>
+								<span class="label label-important">*********</span>
+								</div>
+							
+						</div>
+						<div class="control-group">
+							
+								<div class="controls">
+								<div class="input-prepend">
+								<?php echo $form['phone_number']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+								</div>
+								<?php echo $form['phone_number']->render(array('placeholder' => 'Personal Phone Number','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Enter your Personal Phone Number')) ?><?php echo $form['phone_number']->renderError() ?>
+								<span class="label label-important">*********</span>
+								</div>
+							
+						</div>
+						 <?php echo $form['id_passport']->renderError() ?>
+						  <div class="control-group">
+                                 
+                                 <div class="controls">
+                                     <div class="input-prepend">
+									 <?php echo $form['id_passport']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+									
+									</div>
+                                     <div class="fileupload fileupload-new" data-provides="fileupload">
+									
+                                      <div class="fileupload-new thumbnail" style="width: 200px; height: 200px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+document" alt=""/></div>
+                                      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
+                                      <div>
+                                        <span class="btn btn-file"><span class="fileupload-new">Upload Passport/ID Image</span><span class="fileupload-exists">Change</span><?php echo $form['id_passport'] ?></span>
+                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                      </div>
+									   <span class="label label-important">*********</span>
+                                    <span class="help-inline">Your are Required to attach a valid ID/Passport Copy to proof your Identity. Thank you.</span>
+                                    </div>
+
+                                   
+                                 </div>
+                              </div> 
 						<?php echo $form['username']->renderError() ?>
 						<div class="control-group">
 							
@@ -63,56 +158,7 @@
 								</div>
 							
 						</div>
-
-						
-						<div class="control-group">
-							 
-								<div class="controls">
-								<div class="input-prepend">
-								<?php echo $form['firstname']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
-								</div>
-								<?php echo $form['firstname']->render(array('placeholder' => 'First Name','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Enter your first name')) ?>
-								<?php echo $form['firstname']->renderError() ?>
-								<span class="label label-important">*********</span>
-								</div>
-							
-						</div>
-
-						
-						<div class="control-group">
-							
-								<div class="controls">
-								<div class="input-prepend">
-								<?php echo $form['lastname']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
-								</div>
-								<?php echo $form['lastname']->render(array('placeholder' => 'Last Name','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Enter your last name')) ?><?php echo $form['lastname']->renderError() ?>
-								<span class="label label-important">*********</span>
-								</div>
-							
-						</div>
-                         <?php echo $form['id_passport']->renderError() ?>
-						  <div class="control-group">
-                                 
-                                 <div class="controls">
-                                     <div class="input-prepend">
-									 <?php echo $form['id_passport']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
-									
-									</div>
-                                     <div class="fileupload fileupload-new" data-provides="fileupload">
-									
-                                      <div class="fileupload-new thumbnail" style="width: 200px; height: 200px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+document" alt=""/></div>
-                                      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
-                                      <div>
-                                        <span class="btn btn-file"><span class="fileupload-new">Upload Passport/ID Image</span><span class="fileupload-exists">Change</span><?php echo $form['id_passport'] ?></span>
-                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-                                      </div>
-									   <span class="label label-important">*********</span>
-                                    <span class="help-inline">Your are Required to attach a valid ID/Passport Copy to proof your Identity. Thank you.</span>
-                                    </div>
-
-                                   
-                                 </div>
-                              </div> 
+                        
 						<?php echo $form['email']->renderError() ?>
 						<div class="control-group">
 							
