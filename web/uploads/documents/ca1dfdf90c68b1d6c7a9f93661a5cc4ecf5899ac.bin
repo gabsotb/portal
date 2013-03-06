@@ -1,0 +1,55 @@
+-- phpMyAdmin SQL Dump
+-- version 3.3.9
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Feb 13, 2013 at 07:40 PM
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `rdbeportal`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sf_guard_group_permission`
+--
+
+CREATE TABLE IF NOT EXISTS `sf_guard_group_permission` (
+  `group_id` bigint(20) NOT NULL DEFAULT '0',
+  `permission_id` bigint(20) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`group_id`,`permission_id`),
+  KEY `sf_guard_group_permission_permission_id_sf_guard_permission_id` (`permission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sf_guard_group_permission`
+--
+
+INSERT INTO `sf_guard_group_permission` (`group_id`, `permission_id`, `created_at`, `updated_at`) VALUES
+(1, 5, '2013-02-11 18:50:55', '2013-02-11 18:50:55'),
+(2, 1, '2013-02-11 16:00:31', '2013-02-11 16:00:31'),
+(3, 4, '2013-02-11 18:09:52', '2013-02-11 18:09:52');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `sf_guard_group_permission`
+--
+ALTER TABLE `sf_guard_group_permission`
+  ADD CONSTRAINT `sf_guard_group_permission_group_id_sf_guard_group_id` FOREIGN KEY (`group_id`) REFERENCES `sf_guard_group` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `sf_guard_group_permission_permission_id_sf_guard_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `sf_guard_permission` (`id`) ON DELETE CASCADE;

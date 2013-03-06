@@ -1,31 +1,42 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
+<script type="text/javascript">  
+  function formatCells(xls,group){  
+    var arrGroup = xls.split(/\t/gi);  
+    for(var i=1;i<arrGroup.length;i++){  
+     // document.getElementById('tableSample1').elements[group + "_" + i].value = arrGroup[i];  
+	  document.forms[2].elements[group + "_" + i].value = arrGroup[i];
+    }  
+  }  
+</script> 
+<!--<form> -->
 
-<form class="" action="<?php echo url_for('businessplan/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
   <table class="table table-striped table-bordered">
-		
     <tbody>
-		 
-		<div class="control-group">
+	<div class="control-group">
+	  <form class="" action="<?php echo url_for('businessplan/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+	   <div class="widget">
+	    <div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
 					<?php echo $form['investment_id']->render() ?>
 				</div>
 			</div>
 		</div> 
-		<div class="control-group">
+	   </div>
+	   <div class="widget">
+	   <div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
 				     <span> <label class="control-label"><?php echo $form['project_brief']->renderLabel() ?>
-					 <?php echo $form['project_brief']->renderError() ?>
+					 <?php echo $form['project_brief']->renderError() ?>  <?php echo $form['investment_id']->renderError() ?>
 					 </label></span>
 					 
 					<?php echo $form['project_brief']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
 				</div>
 			</div>
 		</div>
-		<!-- -->
-		<div class="control-group">
+	   </div>
 		  <div class="widget">
 				<div>
 				                   <div class="alert alert-block alert-info">
@@ -33,7 +44,8 @@
 											<span>INVESTMENT AND FINANCIAL SCHEDULE</span>
 										</p>
 								    </div>
-										<table  class="table table-bordered table-hover">
+									
+										<table id="tableSample1"  class="table table-bordered table-hover">
 										<thead>
 											<tr class="alert-block alert-success">
 												<th>Fixed Cost Amount</th>
@@ -47,16 +59,17 @@
 										<tbody>
 											<tr>
 												<td>Land</td>
-												<td>
+												<td >
 												<?php echo $form['land_year1']->renderError() ?>
 												<div class="input-prepend input-append">
-												   <span class="add-on">$</span><?php echo $form['land_year1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span>
+												   <span class="add-on">$</span><?php echo $form['land_year1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'business_plan')")) ?><span class="add-on">.00</span>
 												</div>
 												
 												</td>
 												<td><?php echo $form['land_year2']->renderError() ?>
 												<div class="input-prepend input-append">
-												<span class="add-on">$</span><?php echo $form['land_year2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span>
+												<span class="add-on">$</span><?php echo $form['land_year2']->render(array('class' => 'input-small'
+											)) ?><span class="add-on">.00</span>
 												</div>
 												</td>
 												<td><?php echo $form['land_year3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['land_year3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -65,7 +78,7 @@
 											</tr>
 											<tr>
 												<td>Construction</td>
-												<td><?php echo $form['construction_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['construction_year1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['construction_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['construction_year1']->render(array('class' => 'input-small','onchange' => 'formatCells(this.value,"t2")')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['construction_year2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['construction_year2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['construction_year3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['construction_year3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['construction_year4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['construction_year4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -73,7 +86,7 @@
 											</tr>
 											<tr>
 												<td>Plant and Machinery</td>
-												<td><?php echo $form['machinery_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['machinery_year1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['machinery_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['machinery_year1']->render(array('class' => 'input-small','onchange' => 'formatCells(this.value,"t3")')) ?><span class="add-on">.00</span></div></td>
 												<td> <?php echo $form['machinery_year2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['machinery_year2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['machinery_year3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['machinery_year3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['machinery_year4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['machinery_year4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -81,7 +94,7 @@
 											</tr>
 											<tr>
 												<td>Furniture</td>
-											<td><?php echo $form['furniture_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['furniture_year1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+											<td><?php echo $form['furniture_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['furniture_year1']->render(array('class' => 'input-small', 'onchange' => 'formatCells(this.value,"t4")')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['furniture_year2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['furniture_year2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['furniture_year3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['furniture_year3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['furniture_year4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['furniture_year4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -89,10 +102,10 @@
 											</tr>
 											<tr>
 												<td>Other Fixed Cost</td>
-												<td><?php echo $form['other_assets1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['other_assets1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets1']->render(array('class' => 'input-small', 'onchange' => 'formatCells(this.value,"t5")')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['other_assets2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['other_assets3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['other_assets4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['other_assets3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets3']->render(array('class' => 'input-small' )) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['other_assets4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets4']->render(array('class' => 'input-small' )) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['other_assets5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 											</tr>
 										</tbody>
@@ -125,7 +138,7 @@
 										<tbody>
 											<tr>
 												<td>Studies</td>
-												<td><?php echo $form['studies_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['studies_year1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['studies_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['studies_year1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t6')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['studies_year2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['studies_year2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['studies_year3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['studies_year3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['studies_year4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['studies_year4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -133,7 +146,7 @@
 											</tr>
 											<tr>
 												<td>Travel Expenses</td>
-												<td><?php echo $form['travel_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['travel_expenses1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['travel_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['travel_expenses1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t7')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['travel_expenses2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['travel_expenses2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['travel_expenses3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['travel_expenses3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['travel_expenses4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['travel_expenses4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -141,7 +154,7 @@
 											</tr>
 											<tr>
 												<td>Starting Capital</td>
-												<td><?php echo $form['starting_capital1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['starting_capital1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['starting_capital1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['starting_capital1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t8')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['starting_capital2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['starting_capital2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['starting_capital3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['starting_capital3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['starting_capital4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['starting_capital4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -149,7 +162,7 @@
 											</tr>
 											<tr>
 												<td>Administrative & License Expense</td>
-											<td><?php echo $form['licensing_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['licensing_expenses1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+											<td><?php echo $form['licensing_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['licensing_expenses1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t9')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['licensing_expenses2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['licensing_expenses2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['licensing_expenses3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['licensing_expenses3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['licensing_expenses4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['licensing_expenses4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -157,7 +170,7 @@
 											</tr>
 											<tr>
 												<td>Rental Fees</td>
-												<td><?php echo $form['rental_fees1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['rental_fees1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['rental_fees1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['rental_fees1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t10')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['rental_fees2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['rental_fees2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['rental_fees3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['rental_fees3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['rental_fees4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['rental_fees4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -165,7 +178,7 @@
 											</tr>
 											<tr>
 												<td>Others</td>
-												<td><?php echo $form['other_expeses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_expeses1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['other_expeses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_expeses1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t11')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['other_expeses2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_expeses2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['other_expeses3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_expeses3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['other_expeses4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_expeses4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -173,7 +186,7 @@
 											</tr>
 										</tbody>
 									</table> 
-									</table>
+									<!--</table> -->
 							</div>	
                        </div>	 							
 								  
@@ -197,25 +210,25 @@
 										<tbody>
 											<tr>
 												<td>Equity</td>
-												<td><?php echo $form['equity_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['equity_local']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['equity_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['equity_local']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t12')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['equity_foregin']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['equity_foregin']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												
 											</tr>
 											<tr>
 												<td>Loan From Bank</td>
-												<td><?php echo $form['bank_loan_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['bank_loan_local']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['bank_loan_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['bank_loan_local']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t13')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['bank_loan_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['bank_loan_foreign']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												
 											</tr>
 											<tr>
 												<td>Loan From Mother Company</td>
-												<td><?php echo $form['mother_company_loan_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['mother_company_loan_local']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['mother_company_loan_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['mother_company_loan_local']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t14')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['mother_company_loan_foreign']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['mother_company_loan_foreign']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												
 											</tr>
 											<tr>
 												<td>Grant</td>
-											    <td><?php echo $form['grant_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['grant_local']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+											    <td><?php echo $form['grant_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['grant_local']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t15')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['grant_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['grant_foreign']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												
 											</tr>
@@ -248,7 +261,7 @@
 										<tbody>
 											<tr>
 												<td>Top Management</td>
-												<td><?php echo $form['top_management_local1']->renderError() ?><?php echo $form['top_management_local1']->render(array('class' => 'input-small')) ?></td>
+												<td><?php echo $form['top_management_local1']->renderError() ?><?php echo $form['top_management_local1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t16')")) ?></td>
 												<td><?php echo $form['top_management_local2']->renderError() ?><?php echo $form['top_management_local2']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['top_management_local3']->renderError() ?><?php echo $form['top_management_local3']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['top_management_local4']->renderError() ?><?php echo $form['top_management_local4']->render(array('class' => 'input-small')) ?></td>
@@ -256,7 +269,7 @@
 											</tr>
 											<tr>
 												<td>Technical/Professional</td>
-												<td><?php echo $form['technical_professional_local1']->renderError() ?><?php echo $form['technical_professional_local1']->render(array('class' => 'input-small')) ?></td>
+												<td><?php echo $form['technical_professional_local1']->renderError() ?><?php echo $form['technical_professional_local1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t17')")) ?></td>
 												<td><?php echo $form['technical_professional_local2']->renderError() ?><?php echo $form['technical_professional_local2']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['technical_professional_local3']->renderError() ?><?php echo $form['technical_professional_local3']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['technical_professional_local4']->renderError() ?><?php echo $form['technical_professional_local4']->render(array('class' => 'input-small')) ?></td>
@@ -264,7 +277,7 @@
 											</tr>
 											<tr>
 												<td>Skilled labour</td>
-												<td><?php echo $form['skilled_labour_local1']->renderError() ?><?php echo $form['skilled_labour_local1']->render(array('class' => 'input-small')) ?></td>
+												<td><?php echo $form['skilled_labour_local1']->renderError() ?><?php echo $form['skilled_labour_local1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t18')")) ?></td>
 												<td><?php echo $form['skilled_labour_local2']->renderError() ?><?php echo $form['skilled_labour_local2']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['skilled_labour_local3']->renderError() ?><?php echo $form['skilled_labour_local3']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['skilled_labour_local4']->renderError() ?><?php echo $form['skilled_labour_local4']->render(array('class' => 'input-small')) ?></td>
@@ -272,7 +285,7 @@
 											</tr>
 											<tr>
 												<td>Others (manpower, casual to precise)</td>
-											    <td><?php echo $form['other_jobs_local1']->renderError() ?><?php echo $form['other_jobs_local1']->render(array('class' => 'input-small')) ?></td>
+											    <td><?php echo $form['other_jobs_local1']->renderError() ?><?php echo $form['other_jobs_local1']->render(array('class' => 'input-small','onchange' => "formatCells(this.value,'t19')")) ?></td>
 												<td><?php echo $form['other_jobs_local2']->renderError() ?><?php echo $form['other_jobs_local2']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['other_jobs_local3']->renderError() ?><?php echo $form['other_jobs_local3']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['other_jobs_local4']->renderError() ?><?php echo $form['other_jobs_local4']->render(array('class' => 'input-small')) ?></td>
@@ -295,7 +308,7 @@
 										<tbody>
 											<tr>
 												<td>Top Management</td>
-												<td><?php echo $form['top_management_foreign1']->renderError() ?><?php echo $form['top_management_foreign1']->render(array('class' => 'input-small')) ?></td>
+												<td><?php echo $form['top_management_foreign1']->renderError() ?><?php echo $form['top_management_foreign1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t20')")) ?></td>
 												<td><?php echo $form['top_management_foreign2']->renderError() ?><?php echo $form['top_management_foreign2']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['top_management_foreign3']->renderError() ?><?php echo $form['top_management_foreign3']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['top_management_foreign4']->renderError() ?><?php echo $form['top_management_foreign4']->render(array('class' => 'input-small')) ?></td>
@@ -303,7 +316,7 @@
 											</tr>
 											<tr>
 												<td>Technical/Professional</td>
-												<td><?php echo $form['technical_professional_foreign1']->renderError() ?><?php echo $form['technical_professional_foreign1']->render(array('class' => 'input-small')) ?></td>
+												<td><?php echo $form['technical_professional_foreign1']->renderError() ?><?php echo $form['technical_professional_foreign1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t21')")) ?></td>
 												<td><?php echo $form['technical_professional_foreign2']->renderError() ?><?php echo $form['technical_professional_foreign2']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['technical_professional_foreign3']->renderError() ?><?php echo $form['technical_professional_foreign3']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['technical_professional_foreign4']->renderError() ?><?php echo $form['technical_professional_foreign4']->render(array('class' => 'input-small')) ?></td>
@@ -311,7 +324,7 @@
 											</tr>
 											<tr>
 												<td>Skilled labour</td>
-												<td><?php echo $form['skilled_labour_foreign1']->renderError() ?><?php echo $form['skilled_labour_foreign1']->render(array('class' => 'input-small')) ?></td>
+												<td><?php echo $form['skilled_labour_foreign1']->renderError() ?><?php echo $form['skilled_labour_foreign1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t22')")) ?></td>
 												<td><?php echo $form['skilled_labour_foreign2']->renderError() ?><?php echo $form['skilled_labour_foreign2']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['skilled_labour_foreign3']->renderError() ?><?php echo $form['skilled_labour_foreign3']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['skilled_labour_foreign4']->renderError() ?><?php echo $form['skilled_labour_foreign4']->render(array('class' => 'input-small')) ?></td>
@@ -319,7 +332,7 @@
 											</tr>
 											<tr>
 												<td>Others (manpower, casual to precise)</td>
-											    <td><?php echo $form['other_jobs_foreign1']->renderError() ?><?php echo $form['other_jobs_foreign1']->render(array('class' => 'input-small')) ?></td>
+											    <td><?php echo $form['other_jobs_foreign1']->renderError() ?><?php echo $form['other_jobs_foreign1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t23')")) ?></td>
 												<td><?php echo $form['other_jobs_foreign2']->renderError() ?><?php echo $form['other_jobs_foreign2']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['other_jobs_foreign3']->renderError() ?><?php echo $form['other_jobs_foreign3']->render(array('class' => 'input-small')) ?></td>
 												<td><?php echo $form['other_jobs_foreign4']->renderError() ?><?php echo $form['other_jobs_foreign4']->render(array('class' => 'input-small')) ?></td>
@@ -353,7 +366,7 @@
 										<tbody>
 											<tr>
 												<td>Sales/Income</td>
-												<td><?php echo $form['sales_income1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['sales_income1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['sales_income1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['sales_income1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t24')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['sales_income2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['sales_income2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['sales_income3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['sales_income3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['sales_income4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['sales_income4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -361,7 +374,7 @@
 											</tr>
 											<tr>
 												<td>Total cost of sales</td>
-												<td><?php echo $form['total_cost_sales1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['total_cost_sales1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['total_cost_sales1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['total_cost_sales1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t25')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['total_cost_sales2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['total_cost_sales2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['total_cost_sales3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['total_cost_sales3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['total_cost_sales4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['total_cost_sales4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -369,7 +382,7 @@
 											</tr>
 											<tr>
 												<td>Gross Profit</td>
-												<td><?php echo $form['gross_profit1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['gross_profit1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['gross_profit1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['gross_profit1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t26')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['gross_profit2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['gross_profit2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['gross_profit3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['gross_profit3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['gross_profit4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['gross_profit4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -377,7 +390,7 @@
 											</tr>
 											<tr>
 												<td>Total Indirect Expenses</td>
-											<td><?php echo $form['indirect_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['indirect_expenses1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+											<td><?php echo $form['indirect_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['indirect_expenses1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t27')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['indirect_expenses2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['indirect_expenses2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['indirect_expenses3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['indirect_expenses3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['indirect_expenses4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['indirect_expenses4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -385,7 +398,7 @@
 											</tr>
 											<tr>
 												<td>Profit Before Tax</td>
-												<td><?php echo $form['profit_before_tax1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['profit_before_tax1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['profit_before_tax1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['profit_before_tax1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t28')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['profit_before_tax2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['profit_before_tax2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['profit_before_tax3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['profit_before_tax3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['profit_before_tax4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['profit_before_tax4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -393,7 +406,7 @@
 											</tr>
 											<tr>
 												<td>Tax Expenses(30%)</td>
-												<td><?php echo $form['tax_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['tax_expenses1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['tax_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['tax_expenses1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t29')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['tax_expenses2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['tax_expenses2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['tax_expenses3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['tax_expenses3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['tax_expenses4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['tax_expenses4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -401,7 +414,7 @@
 											</tr>
 											<tr>
 												<td>Net Profit</td>
-												<td><?php echo $form['net_profit1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['net_profit1']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
+												<td><?php echo $form['net_profit1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['net_profit1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t30')")) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['net_profit2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['net_profit2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['net_profit3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['net_profit3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
 												<td><?php echo $form['net_profit4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['net_profit4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
@@ -471,9 +484,9 @@
 							</div>
 				
 		               </div>
-		  			 
-								 
-				</div>				
+		  			
+				</div>		
+       				
 		     <!--- --------------------------------------------------------------------- --->	
             
             <!--- -----------------------------------------------------------------       --->
@@ -507,7 +520,7 @@
       </tr>
     </tfoot>               
      
-		
+		</form>
     </tbody>
   </table>
-</form>
+<!--</form>-->

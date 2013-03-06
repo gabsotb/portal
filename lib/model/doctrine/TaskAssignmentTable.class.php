@@ -54,15 +54,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	//get all application details for Investment Certificate for a given user
 	public function getApplicationDetails($id)
 	{
-	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.id, investment_application.name,
-	  investment_application.job_created,investment_application.job_category,investment_application.application_letter,investment_application.incorporation_certificate,
-	  investment_application.shareholding_list,investment_application.company_legal_nature,investment_application.company_representative,
-	  business_plan.executive_summary,business_plan.promoter_profile,business_plan.project_background,business_plan.equity_financing,business_plan.income_statement,
-	  business_plan.cashflow_statement,business_plan.payback_period,business_plan.npv,business_plan.loan_amortization,business_plan.implementation_plan,
-	  business_plan.notes,
-	  task_assignment.investmentapp_id
-	  FROM task_assignment LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id
-	  LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id WHERE task_assignment.investmentapp_id = '$id'
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id  LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id WHERE task_assignment.investmentapp_id = '$id'
 	  ") ;
 	  //
 	  //we also need to change the status of business application 

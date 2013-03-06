@@ -22,6 +22,7 @@ class TaskAssignmentForm extends BaseTaskAssignmentForm
    //$this->widgetSchema = new sfWidgetFormSelect(array('choices' => date('Y-m-d H:i:s')));
    //set default date and time
    $this->setDefault('created_at',date('Y-m-d H:i:s')); 
+    $this->setDefault('duedate',date('Y-m-d H:i:s', time() + 86400 * 2));
   // unset($this['username_id']);
    //unset some fields
    unset($this['updated_at'], $this['created_by'], $this['updated_by']);

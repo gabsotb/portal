@@ -8,7 +8,7 @@
 
 
 		<div class="row-fluid" style="margin: 20px auto 5px;  background: url('/images/bgColor.jpg') repeat-x; padding: 10px 9px 35px; border-radius:8px; width: 1100px;">
-			<div class="span6" style="background: url('/images/body-bg.png'); border-radius: 8px; margin: 42px 10px 10px 50px;  padding:8px;">
+			<div class="span7" style="background: url('/images/body-bg.png'); border-radius: 8px; margin: 42px 10px 10px 50px;  padding:8px;">
 				<div class="widget">
 					<div class="widget-title">
 						<h4>
@@ -60,7 +60,7 @@
 								
 								</div>
 								<div class="tab-pane scroller padding" id="EIA">
-									<div id="scrollbar1">
+									<div id="scrollbar2">
 									<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
 									<div class="viewport">
 										 <div class="overview">
@@ -82,7 +82,7 @@
 				</div>
 			</div>
 			
-			<div class="span4" style=" margin: 50px 15px 20px 100px; ">
+			<div class="span3" style=" margin: 50px 15px 20px 100px; ">
 				<div id="login">
 				
 					<form action="<?php echo url_for('@sf_guard_signin') ?>" method="post" class="form-vertical no-padding no-margin" id="loginform">

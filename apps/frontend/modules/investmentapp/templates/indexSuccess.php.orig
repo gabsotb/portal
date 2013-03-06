@@ -374,13 +374,8 @@ $(function () {
 																<tbody>
 																	<tr>
 																		
-<<<<<<< HEAD
-																		<td><?php echo $status['developer_name'] ?></td>
+																		<td><?php echo $status['name'] ?></td>
 																		<td><span class="label"><?php echo $status['application_status'] ?></span></td>
-=======
-																		<td><?php echo $eia['name'] ?></td>
-																		<td><?php echo $eia['application_status'] ?></td>
->>>>>>> 1ac59023c9d51ebcdb315fe616a2d19d4ff026d1
 																	</tr>
 																	
 																</tbody>
@@ -418,7 +413,11 @@ $(function () {
 																	echo button_to('ReApply', 'eia/edit?id=', array('class' => 'btn')); 
 																	break;
 																case 1:
-																	echo button_to('Download EIA Certificate', '', array('class' => 'btn')); 
+<<<<<<< HEAD
+																	echo button_to('Download Clearance Letter', '@homepage', array('class' => 'btn')); 
+=======
+																	echo button_to('Download Clearance Letter', '', array('class' => 'btn')); 
+>>>>>>> 61986993ad0351997946554199f329283517fc4d
 																	break;
 																case 2:
 																	echo button_to('Fill TOR', 'tor/new', array('class' => 'btn')); 
