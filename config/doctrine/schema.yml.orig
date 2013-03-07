@@ -1,0 +1,555 @@
+##This File Describes the Database for the Investment Registration,EIA processes and Import and Export Exemptions
+#Author - Boniface Irunguh
+##Company - Smartline Solutions. All Rights Reserved
+##Email - Mwendia.bonface4@gmail.com
+######### Start Investment Registration Certificate Tables #########################
+InvestmentApplication: ## Contains the application details from the investors
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  name: {type: string(255), notnull: true, unique: true}  
+  registration_number: {type: string(255), notnull: true,  unique: true}
+  title_in_company: { type: string(255), notnull: true }
+  business_sector: {type: string(255), notnull: true}
+  business_category: {type: string(255), notnull: true}
+  office_telephone: {type: string(255), notnull: true}
+  fax: {type: string(255), notnull: true}
+  post_box: {type: string(255), notnull: true}
+  location: {type: string(255), notnull: true}
+  sector: {type: string(255), notnull: true}
+  district: {type: string(255), notnull: true}
+  city_province: {type: string(255), notnull: true}
+### Stores the Business Proposal of the user applying for the investment certificate
+BusinessPlan:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  investment_id: {type: integer, notnull: true, unique: true}
+  ## ####Investment and Financial Schedule Costs
+  ## Land
+  land_year1: {type: integer, notnull: false}
+  land_year2: {type: integer, notnull: false}
+  land_year3: {type: integer, notnull: false}
+  land_year4: {type: integer, notnull: false}
+  land_year5: {type: integer, notnull: false}
+  ##Construction
+  construction_year1: {type: integer, notnull: false}
+  construction_year2: {type: integer, notnull: false}
+  construction_year3: {type: integer, notnull: false}
+  construction_year4: {type: integer, notnull: false}
+  construction_year5: {type: integer, notnull: false}
+  ## ### Plants and Machinery
+  machinery_year1: {type: integer, notnull: false}
+  machinery_year2: {type: integer, notnull: false}
+  machinery_year3: {type: integer, notnull: false}
+  machinery_year4: {type: integer, notnull: false}
+  machinery_year5: {type: integer, notnull: false}
+  ### Furniture
+  furniture_year1: {type: integer, notnull: false}
+  furniture_year2: {type: integer, notnull: false}
+  furniture_year3: {type: integer, notnull: false}
+  furniture_year4: {type: integer, notnull: false}
+  furniture_year5: {type: integer, notnull: false}
+  ## Other Fixed Assets
+  other_assets1: {type: integer, notnull: false}
+  other_assets2: {type: integer, notnull: false}
+  other_assets2: {type: integer, notnull: false}
+  other_assets3: {type: integer, notnull: false}
+  other_assets4: {type: integer, notnull: false}
+  other_assets5: {type: integer, notnull: false}
+  ### Start Up Expenses
+  ## Studies
+  studies_year1: {type: integer, notnull: false}
+  studies_year2: {type: integer, notnull: false}
+  studies_year3: {type: integer, notnull: false}
+  studies_year4: {type: integer, notnull: false}
+  studies_year5: {type: integer, notnull: false}
+  ## Travel Expenses
+  travel_expenses1: {type: integer, notnull: false}
+  travel_expenses2: {type: integer, notnull: false}
+  travel_expenses3: {type: integer, notnull: false}
+  travel_expenses4: {type: integer, notnull: false}
+  travel_expenses5: {type: integer, notnull: false}
+  ## #######Starting Capital
+  starting_capital1: {type: integer, notnull: false}
+  starting_capital2: {type: integer, notnull: false}
+  starting_capital3: {type: integer, notnull: false}
+  starting_capital4: {type: integer, notnull: false}
+  starting_capital5: {type: integer, notnull: false}
+  ## Licensing Fees
+  licensing_expenses1: {type: integer, notnull: false}
+  licensing_expenses2: {type: integer, notnull: false}
+  licensing_expenses3: {type: integer, notnull: false}
+  licensing_expenses4: {type: integer, notnull: false}
+  licensing_expenses5: {type: integer, notnull: false}
+  ## Rental Fees
+  rental_fees1: {type: integer, notnull: false}
+  rental_fees2: {type: integer, notnull: false}
+  rental_fees3: {type: integer, notnull: false}
+  rental_fees4: {type: integer, notnull: false}
+  rental_fees5: {type: integer, notnull: false}
+  ## Others
+  other_expeses1: {type: integer, notnull: false}
+  other_expeses2: {type: integer, notnull: false}
+  other_expeses3: {type: integer, notnull: false}
+  other_expeses4: {type: integer, notnull: false}
+  other_expeses5: {type: integer, notnull: false}
+  ## Financial Expenses
+  equity_local: {type: integer, notnull: false}
+  equity_foregin: {type: integer, notnull: false}
+  bank_loan_local: {type: integer, notnull: false}
+  bank_loan_foreign: {type: integer, notnull: false}
+  mother_company_loan_local: {type: integer, notnull: false}
+  mother_company_loan_foreign: {type: integer, notnull: false}
+  grant_local: {type: integer, notnull: false}
+  grant_foreign: {type: integer, notnull: false}
+  ## ### Job/ employment Categories
+  ## employement local
+  top_management_local1: {type: integer, notnull: false}
+  top_management_local2: {type: integer, notnull: false}
+  top_management_local3: {type: integer, notnull: false}
+  top_management_local4: {type: integer, notnull: false}
+  top_management_local5: {type: integer, notnull: false}
+  ## employment foreign
+  top_management_foreign1: {type: integer, notnull: false}
+  top_management_foreign2: {type: integer, notnull: false}
+  top_management_foreign3: {type: integer, notnull: false}
+  top_management_foreign4: {type: integer, notnull: false}
+  top_management_foreign5: {type: integer, notnull: false}
+  ## technical professional local
+  technical_professional_local1: {type: integer, notnull: false}
+  technical_professional_local2: {type: integer, notnull: false}
+  technical_professional_local3: {type: integer, notnull: false}
+  technical_professional_local4: {type: integer, notnull: false}
+  technical_professional_local5: {type: integer, notnull: false}
+  ## technical professional foreign
+  technical_professional_foreign1: {type: integer, notnull: false}
+  technical_professional_foreign2: {type: integer, notnull: false}
+  technical_professional_foreign3: {type: integer, notnull: false}
+  technical_professional_foreign4: {type: integer, notnull: false}
+  technical_professional_foreign5: {type: integer, notnull: false}
+  ### skilled labour local
+  skilled_labour_local1: {type: integer, notnull: false}
+  skilled_labour_local2: {type: integer, notnull: false}
+  skilled_labour_local3: {type: integer, notnull: false}
+  skilled_labour_local4: {type: integer, notnull: false}
+  skilled_labour_local5: {type: integer, notnull: false}
+  ## skilled labour foreign
+  skilled_labour_foreign1: {type: integer, notnull: false}
+  skilled_labour_foreign2: {type: integer, notnull: false}
+  skilled_labour_foreign3: {type: integer, notnull: false}
+  skilled_labour_foreign4: {type: integer, notnull: false}
+  skilled_labour_foreign5: {type: integer, notnull: false}
+  ## other jobs local
+  other_jobs_local1: {type: integer, notnull: false}
+  other_jobs_local2: {type: integer, notnull: false}
+  other_jobs_local3: {type: integer, notnull: false}
+  other_jobs_local4: {type: integer, notnull: false}
+  other_jobs_local5: {type: integer, notnull: false}
+  ## other jobs foreign
+  other_jobs_foreign1: {type: integer, notnull: false}
+  other_jobs_foreign2: {type: integer, notnull: false}
+  other_jobs_foreign3: {type: integer, notnull: false}
+  other_jobs_foreign4: {type: integer, notnull: false}
+  other_jobs_foreign5: {type: integer, notnull: false}
+  ## ### Planned Company Investment
+  ##sales Income
+  sales_income1: {type: integer, notnull: false}
+  sales_income2: {type: integer, notnull: false}
+  sales_income3: {type: integer, notnull: false}
+  sales_income4: {type: integer, notnull: false}
+  sales_income5: {type: integer, notnull: false}
+  ##total cost
+  total_cost_sales1: {type: integer, notnull: false}
+  total_cost_sales2: {type: integer, notnull: false}
+  total_cost_sales3: {type: integer, notnull: false}
+  total_cost_sales4: {type: integer, notnull: false}
+  total_cost_sales5: {type: integer, notnull: false}
+  ## gross profit
+  gross_profit1: {type: integer, notnull: false}
+  gross_profit2: {type: integer, notnull: false}
+  gross_profit3: {type: integer, notnull: false}
+  gross_profit4: {type: integer, notnull: false}
+  gross_profit5: {type: integer, notnull: false}
+  ##indirect expenses
+  indirect_expenses1: {type: integer, notnull: false}
+  indirect_expenses2: {type: integer, notnull: false}
+  indirect_expenses3: {type: integer, notnull: false}
+  indirect_expenses4: {type: integer, notnull: false}
+  indirect_expenses5: {type: integer, notnull: false}
+  ##profit before tax
+  profit_before_tax1: {type: integer, notnull: false}
+  profit_before_tax2: {type: integer, notnull: false}
+  profit_before_tax3: {type: integer, notnull: false}
+  profit_before_tax4: {type: integer, notnull: false}
+  profit_before_tax5: {type: integer, notnull: false}
+  ##tax expenses
+  tax_expenses1: {type: integer, notnull: false}
+  tax_expenses2: {type: integer, notnull: false}
+  tax_expenses3: {type: integer, notnull: false}
+  tax_expenses4: {type: integer, notnull: false}
+  tax_expenses5: {type: integer, notnull: false}
+  ##net profit
+  net_profit1: {type: integer, notnull: false}
+  net_profit2: {type: integer, notnull: false}
+  net_profit3: {type: integer, notnull: false}
+  net_profit4: {type: integer, notnull: false}
+  net_profit5: {type: integer, notnull: false}
+  ### Project Brief Information
+  project_brief: {type: string(4000), notnull: true}
+  ### Applied on Incentives
+  exemption_on_machinery: {type: string(255), notnull: false}
+  exemption_raw_materials: {type: string(4000), notnull: false}
+  land_ownership_document: {type: string(255), notnull: false}
+  bill_of_quantiy: {type: string(255), notnull: false}
+  drawings: {type: string(255), notnull: false}
+  construction_permits: {type: string(255), notnull: false}
+  investment_allowances: {type: string(255), notnull: false}
+  additional_incentives: {type: string(4000), notnull: false}
+  visa_work_permits: {type: string(4000), notnull: false}
+ relations:
+  InvestmentApplication: {local: investment_id, foreign:id , foreignAlias: InvestmentBusinessPlan}
+# Contains a summary of the application from the InvestmentApplication and Business Plan Tables
+ProjectSummary:
+ actAs:
+  Timestampable: ~
+  Signable: #to monitor the user editing and updating this record
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string} 
+ columns:
+  investment_id: {type: integer, notnull: true, unique: true}
+  business_sector: {type: string(255), notnull: true}
+  techinical_viability: {type: string(4000), notnull: true}
+  planned_investment: {type: integer, notnull: true}
+  employment_created: {type: integer, notnull: true}
+  job_categories: {type: string(4000), notnull: true}
+ relations:
+  InvestmentApplication: {local:investment_id, foreign: id, foreignAlias: InvestmentSummary }
+#Table records the tasks assigned to a user, the status and user to whom the task is assigned to is recorded in this table   
+TaskAssignment: 
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  user_assigned: {type: integer, notnull: true}
+  investmentapp_id: {type: integer, notnull: true, unique: true }
+  instructions: {type: string(1000), notnull: true}
+  duedate: {type: timestamp, notnull: true}
+  work_status: {type: string(255), notnull: true}
+ relations:
+  InvestmentApplication: {local: investmentapp_id, foreign: id, foreignAlias: ApplicationAssigment , onDelete: CASCADE}
+  sfGuardUser: {local: user_assigned, foreign: id, foreignAlias: GuardDocumentAssignment}
+#  sf_guard_user: {local: business_id, foreign: id, foreignAlias: InvestmentDocument}
+BusinessApplicationStatus: # Shows business application status, pending,processing,accepted or rejected, payment,issuing,done
+ actAs: {Timestampable: ~}
+ columns:
+  business_id: {type: integer, notnull:true}
+  application_status: {type: string(255), notnull: true}
+  comment: {type: string(255), notnull: false}
+  percentage: {type: integer, notnull: true}
+ relations:
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentAppBusinesStatus}
+ApprovedApplications: # Shows approved businesses application
+ actAs: {Timestampable: ~}
+ columns:
+  business_id: {type: integer, notnull:true, , unique: true}
+  application_type: {type: string(255), notnull: true}
+  comment: {type: string(255), notnull: false}
+ relations:
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentApprovedBusiness}
+RejectedApplications: # Shows rejected businesses application
+ actAs: {Timestampable: ~}
+ columns:
+  business_id: {type: integer, notnull:true, unique: true}
+  application_type: {type: string(255), notnull: true}
+  comment: {type: string(255), notnull: false}
+ relations:
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentRejectedBusiness}
+##Used to simulate the user payment status from the financial business registration system
+Payment:
+ actAs:
+  Timestampable: ~
+  Signable: #to monitor the user editing and updating this record
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  business_id: {type: integer, notnull: true}
+  payment_status: {type: string(255), notnull: true, default: notpaid}
+  slip_number: {type: integer, notnull: true, unique: true}
+# relations:
+#  InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate}  
+## Records the certificates issued to the investor by the RDB staff after successful completion of Investment Certificate application  
+InvestmentCertificate:
+ actAs:
+  Timestampable: ~
+  Signable: #to monitor the user editing and updating this record
+   created: { name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  serial_number: {type: integer, notnull: true, unique: true}
+  business_id: {type: integer, notnull: true, unique: true}
+ relations:
+  InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate}
+####################################### End Investment Certificate Registration Tables ##############################
+#################################################
+########################################### Start EIA Certificate Application Process Tables ##########################
+### Record The User applying for the EIA Certificate
+EIApplication:
+ actAs:
+  Timestampable: ~
+  Signable: #to monitor the user editing and updating this record
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  name: {type: string(255), notnull: true}
+  company_regno: {type: string(255), notnull: true, unique: true}
+  developer_title: {type: string(255), notnull: true}
+  developer_address: {type: string(255), notnull: true}
+  project_name: {type: string(255), notnull: true}
+  project_purpose: {type: string(400), notnull: true}
+  project_nature: {type: string(400), notnull: true}
+  project_site: {type: string(400), notnull: true}
+  project_sitelaws: {type: string(400), notnull: true}
+  environment_impacts: {type: string(400), notnull: true}
+  other_alternatives: {type: string(400), notnull: false}
+  other_information: {type: string(400), notnull: false}
+## Track the status of EIA Application   
+EIApplicationStatus:
+ actAs:
+  Timestampable: ~
+ columns:
+  company_id: {type: integer, notnull: true}
+  application_status: {type: string(255), notnull: true}
+  comments: {type: string(255), notnull: true}
+  percentage: {type: integer, notnull: true}
+ relations:
+  EIApplication: {local:company_id, foreign: id, foreignAlias: EIApplicationStatus, onDelete:CASCADE }
+#### Record the user who has been assigned the task of processing this application
+EITaskAssignment: 
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  user_assigned: {type: integer, notnull: true}
+  company_id: {type: integer, notnull: true }
+  instructions: {type: string(255), notnull: true}
+  duedate: {type: timestamp, notnull: true}
+  work_status: {type: string(255), notnull: true}
+ relations:
+  EIApplication: {local: company_id, foreign: id, foreignAlias: ApplicationAssigment , onDelete: CASCADE}
+  sfGuardUser: {local: user_assigned, foreign: id, foreignAlias: GuardEIAssignment} 
+#### Record the EIA Project Impact level, L1, L2 or L3
+ProjectImpact:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  company_id: {type: integer, notnull: true}
+  impact_level: {type: integer, notnull: true}
+  comments: {type: string(400), notnull: false}
+ relations:
+  EIApplication: {local:company_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE }
+#### Records information of TOR with assistant from an EI Expert
+Tor:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  impact_id: {type: integer, notnull: true}
+  issues_assessed: {type: string(400), notnull: true}
+  specific_tasks: {type: string(400), notnull: true}
+  stake_holders: {type: string(400), notnull: true}
+  experts: {type: string(400), notnull: true}
+ relations:
+   ProjectImpact: {local:impact_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE }
+### Records The status of TOR submission, can be either rejected or approved
+TorStatus:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  tor_id: {type: integer, notnull: true}
+  status: {type: string(100), notnull: true}
+  comments: {type: string(400), notnull: false}
+ relations:
+  Tor: {local: tor_id,  foreign: id, foreignAlias: TorStatus, onDelete:CASCADE}
+TorDecisions:
+  actAs:
+    Timestampable: ~
+    Signable:
+      created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+      updated: { name: updated_by,type: string}
+  columns:
+    tor_id: {type: integer, notnull: true}
+    decision: {type: string(100), notnull: true}
+    comments: {type: string(400), notnull: false}
+  relations:
+    Tor: {local: tor_id,  foreign: id, foreignAlias: TorDecision, onDelete:CASCADE}
+#### Allow a user to upload EI and EMP documents if TOR is accepted
+EIReport:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  company_id: {type: integer, notnull: true, unique: true}
+  ei_doc: {type: string(255), notnull: true}
+  emp_doc: {type: string(255), notnull: true}
+ relations:
+  EIApplication: {local:company_id, foreign: id, foreignAlias: EIAStudyUploads, onDelete:CASCADE }
+## Allow a RDB staff record public hearing report of a certain project
+PublicHearing:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  company_id: {type: integer, notnull: true}
+  report: {type: string(800), notnull: true}
+ relations:
+  EIApplication: {local:company_id, foreign: id, foreignAlias: EIAStudyUploads, onDelete:CASCADE }
+### Allow an RDB to record the decision from executive commitee after they have reviewed the project
+EIApplicationDecision:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  eireport_id: {type: integer, notnull: true}
+  status: {type: string(255), notnull: true}
+  comments: {type: string(255), notnull: true}
+ relations:
+  EIReport: {local:eireport_id, foreign: id, foreignAlias: StudyDecision, onDelete:CASCADE }
+### Record the EIA Certificate
+EIACertificate:
+ actAs:
+  Timestampable: ~
+ columns:
+  serial_number: {type: integer, notnull: true, unique: true}
+  company_id: {type: integer, notnull: true, unique: true}
+ relations:
+  EIApplication: {local: company_id, foreign:id , foreignAlias: EIACertificate}
+############################ End EIA Certificate Application Process Tables ###############################
+Messages:
+ actAs: {Timestampable: ~}
+ columns:
+  sender: {type: string(255), notnull: true}
+  recepient: {type: string(255), notnull: true}
+  message: {type: string(4000), notnull: true}
+  attachement: {type: string(255), notnull: true}
+Notifications:
+ actAs: {Timestampable: ~}
+ columns:
+  recepient: {type: string(255), notnull: true}
+  message: {type: string(4000), notnull: true}
+############################## End ############################################################
+Session: ## Table is used to store sessions for frontend and backend applications
+ columns:
+  id: { type: string(32), primary: true, notnull: true }
+  sessiondata: { type: string(4000), notnull: true }
+  time: { type: integer(4), notnull: true }
+###### A Table to Simulate Business Registration System, we use it to confirm if a Business is Registered.
+BusinessRegistration:
+ actAs: {Timestampable: ~}
+ columns:
+  business_name: {type: string(255), notnull: true}
+  business_regno: {type: string(255), notnull: true}
+###### Table used to Add more information for user profile
+sfGuardUserProfile:
+ actAs: {Timestampable: ~}
+ columns:
+  user_id: { type: integer , notnull: true}
+  salutation: { type: string(255), notnull: true }
+  citizenship: { type: string(255), notnull: true }
+  surname: { type: string(255), notnull: true }
+  phone_number: { type: string(255), notnull: true } 
+  id_passport: { type: string(255), notnull: true }
+ relations:
+  User:
+   class: sfGuardUser
+   local: user_id
+   foreign: id
+   type: one
+   foreignType: one
+   foreignAlias: Profile
+Portlets:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  investment_certificate: {type: string(7000), notnull: true}
+  eia_certificate: {type: string(7000), notnull: true}
+  tax_exemptions: {type: string(7000), notnull: true}
+<<<<<<< HEAD
+#### Tabel to store data admin recommendations and supervisor comments ####
+EIAReports:
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+    module: { type: string(200), notnull: true }
+    module_id: { type: integer, notnull: true }
+    recommendations: { type: string(400), notnull: true }
+EIAReportDecision:
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+    report_id: { type: integer, notnull: true }
+    decision: { type: integer, notnull: true }
+    comment: { type: string(200), notnull: true }
+  relations:
+    EIAReports: { local: report_id, foreign: id, foreignAlias: EiaReport, onDelete:CASCADE }
+TechnicalSummary:
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+    tor_id: { type: integer, notnull: true }
+    report: { type: string(400), notnull: true }
+    comment: { type: string(400), notnull: true }
+  relations:
+    Tor: { local: tor_id, foreign: id, foreignAlias: TechnicalSummary, onDelete:CASCADE }
+RecordDecision:
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+    tor_id: { type: integer, notnull: true }
+    decision: { type: string(400), notnull: true }
+    comment: { type: string(400), notnull: true }
+  relations:
+    Tor: { local: tor_id, foreign: id, foreignAlias: TechnicalSummary, onDelete:CASCADE }
+
+=======
+ 
+>>>>>>> 42486ad95517d9434e1530a2768bf2a372e6d0db

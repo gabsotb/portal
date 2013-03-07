@@ -16,6 +16,18 @@ class InvestmentApplicationTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('InvestmentApplication');
     }
+	//we set default fields for Category
+	static public $category = array(
+    'new' => 'New',
+    'restructuring' => 'Restructuring',
+    'expansion' => 'Expansion',
+	'reinvestment' => 'Reinvestment',
+  );
+  ///
+  public function getCategories()
+  {
+   return self::$category ;
+  }
 	// This method selects data from the investment table and returns it to the controller if called
 	public function getTotalInvestmentApplications(Doctrine_Query $query = null)
 	{
@@ -31,14 +43,16 @@ class InvestmentApplicationTable extends Doctrine_Table
 	//now we need to check if there are any application for this user and if not show a button for applying and appropriate message.
 	public function getUserInvestmentApplications()
 	{
-	 $userid = sfContext::getInstance()->getUser()->getGuardUser()->getUsername(); // get the username of the user logged
+	 $userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+	
 	// let use the doctrine manager secure 
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT 
-	  business_plan.investment_id, business_plan.executive_summary,business_plan.promoter_profile,business_plan.project_background,business_plan.equity_financing,business_plan.income_statement,
-	  business_plan.cashflow_statement,business_plan.payback_period,business_plan.npv,business_plan.loan_amortization,business_plan.implementation_plan,business_plan.notes
+	  business_plan.investment_id, business_plan.project_brief
 	  FROM business_plan 
-	  left join business_application_status on business_plan.investment_id = business_application_status.business_id
-		where business_plan.updated_by = '$userid' and business_application_status.application_status != 'certificateissued'
+	  left join business_application_status on 
+	  business_plan.investment_id = business_application_status.business_id where 
+	  business_plan.created_by = '$userid' 
+	  and business_application_status.application_status != 'certificateissued'
 		");
 		return $query; 
 	}
@@ -70,6 +84,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT business_application_status.application_status,
      business_application_status.comment,business_application_status.percentage,investment_application.name FROM business_application_status 
 	 LEFT JOIN investment_application ON business_application_status.business_id = investment_application.id WHERE created_by = '$userid' 
+	 and business_application_status.application_status !='certificateissued'
 	 ");
 	 return $query;
 	}
@@ -122,14 +137,14 @@ class InvestmentApplicationTable extends Doctrine_Table
 	}
 	//this method is used to confirm that a user has completed application for certificate and is issued and then allows him to apply for a new one
 	//for another business
-	public function getCertificationStatus()
+	public function getCertificationStatus($userid)
 	{
-	   $userid = sfContext::getInstance()->getUser()->getGuardUser()->getUsername(); // get the username of the user logged
+	  // $userid = sfContext::getInstance()->getUser()->getGuardUser()->getUsername(); // get the username of the user logged
 	  
 	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
 	     SELECT COUNT(investment_application.id) FROM investment_application 
 		 LEFT JOIN business_application_status ON investment_application.id = business_application_status.business_id
-		 WHERE  investment_application.updated_by = '$userid' AND business_application_status.application_status ='certificateissued'
+		 WHERE  investment_application.created_by = '$userid' AND business_application_status.application_status = 'certificateissued'
 	   ");
 	   return $query;
 	}
@@ -140,7 +155,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	 
 	  //we will select the investment id for current logged user
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	   SELECT investment_application.id FROM investment_application WHERE created_by = '$userid' limit 1
+	   SELECT investment_application.id FROM investment_application WHERE created_by = '$userid' order by investment_application.id desc limit 1 
 	  ");
 	  $id = null ;
 	  $id2 = null;
@@ -150,7 +165,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  }
 	  //print $id; exit;
 	  $query2 = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	   SELECT business_plan.investment_id FROM business_plan WHERE investment_id = '$id' limit 1
+	   SELECT business_plan.investment_id FROM business_plan WHERE investment_id = '$id' order by investment_id desc limit 1
 	  ");
 	  //
 	  foreach($query2 as $q2)
@@ -164,6 +179,19 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  }
 	
 	  
+	}
+	//a custom method to retrieve business id given a business name
+	public function getBusinessId($name)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT investment_application.id FROM investment_application WHERE investment_application.name = '$name' limit 1
+	  ");
+	  $id = 0;
+	  foreach( $query as $q)
+	  {
+	   $id = $q['id'] ;
+	  }
+	  return $id;
 	}
 	
 }

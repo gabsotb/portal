@@ -32,7 +32,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.investmentapp_id,
 	 task_assignment.instructions,task_assignment.work_status,
-	 task_assignment.duedate, investment_application.name, investment_application.company_address FROM task_assignment 
+	 task_assignment.duedate, investment_application.name, investment_application.location FROM task_assignment 
 	 LEFT JOIN investment_application ON 
 	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
 	 task_assignment.work_status != 'complete' AND task_assignment.work_status != 'notstarted'
@@ -54,15 +54,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	//get all application details for Investment Certificate for a given user
 	public function getApplicationDetails($id)
 	{
-	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.id, investment_application.name,
-	  investment_application.job_created,investment_application.job_category,investment_application.application_letter,investment_application.incorporation_certificate,
-	  investment_application.shareholding_list,investment_application.company_legal_nature,investment_application.company_representative,
-	  business_plan.executive_summary,business_plan.promoter_profile,business_plan.project_background,business_plan.equity_financing,business_plan.income_statement,
-	  business_plan.cashflow_statement,business_plan.payback_period,business_plan.npv,business_plan.loan_amortization,business_plan.implementation_plan,
-	  business_plan.notes,
-	  task_assignment.investmentapp_id
-	  FROM task_assignment LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id
-	  LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id WHERE task_assignment.investmentapp_id = '$id'
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id  LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id WHERE task_assignment.investmentapp_id = '$id'
 	  ") ;
 	  //
 	  //we also need to change the status of business application 
@@ -185,7 +177,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	  //
 	  return $query;
 	}
-	/*We use this method to retrieve tasks which this looged administrator has assigned to data admins*/
+	/*We use this method to retrieve tasks which this logged administrator has assigned to data admins*/
 	public function getAssignedTasks($username)
 	{
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
@@ -203,6 +195,40 @@ class TaskAssignmentTable extends Doctrine_Table
 	 SELECT email_address,username from sf_guard_user where sf_guard_user.id = '$id'
 	 ");
 	 return $query;
+	}
+	//we will create a function that will return only the id and name of a user who belongs to investment certificate data admins or eia data admins 
+	public function getDataAdmins($group)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	    SELECT sf_guard_user.id,sf_guard_user.username
+		from sf_guard_user_group left join sf_guard_group on sf_guard_user_group.group_id = sf_guard_group.id
+		left join sf_guard_user on sf_guard_user_group.user_id = sf_guard_user.id
+		 where sf_guard_group.name = '$group'
+	   ");
+	   $values = null;
+	    foreach($query as $q)
+		{
+		 $values = array($q['id'] => $q['username']);
+		}
+		//
+	
+	 return $values;
+	}
+	//we also want to make sure that the select dropdown box contains the correct business name for the admin to easily assign job to a data admin
+	//
+	public function getCompanyName($name)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	    SELECT investment_application.id,investment_application.name
+		from investment_application 
+		 where investment_application.name = '$name'
+	   ");
+	   $values = null;
+	    foreach($query as $q)
+		{
+		 $values = array($q['id'] => $q['name']);
+		}
+	 return $values;
 	}
 	
 }

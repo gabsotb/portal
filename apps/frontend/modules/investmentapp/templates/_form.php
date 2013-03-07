@@ -25,16 +25,14 @@
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['company_address']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Enter Current Business Location. 
-					This should be the physical location where you intend to start your
-					business operations.', 'data-original-title' => 'Company Address')) ?>
+					<?php echo $form['title_in_company']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Enter Your Title in The Company.', 'data-original-title' => 'Company Address')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['job_created']->renderRow(array('class' => 'span6 chosen'))?>
+					<?php echo $form['business_sector']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Select a Business Sector.', 'data-original-title' => 'Business Sector')) ?>
 				</div>
 			</div>
 		</div>
@@ -42,7 +40,7 @@
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['job_category']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
+					<?php echo $form['business_category']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Select a Business Category.', 'data-original-title' => 'Business Category')) ?>
 				</div>
 			</div>
 		</div>
@@ -50,57 +48,60 @@
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['company_legal_nature']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'What is your Company Legal Nature', 'data-original-title' => 'Business Legal Status')) ?>
+					<?php echo $form['office_telephone']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Enter Office Telephone Number', 'data-original-title' => 'Office Telephone')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['company_representative']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Who is your Company Representative?', 'data-original-title' => 'Company Representatives')) ?>
-				</div>
-			</div>
-		</div>
-		<!-- -->
-		 <div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-					<?php echo $form['application_letter']->renderRow() ?>
-				</div>
-			</div>
-		</div>
-		<!-- -->
-		<div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-					<?php echo $form['incorporation_certificate']->renderRow() ?>
+					<?php echo $form['fax']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Enter Fax Number', 'data-original-title' => 'Fax')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['shareholding_list']->renderRow() ?> 
+					<?php echo $form['post_box']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Enter you P.O Box Information ', 'data-original-title' => 'Post Address')) ?>
 				</div>
-				
 			</div>
 		</div>
-	   <div class="control-group">
+	    <div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['company_logo']->renderRow() ?>
+					<?php echo $form['location']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Select Business Location', 'data-original-title' => 'Business Location')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['sector']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Select Business Sector', 'data-original-title' => 'Business Sector')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['district']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Select District', 'data-original-title' => 'Business District')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['city_province']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Select City / Province', 'data-original-title' => 'Business Setup Province/City')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					
 					<?php echo $form->renderHiddenFields(); ?>
 				</div>
 			</div>
 		</div>
-    <!-- <div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-					<?php //echo $form['created_at']->renderRow(array('class' => 'default')) ?>
-					<?php //echo $form->renderHiddenFields(); ?>
-				</div>
-			</div>
-		</div> -->
       <tfoot>
       <tr>
 	  

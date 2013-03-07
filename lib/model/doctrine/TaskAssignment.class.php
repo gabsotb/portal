@@ -12,6 +12,27 @@
  */
 class TaskAssignment extends BaseTaskAssignment
 {
+    //test we write functions to return the group and business
+    private  $group;
+    private  $name;
+  //setter methods
+	   public function setGroup($group)
+	   {
+		$this->group = $group;
+	   }
+	  public function getGroup()
+	  {
+	   return $this->group;
+	  }
+	  //
+	  public function setCompany($name)
+	  {
+	   $this->name = $name;
+	  }
+	  public function getCompany()
+	  {
+	   return $this->name;
+	  }
     public function save(Doctrine_Connection $conn = null)
 	  {
 	   $conn = $conn ? $conn : $this->getTable()->getConnection();

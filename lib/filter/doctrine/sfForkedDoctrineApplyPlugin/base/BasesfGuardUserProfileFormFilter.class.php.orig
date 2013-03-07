@@ -14,25 +14,35 @@ abstract class BasesfGuardUserProfileFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
-      'email_new'   => new sfWidgetFormFilterInput(),
-      'firstname'   => new sfWidgetFormFilterInput(),
-      'lastname'    => new sfWidgetFormFilterInput(),
-      'validate_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'validate'    => new sfWidgetFormFilterInput(),
-      'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'user_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
+      'email_new'    => new sfWidgetFormFilterInput(),
+      'firstname'    => new sfWidgetFormFilterInput(),
+      'lastname'     => new sfWidgetFormFilterInput(),
+      'validate_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'validate'     => new sfWidgetFormFilterInput(),
+      'salutation'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'citizenship'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'surname'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'phone_number' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'id_passport'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'created_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'user_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
-      'email_new'   => new sfValidatorPass(array('required' => false)),
-      'firstname'   => new sfValidatorPass(array('required' => false)),
-      'lastname'    => new sfValidatorPass(array('required' => false)),
-      'validate_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'validate'    => new sfValidatorPass(array('required' => false)),
-      'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'user_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
+      'email_new'    => new sfValidatorPass(array('required' => false)),
+      'firstname'    => new sfValidatorPass(array('required' => false)),
+      'lastname'     => new sfValidatorPass(array('required' => false)),
+      'validate_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'validate'     => new sfValidatorPass(array('required' => false)),
+      'salutation'   => new sfValidatorPass(array('required' => false)),
+      'citizenship'  => new sfValidatorPass(array('required' => false)),
+      'surname'      => new sfValidatorPass(array('required' => false)),
+      'phone_number' => new sfValidatorPass(array('required' => false)),
+      'id_passport'  => new sfValidatorPass(array('required' => false)),
+      'created_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'updated_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_profile_filters[%s]');
@@ -52,15 +62,20 @@ abstract class BasesfGuardUserProfileFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'          => 'Number',
-      'user_id'     => 'ForeignKey',
-      'email_new'   => 'Text',
-      'firstname'   => 'Text',
-      'lastname'    => 'Text',
-      'validate_at' => 'Date',
-      'validate'    => 'Text',
-      'created_at'  => 'Date',
-      'updated_at'  => 'Date',
+      'id'           => 'Number',
+      'user_id'      => 'ForeignKey',
+      'email_new'    => 'Text',
+      'firstname'    => 'Text',
+      'lastname'     => 'Text',
+      'validate_at'  => 'Date',
+      'validate'     => 'Text',
+      'salutation'   => 'Text',
+      'citizenship'  => 'Text',
+      'surname'      => 'Text',
+      'phone_number' => 'Text',
+      'id_passport'  => 'Text',
+      'created_at'   => 'Date',
+      'updated_at'   => 'Date',
     );
   }
 }
@@ -75,6 +90,7 @@ abstract class BasesfGuardUserProfileFormFilter extends BaseFormFilterDoctrine
       'lastname'     => new sfWidgetFormFilterInput(),
       'validate_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'validate'     => new sfWidgetFormFilterInput(),
+      'id_passport'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'phone_number' => new sfWidgetFormFilterInput(),
       'birth_date'   => new sfWidgetFormFilterInput(),
       'age'          => new sfWidgetFormFilterInput(),
@@ -91,6 +107,7 @@ abstract class BasesfGuardUserProfileFormFilter extends BaseFormFilterDoctrine
       'lastname'     => new sfValidatorPass(array('required' => false)),
       'validate_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'validate'     => new sfValidatorPass(array('required' => false)),
+      'id_passport'  => new sfValidatorPass(array('required' => false)),
       'phone_number' => new sfValidatorPass(array('required' => false)),
       'birth_date'   => new sfValidatorPass(array('required' => false)),
       'age'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -124,6 +141,7 @@ abstract class BasesfGuardUserProfileFormFilter extends BaseFormFilterDoctrine
       'lastname'     => 'Text',
       'validate_at'  => 'Date',
       'validate'     => 'Text',
+      'id_passport'  => 'Text',
       'phone_number' => 'Text',
       'birth_date'   => 'Text',
       'age'          => 'Number',
@@ -134,4 +152,4 @@ abstract class BasesfGuardUserProfileFormFilter extends BaseFormFilterDoctrine
     );
   }
 }
->>>>>>> e784b0f28bbb685fd4afed91afa1b73c22606f63
+>>>>>>> 61986993ad0351997946554199f329283517fc4d

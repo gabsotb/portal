@@ -2,7 +2,7 @@
 			  <div class="span8">
 				<div class="widget">
 				 <div class="widget-title">
-					<h4><i class="icon-reorder"></i>Investment Certificates Form</h4>						
+					<h4><i class="icon-reorder"></i>Investment Certificates ---- Company Details Form</h4>						
 					</div>
             <div class="widget-body">
 			<div class="alert alert-block alert-info fade in">

@@ -13,21 +13,23 @@
       <?php echo $form->renderGlobalErrors() ?>
 	</div>
       <div class="control-group">
-        <?php echo $form['company_regno']->renderLabel(NULL,array('class' => 'control-label')) ?>
-        <div class="controls">
-		<?php echo $form['company_regno']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter your Company Registration Number. This will be verified by the Business Registration System', 'data-original-title' => 'Company RegNo.' )) ?>
-        <span class="help-inline">  <?php echo $form['company_regno']->renderError() ?> </span>
-          
-        </div>
-      </div>
-      <div class="control-group">
-        <?php echo $form['name']->renderLabel(NULL,array('class' => 'control-label')) ?>
+        <?php echo $form['name']->renderLabel('Company Name',array('class' => 'control-label')) ?>
         <div class="controls">
 		<?php echo $form['name']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter your Company Name. This will be verified by the Business Registration System', 'data-original-title' => 'Company Name.' )) ?>
           <span class="help-inline"><?php echo $form['name']->renderError() ?> </span>
           
         </div>
       </div>
+	  
+      <div class="control-group">
+        <?php echo $form['company_regno']->renderLabel(NULL,array('class' => 'control-label')) ?>
+        <div class="controls">
+		<?php echo $form['company_regno']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter your Company Name. This will be verified by the Business Registration System', 'data-original-title' => 'Tin Number.' )) ?>
+          <span class="help-inline"><?php echo $form['name']->renderError() ?> </span>
+          
+        </div>
+      </div>
+	  
       <div class="control-group">
         <?php echo $form['developer_title']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
@@ -55,7 +57,7 @@
       <div class="control-group">
         <?php echo $form['project_purpose']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['project_purpose']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter the purpose of the project', 'data-original-title' => 'Project Objectives' )) ?>
+		<?php echo $form['project_purpose']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['project_purpose']->renderError() ?></span>
           
         </div>
@@ -63,7 +65,7 @@
       <div class="control-group">
         <?php echo $form['project_nature']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['project_nature']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter the Nature of the project', 'data-original-title' => 'Project Nature' )) ?>
+		<?php echo $form['project_nature']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['project_nature']->renderError() ?></span>
           
         </div>
@@ -71,7 +73,7 @@
       <div class="control-group">
         <?php echo $form['project_site']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['project_site']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter the project proposed site', 'data-original-title' => 'Project Site' )) ?>
+		<?php echo $form['project_site']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['project_site']->renderError() ?></span>
           
         </div>
@@ -79,7 +81,7 @@
       <div class="control-group">
         <?php echo $form['project_sitelaws']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['project_sitelaws']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter the site laws of the proposed location', 'data-original-title' => 'Site Laws' )) ?>
+		<?php echo $form['project_sitelaws']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['project_sitelaws']->renderError() ?></span>
           
         </div>
@@ -87,7 +89,7 @@
       <div class="control-group">
         <?php echo $form['environment_impacts']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['environment_impacts']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter the project environmental impact.', 'data-original-title' => 'Environmental Impact' )) ?>
+		<?php echo $form['environment_impacts']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['environment_impacts']->renderError() ?></span>
           
         </div>
@@ -95,7 +97,7 @@
       <div class="control-group">
         <?php echo $form['other_alternatives']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['other_alternatives']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter other alternatives for the proposed project.', 'data-original-title' => 'Other Alternatives' )) ?>
+		<?php echo $form['other_alternatives']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['other_alternatives']->renderError() ?></span>
           
         </div>
@@ -103,7 +105,7 @@
       <div class="control-group">
         <?php echo $form['other_information']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-		<?php echo $form['other_information']->render(array('class' => 'span6 popovers', 'data-trigger' => 'hover', 'data-content' => 'Enter any other information you want to add about the project.', 'data-original-title' => 'Company RegNo.' )) ?>
+		<?php echo $form['other_information']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10' )) ?>
           <span class="help-inline"><?php echo $form['other_information']->renderError() ?></span>
           
         </div>

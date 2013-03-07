@@ -53,7 +53,8 @@ class portletsActions extends sfActions
 
     $this->processForm($request, $this->form);
 
-    $this->setTemplate('edit');
+    //$this->setTemplate('edit');
+	$this->redirect('portlets/index');
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -73,7 +74,8 @@ class portletsActions extends sfActions
     {
       $portlets = $form->save();
 
-      $this->redirect('portlets/edit?id='.$portlets->getId());
+     // $this->redirect('portlets/edit?id='.$portlets->getId());
+	  $this->redirect('dashboard/index');
     }
   }
 }

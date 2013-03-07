@@ -1,3 +1,4 @@
+
 <!--some Javascripts for Loading High Charts Graph -->
  <script type="text/javascript">
 $(function () {
@@ -222,7 +223,7 @@ $(function () {
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4>Recent Applications  Investment Certificates</h4>						
+									<h4>Recent Applications For Investment Certificates</h4>						
 								</div>
 								<div class="widget-body">
 								<?php if(count($new_applications) <= 0): ?>
@@ -250,19 +251,17 @@ $(function () {
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?business='.$available['name'].'& group =investmentcertadmins') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
 										</tbody>
 									</table>
-								
-							    
+									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
-									<?php endif; ?>
 								</div>
 							</div>
 							<!-- END RECENT ORDERS PORTLET-->
@@ -306,12 +305,11 @@ $(function () {
 										</tbody>
 										<?php endforeach; ?>
 									</table>
-									
+									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
-									<?php endif; ?>
 								</div>
 							</div>
 					</div>	</div>		
@@ -504,11 +502,12 @@ $(function () {
 									</table>
 								
 							    
+									
+									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
-									<?php endif; ?>
 								</div>
 							</div>
 							<!-- END RECENT ORDERS PORTLET-->
@@ -743,11 +742,12 @@ $(function () {
 										<?php endforeach; ?>
 									</table>
 									
+									
+									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-mini pull-right">View All</a>
 									</div>
-									<?php endif; ?>
 								</div>
 							</div>
 							<!-- END RECENT ORDERS PORTLET-->
@@ -919,7 +919,7 @@ $(function () {
     </div>		
     <div class="row-fluid">
 <!-- When logged, they can only see tasks assigned to them by the department administrators -->	
-	<div class="span8">
+	<div class="span9">
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
@@ -928,24 +928,24 @@ $(function () {
 								</div>
 								<div class="widget-body">
 								<?php if(count($mytasks) != null) : ?>
-									<table class="table table-striped table-bordered table-advance table-hover">
+									<table id="investmentadminstartwork" class="table table-striped table-bordered" >
 										<thead>
 											<tr>
 												<th><i class="icon-briefcase"></i> <span class="hidden-phone">For Business</span></th>
 												<th><i class="icon-user"></i> <span class="hidden-phone ">Instructions</span></th>
-												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Work Status</span></th>
+												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Status</span></th>
 												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Due date</span></th>
 												<th></th>
 											</tr>
 										</thead>
 										<tbody>
 										<?php foreach($mytasks as $tasks):  ?>
-											<tr>
+											<tr class="odd gradeX">
 												<td><?php echo $tasks['name'] ?></td>
 												<td><?php echo $tasks['instructions'] ?></td>
 												<td><?php echo $tasks['work_status'] ?></td>
 												<td><?php echo $tasks['duedate'] ?></td>
-												<td> <a href="<?php echo url_for('dashboard/start?id='.$tasks['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Start Work</button></a></td>
+												<td> <a href="<?php echo url_for('dashboard/start?id='.$tasks['investmentapp_id']) ?>"><button class="btn btn-small btn-primary">Start</button></a></td>
 											</tr>
 									  <?php endforeach; ?>
 											
@@ -966,7 +966,7 @@ $(function () {
 								</div>
 							</div>
 					</div>	
-					<div class="span4">
+					<div class="span3">
 							<!-- BEGIN NOTIFICATIONS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
@@ -979,7 +979,7 @@ $(function () {
 										<li>
 											<span class="label label-success"><i class="icon-bell"></i></span>
 											<span>Not Tasks Yet Started. Please Start your Tasks </span>
-											<span>The Administrator has assigned you 5 tasks. Remember you have a deadline to meet! </span>
+											<span>The Administrator has assigned you 0 tasks. Remember you have a deadline to meet! </span>
 											
 										</li>
 									</ul>
@@ -992,11 +992,11 @@ $(function () {
 									</li>
 								</ul>
 								<?php  endif; ?>
-								<?php if(count($mytasks) != null) : ?>
-									<div class="space5"></div>
+								<?php //if(count($mytasks) != null) : ?>
+									<!--<div class="space5"></div>
 									<a href="#" class="pull-right"> <button type="button" class="btn btn-success">View Tasks Started(2)</button></a>										
-									<div class="clearfix no-top-space no-bottom-space"></div>
-							    <?php endif; ?>
+									<div class="clearfix no-top-space no-bottom-space"></div> -->
+							    <?php // endif; ?>
 								</div>
 							</div>
 							<!-- END NOTIFICATIONS PORTLET-->
@@ -1032,7 +1032,7 @@ $(function () {
 											<tr class="odd gradeX">
 											<?php foreach($mytasksnotcomplete as $notdone) :?>
 											<td><?php echo $notdone['name'] ?></td>
-											<td><?php echo $notdone['company_address'] ?></td>
+											<td><?php echo $notdone['location'] ?></td>
 											<td><?php echo "Investment Certificate"?></td>
 											<td><?php echo $notdone['duedate'] ?></td>
 											<td><?php echo $notdone['work_status']  ?></td>
@@ -1048,7 +1048,7 @@ $(function () {
 											<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Process </button></a>
 											 <?php endif; ?>
 											 <?php  if($notdone['work_status'] == "reporting" ): ?>
-											<a href="<?php echo url_for('projectSummary/show?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Accept Application </button></a>
+											<a href="<?php echo url_for('projectSummary/show?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Accept or Decline </button></a>
 											 <?php endif; ?>
 											 <?php  if($notdone['work_status'] == "awaitingpayment" ): ?>
 											<a href="<?php echo url_for('confirm/index?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Confirm Payment </button></a>

@@ -16,7 +16,16 @@ class BusinessPlanTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('BusinessPlan');
     }
-	
+	//some static fields
+	static public $allowance = array(
+    'yes' => 'Yes',
+    'no' => 'No',
+     );
+	 //return static field
+	 public function getAllowance()
+	 {
+	  return self::$allowance;
+	 }
 	//this method will receive a an id and then query table for the record with the id from this table, if it returns
 	//null then, that means the user completed step 1 and failed to complete step 2
 	public function getBusinessPlanDetails($investment_id)
@@ -24,7 +33,7 @@ class BusinessPlanTable extends Doctrine_Table
 	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
 	    SELECT business_plan.investment_id from business_plan 
 		LEFT JOIN business_application_status ON  business_plan.investment_id = business_application_status.business_id
-		where business_plan.investment_id = '$investment_id' and business_application_status.application_status != 'certificateissued'
+		where business_plan.investment_id = '$investment_id' and business_application_status.application_status = 'certificateissued'
 	   ");
 	   return $query;
 	}

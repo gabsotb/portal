@@ -143,7 +143,7 @@ $(function () {
 												<div class="details">
 													<div class="title">Number of Investment Certificates Issued</div>
 													<div class="numbers"><?php
-                                                        echo (count($overall_investmentapps));
+                                                        echo "0";
 													?></div>
 												</div>
 												
@@ -285,21 +285,22 @@ $(function () {
 															//now we pass this to businessplan table method
 															$p = Doctrine_Core::getTable('BusinessPlan')->getBusinessPlanDetails($investment_id);
 															$response = null;
+															//print_r($p); exit;
 															//
 															foreach($p as $r)
 															{
-															 $response = $r['invesment_id'];
+															 $response = $r['investment_id'];
 															}
 															// 
 															  
 															?>
 														<?php if($investment_id != null){ ?>
-														 <?php echo "heheheheh"; ?>
+														 
 															 <!-- if it is null we show buttons -->
 															 <?php if($response == null) { ?>
 																 <div class="alert alert-block alert-warning fade in">
-																 <strong>Incomplete Applications !</strong> <br/>Please Complete your Initial application
-																 for Investment Certificate for <?php echo $business_name; ?>.  <br/>
+																 <strong>Incomplete Application !</strong> <br/>Please Complete your Initial application
+																 for Investment Certificate for <?php echo $business_name; ?>.  <br/><br/>
 																<a href="<?php echo url_for('businessplan/new?id='.$business_name) ?>"> 
 																<button type="button" class="btn btn-primary">Complete</button>&nbsp;&nbsp;
 																&nbsp;&nbsp;
@@ -310,42 +311,49 @@ $(function () {
 																</div>
 															 <?php } ?>
 														 <?php } ?>
-															 <?php if($investment_id == null){ 
+															 <?php if($investment_id != null){ 
 															 $value = 0;
 															
 															 ?>
 															 <!-- We have a situation where a user has completed application 1 and wants to a apply for a 
 															 certificate for another business we will show this message -->
 															   <?php 
+															
 															   foreach($checkCertificationStatus as $status)
 															    {
 															      $value = $status['COUNT(investment_application.id)'] ;
-																 
+																// print $value;
 															    }
+																// exit;
 																?>
-																<?php if($value > 0) { ?>
+																<?php if($value > 0 && $response != null) { ?>
 																  <strong>Alert!</strong> <br/>There are no New applications
 																		for investment certificate for your account! However your have <?php echo $value; ?>
 																		complete application(s) for Investment Certificate. Click Button Below to apply for 
 																		Certification of another business. 
 																<br/> 
+																 <a href="<?php echo url_for('investmentapp/new') ?>">
+																 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+																 </a>
 																<?php } ?>
 															    <?php if($value <= 0) { ?>
 																	  <strong>Alert!</strong> <br/>There are no applications
 																		for investment certificate for your account! <br/>
+																		 <a href="<?php echo url_for('investmentapp/new') ?>">
+																		 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+																		 </a>
 																<?php } ?>
 															
 												<!--we will prevent users from applying for certificate if they have pending applications -->
                                                          
-														 <a href="<?php echo url_for('investmentapp/new') ?>">
-														 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
-														 </a>
+														
 														  <?php } ?> 
 															</div>
 														<?php endif; ?>
 															   
 											  </div><!-- End Investment Certificate Application Widget -->
 												<!-- Begin EIA Certificate application widget -->
+												
 												 <div class="widget">
 															<div class="widget-title">
 																<h4>EIA Certificate Application</h4>						
@@ -374,13 +382,22 @@ $(function () {
 																<tbody>
 																	<tr>
 																		
-<<<<<<< HEAD
-																		<td><?php echo $status['developer_name'] ?></td>
-																		<td><span class="label"><?php echo $status['application_status'] ?></span></td>
-=======
-																		<td><?php echo $eia['name'] ?></td>
-																		<td><?php echo $eia['application_status'] ?></td>
->>>>>>> 1ac59023c9d51ebcdb315fe616a2d19d4ff026d1
+																		<td><?php echo $status['name'] ?></td>
+																		<?php switch($status['application_status']){
+																				case 'processed':
+																					$label="label-success";
+																					break;
+																				case 'processing':
+																					$label="label-warning";
+																					break;
+																				case 'submitted':
+																					$label="label-success";
+																					break;
+																				default:
+																					$label=NULL;
+																		}?>
+																		
+																		<td><span class="label <?php echo $label ?>"><?php echo $status['application_status'] ?></span></td>
 																	</tr>
 																	
 																</tbody>
@@ -404,21 +421,26 @@ $(function () {
 											   </div>
 											   <?php endforeach; ?>
 											   <?php endif; ?>
-											          <?php if(count($eia_applications) <= 0): ?>
+											          <?php if(count($eia_applications) == 0 || is_null($eia_applications)): ?>
 															<div class="alert alert-error">
 										                    <strong>Alert!</strong> <br/>There are no applications
 															for EIA certificate for your account!
+															<br/><?php echo button_to('Apply for EIA Certificate','eia/new',array('class' => 'btn btn-success')); ?>
 															</div>
-															
-															<?php echo button_to('Apply for EIA Certificate','eia/new',array('class' => 'btn btn-success')); ?>
 													  <?php endif; ?>
+													<?php //foreach($torStatus as $tors): ?>
+													<?php //if(is_null($torStatus)): ?>
 													<?php foreach($impacts as $impact): ?>
 														<?php switch($impact->getImpactLevel()){
 																case 0:
-																	echo button_to('ReApply', 'eia/edit?id=', array('class' => 'btn')); 
+																	echo button_to('ReApply', 'eia/edit?id='.$imapact->getId(), array('class' => 'btn')); 
 																	break;
 																case 1:
-																	echo button_to('Download EIA Certificate', '', array('class' => 'btn')); 
+<<<<<<< HEAD
+																	echo button_to('Download Clearance Letter', 'eia/clearance?id='.$impact->getCompanyId(), array('class' => 'btn'));
+=======
+																	echo button_to('Download Clearance Letter', '@homepage', array('class' => 'btn')); 
+>>>>>>> 42486ad95517d9434e1530a2768bf2a372e6d0db
 																	break;
 																case 2:
 																	echo button_to('Fill TOR', 'tor/new', array('class' => 'btn')); 
@@ -430,6 +452,10 @@ $(function () {
 															}
 														?>
 													<?php endforeach; ?>
+													<?php //endif; ?>
+													<?php //endforeach; ?>
+													
+										
 											   </div>
 										      	<!-- end EIA -->
 											</div>

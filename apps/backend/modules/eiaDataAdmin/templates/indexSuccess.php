@@ -1,19 +1,15 @@
-<div class="span12">
-	<h3 class="page-title"> Assigned Tasks <small>Enviromental Imapct Assessment </small> </h3>
-</div>
-
 <div id="page">
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="widget">
 				<div class="widget-title">
-					<h4> <i class="icon-reorder"></i> Tasks </h4>
+					<h4> Assigned Tasks <small>Enviromental Impact Assessment </small> </h4>
 				</div>
 				<div class="widget-body">
 				<?php foreach($tasks as $task): ?>
-					<table class="table table-striped">
+					<table class="table table-striped table-bordered" id="eiatasklistdataadmin">
 						<thead>
-							<th></th>
+							
 					
 							<th> Instructions </th>
 							<th> DueDate </th>
@@ -36,7 +32,7 @@
 									$label=NULL;
 						}?>
 						<tbody>
-							<td></td>
+						<tr class="odd gradeX">
 							
 							<td><?php echo $task->getInstructions() ?></td>
 							<td><?php echo date('D, j M y g:i a',$task->getDateTimeobject('duedate')->format('U'))  ?></td>
@@ -44,6 +40,7 @@
 							<td><?php echo $task->getEIApplication()->getName() ?></td>
 							<td><?php echo $task->getSfGuardUser() ?></td>
 							<td><?php echo  button_to('Process', 'eiaDataAdmin/showEia?id='.$task->getCompanyId(),array('class' => 'btn')); ?></td>
+						</tr>
 						</tbody>
 					</table>
 				<?php endforeach; ?>

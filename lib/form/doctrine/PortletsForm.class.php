@@ -12,8 +12,8 @@ class PortletsForm extends BasePortletsForm
 {
   public function configure()
   {
-    unset($this['updated_at'], $this['created_by'], $this['updated_by']);
-    $this->widgetSchema->setLabel('created_at', 'Date');
+    unset($this['updated_at'], $this['created_by'], $this['updated_by'],$this['created_at']);
+    //$this->widgetSchema->setLabel('created_at', 'Date');
 	$this->widgetSchema->setLabel('investment_certificate', 'Investment Certificates');
 	$this->widgetSchema->setLabel('eia_certificate', 'EIA Certificates');
 	$this->widgetSchema->setLabel('tax_exemptions', 'Tax Exemptions');

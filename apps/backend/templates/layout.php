@@ -9,6 +9,7 @@
 	<link rel="shortcut icon" href="/favicon.png" />
 	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>
+		
 </head>
 <!-- END HEAD -->
 <body class="fixed-top">
@@ -241,6 +242,16 @@
 					</ul>
 				</li>
 				<li class=""><?php echo link_to('<i class="icon-user"></i> Information Portlets', 'information_portlets') ?> </li>
+				<li class="has-sub">
+					<a href="javascript:;" class="">
+					<i class="icon-bar-chart"></i>Certificates Issued
+					<span class="arrow"></span>
+					</a>
+					<ul class="sub">
+						<li class=""><a href ="#"><i class="icon-fire"></i> Investment Certificates </a></li>
+						<li class=""> <a href ="#"><i class="icon-fire"></i> EIA Certificates </a></li>
+					</ul>
+				</li>
 				<?php endif ?>
 				<!-- end -->
 				<li class="has-sub">
@@ -359,13 +370,14 @@
 		</div>
 	</div>
 	<?php endif; ?>
-	<script>
+<script>
 		jQuery(document).ready(function() {			
 			// initiate layout and plugins
 			App.init();
 		});
 	</script>
 </body>
+	
 <!-- END BODY -->
 </html>
 

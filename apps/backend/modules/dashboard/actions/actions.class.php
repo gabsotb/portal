@@ -37,29 +37,145 @@ class dashboardActions extends sfActions
  
    	
   } 
-    //function download letter of application
+    //function to download exemption on machinery
   public function executeDownload1(sfwebRequest $request)
   {
    //echo "value is" .$request->getParameter('investmentapp_id'); exit;
-    $blog_user = Doctrine_Core::getTable('InvestmentApplication')->find($request->getParameter('id'));
+    $blog_user = Doctrine_Core::getTable('BusinessPlan')->find($request->getParameter('id'));
     $this->forward404Unless($blog_user);
 
     header('content-type:');
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename='.basename($blog_user->getApplicationLetter()));
+    header('Content-Disposition: attachment; filename='.basename($blog_user->getExemptionOnMachinery()));
     header('Content-Transfer-Encoding: binary');
     header('Expires: 0');
     header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
     header('Pragma: public');
-    header('Content-Length: ' . filesize($blog_user->getApplicationLetter()));
+    header('Content-Length: ' . filesize($blog_user->getExemptionOnMachinery()));
     ob_clean();
     flush();
 
-    readfile($blog_user->getApplicationLetter());
+    readfile($blog_user->getExemptionOnMachinery());
 
     return sfView::NONE;
   }
+   //function to download exemption raw material
+  public function executeDownload2(sfwebRequest $request)
+  {
+   //echo "value is" .$request->getParameter('investmentapp_id'); exit;
+    $blog_user = Doctrine_Core::getTable('BusinessPlan')->find($request->getParameter('id'));
+    $this->forward404Unless($blog_user);
+
+    header('content-type:');
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename='.basename($blog_user->getExemptionRawMaterials()));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($blog_user->getExemptionRawMaterials()));
+    ob_clean();
+    flush();
+
+    readfile($blog_user->getExemptionRawMaterials());
+
+    return sfView::NONE;
+  }
+   //function to download land ownership
+  public function executeDownload3(sfwebRequest $request)
+  {
+   //echo "value is" .$request->getParameter('investmentapp_id'); exit;
+    $blog_user = Doctrine_Core::getTable('BusinessPlan')->find($request->getParameter('id'));
+    $this->forward404Unless($blog_user);
+
+    header('content-type:');
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename='.basename($blog_user->getLandOwnershipDocument()));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($blog_user->getLandOwnershipDocument()));
+    ob_clean();
+    flush();
+
+    readfile($blog_user->getLandOwnershipDocument());
+
+    return sfView::NONE;
+  }
+     //function to download bill of quantity
+  public function executeDownload4(sfwebRequest $request)
+  {
+   //echo "value is" .$request->getParameter('investmentapp_id'); exit;
+    $blog_user = Doctrine_Core::getTable('BusinessPlan')->find($request->getParameter('id'));
+    $this->forward404Unless($blog_user);
+
+    header('content-type:');
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename='.basename($blog_user->getBillOfQuantiy()));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($blog_user->getBillOfQuantiy()));
+    ob_clean();
+    flush();
+
+    readfile($blog_user->getBillOfQuantiy());
+
+    return sfView::NONE;
+  }
+       //function to download drawings
+  public function executeDownload5(sfwebRequest $request)
+  {
+   //echo "value is" .$request->getParameter('investmentapp_id'); exit;
+    $blog_user = Doctrine_Core::getTable('BusinessPlan')->find($request->getParameter('id'));
+    $this->forward404Unless($blog_user);
+
+    header('content-type:');
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename='.basename($blog_user->getDrawings()));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($blog_user->getDrawings()));
+    ob_clean();
+    flush();
+
+    readfile($blog_user->getDrawings());
+
+    return sfView::NONE;
+  }
+      //function to download construction permits
+  public function executeDownload6(sfwebRequest $request)
+  {
+   //echo "value is" .$request->getParameter('investmentapp_id'); exit;
+    $blog_user = Doctrine_Core::getTable('BusinessPlan')->find($request->getParameter('id'));
+    $this->forward404Unless($blog_user);
+
+    header('content-type:');
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename='.basename($blog_user->getConstructionPermits()));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($blog_user->getConstructionPermits()));
+    ob_clean();
+    flush();
+
+    readfile($blog_user->getConstructionPermits());
+
+    return sfView::NONE;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////
   //function for start work
   public function executeStart(sfWebRequest $request)
   {
@@ -260,11 +376,11 @@ class dashboardActions extends sfActions
 		$year = $q['created_at'] ;
 		$company = $q['name'] ;
 		$serial = $q['serial_number'] ;
-		$rep = $q['company_representative'] ;
+		$rep = $q['name'] ;
 		$issuerF = $q['first_name'] ;
 		$issuerL = $q['last_name'] ;
 		$sector = $q['business_sector'] ;
-		$noofjobs = $q['job_created'] ;
+		$noofjobs = $q['employment_created'] ;
 		$invstment = $q['planned_investment'];
 		
 	  }
@@ -474,11 +590,11 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 		$year = $q['created_at'] ;
 		$company = $q['name'] ;
 		$serial = $q['serial_number'] ;
-		$rep = $q['company_representative'] ;
+		$rep = $q['name'] ;
 		$issuerF = $q['first_name'] ;
 		$issuerL = $q['last_name'] ;
 		$sector = $q['business_sector'] ;
-		$noofjobs = $q['job_created'] ;
+		$noofjobs = $q['employment_created'] ;
 		$invstment = $q['planned_investment'];
 		
 	  }

@@ -35,30 +35,32 @@
 										<div class="span6">
 											<h3>Name of Company</h3>
 											<p>
-											<?php echo $project_summary->getInvestmentId() ?>
+											<?php echo $project_summary->getInvestmentApplication()->getName() ?>
 											</p>
-										</div>
-									</div>
-									<div class="row-fluid">
-										<div class="span6">
-											<h3>Legal Nature</h3>
-											<p><?php echo $project_summary->getInvestmentId() ?></p>
-										</div>
-										<div class="span6">
-											<h3>Place and Address of Company</h3>
-											<p><?php echo $project_summary->getInvestmentId() ?></p>
 										</div>
 									</div>
 									<div class="row-fluid">
 										
 										<div class="span6">
+											<h3>Place and Address of Company</h3>
+											<p><?php echo $project_summary->getInvestmentApplication()->getLocation() ?></p>
+										</div>
+										
+										<div class="span6">
 											<h3>Planned Capital Investment</h3>
 											<p><?php echo $project_summary->getPlannedInvestment() ?></p>
 										</div>
+									</div>
+									<div class="row-fluid">
+										
 										<div class="span6">
 											<h3>Employment Created</h3>
 											<p><?php echo $project_summary->getEmploymentCreated() ?></p>
 											
+										</div>
+										<div class="span6">
+											<h3>Technical Viability</h3>
+											<p><?php echo $project_summary->getTechinicalViability() ?></p>
 										</div>
 									</div>
 									<div class="row-fluid">
@@ -66,10 +68,7 @@
 											<h3>Categories of Jobs Created</h3>
 											<p><?php echo $project_summary->getJobCategories() ?></p>
 										</div>
-										<div class="span6">
-											<h3>Technical Viability</h3>
-											<p><?php echo $project_summary->getTechinicalViability() ?></p>
-										</div>
+										
 									</div>
 									
 									<div class="row-fluid">

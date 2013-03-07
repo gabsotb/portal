@@ -11,12 +11,11 @@
  * @property string $lastname
  * @property timestamp $validate_at
  * @property string $validate
- * @property string $id_passport
+ * @property string $salutation
+ * @property string $citizenship
+ * @property string $surname
  * @property string $phone_number
- * @property string $birth_date
- * @property integer $age
- * @property string $country
- * @property string $thumbnail
+ * @property string $id_passport
  * @property sfGuardUser $User
  * 
  * @method integer            getUserId()       Returns the current record's "user_id" value
@@ -25,12 +24,11 @@
  * @method string             getLastname()     Returns the current record's "lastname" value
  * @method timestamp          getValidateAt()   Returns the current record's "validate_at" value
  * @method string             getValidate()     Returns the current record's "validate" value
- * @method string             getIdPassport()   Returns the current record's "id_passport" value
+ * @method string             getSalutation()   Returns the current record's "salutation" value
+ * @method string             getCitizenship()  Returns the current record's "citizenship" value
+ * @method string             getSurname()      Returns the current record's "surname" value
  * @method string             getPhoneNumber()  Returns the current record's "phone_number" value
- * @method string             getBirthDate()    Returns the current record's "birth_date" value
- * @method integer            getAge()          Returns the current record's "age" value
- * @method string             getCountry()      Returns the current record's "country" value
- * @method string             getThumbnail()    Returns the current record's "thumbnail" value
+ * @method string             getIdPassport()   Returns the current record's "id_passport" value
  * @method sfGuardUser        getUser()         Returns the current record's "User" value
  * @method sfGuardUserProfile setUserId()       Sets the current record's "user_id" value
  * @method sfGuardUserProfile setEmailNew()     Sets the current record's "email_new" value
@@ -38,12 +36,11 @@
  * @method sfGuardUserProfile setLastname()     Sets the current record's "lastname" value
  * @method sfGuardUserProfile setValidateAt()   Sets the current record's "validate_at" value
  * @method sfGuardUserProfile setValidate()     Sets the current record's "validate" value
- * @method sfGuardUserProfile setIdPassport()   Sets the current record's "id_passport" value
+ * @method sfGuardUserProfile setSalutation()   Sets the current record's "salutation" value
+ * @method sfGuardUserProfile setCitizenship()  Sets the current record's "citizenship" value
+ * @method sfGuardUserProfile setSurname()      Sets the current record's "surname" value
  * @method sfGuardUserProfile setPhoneNumber()  Sets the current record's "phone_number" value
- * @method sfGuardUserProfile setBirthDate()    Sets the current record's "birth_date" value
- * @method sfGuardUserProfile setAge()          Sets the current record's "age" value
- * @method sfGuardUserProfile setCountry()      Sets the current record's "country" value
- * @method sfGuardUserProfile setThumbnail()    Sets the current record's "thumbnail" value
+ * @method sfGuardUserProfile setIdPassport()   Sets the current record's "id_passport" value
  * @method sfGuardUserProfile setUser()         Sets the current record's "User" value
  * 
  * @package    rdbeportal
@@ -81,33 +78,29 @@ abstract class BasesfGuardUserProfile extends sfDoctrineRecord
              'type' => 'string',
              'length' => 33,
              ));
-        $this->hasColumn('id_passport', 'string', 255, array(
+        $this->hasColumn('salutation', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('citizenship', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('surname', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('phone_number', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('birth_date', 'string', 255, array(
+        $this->hasColumn('id_passport', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
-             'length' => 255,
-             ));
-        $this->hasColumn('age', 'integer', null, array(
-             'type' => 'integer',
-             'notnull' => false,
-             ));
-        $this->hasColumn('country', 'string', 255, array(
-             'type' => 'string',
-             'notnull' => false,
-             'length' => 255,
-             ));
-        $this->hasColumn('thumbnail', 'string', 255, array(
-             'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
 

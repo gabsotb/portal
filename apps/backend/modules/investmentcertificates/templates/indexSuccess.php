@@ -6,7 +6,7 @@
 									<h4>Table -- Showing All Certificates you have Issued</h4>						
 								</div>
 								<div class="widget-body">
-									<table class="table table-striped table-bordered" id="sample_1">
+									<table class="table table-striped table-bordered" id="investmentcertsadmin">
 										<thead>
 											<tr>
 												
@@ -22,8 +22,8 @@
 										<?php foreach($certificates as $certs): ?>
 											<tr class="odd gradeX">
 												<td><?php echo $certs['name']?></td>
-												<td><?php echo $certs['company_address']?></td>
-												<td><?php echo $certs['company_representative']?></td>
+												<td><?php echo $certs['location']?></td>
+												<td><?php echo $certs['name']?></td>
 												<td><?php echo $certs['serial_number']?></td>
 												<td><?php echo $certs['created_at']?></td>
 												<td><i class="icon-print"></i><a href="<?php echo url_for('dashboard/investcert?business='.$certs['name'])?>">Print</a></td>

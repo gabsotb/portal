@@ -143,7 +143,7 @@ $(function () {
 												<div class="details">
 													<div class="title">Number of Investment Certificates Issued</div>
 													<div class="numbers"><?php
-                                                        echo (count($overall_investmentapps));
+                                                        echo "0";
 													?></div>
 												</div>
 												
@@ -285,21 +285,22 @@ $(function () {
 															//now we pass this to businessplan table method
 															$p = Doctrine_Core::getTable('BusinessPlan')->getBusinessPlanDetails($investment_id);
 															$response = null;
+															//print_r($p); exit;
 															//
 															foreach($p as $r)
 															{
-															 $response = $r['invesment_id'];
+															 $response = $r['investment_id'];
 															}
 															// 
 															  
 															?>
 														<?php if($investment_id != null){ ?>
-														 <?php echo "heheheheh"; ?>
+														 
 															 <!-- if it is null we show buttons -->
 															 <?php if($response == null) { ?>
 																 <div class="alert alert-block alert-warning fade in">
-																 <strong>Incomplete Applications !</strong> <br/>Please Complete your Initial application
-																 for Investment Certificate for <?php echo $business_name; ?>.  <br/>
+																 <strong>Incomplete Application !</strong> <br/>Please Complete your Initial application
+																 for Investment Certificate for <?php echo $business_name; ?>.  <br/><br/>
 																<a href="<?php echo url_for('businessplan/new?id='.$business_name) ?>"> 
 																<button type="button" class="btn btn-primary">Complete</button>&nbsp;&nbsp;
 																&nbsp;&nbsp;
@@ -310,36 +311,42 @@ $(function () {
 																</div>
 															 <?php } ?>
 														 <?php } ?>
-															 <?php if($investment_id == null){ 
+															 <?php if($investment_id != null){ 
 															 $value = 0;
 															
 															 ?>
 															 <!-- We have a situation where a user has completed application 1 and wants to a apply for a 
 															 certificate for another business we will show this message -->
 															   <?php 
+															
 															   foreach($checkCertificationStatus as $status)
 															    {
 															      $value = $status['COUNT(investment_application.id)'] ;
-																 
+																// print $value;
 															    }
+																// exit;
 																?>
-																<?php if($value > 0) { ?>
+																<?php if($value > 0 && $response != null) { ?>
 																  <strong>Alert!</strong> <br/>There are no New applications
 																		for investment certificate for your account! However your have <?php echo $value; ?>
 																		complete application(s) for Investment Certificate. Click Button Below to apply for 
 																		Certification of another business. 
 																<br/> 
+																 <a href="<?php echo url_for('investmentapp/new') ?>">
+																 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+																 </a>
 																<?php } ?>
 															    <?php if($value <= 0) { ?>
 																	  <strong>Alert!</strong> <br/>There are no applications
 																		for investment certificate for your account! <br/>
+																		 <a href="<?php echo url_for('investmentapp/new') ?>">
+																		 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+																		 </a>
 																<?php } ?>
 															
 												<!--we will prevent users from applying for certificate if they have pending applications -->
                                                          
-														 <a href="<?php echo url_for('investmentapp/new') ?>">
-														 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
-														 </a>
+														
 														  <?php } ?> 
 															</div>
 														<?php endif; ?>

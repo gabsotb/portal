@@ -20,8 +20,8 @@ abstract class BaseProjectSummaryForm extends BaseFormDoctrine
       'investment_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'), 'add_empty' => false)),
       'business_sector'      => new sfWidgetFormInputText(),
       'techinical_viability' => new sfWidgetFormTextarea(),
-      'planned_investment'   => new sfWidgetFormTextarea(),
-      'employment_created'   => new sfWidgetFormTextarea(),
+      'planned_investment'   => new sfWidgetFormInputText(),
+      'employment_created'   => new sfWidgetFormInputText(),
       'job_categories'       => new sfWidgetFormTextarea(),
       'created_at'           => new sfWidgetFormDateTime(),
       'updated_at'           => new sfWidgetFormDateTime(),
@@ -33,10 +33,10 @@ abstract class BaseProjectSummaryForm extends BaseFormDoctrine
       'id'                   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'investment_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
       'business_sector'      => new sfValidatorString(array('max_length' => 255)),
-      'techinical_viability' => new sfValidatorString(array('max_length' => 400)),
-      'planned_investment'   => new sfValidatorString(array('max_length' => 400)),
-      'employment_created'   => new sfValidatorString(array('max_length' => 400)),
-      'job_categories'       => new sfValidatorString(array('max_length' => 400)),
+      'techinical_viability' => new sfValidatorString(array('max_length' => 4000)),
+      'planned_investment'   => new sfValidatorInteger(),
+      'employment_created'   => new sfValidatorInteger(),
+      'job_categories'       => new sfValidatorString(array('max_length' => 4000)),
       'created_at'           => new sfValidatorDateTime(),
       'updated_at'           => new sfValidatorDateTime(),
       'created_by'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
@@ -84,10 +84,10 @@ abstract class BaseProjectSummaryForm extends BaseFormDoctrine
       'id'                   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'investment_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
       'business_sector'      => new sfValidatorString(array('max_length' => 255)),
-      'techinical_viability' => new sfValidatorString(array('max_length' => 400)),
+      'techinical_viability' => new sfValidatorString(array('max_length' => 4000)),
       'planned_investment'   => new sfValidatorInteger(),
       'employment_created'   => new sfValidatorInteger(),
-      'job_categories'       => new sfValidatorString(array('max_length' => 400)),
+      'job_categories'       => new sfValidatorString(array('max_length' => 4000)),
       'created_at'           => new sfValidatorDateTime(),
       'updated_at'           => new sfValidatorDateTime(),
       'created_by'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
@@ -113,4 +113,4 @@ abstract class BaseProjectSummaryForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> 421349b1dbc792065fab68d354109abb80e152d3
+>>>>>>> 61986993ad0351997946554199f329283517fc4d

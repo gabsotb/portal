@@ -1,3 +1,4 @@
+
 <div id="page" class="dashboard">
 
 
@@ -36,14 +37,14 @@
 						</ul>
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>
-						<div class="span10">
+						<div class="span11">
 						
 						<div class="widget">
 								<div class="widget-title">
 									<h4><i class="icon-envelope-alt"></i>System Inbox Messages: </h4>						
 								</div>
 								<div class="widget-body">
-									<table class="table table-striped table-bordered" id="sample_1">
+									<table class="table table-striped table-bordered" id="inboxbackend">
 										<thead>
 											<tr>
 												
