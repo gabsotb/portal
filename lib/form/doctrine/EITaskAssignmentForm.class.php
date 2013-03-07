@@ -17,6 +17,8 @@ class EITaskAssignmentForm extends BaseEITaskAssignmentForm
 	);
 	
 	$this->setDefault('work_status','notstarted' );
+	$this->setDefault('duedate',date('Y-m-d G:i:s',time()+ 84600*2 ));
+	
   }
   
 }

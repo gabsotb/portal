@@ -12,5 +12,35 @@
  */
 class Tor extends BaseTor
 {
-
+	public function save(Doctrine_Connection $conn = null)
+	  {
+	   $conn = $conn ? $conn : $this->getTable()->getConnection();
+	   $conn->beginTransaction();
+			  try
+			  {
+				
+				  $impactId = $this->getImpactId();  
+				  ///
+					$ret = parent::save($conn);
+					$conn->commit();
+					$this->saveStatus($impactId);
+					return $ret ;
+				
+			  }
+			  catch(Exception $e)
+			  {
+			  $conn->rollBack();
+			  throw $e;
+			  }
+	  }
+	
+	  public function saveStatus($impactId)
+		{
+		    $id= Doctrine_Core::getTable('Tor')->getId($impactId);
+			$status = new TorStatus();
+			$status->tor_id = $id;
+			$status->status= "submitted";
+			$status->comments="Documents Submitted Successfuly. Awaiting RDB EIA staff to review your application";
+			$status->save(); 
+		}
 }

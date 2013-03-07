@@ -20,17 +20,47 @@ class TorTable extends Doctrine_Table
 	public function getRecentTor()
 	{
 		$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
-		//$date=date('Y-m-d H:m:s',time() - 86400 * sfConfig::get('app_most_recent_days'));
-		$query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT tor.id, tor.updated_by, e_i_application.name FROM tor LEFT JOIN project_impact ON project_impact.id = tor.impact_id LEFT JOIN e_i_application ON e_i_application.id = project_impact.company_id WHERE project_impact.created_by = '$userId'  ");
+		//$query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT tor.id, tor.updated_by, e_i_application.name FROM //tor LEFT JOIN project_impact ON project_impact.id = tor.impact_id LEFT JOIN e_i_application ON e_i_application.id = //project_impact.company_id WHERE project_impact.created_by = '$userId'  ");
 		
-		return $query;
+		$q = $this->createQuery('t')
+		->leftJoin('t.TorStatus s')
+		->leftJoin('t.ProjectImpact p')
+		->andWhere('s.status = ?', 'submitted')
+		->andWhere('p.created_by = ?', $userId);
+		
+		return $q->execute();
 	}
 	
-	public function getTor($id)
+	//public function getTor($id)
+	//{
+		//$q=$this->createQuery('t')
+			//->andWhere('t.id = ?', $id);
+		
+		//return $q->fetchOne();
+	//}	
+	
+	public function getId($impactId)
 	{
-		$q=$this->createQuery('t')
-			->andWhere('t.id = ?', $id);
+		//$q = $this->createQuery('t')
+			//->andWhere('t.impact_id = ?', $impactId);
+		
+		//return $q->fetchOne();
+		$query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT tor.id FROM tor WHERE impact_id = '$impactId' ");
+		foreach($query as $q)
+		{
+			$id= $q['id'];
+		}
+		
+		return $id;
+	}
+
+	public function getTor($impactId)
+	{
+		$q = $this->createQuery('t')
+			->andWhere('t.impact_id = ?', $impactId);
 		
 		return $q->fetchOne();
-	}	
+	}
+	
+	
 }

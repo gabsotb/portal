@@ -93,6 +93,7 @@
 							</div>
 						</div>
 						<div class="form-actions">
+						<?php //echo button_to('Assesment','projectImpact/new?name='.$eia->getName(),array('class' => 'btn btn-success btn-large'))  ?>
 						<?php echo button_to('Assesment','projectImpact/new?name='.$eia->getName(),array('class' => 'btn btn-success btn-large'))  ?>
 						</div>
 						

@@ -17,13 +17,22 @@ class TorStatusTable extends Doctrine_Table
         return Doctrine_Core::getTable('TorStatus');
     }
 	
-	static public $decisions = array(
-		'Reject',
-		'Approve',
-	);
-	
-	public function getDecisions()
+	public function updateStatus($status, $comment,$id)
 	{
-		return self::$decisions;
+		$q = Doctrine_Query::create()
+			->UPDATE('TorStatus')
+			->SET('status', '?',$status)
+			->SET('comments', '?', $comment)
+			->WHERE('tor_id = ?', $id);
+			
+		return $q->execute();
+	}
+	
+	public function getStatus()
+	{
+		$userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+		$query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM tor_status WHERE created_by = '$userid' 
+		");
+		return $query;
 	}
 }

@@ -12,21 +12,27 @@
  * @property string $experts
  * @property ProjectImpact $ProjectImpact
  * @property Doctrine_Collection $TorStatus
+ * @property Doctrine_Collection $TorDecision
+ * @property Doctrine_Collection $TechnicalSummary
  * 
- * @method integer             getImpactId()        Returns the current record's "impact_id" value
- * @method string              getIssuesAssessed()  Returns the current record's "issues_assessed" value
- * @method string              getSpecificTasks()   Returns the current record's "specific_tasks" value
- * @method string              getStakeHolders()    Returns the current record's "stake_holders" value
- * @method string              getExperts()         Returns the current record's "experts" value
- * @method ProjectImpact       getProjectImpact()   Returns the current record's "ProjectImpact" value
- * @method Doctrine_Collection getTorStatus()       Returns the current record's "TorStatus" collection
- * @method Tor                 setImpactId()        Sets the current record's "impact_id" value
- * @method Tor                 setIssuesAssessed()  Sets the current record's "issues_assessed" value
- * @method Tor                 setSpecificTasks()   Sets the current record's "specific_tasks" value
- * @method Tor                 setStakeHolders()    Sets the current record's "stake_holders" value
- * @method Tor                 setExperts()         Sets the current record's "experts" value
- * @method Tor                 setProjectImpact()   Sets the current record's "ProjectImpact" value
- * @method Tor                 setTorStatus()       Sets the current record's "TorStatus" collection
+ * @method integer             getImpactId()         Returns the current record's "impact_id" value
+ * @method string              getIssuesAssessed()   Returns the current record's "issues_assessed" value
+ * @method string              getSpecificTasks()    Returns the current record's "specific_tasks" value
+ * @method string              getStakeHolders()     Returns the current record's "stake_holders" value
+ * @method string              getExperts()          Returns the current record's "experts" value
+ * @method ProjectImpact       getProjectImpact()    Returns the current record's "ProjectImpact" value
+ * @method Doctrine_Collection getTorStatus()        Returns the current record's "TorStatus" collection
+ * @method Doctrine_Collection getTorDecision()      Returns the current record's "TorDecision" collection
+ * @method Doctrine_Collection getTechnicalSummary() Returns the current record's "TechnicalSummary" collection
+ * @method Tor                 setImpactId()         Sets the current record's "impact_id" value
+ * @method Tor                 setIssuesAssessed()   Sets the current record's "issues_assessed" value
+ * @method Tor                 setSpecificTasks()    Sets the current record's "specific_tasks" value
+ * @method Tor                 setStakeHolders()     Sets the current record's "stake_holders" value
+ * @method Tor                 setExperts()          Sets the current record's "experts" value
+ * @method Tor                 setProjectImpact()    Sets the current record's "ProjectImpact" value
+ * @method Tor                 setTorStatus()        Sets the current record's "TorStatus" collection
+ * @method Tor                 setTorDecision()      Sets the current record's "TorDecision" collection
+ * @method Tor                 setTechnicalSummary() Sets the current record's "TechnicalSummary" collection
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -73,6 +79,14 @@ abstract class BaseTor extends sfDoctrineRecord
              'onDelete' => 'CASCADE'));
 
         $this->hasMany('TorStatus', array(
+             'local' => 'id',
+             'foreign' => 'tor_id'));
+
+        $this->hasMany('TorDecisions as TorDecision', array(
+             'local' => 'id',
+             'foreign' => 'tor_id'));
+
+        $this->hasMany('TechnicalSummary', array(
              'local' => 'id',
              'foreign' => 'tor_id'));
 

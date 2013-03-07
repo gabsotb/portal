@@ -274,14 +274,14 @@ $(function () {
 									<h4>Recent Applications for  EIA Certificates</h4>						
 								</div>
 								<div class="widget-body">
-									<?php if(count($unassigned) <= 0): ?>
+									<?php if(count($unassigned) == 0 || is_null($unassigned)): ?>
 									<div class="alert alert-block alert-success fade in">
 										<p><strong>Information!</strong> <br/>Seems like all applications
 										for EIA Certificate have been assigned to data admins or there are no new applications.
 										I will try later... </p>
 										 
 									</div>
-									<?php endif ?>
+									<?php endif; ?>
 									<?php if(count($unassigned) > 0): ?>
 									<table class="table table-striped table-bordered" id="eia_manager">
 										<?php foreach($unassigned as $unassign): ?>
@@ -304,12 +304,12 @@ $(function () {
 											
 											
 										</tbody>
-										<?php endforeach ?>
+										<?php endforeach; ?>
 									</table>
 									
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="#" class="btn btn-small btn-primary">View All Assigned Tasks</a>
+										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
 									<?php endif; ?>
 								</div>
@@ -710,14 +710,14 @@ $(function () {
 									<h4>Recent Applications for  EIA Certificates</h4>						
 								</div>
 								<div class="widget-body">
-									<?php if(count($unassigned) <= 0): ?>
+									<?php if(count($unassigned) == 0 || is_null($unassigned)): ?>
 									<div class="alert alert-block alert-success fade in">
 										<p><strong>Information!</strong> <br/>Seems like all applications
 										for EIA Certificate have been assigned to data admins or there are no new applications.
 										I will try later... </p>
 										 
 									</div>
-									<?php endif ?>
+									<?php endif; ?>
 									<?php if(count($unassigned) > 0): ?>
 									<table class="table table-striped table-bordered" id="eia_manager">
 										<?php foreach($unassigned as $unassign): ?>
@@ -1148,12 +1148,13 @@ $(function () {
 														
 								</div>
 								<div class="widget-body">
-									<?php if(count($jobs) <= 0): ?>
+									<?php if(count($jobs) == 0 || is_null($jobs)): ?>
 									<div class="alert alert-info">
 										<p><strong>Information!</strong> <br/> No jobs assigned.</p>
 										<p>Reload the Page or Try Again Later</p>
 									</div>
 									<?php endif; ?>
+									<?php if(count($jobs) > 0): ?>
 									<?php foreach($jobs as $job ): ?>
 									<table class="table table-striped table-bordered table-advance table-hover">
 										<thead>
@@ -1178,6 +1179,7 @@ $(function () {
 										</tbody>
 									</table>
 									<?php endforeach; ?>
+									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('eiaDataAdmin/index') ?>" class="btn btn-mini pull-right">View All</a>
@@ -1193,7 +1195,7 @@ $(function () {
 								<h4><i class="icon-reorder"></i> Recent T.O.R Applications </h4>
 							</div>
 							<div class="widget-body">
-								<?php if(count($tors) <= 0): ?>
+								<?php if(count($tors) == 0 || is_null($tors)): ?>
 								<div class="alert alert-info">
 									<p><strong>Information!</strong> <br/> No Recent T.O.R Applications Found</p>
 										<p>Reload the Page or Try Again Later</p>
@@ -1204,16 +1206,14 @@ $(function () {
 							<table class="table table-striped table-bordered table-advance table-hover">
 								<thead>
 									<tr>
-										<th> Developer's Name </th>
-										<th> User's Name </th>
+										<th> Developer</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td><?php echo link_to($tor['name'],'tor2/show?id='.$tor['id']) ?></td>
-										<td><?php echo $tor['updated_by'] ?></td>
-										<td><?php echo button_to('View','tor2/show?id='.$tor['id'],array('class' => 'btn btn-inverse')) ?></td>
+										<td><?php echo $tor->getProjectImpact()->getEIApplication()->getName() ?></td>
+										<td><?php echo button_to('View','eiaDataAdmin/showTor?id='.$tor->getImpactId(),array('class' => 'btn btn-inverse')) ?></td>
 									</tr>
 								</tbody>
 							</table>

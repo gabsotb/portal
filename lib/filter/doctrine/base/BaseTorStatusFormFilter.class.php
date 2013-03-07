@@ -24,7 +24,7 @@ abstract class BaseTorStatusFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'tor_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Tor'), 'column' => 'id')),
-      'status'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'status'     => new sfValidatorPass(array('required' => false)),
       'comments'   => new sfValidatorPass(array('required' => false)),
       'created_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -51,7 +51,7 @@ abstract class BaseTorStatusFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'         => 'Number',
       'tor_id'     => 'ForeignKey',
-      'status'     => 'Number',
+      'status'     => 'Text',
       'comments'   => 'Text',
       'created_at' => 'Date',
       'updated_at' => 'Date',

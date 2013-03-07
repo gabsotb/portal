@@ -51,23 +51,15 @@
           
         </div>
       </div>
-      <div class="control-group">
-        <?php echo $form['updated_by']->renderLabel(NULL,array('class' => 'control-label')) ?>
-        <div class="controls">
-		<?php echo $form['updated_by']->render(array('class' => 'span6' )) ?>
-          <span class="help-inline"><?php echo $form['updated_by']->renderError() ?></span>
-          
-        </div>
-      </div>
 	  
 		<div class="form-actions">
       
           <?php echo $form->renderHiddenFields(false) ?>
-          &nbsp;<a href="<?php echo url_for('tor/index') ?>" class="btn">Back to list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'tor/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
-          <?php endif; ?>
-          <input type="submit" value="Save" class="btn btn-success"/>
+          &nbsp;<a href="<?php echo url_for('@homepage') ?>" class="btn">Home</a>
+          <?php //if (!$form->getObject()->isNew()): ?>
+            &nbsp;<?php //echo link_to('Delete', 'tor/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
+          <?php //endif; ?>
+          <input type="submit" value="Submit" class="btn btn-success"/>
         
 		</div>
 

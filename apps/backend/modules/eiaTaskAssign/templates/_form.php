@@ -11,36 +11,41 @@
       <div class="control-group">
         <?php echo $form['user_assigned']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-          <?php echo $form['user_assigned']->renderError() ?>
           <?php echo $form['user_assigned'] ?>
+		  <span class="help-inline"><?php echo $form['user_assigned']->renderError() ?></span>
+          
         </div>
       </div>
       <div class="control-group">
         <?php echo $form['company_id']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-          <?php echo $form['company_id']->renderError() ?>
           <?php echo $form['company_id'] ?>
+		  <span class="help-inline"><?php echo $form['company_id']->renderError() ?></span>
+          
         </div>
       </div>
       <div class="control-group">
         <?php echo $form['instructions']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-          <?php echo $form['instructions']->renderError() ?>
           <?php echo $form['instructions'] ?>
+		  <span class="help-inline"><?php echo $form['instructions']->renderError() ?></span>
+          
         </div>
       </div>
       <div class="control-group">
         <?php echo $form['duedate']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-          <?php echo $form['duedate']->renderError() ?>
           <?php echo $form['duedate'] ?>
+		  <span class="help-inline"><?php echo $form['duedate']->renderError() ?></span>
+          
         </div>
       </div>
       <div class="control-group">
         <?php echo $form['work_status']->renderLabel(NULL,array('class' => 'control-label')) ?>
         <div class="controls">
-          <?php echo $form['work_status']->renderError() ?>
           <?php echo $form['work_status'] ?>
+		  <span class="help-inline"><?php echo $form['work_status']->renderError() ?></span>
+          
         </div>
       </div>
 	  

@@ -73,7 +73,7 @@ class eiaTaskAssignActions extends sfActions
     {
       $ei_task_assignment = $form->save();
 
-      $this->redirect('eiaTaskAssign/index');
+      $this->redirect('dashboard/index');
     }
   }
   

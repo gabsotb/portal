@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * eiaReport actions.
+ *
+ * @package    rdbeportal
+ * @subpackage eiaReport
+ * @author     Your name here
+ * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ */
+class eiaReportActions extends sfActions
+{
+  public function executeIndex(sfWebRequest $request)
+  {
+    $this->eia_reportss = Doctrine_Core::getTable('EIAReports')
+      ->createQuery('a')
+      ->execute();
+  }
+
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->eia_reports = Doctrine_Core::getTable('EIAReports')->find(array($request->getParameter('id')));
+    $this->forward404Unless($this->eia_reports);
+  }
+
+  public function executeNew(sfWebRequest $request)
+  {
+    $this->form = new EIAReportsForm();
+  }
+
+  public function executeCreate(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST));
+
+    $this->form = new EIAReportsForm();
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('new');
+  }
+
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->forward404Unless($eia_reports = Doctrine_Core::getTable('EIAReports')->find(array($request->getParameter('id'))), sprintf('Object eia_reports does not exist (%s).', $request->getParameter('id')));
+    $this->form = new EIAReportsForm($eia_reports);
+  }
+
+  public function executeUpdate(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+    $this->forward404Unless($eia_reports = Doctrine_Core::getTable('EIAReports')->find(array($request->getParameter('id'))), sprintf('Object eia_reports does not exist (%s).', $request->getParameter('id')));
+    $this->form = new EIAReportsForm($eia_reports);
+
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('edit');
+  }
+
+  public function executeDelete(sfWebRequest $request)
+  {
+    $request->checkCSRFProtection();
+
+    $this->forward404Unless($eia_reports = Doctrine_Core::getTable('EIAReports')->find(array($request->getParameter('id'))), sprintf('Object eia_reports does not exist (%s).', $request->getParameter('id')));
+    $eia_reports->delete();
+
+    $this->redirect('eiaReport/index');
+  }
+
+  protected function processForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $eia_reports = $form->save();
+
+      $this->redirect('eiaReport/edit?id='.$eia_reports->getId());
+    }
+  }
+}

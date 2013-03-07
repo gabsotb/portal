@@ -74,7 +74,7 @@ class projectImpactActions extends sfActions
     {
       $project_impact = $form->save();
 
-      $this->redirect('projectImpact/edit?id='.$project_impact->getId());
+      $this->redirect('dashboard/index');
     }
   }
 }

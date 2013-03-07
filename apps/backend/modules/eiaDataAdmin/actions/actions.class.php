@@ -25,6 +25,15 @@ class eiaDataAdminActions extends sfActions
 	{
 		$this->eia = Doctrine_Core::getTable('EIApplication')->find(array($request->getParameter('id')));
 		$this->forward404Unless($this->eia);
+		Doctrine_Core::getTable('EIApplicationStatus')->updateApplicationStatus('processing',$request->getParameter('id'));
+		Doctrine_Core::getTable('EIApplicationStatus')->updateComment('Your Document is been processed',$request->getParameter('id'));
+		Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage('20',$request->getParameter('id'));
+	}
+	
+	public function executeShowTor(sfWebRequest $request)
+	{
+		$this->tor = Doctrine_Core::getTable('Tor')->getTor($request->getParameter('id'));
+		$this->forward404Unless($this->tor);
 	}
 
 }

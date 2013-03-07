@@ -112,10 +112,10 @@
 		<div class="form-actions">
         
           <?php echo $form->renderHiddenFields(false) ?>
-          &nbsp;<a href="<?php echo url_for('eia/index') ?>" class="btn">Back to list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'eia/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
-          <?php endif; ?>
+          &nbsp;<a href="<?php echo url_for('@homepage') ?>" class="btn">Home</a>
+          <?php //if (!$form->getObject()->isNew()): ?>
+            &nbsp;<?php //echo link_to('Delete', 'eia/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
+          <?php //endif; ?>
           <input type="submit" value="Submit" class="btn btn-success"/>
         
 		</div>

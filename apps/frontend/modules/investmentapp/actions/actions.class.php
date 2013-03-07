@@ -18,7 +18,7 @@ class investmentappActions extends sfActions
    //call method to count and the current logged in user applications for Investment Certificates
     $this->investment_applications = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplications();
 	//now call this method to check if the user has any EIA Certificate applications
-	$this->eia_applications = Doctrine_Core::getTable('InvestmentApplication')->getEIApplications();
+	$this->eia_applications = Doctrine_Core::getTable('EIApplication')->getUserEIApplications();
 	///////////// Below is for the overall report  ///////////////////////
 	 //Get total Investment Certificate Applications
 	$this->overall_investmentapps = Doctrine_Core::getTable('InvestmentApplication')->getTotalInvestmentApplications();
@@ -34,6 +34,8 @@ class investmentappActions extends sfActions
 	$this->eiaStatus = Doctrine_Core::getTable('EIApplication')->getStatus();
 	//Get Project impact
 	$this->impacts = Doctrine_Core::getTable('ProjectImpact')->getImpacts();
+	$this->torStatus=Doctrine_Core::getTable('TorStatus')->getStatus();
+	//$this->torDecision=Doctrine_Core::getTable('TorDecisions')->getTorDecision();
   }
 
   public function executeShow(sfWebRequest $request)
@@ -126,4 +128,5 @@ class investmentappActions extends sfActions
   {
   
   }
+  
 }

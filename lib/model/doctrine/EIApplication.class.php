@@ -67,8 +67,8 @@ class EIApplication extends BaseEIApplication
 		    $id= Doctrine_Core::getTable('EIApplication')->getId($name);
 			$status = new EIApplicationStatus();
 			$status->company_id = $id;
-			$status->application_status= "Submitted";
-			$status->comments="Documents Submitted Successfuly. Awaiting RDB admin to assign your application to a Staff";
+			$status->application_status= "submitted";
+			$status->comments="Documents Submitted Successfully. Awaiting RDB admin to assign your application to a Staff member";
 			$status->percentage="10";
 			$status->save(); 
 		}

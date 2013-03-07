@@ -268,7 +268,15 @@
 			<!-- End control code -->	
 					</ul>
 				</li>
-				<li><a  href="<?php echo url_for('EIA/new') ?>"><i class="icon-table"></i> EIA Certificate</a></li>
+				<li class="has-sub"><a href="javascript:;"><i class="icon-table"></i> EIA Certificate <span class="arrow"></span></a>
+				<ul class="sub">
+					<?php if(count(Doctrine_Core::getTable('EIApplication')->getUserEIApplications()) > 0): ?>
+							<li><?php echo link_to('View EIA','eia/index');  ?></li>
+					<?php endif; ?>
+					<li> <?php echo link_to('New EIA', 'eia/new'); ?> </li>
+				</ul>
+					
+				</li>
 				<li class="">
 					<a href="" >
 					<i class="icon-lightbulb"></i> Help

@@ -346,6 +346,7 @@ $(function () {
 															   
 											  </div><!-- End Investment Certificate Application Widget -->
 												<!-- Begin EIA Certificate application widget -->
+												
 												 <div class="widget">
 															<div class="widget-title">
 																<h4>EIA Certificate Application</h4>						
@@ -375,7 +376,21 @@ $(function () {
 																	<tr>
 																		
 																		<td><?php echo $status['name'] ?></td>
-																		<td><span class="label"><?php echo $status['application_status'] ?></span></td>
+																		<?php switch($status['application_status']){
+																				case 'processed':
+																					$label="label-success";
+																					break;
+																				case 'processing':
+																					$label="label-warning";
+																					break;
+																				case 'submitted':
+																					$label="label-success";
+																					break;
+																				default:
+																					$label=NULL;
+																		}?>
+																		
+																		<td><span class="label <?php echo $label ?>"><?php echo $status['application_status'] ?></span></td>
 																	</tr>
 																	
 																</tbody>
@@ -399,21 +414,22 @@ $(function () {
 											   </div>
 											   <?php endforeach; ?>
 											   <?php endif; ?>
-											          <?php if(count($eia_applications) <= 0): ?>
+											          <?php if(count($eia_applications) == 0 || is_null($eia_applications)): ?>
 															<div class="alert alert-error">
 										                    <strong>Alert!</strong> <br/>There are no applications
 															for EIA certificate for your account!
+															<br/><?php echo button_to('Apply for EIA Certificate','eia/new',array('class' => 'btn btn-success')); ?>
 															</div>
-															
-															<?php echo button_to('Apply for EIA Certificate','eia/new',array('class' => 'btn btn-success')); ?>
 													  <?php endif; ?>
+													<?php //foreach($torStatus as $tors): ?>
+													<?php //if(is_null($torStatus)): ?>
 													<?php foreach($impacts as $impact): ?>
 														<?php switch($impact->getImpactLevel()){
 																case 0:
-																	echo button_to('ReApply', 'eia/edit?id=', array('class' => 'btn')); 
+																	echo button_to('ReApply', 'eia/edit?id='.$imapact->getId(), array('class' => 'btn')); 
 																	break;
 																case 1:
-																	echo button_to('Download Clearance Letter', '', array('class' => 'btn')); 
+																	echo button_to('Download Clearance Letter', 'eia/clearance?id='.$impact->getCompanyId(), array('class' => 'btn'));
 																	break;
 																case 2:
 																	echo button_to('Fill TOR', 'tor/new', array('class' => 'btn')); 
@@ -425,6 +441,10 @@ $(function () {
 															}
 														?>
 													<?php endforeach; ?>
+													<?php //endif; ?>
+													<?php //endforeach; ?>
+													
+										
 											   </div>
 										      	<!-- end EIA -->
 											</div>

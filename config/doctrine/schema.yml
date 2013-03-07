@@ -213,10 +213,22 @@ TorStatus:
    updated: { name: updated_by,type: string}
  columns:
   tor_id: {type: integer, notnull: true}
-  status: {type: integer(1), notnull: true}
+  status: {type: string(100), notnull: true}
   comments: {type: string(400), notnull: false}
  relations:
   Tor: {local: tor_id,  foreign: id, foreignAlias: TorStatus, onDelete:CASCADE}
+TorDecisions:
+  actAs:
+    Timestampable: ~
+    Signable:
+      created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+      updated: { name: updated_by,type: string}
+  columns:
+    tor_id: {type: integer, notnull: true}
+    decision: {type: string(100), notnull: true}
+    comments: {type: string(400), notnull: false}
+  relations:
+    Tor: {local: tor_id,  foreign: id, foreignAlias: TorDecision, onDelete:CASCADE}
 #### Allow a user to upload EI and EMP documents if TOR is accepted
 EIReport:
  actAs:
@@ -318,3 +330,51 @@ Portlets:
   investment_certificate: {type: string(7000), notnull: true}
   eia_certificate: {type: string(7000), notnull: true}
   tax_exemptions: {type: string(7000), notnull: true}
+#### Tabel to store data admin recommendations and supervisor comments ####
+EIAReports:
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+    module: { type: string(200), notnull: true }
+    module_id: { type: integer, notnull: true }
+    recommendations: { type: string(400), notnull: true }
+EIAReportDecision:
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+    report_id: { type: integer, notnull: true }
+    decision: { type: integer, notnull: true }
+    comment: { type: string(200), notnull: true }
+  relations:
+    EIAReports: { local: report_id, foreign: id, foreignAlias: EiaReport, onDelete:CASCADE }
+TechnicalSummary:
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+    tor_id: { type: integer, notnull: true }
+    report: { type: string(400), notnull: true }
+    comment: { type: string(400), notnull: true }
+  relations:
+    Tor: { local: tor_id, foreign: id, foreignAlias: TechnicalSummary, onDelete:CASCADE }
+RecordDecision:
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+    tor_id: { type: integer, notnull: true }
+    decision: { type: string(400), notnull: true }
+    comment: { type: string(400), notnull: true }
+  relations:
+    Tor: { local: tor_id, foreign: id, foreignAlias: TechnicalSummary, onDelete:CASCADE }
+
