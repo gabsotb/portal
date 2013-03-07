@@ -13,7 +13,9 @@
 											
 										</p>
 										<p>
-											<a class="btn btn-success" href="<?php echo url_for('dashboard/investcert?business='.$business) ?>">Issue Certificate</a>
+										<!-- This Code Has a small problem that needs fixing later -->
+								<a class="btn btn-success" href="<?php //echo url_for('dashboard/investcert?business='.$business) ?>">Issue Certificate</a>
+								<!-- end -->
 											<a class="btn" href="<?php echo url_for('dashboard/index') ?>">Cancel</a>
 										</p>
 									</div>

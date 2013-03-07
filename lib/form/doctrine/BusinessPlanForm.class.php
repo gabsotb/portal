@@ -23,6 +23,7 @@ class BusinessPlanForm extends BaseBusinessPlanForm
 	//this is just a test
     $id = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
 	//print $id; exit;
+	//print $id; exit;
     $this->setDefault('investment_id', $id);	
 	//$this->widgetSchema['company_legal_nature'] = new sfWidgetFormSelect(array('choices' => self::legalNatureValues()));
 	$this->widgetSchema['investment_id'] = new sfWidgetFormInputHidden() ;

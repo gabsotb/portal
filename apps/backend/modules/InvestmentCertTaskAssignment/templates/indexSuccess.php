@@ -77,7 +77,13 @@
 												</td>
 												<td> <?php echo $available['duedate'] ?> </td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/edit?id='.$available['id'])?>">Edit</a></td>
+												
+												<td> 
+												 <?php if($status !='complete'): ?>
+												<a href="<?php echo url_for('InvestmentCertTaskAssignment/edit?id='.$available['id'])?>">Edit</a>
+												<?php endif; ?>
+												</td>
+												
 											</tr>
 										<?php endforeach;?>	
 										

@@ -778,7 +778,7 @@
 									<div class="row-fluid">
 										<div class="span6">
 											<a href="<?php echo url_for('projectSummary/new?id='.$id) ?>"> <button type="button" class="btn btn-success">Make Report</button> </a>
-											<a href="<?php echo url_for('dashboard/index') ?>"> <button type="button" class="btn btn-danger">Cancel Application</button></a>	
+											<a href="<?php echo url_for('dashboard/index') ?>"> <button type="button" class="btn btn-danger">Request Resubmission</button></a>	
 										</div>
 										
 									</div>

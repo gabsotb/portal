@@ -376,11 +376,11 @@ class dashboardActions extends sfActions
 		$year = $q['created_at'] ;
 		$company = $q['name'] ;
 		$serial = $q['serial_number'] ;
-		$rep = $q['company_representative'] ;
+		$rep = $q['name'] ;
 		$issuerF = $q['first_name'] ;
 		$issuerL = $q['last_name'] ;
 		$sector = $q['business_sector'] ;
-		$noofjobs = $q['job_created'] ;
+		$noofjobs = $q['employment_created'] ;
 		$invstment = $q['planned_investment'];
 		
 	  }
@@ -590,11 +590,11 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 		$year = $q['created_at'] ;
 		$company = $q['name'] ;
 		$serial = $q['serial_number'] ;
-		$rep = $q['company_representative'] ;
+		$rep = $q['name'] ;
 		$issuerF = $q['first_name'] ;
 		$issuerL = $q['last_name'] ;
 		$sector = $q['business_sector'] ;
-		$noofjobs = $q['job_created'] ;
+		$noofjobs = $q['employment_created'] ;
 		$invstment = $q['planned_investment'];
 		
 	  }

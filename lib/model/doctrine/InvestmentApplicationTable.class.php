@@ -43,14 +43,15 @@ class InvestmentApplicationTable extends Doctrine_Table
 	//now we need to check if there are any application for this user and if not show a button for applying and appropriate message.
 	public function getUserInvestmentApplications()
 	{
-	 $userid = sfContext::getInstance()->getUser()->getGuardUser()->getUsername(); // get the username of the user logged
+	 $userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the username of the user logged
+	
 	// let use the doctrine manager secure 
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT 
 	  business_plan.investment_id, business_plan.project_brief
 	  FROM business_plan 
 	  left join business_application_status on 
 	  business_plan.investment_id = business_application_status.business_id where 
-	  business_plan.updated_by = '$userid' 
+	  business_plan.created_by = '$userid' 
 	  and business_application_status.application_status != 'certificateissued'
 		");
 		return $query; 
@@ -83,6 +84,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT business_application_status.application_status,
      business_application_status.comment,business_application_status.percentage,investment_application.name FROM business_application_status 
 	 LEFT JOIN investment_application ON business_application_status.business_id = investment_application.id WHERE created_by = '$userid' 
+	 and business_application_status.application_status !='certificateissued'
 	 ");
 	 return $query;
 	}
@@ -135,14 +137,14 @@ class InvestmentApplicationTable extends Doctrine_Table
 	}
 	//this method is used to confirm that a user has completed application for certificate and is issued and then allows him to apply for a new one
 	//for another business
-	public function getCertificationStatus()
+	public function getCertificationStatus($userid)
 	{
-	   $userid = sfContext::getInstance()->getUser()->getGuardUser()->getUsername(); // get the username of the user logged
+	  // $userid = sfContext::getInstance()->getUser()->getGuardUser()->getUsername(); // get the username of the user logged
 	  
 	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
 	     SELECT COUNT(investment_application.id) FROM investment_application 
 		 LEFT JOIN business_application_status ON investment_application.id = business_application_status.business_id
-		 WHERE  investment_application.updated_by = '$userid' AND business_application_status.application_status ='certificateissued'
+		 WHERE  investment_application.created_by = '$userid' AND business_application_status.application_status = 'certificateissued'
 	   ");
 	   return $query;
 	}
@@ -153,7 +155,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	 
 	  //we will select the investment id for current logged user
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	   SELECT investment_application.id FROM investment_application WHERE created_by = '$userid' limit 1
+	   SELECT investment_application.id FROM investment_application WHERE created_by = '$userid' order by investment_application.id desc limit 1 
 	  ");
 	  $id = null ;
 	  $id2 = null;
@@ -163,7 +165,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  }
 	  //print $id; exit;
 	  $query2 = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	   SELECT business_plan.investment_id FROM business_plan WHERE investment_id = '$id' limit 1
+	   SELECT business_plan.investment_id FROM business_plan WHERE investment_id = '$id' order by investment_id desc limit 1
 	  ");
 	  //
 	  foreach($query2 as $q2)
