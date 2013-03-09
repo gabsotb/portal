@@ -125,11 +125,28 @@ class investmentappActions extends sfActions
     }
   }
   ////now this is tricky he he he 
-  //method to create a new form for filling in Business Plan details
+  //method to retrieve user details
   
-  public function executeBusinessplan()
+  public function executeDetails(sfWebRequest $request)
   {
-  
+    $info = array();
+    $tinNumber = $request->getParameter('id');
+	///
+	$data = Doctrine_Core::getTable('InvestmentApplication')->getClientDetails($tinNumber);
+	/// loop
+	foreach($data as $d)
+	{
+	  //
+	  $info[] = array( 'business_name' =>$d['business_name'], 'business_sector' => $d['business_sector'], 'office_telephone' => $d['office_telephone'] , 
+	'fax' => $d['fax'] , 'post_box' => $d['post_box'] , 'location' => $d['location'],'sector' => $d['sector'],'district' => $d['district'],'city_province' => $d['city_province']
+	);
+	}
+	
+	
+	echo json_encode($info);
+	exit; 
+	$this->redirect('investmentapp/new');
+	//print "Value is ".$value ;exit
   }
   
 }

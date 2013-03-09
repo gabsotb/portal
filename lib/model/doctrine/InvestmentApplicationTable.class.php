@@ -193,5 +193,12 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  }
 	  return $id;
 	}
+	//this function retrieves data of a user when he/she enter a valid TIN Number
+	public function getClientDetails($tinNumber)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select * from business_registration where business_regno = '$tinNumber' ");
+	  ///
+	  return $query;
+	}
 	
 }

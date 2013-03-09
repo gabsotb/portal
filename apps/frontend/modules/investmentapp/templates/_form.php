@@ -2,10 +2,17 @@
 <?php use_javascripts_for_form($form) ?>
 
 <form  action="<?php echo url_for('investmentapp/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped table-bordered" id="investment_table">
 		
     <tbody>
-		 
+		 	<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['registration_number']->renderRow(array('class' => 'span6 popovers' ,'onkeyup' => 'showDetails(this.value)','data-content' => 'Enter Business Registration Number. This is the Number that was issued when
+					you registered your business' , 'data-trigger' => 'hover', 'data-original-title' => 'Business Number')) ?>
+				</div>
+			</div>
+		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
@@ -14,14 +21,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-					<?php echo $form['registration_number']->renderRow(array('class' => 'span6 popovers' , 'data-content' => 'Enter Business Registration Number. This is the Number that was issued when
-					you registered your business' , 'data-trigger' => 'hover', 'data-original-title' => 'Business Number')) ?>
-				</div>
-			</div>
-		</div>
+	
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
@@ -124,3 +124,55 @@
     </tbody>
   </table>
 </form>
+<!-- We want to create Javascript code that can autofill fields from database if a users enters a valid Tin Number -->
+
+<script type="text/javascript">
+      function showDetails(str)
+				{
+				  var minlength = 3;
+				  var id = str;
+				if (id=="")
+				  {
+				  document.getElementById("txtHint").innerHTML="";
+				  return;
+				  }
+				  if (window.XMLHttpRequest)
+				  {// code for IE7+, Firefox, Chrome, Opera, Safari
+				  xmlhttp=new XMLHttpRequest();
+				  }
+				else
+				  {// code for IE6, IE5
+				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				  }
+				xmlhttp.onreadystatechange=function()
+				  {
+				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+					 var data = JSON.parse(xmlhttp.responseText);
+				   // document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+					 for(var i=0;i<data.length;i++) 
+					 {
+					
+					 //document.getElementById("txtHint").innerHTML += data[i].business_name + ' - ' + data[i].business_sector + ' - ' + data[i].office_telephone;
+					 //try to set values
+					 document.getElementById('investment_application_name').value = data[i].business_name;
+					 document.getElementById('investment_application_business_sector').value = data[i].business_sector;
+					 document.getElementById('investment_application_location').value = data[i].location;
+					 document.getElementById('investment_application_office_telephone').value = data[i].office_telephone;
+					 document.getElementById('investment_application_fax').value = data[i].fax;
+					 document.getElementById('investment_application_post_box').value = data[i].post_box;
+					 document.getElementById('investment_application_district').value = data[i].district;
+					 document.getElementById('investment_application_city_province').value = data[i].city_province;
+					 document.getElementById('investment_application_sector').value = data[i].sector;
+					 }
+					
+					}
+				  }
+				xmlhttp.open("GET", "details?id="+id, true);
+				xmlhttp.send(); 
+
+}
+	
+</script>
+
+<!-- end -->

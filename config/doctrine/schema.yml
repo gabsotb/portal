@@ -473,6 +473,14 @@ BusinessRegistration:
  columns:
   business_name: {type: string(255), notnull: true}
   business_regno: {type: string(255), notnull: true}
+  business_sector: {type: string(255), notnull: true}
+  office_telephone: {type: string(255), notnull: true}
+  fax: {type: string(255), notnull: true}
+  post_box: {type: string(255), notnull: true}
+  location: {type: string(255), notnull: true}
+  sector: {type: string(255), notnull: true}
+  district: {type: string(255), notnull: true}
+  city_province: {type: string(255), notnull: true}
 ###### Table used to Add more information for user profile
 sfGuardUserProfile:
  actAs: {Timestampable: ~}

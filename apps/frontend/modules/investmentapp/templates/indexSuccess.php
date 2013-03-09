@@ -336,7 +336,7 @@ $(function () {
 																 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
 																 </a>
 																<?php } ?>
-															    <?php if($value <= 0) { ?>
+															    <?php if($value <= 0 && $response != null) { ?>
 																	  <strong>Alert!</strong> <br/>There are no applications
 																		for investment certificate for your account! <br/>
 																		 <a href="<?php echo url_for('investmentapp/new') ?>">
@@ -348,6 +348,13 @@ $(function () {
                                                          
 														
 														  <?php } ?> 
+														   <?php if($investment_id == null){  ?>
+														    <strong>Alert!</strong> <br/>There are no applications
+																		for investment certificate for your account! <br/>
+																		 <a href="<?php echo url_for('investmentapp/new') ?>">
+																		 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+																		 </a>
+														  <?php } ?>
 															</div>
 														<?php endif; ?>
 															   
@@ -436,7 +443,7 @@ $(function () {
 																	echo button_to('ReApply', 'eia/edit?id='.$imapact->getId(), array('class' => 'btn')); 
 																	break;
 																case 1:
-																	echo button_to('Download Clearance Letter', 'eia/clearance?id='.$impact->getCompanyId(), array('class' => 'btn'));
+																	echo button_to('Download Clearance Letter', 'EIA/clearance?id='.$impact->getCompanyId(), array('class' => 'btn'));
 																	break;
 																case 2:
 																	echo button_to('Fill TOR', 'tor/new', array('class' => 'btn')); 
