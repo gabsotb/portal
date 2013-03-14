@@ -24,45 +24,63 @@
  * @property Doctrine_Collection $InvestmentApprovedBusiness
  * @property Doctrine_Collection $InvestmentRejectedBusiness
  * @property Doctrine_Collection $InvestmentCertificate
+ * @property Doctrine_Collection $StructureFinancial
+ * @property Doctrine_Collection $BusinessPlanCosts
+ * @property Doctrine_Collection $BusinessPlanStartup
+ * @property Doctrine_Collection $EmploymentLocal
+ * @property Doctrine_Collection $EmploymentForeign
+ * @property Doctrine_Collection $PlannedPerformanceApplication
  * 
- * @method string                getName()                       Returns the current record's "name" value
- * @method string                getRegistrationNumber()         Returns the current record's "registration_number" value
- * @method string                getTitleInCompany()             Returns the current record's "title_in_company" value
- * @method string                getBusinessSector()             Returns the current record's "business_sector" value
- * @method string                getBusinessCategory()           Returns the current record's "business_category" value
- * @method string                getOfficeTelephone()            Returns the current record's "office_telephone" value
- * @method string                getFax()                        Returns the current record's "fax" value
- * @method string                getPostBox()                    Returns the current record's "post_box" value
- * @method string                getLocation()                   Returns the current record's "location" value
- * @method string                getSector()                     Returns the current record's "sector" value
- * @method string                getDistrict()                   Returns the current record's "district" value
- * @method string                getCityProvince()               Returns the current record's "city_province" value
- * @method Doctrine_Collection   getInvestmentBusinessPlan()     Returns the current record's "InvestmentBusinessPlan" collection
- * @method Doctrine_Collection   getInvestmentSummary()          Returns the current record's "InvestmentSummary" collection
- * @method Doctrine_Collection   getApplicationAssigment()       Returns the current record's "ApplicationAssigment" collection
- * @method Doctrine_Collection   getInvestmentAppBusinesStatus() Returns the current record's "InvestmentAppBusinesStatus" collection
- * @method Doctrine_Collection   getInvestmentApprovedBusiness() Returns the current record's "InvestmentApprovedBusiness" collection
- * @method Doctrine_Collection   getInvestmentRejectedBusiness() Returns the current record's "InvestmentRejectedBusiness" collection
- * @method Doctrine_Collection   getInvestmentCertificate()      Returns the current record's "InvestmentCertificate" collection
- * @method InvestmentApplication setName()                       Sets the current record's "name" value
- * @method InvestmentApplication setRegistrationNumber()         Sets the current record's "registration_number" value
- * @method InvestmentApplication setTitleInCompany()             Sets the current record's "title_in_company" value
- * @method InvestmentApplication setBusinessSector()             Sets the current record's "business_sector" value
- * @method InvestmentApplication setBusinessCategory()           Sets the current record's "business_category" value
- * @method InvestmentApplication setOfficeTelephone()            Sets the current record's "office_telephone" value
- * @method InvestmentApplication setFax()                        Sets the current record's "fax" value
- * @method InvestmentApplication setPostBox()                    Sets the current record's "post_box" value
- * @method InvestmentApplication setLocation()                   Sets the current record's "location" value
- * @method InvestmentApplication setSector()                     Sets the current record's "sector" value
- * @method InvestmentApplication setDistrict()                   Sets the current record's "district" value
- * @method InvestmentApplication setCityProvince()               Sets the current record's "city_province" value
- * @method InvestmentApplication setInvestmentBusinessPlan()     Sets the current record's "InvestmentBusinessPlan" collection
- * @method InvestmentApplication setInvestmentSummary()          Sets the current record's "InvestmentSummary" collection
- * @method InvestmentApplication setApplicationAssigment()       Sets the current record's "ApplicationAssigment" collection
- * @method InvestmentApplication setInvestmentAppBusinesStatus() Sets the current record's "InvestmentAppBusinesStatus" collection
- * @method InvestmentApplication setInvestmentApprovedBusiness() Sets the current record's "InvestmentApprovedBusiness" collection
- * @method InvestmentApplication setInvestmentRejectedBusiness() Sets the current record's "InvestmentRejectedBusiness" collection
- * @method InvestmentApplication setInvestmentCertificate()      Sets the current record's "InvestmentCertificate" collection
+ * @method string                getName()                          Returns the current record's "name" value
+ * @method string                getRegistrationNumber()            Returns the current record's "registration_number" value
+ * @method string                getTitleInCompany()                Returns the current record's "title_in_company" value
+ * @method string                getBusinessSector()                Returns the current record's "business_sector" value
+ * @method string                getBusinessCategory()              Returns the current record's "business_category" value
+ * @method string                getOfficeTelephone()               Returns the current record's "office_telephone" value
+ * @method string                getFax()                           Returns the current record's "fax" value
+ * @method string                getPostBox()                       Returns the current record's "post_box" value
+ * @method string                getLocation()                      Returns the current record's "location" value
+ * @method string                getSector()                        Returns the current record's "sector" value
+ * @method string                getDistrict()                      Returns the current record's "district" value
+ * @method string                getCityProvince()                  Returns the current record's "city_province" value
+ * @method Doctrine_Collection   getInvestmentBusinessPlan()        Returns the current record's "InvestmentBusinessPlan" collection
+ * @method Doctrine_Collection   getInvestmentSummary()             Returns the current record's "InvestmentSummary" collection
+ * @method Doctrine_Collection   getApplicationAssigment()          Returns the current record's "ApplicationAssigment" collection
+ * @method Doctrine_Collection   getInvestmentAppBusinesStatus()    Returns the current record's "InvestmentAppBusinesStatus" collection
+ * @method Doctrine_Collection   getInvestmentApprovedBusiness()    Returns the current record's "InvestmentApprovedBusiness" collection
+ * @method Doctrine_Collection   getInvestmentRejectedBusiness()    Returns the current record's "InvestmentRejectedBusiness" collection
+ * @method Doctrine_Collection   getInvestmentCertificate()         Returns the current record's "InvestmentCertificate" collection
+ * @method Doctrine_Collection   getStructureFinancial()            Returns the current record's "StructureFinancial" collection
+ * @method Doctrine_Collection   getBusinessPlanCosts()             Returns the current record's "BusinessPlanCosts" collection
+ * @method Doctrine_Collection   getBusinessPlanStartup()           Returns the current record's "BusinessPlanStartup" collection
+ * @method Doctrine_Collection   getEmploymentLocal()               Returns the current record's "EmploymentLocal" collection
+ * @method Doctrine_Collection   getEmploymentForeign()             Returns the current record's "EmploymentForeign" collection
+ * @method Doctrine_Collection   getPlannedPerformanceApplication() Returns the current record's "PlannedPerformanceApplication" collection
+ * @method InvestmentApplication setName()                          Sets the current record's "name" value
+ * @method InvestmentApplication setRegistrationNumber()            Sets the current record's "registration_number" value
+ * @method InvestmentApplication setTitleInCompany()                Sets the current record's "title_in_company" value
+ * @method InvestmentApplication setBusinessSector()                Sets the current record's "business_sector" value
+ * @method InvestmentApplication setBusinessCategory()              Sets the current record's "business_category" value
+ * @method InvestmentApplication setOfficeTelephone()               Sets the current record's "office_telephone" value
+ * @method InvestmentApplication setFax()                           Sets the current record's "fax" value
+ * @method InvestmentApplication setPostBox()                       Sets the current record's "post_box" value
+ * @method InvestmentApplication setLocation()                      Sets the current record's "location" value
+ * @method InvestmentApplication setSector()                        Sets the current record's "sector" value
+ * @method InvestmentApplication setDistrict()                      Sets the current record's "district" value
+ * @method InvestmentApplication setCityProvince()                  Sets the current record's "city_province" value
+ * @method InvestmentApplication setInvestmentBusinessPlan()        Sets the current record's "InvestmentBusinessPlan" collection
+ * @method InvestmentApplication setInvestmentSummary()             Sets the current record's "InvestmentSummary" collection
+ * @method InvestmentApplication setApplicationAssigment()          Sets the current record's "ApplicationAssigment" collection
+ * @method InvestmentApplication setInvestmentAppBusinesStatus()    Sets the current record's "InvestmentAppBusinesStatus" collection
+ * @method InvestmentApplication setInvestmentApprovedBusiness()    Sets the current record's "InvestmentApprovedBusiness" collection
+ * @method InvestmentApplication setInvestmentRejectedBusiness()    Sets the current record's "InvestmentRejectedBusiness" collection
+ * @method InvestmentApplication setInvestmentCertificate()         Sets the current record's "InvestmentCertificate" collection
+ * @method InvestmentApplication setStructureFinancial()            Sets the current record's "StructureFinancial" collection
+ * @method InvestmentApplication setBusinessPlanCosts()             Sets the current record's "BusinessPlanCosts" collection
+ * @method InvestmentApplication setBusinessPlanStartup()           Sets the current record's "BusinessPlanStartup" collection
+ * @method InvestmentApplication setEmploymentLocal()               Sets the current record's "EmploymentLocal" collection
+ * @method InvestmentApplication setEmploymentForeign()             Sets the current record's "EmploymentForeign" collection
+ * @method InvestmentApplication setPlannedPerformanceApplication() Sets the current record's "PlannedPerformanceApplication" collection
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -168,6 +186,30 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
         $this->hasMany('InvestmentCertificate', array(
              'local' => 'id',
              'foreign' => 'business_id'));
+
+        $this->hasMany('Structurefinancial as StructureFinancial', array(
+             'local' => 'id',
+             'foreign' => 'business_plan'));
+
+        $this->hasMany('Costs as BusinessPlanCosts', array(
+             'local' => 'id',
+             'foreign' => 'business_plan'));
+
+        $this->hasMany('Startupexpenses as BusinessPlanStartup', array(
+             'local' => 'id',
+             'foreign' => 'business_plan'));
+
+        $this->hasMany('Employementlocal as EmploymentLocal', array(
+             'local' => 'id',
+             'foreign' => 'business_plan'));
+
+        $this->hasMany('Employementforeign as EmploymentForeign', array(
+             'local' => 'id',
+             'foreign' => 'business_plan'));
+
+        $this->hasMany('Plannedperformance as PlannedPerformanceApplication', array(
+             'local' => 'id',
+             'foreign' => 'business_plan'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $signable0 = new Doctrine_Template_Signable(array(

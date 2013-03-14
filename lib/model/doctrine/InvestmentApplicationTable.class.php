@@ -148,7 +148,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	   ");
 	   return $query;
 	}
-	//we return id belonging to the current logged in user
+	//we return id of business belonging to the current logged in user
 	public function getOnlyUserBusinesses()
 	{
 	  $userid = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the id of the user logged
@@ -180,6 +180,21 @@ class InvestmentApplicationTable extends Doctrine_Table
 	
 	  
 	}
+	//custom method to retrieve business name given a business id
+	public function getBusinessName($businessId)
+	{
+	  //we will select the investment id for current logged user
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT investment_application.name FROM investment_application WHERE created_by = '$businessId' 
+	  ");
+	  $name = null;
+	  foreach($query as $q)
+	  {
+	   $name = $q['name'];
+	  }
+	  //
+	  return $name;
+	}
 	//a custom method to retrieve business id given a business name
 	public function getBusinessId($name)
 	{
@@ -200,5 +215,6 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  ///
 	  return $query;
 	}
+	
 	
 }

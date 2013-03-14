@@ -31,176 +31,6 @@ BusinessPlan:
    updated: { name: updated_by,type: string}
  columns:
   investment_id: {type: integer, notnull: true, unique: true}
-  ## ####Investment and Financial Schedule Costs
-  ## Land
-  land_year1: {type: integer, notnull: false}
-  land_year2: {type: integer, notnull: false}
-  land_year3: {type: integer, notnull: false}
-  land_year4: {type: integer, notnull: false}
-  land_year5: {type: integer, notnull: false}
-  ##Construction
-  construction_year1: {type: integer, notnull: false}
-  construction_year2: {type: integer, notnull: false}
-  construction_year3: {type: integer, notnull: false}
-  construction_year4: {type: integer, notnull: false}
-  construction_year5: {type: integer, notnull: false}
-  ## ### Plants and Machinery
-  machinery_year1: {type: integer, notnull: false}
-  machinery_year2: {type: integer, notnull: false}
-  machinery_year3: {type: integer, notnull: false}
-  machinery_year4: {type: integer, notnull: false}
-  machinery_year5: {type: integer, notnull: false}
-  ### Furniture
-  furniture_year1: {type: integer, notnull: false}
-  furniture_year2: {type: integer, notnull: false}
-  furniture_year3: {type: integer, notnull: false}
-  furniture_year4: {type: integer, notnull: false}
-  furniture_year5: {type: integer, notnull: false}
-  ## Other Fixed Assets
-  other_assets1: {type: integer, notnull: false}
-  other_assets2: {type: integer, notnull: false}
-  other_assets2: {type: integer, notnull: false}
-  other_assets3: {type: integer, notnull: false}
-  other_assets4: {type: integer, notnull: false}
-  other_assets5: {type: integer, notnull: false}
-  ### Start Up Expenses
-  ## Studies
-  studies_year1: {type: integer, notnull: false}
-  studies_year2: {type: integer, notnull: false}
-  studies_year3: {type: integer, notnull: false}
-  studies_year4: {type: integer, notnull: false}
-  studies_year5: {type: integer, notnull: false}
-  ## Travel Expenses
-  travel_expenses1: {type: integer, notnull: false}
-  travel_expenses2: {type: integer, notnull: false}
-  travel_expenses3: {type: integer, notnull: false}
-  travel_expenses4: {type: integer, notnull: false}
-  travel_expenses5: {type: integer, notnull: false}
-  ## #######Starting Capital
-  starting_capital1: {type: integer, notnull: false}
-  starting_capital2: {type: integer, notnull: false}
-  starting_capital3: {type: integer, notnull: false}
-  starting_capital4: {type: integer, notnull: false}
-  starting_capital5: {type: integer, notnull: false}
-  ## Licensing Fees
-  licensing_expenses1: {type: integer, notnull: false}
-  licensing_expenses2: {type: integer, notnull: false}
-  licensing_expenses3: {type: integer, notnull: false}
-  licensing_expenses4: {type: integer, notnull: false}
-  licensing_expenses5: {type: integer, notnull: false}
-  ## Rental Fees
-  rental_fees1: {type: integer, notnull: false}
-  rental_fees2: {type: integer, notnull: false}
-  rental_fees3: {type: integer, notnull: false}
-  rental_fees4: {type: integer, notnull: false}
-  rental_fees5: {type: integer, notnull: false}
-  ## Others
-  other_expeses1: {type: integer, notnull: false}
-  other_expeses2: {type: integer, notnull: false}
-  other_expeses3: {type: integer, notnull: false}
-  other_expeses4: {type: integer, notnull: false}
-  other_expeses5: {type: integer, notnull: false}
-  ## Financial Expenses
-  equity_local: {type: integer, notnull: false}
-  equity_foregin: {type: integer, notnull: false}
-  bank_loan_local: {type: integer, notnull: false}
-  bank_loan_foreign: {type: integer, notnull: false}
-  mother_company_loan_local: {type: integer, notnull: false}
-  mother_company_loan_foreign: {type: integer, notnull: false}
-  grant_local: {type: integer, notnull: false}
-  grant_foreign: {type: integer, notnull: false}
-  ## ### Job/ employment Categories
-  ## employement local
-  top_management_local1: {type: integer, notnull: false}
-  top_management_local2: {type: integer, notnull: false}
-  top_management_local3: {type: integer, notnull: false}
-  top_management_local4: {type: integer, notnull: false}
-  top_management_local5: {type: integer, notnull: false}
-  ## employment foreign
-  top_management_foreign1: {type: integer, notnull: false}
-  top_management_foreign2: {type: integer, notnull: false}
-  top_management_foreign3: {type: integer, notnull: false}
-  top_management_foreign4: {type: integer, notnull: false}
-  top_management_foreign5: {type: integer, notnull: false}
-  ## technical professional local
-  technical_professional_local1: {type: integer, notnull: false}
-  technical_professional_local2: {type: integer, notnull: false}
-  technical_professional_local3: {type: integer, notnull: false}
-  technical_professional_local4: {type: integer, notnull: false}
-  technical_professional_local5: {type: integer, notnull: false}
-  ## technical professional foreign
-  technical_professional_foreign1: {type: integer, notnull: false}
-  technical_professional_foreign2: {type: integer, notnull: false}
-  technical_professional_foreign3: {type: integer, notnull: false}
-  technical_professional_foreign4: {type: integer, notnull: false}
-  technical_professional_foreign5: {type: integer, notnull: false}
-  ### skilled labour local
-  skilled_labour_local1: {type: integer, notnull: false}
-  skilled_labour_local2: {type: integer, notnull: false}
-  skilled_labour_local3: {type: integer, notnull: false}
-  skilled_labour_local4: {type: integer, notnull: false}
-  skilled_labour_local5: {type: integer, notnull: false}
-  ## skilled labour foreign
-  skilled_labour_foreign1: {type: integer, notnull: false}
-  skilled_labour_foreign2: {type: integer, notnull: false}
-  skilled_labour_foreign3: {type: integer, notnull: false}
-  skilled_labour_foreign4: {type: integer, notnull: false}
-  skilled_labour_foreign5: {type: integer, notnull: false}
-  ## other jobs local
-  other_jobs_local1: {type: integer, notnull: false}
-  other_jobs_local2: {type: integer, notnull: false}
-  other_jobs_local3: {type: integer, notnull: false}
-  other_jobs_local4: {type: integer, notnull: false}
-  other_jobs_local5: {type: integer, notnull: false}
-  ## other jobs foreign
-  other_jobs_foreign1: {type: integer, notnull: false}
-  other_jobs_foreign2: {type: integer, notnull: false}
-  other_jobs_foreign3: {type: integer, notnull: false}
-  other_jobs_foreign4: {type: integer, notnull: false}
-  other_jobs_foreign5: {type: integer, notnull: false}
-  ## ### Planned Company Investment
-  ##sales Income
-  sales_income1: {type: integer, notnull: false}
-  sales_income2: {type: integer, notnull: false}
-  sales_income3: {type: integer, notnull: false}
-  sales_income4: {type: integer, notnull: false}
-  sales_income5: {type: integer, notnull: false}
-  ##total cost
-  total_cost_sales1: {type: integer, notnull: false}
-  total_cost_sales2: {type: integer, notnull: false}
-  total_cost_sales3: {type: integer, notnull: false}
-  total_cost_sales4: {type: integer, notnull: false}
-  total_cost_sales5: {type: integer, notnull: false}
-  ## gross profit
-  gross_profit1: {type: integer, notnull: false}
-  gross_profit2: {type: integer, notnull: false}
-  gross_profit3: {type: integer, notnull: false}
-  gross_profit4: {type: integer, notnull: false}
-  gross_profit5: {type: integer, notnull: false}
-  ##indirect expenses
-  indirect_expenses1: {type: integer, notnull: false}
-  indirect_expenses2: {type: integer, notnull: false}
-  indirect_expenses3: {type: integer, notnull: false}
-  indirect_expenses4: {type: integer, notnull: false}
-  indirect_expenses5: {type: integer, notnull: false}
-  ##profit before tax
-  profit_before_tax1: {type: integer, notnull: false}
-  profit_before_tax2: {type: integer, notnull: false}
-  profit_before_tax3: {type: integer, notnull: false}
-  profit_before_tax4: {type: integer, notnull: false}
-  profit_before_tax5: {type: integer, notnull: false}
-  ##tax expenses
-  tax_expenses1: {type: integer, notnull: false}
-  tax_expenses2: {type: integer, notnull: false}
-  tax_expenses3: {type: integer, notnull: false}
-  tax_expenses4: {type: integer, notnull: false}
-  tax_expenses5: {type: integer, notnull: false}
-  ##net profit
-  net_profit1: {type: integer, notnull: false}
-  net_profit2: {type: integer, notnull: false}
-  net_profit3: {type: integer, notnull: false}
-  net_profit4: {type: integer, notnull: false}
-  net_profit5: {type: integer, notnull: false}
   ### Project Brief Information
   project_brief: {type: string(4000), notnull: true}
   ### Applied on Incentives
@@ -215,6 +45,8 @@ BusinessPlan:
   visa_work_permits: {type: string(4000), notnull: false}
  relations:
   InvestmentApplication: {local: investment_id, foreign:id , foreignAlias: InvestmentBusinessPlan}
+##### We will create new tables for auto saving of users details. 
+####
 # Contains a summary of the application from the InvestmentApplication and Business Plan Tables
 ProjectSummary:
  actAs:
@@ -556,3 +388,94 @@ RecordDecision:
     comment: { type: string(400), notnull: true }
   relations:
     Tor: { local: tor_id, foreign: id, foreignAlias: TechnicalSummary, onDelete:CASCADE }
+
+###### Sample table for testing auto saving and loading
+Structurefinancial: ## for Start up expenses costs
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+   business_plan: {type: integer, notnull: true}
+   local_source: {type: integer, notnull: false}
+   foreign_source: {type: integer, notnull: false}
+  relations:
+   InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: StructureFinancial}
+Costs: ## for Investment Costs
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+   business_plan: {type: integer, notnull: true}
+   year1: {type: integer, notnull: false}
+   year2: {type: integer, notnull: false}
+   year3: {type: integer, notnull: false}
+   year4: {type: integer, notnull: false}
+   year5: {type: integer, notnull: false}
+  relations:
+   InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: BusinessPlanCosts}
+Startupexpenses: ## for Start up expenses costs
+  actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+  columns:
+   business_plan: {type: integer, notnull: true}
+   year1: {type: integer, notnull: false}
+   year2: {type: integer, notnull: false}
+   year3: {type: integer, notnull: false}
+   year4: {type: integer, notnull: false}
+   year5: {type: integer, notnull: false}
+  relations:
+   InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: BusinessPlanStartup}
+Employementlocal: ## for employment local
+ actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+ columns:
+  business_plan: {type: integer, notnull: true}
+  year1: {type: integer, notnull: false}
+  year2: {type: integer, notnull: false}
+  year3: {type: integer, notnull: false}
+  year4: {type: integer, notnull: false}
+  year5: {type: integer, notnull: false}
+ relations:
+  InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: EmploymentLocal}
+Employementforeign: ## for employment foreign
+ actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+ columns:
+  business_plan: {type: integer, notnull: true}
+  year1: {type: integer, notnull: false}
+  year2: {type: integer, notnull: false}
+  year3: {type: integer, notnull: false}
+  year4: {type: integer, notnull: false}
+  year5: {type: integer, notnull: false}
+ relations:
+  InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: EmploymentForeign}
+Plannedperformance:
+ actAs:
+    Timestampable: ~
+    Signable:
+      created: { name: created_by, type: string, onUpdate: CASCADE, onDelete: SET NULL, options: {notnull: true, default: None}}
+      updated: { name: updated_by, type: string }
+ columns:
+  business_plan: {type: integer, notnull: true}
+  year1: {type: integer, notnull: false}
+  year2: {type: integer, notnull: false}
+  year3: {type: integer, notnull: false}
+  year4: {type: integer, notnull: false}
+  year5: {type: integer, notnull: false}
+ relations:
+  InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: PlannedPerformanceApplication}
+
+ 

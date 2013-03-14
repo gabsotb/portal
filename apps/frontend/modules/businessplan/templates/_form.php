@@ -1,432 +1,242 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
-<script type="text/javascript">  
-  function formatCells(xls,group){  
-    var arrGroup = xls.split(/\t/gi);  
-    for(var i=1;i<arrGroup.length;i++){  
-     // document.getElementById('tableSample1').elements[group + "_" + i].value = arrGroup[i];  
-	  document.forms[2].elements[group + "_" + i].value = arrGroup[i];
-    }  
-  }  
-</script> 
-<!--<form> -->
+        
 
-  <table class="table table-striped table-bordered">
-    <tbody>
-	<div class="control-group">
-	  <form class="" action="<?php echo url_for('businessplan/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
-	   <div class="widget">
-	    <div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-					<?php echo $form['investment_id']->render() ?>
-				</div>
-			</div>
-		</div> 
-	   </div>
-	   <div class="widget">
-	   <div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-				     <span> <label class="control-label"><?php echo $form['project_brief']->renderLabel() ?>
-					 <?php echo $form['project_brief']->renderError() ?>  <?php echo $form['investment_id']->renderError() ?>
-					 </label></span>
-					 
-					<?php echo $form['project_brief']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
-				</div>
-			</div>
-		</div>
-	   </div>
-		  <div class="widget">
-				<div>
-				                   <div class="alert alert-block alert-info">
+		  <div class="control-group">
+		
+					    <div class="widget">
+						 <div class="widget-body">	
+                                <div class="alert alert-block alert-info">
 										<p>
 											<span>INVESTMENT AND FINANCIAL SCHEDULE</span>
 										</p>
-								    </div>
+								    </div>						 
+										<!-- **************************************8 -->
+									<div>
+												  <div class="descLayout">
+													<div class="pad">
+													  <p>
+														 If this is your first application,
+														click on Load Button to Start Updating your INVESTMENT AND FINANCIAL SCHEDULE
+														<button name="load">Load Data</button>
+														<!--<button name="save">Save</button> -->
+														<label>
+														<input type="checkbox" name="autosave" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+													  </p>
+
+													  <div id="exampleConsole" class="console">Click "Load" to load data from server</div>
+
+													 
+													</div>
+												  </div>
+
+												 <div id="example1"></div>
+								     </div>
+										<!-- **************************************  -->
 									
-										<table id="tableSample1"  class="table table-bordered table-hover">
-										<thead>
-											<tr class="alert-block alert-success">
-												<th>Fixed Cost Amount</th>
-												<th>Year 1</th>
-												<th>Year 2</th>
-												<th>Year 3</th>
-												<th>Year 4</th>
-												<th>Year 5</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Land</td>
-												<td >
-												<?php echo $form['land_year1']->renderError() ?>
-												<div class="input-prepend input-append">
-												   <span class="add-on">$</span><?php echo $form['land_year1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'business_plan')")) ?><span class="add-on">.00</span>
-												</div>
-												
-												</td>
-												<td><?php echo $form['land_year2']->renderError() ?>
-												<div class="input-prepend input-append">
-												<span class="add-on">$</span><?php echo $form['land_year2']->render(array('class' => 'input-small'
-											)) ?><span class="add-on">.00</span>
-												</div>
-												</td>
-												<td><?php echo $form['land_year3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['land_year3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['land_year4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['land_year4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['land_year5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['land_year5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Construction</td>
-												<td><?php echo $form['construction_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['construction_year1']->render(array('class' => 'input-small','onchange' => 'formatCells(this.value,"t2")')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['construction_year2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['construction_year2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['construction_year3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['construction_year3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['construction_year4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['construction_year4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['construction_year5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['construction_year5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Plant and Machinery</td>
-												<td><?php echo $form['machinery_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['machinery_year1']->render(array('class' => 'input-small','onchange' => 'formatCells(this.value,"t3")')) ?><span class="add-on">.00</span></div></td>
-												<td> <?php echo $form['machinery_year2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['machinery_year2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['machinery_year3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['machinery_year3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['machinery_year4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['machinery_year4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['machinery_year5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['machinery_year5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Furniture</td>
-											<td><?php echo $form['furniture_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['furniture_year1']->render(array('class' => 'input-small', 'onchange' => 'formatCells(this.value,"t4")')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['furniture_year2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['furniture_year2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['furniture_year3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['furniture_year3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['furniture_year4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['furniture_year4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['furniture_year5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['furniture_year5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Other Fixed Cost</td>
-												<td><?php echo $form['other_assets1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets1']->render(array('class' => 'input-small', 'onchange' => 'formatCells(this.value,"t5")')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['other_assets2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['other_assets3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets3']->render(array('class' => 'input-small' )) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['other_assets4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets4']->render(array('class' => 'input-small' )) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['other_assets5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_assets5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-										</tbody>
-									</table> 
-									
-									
-		                        
-							 </div>
-                           
-					</div>
-					   <div class="widget">
+							</div>	
+                       </div>
+					   
+		  </div>
+		   <div class="control-group">
+		
+					    <div class="widget">
 						 <div class="widget-body">	
-                                    <div class="alert alert-block alert-info fade in">
+                                <div class="alert alert-block alert-info">
 										<p>
 											<span>START UP EXPENSES</span>
 										</p>
 								    </div>						 
-							    
-								<table  class="table table-bordered table-hover">
-										<thead>
-											<tr class="alert-block alert-success">
-												<th>Amount</th>
-												<th>Year 1</th>
-												<th>Year 2</th>
-												<th>Year 3</th>
-												<th>Year 4</th>
-												<th>Year 5</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Studies</td>
-												<td><?php echo $form['studies_year1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['studies_year1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t6')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['studies_year2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['studies_year2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['studies_year3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['studies_year3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['studies_year4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['studies_year4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['studies_year5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['studies_year5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Travel Expenses</td>
-												<td><?php echo $form['travel_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['travel_expenses1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t7')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['travel_expenses2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['travel_expenses2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['travel_expenses3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['travel_expenses3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['travel_expenses4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['travel_expenses4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['travel_expenses5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['travel_expenses5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Starting Capital</td>
-												<td><?php echo $form['starting_capital1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['starting_capital1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t8')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['starting_capital2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['starting_capital2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['starting_capital3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['starting_capital3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['starting_capital4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['starting_capital4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['starting_capital5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['starting_capital5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Administrative & License Expense</td>
-											<td><?php echo $form['licensing_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['licensing_expenses1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t9')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['licensing_expenses2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['licensing_expenses2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['licensing_expenses3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['licensing_expenses3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['licensing_expenses4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['licensing_expenses4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['licensing_expenses5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['licensing_expenses5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Rental Fees</td>
-												<td><?php echo $form['rental_fees1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['rental_fees1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t10')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['rental_fees2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['rental_fees2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['rental_fees3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['rental_fees3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['rental_fees4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['rental_fees4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['rental_fees5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['rental_fees5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Others</td>
-												<td><?php echo $form['other_expeses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_expeses1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t11')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['other_expeses2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_expeses2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['other_expeses3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_expeses3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['other_expeses4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_expeses4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['other_expeses5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['other_expeses5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-										</tbody>
-									</table> 
-									<!--</table> -->
-							</div>	
-                       </div>	 							
-								  
-			<!--- -----------------------------------------------------------------       --->
-		    <div class="widget">
-						 <div class="widget-body">	
-                                	<div class="alert alert-block alert-info fade in">
-										<p>
-											 <span>FINANCIAL STRUCTURE</span>
-										</p>
-								    </div>		 
-							   
-								<table  class="table table-bordered table-hover">
-										<thead>
-											<tr class="alert-block alert-success">
-												<th>Origin of Financing</th>
-												<th>Foreign Source</th>
-												<th>Local Source</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Equity</td>
-												<td><?php echo $form['equity_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['equity_local']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t12')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['equity_foregin']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['equity_foregin']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												
-											</tr>
-											<tr>
-												<td>Loan From Bank</td>
-												<td><?php echo $form['bank_loan_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['bank_loan_local']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t13')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['bank_loan_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['bank_loan_foreign']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												
-											</tr>
-											<tr>
-												<td>Loan From Mother Company</td>
-												<td><?php echo $form['mother_company_loan_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['mother_company_loan_local']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t14')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['mother_company_loan_foreign']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['mother_company_loan_foreign']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												
-											</tr>
-											<tr>
-												<td>Grant</td>
-											    <td><?php echo $form['grant_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['grant_local']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t15')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['grant_local']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['grant_foreign']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												
-											</tr>
-										</tbody>
-									</table> 
-									</table>
-							</div>	
-                       </div>	
-		   <!--- --------------------------------------------------------------------- --->	
-              <div class="widget">
-						 <div class="widget-body">	
-                                <div class="alert alert-block alert-info fade in">
-										<p>
-											 <span>EMPLOYMENT DETAILS - Please Enter number of jobs</span>
-										</p>
-								    </div>							 
-							    
-								<table  class="table table-bordered table-hover">
-										<thead>
-											<tr class="alert-block alert-success">
-												<th>Category - Local Jobs</th>
-												<th>Year 1</th>
-												<th>Year 2</th>
-												<th>Year 3</th>
-												<th>Year 4</th>
-												<th>Year 5</th>
-												
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Top Management</td>
-												<td><?php echo $form['top_management_local1']->renderError() ?><?php echo $form['top_management_local1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t16')")) ?></td>
-												<td><?php echo $form['top_management_local2']->renderError() ?><?php echo $form['top_management_local2']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['top_management_local3']->renderError() ?><?php echo $form['top_management_local3']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['top_management_local4']->renderError() ?><?php echo $form['top_management_local4']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['top_management_local5']->renderError() ?><?php echo $form['top_management_local5']->render(array('class' => 'input-small')) ?></td>
-											</tr>
-											<tr>
-												<td>Technical/Professional</td>
-												<td><?php echo $form['technical_professional_local1']->renderError() ?><?php echo $form['technical_professional_local1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t17')")) ?></td>
-												<td><?php echo $form['technical_professional_local2']->renderError() ?><?php echo $form['technical_professional_local2']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['technical_professional_local3']->renderError() ?><?php echo $form['technical_professional_local3']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['technical_professional_local4']->renderError() ?><?php echo $form['technical_professional_local4']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['technical_professional_local5']->renderError() ?><?php echo $form['technical_professional_local5']->render(array('class' => 'input-small')) ?></td>
-											</tr>
-											<tr>
-												<td>Skilled labour</td>
-												<td><?php echo $form['skilled_labour_local1']->renderError() ?><?php echo $form['skilled_labour_local1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t18')")) ?></td>
-												<td><?php echo $form['skilled_labour_local2']->renderError() ?><?php echo $form['skilled_labour_local2']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['skilled_labour_local3']->renderError() ?><?php echo $form['skilled_labour_local3']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['skilled_labour_local4']->renderError() ?><?php echo $form['skilled_labour_local4']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['skilled_labour_local5']->renderError() ?><?php echo $form['skilled_labour_local5']->render(array('class' => 'input-small')) ?></td>
-											</tr>
-											<tr>
-												<td>Others (manpower, casual to precise)</td>
-											    <td><?php echo $form['other_jobs_local1']->renderError() ?><?php echo $form['other_jobs_local1']->render(array('class' => 'input-small','onchange' => "formatCells(this.value,'t19')")) ?></td>
-												<td><?php echo $form['other_jobs_local2']->renderError() ?><?php echo $form['other_jobs_local2']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['other_jobs_local3']->renderError() ?><?php echo $form['other_jobs_local3']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['other_jobs_local4']->renderError() ?><?php echo $form['other_jobs_local4']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['other_jobs_local5']->renderError() ?><?php echo $form['other_jobs_local5']->render(array('class' => 'input-small')) ?></td>
-											</tr>
-										</tbody>
-									</table> 
-										<table  class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>Category- Expatriate Jobs</th>
-												<th>Year 1</th>
-												<th>Year 2</th>
-												<th>Year 3</th>
-												<th>Year 4</th>
-												<th>Year 5</th>
-												
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Top Management</td>
-												<td><?php echo $form['top_management_foreign1']->renderError() ?><?php echo $form['top_management_foreign1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t20')")) ?></td>
-												<td><?php echo $form['top_management_foreign2']->renderError() ?><?php echo $form['top_management_foreign2']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['top_management_foreign3']->renderError() ?><?php echo $form['top_management_foreign3']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['top_management_foreign4']->renderError() ?><?php echo $form['top_management_foreign4']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['top_management_foreign5']->renderError() ?><?php echo $form['top_management_foreign5']->render(array('class' => 'input-small')) ?></td>
-											</tr>
-											<tr>
-												<td>Technical/Professional</td>
-												<td><?php echo $form['technical_professional_foreign1']->renderError() ?><?php echo $form['technical_professional_foreign1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t21')")) ?></td>
-												<td><?php echo $form['technical_professional_foreign2']->renderError() ?><?php echo $form['technical_professional_foreign2']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['technical_professional_foreign3']->renderError() ?><?php echo $form['technical_professional_foreign3']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['technical_professional_foreign4']->renderError() ?><?php echo $form['technical_professional_foreign4']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['technical_professional_foreign5']->renderError() ?><?php echo $form['technical_professional_foreign5']->render(array('class' => 'input-small')) ?></td>
-											</tr>
-											<tr>
-												<td>Skilled labour</td>
-												<td><?php echo $form['skilled_labour_foreign1']->renderError() ?><?php echo $form['skilled_labour_foreign1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t22')")) ?></td>
-												<td><?php echo $form['skilled_labour_foreign2']->renderError() ?><?php echo $form['skilled_labour_foreign2']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['skilled_labour_foreign3']->renderError() ?><?php echo $form['skilled_labour_foreign3']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['skilled_labour_foreign4']->renderError() ?><?php echo $form['skilled_labour_foreign4']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['skilled_labour_foreign5']->renderError() ?><?php echo $form['skilled_labour_foreign5']->render(array('class' => 'input-small')) ?></td>
-											</tr>
-											<tr>
-												<td>Others (manpower, casual to precise)</td>
-											    <td><?php echo $form['other_jobs_foreign1']->renderError() ?><?php echo $form['other_jobs_foreign1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t23')")) ?></td>
-												<td><?php echo $form['other_jobs_foreign2']->renderError() ?><?php echo $form['other_jobs_foreign2']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['other_jobs_foreign3']->renderError() ?><?php echo $form['other_jobs_foreign3']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['other_jobs_foreign4']->renderError() ?><?php echo $form['other_jobs_foreign4']->render(array('class' => 'input-small')) ?></td>
-												<td><?php echo $form['other_jobs_foreign5']->renderError() ?><?php echo $form['other_jobs_foreign5']->render(array('class' => 'input-small')) ?></td>
-											</tr>
-										</tbody>
-									</table> 
+										<!-- **************************************8 -->
+									<div>
+												  <div class="descLayout1">
+													<div class="pad1">
+													  <p>
+														 If this is your first application,
+														click on Load Button to Start Updating your START UP EXPENSES
+														<button name="load1">Load Data</button>
+														<!--<button name="save">Save</button> -->
+														<label>
+														<input type="checkbox" name="autosave1" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+													  </p>
+
+													  <div id="startupconsole" class="console">Click "Load" to load data from server</div>
+
+													 
+													</div>
+												  </div>
+
+												 <div id="startup"></div>
+								     </div>
+										<!-- **************************************  -->
 									
 							</div>	
                        </div>
-            <!--- -----------------------------------------------------------------       --->
-		      <div class="widget">
-						 <div class="widget-body">
-                                  <div class="alert alert-block alert-info fade in">
+					   
+		  </div>
+		   <div class="control-group">
+		
+					    <div class="widget">
+						 <div class="widget-body">	
+                                <div class="alert alert-block alert-info">
+										<p>
+											<span>FINANCIAL STRUCTURE</span>
+										</p>
+								    </div>						 
+										<!-- **************************************8 -->
+									<div>
+												  <div class="descLayout2">
+													<div class="pad2">
+													  <p>
+														 If this is your first application,
+														click on Load Button to Start Updating your FINANCIAL STRUCTURE
+														<button name="load2">Load Data</button>
+														<!--<button name="save">Save</button> -->
+														<label>
+														<input type="checkbox" name="autosave2" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+													  </p>
+
+													  <div id="financialconsole" class="console">Click "Load" to load data from server</div>
+
+													 
+													</div>
+												  </div>
+
+												 <div id="financial"></div>
+								     </div>
+										<!-- **************************************  -->
+									
+							</div>	
+                       </div>
+					   
+		  </div>
+		    <div class="control-group">
+		
+					    <div class="widget">
+						 <div class="widget-body">	
+                                <div class="alert alert-block alert-info">
+										<p>
+											<span>EMPLOYMENT OPPORTUNITIES</span>
+										</p>
+								    </div>						 
+										<!-- **************************************8 -->
+									<div>
+												  <div class="descLayout3">
+													<div class="pad3">
+													  <p>
+														 If this is your first application,
+														click on Load Button to Start Updating your Local Jobs
+														<button name="load3">Load Data</button>
+														<!--<button name="save">Save</button> -->
+														<label>
+														<input type="checkbox" name="autosave3" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+													  </p>
+
+													  <div id="local_jobs_console" class="console">Click "Load" to load data from server</div>
+
+													 
+													</div>
+												  </div>
+
+												 <div id="local_jobs"></div>
+								     </div>
+										<!-- **************************************  -->
+												<!-- **************************************8 -->
+									<div>
+												  <div class="descLayout4">
+													<div class="pad4">
+													  <p>
+														 If this is your first application,
+														click on Load Button to Start Updating your Foreign Jobs
+														<button name="load4">Load Data</button>
+														<!--<button name="save">Save</button> -->
+														<label>
+														<input type="checkbox" name="autosave4" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+													  </p>
+
+													  <div id="foreign_console" class="console">Click "Load" to load data from server</div>
+
+													 
+													</div>
+												  </div>
+
+												 <div id="foreign_jobs"></div>
+								     </div>
+										<!-- **************************************  -->
+									
+							</div>	
+                       </div>
+					   
+		  </div>
+		  <div class="control-group">
+		
+					    <div class="widget">
+						 <div class="widget-body">	
+                                <div class="alert alert-block alert-info">
 										<p>
 											<span>PLANNED COMPANY PERFORMANCE</span>
 										</p>
-								    </div>							 
-							    
-								<table  class="table table-bordered table-hover">
-										<thead>
-											<tr class="alert-block alert-success">
-												<th></th>
-												<th>Year 1</th>
-												<th>Year 2</th>
-												<th>Year 3</th>
-												<th>Year 4</th>
-												<th>Year 5</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Sales/Income</td>
-												<td><?php echo $form['sales_income1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['sales_income1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t24')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['sales_income2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['sales_income2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['sales_income3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['sales_income3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['sales_income4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['sales_income4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['sales_income5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['sales_income5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Total cost of sales</td>
-												<td><?php echo $form['total_cost_sales1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['total_cost_sales1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t25')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['total_cost_sales2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['total_cost_sales2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['total_cost_sales3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['total_cost_sales3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['total_cost_sales4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['total_cost_sales4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['total_cost_sales5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['total_cost_sales5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Gross Profit</td>
-												<td><?php echo $form['gross_profit1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['gross_profit1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t26')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['gross_profit2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['gross_profit2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['gross_profit3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['gross_profit3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['gross_profit4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['gross_profit4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['gross_profit5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['gross_profit5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Total Indirect Expenses</td>
-											<td><?php echo $form['indirect_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['indirect_expenses1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t27')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['indirect_expenses2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['indirect_expenses2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['indirect_expenses3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['indirect_expenses3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['indirect_expenses4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['indirect_expenses4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['indirect_expenses5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['indirect_expenses5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Profit Before Tax</td>
-												<td><?php echo $form['profit_before_tax1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['profit_before_tax1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t28')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['profit_before_tax2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['profit_before_tax2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['profit_before_tax3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['profit_before_tax3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['profit_before_tax4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['profit_before_tax4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['profit_before_tax5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['profit_before_tax5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Tax Expenses(30%)</td>
-												<td><?php echo $form['tax_expenses1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['tax_expenses1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t29')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['tax_expenses2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['tax_expenses2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['tax_expenses3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['tax_expenses3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['tax_expenses4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['tax_expenses4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['tax_expenses5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['tax_expenses5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-											<tr>
-												<td>Net Profit</td>
-												<td><?php echo $form['net_profit1']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['net_profit1']->render(array('class' => 'input-small', 'onchange' => "formatCells(this.value,'t30')")) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['net_profit2']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['net_profit2']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['net_profit3']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['net_profit3']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['net_profit4']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['net_profit4']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-												<td><?php echo $form['net_profit5']->renderError() ?><div class="input-prepend input-append"><span class="add-on">$</span><?php echo $form['net_profit5']->render(array('class' => 'input-small')) ?><span class="add-on">.00</span></div></td>
-											</tr>
-										</tbody>
-									</table> 
+								    </div>						 
+										<!-- **************************************8 -->
+									<div>
+												  <div class="descLayout3">
+													<div class="pad3">
+													  <p>
+														 If this is your first application,
+														click on Load Button to Start Updating your PLANNED COMPANY PERFORMANCE
+														<button name="load5">Load Data</button>
+														<!--<button name="save">Save</button> -->
+														<label>
+														<input type="checkbox" name="autosave5" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+													  </p>
+
+													  <div id="performance_console" class="console">Click "Load" to load data from server</div>
+
+													 
+													</div>
+												  </div>
+
+												 <div id="performance"></div>
+								     </div>
+										<!-- **************************************  -->
 									
 							</div>	
-                       </div>	
-					    <div class="control-group">
-						   <div class="widget">
+                       </div>
+					   
+		  </div>
+		  <div class="control-group">
+		   <form class="" action="<?php echo url_for('businessplan/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+		      <div class="widget">
+				<div class="control-group">
+					<div class="controls">
+						<div class="input-prepend">
+							<?php echo $form['investment_id']->render() ?>
+						</div>
+					</div>
+				</div> 
+	        </div>
+			<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					
+					<?php echo $form->renderHiddenFields(); ?>
+				</div>
+			</div>
+		</div>
+			 <div class="widget">
+			   <div class="control-group">
+					<div class="controls">
+						<div class="input-prepend">
+							 <span> <label class="control-label"><?php echo $form['project_brief']->renderLabel() ?>
+							 <?php echo $form['project_brief']->renderError() ?>  <?php echo $form['investment_id']->renderError() ?>
+							 </label></span>
+							 
+							<?php echo $form['project_brief']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
+						</div>
+					</div>
+				</div>
+	        </div>
+			<div class="widget">
 						                <div class="alert alert-block alert-info fade in">
 										<p>
 											<span>APPLIED FOR INCENTIVES</span>
@@ -482,34 +292,11 @@
 										
 										</div>
 							</div>
-				
-		               </div>
-		  			
-				</div>		
-       				
-		     <!--- --------------------------------------------------------------------- --->	
-            
-            <!--- -----------------------------------------------------------------       --->
-		    
-		   <!--- --------------------------------------------------------------------- --->	
-		
-		
-		<div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-					
-					<?php echo $form->renderHiddenFields(); ?>
-				</div>
-			</div>
-		</div>
-     
-      <tfoot>
-      <tr>
-	  
-	    <?php if (!$form->getObject()->isNew()): ?>
+         <?php if (!$form->getObject()->isNew()): ?>
 		<input type="hidden" name="sf_method" value="put" />
 		<?php endif; ?>
-	  
+	     <table>
+		 <tr>
         <td colspan="2">
           <!--&nbsp;<a href="<?php //echo url_for('businessplan/index') ?>">Back to list</a> -->
           <?php if (!$form->getObject()->isNew()): ?>
@@ -517,10 +304,555 @@
           <?php endif; ?>
           <input class="btn btn-primary" type="submit" value="Submit" />
         </td>
-      </tr>
-    </tfoot>               
-     
-		</form>
-    </tbody>
-  </table>
-<!--</form>-->
+		</tr>
+		</table>
+		   </form>
+		</div>
+
+ <script>
+            var $container = $("#example1");
+            var $console = $("#exampleConsole");
+            var $parent = $container.parent();
+            var autosaveNotification;
+            $container.handsontable({
+              startRows: 0,
+              startCols: 0,
+              rowHeaders: ['Land', 'Construction', 'Plants', 'Furniture' , 'Others'],
+              colHeaders: ['Year 1', 'Year 2', 'Year 3' , 'Year 4', 'Year 5'],
+              minSpareCols: 0,
+              minSpareRows: 0,
+              contextMenu: true,
+              onChange: function (change, source) {
+                if (source === 'loadData') {
+                  return; //don't save this change
+                }
+                if ($parent.find('input[name=autosave]').is(':checked')) {
+                  clearTimeout(autosaveNotification);
+                  $.ajax({
+                    url: "<?php echo url_for('businessplan/save') ?>",
+                    dataType: "json",
+                    type: "POST",
+                    data: {
+					    changes: change
+					}, //contains changed cells' data
+                    success: function (data) {
+                      $console.text('Autosaved works with (' + change[0] + ' cell' + (change.length > 1 ? 's' : '') + ')');
+                      autosaveNotification = setTimeout(function () {
+                        $console.text('Changes will be autosaved');
+						
+                      }, 5000);
+                    }
+                  });
+				  
+                }
+              }
+            });
+            var handsontable = $container.data('handsontable');
+
+            $parent.find('button[name=load]').click(function () {
+              $.ajax({
+                url: "<?php echo url_for('businessplan/loading') ?>",
+                dataType: 'json',
+                type: 'GET',
+                 success: function (res) {
+                  var data = [], row;
+				   var selection;
+                   selection = $container.handsontable('getSelected');
+				  var i = 0 ;
+                  for (i = 0, ilen = res.costs.length; i < ilen; i++) {
+                    row = [];
+				   // row[0] = res.costs[i].id;
+                    row[0] = res.costs[i].year1;
+                    row[1] = res.costs[i].year2;
+                    row[2] = res.costs[i].year3;
+					row[3] = res.costs[i].year4;
+					row[4] = res.costs[i].year5;
+					////
+					// alert();
+                    data[res.costs[i].id - res.costs[0].id ] = row;
+					
+					//alert(data[res.costs[].id ]) ;
+					//alert(data[res.costs[i].id - res.costs[0].id ]);
+                  }
+				 
+                  handsontable.loadData(data);
+				 
+				//  alert(handsontable('getData')[selection[0]]);
+                  $console.text('Data loaded');
+                }
+              });
+            }).click(); //execute immediately
+
+            $parent.find('button[name=save]').click(function () {
+              $.ajax({
+                url: "<?php echo url_for('businessplan/save') ?>",
+                data: {"data": handsontable.getData()}, //returns all cells' data
+                dataType: 'json',
+                type: 'POST',
+                success: function (res) {
+                  if (res.result === 'ok') {
+                    $console.text('Data saved');
+                  }
+                  else {
+                    $console.text('Save error');
+                  }
+                },
+                error: function () {
+                  $console.text('Save error');
+                }
+              });
+            });
+
+            $parent.find('input[name=autosave]').click(function () {
+              if ($(this).is(':checked')) {
+                $console.text('Changes will be autosaved');
+				
+              }
+              else {
+                $console.text('Changes will not be autosaved');
+              }
+            });
+			
+          </script>
+		  
+<!-- ------------------------------------------------------------------------------------------------------------------- -->		  
+		  
+		  
+		  
+		  
+		  <script>
+		   
+		   //******************************************************************8for the startupexpenses saving and loading
+			var $container1 = $("#startup");
+            var $console1 = $("#startupconsole");
+            var $parent1 = $container1.parent();
+            var autosaveNotification;
+            $container1.handsontable({
+              startRows: 0,
+              startCols: 0,
+              rowHeaders: ['Studies', 'Travel Expenses', 'Starting Capital', 'Administrative Fees' , 'Rental Fees'],
+              colHeaders: ['Year 1', 'Year 2', 'Year 3' , 'Year 4', 'Year 5'],
+              minSpareCols: 0,
+              minSpareRows: 0,
+              contextMenu: true,
+              onChange: function (change, source) {
+                if (source === 'loadData') {
+                  return; //don't save this change
+                }
+                if ($parent1.find('input[name=autosave1]').is(':checked')) {
+                  clearTimeout(autosaveNotification);
+                  $.ajax({
+                    url: "<?php echo url_for('businessplan/savestartup') ?>",
+                    dataType: "json",
+                    type: "POST",
+                    data: {
+					    changes: change
+					}, //contains changed cells' data
+                    success: function (data) {
+                      $console.text('Autosaved works with (' + change[0] + ' cell' + (change.length > 1 ? 's' : '') + ')');
+                      autosaveNotification = setTimeout(function () {
+                        $console.text('Changes will be autosaved');
+						
+                      }, 5000);
+                    }
+                  });
+				  
+                }
+              }
+            });
+            var handsontable_startup = $container1.data('handsontable');
+
+            $parent1.find('button[name=load1]').click(function () {
+              $.ajax({
+                url: "<?php echo url_for('businessplan/loadstartup') ?>",
+                dataType: 'json',
+                type: 'GET',
+                 success: function (result) {
+                  var data = [], row;
+				   var selection;
+                   selection = $container1.handsontable('getSelected');
+				  var i = 0 ;
+                  for (i = 0, ilen = result.startupexpenses.length; i < ilen; i++) {
+                    row = [];
+				   // row[0] = res.costs[i].id;
+                    row[0] = result.startupexpenses[i].year1;
+                    row[1] = result.startupexpenses[i].year2;
+                    row[2] = result.startupexpenses[i].year3;
+					row[3] = result.startupexpenses[i].year4;
+					row[4] = result.startupexpenses[i].year5;
+					////
+					// alert();
+                    data[result.startupexpenses[i].id - result.startupexpenses[0].id ] = row;
+					
+					//alert(data[res.costs[].id ]) ;
+					//alert(data[res.costs[i].id - res.costs[0].id ]);
+                  }
+				 
+                  handsontable_startup.loadData(data);
+				 
+				//  alert(handsontable('getData')[selection[0]]);
+                  $console.text('Data loaded');
+                }
+              });
+            }).click(); //execute immediately
+
+          
+
+            $parent1.find('input[name=autosave1]').click(function () {
+              if ($(this).is(':checked')) {
+                $console.text('Changes will be autosaved');
+				
+              }
+              else {
+                $console.text('Changes will not be autosaved');
+              }
+            });
+			// ******************************************************************* end
+		  
+		  </script>
+		  
+		  <script>
+		    var $container2 = $("#financial");
+            var $console2 = $("#financialconsole");
+            var $parent2 = $container2.parent();
+            var autosaveNotification;
+            $container2.handsontable({
+              startRows: 0,
+              startCols: 0,
+              rowHeaders: ['Equity', 'Loan From Bank', 'Mother Company Loan', 'Grant'],
+              colHeaders: ['Local Source', 'Foreign Source'],
+              minSpareCols: 0,
+              minSpareRows: false,
+              contextMenu: true,
+              onChange: function (change, source) {
+                if (source === 'loadData') {
+                  return; //don't save this change
+                }
+                if ($parent2.find('input[name=autosave2]').is(':checked')) {
+                  clearTimeout(autosaveNotification);
+                  $.ajax({
+                    url: "<?php echo url_for('businessplan/savefinancial') ?>",
+                    dataType: "json",
+                    type: "POST",
+                    data: {
+					    changes: change
+					}, //contains changed cells' data
+                    success: function (data) {
+                      $console.text('Autosaved works with (' + change[0] + ' cell' + (change.length > 1 ? 's' : '') + ')');
+                      autosaveNotification = setTimeout(function () {
+                        $console.text('Changes will be autosaved');
+						
+                      }, 5000);
+                    }
+                  });
+				  
+                }
+              }
+            });
+            var handsontable_financial = $container2.data('handsontable');
+			//
+			 $parent2.find('button[name=load2]').click(function () {
+              $.ajax({
+                url: "<?php echo url_for('businessplan/loadfinancial') ?>",
+                dataType: 'json',
+                type: 'GET',
+                 success: function (result1) {
+                  var data = [], row;
+				   var selection;
+                   selection = $container2.handsontable('getSelected');
+				  var i = 0 ;
+                  for (i = 0, ilen = result1.financial.length; i < ilen; i++) {
+                    row = [];
+				   // row[0] = res.costs[i].id;
+                    row[0] = result1.financial[i].local_source;
+                    row[1] = result1.financial[i].foreign_source;
+                   
+					////
+					// alert();
+                    data[result1.financial[i].id - result1.financial[0].id ] = row;
+					//alert(data[result1.financial[i].id - result1.financial[0].id ]);
+					//alert(data[res.costs[].id ]) ;
+					//alert(data[res.costs[i].id - res.costs[0].id ]);
+                  }
+				 
+                  handsontable_financial.loadData(data);
+				 
+				//  alert(handsontable('getData')[selection[0]]);
+                  $console.text('Data loaded');
+                }
+              });
+            }).click(); //execute immediately
+
+          
+
+            $parent2.find('input[name=autosave2]').click(function () {
+              if ($(this).is(':checked')) {
+                $console.text('Changes will be autosaved');
+				
+              }
+              else {
+                $console.text('Changes will not be autosaved');
+              }
+            });
+		  </script>
+		  
+		  <script>
+		     var $container3 = $("#local_jobs");
+            var $console3 = $("#local_jobs_console");
+            var $parent3 = $container3.parent();
+            var autosaveNotification;
+            $container3.handsontable({
+              startRows: 0,
+              startCols: 0,
+              rowHeaders: ['Top Management', 'Technical/ Professional', 'Skilled Labour', 'Others(manpower,casual etc)'],
+              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              minSpareCols: 0,
+              minSpareRows: false,
+              contextMenu: true,
+              onChange: function (change, source) {
+                if (source === 'loadData') {
+                  return; //don't save this change
+                }
+                if ($parent3.find('input[name=autosave3]').is(':checked')) {
+                  clearTimeout(autosaveNotification);
+                  $.ajax({
+                    url: "<?php echo url_for('businessplan/savelocal') ?>",
+                    dataType: "json",
+                    type: "POST",
+                    data: {
+					    changes: change
+					}, //contains changed cells' data
+                    success: function (data) {
+                      $console.text('Autosaved works with (' + change[0] + ' cell' + (change.length > 1 ? 's' : '') + ')');
+                      autosaveNotification = setTimeout(function () {
+                        $console.text('Changes will be autosaved');
+						
+                      }, 5000);
+                    }
+                  });
+				  
+                }
+              }
+            });
+            var handsontable_local = $container3.data('handsontable');
+			 $parent3.find('button[name=load3]').click(function () {
+              $.ajax({
+                url: "<?php echo url_for('businessplan/loadlocal') ?>",
+                dataType: 'json',
+                type: 'GET',
+                 success: function (result2) {
+                  var data = [], row;
+				   var selection;
+                   selection = $container3.handsontable('getSelected');
+				  var i = 0 ;
+                  for (i = 0, ilen = result2.local.length; i < ilen; i++) {
+                    row = [];
+				   // row[0] = res.costs[i].id;
+                     row[0] = result2.local[i].year1;
+                    row[1] = result2.local[i].year2;
+                    row[2] = result2.local[i].year3;
+					row[3] = result2.local[i].year4;
+					row[4] = result2.local[i].year5;
+                   
+					////
+					// alert();
+                    data[result2.local[i].id - result2.local[0].id ] = row;
+					//alert(data[result1.financial[i].id - result1.financial[0].id ]);
+					//alert(data[res.costs[].id ]) ;
+					//alert(data[res.costs[i].id - res.costs[0].id ]);
+                  }
+				 
+                  handsontable_local.loadData(data);
+				 
+				//  alert(handsontable('getData')[selection[0]]);
+                  $console.text('Data loaded');
+                }
+              });
+            }).click(); //execute immediately
+
+          
+
+            $parent3.find('input[name=autosave3]').click(function () {
+              if ($(this).is(':checked')) {
+                $console.text('Changes will be autosaved');
+				
+              }
+              else {
+                $console.text('Changes will not be autosaved');
+              }
+            });
+		  </script>
+		  
+		  <script>
+		   var $container4 = $("#foreign_jobs");
+            var $console4 = $("#foreign_console");
+            var $parent4 = $container4.parent();
+            var autosaveNotification;
+            $container4.handsontable({
+              startRows: 0,
+              startCols: 0,
+              rowHeaders: ['Top Management', 'Technical/ Professional', 'Skilled Labour', 'Others(manpower,casual etc)'],
+              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              minSpareCols: 0,
+              minSpareRows: false,
+              contextMenu: true,
+              onChange: function (change, source) {
+                if (source === 'loadData') {
+                  return; //don't save this change
+                }
+                if ($parent4.find('input[name=autosave4]').is(':checked')) {
+                  clearTimeout(autosaveNotification);
+                  $.ajax({
+                    url: "<?php echo url_for('businessplan/saveforeign') ?>",
+                    dataType: "json",
+                    type: "POST",
+                    data: {
+					    changes: change
+					}, //contains changed cells' data
+                    success: function (data) {
+                      $console4.text('Autosaved works with (' + change[0] + ' cell' + (change.length > 1 ? 's' : '') + ')');
+                      autosaveNotification = setTimeout(function () {
+                        $console4.text('Changes will be autosaved');
+						
+                      }, 5000);
+                    }
+                  });
+				  
+                }
+              }
+            });
+            var handsontable_foreign= $container4.data('handsontable');
+			 $parent4.find('button[name=load4]').click(function () {
+              $.ajax({
+                url: "<?php echo url_for('businessplan/loadforeign') ?>",
+                dataType: 'json',
+                type: 'GET',
+                 success: function (result3) {
+                  var data = [], row;
+				   var selection;
+                   selection = $container4.handsontable('getSelected');
+				  var i = 0 ;
+                  for (i = 0, ilen = result3.foreign.length; i < ilen; i++) {
+                    row = [];
+				   // row[0] = res.costs[i].id;
+                     row[0] = result3.foreign[i].year1;
+                    row[1] = result3.foreign[i].year2;
+                    row[2] = result3.foreign[i].year3;
+					row[3] = result3.foreign[i].year4;
+					row[4] = result3.foreign[i].year5;
+                   
+					////
+					// alert();
+                    data[result3.foreign[i].id - result3.foreign[0].id ] = row;
+					//alert(data[result1.financial[i].id - result1.financial[0].id ]);
+					//alert(data[res.costs[].id ]) ;
+					//alert(data[res.costs[i].id - res.costs[0].id ]);
+                  }
+				 
+                  handsontable_foreign.loadData(data);
+				 
+				//  alert(handsontable('getData')[selection[0]]);
+                  $console.text('Data loaded');
+                }
+              });
+            }).click(); //execute immediately
+
+          
+
+            $parent4.find('input[name=autosave4]').click(function () {
+              if ($(this).is(':checked')) {
+                $console.text('Changes will be autosaved');
+				
+              }
+              else {
+                $console.text('Changes will not be autosaved');
+              }
+            });
+		  </script>
+		  
+		  <script>
+		    var $container5 = $("#performance");
+            var $console5 = $("#performance_console");
+            var $parent5 = $container5.parent();
+            var autosaveNotification;
+            $container5.handsontable({
+              startRows: 0,
+              startCols: 0,
+              rowHeaders: ['Sales/Income', 'Total cost of Sales', 'Gross Profit', 'Total Indirect Expense', 'Profit before Tax', 'Tax Expense(30%)','Net Profit'],
+              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              minSpareCols: 0,
+              minSpareRows: false,
+              contextMenu: true,
+              onChange: function (change, source) {
+                if (source === 'loadData') {
+                  return; //don't save this change
+                }
+                if ($parent5.find('input[name=autosave5]').is(':checked')) {
+                  clearTimeout(autosaveNotification);
+                  $.ajax({
+                    url: "<?php echo url_for('businessplan/saveperformance') ?>",
+                    dataType: "json",
+                    type: "POST",
+                    data: {
+					    changes: change
+					}, //contains changed cells' data
+                    success: function (data) {
+                      $console5.text('Autosaved works with (' + change[0] + ' cell' + (change.length > 1 ? 's' : '') + ')');
+                      autosaveNotification = setTimeout(function () {
+                        $console5.text('Changes will be autosaved');
+						
+                      }, 5000);
+                    }
+                  });
+				  
+                }
+              }
+            });
+            var handsontable_performance = $container5.data('handsontable');
+			 $parent5.find('button[name=load5]').click(function () {
+              $.ajax({
+                url: "<?php echo url_for('businessplan/loadperformance') ?>",
+                dataType: 'json',
+                type: 'GET',
+                 success: function (result4) {
+                  var data = [], row;
+				   var selection;
+                   selection = $container5.handsontable('getSelected');
+				  var i = 0 ;
+                  for (i = 0, ilen = result4.performance.length; i < ilen; i++) {
+                    row = [];
+				   // row[0] = res.costs[i].id;
+                     row[0] = result4.performance[i].year1;
+                    row[1] = result4.performance[i].year2;
+                    row[2] = result4.performance[i].year3;
+					row[3] = result4.performance[i].year4;
+					row[4] = result4.performance[i].year5;
+                   
+					////
+					// alert();
+                    data[result4.performance[i].id - result4.performance[0].id ] = row;
+					//alert(data[result1.financial[i].id - result1.financial[0].id ]);
+					//alert(data[res.costs[].id ]) ;
+					//alert(data[res.costs[i].id - res.costs[0].id ]);
+                  }
+				 
+                  handsontable_performance.loadData(data);
+				 
+				//  alert(handsontable('getData')[selection[0]]);
+                  $console.text('Data loaded');
+                }
+              });
+            }).click(); //execute immediately
+
+          
+
+            $parent5.find('input[name=autosave5]').click(function () {
+              if ($(this).is(':checked')) {
+                $console.text('Changes will be autosaved');
+				
+              }
+              else {
+                $console.text('Changes will not be autosaved');
+              }
+            });
+		  </script>
