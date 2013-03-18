@@ -181,7 +181,7 @@ class eiaActions extends sfActions
         
 	  $this->redirect('@homepage');
 	 } 
-     $this->forward404Unless($this->validate); */
+     $this->forward404Unless($this->validate); 
 	 ///we get email address of the applicant
 	  //we will output the file and send it to the Investors email address. Get the email address of the investor
 	 $userEmail = null;

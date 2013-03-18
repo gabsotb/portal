@@ -433,7 +433,7 @@ $(function () {
 													<?php foreach($impacts as $impact): ?>
 														<?php switch($impact->getImpactLevel()){
 																case 0:
-																	echo button_to('ReApply', 'eia/edit?id='.$imapact->getId(), array('class' => 'btn')); 
+																	echo button_to('ReApply', 'eia/edit?id='.$imapact->getCompanyId(), array('class' => 'btn')); 
 																	break;
 																case 1:
 																	echo button_to('Download Clearance Letter', 'eia/clearance?id='.$impact->getCompanyId(), array('class' => 'btn'));
