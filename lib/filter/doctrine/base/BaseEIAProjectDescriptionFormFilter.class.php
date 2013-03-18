@@ -15,6 +15,7 @@ abstract class BaseEIAProjectDescriptionFormFilter extends BaseFormFilterDoctrin
     $this->setWidgets(array(
       'eiaproject_id'                       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'), 'add_empty' => true)),
       'project_nature'                      => new sfWidgetFormFilterInput(),
+      'project_objective'                   => new sfWidgetFormFilterInput(),
       'project_total_cost'                  => new sfWidgetFormFilterInput(),
       'project_working_capital'             => new sfWidgetFormFilterInput(),
       'total_land_area'                     => new sfWidgetFormFilterInput(),
@@ -62,6 +63,7 @@ abstract class BaseEIAProjectDescriptionFormFilter extends BaseFormFilterDoctrin
     $this->setValidators(array(
       'eiaproject_id'                       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('EIAProjectDetail'), 'column' => 'id')),
       'project_nature'                      => new sfValidatorPass(array('required' => false)),
+      'project_objective'                   => new sfValidatorPass(array('required' => false)),
       'project_total_cost'                  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'project_working_capital'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'total_land_area'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -126,6 +128,7 @@ abstract class BaseEIAProjectDescriptionFormFilter extends BaseFormFilterDoctrin
       'id'                                  => 'Number',
       'eiaproject_id'                       => 'ForeignKey',
       'project_nature'                      => 'Text',
+      'project_objective'                   => 'Text',
       'project_total_cost'                  => 'Number',
       'project_working_capital'             => 'Number',
       'total_land_area'                     => 'Number',

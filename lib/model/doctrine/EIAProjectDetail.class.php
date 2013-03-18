@@ -13,4 +13,33 @@
 class EIAProjectDetail extends BaseEIAProjectDetail
 {
 
+ public function save(Doctrine_Connection $conn = null)
+  {
+   $conn = $conn ? $conn : $this->getTable()->getConnection();
+   $conn->beginTransaction();
+		  try
+		  {
+			  
+			  ///
+		  if (!$this->getToken() && !$this->getProjectReferenceNumber())
+		  {
+			$this->setToken(sha1(date().rand(11111, 99999)));
+			//get the incremental number and set it
+			$number = Doctrine_Core::getTable('EIAProjectDetail')->createIncrementalReferenceNumber();
+			$this->setProjectReferenceNumber($number);
+			
+		  }
+		  //we want also to set an incremental reference number for each and every project
+		  
+			  $ret = parent::save($conn);
+				$conn->commit();
+				return $ret ;
+			
+		  }
+		  catch(Exception $e)
+		  {
+		  $conn->rollBack();
+		  throw $e;
+		  }
+  }
 }

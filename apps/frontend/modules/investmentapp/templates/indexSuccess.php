@@ -369,7 +369,7 @@ $(function () {
 															 <div class="widget-body">
 															  <strong>Alert!</strong> <br/>There are no applications
 																		for EIA Certificate for your account! <br/>
-																		 <a href="<?php echo url_for('investmentapp/new') ?>">
+																		 <a href="<?php echo url_for('projectDetail/new') ?>">
 																		 <button type="button" class="btn btn-success">Apply for EIA Certificate</button>
 															 </div>
 												</div>

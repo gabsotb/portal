@@ -283,6 +283,7 @@ EIAProjectDescription: ## Project Description
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
   project_nature: {type: string(255), notnull: false}
+  project_objective: {type: string(1000), notnull: false}
   project_total_cost: {type: integer, notnull: false}
   project_working_capital: {type: integer, notnull: false}
   total_land_area: {type: integer, notnull: false}
@@ -298,9 +299,9 @@ EIAProjectDescription: ## Project Description
   land_use_instituational: {type: boolean,notnull: false }
   land_use_openspace: {type: boolean,notnull: false }
   land_use_other: {type: boolean,notnull: false }
-  land_use_other_specify: {type: string(400),notnull: false }
-  project_components: {type: string(255),notnull: false }
-  project_activities: {type: string(255),notnull: false }
+  land_use_other_specify: {type: string(1000),notnull: false }
+  project_components: {type: string(1000),notnull: false }
+  project_activities: {type: string(1000),notnull: false }
   water_demand_during_implementation: {type: integer, notnull: false}
   water_demand_during_operation: {type: integer, notnull: false}
   public_water_supply: {type: boolean, notnull: false }
@@ -309,7 +310,8 @@ EIAProjectDescription: ## Project Description
   sewage_system_modern: {type: boolean, notnull: false }
   sewage_system_ecosan: {type: boolean, notnull: false }
   sewage_system_biogas: {type: boolean, notnull: false }
-  sewage_system_other: {type: string(255),notnull: false }
+  sewage_system_other: {type: boolean,notnull: false }
+  sewage_system_other_specify: {type: string(255),notnull: false }
   sewage_system_capacity: {type: integer, notnull: false}
   power_supply_local_electricity: {type: boolean, notnull: false }
   power_supply_own_generator: {type: boolean ,notnull: false }

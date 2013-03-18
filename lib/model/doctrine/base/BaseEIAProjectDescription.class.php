@@ -7,6 +7,7 @@
  * 
  * @property integer $eiaproject_id
  * @property string $project_nature
+ * @property string $project_objective
  * @property integer $project_total_cost
  * @property integer $project_working_capital
  * @property integer $total_land_area
@@ -49,6 +50,7 @@
  * 
  * @method integer               getEiaprojectId()                        Returns the current record's "eiaproject_id" value
  * @method string                getProjectNature()                       Returns the current record's "project_nature" value
+ * @method string                getProjectObjective()                    Returns the current record's "project_objective" value
  * @method integer               getProjectTotalCost()                    Returns the current record's "project_total_cost" value
  * @method integer               getProjectWorkingCapital()               Returns the current record's "project_working_capital" value
  * @method integer               getTotalLandArea()                       Returns the current record's "total_land_area" value
@@ -90,6 +92,7 @@
  * @method EIAProjectDetail      getEIAProjectDetail()                    Returns the current record's "EIAProjectDetail" value
  * @method EIAProjectDescription setEiaprojectId()                        Sets the current record's "eiaproject_id" value
  * @method EIAProjectDescription setProjectNature()                       Sets the current record's "project_nature" value
+ * @method EIAProjectDescription setProjectObjective()                    Sets the current record's "project_objective" value
  * @method EIAProjectDescription setProjectTotalCost()                    Sets the current record's "project_total_cost" value
  * @method EIAProjectDescription setProjectWorkingCapital()               Sets the current record's "project_working_capital" value
  * @method EIAProjectDescription setTotalLandArea()                       Sets the current record's "total_land_area" value
@@ -149,6 +152,11 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('project_objective', 'string', 1000, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 1000,
              ));
         $this->hasColumn('project_total_cost', 'integer', null, array(
              'type' => 'integer',

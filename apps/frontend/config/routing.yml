@@ -15,6 +15,13 @@ my_certificate:
  param: {module: investmentcertificates, action: index }
 # generic rules
 # please, remove them by adding more specific rules
+## Rules for EIA
+project_detail:
+ url: start/project/detail
+ param: {module: projectDetail, action: new}
+project_description:
+ url: project/description
+ param: {module: projectDescription, action: new}
 default_index:
   url:   /:module
   param: { action: index }

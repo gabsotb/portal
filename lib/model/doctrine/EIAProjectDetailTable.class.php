@@ -12,8 +12,81 @@ class EIAProjectDetailTable extends Doctrine_Table
      *
      * @return object EIAProjectDetailTable
      */
+	 //set default values for  sectors, districts, provinces
+	 
+				
+			  static public $sectors = array(
+				'gitenga' => 'Gitenga',
+				'kanyinya' => 'Kanyinya',
+				'kigali' => 'Kigali',
+				'kimisagara' => 'Kimisagara',
+				'mageregere' => 'Mageregere',
+				'muhima' => 'Muhima',
+				'nyakabanda' => 'Nyakabanda',
+				'nyamirambo' => 'Nyamirambo',
+				'nyarugenge' => 'Nyarugenge',
+				'rwenzameyo' => 'Rwenzameyo',
+				
+			  );
+			  //
+			  static public $districts = array(
+				'nyarungenge' => 'Nyarungenge',
+				'gasoba' => 'Gasoba',
+				'kicukiro' => 'Kicukiro',
+				
+			  );
+			  static public $provinces = array(
+				'umunji_wa_kigali' => 'Umunji Wa Kigali',
+				'amajyepfo' => 'Amajyepfo',
+				'iburengerazuba' => 'Iburengerazuba',
+				'amajyaruguru' => 'Amajyaruguru',
+				'iburasirazuba' => 'Iburasirazuba',
+			  );
+  /* Functions to return  sectors, provinces and district names in Rwanda */
+     
+	   public function getSectors()
+	  {
+	   return self::$sectors ;
+	  }
+	   public function getDistricts()
+	  {
+	   return self::$districts ;
+	  }
+	   public function getProvinces()
+	  {
+	   return self::$provinces ;
+	  }
+	  /////////////////////////
     public static function getInstance()
     {
         return Doctrine_Core::getTable('EIAProjectDetail');
     }
+	//this function searchs this table and makes sure that a particular reference number does not exist. if it is the first, record,
+	//we set a starting point and if a record exists we increment it
+	public function createIncrementalReferenceNumber()
+	{
+	  $start = 1000 ; //start number
+	 // $newNumber = $start + 1 ; // new number incremental
+	  //query to select the first record
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT project_reference_number FROM e_i_a_project_detail
+	  ORDER BY e_i_a_project_detail.id DESC LIMIT 1"); //this should return the last record inserted
+	  $number = null ;
+	  //loop
+	  foreach($query as $q)
+	  {
+	   $number = $q['project_reference_number'] ;
+	  }
+	  //check the value of $number 
+	  if($number == null)
+	  {
+	   //start point
+	   return $start;
+	  }
+	  if($number != null)
+	  {
+	    //continue with incrementing the number
+		$value = $number + 1 ;
+		return $value;
+	  }
+	}
 }

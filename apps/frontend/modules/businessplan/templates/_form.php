@@ -187,7 +187,8 @@
 														<button name="load5">Load Data</button>
 														<!--<button name="save">Save</button> -->
 														<label>
-														<input type="checkbox" name="autosave5" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+														<input type="checkbox" name="autosave5" disabled="true" checked="checked" autocomplete="off"> Autosave
+														</label>
 													  </p>
 
 													  <div id="performance_console" class="console">Click "Load" to load data from server</div>
