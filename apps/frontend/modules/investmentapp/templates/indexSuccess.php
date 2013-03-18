@@ -159,7 +159,8 @@ $(function () {
 													<div class="title">Number Of IEA Certificates Issued</div>
 													<div class="numbers">
 													<?php
-                                                        echo (count($overall_ieapplications));
+                                                       // echo (count($overall_ieapplications)); 
+													   echo "0";
 													?>
 													</div>
 													
@@ -336,7 +337,7 @@ $(function () {
 																 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
 																 </a>
 																<?php } ?>
-															    <?php if($value <= 0) { ?>
+															    <?php if($value <= 0 && $response != null) { ?>
 																	  <strong>Alert!</strong> <br/>There are no applications
 																		for investment certificate for your account! <br/>
 																		 <a href="<?php echo url_for('investmentapp/new') ?>">
@@ -348,6 +349,13 @@ $(function () {
                                                          
 														
 														  <?php } ?> 
+														   <?php if($investment_id == null){  ?>
+														    <strong>Alert!</strong> <br/>There are no applications
+																		for investment certificate for your account! <br/>
+																		 <a href="<?php echo url_for('investmentapp/new') ?>">
+																		 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+																		 </a>
+														  <?php } ?>
 															</div>
 														<?php endif; ?>
 															   
@@ -355,101 +363,19 @@ $(function () {
 												<!-- Begin EIA Certificate application widget -->
 												
 												 <div class="widget">
-															<div class="widget-title">
+														   <div class="widget-title">
 																<h4>EIA Certificate Application</h4>						
 															</div>
-													<?php if(count($eia_applications) > 0): ?>
-													<?php foreach($eiaStatus as $status): ?>
-												  <div class="widget-body">
-																<!-- table to list company information -->
-																
-													<div class="widget">
-														<div class="widget-title">
-															<h4><i class="icon-reorder"></i>Progress Monitor</h4>
-															 
-														</div>
-														<div class="widget-body">
-														   <div class="scroller" data-height="200px">
-															<table class="table table-hover">
-																<thead>
-																	<tr>
-																		
-																		<th>Company</th>
-																		<th>Status</th>
-																		
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr>
-																		
-																		<td><?php echo $status['name'] ?></td>
-																		<?php switch($status['application_status']){
-																				case 'processed':
-																					$label="label-success";
-																					break;
-																				case 'processing':
-																					$label="label-warning";
-																					break;
-																				case 'submitted':
-																					$label="label-success";
-																					break;
-																				default:
-																					$label=NULL;
-																		}?>
-																		
-																		<td><span class="label <?php echo $label ?>"><?php echo $status['application_status'] ?></span></td>
-																	</tr>
-																	
-																</tbody>
-															</table>
-															</div>
-															
-															<div class="progress progress-striped progress-success active">
-																<div style="width: <?php echo $status['percentage'] ?>%;" class="bar"></div>
-															</div>									
-															
-														</div>
-													</div>
-																<!-- end table -->
-																<div class="alert alert-block alert-info fade in">
-																	<h4 class="alert-heading">Comments</h4>
-																	<p>
-																		<?php echo $status['comments'] ?>
-																	</p>
-																</div>
-																
-											   </div>
-											   <?php endforeach; ?>
-											   <?php endif; ?>
-											          <?php if(count($eia_applications) == 0 || is_null($eia_applications)): ?>
-															<div class="alert alert-error">
-										                    <strong>Alert!</strong> <br/>There are no applications
-															for EIA certificate for your account!
-															<br/><?php echo button_to('Apply for EIA Certificate','eia/new',array('class' => 'btn btn-success')); ?>
-															</div>
-													  <?php endif; ?>
-													<?php //foreach($torStatus as $tors): ?>
-													<?php //if(is_null($torStatus)): ?>
-													<?php foreach($impacts as $impact): ?>
-														<?php switch($impact->getImpactLevel()){
-																case 0:
-																	echo button_to('ReApply', 'eia/edit?id='.$imapact->getCompanyId(), array('class' => 'btn')); 
-																	break;
-																case 1:
-																	echo button_to('Download Clearance Letter', 'eia/clearance?id='.$impact->getCompanyId(), array('class' => 'btn'));
-																	break;
-																case 2:
-																	echo button_to('Fill TOR', 'tor/new', array('class' => 'btn')); 
-																	break;
-																case 3:
-																	echo button_to('Fill TOR', 'tor/new', array('class' => 'btn')); 
-																	break;
-																	
-															}
-														?>
-													<?php endforeach; ?>
-													<?php //endif; ?>
-													<?php //endforeach; ?>
+															 <div class="widget-body">
+															  <strong>Alert!</strong> <br/>There are no applications
+																		for EIA Certificate for your account! <br/>
+																		 <a href="<?php echo url_for('investmentapp/new') ?>">
+																		 <button type="button" class="btn btn-success">Apply for EIA Certificate</button>
+															 </div>
+												</div>
+													 
+												
+													
 													
 										
 											   </div>

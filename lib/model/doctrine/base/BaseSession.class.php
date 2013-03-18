@@ -8,13 +8,16 @@
  * @property string $id
  * @property string $sessiondata
  * @property integer $time
+ * @property string $token
  * 
  * @method string  getId()          Returns the current record's "id" value
  * @method string  getSessiondata() Returns the current record's "sessiondata" value
  * @method integer getTime()        Returns the current record's "time" value
+ * @method string  getToken()       Returns the current record's "token" value
  * @method Session setId()          Sets the current record's "id" value
  * @method Session setSessiondata() Sets the current record's "sessiondata" value
  * @method Session setTime()        Sets the current record's "time" value
+ * @method Session setToken()       Sets the current record's "token" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -40,6 +43,11 @@ abstract class BaseSession extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              'length' => 4,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
     }
 

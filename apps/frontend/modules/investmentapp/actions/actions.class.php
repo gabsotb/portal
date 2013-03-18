@@ -18,12 +18,12 @@ class investmentappActions extends sfActions
    //call method to count and the current logged in user applications for Investment Certificates
     $this->investment_applications = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplications();
 	//now call this method to check if the user has any EIA Certificate applications
-	$this->eia_applications = Doctrine_Core::getTable('EIApplication')->getUserEIApplications();
+	//$this->eia_applications = Doctrine_Core::getTable('EIApplication')->getUserEIApplications();
 	///////////// Below is for the overall report  ///////////////////////
 	 //Get total Investment Certificate Applications
 	$this->overall_investmentapps = Doctrine_Core::getTable('InvestmentApplication')->getTotalInvestmentApplications();
 	//Get total EIA Certificates 
-	$this->overall_ieapplications = Doctrine_Core::getTable('InvestmentApplication')->getOverallEIATotal();
+	//$this->overall_ieapplications = Doctrine_Core::getTable('InvestmentApplication')->getOverallEIATotal();
 	//Get Total Tax Exemptions Grantet to Investors with Certificates IGNORE FOR NOW
 	//Get the Status of application for Investment Certificate for each business for this user
 	$this->applications = Doctrine_Core::getTable('InvestmentApplication')->getApplicationStatus();
@@ -34,10 +34,10 @@ class investmentappActions extends sfActions
 	$this->checkCertificationStatus = Doctrine_Core::getTable('InvestmentApplication')->getCertificationStatus($userid);
 	//print_r($this->checkCertificationStatus); exit;
 	//Get EIA status for current user
-	$this->eiaStatus = Doctrine_Core::getTable('EIApplication')->getStatus();
+	//$this->eiaStatus = Doctrine_Core::getTable('EIApplication')->getStatus();
 	//Get Project impact
-	$this->impacts = Doctrine_Core::getTable('ProjectImpact')->getImpacts();
-	$this->torStatus=Doctrine_Core::getTable('TorStatus')->getStatus();
+	//$this->impacts = Doctrine_Core::getTable('ProjectImpact')->getImpacts();
+	//$this->torStatus=Doctrine_Core::getTable('TorStatus')->getStatus();
 	//$this->torDecision=Doctrine_Core::getTable('TorDecisions')->getTorDecision();
   }
 
@@ -125,11 +125,28 @@ class investmentappActions extends sfActions
     }
   }
   ////now this is tricky he he he 
-  //method to create a new form for filling in Business Plan details
+  //method to retrieve user details
   
-  public function executeBusinessplan()
+  public function executeDetails(sfWebRequest $request)
   {
-  
+    $info = array();
+    $tinNumber = $request->getParameter('id');
+	///
+	$data = Doctrine_Core::getTable('InvestmentApplication')->getClientDetails($tinNumber);
+	/// loop
+	foreach($data as $d)
+	{
+	  //
+	  $info[] = array( 'business_name' =>$d['business_name'], 'business_sector' => $d['business_sector'], 'office_telephone' => $d['office_telephone'] , 
+	'fax' => $d['fax'] , 'post_box' => $d['post_box'] , 'location' => $d['location'],'sector' => $d['sector'],'district' => $d['district'],'city_province' => $d['city_province']
+	);
+	}
+	
+	
+	echo json_encode($info);
+	exit; 
+	$this->redirect('investmentapp/new');
+	//print "Value is ".$value ;exit
   }
   
 }

@@ -7,13 +7,16 @@
  * 
  * @property integer $serial_number
  * @property integer $business_id
+ * @property string $token
  * @property InvestmentApplication $InvestmentApplication
  * 
  * @method integer               getSerialNumber()          Returns the current record's "serial_number" value
  * @method integer               getBusinessId()            Returns the current record's "business_id" value
+ * @method string                getToken()                 Returns the current record's "token" value
  * @method InvestmentApplication getInvestmentApplication() Returns the current record's "InvestmentApplication" value
  * @method InvestmentCertificate setSerialNumber()          Sets the current record's "serial_number" value
  * @method InvestmentCertificate setBusinessId()            Sets the current record's "business_id" value
+ * @method InvestmentCertificate setToken()                 Sets the current record's "token" value
  * @method InvestmentCertificate setInvestmentApplication() Sets the current record's "InvestmentApplication" value
  * 
  * @package    rdbeportal
@@ -35,6 +38,11 @@ abstract class BaseInvestmentCertificate extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              'unique' => true,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
     }
 

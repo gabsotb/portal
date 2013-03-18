@@ -215,18 +215,19 @@
 					<span class="arrow"></span>
 					</a>					
 					<ul class="sub">
+					<!-- Start Menu Control Code -->
 					<?php
+					$user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
                      $investment_applications = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplications();
+					 $checkCertificationStatus = Doctrine_Core::getTable('InvestmentApplication')->getCertificationStatus($user_id);
               
 					?>
-	 <!-- we will also control when to show this link to a user. if a user has pending application, he must
-	  complete them before attempting to submit new applications. -->
-						<?php if(count($investment_applications) <= 0): ?>
+					<?php if(count($investment_applications) <= 0): ?>
 															
 															 <!-- if a User has completed step 1 and is yet to complete step 2, we show
 															 a link for completing his application -->
 														    <?php 
-															$user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+															
 															$q = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplicationSubmission($user_id);
 															$investment_id = null;
 															$business_name = null;
@@ -240,40 +241,71 @@
 															//now we pass this to businessplan table method
 															$p = Doctrine_Core::getTable('BusinessPlan')->getBusinessPlanDetails($investment_id);
 															$response = null;
+															//print_r($p); exit;
 															//
 															foreach($p as $r)
 															{
-															 $response = $r['invesment_id'];
+															 $response = $r['investment_id'];
 															}
 															// 
 															  
 															?>
-										<?php if($investment_id != null){ ?>
+														<?php if($investment_id != null){ ?>
+														 
 															 <!-- if it is null we show buttons -->
-										<?php if($response == null) { ?>
-								<li class=""><a href="<?php echo url_for('businessplan/new?id='.$business_name) ?>"><i class="icon-tag"></i>Complete</a></li>		
-										<?php } ?>
-										
-										<?php //if($response != null) { ?>
-										
-										<?php //} ?>
-									<?php } ?>
-									<?php if($investment_id == null){ ?>
-									     <?php if($response == null) { ?>
-										<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>	
-                                         <?php } ?>										
-								    <?php } ?>
-					<?php endif; ?>
+															 <?php if($response == null) { ?>
+																
+																
+																<li><a href="<?php echo url_for('businessplan/new?id='.$business_name) ?>"> 
+																 Complete
+																</a></li>
+																<li><a href="<?php echo url_for('investmentapp/edit?id='.$investment_id) ?>"> 
+																Review
+																</a></li>
+																
+																
+																
+															 <?php } ?>
+														 <?php } ?>
+															 <?php if($investment_id != null){ 
+															 $value = 0;
+															
+															 ?>
+															 <!-- We have a situation where a user has completed application 1 and wants to a apply for a 
+															 certificate for another business we will show this message -->
+															   <?php 
+															
+															   foreach($checkCertificationStatus as $status)
+															    {
+															      $value = $status['COUNT(investment_application.id)'] ;
+																// print $value;
+															    }
+																// exit;
+																?>
+																<?php if($value > 0 && $response != null) { ?>
+																
+																<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>
+																<?php } ?>
+															    <?php if($value <= 0  && $response != null ) { ?>
+																	 	<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>
+																<?php } ?>
+															
+												<!--we will prevent users from applying for certificate if they have pending applications -->
+                                                         
+														
+														  <?php } ?> 
+														   <?php if($investment_id == null  ){  ?>
+														<li class=""><a href ="<?php echo url_for('investmentapp/new') ?>"><i class="icon-fire"></i> Investment Certificates </a></li>		
+														  <?php } ?>
+															
+														<?php endif; ?>
 						
 			<!-- End control code -->	
 					</ul>
 				</li>
 				<li class="has-sub"><a href="javascript:;"><i class="icon-table"></i> EIA Certificate <span class="arrow"></span></a>
 				<ul class="sub">
-					<?php if(count(Doctrine_Core::getTable('EIApplication')->getUserEIApplications()) > 0): ?>
-							<li><?php echo link_to('View EIA','eia/index');  ?></li>
-					<?php endif; ?>
-					<li> <?php echo link_to('New EIA', 'eia/new'); ?> </li>
+					<li class=""><a href ="#"><i class="icon-fire"></i> EIA Certificate </a></li>
 				</ul>
 					
 				</li>

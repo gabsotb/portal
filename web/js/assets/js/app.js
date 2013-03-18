@@ -1908,7 +1908,7 @@ var App = function () {
             }
         });
     }
-
+  
     var handleTables = function () {
         if (!jQuery().dataTable) {
             return;
@@ -2057,7 +2057,7 @@ var App = function () {
                 'aTargets': [0]
             }]
         });
-		 //
+		
         jQuery('.group-checkable').change(function () {
             var set = jQuery(this).attr("data-set");
             var checked = jQuery(this).is(":checked");
@@ -2263,7 +2263,7 @@ var App = function () {
             if (isMapPage) {
                 handleAllJQVMAP(); // handles vector maps for interactive map page
             }
-
+           
             handleScrollers(); // handles slim scrolling contents
             handleUniform(); // handles uniform elements
             handleTables(); // handles data tables

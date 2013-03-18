@@ -19,6 +19,7 @@ abstract class BaseApprovedApplicationsForm extends BaseFormDoctrine
       'business_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'), 'add_empty' => false)),
       'application_type' => new sfWidgetFormInputText(),
       'comment'          => new sfWidgetFormInputText(),
+      'token'            => new sfWidgetFormInputText(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
     ));
@@ -28,6 +29,7 @@ abstract class BaseApprovedApplicationsForm extends BaseFormDoctrine
       'business_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
       'application_type' => new sfValidatorString(array('max_length' => 255)),
       'comment'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'token'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
     ));

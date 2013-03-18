@@ -18,6 +18,7 @@ abstract class BaseNotificationsForm extends BaseFormDoctrine
       'id'         => new sfWidgetFormInputHidden(),
       'recepient'  => new sfWidgetFormInputText(),
       'message'    => new sfWidgetFormTextarea(),
+      'token'      => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -26,6 +27,7 @@ abstract class BaseNotificationsForm extends BaseFormDoctrine
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'recepient'  => new sfValidatorString(array('max_length' => 255)),
       'message'    => new sfValidatorString(array('max_length' => 4000)),
+      'token'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
     ));

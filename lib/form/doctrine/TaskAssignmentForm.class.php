@@ -21,13 +21,15 @@ class TaskAssignmentForm extends BaseTaskAssignmentForm
    $this->widgetSchema->setLabel('investmentapp_id', 'Application Documents  For ');
    //$this->widgetSchema = new sfWidgetFormSelect(array('choices' => date('Y-m-d H:i:s')));
    //set default date and time
-   $this->setDefault('created_at',date('Y-m-d H:i:s')); 
-    $this->setDefault('duedate',date('Y-m-d H:i:s', time() + 86400 * 2));
+    $this->setDefault('created_at',date('Y-m-d H:i:s')); 
+   // $this->setDefault('duedate',date('Y-m-d H:i:s', time() + 86400 * 2));
   // unset($this['username_id']);
    //unset some fields
-   unset($this['updated_at'], $this['created_by'], $this['updated_by']);
+   unset($this['updated_at'], $this['created_by'], $this['updated_by'],$this['created_at'], $this['work_status']);
    ///changing input
    $this->widgetSchema['instructions'] = new sfWidgetFormTextarea() ;
+   //convert date duedate for an input text
+   $this->widgetSchema['duedate'] = new sfWidgetFormInputText();
    //when a user is creating a new assignment we echo default status as not started untill the user assigned accesses the
    //document and clicks start work button.
    $status = "notstarted";

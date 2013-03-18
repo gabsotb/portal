@@ -8,13 +8,16 @@
  * @property integer $business_id
  * @property string $payment_status
  * @property integer $slip_number
+ * @property string $token
  * 
  * @method integer getBusinessId()     Returns the current record's "business_id" value
  * @method string  getPaymentStatus()  Returns the current record's "payment_status" value
  * @method integer getSlipNumber()     Returns the current record's "slip_number" value
+ * @method string  getToken()          Returns the current record's "token" value
  * @method Payment setBusinessId()     Sets the current record's "business_id" value
  * @method Payment setPaymentStatus()  Sets the current record's "payment_status" value
  * @method Payment setSlipNumber()     Sets the current record's "slip_number" value
+ * @method Payment setToken()          Sets the current record's "token" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -40,6 +43,11 @@ abstract class BasePayment extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              'unique' => true,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
     }
 

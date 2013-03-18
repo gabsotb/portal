@@ -74,6 +74,7 @@ abstract class BaseProjectSummaryForm extends BaseFormDoctrine
       'planned_investment'   => new sfWidgetFormInputText(),
       'employment_created'   => new sfWidgetFormInputText(),
       'job_categories'       => new sfWidgetFormTextarea(),
+      'token'                => new sfWidgetFormInputText(),
       'created_at'           => new sfWidgetFormDateTime(),
       'updated_at'           => new sfWidgetFormDateTime(),
       'created_by'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -88,6 +89,7 @@ abstract class BaseProjectSummaryForm extends BaseFormDoctrine
       'planned_investment'   => new sfValidatorInteger(),
       'employment_created'   => new sfValidatorInteger(),
       'job_categories'       => new sfValidatorString(array('max_length' => 4000)),
+      'token'                => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'           => new sfValidatorDateTime(),
       'updated_at'           => new sfValidatorDateTime(),
       'created_by'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
@@ -113,4 +115,4 @@ abstract class BaseProjectSummaryForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> 61986993ad0351997946554199f329283517fc4d
+>>>>>>> df469ab3c284762d3943f53ca17239220e4644fe

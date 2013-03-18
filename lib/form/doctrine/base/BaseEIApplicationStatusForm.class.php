@@ -16,20 +16,22 @@ abstract class BaseEIApplicationStatusForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                 => new sfWidgetFormInputHidden(),
-      'company_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIApplication'), 'add_empty' => false)),
+      'eiaproject_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'), 'add_empty' => false)),
       'application_status' => new sfWidgetFormInputText(),
       'comments'           => new sfWidgetFormInputText(),
       'percentage'         => new sfWidgetFormInputText(),
+      'token'              => new sfWidgetFormInputText(),
       'created_at'         => new sfWidgetFormDateTime(),
       'updated_at'         => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
       'id'                 => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'company_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIApplication'))),
+      'eiaproject_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'))),
       'application_status' => new sfValidatorString(array('max_length' => 255)),
       'comments'           => new sfValidatorString(array('max_length' => 255)),
       'percentage'         => new sfValidatorInteger(),
+      'token'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'         => new sfValidatorDateTime(),
       'updated_at'         => new sfValidatorDateTime(),
     ));

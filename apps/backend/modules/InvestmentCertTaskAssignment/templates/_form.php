@@ -10,37 +10,29 @@
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['user_assigned']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Select User to Assign' , 'data-original-title' => 'Business Name')) ?>
+					<?php echo $form['user_assigned']->renderRow(array('class' => 'span7 chosen', 'data-placeholder' => 'Choose a Category', 'tabindex' => '1')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['investmentapp_id']->renderRow(array('class' => 'span6 popovers' , 'data-content' => 'Select Business Name to Assign User to' , 'data-trigger' => 'hover', 'data-original-title' => 'Business Number')) ?>
+					<?php echo $form['investmentapp_id']->renderRow(array('class' => 'span7 chosen', 'data-placeholder' => 'Choose a Category', 'tabindex' => '1')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['instructions']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Any Instructions?
-					', 'data-original-title' => 'Instructions')) ?>
-				</div>
-			</div>
-		</div>
-	   <div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-					<?php echo $form['work_status']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'User Task Status 
-					', 'data-original-title' => 'Task Status')) ?>
+					<?php echo $form['instructions']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
-				<div class="input-prepend">
-					<?php echo $form['duedate']->renderRow(array('class' => 'default')) ?>
+			      <div>
+					<?php echo $form['duedate']->renderRow(array('class' => 'date-picker icon-calendar','placeholder' => 'Select a Date')) ?>
+					
 					<?php echo $form->renderHiddenFields(); ?>
 				</div>
 			</div>
@@ -48,7 +40,7 @@
      <div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['created_at']->renderRow(array('class' => 'default')) ?>
+					<?php //echo $form['created_at']->renderRow(array('class' => 'default')) ?>
 					<?php echo $form->renderHiddenFields(); ?>
 				</div>
 			</div>

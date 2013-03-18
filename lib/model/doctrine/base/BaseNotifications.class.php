@@ -7,11 +7,14 @@
  * 
  * @property string $recepient
  * @property string $message
+ * @property string $token
  * 
  * @method string        getRecepient() Returns the current record's "recepient" value
  * @method string        getMessage()   Returns the current record's "message" value
+ * @method string        getToken()     Returns the current record's "token" value
  * @method Notifications setRecepient() Sets the current record's "recepient" value
  * @method Notifications setMessage()   Sets the current record's "message" value
+ * @method Notifications setToken()     Sets the current record's "token" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -32,6 +35,11 @@ abstract class BaseNotifications extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              'length' => 4000,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
     }
 

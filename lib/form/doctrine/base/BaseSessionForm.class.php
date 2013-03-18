@@ -18,12 +18,14 @@ abstract class BaseSessionForm extends BaseFormDoctrine
       'id'          => new sfWidgetFormInputHidden(),
       'sessiondata' => new sfWidgetFormTextarea(),
       'time'        => new sfWidgetFormInputText(),
+      'token'       => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'sessiondata' => new sfValidatorString(array('max_length' => 4000)),
       'time'        => new sfValidatorInteger(),
+      'token'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('session[%s]');

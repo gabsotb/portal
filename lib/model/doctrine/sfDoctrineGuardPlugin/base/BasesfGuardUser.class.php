@@ -24,7 +24,11 @@
  * @property sfGuardUserProfile $Profile
  * @property Doctrine_Collection $sfKoreroMessage
  * @property Doctrine_Collection $GuardDocumentAssignment
+ * @property Doctrine_Collection $GuardBriefDecision
  * @property Doctrine_Collection $GuardEIAssignment
+ * @property Doctrine_Collection $GuardImpactPass
+ * @property Doctrine_Collection $GuardTorStatus
+ * @property Doctrine_Collection $GuardComments
  * 
  * @method string                getFirstName()               Returns the current record's "first_name" value
  * @method string                getLastName()                Returns the current record's "last_name" value
@@ -45,7 +49,11 @@
  * @method sfGuardUserProfile    getProfile()                 Returns the current record's "Profile" value
  * @method Doctrine_Collection   getSfKoreroMessage()         Returns the current record's "sfKoreroMessage" collection
  * @method Doctrine_Collection   getGuardDocumentAssignment() Returns the current record's "GuardDocumentAssignment" collection
+ * @method Doctrine_Collection   getGuardBriefDecision()      Returns the current record's "GuardBriefDecision" collection
  * @method Doctrine_Collection   getGuardEIAssignment()       Returns the current record's "GuardEIAssignment" collection
+ * @method Doctrine_Collection   getGuardImpactPass()         Returns the current record's "GuardImpactPass" collection
+ * @method Doctrine_Collection   getGuardTorStatus()          Returns the current record's "GuardTorStatus" collection
+ * @method Doctrine_Collection   getGuardComments()           Returns the current record's "GuardComments" collection
  * @method sfGuardUser           setFirstName()               Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()                Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()            Sets the current record's "email_address" value
@@ -65,7 +73,11 @@
  * @method sfGuardUser           setProfile()                 Sets the current record's "Profile" value
  * @method sfGuardUser           setSfKoreroMessage()         Sets the current record's "sfKoreroMessage" collection
  * @method sfGuardUser           setGuardDocumentAssignment() Sets the current record's "GuardDocumentAssignment" collection
+ * @method sfGuardUser           setGuardBriefDecision()      Sets the current record's "GuardBriefDecision" collection
  * @method sfGuardUser           setGuardEIAssignment()       Sets the current record's "GuardEIAssignment" collection
+ * @method sfGuardUser           setGuardImpactPass()         Sets the current record's "GuardImpactPass" collection
+ * @method sfGuardUser           setGuardTorStatus()          Sets the current record's "GuardTorStatus" collection
+ * @method sfGuardUser           setGuardComments()           Sets the current record's "GuardComments" collection
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -175,9 +187,25 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_assigned'));
 
+        $this->hasMany('EIAProjectBriefDecision as GuardBriefDecision', array(
+             'local' => 'id',
+             'foreign' => 'processed_by'));
+
         $this->hasMany('EITaskAssignment as GuardEIAssignment', array(
              'local' => 'id',
              'foreign' => 'user_assigned'));
+
+        $this->hasMany('EIAProjectImpactPass as GuardImpactPass', array(
+             'local' => 'id',
+             'foreign' => 'processed_by'));
+
+        $this->hasMany('EIATorStatus as GuardTorStatus', array(
+             'local' => 'id',
+             'foreign' => 'sent_by'));
+
+        $this->hasMany('EIComments as GuardComments', array(
+             'local' => 'id',
+             'foreign' => 'processed_by'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));
