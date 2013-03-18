@@ -8,13 +8,16 @@
  * @property string $investment_certificate
  * @property string $eia_certificate
  * @property string $tax_exemptions
+ * @property string $token
  * 
  * @method string   getInvestmentCertificate()  Returns the current record's "investment_certificate" value
  * @method string   getEiaCertificate()         Returns the current record's "eia_certificate" value
  * @method string   getTaxExemptions()          Returns the current record's "tax_exemptions" value
+ * @method string   getToken()                  Returns the current record's "token" value
  * @method Portlets setInvestmentCertificate()  Sets the current record's "investment_certificate" value
  * @method Portlets setEiaCertificate()         Sets the current record's "eia_certificate" value
  * @method Portlets setTaxExemptions()          Sets the current record's "tax_exemptions" value
+ * @method Portlets setToken()                  Sets the current record's "token" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -40,6 +43,11 @@ abstract class BasePortlets extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              'length' => 7000,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
     }
 

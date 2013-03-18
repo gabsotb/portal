@@ -16,6 +16,7 @@
  * @property string $investment_allowances
  * @property string $additional_incentives
  * @property string $visa_work_permits
+ * @property string $token
  * @property InvestmentApplication $InvestmentApplication
  * 
  * @method integer               getInvestmentId()            Returns the current record's "investment_id" value
@@ -29,6 +30,7 @@
  * @method string                getInvestmentAllowances()    Returns the current record's "investment_allowances" value
  * @method string                getAdditionalIncentives()    Returns the current record's "additional_incentives" value
  * @method string                getVisaWorkPermits()         Returns the current record's "visa_work_permits" value
+ * @method string                getToken()                   Returns the current record's "token" value
  * @method InvestmentApplication getInvestmentApplication()   Returns the current record's "InvestmentApplication" value
  * @method BusinessPlan          setInvestmentId()            Sets the current record's "investment_id" value
  * @method BusinessPlan          setProjectBrief()            Sets the current record's "project_brief" value
@@ -41,6 +43,7 @@
  * @method BusinessPlan          setInvestmentAllowances()    Sets the current record's "investment_allowances" value
  * @method BusinessPlan          setAdditionalIncentives()    Sets the current record's "additional_incentives" value
  * @method BusinessPlan          setVisaWorkPermits()         Sets the current record's "visa_work_permits" value
+ * @method BusinessPlan          setToken()                   Sets the current record's "token" value
  * @method BusinessPlan          setInvestmentApplication()   Sets the current record's "InvestmentApplication" value
  * 
  * @package    rdbeportal
@@ -107,6 +110,11 @@ abstract class BaseBusinessPlan extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 4000,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
     }
 

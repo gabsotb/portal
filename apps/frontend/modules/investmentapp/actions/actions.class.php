@@ -18,12 +18,12 @@ class investmentappActions extends sfActions
    //call method to count and the current logged in user applications for Investment Certificates
     $this->investment_applications = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplications();
 	//now call this method to check if the user has any EIA Certificate applications
-	$this->eia_applications = Doctrine_Core::getTable('EIApplication')->getUserEIApplications();
+	//$this->eia_applications = Doctrine_Core::getTable('EIApplication')->getUserEIApplications();
 	///////////// Below is for the overall report  ///////////////////////
 	 //Get total Investment Certificate Applications
 	$this->overall_investmentapps = Doctrine_Core::getTable('InvestmentApplication')->getTotalInvestmentApplications();
 	//Get total EIA Certificates 
-	$this->overall_ieapplications = Doctrine_Core::getTable('InvestmentApplication')->getOverallEIATotal();
+	//$this->overall_ieapplications = Doctrine_Core::getTable('InvestmentApplication')->getOverallEIATotal();
 	//Get Total Tax Exemptions Grantet to Investors with Certificates IGNORE FOR NOW
 	//Get the Status of application for Investment Certificate for each business for this user
 	$this->applications = Doctrine_Core::getTable('InvestmentApplication')->getApplicationStatus();
@@ -34,10 +34,10 @@ class investmentappActions extends sfActions
 	$this->checkCertificationStatus = Doctrine_Core::getTable('InvestmentApplication')->getCertificationStatus($userid);
 	//print_r($this->checkCertificationStatus); exit;
 	//Get EIA status for current user
-	$this->eiaStatus = Doctrine_Core::getTable('EIApplication')->getStatus();
+	//$this->eiaStatus = Doctrine_Core::getTable('EIApplication')->getStatus();
 	//Get Project impact
-	$this->impacts = Doctrine_Core::getTable('ProjectImpact')->getImpacts();
-	$this->torStatus=Doctrine_Core::getTable('TorStatus')->getStatus();
+	//$this->impacts = Doctrine_Core::getTable('ProjectImpact')->getImpacts();
+	//$this->torStatus=Doctrine_Core::getTable('TorStatus')->getStatus();
 	//$this->torDecision=Doctrine_Core::getTable('TorDecisions')->getTorDecision();
   }
 

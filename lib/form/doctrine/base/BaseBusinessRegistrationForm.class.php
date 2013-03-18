@@ -26,6 +26,7 @@ abstract class BaseBusinessRegistrationForm extends BaseFormDoctrine
       'sector'           => new sfWidgetFormInputText(),
       'district'         => new sfWidgetFormInputText(),
       'city_province'    => new sfWidgetFormInputText(),
+      'token'            => new sfWidgetFormInputText(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
     ));
@@ -42,6 +43,7 @@ abstract class BaseBusinessRegistrationForm extends BaseFormDoctrine
       'sector'           => new sfValidatorString(array('max_length' => 255)),
       'district'         => new sfValidatorString(array('max_length' => 255)),
       'city_province'    => new sfValidatorString(array('max_length' => 255)),
+      'token'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
     ));

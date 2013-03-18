@@ -20,6 +20,7 @@ abstract class BaseBusinessApplicationStatusForm extends BaseFormDoctrine
       'application_status' => new sfWidgetFormInputText(),
       'comment'            => new sfWidgetFormInputText(),
       'percentage'         => new sfWidgetFormInputText(),
+      'token'              => new sfWidgetFormInputText(),
       'created_at'         => new sfWidgetFormDateTime(),
       'updated_at'         => new sfWidgetFormDateTime(),
     ));
@@ -30,6 +31,7 @@ abstract class BaseBusinessApplicationStatusForm extends BaseFormDoctrine
       'application_status' => new sfValidatorString(array('max_length' => 255)),
       'comment'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'percentage'         => new sfValidatorInteger(),
+      'token'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'         => new sfValidatorDateTime(),
       'updated_at'         => new sfValidatorDateTime(),
     ));

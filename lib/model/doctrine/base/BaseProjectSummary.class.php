@@ -11,6 +11,7 @@
  * @property integer $planned_investment
  * @property integer $employment_created
  * @property string $job_categories
+ * @property string $token
  * @property InvestmentApplication $InvestmentApplication
  * 
  * @method integer               getInvestmentId()          Returns the current record's "investment_id" value
@@ -19,6 +20,7 @@
  * @method integer               getPlannedInvestment()     Returns the current record's "planned_investment" value
  * @method integer               getEmploymentCreated()     Returns the current record's "employment_created" value
  * @method string                getJobCategories()         Returns the current record's "job_categories" value
+ * @method string                getToken()                 Returns the current record's "token" value
  * @method InvestmentApplication getInvestmentApplication() Returns the current record's "InvestmentApplication" value
  * @method ProjectSummary        setInvestmentId()          Sets the current record's "investment_id" value
  * @method ProjectSummary        setBusinessSector()        Sets the current record's "business_sector" value
@@ -26,6 +28,7 @@
  * @method ProjectSummary        setPlannedInvestment()     Sets the current record's "planned_investment" value
  * @method ProjectSummary        setEmploymentCreated()     Sets the current record's "employment_created" value
  * @method ProjectSummary        setJobCategories()         Sets the current record's "job_categories" value
+ * @method ProjectSummary        setToken()                 Sets the current record's "token" value
  * @method ProjectSummary        setInvestmentApplication() Sets the current record's "InvestmentApplication" value
  * 
  * @package    rdbeportal
@@ -65,6 +68,11 @@ abstract class BaseProjectSummary extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              'length' => 4000,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
     }
 

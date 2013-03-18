@@ -8,15 +8,18 @@
  * @property integer $business_id
  * @property string $application_type
  * @property string $comment
+ * @property string $token
  * @property InvestmentApplication $InvestmentApplication
  * 
  * @method integer               getBusinessId()            Returns the current record's "business_id" value
  * @method string                getApplicationType()       Returns the current record's "application_type" value
  * @method string                getComment()               Returns the current record's "comment" value
+ * @method string                getToken()                 Returns the current record's "token" value
  * @method InvestmentApplication getInvestmentApplication() Returns the current record's "InvestmentApplication" value
  * @method ApprovedApplications  setBusinessId()            Sets the current record's "business_id" value
  * @method ApprovedApplications  setApplicationType()       Sets the current record's "application_type" value
  * @method ApprovedApplications  setComment()               Sets the current record's "comment" value
+ * @method ApprovedApplications  setToken()                 Sets the current record's "token" value
  * @method ApprovedApplications  setInvestmentApplication() Sets the current record's "InvestmentApplication" value
  * 
  * @package    rdbeportal
@@ -40,6 +43,11 @@ abstract class BaseApprovedApplications extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('comment', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
              'length' => 255,

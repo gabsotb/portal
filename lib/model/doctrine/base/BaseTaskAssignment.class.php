@@ -10,6 +10,7 @@
  * @property string $instructions
  * @property timestamp $duedate
  * @property string $work_status
+ * @property string $token
  * @property InvestmentApplication $InvestmentApplication
  * @property sfGuardUser $sfGuardUser
  * 
@@ -18,6 +19,7 @@
  * @method string                getInstructions()          Returns the current record's "instructions" value
  * @method timestamp             getDuedate()               Returns the current record's "duedate" value
  * @method string                getWorkStatus()            Returns the current record's "work_status" value
+ * @method string                getToken()                 Returns the current record's "token" value
  * @method InvestmentApplication getInvestmentApplication() Returns the current record's "InvestmentApplication" value
  * @method sfGuardUser           getSfGuardUser()           Returns the current record's "sfGuardUser" value
  * @method TaskAssignment        setUserAssigned()          Sets the current record's "user_assigned" value
@@ -25,6 +27,7 @@
  * @method TaskAssignment        setInstructions()          Sets the current record's "instructions" value
  * @method TaskAssignment        setDuedate()               Sets the current record's "duedate" value
  * @method TaskAssignment        setWorkStatus()            Sets the current record's "work_status" value
+ * @method TaskAssignment        setToken()                 Sets the current record's "token" value
  * @method TaskAssignment        setInvestmentApplication() Sets the current record's "InvestmentApplication" value
  * @method TaskAssignment        setSfGuardUser()           Sets the current record's "sfGuardUser" value
  * 
@@ -59,6 +62,11 @@ abstract class BaseTaskAssignment extends sfDoctrineRecord
         $this->hasColumn('work_status', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
              'length' => 255,
              ));
     }

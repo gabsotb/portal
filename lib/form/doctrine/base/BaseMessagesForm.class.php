@@ -20,6 +20,7 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
       'recepient'   => new sfWidgetFormInputText(),
       'message'     => new sfWidgetFormTextarea(),
       'attachement' => new sfWidgetFormInputText(),
+      'token'       => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -30,6 +31,7 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
       'recepient'   => new sfValidatorString(array('max_length' => 255)),
       'message'     => new sfValidatorString(array('max_length' => 4000)),
       'attachement' => new sfValidatorString(array('max_length' => 255)),
+      'token'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
     ));

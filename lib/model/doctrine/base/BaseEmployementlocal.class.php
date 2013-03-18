@@ -11,6 +11,7 @@
  * @property integer $year3
  * @property integer $year4
  * @property integer $year5
+ * @property string $token
  * @property InvestmentApplication $InvestmentApplication
  * 
  * @method integer               getBusinessPlan()          Returns the current record's "business_plan" value
@@ -19,6 +20,7 @@
  * @method integer               getYear3()                 Returns the current record's "year3" value
  * @method integer               getYear4()                 Returns the current record's "year4" value
  * @method integer               getYear5()                 Returns the current record's "year5" value
+ * @method string                getToken()                 Returns the current record's "token" value
  * @method InvestmentApplication getInvestmentApplication() Returns the current record's "InvestmentApplication" value
  * @method Employementlocal      setBusinessPlan()          Sets the current record's "business_plan" value
  * @method Employementlocal      setYear1()                 Sets the current record's "year1" value
@@ -26,6 +28,7 @@
  * @method Employementlocal      setYear3()                 Sets the current record's "year3" value
  * @method Employementlocal      setYear4()                 Sets the current record's "year4" value
  * @method Employementlocal      setYear5()                 Sets the current record's "year5" value
+ * @method Employementlocal      setToken()                 Sets the current record's "token" value
  * @method Employementlocal      setInvestmentApplication() Sets the current record's "InvestmentApplication" value
  * 
  * @package    rdbeportal
@@ -61,6 +64,11 @@ abstract class BaseEmployementlocal extends sfDoctrineRecord
         $this->hasColumn('year5', 'integer', null, array(
              'type' => 'integer',
              'notnull' => false,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
     }
 

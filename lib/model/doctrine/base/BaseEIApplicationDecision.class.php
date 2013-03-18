@@ -8,15 +8,18 @@
  * @property integer $eireport_id
  * @property string $status
  * @property string $comments
+ * @property string $token
  * @property EIReport $EIReport
  * 
  * @method integer               getEireportId()  Returns the current record's "eireport_id" value
  * @method string                getStatus()      Returns the current record's "status" value
  * @method string                getComments()    Returns the current record's "comments" value
+ * @method string                getToken()       Returns the current record's "token" value
  * @method EIReport              getEIReport()    Returns the current record's "EIReport" value
  * @method EIApplicationDecision setEireportId()  Sets the current record's "eireport_id" value
  * @method EIApplicationDecision setStatus()      Sets the current record's "status" value
  * @method EIApplicationDecision setComments()    Sets the current record's "comments" value
+ * @method EIApplicationDecision setToken()       Sets the current record's "token" value
  * @method EIApplicationDecision setEIReport()    Sets the current record's "EIReport" value
  * 
  * @package    rdbeportal
@@ -41,6 +44,11 @@ abstract class BaseEIApplicationDecision extends sfDoctrineRecord
         $this->hasColumn('comments', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
              'length' => 255,
              ));
     }

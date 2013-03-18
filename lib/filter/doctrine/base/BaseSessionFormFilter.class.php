@@ -15,11 +15,13 @@ abstract class BaseSessionFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'sessiondata' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'time'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'token'       => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
       'sessiondata' => new sfValidatorPass(array('required' => false)),
       'time'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'token'       => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('session_filters[%s]');
@@ -42,6 +44,7 @@ abstract class BaseSessionFormFilter extends BaseFormFilterDoctrine
       'id'          => 'Text',
       'sessiondata' => 'Text',
       'time'        => 'Number',
+      'token'       => 'Text',
     );
   }
 }

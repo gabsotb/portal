@@ -16,11 +16,12 @@ abstract class BaseTorForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'              => new sfWidgetFormInputHidden(),
-      'impact_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ProjectImpact'), 'add_empty' => false)),
+      'eiaproject_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'), 'add_empty' => false)),
       'issues_assessed' => new sfWidgetFormTextarea(),
       'specific_tasks'  => new sfWidgetFormTextarea(),
       'stake_holders'   => new sfWidgetFormTextarea(),
       'experts'         => new sfWidgetFormTextarea(),
+      'token'           => new sfWidgetFormInputText(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
       'created_by'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -29,11 +30,12 @@ abstract class BaseTorForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'impact_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ProjectImpact'))),
+      'eiaproject_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'))),
       'issues_assessed' => new sfValidatorString(array('max_length' => 400)),
       'specific_tasks'  => new sfValidatorString(array('max_length' => 400)),
       'stake_holders'   => new sfValidatorString(array('max_length' => 400)),
       'experts'         => new sfValidatorString(array('max_length' => 400)),
+      'token'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
       'created_by'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),

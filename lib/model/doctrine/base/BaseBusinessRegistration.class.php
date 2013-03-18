@@ -15,6 +15,7 @@
  * @property string $sector
  * @property string $district
  * @property string $city_province
+ * @property string $token
  * 
  * @method string               getBusinessName()     Returns the current record's "business_name" value
  * @method string               getBusinessRegno()    Returns the current record's "business_regno" value
@@ -26,6 +27,7 @@
  * @method string               getSector()           Returns the current record's "sector" value
  * @method string               getDistrict()         Returns the current record's "district" value
  * @method string               getCityProvince()     Returns the current record's "city_province" value
+ * @method string               getToken()            Returns the current record's "token" value
  * @method BusinessRegistration setBusinessName()     Sets the current record's "business_name" value
  * @method BusinessRegistration setBusinessRegno()    Sets the current record's "business_regno" value
  * @method BusinessRegistration setBusinessSector()   Sets the current record's "business_sector" value
@@ -36,6 +38,7 @@
  * @method BusinessRegistration setSector()           Sets the current record's "sector" value
  * @method BusinessRegistration setDistrict()         Sets the current record's "district" value
  * @method BusinessRegistration setCityProvince()     Sets the current record's "city_province" value
+ * @method BusinessRegistration setToken()            Sets the current record's "token" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -95,6 +98,11 @@ abstract class BaseBusinessRegistration extends sfDoctrineRecord
         $this->hasColumn('city_province', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
              'length' => 255,
              ));
     }

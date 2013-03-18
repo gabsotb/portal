@@ -294,31 +294,18 @@
                                                          
 														
 														  <?php } ?> 
-														   <?php if($investment_id == null  && $response != null){  ?>
-														    <strong>Alert!</strong> <br/>There are no applications
-																		for investment certificate for your account! <br/>
-																		 <a href="<?php echo url_for('investmentapp/new') ?>">
-																		 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
-																		 </a>
+														   <?php if($investment_id == null  ){  ?>
+														<li class=""><a href ="<?php echo url_for('investmentapp/new') ?>"><i class="icon-fire"></i> Investment Certificates </a></li>		
 														  <?php } ?>
 															
 														<?php endif; ?>
-					
-					
-					
-					
-					
-					
 						
 			<!-- End control code -->	
 					</ul>
 				</li>
 				<li class="has-sub"><a href="javascript:;"><i class="icon-table"></i> EIA Certificate <span class="arrow"></span></a>
 				<ul class="sub">
-					<?php if(count(Doctrine_Core::getTable('EIApplication')->getUserEIApplications()) > 0): ?>
-							<li><?php echo link_to('View EIA','eia/index');  ?></li>
-					<?php endif; ?>
-					<li> <?php echo link_to('New EIA', 'eia/new'); ?> </li>
+					<li class=""><a href ="#"><i class="icon-fire"></i> EIA Certificate </a></li>
 				</ul>
 					
 				</li>

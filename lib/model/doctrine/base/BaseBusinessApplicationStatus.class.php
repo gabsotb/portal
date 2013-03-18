@@ -9,17 +9,20 @@
  * @property string $application_status
  * @property string $comment
  * @property integer $percentage
+ * @property string $token
  * @property InvestmentApplication $InvestmentApplication
  * 
  * @method integer                   getBusinessId()            Returns the current record's "business_id" value
  * @method string                    getApplicationStatus()     Returns the current record's "application_status" value
  * @method string                    getComment()               Returns the current record's "comment" value
  * @method integer                   getPercentage()            Returns the current record's "percentage" value
+ * @method string                    getToken()                 Returns the current record's "token" value
  * @method InvestmentApplication     getInvestmentApplication() Returns the current record's "InvestmentApplication" value
  * @method BusinessApplicationStatus setBusinessId()            Sets the current record's "business_id" value
  * @method BusinessApplicationStatus setApplicationStatus()     Sets the current record's "application_status" value
  * @method BusinessApplicationStatus setComment()               Sets the current record's "comment" value
  * @method BusinessApplicationStatus setPercentage()            Sets the current record's "percentage" value
+ * @method BusinessApplicationStatus setToken()                 Sets the current record's "token" value
  * @method BusinessApplicationStatus setInvestmentApplication() Sets the current record's "InvestmentApplication" value
  * 
  * @package    rdbeportal
@@ -49,6 +52,11 @@ abstract class BaseBusinessApplicationStatus extends sfDoctrineRecord
         $this->hasColumn('percentage', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
     }
 
