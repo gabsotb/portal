@@ -11,7 +11,7 @@
  * @property boolean $dust_generation_remove_soil
  * @property boolean $dust_generation_hauling_trucks
  * @property boolean $dust_generation_temporary_fence
- * @property boolean $dust_generation_remarks
+ * @property string $dust_generation_remarks
  * @property boolean $soil_removal
  * @property boolean $soil_removal_mitigate_stockpile
  * @property boolean $soil_removal_mitigate_revegetate
@@ -48,7 +48,7 @@
  * @property string $noise_generation_remark
  * @property boolean $generation_employment
  * @property boolean $generation_employment_hiring
- * @property boolean $generation_employment_remarks
+ * @property string $generation_employment_remarks
  * @property boolean $conflicts
  * @property boolean $conflict_conslutation
  * @property string $conflict_remarks
@@ -68,7 +68,7 @@
  * @method boolean                  getDustGenerationRemoveSoil()                   Returns the current record's "dust_generation_remove_soil" value
  * @method boolean                  getDustGenerationHaulingTrucks()                Returns the current record's "dust_generation_hauling_trucks" value
  * @method boolean                  getDustGenerationTemporaryFence()               Returns the current record's "dust_generation_temporary_fence" value
- * @method boolean                  getDustGenerationRemarks()                      Returns the current record's "dust_generation_remarks" value
+ * @method string                   getDustGenerationRemarks()                      Returns the current record's "dust_generation_remarks" value
  * @method boolean                  getSoilRemoval()                                Returns the current record's "soil_removal" value
  * @method boolean                  getSoilRemovalMitigateStockpile()               Returns the current record's "soil_removal_mitigate_stockpile" value
  * @method boolean                  getSoilRemovalMitigateRevegetate()              Returns the current record's "soil_removal_mitigate_revegetate" value
@@ -105,7 +105,7 @@
  * @method string                   getNoiseGenerationRemark()                      Returns the current record's "noise_generation_remark" value
  * @method boolean                  getGenerationEmployment()                       Returns the current record's "generation_employment" value
  * @method boolean                  getGenerationEmploymentHiring()                 Returns the current record's "generation_employment_hiring" value
- * @method boolean                  getGenerationEmploymentRemarks()                Returns the current record's "generation_employment_remarks" value
+ * @method string                   getGenerationEmploymentRemarks()                Returns the current record's "generation_employment_remarks" value
  * @method boolean                  getConflicts()                                  Returns the current record's "conflicts" value
  * @method boolean                  getConflictConslutation()                       Returns the current record's "conflict_conslutation" value
  * @method string                   getConflictRemarks()                            Returns the current record's "conflict_remarks" value
@@ -210,9 +210,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('dust_generation_remarks', 'boolean', null, array(
-             'type' => 'boolean',
+        $this->hasColumn('dust_generation_remarks', 'string', 1000, array(
+             'type' => 'string',
              'notnull' => false,
+             'length' => 1000,
              ));
         $this->hasColumn('soil_removal', 'boolean', null, array(
              'type' => 'boolean',
@@ -226,10 +227,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('soil_removal_remarks', 'string', 255, array(
+        $this->hasColumn('soil_removal_remarks', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('erosion_from_cuts', 'boolean', null, array(
              'type' => 'boolean',
@@ -247,10 +248,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('erosion_remarks', 'string', 255, array(
+        $this->hasColumn('erosion_remarks', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('sedimentation', 'boolean', null, array(
              'type' => 'boolean',
@@ -268,10 +269,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('sedimentation_remarks', 'string', 255, array(
+        $this->hasColumn('sedimentation_remarks', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('pollution', 'boolean', null, array(
              'type' => 'boolean',
@@ -289,10 +290,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('pollution_remarks', 'string', 255, array(
+        $this->hasColumn('pollution_remarks', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('vegetation_loss', 'boolean', null, array(
              'type' => 'boolean',
@@ -314,10 +315,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('vegetation_remarks', 'string', 255, array(
+        $this->hasColumn('vegetation_remarks', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('disturbance', 'boolean', null, array(
              'type' => 'boolean',
@@ -335,10 +336,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('disturbance_remarks', 'string', 255, array(
+        $this->hasColumn('disturbance_remarks', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('noise_generation', 'boolean', null, array(
              'type' => 'boolean',
@@ -352,10 +353,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('noise_generation_remark', 'string', 255, array(
+        $this->hasColumn('noise_generation_remark', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('generation_employment', 'boolean', null, array(
              'type' => 'boolean',
@@ -365,9 +366,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('generation_employment_remarks', 'boolean', null, array(
-             'type' => 'boolean',
+        $this->hasColumn('generation_employment_remarks', 'string', 1000, array(
+             'type' => 'string',
              'notnull' => false,
+             'length' => 1000,
              ));
         $this->hasColumn('conflicts', 'boolean', null, array(
              'type' => 'boolean',
@@ -377,10 +379,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('conflict_remarks', 'string', 255, array(
+        $this->hasColumn('conflict_remarks', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('traffic_congestion', 'boolean', null, array(
              'type' => 'boolean',
@@ -394,10 +396,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('traffic_congestion_remarks', 'string', 255, array(
+        $this->hasColumn('traffic_congestion_remarks', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('crimes_accidents', 'boolean', null, array(
              'type' => 'boolean',

@@ -33,7 +33,7 @@
 			      <div>
 					<?php echo $form['duedate']->renderRow(array('class' => 'date-picker icon-calendar','placeholder' => 'Select a Date')) ?>
 					
-					<?php echo $form->renderHiddenFields(); ?>
+					
 				</div>
 			</div>
 		</div>

@@ -251,7 +251,7 @@ $(function () {
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?business='.$available['name'].'& group =investmentcertadmins') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?business='.$available['name']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
@@ -273,17 +273,8 @@ $(function () {
 									<h4>Recent Applications for  EIA Certificates</h4>						
 								</div>
 								<div class="widget-body">
-									<?php if(count($unassigned) == 0 || is_null($unassigned)): ?>
-									<div class="alert alert-block alert-success fade in">
-										<p><strong>Information!</strong> <br/>Seems like all applications
-										for EIA Certificate have been assigned to data admins or there are no new applications.
-										I will try later... </p>
-										 
-									</div>
-									<?php endif; ?>
-									<?php if(count($unassigned) > 0): ?>
 									<table class="table table-striped table-bordered" id="eia_manager">
-										<?php foreach($unassigned as $unassign): ?>
+										
 										<thead>
 											<tr class="odd gradeX">
 											  <th><i class="icon-user"> </i><span class="hidden-phone">Submitted By</span></th>
@@ -294,18 +285,18 @@ $(function () {
 										</thead>
 										<tbody>
 											<tr>
-												<td><?php echo $unassign['first_name'] ?></td>
-												<td><?php echo $unassign['name'] ?> </td>
-												<td><?php echo $unassign['created_at'] ?></td>
+												<td><?php echo 'first_name' ?></td>
+												<td><?php echo 'name' ?> </td>
+												<td><?php echo 'created_at' ?></td>
 												<td> <a href="<?php echo url_for('eiaTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 									
 											</tr>
 											
 											
 										</tbody>
-										<?php endforeach; ?>
+										
 									</table>
-									<?php endif; ?>
+								
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>

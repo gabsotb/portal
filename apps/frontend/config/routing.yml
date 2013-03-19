@@ -15,6 +15,28 @@ my_certificate:
  param: {module: investmentcertificates, action: index }
 # generic rules
 # please, remove them by adding more specific rules
+## Rules for EIA
+project_detail:
+ url: start/project/detail
+ param: {module: projectDetail, action: new}
+project_description:
+ url: project/description
+ param: {module: projectDescription, action: new}
+project_surrounding_species:
+ url: project/sorrounding/species
+ param: {module: projectSorroundingSpecies, action: new}
+project_social_economic:
+ url: project/social/economic/environment
+ param: {module: projectSocialEconomic, action: new}
+project_impact_measures:
+ url: project/impact/measures
+ param: {module: projectImpactMeasures, action: new}
+project_operation_phase:
+ url: project/operation/phase
+ param: {module: projectOperationPhase, action: new}
+project_attachments:
+ url: project/attachments
+ param: {module: projectAttachment, action: new}
 default_index:
   url:   /:module
   param: { action: index }

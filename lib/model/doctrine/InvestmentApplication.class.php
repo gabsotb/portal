@@ -26,7 +26,10 @@ class InvestmentApplication extends BaseInvestmentApplication
    $conn->beginTransaction();
 		  try
 		  {
-			  
+			  if (!$this->getToken() )
+					  {
+						$this->setToken(sha1(date().rand(11111, 99999)));
+					  }
 			  ///
 			  $ret = parent::save($conn);
 				$conn->commit();

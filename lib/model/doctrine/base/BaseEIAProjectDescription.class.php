@@ -7,6 +7,7 @@
  * 
  * @property integer $eiaproject_id
  * @property string $project_nature
+ * @property string $project_objective
  * @property integer $project_total_cost
  * @property integer $project_working_capital
  * @property integer $total_land_area
@@ -33,7 +34,8 @@
  * @property boolean $sewage_system_modern
  * @property boolean $sewage_system_ecosan
  * @property boolean $sewage_system_biogas
- * @property string $sewage_system_other
+ * @property boolean $sewage_system_other
+ * @property string $sewage_system_other_specify
  * @property integer $sewage_system_capacity
  * @property boolean $power_supply_local_electricity
  * @property boolean $power_supply_own_generator
@@ -41,6 +43,11 @@
  * @property integer $power_supply_own_generator_capacity
  * @property boolean $power_supply_other
  * @property string $power_supply_other_specify
+ * @property boolean $solid_waste_ecological
+ * @property boolean $solid_waste_dumpsite
+ * @property boolean $solid_waste_municipal
+ * @property boolean $solid_waste_others
+ * @property string $solid_waste_others_specify
  * @property integer $man_power_employment_implementation
  * @property integer $man_power_employment_operation
  * @property integer $implementation_duration
@@ -49,6 +56,7 @@
  * 
  * @method integer               getEiaprojectId()                        Returns the current record's "eiaproject_id" value
  * @method string                getProjectNature()                       Returns the current record's "project_nature" value
+ * @method string                getProjectObjective()                    Returns the current record's "project_objective" value
  * @method integer               getProjectTotalCost()                    Returns the current record's "project_total_cost" value
  * @method integer               getProjectWorkingCapital()               Returns the current record's "project_working_capital" value
  * @method integer               getTotalLandArea()                       Returns the current record's "total_land_area" value
@@ -75,7 +83,8 @@
  * @method boolean               getSewageSystemModern()                  Returns the current record's "sewage_system_modern" value
  * @method boolean               getSewageSystemEcosan()                  Returns the current record's "sewage_system_ecosan" value
  * @method boolean               getSewageSystemBiogas()                  Returns the current record's "sewage_system_biogas" value
- * @method string                getSewageSystemOther()                   Returns the current record's "sewage_system_other" value
+ * @method boolean               getSewageSystemOther()                   Returns the current record's "sewage_system_other" value
+ * @method string                getSewageSystemOtherSpecify()            Returns the current record's "sewage_system_other_specify" value
  * @method integer               getSewageSystemCapacity()                Returns the current record's "sewage_system_capacity" value
  * @method boolean               getPowerSupplyLocalElectricity()         Returns the current record's "power_supply_local_electricity" value
  * @method boolean               getPowerSupplyOwnGenerator()             Returns the current record's "power_supply_own_generator" value
@@ -83,6 +92,11 @@
  * @method integer               getPowerSupplyOwnGeneratorCapacity()     Returns the current record's "power_supply_own_generator_capacity" value
  * @method boolean               getPowerSupplyOther()                    Returns the current record's "power_supply_other" value
  * @method string                getPowerSupplyOtherSpecify()             Returns the current record's "power_supply_other_specify" value
+ * @method boolean               getSolidWasteEcological()                Returns the current record's "solid_waste_ecological" value
+ * @method boolean               getSolidWasteDumpsite()                  Returns the current record's "solid_waste_dumpsite" value
+ * @method boolean               getSolidWasteMunicipal()                 Returns the current record's "solid_waste_municipal" value
+ * @method boolean               getSolidWasteOthers()                    Returns the current record's "solid_waste_others" value
+ * @method string                getSolidWasteOthersSpecify()             Returns the current record's "solid_waste_others_specify" value
  * @method integer               getManPowerEmploymentImplementation()    Returns the current record's "man_power_employment_implementation" value
  * @method integer               getManPowerEmploymentOperation()         Returns the current record's "man_power_employment_operation" value
  * @method integer               getImplementationDuration()              Returns the current record's "implementation_duration" value
@@ -90,6 +104,7 @@
  * @method EIAProjectDetail      getEIAProjectDetail()                    Returns the current record's "EIAProjectDetail" value
  * @method EIAProjectDescription setEiaprojectId()                        Sets the current record's "eiaproject_id" value
  * @method EIAProjectDescription setProjectNature()                       Sets the current record's "project_nature" value
+ * @method EIAProjectDescription setProjectObjective()                    Sets the current record's "project_objective" value
  * @method EIAProjectDescription setProjectTotalCost()                    Sets the current record's "project_total_cost" value
  * @method EIAProjectDescription setProjectWorkingCapital()               Sets the current record's "project_working_capital" value
  * @method EIAProjectDescription setTotalLandArea()                       Sets the current record's "total_land_area" value
@@ -117,6 +132,7 @@
  * @method EIAProjectDescription setSewageSystemEcosan()                  Sets the current record's "sewage_system_ecosan" value
  * @method EIAProjectDescription setSewageSystemBiogas()                  Sets the current record's "sewage_system_biogas" value
  * @method EIAProjectDescription setSewageSystemOther()                   Sets the current record's "sewage_system_other" value
+ * @method EIAProjectDescription setSewageSystemOtherSpecify()            Sets the current record's "sewage_system_other_specify" value
  * @method EIAProjectDescription setSewageSystemCapacity()                Sets the current record's "sewage_system_capacity" value
  * @method EIAProjectDescription setPowerSupplyLocalElectricity()         Sets the current record's "power_supply_local_electricity" value
  * @method EIAProjectDescription setPowerSupplyOwnGenerator()             Sets the current record's "power_supply_own_generator" value
@@ -124,6 +140,11 @@
  * @method EIAProjectDescription setPowerSupplyOwnGeneratorCapacity()     Sets the current record's "power_supply_own_generator_capacity" value
  * @method EIAProjectDescription setPowerSupplyOther()                    Sets the current record's "power_supply_other" value
  * @method EIAProjectDescription setPowerSupplyOtherSpecify()             Sets the current record's "power_supply_other_specify" value
+ * @method EIAProjectDescription setSolidWasteEcological()                Sets the current record's "solid_waste_ecological" value
+ * @method EIAProjectDescription setSolidWasteDumpsite()                  Sets the current record's "solid_waste_dumpsite" value
+ * @method EIAProjectDescription setSolidWasteMunicipal()                 Sets the current record's "solid_waste_municipal" value
+ * @method EIAProjectDescription setSolidWasteOthers()                    Sets the current record's "solid_waste_others" value
+ * @method EIAProjectDescription setSolidWasteOthersSpecify()             Sets the current record's "solid_waste_others_specify" value
  * @method EIAProjectDescription setManPowerEmploymentImplementation()    Sets the current record's "man_power_employment_implementation" value
  * @method EIAProjectDescription setManPowerEmploymentOperation()         Sets the current record's "man_power_employment_operation" value
  * @method EIAProjectDescription setImplementationDuration()              Sets the current record's "implementation_duration" value
@@ -149,6 +170,11 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('project_objective', 'string', 1000, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 1000,
              ));
         $this->hasColumn('project_total_cost', 'integer', null, array(
              'type' => 'integer',
@@ -211,20 +237,20 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('land_use_other_specify', 'string', 400, array(
+        $this->hasColumn('land_use_other_specify', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 400,
+             'length' => 1000,
              ));
-        $this->hasColumn('project_components', 'string', 255, array(
+        $this->hasColumn('project_components', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
-        $this->hasColumn('project_activities', 'string', 255, array(
+        $this->hasColumn('project_activities', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('water_demand_during_implementation', 'integer', null, array(
              'type' => 'integer',
@@ -258,7 +284,11 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('sewage_system_other', 'string', 255, array(
+        $this->hasColumn('sewage_system_other', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('sewage_system_other_specify', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
@@ -291,6 +321,27 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 400,
+             ));
+        $this->hasColumn('solid_waste_ecological', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('solid_waste_dumpsite', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('solid_waste_municipal', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('solid_waste_others', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('solid_waste_others_specify', 'string', 1000, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 1000,
              ));
         $this->hasColumn('man_power_employment_implementation', 'integer', null, array(
              'type' => 'integer',

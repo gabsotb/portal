@@ -187,7 +187,8 @@
 														<button name="load5">Load Data</button>
 														<!--<button name="save">Save</button> -->
 														<label>
-														<input type="checkbox" name="autosave5" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+														<input type="checkbox" name="autosave5" disabled="true" checked="checked" autocomplete="off"> Autosave
+														</label>
 													  </p>
 
 													  <div id="performance_console" class="console">Click "Load" to load data from server</div>
@@ -247,7 +248,7 @@
 												
 												<tbody>
 													<tr>
-														<td>Exemptions On Imported Machinery(Attach List)
+														<td>Exemptions On Imported Machinery(Attach List word or pdf documents supported) 
 														<?php echo $form['exemption_on_machinery']->renderError() ?>
 														</td>
 														<td> <?php echo $form['exemption_on_machinery']->render(array('class' => 'default')) ?></td>
@@ -257,7 +258,7 @@
 														<td><?php echo $form['exemption_raw_materials']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?></td>
 													</tr>
 													<tr>
-													 <td>Exemptions On Imported Building Materials(Please Attach Following documents) </td>
+													 <td>Exemptions On Imported Building Materials(Please Attach Following documents(word or pdf documents supported)) </td>
 													 <td><span>Land OwnerShip Document:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $form['land_ownership_document']->render(array('class' => 'default')) ?><br/>
 													 <span>Approved Bill of Quantities by District:</span>&nbsp;&nbsp;<?php echo $form['bill_of_quantiy']->render(array('class' => 'default')) ?> <br/>

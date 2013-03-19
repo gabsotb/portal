@@ -16,7 +16,7 @@ class TaskAssignmentForm extends BaseTaskAssignmentForm
   {
     //$access = new TaskAssignmentFormVariables();
     //Labels
-   $this->widgetSchema->setLabel('created_at', 'Date');
+  
    $this->widgetSchema->setLabel('user_assigned', 'Assign To ');
    $this->widgetSchema->setLabel('investmentapp_id', 'Application Documents  For ');
    //$this->widgetSchema = new sfWidgetFormSelect(array('choices' => date('Y-m-d H:i:s')));
@@ -25,7 +25,7 @@ class TaskAssignmentForm extends BaseTaskAssignmentForm
    // $this->setDefault('duedate',date('Y-m-d H:i:s', time() + 86400 * 2));
   // unset($this['username_id']);
    //unset some fields
-   unset($this['updated_at'], $this['created_by'], $this['updated_by'],$this['created_at'], $this['work_status']);
+   unset($this['updated_at'], $this['created_by'], $this['updated_by'],$this['created_at']);
    ///changing input
    $this->widgetSchema['instructions'] = new sfWidgetFormTextarea() ;
    //convert date duedate for an input text
@@ -34,6 +34,7 @@ class TaskAssignmentForm extends BaseTaskAssignmentForm
    //document and clicks start work button.
    $status = "notstarted";
    $this->setDefault('work_status',$status );
+   $this->widgetSchema['work_status'] = new sfWidgetFormInputHidden();
    /*
    ////for user assigned
      $this->widgetSchema['user_assigned'] = new sfWidgetFormChoice(array(

@@ -12,5 +12,7 @@ class EIAProjectSurroundingSpeciesForm extends BaseEIAProjectSurroundingSpeciesF
 {
   public function configure()
   {
+   unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by'] , $this['token']);
+	$this->setDefault('created_at',date('Y-m-d 00:00:00'));
   }
 }

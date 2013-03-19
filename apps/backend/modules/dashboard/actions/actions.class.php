@@ -29,10 +29,10 @@ class dashboardActions extends sfActions
    $this->mytasks = Doctrine_Core::getTable('TaskAssignment')->getUserTasks($userId);
    $this->mytasksnotcomplete = Doctrine_Core::getTable('TaskAssignment')->getUserTasksNotComplete($userId);
    ////////////EIA////////////
-   //$this->unassigned= Doctrine_Core::getTable('EIApplication')->getApplications('submitted');
-   //$this->jobs= Doctrine_Core::getTable('EITaskAssignment')->getJobs('notstarted');
+  // $this->unassigned= Doctrine_Core::getTable('EIApplication')->getApplications('submitted');
+ //  $this->jobs= Doctrine_Core::getTable('EITaskAssignment')->getJobs('notstarted');
    //////////TOR/////
-   //$this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
+ //  $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
    //////////////////////////
  
    	
@@ -185,9 +185,12 @@ class dashboardActions extends sfActions
 	/*Since we have the id of the business, we now retrieve all details for this application for investment certificate from
 	the three tables. InvestmentApplication, BusinessPlan and TaskAssignment*/
 	$this->details = Doctrine_Core::getTable('TaskAssignment')->getApplicationDetails($this->value);
+	//select Investment and financing schedule &Capital cost Details
+	$this->investment_financial = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($this->value);
 	$this->forward404Unless($this->details);
 	
   }
+  //we write functions to retrive relevant records
   
  
   public function executePayment(sfWebRequest $request)
