@@ -39,6 +39,23 @@ class EIAProjectDescriptionForm extends BaseEIAProjectDescriptionForm
 	'sewage_system_ecosan' => 'Ecosan Toilets',
 	'sewage_system_biogas' => 'Biogas Plant',
 	'sewage_system_capacity' => 'Sewage Design: Capacity in Population Equivalent(PE):',
+	'power_supply_local_electricity' => 'Local Electric EWSA',
+	'power_supply_own_generator' => 'Own Generator',
+	'power_supply_local_electricity_size' => 'grid:',
+	'power_supply_own_generator_capacity' => 'Capacity(KVA):',
+	'power_supply_other_specify' => 'please specify:',
+	'power_supply_other' => 'Others',
+	'solid_waste_ecological' => 'Ecological solid waste management(e.g. compositing)',
+	'solid_waste_dumpsite' => 'Open dumpsite outside of the project site',
+	'solid_waste_municipal' => 'Municipal/City landfill area',
+	'solid_waste_others' => 'Others',
+	'solid_waste_others_specify' => 'Please Specify',
+	'total_land_area' => 'Total Land Area(in ha)',
+	'existing_land_use' => 'Existing Land use(in ha)',
+	'project_total_cost' => 'Total Project Cost',
+	'project_working_capital' => 'Working Capital',
+	'project_objective' => 'Project Objectives',
+	'project_nature' => 'Project Nature',
 	));
 	///
 	 $this->widgetSchema['public_water_supply'] = new sfWidgetFormChoice(array(

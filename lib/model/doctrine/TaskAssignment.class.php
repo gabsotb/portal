@@ -54,6 +54,11 @@ class TaskAssignment extends BaseTaskAssignment
 			      $this->updateComment($id,$value);
 				  $value = 30 ;
 				  $this->updateValue($id, $value );
+				  //setting token
+				  if (!$this->getToken() )
+					  {
+						$this->setToken(sha1(date().rand(11111, 99999)));
+					  }
 				 // exit;
 				  ///
 				  $ret = parent::save($conn);

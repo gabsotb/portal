@@ -19,7 +19,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	//this method retrieves the user assigned jobs i.e. jobs for the current user
 	public function getUserTasks($userId)
 	{
-	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT  task_assignment.investmentapp_id,
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.investmentapp_id,
 	 task_assignment.instructions,task_assignment.work_status,
 	 task_assignment.duedate, investment_application.name FROM task_assignment LEFT JOIN investment_application ON 
 	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
@@ -68,6 +68,15 @@ class TaskAssignmentTable extends Doctrine_Table
 	  $value3 = 50;
 	  $this->updateBusinessApplicationStatus($id,$value1,$value2,$value3);
 	  $this->updateTaskStatus($id);
+	  return $query;
+	  
+	}
+	//Some helper methods to retrieve relevant table details
+	public function getInvestmentFinancialDetails($id)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN costs ON costs.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id'
+	  ") ;
+	
 	  return $query;
 	  
 	}

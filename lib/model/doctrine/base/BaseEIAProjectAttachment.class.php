@@ -12,6 +12,7 @@
  * @property string $land_ownership_doc
  * @property string $ministrial_document
  * @property string $perimeter_area_map
+ * @property string $location_area_map
  * @property string $other_supporting_document
  * @property string $token
  * @property EIAProjectDetail $EIAProjectDetail
@@ -23,6 +24,7 @@
  * @method string               getLandOwnershipDoc()          Returns the current record's "land_ownership_doc" value
  * @method string               getMinistrialDocument()        Returns the current record's "ministrial_document" value
  * @method string               getPerimeterAreaMap()          Returns the current record's "perimeter_area_map" value
+ * @method string               getLocationAreaMap()           Returns the current record's "location_area_map" value
  * @method string               getOtherSupportingDocument()   Returns the current record's "other_supporting_document" value
  * @method string               getToken()                     Returns the current record's "token" value
  * @method EIAProjectDetail     getEIAProjectDetail()          Returns the current record's "EIAProjectDetail" value
@@ -33,6 +35,7 @@
  * @method EIAProjectAttachment setLandOwnershipDoc()          Sets the current record's "land_ownership_doc" value
  * @method EIAProjectAttachment setMinistrialDocument()        Sets the current record's "ministrial_document" value
  * @method EIAProjectAttachment setPerimeterAreaMap()          Sets the current record's "perimeter_area_map" value
+ * @method EIAProjectAttachment setLocationAreaMap()           Sets the current record's "location_area_map" value
  * @method EIAProjectAttachment setOtherSupportingDocument()   Sets the current record's "other_supporting_document" value
  * @method EIAProjectAttachment setToken()                     Sets the current record's "token" value
  * @method EIAProjectAttachment setEIAProjectDetail()          Sets the current record's "EIAProjectDetail" value
@@ -78,6 +81,11 @@ abstract class BaseEIAProjectAttachment extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('perimeter_area_map', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('location_area_map', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
              'length' => 255,

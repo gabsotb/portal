@@ -12,5 +12,30 @@
  */
 class EIAProjectDescription extends BaseEIAProjectDescription
 {
-
+   public function save(Doctrine_Connection $conn = null)
+  {
+   $conn = $conn ? $conn : $this->getTable()->getConnection();
+   $conn->beginTransaction();
+		  try
+		  {
+			  
+			  ///
+		  if (!$this->getToken())
+		  {
+			$this->setToken(sha1(date().rand(11111, 99999)));
+			
+		  }
+		  //we want also to set an incremental reference number for each and every project
+		  
+			  $ret = parent::save($conn);
+				$conn->commit();
+				return $ret ;
+			
+		  }
+		  catch(Exception $e)
+		  {
+		  $conn->rollBack();
+		  throw $e;
+		  }
+  }
 }

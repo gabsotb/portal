@@ -19,7 +19,6 @@ class EIAProjectDetail extends BaseEIAProjectDetail
    $conn->beginTransaction();
 		  try
 		  {
-			  
 			  ///
 		  if (!$this->getToken() && !$this->getProjectReferenceNumber())
 		  {

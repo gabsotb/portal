@@ -22,6 +22,21 @@ project_detail:
 project_description:
  url: project/description
  param: {module: projectDescription, action: new}
+project_surrounding_species:
+ url: project/sorrounding/species
+ param: {module: projectSorroundingSpecies, action: new}
+project_social_economic:
+ url: project/social/economic/environment
+ param: {module: projectSocialEconomic, action: new}
+project_impact_measures:
+ url: project/impact/measures
+ param: {module: projectImpactMeasures, action: new}
+project_operation_phase:
+ url: project/operation/phase
+ param: {module: projectOperationPhase, action: new}
+project_attachments:
+ url: project/attachments
+ param: {module: projectAttachment, action: new}
 default_index:
   url:   /:module
   param: { action: index }

@@ -319,6 +319,11 @@ EIAProjectDescription: ## Project Description
   power_supply_own_generator_capacity: {type: integer,notnull: false }
   power_supply_other: {type: boolean, notnull: false }
   power_supply_other_specify: {type: string(400),notnull: false }
+  solid_waste_ecological: {type: boolean, notnull: false }
+  solid_waste_dumpsite: {type: boolean, notnull: false }
+  solid_waste_municipal: {type: boolean, notnull: false }
+  solid_waste_others: {type: boolean, notnull: false }
+  solid_waste_others_specify: {type: string(1000), notnull: false }
   man_power_employment_implementation: {type: integer, notnull: false}
   man_power_employment_operation: {type: integer, notnull: false}
   implementation_duration: {type: integer, notnull: false}
@@ -393,15 +398,17 @@ EIAProjectSocialEconomic: ## Records social economic impact
   existing_settlements: {type: boolean, notnull: false}
   existing_settlements_remark: {type: string(800), notnull: false}
   average_family_size: {type: integer, notnull: false}
-  average_family_size_remark: {type: string(255), notnull: false}
+  average_family_size_remark: {type: string(800), notnull: false}
   livelihood_farming: {type: boolean, notnull: false}
   livelihood_fishing: {type: boolean, notnull: false}
   livelihood_vending: {type: boolean, notnull: false}
   livelihood_others: {type: boolean, notnull: false}
-  livelihood_others_specify: {type: string(255), notnull: false}
+  livelihood_others_specify: {type: string(1000), notnull: false}
+  livelihood_remarks: {type: string(1000), notnull: false}
   local_organization: {type: boolean, notnull: false}
-  local_organization_description: {type: string(255), notnull: false}
+  local_organization_description: {type: string(1000), notnull: false}
   social_infrastructures: {type: boolean, notnull: false}
+  social_schools: {type: boolean, notnull: false}
   social_health_centers: {type: boolean, notnull: false}
   social_hospital: {type: boolean, notnull: false}
   social_transportation: {type: boolean, notnull: false}
@@ -409,7 +416,7 @@ EIAProjectSocialEconomic: ## Records social economic impact
   social_churches: {type: boolean, notnull: false}
   social_roads: {type: boolean, notnull: false}
   social_others: {type: boolean, notnull: false}
-  social_others_specify: {type: string(255), notnull: false}
+  social_others_specify: {type: string(1000), notnull: false}
   token: {type: string(255), notnull: false}
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIAProjectDetailSocialEconomic }
@@ -426,51 +433,51 @@ EIAProjectImpactMeasures: ## Project Impact Measures
   dust_generation_remove_soil: {type: boolean, notnull: false}
   dust_generation_hauling_trucks: {type: boolean, notnull: false}
   dust_generation_temporary_fence: {type: boolean, notnull: false}
-  dust_generation_remarks: {type: boolean, notnull: false}
+  dust_generation_remarks: {type: string(1000), notnull: false}
   soil_removal: {type: boolean, notnull: false}  
   soil_removal_mitigate_stockpile: {type: boolean, notnull: false}
   soil_removal_mitigate_revegetate: {type: boolean, notnull: false}
-  soil_removal_remarks: {type: string(255), notnull: false}
+  soil_removal_remarks: {type: string(1000), notnull: false}
   erosion_from_cuts: {type: boolean, notnull: false}
   erosion_mitigate_construct_dryseason: {type: boolean, notnull: false}
   erosion_mitigate_avoid_exposure: {type: boolean, notnull: false}
   erosion_mitigate_barrier_nets: {type: boolean, notnull: false}
-  erosion_remarks: {type: string(255), notnull: false}
+  erosion_remarks: {type: string(1000), notnull: false}
   sedimentation: {type: boolean, notnull: false}
   sedimentation_mitigate_silt_trap: {type: boolean, notnull: false}
   sedimentation_mitigate_proper_stockpilling: {type: boolean, notnull: false}
   sedimentation_mitigate_filling_materials: {type: boolean, notnull: false}
-  sedimentation_remarks: {type: string(255), notnull: false} 
+  sedimentation_remarks: {type: string(1000), notnull: false} 
   pollution: {type: boolean, notnull: false}
   pollution_mitigate_temporary_disposal: {type: boolean, notnull: false}
   pollution_mitigate_toilet_facilities: {type: boolean, notnull: false}
   pollution_mitigate_contract_observe: {type: boolean, notnull: false}
-  pollution_remarks: {type: string(255), notnull: false}  
+  pollution_remarks: {type: string(1000), notnull: false}  
   vegetation_loss: {type: boolean, notnull: false}
   vegetation_limit_clearing: {type: boolean, notnull: false}
   vegetation_provide_clearing: {type: boolean, notnull: false}
   vegetation_use_markers: {type: boolean, notnull: false}
   vegetation_replant: {type: boolean, notnull: false}
-  vegetation_remarks: {type: string(255), notnull: false}
+  vegetation_remarks: {type: string(1000), notnull: false}
   disturbance: {type: boolean, notnull: false}
   disturbance_reestablish: {type: boolean, notnull: false}
   disturbance_schedule: {type: boolean, notnull: false}
   disturbance_maintenance: {type: boolean, notnull: false}
-  disturbance_remarks: {type: string(255), notnull: false}
+  disturbance_remarks: {type: string(1000), notnull: false}
   noise_generation: {type: boolean, notnull: false}
   nosie_generation_schedule: {type: boolean, notnull: false}
   noise_generation_undertake: {type: boolean, notnull: false}
-  noise_generation_remark: {type: string(255), notnull: false}
+  noise_generation_remark: {type: string(1000), notnull: false}
   generation_employment: {type: boolean, notnull: false}
   generation_employment_hiring: {type: boolean, notnull: false}
-  generation_employment_remarks: {type: boolean, notnull: false}
+  generation_employment_remarks: {type: string(1000), notnull: false}
   conflicts: {type: boolean, notnull: false}
   conflict_conslutation: {type: boolean, notnull: false}
-  conflict_remarks: {type: string(255), notnull: false}
+  conflict_remarks: {type: string(1000), notnull: false}
   traffic_congestion: {type: boolean, notnull: false}
   traffic_rules_adherance: {type: boolean, notnull: false}
   traffice_aid_provision: {type: boolean, notnull: false}
-  traffic_congestion_remarks: {type: string(255), notnull: false}
+  traffic_congestion_remarks: {type: string(1000), notnull: false}
   crimes_accidents: {type: boolean, notnull: false}
   crimes_accidents_safety_rules: {type: boolean, notnull: false}
   crime_accidents_remarks: {type: boolean, notnull: false}
@@ -487,20 +494,20 @@ EIAProjectOperationPhase: ## For project operation phase
   eiaproject_id: {type: integer, notnull: true, unique: true}
   domestic_influence: {type: boolean, notnull: false}
   domestic_wastewater_treatment: {type: boolean, notnull: false}
-  domestic_influence_remarks: {type: string(255), notnull: false}
+  domestic_influence_remarks: {type: string(1000), notnull: false}
   solid_wastes: {type: boolean, notnull: false}
   solid_wastes_segregation: {type: boolean, notnull: false}
   solid_wastes_proper_collection: {type: boolean, notnull: false}
   solid_wastes_proper_housekeeping: {type: boolean, notnull: false}
-  solid_wastes_remarks: {type: string(255), notnull: false}
+  solid_wastes_remarks: {type: string(1000), notnull: false}
   increased_traffic: {type: boolean, notnull: false}
   increased_traffic_rules_adhere: {type: boolean, notnull: false}
   increased_traffic_signables: {type: boolean, notnull: false}
-  increased_traffice_remarks:  {type: string(255), notnull: false}
+  increased_traffice_remarks:  {type: string(1000), notnull: false}
   fire_risk: {type: boolean, notnull: false}
   fire_risk_extinguishers: {type: boolean, notnull: false}
   fire_risk_exit_stairs: {type: boolean, notnull: false}
-  fire_risk_remarks:  {type: string(255), notnull: false}
+  fire_risk_remarks:  {type: string(1000), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIAProjectDetailOperationPhase }
@@ -518,6 +525,7 @@ EIAProjectAttachment: ## for any attachment for a particula submitted applicatio
   land_ownership_doc:  {type: string(255), notnull: false}
   ministrial_document:  {type: string(255), notnull: false}
   perimeter_area_map:  {type: string(255), notnull: false}
+  location_area_map:  {type: string(255), notnull: false}
   other_supporting_document:  {type: string(255), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:

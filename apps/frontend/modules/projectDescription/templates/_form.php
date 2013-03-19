@@ -38,7 +38,14 @@
 			</div>
 		  </div>
 	</div>
-   
+   <div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					
+					<?php echo $form->renderHiddenFields(); ?>
+				</div>
+			</div>
+		</div>
 	
     </tbody>
  
@@ -216,7 +223,7 @@
 										   </div>
 										   <div class="widget-body">
 										     <h4>What type of sewage disposal system is available for your upcoming project?</h4>
-                                     <table class="table table-striped table-bordered" id="eia_table2">
+                                     <table class="table table-striped table-bordered" id="eia_table5">
                                      <tbody>
 										<div class="controls" id="checkbox_other1">
 										<tr>
@@ -248,10 +255,103 @@
 </div>
 <div class="widget">
 	                           <div class="widget-title">
-									<h4>Solid Waste Management - Types of all solid wastes to be generated during all project phases: </h4>						
+									<h4>Power Supply: </h4>						
 								</div>
 								<div class="widget-body">
-								 
+								<h4>Sources of power supply</h4>
+								  <table class="table table-striped table-bordered" id="eia_table5">
+                                     <tbody>
+										<div class="controls" id="checkbox_other1">
+										<tr>
+										<td><?php echo $form['power_supply_local_electricity']->render() ?></td>
+										<td><?php echo $form['power_supply_local_electricity']->renderLabel() ?>
+										    <?php echo $form['power_supply_local_electricity_size']->renderLabel() ?>
+										    <?php echo $form['power_supply_local_electricity_size']->render() ?>
+										</td>
+										
+										
+										</tr>
+										<tr>
+										<td><?php echo $form['power_supply_own_generator']->render() ?></td>
+										<td><?php echo $form['power_supply_own_generator']->renderLabel() ?>
+										    <?php echo $form['power_supply_own_generator_capacity']->renderLabel() ?>
+										    <?php echo $form['power_supply_own_generator_capacity']->render() ?>
+										</td>
+										
+										
+										</tr>
+										<tr>
+										<td><?php echo $form['power_supply_other']->render() ?></td>
+										<td><?php echo $form['power_supply_other']->renderLabel() ?>
+										   <?php echo $form['power_supply_other_specify']->renderLabel() ?>
+										   <?php echo $form['power_supply_other_specify']->render() ?>
+										</td>
+										</tr>
+										
+										 </div>
+									
+									</tbody>
+									</table>	
+								</div>
+</div>
+<div class="widget">
+	                           <div class="widget-title">
+									<h4>Solid Waste Management: </h4>						
+								</div>
+								<div class="widget-body">
+								<h4>Types of solid wastes to be generated during all project phases:</h4>
+								<h4>Disposal System</h4>
+								  <table class="table table-striped table-bordered" id="eia_table6">
+                                     <tbody>
+										<div class="controls" id="checkbox_other6">
+										<tr>
+										<td><?php echo $form['solid_waste_ecological']->render() ?></td>
+										<td><?php echo $form['solid_waste_ecological']->renderLabel() ?></td>
+										
+										
+										</tr>
+										<tr>
+										<td><?php echo $form['solid_waste_dumpsite']->render() ?></td>
+										<td><?php echo $form['solid_waste_dumpsite']->renderLabel() ?></td>
+										
+										
+										</tr>
+										<tr>
+										<td><?php echo $form['solid_waste_municipal']->render() ?></td>
+										<td><?php echo $form['solid_waste_municipal']->renderLabel() ?></td>
+										</tr>
+										<tr>
+										<td><?php echo $form['solid_waste_others']->render() ?></td>
+										<td><?php echo $form['solid_waste_others']->renderLabel() ?>
+										<?php echo $form['solid_waste_others_specify']->renderLabel() ?>
+										<?php echo $form['solid_waste_others_specify']->render() ?>
+										</td>
+										</tr>
+																				 </div>
+									
+									</tbody>
+									</table>	
+								</div>
+</div>
+<div class="widget">
+	                           <div class="widget-title">
+									<h4>Man Power and Employment </h4>						
+								</div>
+								<div class="widget-body">
+								<h4>How many people will be employed by the project?</h4>
+								<b>During the Design/Implementation period: </b> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<?php echo $form['man_power_employment_implementation']->render(array('class' => 'input-small')) ?><br/>
+								<b>During the operation and maintenance period:</b> &nbsp;&nbsp; <?php echo $form['man_power_employment_operation']->render(array('class' => 'input-small')) ?>
+								  
+								</div>
+</div>
+<div class="widget">
+	                           <div class="widget-title">
+									<h4>Project Implementation duration</h4>						
+								</div>
+								<div class="widget-body">
+								<h4>How long will the implementation/construction period take? </h4>
+							    <?php echo $form['implementation_duration']->render(array('class' => 'input-small')) ?> Months
+								  
 								</div>
 </div>
  <div>

@@ -15,9 +15,11 @@
  * @property boolean $livelihood_vending
  * @property boolean $livelihood_others
  * @property string $livelihood_others_specify
+ * @property string $livelihood_remarks
  * @property boolean $local_organization
  * @property string $local_organization_description
  * @property boolean $social_infrastructures
+ * @property boolean $social_schools
  * @property boolean $social_health_centers
  * @property boolean $social_hospital
  * @property boolean $social_transportation
@@ -39,9 +41,11 @@
  * @method boolean                  getLivelihoodVending()              Returns the current record's "livelihood_vending" value
  * @method boolean                  getLivelihoodOthers()               Returns the current record's "livelihood_others" value
  * @method string                   getLivelihoodOthersSpecify()        Returns the current record's "livelihood_others_specify" value
+ * @method string                   getLivelihoodRemarks()              Returns the current record's "livelihood_remarks" value
  * @method boolean                  getLocalOrganization()              Returns the current record's "local_organization" value
  * @method string                   getLocalOrganizationDescription()   Returns the current record's "local_organization_description" value
  * @method boolean                  getSocialInfrastructures()          Returns the current record's "social_infrastructures" value
+ * @method boolean                  getSocialSchools()                  Returns the current record's "social_schools" value
  * @method boolean                  getSocialHealthCenters()            Returns the current record's "social_health_centers" value
  * @method boolean                  getSocialHospital()                 Returns the current record's "social_hospital" value
  * @method boolean                  getSocialTransportation()           Returns the current record's "social_transportation" value
@@ -62,9 +66,11 @@
  * @method EIAProjectSocialEconomic setLivelihoodVending()              Sets the current record's "livelihood_vending" value
  * @method EIAProjectSocialEconomic setLivelihoodOthers()               Sets the current record's "livelihood_others" value
  * @method EIAProjectSocialEconomic setLivelihoodOthersSpecify()        Sets the current record's "livelihood_others_specify" value
+ * @method EIAProjectSocialEconomic setLivelihoodRemarks()              Sets the current record's "livelihood_remarks" value
  * @method EIAProjectSocialEconomic setLocalOrganization()              Sets the current record's "local_organization" value
  * @method EIAProjectSocialEconomic setLocalOrganizationDescription()   Sets the current record's "local_organization_description" value
  * @method EIAProjectSocialEconomic setSocialInfrastructures()          Sets the current record's "social_infrastructures" value
+ * @method EIAProjectSocialEconomic setSocialSchools()                  Sets the current record's "social_schools" value
  * @method EIAProjectSocialEconomic setSocialHealthCenters()            Sets the current record's "social_health_centers" value
  * @method EIAProjectSocialEconomic setSocialHospital()                 Sets the current record's "social_hospital" value
  * @method EIAProjectSocialEconomic setSocialTransportation()           Sets the current record's "social_transportation" value
@@ -104,10 +110,10 @@ abstract class BaseEIAProjectSocialEconomic extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => false,
              ));
-        $this->hasColumn('average_family_size_remark', 'string', 255, array(
+        $this->hasColumn('average_family_size_remark', 'string', 800, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 800,
              ));
         $this->hasColumn('livelihood_farming', 'boolean', null, array(
              'type' => 'boolean',
@@ -125,21 +131,30 @@ abstract class BaseEIAProjectSocialEconomic extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('livelihood_others_specify', 'string', 255, array(
+        $this->hasColumn('livelihood_others_specify', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
+             ));
+        $this->hasColumn('livelihood_remarks', 'string', 1000, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 1000,
              ));
         $this->hasColumn('local_organization', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('local_organization_description', 'string', 255, array(
+        $this->hasColumn('local_organization_description', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('social_infrastructures', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('social_schools', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
              ));
@@ -171,10 +186,10 @@ abstract class BaseEIAProjectSocialEconomic extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('social_others_specify', 'string', 255, array(
+        $this->hasColumn('social_others_specify', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',
