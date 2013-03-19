@@ -16,4 +16,17 @@ class EIAProjectDeveloperTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('EIAProjectDeveloper');
     }
+	
+	public static $socials= array( 
+		'twitter' => "Twitter",
+		'facebook' => "Facebook",
+		'google+' => "Google-plus",
+		'linkedin' => "Linkedin",
+		);
+	public function getSocials()
+	{
+		return self::$socials;
+	}
+		
+		
 }

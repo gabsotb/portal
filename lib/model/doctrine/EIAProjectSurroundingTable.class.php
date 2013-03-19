@@ -16,4 +16,14 @@ class EIAProjectSurroundingTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('EIAProjectSurrounding');
     }
+	
+	/*public static $answers= array(
+		'No',
+		'Yes'
+	);
+	
+	public function getAnswers()
+	{
+		return self::$answers;
+	} */
 }

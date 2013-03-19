@@ -7,7 +7,6 @@
  * 
  * @property integer $eiaproject_id
  * @property string $project_general_elevation
- * @property string $project_general_elevation_remark
  * @property boolean $soil_erosion
  * @property boolean $soil_erosion_heavy_rains
  * @property boolean $soil_erosion_unstable
@@ -42,78 +41,76 @@
  * @property EIAProjectDetail $EIAProjectDetail
  * @property Doctrine_Collection $EIAProjectSurroundingSpecies
  * 
- * @method integer               getEiaprojectId()                     Returns the current record's "eiaproject_id" value
- * @method string                getProjectGeneralElevation()          Returns the current record's "project_general_elevation" value
- * @method string                getProjectGeneralElevationRemark()    Returns the current record's "project_general_elevation_remark" value
- * @method boolean               getSoilErosion()                      Returns the current record's "soil_erosion" value
- * @method boolean               getSoilErosionHeavyRains()            Returns the current record's "soil_erosion_heavy_rains" value
- * @method boolean               getSoilErosionUnstable()              Returns the current record's "soil_erosion_unstable" value
- * @method boolean               getSoilErosionOthers()                Returns the current record's "soil_erosion_others" value
- * @method string                getSoilErosionOthersSpecify()         Returns the current record's "soil_erosion_others_specify" value
- * @method boolean               getExistingWaterBody()                Returns the current record's "existing_water_body" value
- * @method string                getExistingWaterBodyRemark()          Returns the current record's "existing_water_body_remark" value
- * @method boolean               getAccessRoad()                       Returns the current record's "access_road" value
- * @method integer               getAccessRoadDistance()               Returns the current record's "access_road_distance" value
- * @method string                getAccessRoadType()                   Returns the current record's "access_road_type" value
- * @method string                getSiteConformApproval()              Returns the current record's "site_conform_approval" value
- * @method string                getSiteConformRemark()                Returns the current record's "site_conform_remark" value
- * @method boolean               getSiteExistingStructure()            Returns the current record's "site_existing_structure" value
- * @method string                getSiteExistingRemark()               Returns the current record's "site_existing_remark" value
- * @method boolean               getLandUseAgriculture()               Returns the current record's "land_use_agriculture" value
- * @method boolean               getLandUseGrassland()                 Returns the current record's "land_use_grassland" value
- * @method boolean               getLandUseBuiltup()                   Returns the current record's "land_use_builtup" value
- * @method boolean               getLandUseMarshland()                 Returns the current record's "land_use_marshland" value
- * @method boolean               getLandUseOther()                     Returns the current record's "land_use_other" value
- * @method string                getLandUseOtherSpecify()              Returns the current record's "land_use_other_specify" value
- * @method boolean               getExistingTrees()                    Returns the current record's "existing_trees" value
- * @method string                getExistingTreesRemark()              Returns the current record's "existing_trees_remark" value
- * @method boolean               getWildlifeExisting()                 Returns the current record's "wildlife_existing" value
- * @method string                getWildlifeExistingRemark()           Returns the current record's "wildlife_existing_remark" value
- * @method boolean               getFisheryExisting()                  Returns the current record's "fishery_existing" value
- * @method string                getFisheryExistingRemark()            Returns the current record's "fishery_existing_remark" value
- * @method boolean               getWatershedExisting()                Returns the current record's "watershed_existing" value
- * @method string                getWatershedExistingRemark()          Returns the current record's "watershed_existing_remark" value
- * @method string                getWatershedNearName()                Returns the current record's "watershed_near_name" value
- * @method string                getWatershedWithinName()              Returns the current record's "watershed_within_name" value
- * @method string                getToken()                            Returns the current record's "token" value
- * @method EIAProjectDetail      getEIAProjectDetail()                 Returns the current record's "EIAProjectDetail" value
- * @method Doctrine_Collection   getEIAProjectSurroundingSpecies()     Returns the current record's "EIAProjectSurroundingSpecies" collection
- * @method EIAProjectSurrounding setEiaprojectId()                     Sets the current record's "eiaproject_id" value
- * @method EIAProjectSurrounding setProjectGeneralElevation()          Sets the current record's "project_general_elevation" value
- * @method EIAProjectSurrounding setProjectGeneralElevationRemark()    Sets the current record's "project_general_elevation_remark" value
- * @method EIAProjectSurrounding setSoilErosion()                      Sets the current record's "soil_erosion" value
- * @method EIAProjectSurrounding setSoilErosionHeavyRains()            Sets the current record's "soil_erosion_heavy_rains" value
- * @method EIAProjectSurrounding setSoilErosionUnstable()              Sets the current record's "soil_erosion_unstable" value
- * @method EIAProjectSurrounding setSoilErosionOthers()                Sets the current record's "soil_erosion_others" value
- * @method EIAProjectSurrounding setSoilErosionOthersSpecify()         Sets the current record's "soil_erosion_others_specify" value
- * @method EIAProjectSurrounding setExistingWaterBody()                Sets the current record's "existing_water_body" value
- * @method EIAProjectSurrounding setExistingWaterBodyRemark()          Sets the current record's "existing_water_body_remark" value
- * @method EIAProjectSurrounding setAccessRoad()                       Sets the current record's "access_road" value
- * @method EIAProjectSurrounding setAccessRoadDistance()               Sets the current record's "access_road_distance" value
- * @method EIAProjectSurrounding setAccessRoadType()                   Sets the current record's "access_road_type" value
- * @method EIAProjectSurrounding setSiteConformApproval()              Sets the current record's "site_conform_approval" value
- * @method EIAProjectSurrounding setSiteConformRemark()                Sets the current record's "site_conform_remark" value
- * @method EIAProjectSurrounding setSiteExistingStructure()            Sets the current record's "site_existing_structure" value
- * @method EIAProjectSurrounding setSiteExistingRemark()               Sets the current record's "site_existing_remark" value
- * @method EIAProjectSurrounding setLandUseAgriculture()               Sets the current record's "land_use_agriculture" value
- * @method EIAProjectSurrounding setLandUseGrassland()                 Sets the current record's "land_use_grassland" value
- * @method EIAProjectSurrounding setLandUseBuiltup()                   Sets the current record's "land_use_builtup" value
- * @method EIAProjectSurrounding setLandUseMarshland()                 Sets the current record's "land_use_marshland" value
- * @method EIAProjectSurrounding setLandUseOther()                     Sets the current record's "land_use_other" value
- * @method EIAProjectSurrounding setLandUseOtherSpecify()              Sets the current record's "land_use_other_specify" value
- * @method EIAProjectSurrounding setExistingTrees()                    Sets the current record's "existing_trees" value
- * @method EIAProjectSurrounding setExistingTreesRemark()              Sets the current record's "existing_trees_remark" value
- * @method EIAProjectSurrounding setWildlifeExisting()                 Sets the current record's "wildlife_existing" value
- * @method EIAProjectSurrounding setWildlifeExistingRemark()           Sets the current record's "wildlife_existing_remark" value
- * @method EIAProjectSurrounding setFisheryExisting()                  Sets the current record's "fishery_existing" value
- * @method EIAProjectSurrounding setFisheryExistingRemark()            Sets the current record's "fishery_existing_remark" value
- * @method EIAProjectSurrounding setWatershedExisting()                Sets the current record's "watershed_existing" value
- * @method EIAProjectSurrounding setWatershedExistingRemark()          Sets the current record's "watershed_existing_remark" value
- * @method EIAProjectSurrounding setWatershedNearName()                Sets the current record's "watershed_near_name" value
- * @method EIAProjectSurrounding setWatershedWithinName()              Sets the current record's "watershed_within_name" value
- * @method EIAProjectSurrounding setToken()                            Sets the current record's "token" value
- * @method EIAProjectSurrounding setEIAProjectDetail()                 Sets the current record's "EIAProjectDetail" value
- * @method EIAProjectSurrounding setEIAProjectSurroundingSpecies()     Sets the current record's "EIAProjectSurroundingSpecies" collection
+ * @method integer               getEiaprojectId()                 Returns the current record's "eiaproject_id" value
+ * @method string                getProjectGeneralElevation()      Returns the current record's "project_general_elevation" value
+ * @method boolean               getSoilErosion()                  Returns the current record's "soil_erosion" value
+ * @method boolean               getSoilErosionHeavyRains()        Returns the current record's "soil_erosion_heavy_rains" value
+ * @method boolean               getSoilErosionUnstable()          Returns the current record's "soil_erosion_unstable" value
+ * @method boolean               getSoilErosionOthers()            Returns the current record's "soil_erosion_others" value
+ * @method string                getSoilErosionOthersSpecify()     Returns the current record's "soil_erosion_others_specify" value
+ * @method boolean               getExistingWaterBody()            Returns the current record's "existing_water_body" value
+ * @method string                getExistingWaterBodyRemark()      Returns the current record's "existing_water_body_remark" value
+ * @method boolean               getAccessRoad()                   Returns the current record's "access_road" value
+ * @method integer               getAccessRoadDistance()           Returns the current record's "access_road_distance" value
+ * @method string                getAccessRoadType()               Returns the current record's "access_road_type" value
+ * @method string                getSiteConformApproval()          Returns the current record's "site_conform_approval" value
+ * @method string                getSiteConformRemark()            Returns the current record's "site_conform_remark" value
+ * @method boolean               getSiteExistingStructure()        Returns the current record's "site_existing_structure" value
+ * @method string                getSiteExistingRemark()           Returns the current record's "site_existing_remark" value
+ * @method boolean               getLandUseAgriculture()           Returns the current record's "land_use_agriculture" value
+ * @method boolean               getLandUseGrassland()             Returns the current record's "land_use_grassland" value
+ * @method boolean               getLandUseBuiltup()               Returns the current record's "land_use_builtup" value
+ * @method boolean               getLandUseMarshland()             Returns the current record's "land_use_marshland" value
+ * @method boolean               getLandUseOther()                 Returns the current record's "land_use_other" value
+ * @method string                getLandUseOtherSpecify()          Returns the current record's "land_use_other_specify" value
+ * @method boolean               getExistingTrees()                Returns the current record's "existing_trees" value
+ * @method string                getExistingTreesRemark()          Returns the current record's "existing_trees_remark" value
+ * @method boolean               getWildlifeExisting()             Returns the current record's "wildlife_existing" value
+ * @method string                getWildlifeExistingRemark()       Returns the current record's "wildlife_existing_remark" value
+ * @method boolean               getFisheryExisting()              Returns the current record's "fishery_existing" value
+ * @method string                getFisheryExistingRemark()        Returns the current record's "fishery_existing_remark" value
+ * @method boolean               getWatershedExisting()            Returns the current record's "watershed_existing" value
+ * @method string                getWatershedExistingRemark()      Returns the current record's "watershed_existing_remark" value
+ * @method string                getWatershedNearName()            Returns the current record's "watershed_near_name" value
+ * @method string                getWatershedWithinName()          Returns the current record's "watershed_within_name" value
+ * @method string                getToken()                        Returns the current record's "token" value
+ * @method EIAProjectDetail      getEIAProjectDetail()             Returns the current record's "EIAProjectDetail" value
+ * @method Doctrine_Collection   getEIAProjectSurroundingSpecies() Returns the current record's "EIAProjectSurroundingSpecies" collection
+ * @method EIAProjectSurrounding setEiaprojectId()                 Sets the current record's "eiaproject_id" value
+ * @method EIAProjectSurrounding setProjectGeneralElevation()      Sets the current record's "project_general_elevation" value
+ * @method EIAProjectSurrounding setSoilErosion()                  Sets the current record's "soil_erosion" value
+ * @method EIAProjectSurrounding setSoilErosionHeavyRains()        Sets the current record's "soil_erosion_heavy_rains" value
+ * @method EIAProjectSurrounding setSoilErosionUnstable()          Sets the current record's "soil_erosion_unstable" value
+ * @method EIAProjectSurrounding setSoilErosionOthers()            Sets the current record's "soil_erosion_others" value
+ * @method EIAProjectSurrounding setSoilErosionOthersSpecify()     Sets the current record's "soil_erosion_others_specify" value
+ * @method EIAProjectSurrounding setExistingWaterBody()            Sets the current record's "existing_water_body" value
+ * @method EIAProjectSurrounding setExistingWaterBodyRemark()      Sets the current record's "existing_water_body_remark" value
+ * @method EIAProjectSurrounding setAccessRoad()                   Sets the current record's "access_road" value
+ * @method EIAProjectSurrounding setAccessRoadDistance()           Sets the current record's "access_road_distance" value
+ * @method EIAProjectSurrounding setAccessRoadType()               Sets the current record's "access_road_type" value
+ * @method EIAProjectSurrounding setSiteConformApproval()          Sets the current record's "site_conform_approval" value
+ * @method EIAProjectSurrounding setSiteConformRemark()            Sets the current record's "site_conform_remark" value
+ * @method EIAProjectSurrounding setSiteExistingStructure()        Sets the current record's "site_existing_structure" value
+ * @method EIAProjectSurrounding setSiteExistingRemark()           Sets the current record's "site_existing_remark" value
+ * @method EIAProjectSurrounding setLandUseAgriculture()           Sets the current record's "land_use_agriculture" value
+ * @method EIAProjectSurrounding setLandUseGrassland()             Sets the current record's "land_use_grassland" value
+ * @method EIAProjectSurrounding setLandUseBuiltup()               Sets the current record's "land_use_builtup" value
+ * @method EIAProjectSurrounding setLandUseMarshland()             Sets the current record's "land_use_marshland" value
+ * @method EIAProjectSurrounding setLandUseOther()                 Sets the current record's "land_use_other" value
+ * @method EIAProjectSurrounding setLandUseOtherSpecify()          Sets the current record's "land_use_other_specify" value
+ * @method EIAProjectSurrounding setExistingTrees()                Sets the current record's "existing_trees" value
+ * @method EIAProjectSurrounding setExistingTreesRemark()          Sets the current record's "existing_trees_remark" value
+ * @method EIAProjectSurrounding setWildlifeExisting()             Sets the current record's "wildlife_existing" value
+ * @method EIAProjectSurrounding setWildlifeExistingRemark()       Sets the current record's "wildlife_existing_remark" value
+ * @method EIAProjectSurrounding setFisheryExisting()              Sets the current record's "fishery_existing" value
+ * @method EIAProjectSurrounding setFisheryExistingRemark()        Sets the current record's "fishery_existing_remark" value
+ * @method EIAProjectSurrounding setWatershedExisting()            Sets the current record's "watershed_existing" value
+ * @method EIAProjectSurrounding setWatershedExistingRemark()      Sets the current record's "watershed_existing_remark" value
+ * @method EIAProjectSurrounding setWatershedNearName()            Sets the current record's "watershed_near_name" value
+ * @method EIAProjectSurrounding setWatershedWithinName()          Sets the current record's "watershed_within_name" value
+ * @method EIAProjectSurrounding setToken()                        Sets the current record's "token" value
+ * @method EIAProjectSurrounding setEIAProjectDetail()             Sets the current record's "EIAProjectDetail" value
+ * @method EIAProjectSurrounding setEIAProjectSurroundingSpecies() Sets the current record's "EIAProjectSurroundingSpecies" collection
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -131,11 +128,6 @@ abstract class BaseEIAProjectSurrounding extends sfDoctrineRecord
              'unique' => true,
              ));
         $this->hasColumn('project_general_elevation', 'string', 255, array(
-             'type' => 'string',
-             'notnull' => false,
-             'length' => 255,
-             ));
-        $this->hasColumn('project_general_elevation_remark', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
              'length' => 255,

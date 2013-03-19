@@ -29,10 +29,10 @@ class dashboardActions extends sfActions
    $this->mytasks = Doctrine_Core::getTable('TaskAssignment')->getUserTasks($userId);
    $this->mytasksnotcomplete = Doctrine_Core::getTable('TaskAssignment')->getUserTasksNotComplete($userId);
    ////////////EIA////////////
-   $this->unassigned= Doctrine_Core::getTable('EIApplication')->getApplications('submitted');
-   $this->jobs= Doctrine_Core::getTable('EITaskAssignment')->getJobs('notstarted');
+   //$this->unassigned= Doctrine_Core::getTable('EIApplication')->getApplications('submitted');
+   //$this->jobs= Doctrine_Core::getTable('EITaskAssignment')->getJobs('notstarted');
    //////////TOR/////
-   $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
+   //$this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
    //////////////////////////
  
    	

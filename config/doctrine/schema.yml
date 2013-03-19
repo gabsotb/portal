@@ -332,7 +332,6 @@ EIAProjectSurrounding: ## For recording project sorroundings
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
   project_general_elevation: {type: string(255), notnull: false}
-  project_general_elevation_remark: {type: string(255), notnull: false}
   soil_erosion: {type: boolean, notnull: false}
   soil_erosion_heavy_rains: {type: boolean, notnull: false}
   soil_erosion_unstable: {type: boolean, notnull: false}
