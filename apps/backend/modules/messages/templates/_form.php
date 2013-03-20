@@ -6,19 +6,35 @@
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
   <table>
+  <div class="control-group">
+					<div class="controls">
+						<div class="input-prepend">
+						<span> <label class="control-label"><?php echo $form['recepient']->renderLabel() ?>
+							 <?php echo $form['recepient']->renderError() ?> 
+							 </label></span>
+							<?php echo $form['recepient']->render() ?>
+						</div>
+					</div>
+ </div> 
+     <div class="control-group">
+					<div class="controls">
+						<div class="input-prepend">
+							 <span> <label class="control-label"><?php echo $form['message']->renderLabel() ?>
+							 <?php echo $form['message']->renderError() ?> 
+							 </label></span>
+							 
+							<?php echo $form['message']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
+						</div>
+					</div>
+		</div>
     <tfoot>
       <tr>
         <td colspan="2">
-          &nbsp;<a href="<?php echo url_for('messages/index') ?>">Back to list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'messages/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-          <?php endif; ?>
-          <input type="submit" value="Save" />
+        
+          <input type="submit" class="btn btn-success"  value="Send" />
         </td>
       </tr>
     </tfoot>
-    <tbody>
-      <?php echo $form ?>
-    </tbody>
+    
   </table>
 </form>

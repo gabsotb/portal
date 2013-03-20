@@ -80,6 +80,26 @@ class TaskAssignmentTable extends Doctrine_Table
 	  return $query;
 	  
 	}
+	
+	//helper method to retrieve applicant details
+	public function getApplicantId($businessId)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.created_by from investment_application where investment_application.id = '$businessId' ");
+	 $id = null;
+	 foreach($query as $q)
+	 {
+	  $id = $q['created_by'];
+	 }
+	 //
+	 return $id;
+	}
+	public function getApplicantInformation($id)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc(" SELECT sf_guard_user.first_name, sf_guard_user.last_name, sf_guard_user.email_address, sf_guard_user_profile.citizenship,sf_guard_user_profile.id_passport,sf_guard_user_profile.surname, sf_guard_user_profile.salutation, sf_guard_user_profile.phone_number FROM 
+	  sf_guard_user LEFT JOIN sf_guard_user_profile ON sf_guard_user_profile.user_id = sf_guard_user.id WHERE sf_guard_user.id = '$id'  ");
+	  return $query;
+	  
+	}
 	//update tasks status on this table for this user i.e. logged in user
 	public function updateTaskStatus($taskId)
 	{

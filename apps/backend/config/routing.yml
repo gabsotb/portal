@@ -35,6 +35,9 @@ investment_cert_task:
 information_portlets:
  url: /information/portlets
  param: { module: portlets, action: index }
+investment_resubmit:
+ url: /resubmit/application
+ param: {module: investmentresubmit, action: new}
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 channel:
