@@ -349,8 +349,7 @@ EIAProjectSurrounding: ## For recording project sorroundings
    updated: { name: updated_by,type: string}
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
-  project_general_elevation: {type: string(255), notnull: false}
-  project_general_elevation_remark: {type: string(255), notnull: false}
+  project_general_elevation: {type: integer, notnull: false}
   soil_erosion: {type: boolean, notnull: false}
   soil_erosion_heavy_rains: {type: boolean, notnull: false}
   soil_erosion_unstable: {type: boolean, notnull: false}
@@ -361,7 +360,7 @@ EIAProjectSurrounding: ## For recording project sorroundings
   access_road: {type: boolean, notnull: false}
   access_road_distance: {type: integer, notnull: false}
   access_road_type: {type: string(255), notnull: false}
-  site_conform_approval: {type: string(255), notnull: false}
+  site_conform_approval: {type: boolean, notnull: false}
   site_conform_remark: {type: string(255), notnull: false}
   site_existing_structure: {type: boolean, notnull: false}
   site_existing_remark: {type: string(255), notnull: false}
@@ -378,8 +377,8 @@ EIAProjectSurrounding: ## For recording project sorroundings
   fishery_existing: {type: boolean, notnull: false}
   fishery_existing_remark: {type: string(255), notnull: false}
   watershed_existing: {type: boolean, notnull: false}
-  watershed_existing_remark: {type: string(255), notnull: false}
-  watershed_near_name: {type: string(255), notnull: false}
+  watershed_near_distance: {type: integer, notnull: false}
+  watershed_near_distance_units: {type: string, notnull: false }
   watershed_within_name: {type: string(255), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:

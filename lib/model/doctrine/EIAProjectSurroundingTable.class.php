@@ -16,4 +16,14 @@ class EIAProjectSurroundingTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('EIAProjectSurrounding');
     }
+	
+	public static $units= array(
+		'meters' =>'m',
+		'kilometers' => 'Km'
+	);
+	
+	public function getUnits()
+	{
+		return self::$units;
+	} 
 }

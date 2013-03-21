@@ -159,7 +159,8 @@ $(function () {
 													<div class="title">Number Of IEA Certificates Issued</div>
 													<div class="numbers">
 													<?php
-                                                        echo (count($overall_ieapplications));
+                                                       // echo (count($overall_ieapplications)); 
+													   echo "0";
 													?>
 													</div>
 													
@@ -336,7 +337,7 @@ $(function () {
 																 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
 																 </a>
 																<?php } ?>
-															    <?php if($value <= 0) { ?>
+															    <?php if($value <= 0 && $response != null) { ?>
 																	  <strong>Alert!</strong> <br/>There are no applications
 																		for investment certificate for your account! <br/>
 																		 <a href="<?php echo url_for('investmentapp/new') ?>">
@@ -348,6 +349,13 @@ $(function () {
                                                          
 														
 														  <?php } ?> 
+														   <?php if($investment_id == null){  ?>
+														    <strong>Alert!</strong> <br/>There are no applications
+																		for investment certificate for your account! <br/>
+																		 <a href="<?php echo url_for('investmentapp/new') ?>">
+																		 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+																		 </a>
+														  <?php } ?>
 															</div>
 														<?php endif; ?>
 															   
@@ -355,9 +363,10 @@ $(function () {
 												<!-- Begin EIA Certificate application widget -->
 												
 												 <div class="widget">
-															<div class="widget-title">
+														   <div class="widget-title">
 																<h4>EIA Certificate Application</h4>						
 															</div>
+<<<<<<< HEAD
 													<?php if(count($eia_applications) > 0): ?>
 													<?php foreach($eiaStatus as $status): ?>
 												  <div class="widget-body">
@@ -433,14 +442,10 @@ $(function () {
 													<?php foreach($impacts as $impact): ?>
 														<?php switch($impact->getImpactLevel()){
 																case 0:
-																	echo button_to('ReApply', 'eia/edit?id='.$imapact->getId(), array('class' => 'btn')); 
+																	echo button_to('ReApply', 'eia/edit?id='.$imapact->getCompanyId(), array('class' => 'btn')); 
 																	break;
 																case 1:
-<<<<<<< HEAD
 																	echo button_to('Download Clearance Letter', 'eia/clearance?id='.$impact->getCompanyId(), array('class' => 'btn'));
-=======
-																	echo button_to('Download Clearance Letter', '@homepage', array('class' => 'btn')); 
->>>>>>> 42486ad95517d9434e1530a2768bf2a372e6d0db
 																	break;
 																case 2:
 																	echo button_to('Fill TOR', 'tor/new', array('class' => 'btn')); 
@@ -454,6 +459,18 @@ $(function () {
 													<?php endforeach; ?>
 													<?php //endif; ?>
 													<?php //endforeach; ?>
+=======
+															 <div class="widget-body">
+															  <strong>Alert!</strong> <br/>There are no applications
+																		for EIA Certificate for your account! <br/>
+																		 <a href="<?php echo url_for('investmentapp/new') ?>">
+																		 <button type="button" class="btn btn-success">Apply for EIA Certificate</button>
+															 </div>
+												</div>
+													 
+												
+													
+>>>>>>> df469ab3c284762d3943f53ca17239220e4644fe
 													
 										
 											   </div>

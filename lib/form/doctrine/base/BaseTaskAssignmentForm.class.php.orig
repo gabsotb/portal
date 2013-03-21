@@ -71,6 +71,7 @@ abstract class BaseTaskAssignmentForm extends BaseFormDoctrine
       'instructions'     => new sfWidgetFormTextarea(),
       'duedate'          => new sfWidgetFormDateTime(),
       'work_status'      => new sfWidgetFormInputText(),
+      'token'            => new sfWidgetFormInputText(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
       'created_by'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -84,6 +85,7 @@ abstract class BaseTaskAssignmentForm extends BaseFormDoctrine
       'instructions'     => new sfValidatorString(array('max_length' => 1000)),
       'duedate'          => new sfValidatorDateTime(),
       'work_status'      => new sfValidatorString(array('max_length' => 255)),
+      'token'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
       'created_by'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
@@ -109,4 +111,4 @@ abstract class BaseTaskAssignmentForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> 61986993ad0351997946554199f329283517fc4d
+>>>>>>> df469ab3c284762d3943f53ca17239220e4644fe

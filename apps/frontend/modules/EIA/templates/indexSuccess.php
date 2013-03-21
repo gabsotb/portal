@@ -10,8 +10,6 @@
 					<h4> <i class="icon-reorder"></i> EIA Status </h4>
 				</div>
 				<div class="widget-body">
-
-
 					<table class="table table-hover">
 					  <thead>
 						<tr>
