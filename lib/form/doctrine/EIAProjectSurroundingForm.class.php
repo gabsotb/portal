@@ -18,25 +18,29 @@ class EIAProjectSurroundingForm extends BaseEIAProjectSurroundingForm
 		);
 	
 	$this->widgetSchema['eiaproject_id'] = new sfWidgetFormInputHidden() ;
+	
+	$this->widgetSchema['watershed_near_distance_units'] = new sfWidgetFormChoice(array(
+	'choices'  => Doctrine_Core::getTable('EIAProjectSurrounding')->getUnits(),
+	'multiple' => false,
+	'expanded' => false,
+	));
+	
+	$this->validatorSchema['watershed_near_distance_units'] = new sfValidatorChoice(array(
+	'choices' => array_keys(Doctrine_Core::getTable('EIAProjectSurrounding')->getUnits()),
+	));
+	
+	$widgets=array('existing_water_body_remark','site_conform_remark','site_existing_remark','existing_trees_remark','wildlife_existing_remark','fishery_existing_remark','watershed_within_name');
+	
+	foreach($widgets as $widget)
+	{
+		$this->widgetSchema[$widget] = new sfWidgetFormTextarea();
+	}
 	//function to retieve id
-	//$this->setDefault('eiaproject_id', $id);
+	$this->setDefault('eiaproject_id', 1);
 	
     /*$this->widgetSchema->setLabels(array(
-      'category_id'    => 'Category',
-      'is_public'      => 'Public?',
-      'how_to_apply'   => 'How to apply?',
-    ));*/
+     ));*/
 	
-	
-	$this->widgetSchema->setHelp('existing_water_body','existence of creeks, stream or lakes'); 
-	$this->widgetSchema->setHelp('existing_trees','Exisiting trees and other tyes of vegetation');
-	
-	/*$widgets=array(
-		'soil_erosion','soil_erosion_heavy_rains','soil_erosion_unstable','soil_erosion_others','existing_water_body','access_road','site_existing_structure','land_use_agriculture','land_use_grassland','land_use_builtup','land_use_marshland','land_use_other','existing_trees','wildlife_existing','fishery_existing','watershed_existing'
-	);
-	foreach($widgets as $widget){
-		$this->widgetSchema[$widget] = new sfWidgetFormInputCheckbox();
-	}*/
 	
   }
 }

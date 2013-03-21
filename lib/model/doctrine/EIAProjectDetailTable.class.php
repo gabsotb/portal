@@ -89,4 +89,14 @@ class EIAProjectDetailTable extends Doctrine_Table
 		return $value;
 	  }
 	}
+	
+	public function getIds()
+	{
+		$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+		$q = $this->createQuery('d')
+			->select('d.id')
+			->where('d.created_by = ?', $userId);
+		return $q->fetchArray();
+	}	
+		
 }

@@ -17,13 +17,13 @@ class EIAProjectSurroundingTable extends Doctrine_Table
         return Doctrine_Core::getTable('EIAProjectSurrounding');
     }
 	
-	/*public static $answers= array(
-		'No',
-		'Yes'
+	public static $units= array(
+		'meters' =>'m',
+		'kilometers' => 'Km'
 	);
 	
-	public function getAnswers()
+	public function getUnits()
 	{
-		return self::$answers;
-	} */
+		return self::$units;
+	} 
 }
