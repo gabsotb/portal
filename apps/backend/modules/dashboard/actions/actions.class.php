@@ -188,11 +188,131 @@ class dashboardActions extends sfActions
 	//select Investment and financing schedule &Capital cost Details
 	$this->investment_financial = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($this->value);
 	$this->forward404Unless($this->details);
+	//
+	$this->form = new InvestmentResubmissionForm();
 	
   }
   //we write functions to retrive relevant records
-  
- 
+  //this method loads financial schedule information of a particular investor for admin processing
+  public function executeLoadfinancial(sfWebRequest $request)
+  {
+     /* We use the Symfony inbuilt method to get connection and retrieve data*/
+				try {
+				   $id = $request->getParameter('id');
+				   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
+				   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
+				   ///
+				  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN costs ON costs.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ; 
+				
+				   
+				   $out = array('financial' => $data) ;
+				   echo(json_encode($out)); exit;	
+					
+				 }
+				 
+				
+				catch (Exception $e) {
+				  print 'Exception : ' . $e->getMessage();
+				}
+  }
+  public function executeLoadstartup(sfWebRequest $request)
+  {
+     /* We use the Symfony inbuilt method to get connection and retrieve data*/
+				try {
+				   $id = $request->getParameter('id');
+				   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
+				   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
+				   ///
+				  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN startupexpenses ON startupexpenses.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    
+				   $out = array('startupexpenses' => $data) ;
+				   echo(json_encode($out)); exit;	
+					
+				 }
+				 
+				
+				catch (Exception $e) {
+				  print 'Exception : ' . $e->getMessage();
+				}
+  }
+    public function executeLoadstructure(sfWebRequest $request)
+	  {
+		 /* We use the Symfony inbuilt method to get connection and retrieve data*/
+					try {
+					   $id = $request->getParameter('id');
+					   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
+					   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
+					   ///
+					  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN structurefinancial ON structurefinancial.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    
+					   $out = array('structurefinancial' => $data) ;
+					   echo(json_encode($out)); exit;	
+						
+					 }
+					 
+					
+					catch (Exception $e) {
+					  print 'Exception : ' . $e->getMessage();
+					}
+	  }
+//
+  public function executeLoadlocal(sfWebRequest $request)
+	  {
+		 /* We use the Symfony inbuilt method to get connection and retrieve data*/
+					try {
+					   $id = $request->getParameter('id');
+					   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
+					   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
+					   ///
+					  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN employementlocal ON employementlocal.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    
+					   $out = array('localjobs' => $data) ;
+					   echo(json_encode($out)); exit;	
+						
+					 }
+					 
+					
+					catch (Exception $e) {
+					  print 'Exception : ' . $e->getMessage();
+					}
+	  }
+///
+  public function executeLoadforeign(sfWebRequest $request)
+	  {
+		 /* We use the Symfony inbuilt method to get connection and retrieve data*/
+					try {
+					   $id = $request->getParameter('id');
+					   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
+					   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
+					   ///
+					  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN employementforeign ON employementforeign.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    
+					   $out = array('foreignjobs' => $data) ;
+					   echo(json_encode($out)); exit;	
+						
+					 }
+					 
+					
+					catch (Exception $e) {
+					  print 'Exception : ' . $e->getMessage();
+					}
+	  }	  
+/////
+  public function executeLoadplanned(sfWebRequest $request)
+	  {
+		 /* We use the Symfony inbuilt method to get connection and retrieve data*/
+					try {
+					   $id = $request->getParameter('id');
+					   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
+					   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
+					   ///
+					  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN plannedperformance ON plannedperformance.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    
+					   $out = array('plannedperformance' => $data) ;
+					   echo(json_encode($out)); exit;	
+						
+					 }
+					 
+					
+					catch (Exception $e) {
+					  print 'Exception : ' . $e->getMessage();
+					}
+	  }	  
   public function executePayment(sfWebRequest $request)
   {
     /*

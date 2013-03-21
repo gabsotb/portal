@@ -853,7 +853,8 @@ class businessplanActions extends sfActions
 			  print 'Exception : ' . $e->getMessage();
 			}	
   }
-  public function executeLoadperformance(sfWebRequest $request)
+  
+  public function executeLoadperformance(sfWebRequest $request) 
   {
      /* We use the Symfony inbuilt method to get connection and retrieve data*/
 				try {

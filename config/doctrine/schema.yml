@@ -47,6 +47,17 @@ BusinessPlan:
   token: {type: string(255), notnull: false} 
  relations:
   InvestmentApplication: {local: investment_id, foreign:id , foreignAlias: InvestmentBusinessPlan}
+### We need to create a table to record resubmission requests when a data admin decides that a certain business requires to resubmit information
+InvestmentResubmission:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  business_id : {type: integer, notnull: true, unique: true}
+  message_subject: {type: string(500), notnull: true}
+  message: {type: string(2000), notnull: true}
 ######  table for testing auto saving and loading
 Structurefinancial: ## for Start up expenses costs
   actAs:
@@ -703,6 +714,7 @@ Messages:
  columns:
   sender: {type: string(255), notnull: true}
   recepient: {type: string(255), notnull: true}
+  message_subject: {type: string(300), notnull: false}
   message: {type: string(4000), notnull: true}
   attachement: {type: string(255), notnull: true}
   token: {type: string(255), notnull: false} 

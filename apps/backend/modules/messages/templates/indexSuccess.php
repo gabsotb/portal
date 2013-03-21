@@ -3,7 +3,7 @@
 
 
 					<div class="row-fluid">
-					
+					<?php if($sf_user->hasCredential('assignJob')): ?>
 					    <div class="span12">
 						<!-- BEGIN STYLE CUSTOMIZER-->
 						<!-- END STYLE CUSTOMIZER-->    	
@@ -37,6 +37,7 @@
 						</ul>
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>
+					<?php endif; ?>
 						<div class="span11">
 						
 						<div class="widget">
@@ -73,8 +74,9 @@
 										</tbody>
 									</table>
 								</div>
+								
 							</div>
-						
+						<a href="<?php echo url_for('messages/new')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> Create Message</button></a>
 						
 						</div>	
 					</div>	
