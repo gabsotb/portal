@@ -71,6 +71,16 @@ class TaskAssignmentTable extends Doctrine_Table
 	  return $query;
 	  
 	}
+	///we will update the status of application to processing once more after an investor resubmits their work
+	public function updateStatusAfterResubmission($id)
+	{
+	  $value1 = "processing";
+	  $value2 = "You resubmission is being processed and validated";
+	  $value3 = 50;
+	  $this->updateBusinessApplicationStatus($id,$value1,$value2,$value3);
+	  $this->updateTaskStatus($id);
+	}
+	
 	//Some helper methods to retrieve relevant table details
 	public function getInvestmentFinancialDetails($id)
 	{
@@ -145,6 +155,17 @@ class TaskAssignmentTable extends Doctrine_Table
 	  An email with further instruction for payment has been sent to your accout email. Thankyou";
 	  $value3 = 80;
 	 $this->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+	}
+	//call if the admin requests for resubmission of documents
+	public function updateBusinessStatusResubmission($id)
+	{
+				  //hard coded status and comments
+				  $value1 = "awaitingResubmission" ;
+				  $value2 = "Please Resubmit your work. Check your email and inbox messages for more. Thank you.";
+				  $value3 = 30 ;
+				  ////////////
+				 $this->updateBusinessApplicationStatus($id,$value1,$value2,$value3);
+				  
 	}
 	//update business application status for the user to see that the task has been started
 	public function updateBusinessApplicationStatus($id,$value1,$value2,$value3)
@@ -224,6 +245,20 @@ class TaskAssignmentTable extends Doctrine_Table
 	 SELECT email_address,username from sf_guard_user where sf_guard_user.id = '$id'
 	 ");
 	 return $query;
+	}
+	//this method retrieves the id of the person who has assigned a particular job to a data admin given id of the work he/she assigned
+	public function getManagerSupervisorId($work_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	 SELECT task_assignment.created_by FROM task_assignment WHERE task_assignment.investmentapp_id = '$work_id'
+	 ");
+	 //
+	 $id = null;
+	 foreach($query as $q)
+	 {
+	  $id = $q['created_by'] ;
+	 }
+	 return $id;
 	}
 	//we will create a function that will return only the id and name of a user who belongs to investment certificate data admins or eia data admins 
 	public function getDataAdmins($group)

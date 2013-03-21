@@ -85,7 +85,28 @@ class investmentappActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($investment_application = Doctrine_Core::getTable('InvestmentApplication')->find(array($request->getParameter('id'))), sprintf('Object investment_application does not exist (%s).', $request->getParameter('id')));
-    $this->form = new InvestmentApplicationForm($investment_application);
+	///
+	//use the token for securing application
+	$token = $request->getParameter('token');
+	
+	//we check if this token exist if not, we forward to 404 page
+	$query = Doctrine_Core::getTable('InvestmentApplication')->checkToken($token);
+	
+	//
+	$value = null;
+	foreach($query as $q)
+	{
+	 $value = $q['token'];
+	}
+	if($value == null)
+	{
+	 $this->forward404();
+	}
+	if($value != null)
+	{
+	   $this->form = new InvestmentApplicationForm($investment_application);
+	}
+   
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -95,6 +116,7 @@ class investmentappActions extends sfActions
     $this->form = new InvestmentApplicationForm($investment_application);
 
     $this->processForm($request, $this->form);
+	//
 
     $this->setTemplate('edit');
   }
@@ -120,8 +142,27 @@ class investmentappActions extends sfActions
 	 $allFormValues = $request->getParameter($this->form->getName());
 	 //access values
      $name = $allFormValues['name'];
+	 $token = $allFormValues['token'];
+	 //we will control the redirect procedure incase it is editing, we direct to edit of businessplan also
+	 //so, we will check if this user has any request to resubmit his or her work, since we have the name of the company we retrieve the 
+	 //id and check for record in InvestmentResubmission
+	 $business_id = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($name);
+	 //now we check for existance of $business_id in InvestmentResubmission table
+	 $id = Doctrine_Core::getTable('InvestmentResubmission')->checkIdExistance($business_id);
+	 //
+     if($id == null)
+	 {
+	  $this->redirect('businessplan/new?id='.$name.'&token='.$token);
+	 }	 
+	 //
+	 if($id != null)
+	 {
+	  $this->redirect('businessplan/edit?id='.$id.'&token='.$token);
+	 }
 	 
-	 $this->redirect('businessplan/new?id='.$name);
+	 
+	 
+	 
     }
   }
   ////now this is tricky he he he 

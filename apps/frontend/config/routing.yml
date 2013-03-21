@@ -13,6 +13,33 @@ my_inbox:
 my_certificate:
  url: /issued/certificates
  param: {module: investmentcertificates, action: index }
+##
+investmentapp:
+ class: sfDoctrineRouteCollection
+ options: {model: InvestmentApplication}
+investmentapp_edit:
+ url: investmentapp/:id/
+ class: sfDoctrineRoute
+ options: {model: InvestmentApplication, type: object}
+ param: {module: investmentapp, action: edit}
+ requirements:
+  id: \d+
+businessplan:
+ class: sfDoctrineRouteCollection
+ options: {model: BusinessPlan}
+businessplan_edit:
+ url: businessplan/:id/:token
+ class: sfDoctrineRoute
+ options: {model: BusinessPlan, type: object}
+ param: {module: businessplan, action: edit}
+ requirements:
+  id: \d+
+  token: \w+
+businessplan_loading:
+ url: businessplan/loading/
+ class: sfDoctrineRoute
+ options: {model: BusinessPlan, type: object}
+ param: {module: businessplan, action: loading}
 # generic rules
 # please, remove them by adding more specific rules
 ## Rules for EIA
@@ -37,9 +64,10 @@ project_operation_phase:
 project_attachments:
  url: project/attachments
  param: {module: projectAttachment, action: new}
-default_index:
-  url:   /:module
-  param: { action: index }
+
+#default_index:
+#  url:   /:module
+#  param: { action: index }
 
 default:
   url:   /:module/:action/*

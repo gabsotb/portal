@@ -129,7 +129,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	   " */
 	   //This method is supposed to counter check that a given id exist in two tables. ie InvestmentApplicationTable and BusinessPlanTable
 	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	    SELECT investment_application.id, investment_application.name,business_plan.investment_id from investment_application 
+	    SELECT investment_application.id, investment_application.name,investment_application.token,business_plan.investment_id from investment_application 
 	   LEFT JOIN business_plan ON  investment_application.id = business_plan.investment_id
 	   where investment_application.created_by = '$user_id' "
 	   );
@@ -172,12 +172,14 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  {
 	   $id2 = $q2['investment_id'] ;
 	  }
+	 // print $id2; exit;
 	  ///now check if the two values are not equal, if not we return this value and use to save in BusinessPlanTable and BusinessApplicationStatusTable
 	  if($id != $id2 )
 	  {
 	   return $id;
-	  }
-	
+	  } 
+	  return "Identity";
+	 
 	  
 	}
 	//custom method to retrieve business name given a business id
@@ -215,6 +217,12 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  ///
 	  return $query;
 	}
-	
+	//This method is used to secure our application. 
+	public function checkToken($token)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select token from investment_application where investment_application.token = '$token' ");
+	 ///
+	 return $query;
+	}
 	
 }

@@ -18,8 +18,7 @@ class InvestmentResubmission extends BaseInvestmentResubmission
    $conn->beginTransaction();
 		  try
 		  {
-			  
-		    
+		  
 		  //we want also to set an incremental reference number for each and every project
 		  
 			  $ret = parent::save($conn);

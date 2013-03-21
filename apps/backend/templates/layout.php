@@ -256,6 +256,16 @@
 				<!-- end -->
 				<li class="has-sub">
 					<a href="javascript:;" class="">
+					<i class="icon-bar-chart"></i> Resubmission 
+					<span class="arrow"></span>
+					</a>
+					<ul class="sub">
+						<li class=""><a href ="#"><i class="icon-fire"></i> View Requests </a></li>
+						
+					</ul>
+				</li>
+				<li class="has-sub">
+					<a href="javascript:;" class="">
 					<i class="icon-bar-chart"></i> Reporting
 					<span class="arrow"></span>
 					</a>

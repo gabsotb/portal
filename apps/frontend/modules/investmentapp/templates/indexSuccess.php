@@ -78,6 +78,7 @@ $(function () {
 });
 		</script>
 <div id="page" class="dashboard">
+         
 		<div class="row-fluid">
 					<div class="span12">    	
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
@@ -262,6 +263,8 @@ $(function () {
 																	<h4 class="alert-heading">Comments</h4>
 																	<p>
 																		<?php echo $commentI  ?>
+																	
+																		
 																	</p>
 																</div>
 																
@@ -276,11 +279,13 @@ $(function () {
 															$q = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplicationSubmission($user_id);
 															$investment_id = null;
 															$business_name = null;
+															$token = null;
 															 //
 															 foreach($q as $res)
 															 {
 															   $investment_id = $res['id'];
 															   $business_name = $res['name'];
+															   $token = $res['token'];
 															 }
 															
 															//now we pass this to businessplan table method
@@ -302,11 +307,11 @@ $(function () {
 																 <div class="alert alert-block alert-warning fade in">
 																 <strong>Incomplete Application !</strong> <br/>Please Complete your Initial application
 																 for Investment Certificate for <?php echo $business_name; ?>.  <br/><br/>
-																<a href="<?php echo url_for('businessplan/new?id='.$business_name) ?>"> 
+																<a href="<?php echo url_for('businessplan/new?id='.$business_name.'&token='.$token) ?>"> 
 																<button type="button" class="btn btn-primary">Complete</button>&nbsp;&nbsp;
 																&nbsp;&nbsp;
 																</a>
-																<a href="<?php echo url_for('investmentapp/edit?id='.$investment_id) ?>"> 
+																<a href="<?php echo url_for('investmentapp/edit?id='.$investment_id.'&token='.$token) ?>"> 
 																<button type="button" class="btn btn-success">Review</button>
 																</a>
 																</div>
@@ -358,8 +363,64 @@ $(function () {
 														  <?php } ?>
 															</div>
 														<?php endif; ?>
+														       <div>
+												<?php 
+												
+										$user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+										$q = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplicationSubmission($user_id);
+										$investment_id = null;
+															
+										 //
+										 foreach($q as $res)
+										 {
+										   $investment_id = $res['id'];
+										 
+										 }
+												
+										$id = Doctrine_Core::getTable('InvestmentResubmission')->checkIdExistance($investment_id); ?>
+												 <?php if($id != null): ?>
+																 	<a href="#widget-resubmit" data-toggle="modal">
+											                    <button type="button" class="btn btn-warning">Resubmit</button></a>
+												<?php endif; ?>				
+																</div>
 															   
-											  </div><!-- End Investment Certificate Application Widget -->
+											  </div>
+											  <!-- for modal --->
+											    <div id="widget-resubmit" class="modal hide">
+														<div class="modal-header">
+															<button data-dismiss="modal" class="close" type="button">×</button>
+															<h3>Application Document Resubmission</h3>
+														</div>
+														<div class="modal-body">
+															<p>Please make sure that you have properly reviewed your work as stipulate in the message you received
+															informing you of resubmission. Make sure to make changes and submit your work. By doing so you we will try to process your application asap. Thank you</p>
+															<p>Do you feel satisfied and want to resubmit? </p>
+															
+															<?php
+																$user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+																$q = Doctrine_Core::getTable('InvestmentApplication')->getUserInvestmentApplicationSubmission($user_id);
+																$investment_id = null;
+																$business_name = null;
+																$token = null;
+																 //
+																 foreach($q as $res)
+																 {
+																   $investment_id = $res['id'];
+																//   $business_name = $res['name'];
+																   $token = $res['token'];
+																 }
+															?>
+															 <a href="<?php echo url_for('investmentapp/edit?id='.$investment_id.'&token='.$token) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i>Yes</button> </a>&nbsp;&nbsp;&nbsp;
+															 <button data-dismiss="modal" class="close" type="button">Cancel</button>
+															
+															
+															
+															
+														</div>
+				                                     </div>
+											  <!-- end modal -->
+											  
+											  <!-- End Investment Certificate Application Widget -->
 												<!-- Begin EIA Certificate application widget -->
 												
 												 <div class="widget">

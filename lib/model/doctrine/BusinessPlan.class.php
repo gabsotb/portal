@@ -18,22 +18,40 @@ class BusinessPlan extends BaseBusinessPlan
 	   $conn->beginTransaction();
 			  try
 			  {
-				  //we will override this method. we update the application status of this investor. for now we use coded status
-				  //later we will try and find a better solution
-				  $businessStatus = new BusinessApplicationStatus();
-				  //we retrieve the neccessary values from this model
-				  $businessId = $this->getInvestmentId();
-				  //hard coded status and comments
-				  $status = "submitted" ;
-				  $comments = "Documents Submitted Successfuly. Awaiting RDB admin to assign your application to a Staff";
-				  $percentage = 10 ;
-				  //pass values
-				  $businessStatus->business_id = $businessId ;
-				  $businessStatus->application_status =$status;
-				  $businessStatus->comment = $comments ;
-				  $businessStatus->percentage = $percentage ;
-				  //save
-				  $businessStatus->save();
+			     //we  update status of resubmission and new application separately
+				   $id = Doctrine_Core::getTable('InvestmentResubmission')->checkIdExistance($this->getInvestmentId());
+				   if($id == null)
+				   {
+				     //we will override this method. we update the application status of this investor. for now we use coded status
+					  //later we will try and find a better solution
+					  $businessStatus = new BusinessApplicationStatus();
+					  //we retrieve the neccessary values from this model
+					  $businessId = $this->getInvestmentId();
+					  //hard coded status and comments
+					  $status = "submitted" ;
+					  $comments = "Documents Submitted Successfuly. Awaiting RDB admin to assign your application to a Staff";
+					  $percentage = 10 ;
+					  //pass values
+					  $businessStatus->business_id = $businessId ;
+					  $businessStatus->application_status =$status;
+					  $businessStatus->comment = $comments ;
+					  $businessStatus->percentage = $percentage ;
+					  //save
+					  $businessStatus->save();
+				   }
+				   if($id != null)
+				   {
+				     $updateStatus = Doctrine_Core::getTable('TaskAssignment')->updateStatusAfterResubmission($id) ;
+					 //we also delete this record to avoid infinte resubmit
+					 $q = Doctrine_Query::create()
+							->delete('InvestmentResubmission a')
+							->where('a.business_id = '.$id);
+					$q->execute();		
+					 
+				   }
+				 
+				  /////////////
+				  
 				  if (!$this->getToken() )
 					  {
 						$this->setToken(sha1(date().rand(11111, 99999)));
