@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="fr" datatype="plaintext" original="messages" date="2013-03-22T11:24:45Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>Oops! La page que vous avez demandé est sécurisé et vous n'avez pas les informations d'identification appropriées.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Connectez-vous ci-dessous pour accéder</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Entrez UserName</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Entrez votre mot de passe</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Bienvenue à l'investisseur RDB E-portail</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Infos impôt</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Infos EIA</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8">
+        <source> Infos Inv. Cert</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Entrez votre nom d'utilisateur et mot de passe</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Mot de passe oublié?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Demande de compte</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Se connecter</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

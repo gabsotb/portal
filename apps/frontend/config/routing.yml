@@ -5,20 +5,29 @@
 homepage:
   url:   /
   param: { module: investmentapp, action: index }
+localized_homepage:
+  url:   /:sf_culture/
+  param: { module: investmentapp, action: index }
+  requirements:
+   sf_culture: (?:fr|en)
+change_language:
+  url:   /change_language
+  param: { module: language, action: changeLanguage }
 ####Route for message module for frontend
 my_inbox:
- url: /inbox
+ url: /:sf_culture/inbox
  param: { module: messages, action: index}
 ####Route for my certificates
 my_certificate:
- url: /issued/certificates
+ url: /:sf_culture/issued/certificates
  param: {module: investmentcertificates, action: index }
 ##
 investmentapp:
  class: sfDoctrineRouteCollection
  options: {model: InvestmentApplication}
+ prefix_path: /:sf_culture
 investmentapp_edit:
- url: investmentapp/:id/
+ url: /:sf_culture/investmentapp/:id/
  class: sfDoctrineRoute
  options: {model: InvestmentApplication, type: object}
  param: {module: investmentapp, action: edit}
@@ -27,8 +36,9 @@ investmentapp_edit:
 businessplan:
  class: sfDoctrineRouteCollection
  options: {model: BusinessPlan}
+ preifx_path: /:sf_culture
 businessplan_edit:
- url: businessplan/:id/:token
+ url: /:sf_culture/businessplan/:id/:token
  class: sfDoctrineRoute
  options: {model: BusinessPlan, type: object}
  param: {module: businessplan, action: edit}
@@ -36,7 +46,7 @@ businessplan_edit:
   id: \d+
   token: \w+
 businessplan_loading:
- url: businessplan/loading/
+ url: /:sf_culture/businessplan/loading/
  class: sfDoctrineRoute
  options: {model: BusinessPlan, type: object}
  param: {module: businessplan, action: loading}

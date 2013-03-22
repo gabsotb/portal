@@ -12,6 +12,23 @@ class investmentappActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
+     ////////////////////// setting user culture
+	  if (!$request->getParameter('sf_culture'))
+	  {
+		if ($this->getUser()->isFirstRequest())
+		{
+		  $culture = $request->getPreferredCulture(array('en', 'fr'));
+		  $this->getUser()->setCulture($culture);
+		  $this->getUser()->isFirstRequest(false);
+		}
+		else
+		{
+		  $culture = $this->getUser()->getCulture();
+		}
+	 
+		$this->redirect('localized_homepage');
+	  }
+	 //////////////////////
    /*
    We need to transfer the model access code to the model class to fully comply with MVC
    */
@@ -159,10 +176,6 @@ class investmentappActions extends sfActions
 	 {
 	  $this->redirect('businessplan/edit?id='.$id.'&token='.$token);
 	 }
-	 
-	 
-	 
-	 
     }
   }
   ////now this is tricky he he he 
