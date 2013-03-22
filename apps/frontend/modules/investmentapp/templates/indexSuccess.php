@@ -83,31 +83,31 @@ $(function () {
 					<div class="span12">    	
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">
-							Dashboard
-							<small>Register and monitor applications for EIA and Investment Certificates Applications.</small>
+							<?php echo __('Dashboard') ?>
+							<small><?php echo __('Register and monitor applications for EIA and Investment Certificates Applications.') ?></small>
 						</h3>
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="#">Home</a> <span class="divider">/</span>
+								<a href="#"><?php echo __('Home') ?></a> <span class="divider">/</span>
 							</li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Dashboard</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('Dashboard') ?></a></li> <span class="divider">/</span>
 							<li>
 							<i class="icon-user"></i>
 							<a href="#">
 							   <b>
 								  <font color="blue">
 									<?php $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-                                      print 'Welcome, You are logged in as '.$username;
+									  echo __('Welcome, You are logged in as '.$username) ;
 									?>
 									</font>
 								</b>
 							</a></li>
 							<li class="pull-right dashboard-report-li">
 							<i class="icon-time"></i>
-				              Logged in on <font color="blue">
+				              <?php echo __('Logged in on') ?> <font color="blue">
 									<?php
                                        $date = date("F j, Y");
 									   print $date;
@@ -125,14 +125,14 @@ $(function () {
 							<!-- BEGIN SITE VISITS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-signal"></i>General RDB Performace Analysis</h4>						
+									<h4><i class="icon-signal"></i><?php echo __('General RDB Performace Analysis') ?></h4>						
 								</div>
 								<div class="alert alert-block alert-info fade in">
 											
-											<h4 class="alert-heading">Information</h4>
+											<h4 class="alert-heading"><?php echo __('Information') ?></h4>
 											<p>
-												Below statistics for Investment Certificates issued, EIA Certificates Issued and Tax Exmptions
-												Request Granted to Registered Investors. This is an Overall Representation
+												<?php echo __('Below statistics for Investment Certificates issued, EIA Certificates Issued and Tax Exmptions
+												Request Granted to Registered Investors. This is an Overall Representation') ?>
 											</p>
 							    </div>
 								<div class="widget-body">
@@ -142,7 +142,7 @@ $(function () {
 												<div class="display stat ok huge">	
 												</div>
 												<div class="details">
-													<div class="title">Number of Investment Certificates Issued</div>
+													<div class="title"><?php echo __('Number of Investment Certificates Issued')?></div>
 													<div class="numbers"><?php
                                                         echo "0";
 													?></div>
@@ -157,7 +157,7 @@ $(function () {
 													
 												</div>
 												<div class="details">
-													<div class="title">Number Of IEA Certificates Issued</div>
+													<div class="title"><?php echo __('Number Of IEA Certificates Issued') ?></div>
 													<div class="numbers">
 													<?php
                                                        // echo (count($overall_ieapplications)); 
@@ -175,7 +175,7 @@ $(function () {
 													
 												</div>
 												<div class="details">
-													<div class="title">Tax Exemptions Granted</div>
+													<div class="title"><?php echo __('Tax Exemptions Granted') ?></div>
 													<div class="numbers"><?php 
 													$value = 0;
 													print $value;
@@ -195,7 +195,7 @@ $(function () {
 							<!-- Begin Graph for User to analyze RDB Processing Power -->
 							<div class="widget">
 						          <div class="widget-title">
-									<h4><i class="icon-signal"></i>Graphical Analysis - RDB Overall Perfomance Representation</h4>
+									<h4><i class="icon-signal"></i><?php echo __('Graphical Analysis - RDB Overall Perfomance Representation') ?></h4>
 															
 								</div>
 								<div id="cont" class="widget-body">
@@ -210,21 +210,21 @@ $(function () {
 							
 							<div class="widget">
 											<div class="widget-title">
-												<h4><i class="icon-bell"></i>Status of Applications</h4>						
+												<h4><i class="icon-bell"></i><?php echo __('Status of Applications') ?></h4>						
 											</div>
 											<div class="widget-body">
 											<!-- BEGIN Investment Certificate Widget-->
 											
 											<div class="widget">
 															<div class="widget-title">
-																<h4>Investment Certificate Application</h4>						
+																<h4><?php echo __('Investment Certificate Application') ?></h4>						
 															</div>
 												<?php if(count($investment_applications) > 0): ?>
 														 <div class="widget-body">
 																<!-- table to list company information -->
 																   <div class="widget">
 														<div class="widget-title">
-															<h4><i class="icon-reorder"></i>Progress Monitor</h4>
+															<h4><i class="icon-reorder"></i><?php echo __('Progress Monitor') ?></h4>
 															 
 														</div>
 														<div class="widget-body">
@@ -233,7 +233,7 @@ $(function () {
 																<thead>
 																	<tr>
 																		
-																		<th>Company</th>
+																		<th><?php echo __('Company') ?></th>
 																		<th>Status</th>
 																		
 																	</tr>
@@ -260,7 +260,7 @@ $(function () {
 															</div>
 																<!-- end table -->
 																<div class="alert alert-block alert-info fade in">
-																	<h4 class="alert-heading">Comments</h4>
+																	<h4 class="alert-heading"><?php echo __('Comments') ?></h4>
 																	<p>
 																		<?php echo $commentI  ?>
 																	
@@ -305,14 +305,15 @@ $(function () {
 															 <!-- if it is null we show buttons -->
 															 <?php if($response == null) { ?>
 																 <div class="alert alert-block alert-warning fade in">
-																 <strong>Incomplete Application !</strong> <br/>Please Complete your Initial application
-																 for Investment Certificate for <?php echo $business_name; ?>.  <br/><br/>
+																 <strong><?php echo __('Incomplete Application !')?></strong> <br/>
+																 <?php echo __('Please Complete your Initial application
+																 for Investment Certificate for') ?> <?php echo $business_name; ?>.  <br/><br/>
 																<a href="<?php echo url_for('businessplan/new?id='.$business_name.'&token='.$token) ?>"> 
-																<button type="button" class="btn btn-primary">Complete</button>&nbsp;&nbsp;
+																<button type="button" class="btn btn-primary"><?php echo __('Complete') ?></button>&nbsp;&nbsp;
 																&nbsp;&nbsp;
 																</a>
 																<a href="<?php echo url_for('investmentapp/edit?id='.$investment_id.'&token='.$token) ?>"> 
-																<button type="button" class="btn btn-success">Review</button>
+																<button type="button" class="btn btn-success"><?php echo __('Review') ?></button>
 																</a>
 																</div>
 															 <?php } ?>
@@ -333,20 +334,21 @@ $(function () {
 																// exit;
 																?>
 																<?php if($value > 0 && $response != null) { ?>
-																  <strong>Alert!</strong> <br/>There are no New applications
-																		for investment certificate for your account! However your have <?php echo $value; ?>
-																		complete application(s) for Investment Certificate. Click Button Below to apply for 
-																		Certification of another business. 
+																  <strong><?php echo __('Alert!') ?></strong> <br/><?php echo __('There are no New applications
+																		for investment certificate for your account! However your have') ?> <?php echo $value; ?>
+																		<?php echo __('complete application(s) for Investment Certificate. Click Button Below to apply for 
+																		Certification of another business. ')?>
 																<br/> 
 																 <a href="<?php echo url_for('investmentapp/new') ?>">
-																 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+																 <button type="button" class="btn btn-primary"><?php echo __('Apply for Investment Certificate' ) ?></button>
 																 </a>
 																<?php } ?>
 															    <?php if($value <= 0 && $response != null) { ?>
-																	  <strong>Alert!</strong> <br/>There are no applications
-																		for investment certificate for your account! <br/>
+																	  <strong><?php echo __('Alert!') ?></strong> <br/><?php echo __('There are no applications
+																		for investment certificate for your account! <br/>') ?>
 																		 <a href="<?php echo url_for('investmentapp/new') ?>">
-																		 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+																		 <button type="button" class="btn btn-primary">
+																		 <?php echo __('Apply for Investment Certificate') ?></button>
 																		 </a>
 																<?php } ?>
 															
@@ -355,10 +357,11 @@ $(function () {
 														
 														  <?php } ?> 
 														   <?php if($investment_id == null){  ?>
-														    <strong>Alert!</strong> <br/>There are no applications
-																		for investment certificate for your account! <br/>
+														    <strong><?php echo __('Alert!') ?></strong> <br/><?php echo __('There are no applications
+																		for investment certificate for your account! <br/>') ?>
 																		 <a href="<?php echo url_for('investmentapp/new') ?>">
-																		 <button type="button" class="btn btn-primary">Apply for Investment Certificate</button>
+																		 <button type="button" class="btn btn-primary">
+																		 <?php echo __('Apply for Investment Certificate') ?></button>
 																		 </a>
 														  <?php } ?>
 															</div>
@@ -380,7 +383,7 @@ $(function () {
 										$id = Doctrine_Core::getTable('InvestmentResubmission')->checkIdExistance($investment_id); ?>
 												 <?php if($id != null): ?>
 																 	<a href="#widget-resubmit" data-toggle="modal">
-											                    <button type="button" class="btn btn-warning">Resubmit</button></a>
+											                    <button type="button" class="btn btn-warning"><?php echo __('Resubmit') ?></button></a>
 												<?php endif; ?>				
 																</div>
 															   
@@ -389,12 +392,12 @@ $(function () {
 											    <div id="widget-resubmit" class="modal hide">
 														<div class="modal-header">
 															<button data-dismiss="modal" class="close" type="button">×</button>
-															<h3>Application Document Resubmission</h3>
+															<h3><?php echo __('Application Document Resubmission') ?></h3>
 														</div>
 														<div class="modal-body">
-															<p>Please make sure that you have properly reviewed your work as stipulate in the message you received
-															informing you of resubmission. Make sure to make changes and submit your work. By doing so you we will try to process your application asap. Thank you</p>
-															<p>Do you feel satisfied and want to resubmit? </p>
+															<p><?php echo __('Please make sure that you have properly reviewed your work as stipulate in the message you received
+															informing you of resubmission. Make sure to make changes and submit your work. By doing so you we will try to process your application asap. Thank you') ?></p>
+															<p><?php echo __('Do you feel satisfied and want to resubmit? ') ?></p>
 															
 															<?php
 																$user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
@@ -410,8 +413,9 @@ $(function () {
 																   $token = $res['token'];
 																 }
 															?>
-															 <a href="<?php echo url_for('investmentapp/edit?id='.$investment_id.'&token='.$token) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i>Yes</button> </a>&nbsp;&nbsp;&nbsp;
-															 <button data-dismiss="modal" class="close" type="button">Cancel</button>
+															 <a href="<?php echo url_for('investmentapp/edit?id='.$investment_id.'&token='.$token) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i><?php echo ('__Yes') ?></button> </a>&nbsp;&nbsp;&nbsp;
+															 <button data-dismiss="modal" class="close" type="button">
+															 <?php echo __('Cancel') ?></button>
 															
 															
 															
@@ -425,13 +429,14 @@ $(function () {
 												
 												 <div class="widget">
 														   <div class="widget-title">
-																<h4>EIA Certificate Application</h4>						
+																<h4><?php echo __('EIA Certificate Application') ?></h4>						
 															</div>
 															 <div class="widget-body">
-															  <strong>Alert!</strong> <br/>There are no applications
-																		for EIA Certificate for your account! <br/>
+															  <strong><?php echo __('Alert!') ?></strong> <br/><?php echo __('There are no applications
+																		for EIA Certificate for your account! ');?> </br>
 																		 <a href="<?php echo url_for('projectDetail/new') ?>">
-																		 <button type="button" class="btn btn-success">Apply for EIA Certificate</button>
+																		 <button type="button" class="btn btn-success">
+																		 <?php echo __('Apply for EIA Certificate') ?></button>
 															 </div>
 												</div>
 													 

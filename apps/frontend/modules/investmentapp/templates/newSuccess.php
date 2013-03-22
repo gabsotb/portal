@@ -2,14 +2,14 @@
 			  <div class="span8">
 				<div class="widget">
 				 <div class="widget-title">
-					<h4><i class="icon-reorder"></i>Investment Certificates ---- Company Details Form</h4>						
+					<h4><i class="icon-reorder"></i><?php echo __('Investment Certificates ---- Company Details Form') ?></h4>						
 					</div>
             <div class="widget-body">
 			<div class="alert alert-block alert-info fade in">
 														
-							<h4 class="alert-heading">Step 1</h4>
+							<h4 class="alert-heading"><?php echo __('Step 1') ?></h4>
 							<p>
-								Please Provide Below Fields to Start your application for investment certificate 
+								<?php echo __('Please Provide Below Fields to Start your application for investment certificate') ?> 
 							</p>
 						 </div>
 			         <?php include_partial('form', array('form' => $form)) ?>
@@ -22,12 +22,12 @@
 							
 							<div class="widget">
 											<div class="widget-title">
-												<h4><i class="icon-bell"></i>Important</h4>						
+												<h4><i class="icon-bell"></i><?php echo __('Important') ?></h4>						
 											</div>
 											<div class="widget-body">
 											<div class="alert alert-success">
-										    <strong> To successfuly submit this information, make sure that you have a valid business 
-											registration number. You company must be registered via the Business Registration System</strong>
+										    <strong><?php echo __('To successfuly submit this information, make sure that you have a valid business 
+											registration number. You company must be registered via the Business Registration System') ?></strong>
 											</div>
 											</div>
 							</div>

@@ -14,6 +14,17 @@
 <body>
 	<!-- BEGIN HEADER -->
 	<?php if($sf_user->isAuthenticated()): ?>
+	     <div id="widget-language" class="modal hide">
+						<div class="modal-header">
+							<button data-dismiss="modal" class="close" type="button">×</button>
+							<h3>Language Change</h3>
+						</div>
+						<div class="modal-body">
+							<b>Please Select your prefered Language:</b> <br/>
+							
+							 <?php include_component('language', 'language') ?>
+						</div>
+				</div>
 	<div id="header" class="navbar navbar-inverse">
 		<!-- BEGIN TOP NAVIGATION BAR -->
 		<div class="navbar-inner">
@@ -32,33 +43,7 @@
 				</a>          
 				<!-- END RESPONSIVE MENU TOGGLER -->				
 				<div class="top-nav">
-					<!-- BEGIN QUICK SEARCH FORM -->
-					<form class="navbar-search hidden-phone">
-						<div class="search-input-icon">
-							<input type="text" class="search-query dropdown-toggle" id="quick_search" placeholder="Search" data-toggle="dropdown" />
-							<i class="icon-search"></i>
-							<!-- BEGIN QUICK SEARCH RESULT PREVIEW -->
-							<ul class="dropdown-menu extended">								
-								<li>
-									<span class="arrow"></span>
-									<p>Found 23 results</p>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-warning"><i class="icon-comment"></i></span>
-									Re: Nick Dalton, Sep 11:...<i class="icon icon-arrow-right"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-important"><i class="icon-bullhorn"></i></span>
-									Office Setup, Mar 12...<i class="icon icon-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-							<!-- END QUICK SEARCH RESULT PREVIEW -->
-						</div>
-					</form>
+					
 					<!-- END QUICK SEARCH FORM -->
 					<!-- BEGIN TOP NAVIGATION MENU -->				
 					<ul class="nav pull-right" id="top_menu">
@@ -83,7 +68,7 @@
 							</a>
 							<ul class="dropdown-menu extended notification">
 								<li>
-									<p>You have <?php echo $no ; ?> notification(s)</p>
+									<p><?php echo __('You have')?> <?php echo $no ; ?> <?php echo __('notification(s)')?></p>
 								</li>
 								<?php 
                                    $notification = Doctrine_Core::getTable('Notifications')->getNotifications($user);?>
@@ -124,7 +109,7 @@
 							</a>
 							<ul class="dropdown-menu extended inbox">
 								<li>
-									<p>You have <?php echo $messages; ?> new message(s)</p>
+									<p><?php echo __('You have') ?> <?php echo $messages; ?> <?php echo __('new message(s)')?></p>
 								</li>
 								<!-- Now, we show the user his/her messages. maximum of 5 -->
 								<?php 
@@ -146,7 +131,7 @@
 								</li>
 								<?php endforeach; ?>
 								<li>
-									<a href="<?php echo url_for('my_inbox') ?>">See all messages</a>
+									<a href="<?php echo url_for('my_inbox') ?>"><?php echo __('See all messages') ?></a>
 								</li>
 							</ul>
 						</li>
@@ -159,8 +144,9 @@
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="<?php echo url_for('settings') ?>"><i class="icon-cogs"></i> Account Settings</a></li>
-								<li><a href="#"><i class="icon-pushpin"></i> Support</a></li>							
+								<li><a href="<?php echo url_for('settings') ?>"><i class="icon-cogs"></i> <?php echo __('Account Settings')?></a></li>
+								<li><a href="#widget-language"  data-toggle="modal"><i class="icon-wrench"></i> <?php echo __('Change Language') ?></a></li>
+								<li><a href="#"><i class="icon-pushpin"></i> <?php echo __('Support') ?></a></li>							
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
@@ -181,9 +167,11 @@
                                       echo $firstname."\t".$lastname;
 									?>
 								</a></li>
-								<li><a href="<?php echo url_for('my_inbox') ?>"><i class="icon-envelope-alt"></i> Inbox</a></li>
+								<li><a href="<?php echo url_for('my_inbox') ?>"><i class="icon-envelope-alt"></i> <?php echo __('Inbox') ?></a></li>
 								<li class="divider"></li>
-								<li><?php echo link_to('<i class="icon-key"></i> Logout','@sf_guard_signout'); ?></li>
+								<li>
+								<a href="<?php echo url_for('sf_guard_signout') ?>"<i class="icon-key"></i> <?php echo __('Logout') ?></a>
+								</li>
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
@@ -208,10 +196,13 @@
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			<!-- BEGIN SIDEBAR MENU -->
 			<ul>
-				<li class="active"><?php echo link_to('<i class="icon-home"></i> Dashboard', '@homepage') ?> </li>
+				<li class="active">
+				<a href="<?php echo url_for('@homepage')?>" >
+					<i class="icon-home"></i> <?php echo __('Dashboard') ?>
+					</a>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-table"></i> Investment Certificate
+					<i class="icon-table"></i> <?php echo __('Investment Certificate') ?>
 					<span class="arrow"></span>
 					</a>					
 					<ul class="sub">
@@ -257,10 +248,10 @@
 																
 																
 																<li><a href="<?php echo url_for('businessplan/new?id='.$business_name) ?>"> 
-																 Complete
+																<?php echo __('Complete') ?>
 																</a></li>
 																<li><a href="<?php echo url_for('investmentapp/edit?id='.$investment_id) ?>"> 
-																Review
+																<?php echo __('Review') ?>
 																</a></li>
 																
 																
@@ -284,10 +275,10 @@
 																?>
 																<?php if($value > 0 && $response != null) { ?>
 																
-																<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>
+																<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i><?php echo __('Application Form') ?></a></li>
 																<?php } ?>
 															    <?php if($value <= 0  && $response != null ) { ?>
-																	 	<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i>Application Form</a></li>
+																	 	<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i><?php echo __('Application Form') ?></a></li>
 																<?php } ?>
 															
 												<!--we will prevent users from applying for certificate if they have pending applications -->
@@ -295,7 +286,7 @@
 														
 														  <?php } ?> 
 														   <?php if($investment_id == null  ){  ?>
-														<li class=""><a href ="<?php echo url_for('investmentapp/new') ?>"><i class="icon-fire"></i> Investment Certificates </a></li>		
+														<li class=""><a href ="<?php echo url_for('investmentapp/new') ?>"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>		
 														  <?php } ?>
 															
 														<?php endif; ?>
@@ -303,18 +294,20 @@
 			<!-- End control code -->	
 					</ul>
 				</li>
-				<li class="has-sub"><a href="javascript:;"><i class="icon-table"></i> EIA Certificate <span class="arrow"></span></a>
+				<li class="has-sub"><a href="javascript:;"><i class="icon-table"></i> <?php echo __('EIA Certificate') ?> <span class="arrow"></span></a>
 				<ul class="sub">
-					<li class=""><a href ="#"><i class="icon-fire"></i> EIA Certificate </a></li>
+					<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificate') ?> </a></li>
 				</ul>
 					
 				</li>
 				<li class="">
 					<a href="" >
-					<i class="icon-lightbulb"></i> Help
+					<i class="icon-lightbulb"></i> <?php echo __('Help') ?>
 					</a>
 				</li>				
-				<li> <?php echo link_to('<i class="icon-signout"></i> Logout','@sf_guard_signout'); ?></li>
+				<li> 
+				<li class=""><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-fire"></i> <?php echo __('Logout') ?> </a></li>
+				
 			</ul>
 		</div>
 		<!-- END SIDEBAR -->
@@ -344,7 +337,10 @@
 					<?php echo $sf_content ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
 				<div id="footer" class="footer_not_signed_in">
-				2013 &copy; Rwanda Development Board. All Rights Reserved.
+				<?php 
+				$date = date('Y') ;
+				?>
+				<?php __('$date &copy; Rwanda Development Board. All Rights Reserved.') ?>
 				</div>
 				<?php endif; ?>
 				<?php if($sf_user->isAuthenticated()): ?>	
@@ -362,7 +358,10 @@
 	<!-- END CONTAINER -->
 	<!-- BEGIN FOOTER -->
 	<div id="footer">
-		2013 &copy; Rwanda Development Board. All Rights Reserved.
+		<?php 
+				$date = date('Y') ;
+				?>
+				<?php __('$date &copy; Rwanda Development Board. All Rights Reserved.') ?>
 		<div class="span pull-right">
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>

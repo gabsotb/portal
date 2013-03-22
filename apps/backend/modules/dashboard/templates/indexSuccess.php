@@ -308,7 +308,7 @@ $(function () {
                  <div class="span8">
 						<div class="widget">
 						          <div class="widget-title">
-									<h4><i class="icon-signal"></i>RDB Task Processing Performance Pie Chart</h4>
+									<h4><i class="icon-signal"></i><?php echo __('RDB Task Processing Performance Pie Chart') ?></h4>
 															
 								</div>
 								<div id="cont" class="widget-body">
@@ -320,7 +320,7 @@ $(function () {
 				 <div class="span4">
 					 <div class="widget">
 					     <div class="widget-title">
-									<h4><i class="icon-bell"></i>Notifications</h4>
+									<h4><i class="icon-bell"></i><?php echo __('Notifications') ?></h4>
 									<span class="tools">
 									<a href="javascript:;" class="icon-chevron-down"></a>
 									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
