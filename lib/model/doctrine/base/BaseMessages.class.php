@@ -7,20 +7,23 @@
  * 
  * @property string $sender
  * @property string $recepient
+ * @property string $message_subject
  * @property string $message
  * @property string $attachement
  * @property string $token
  * 
- * @method string   getSender()      Returns the current record's "sender" value
- * @method string   getRecepient()   Returns the current record's "recepient" value
- * @method string   getMessage()     Returns the current record's "message" value
- * @method string   getAttachement() Returns the current record's "attachement" value
- * @method string   getToken()       Returns the current record's "token" value
- * @method Messages setSender()      Sets the current record's "sender" value
- * @method Messages setRecepient()   Sets the current record's "recepient" value
- * @method Messages setMessage()     Sets the current record's "message" value
- * @method Messages setAttachement() Sets the current record's "attachement" value
- * @method Messages setToken()       Sets the current record's "token" value
+ * @method string   getSender()          Returns the current record's "sender" value
+ * @method string   getRecepient()       Returns the current record's "recepient" value
+ * @method string   getMessageSubject()  Returns the current record's "message_subject" value
+ * @method string   getMessage()         Returns the current record's "message" value
+ * @method string   getAttachement()     Returns the current record's "attachement" value
+ * @method string   getToken()           Returns the current record's "token" value
+ * @method Messages setSender()          Sets the current record's "sender" value
+ * @method Messages setRecepient()       Sets the current record's "recepient" value
+ * @method Messages setMessageSubject()  Sets the current record's "message_subject" value
+ * @method Messages setMessage()         Sets the current record's "message" value
+ * @method Messages setAttachement()     Sets the current record's "attachement" value
+ * @method Messages setToken()           Sets the current record's "token" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -41,6 +44,11 @@ abstract class BaseMessages extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              'length' => 255,
+             ));
+        $this->hasColumn('message_subject', 'string', 300, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 300,
              ));
         $this->hasColumn('message', 'string', 4000, array(
              'type' => 'string',
