@@ -21,8 +21,9 @@ class businessplanActions extends sfActions
 			   $param = $request->getParameter('id');
 			   $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 	           $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-			   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+			  // $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
 			   $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+			  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
 			    ///
 			    $db = Doctrine_Manager::getInstance()->getCurrentConnection(); 
 				$query = null;
@@ -127,13 +128,18 @@ class businessplanActions extends sfActions
 				  $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 			      $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 				  $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				 // $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				  //let us use another better method
 				  $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
+				//  print($business_plan); exit;
 				  //working if we select all
 				  $data =  $db->fetchAssoc("SELECT id, year1, year2, year3, year4, year5 FROM costs  where business_plan = '$business_plan'  limit 5 ") ;
 				  //we select only records belonging to this particular user
 				  /*$data =  $db->fetchAssoc("SELECT id, fixed_cost, year1, year2, year3, year4, year5 WHERE business_plan = '$business_plan' FROM costs ") ; */ 
-				 // print_r($business_plan); exit;
+				 // print_r($userName);
+                //  print_r($business_plan);
+
 				 
 				 if($data == null)
 				 {
@@ -174,8 +180,9 @@ class businessplanActions extends sfActions
 			   $param = $request->getParameter('id');
 			   $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 	           $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-			   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+			 //  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
 			   $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+			   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
 			    ///
 			    $db = Doctrine_Manager::getInstance()->getCurrentConnection(); 
 				$query = null;
@@ -278,8 +285,11 @@ class businessplanActions extends sfActions
 				  $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 			      $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 				  $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				 // $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				  
 				  $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
+				//  print($business_plan); exit;
 				  //working if we select all
 				  $data =  $db->fetchAssoc("SELECT id, year1, year2, year3, year4, year5 FROM startupexpenses  where business_plan = '$business_plan'  limit 5 ") ;
 				  //we select only records belonging to this particular user
@@ -323,8 +333,10 @@ class businessplanActions extends sfActions
 			   $param = $request->getParameter('id');
 			   $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 	           $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-			   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+			  // $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
 			   $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+			  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
+			  
 			    ///
 			    $db = Doctrine_Manager::getInstance()->getCurrentConnection(); 
 				$query = null;
@@ -415,8 +427,10 @@ class businessplanActions extends sfActions
 				  $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 			      $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 				  $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				  //$business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				  
 				  $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
 				  //working if we select all
 				  $data =  $db->fetchAssoc("SELECT id, local_source, foreign_source FROM structurefinancial  where business_plan = '$business_plan'  limit 5 ") ;
 				  //we select only records belonging to this particular user
@@ -460,8 +474,10 @@ class businessplanActions extends sfActions
 			   $param = $request->getParameter('id');
 			   $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 	           $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-			   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+			 //  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+			 
 			   $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+			   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
 			    ///
 			    $db = Doctrine_Manager::getInstance()->getCurrentConnection(); 
 				$query = null;
@@ -564,8 +580,10 @@ class businessplanActions extends sfActions
 				  $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 			      $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 				  $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				//  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				
 				  $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
 				  //working if we select all
 				  $data =  $db->fetchAssoc("SELECT id, year1, year2, year3, year4, year5 FROM  employementlocal  where business_plan = '$business_plan'  limit 5 ") ;
 				  //we select only records belonging to this particular user
@@ -609,8 +627,10 @@ class businessplanActions extends sfActions
 			   $param = $request->getParameter('id');
 			   $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 	           $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-			   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+			//   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+			
 			   $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+			   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
 			    ///
 			    $db = Doctrine_Manager::getInstance()->getCurrentConnection(); 
 				$query = null;
@@ -713,8 +733,10 @@ class businessplanActions extends sfActions
 				  $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 			      $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 				  $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				  //$business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				 
 				  $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+				   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
 				  //working if we select all
 				  $data =  $db->fetchAssoc("SELECT id, year1, year2, year3, year4, year5 FROM  employementforeign  where business_plan = '$business_plan'  limit 5 ") ;
 				  //we select only records belonging to this particular user
@@ -757,8 +779,10 @@ class businessplanActions extends sfActions
 			   $param = $request->getParameter('id');
 			   $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 	           $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-			   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+			 //  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+			 
 			   $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+			   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
 			    ///
 			    $db = Doctrine_Manager::getInstance()->getCurrentConnection(); 
 				$query = null;
@@ -862,8 +886,10 @@ class businessplanActions extends sfActions
 				  $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 			      $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 				  $userName  = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				 // $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
+				
 				  $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+				   $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
 				  //working if we select all
 				  $data =  $db->fetchAssoc("SELECT id, year1, year2, year3, year4, year5 FROM  plannedperformance  where business_plan = '$business_plan'  limit 5 ") ;
 				  //we select only records belonging to this particular user
@@ -932,7 +958,21 @@ class businessplanActions extends sfActions
 	  //instead of forwarding to 404, we assume this user has not passed step 1 and we redirect him
 	  $this->redirect('investmentapp/new');
 	  }
-	  if($business != null)
+	  //we will also check the token for security reasons
+	  $token = $request->getParameter('token');
+	//we check if this token exist if not, we forward to 404 page
+	$query = Doctrine_Core::getTable('InvestmentApplication')->checkToken($token);
+	$value = null;
+	foreach($query as $q)
+	{
+	 $value = $q['token'];
+	}
+	if($value == null)
+	{
+	 $this->forward404(sprintf('Token Error. The Token used for validation Not found'));
+	}
+	
+	  if($business != null && $value != null)
 	  {
 	    
 	    $this->form = new BusinessPlanForm();
@@ -986,8 +1026,20 @@ class businessplanActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
+	  //before we save we need to check and make sure that we are saving or making a resubmission and avoid sending unneccessary messages or
+	  //resaving the same record again.
+	  $allFormValues = $request->getParameter($this->form->getName());
+	 //access values
+      $business_id = $allFormValues['business_id'];
+	  
+	  ///
+	  $id = Doctrine_Core::getTable('InvestmentResubmission')->checkIdExistance($business_id);
+	  //new application
+	  if($id == null)
+		 {
+		   //////
       $business_plan = $form->save();
-
+      
      //we send message to the investor informing them of successful application
 	 //get the current logged in user email address
 				  $email = sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
@@ -1096,7 +1148,60 @@ class businessplanActions extends sfActions
 										 "http://198.154.203.38:8234/backend.php");
 				  
 	             /////////////////////////////////////////////////
-	 $this->redirect('investmentapp/index');
+	    $this->redirect('investmentapp/index');
+		 }	 
+	 //resubmission
+	 if($id != null)
+		 {
+		   	   //////
+              $business_plan = $form->save();
+			  //we notify the data admin who requested for resubmission
+			  $admin_id = Doctrine_Core::getTable('InvestmentResubmission')->getCreatedBy($id);
+			  //
+			  $query = Doctrine_Core::getTable('TaskAssignment')->getUserEmailAddress($admin_id);
+			  $admin_name = null ;
+			  $admin_email = null ;
+			  ////
+			  foreach( $query as $q)
+			  {
+			    $admin_name = $q['username'];
+				$admin_email = $q['email_address'];
+			  }
+			  ///send email
+			  $username = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
+			  $email = sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
+			  $this->getMailer()->composeAndSend('noreply@rdb.com',
+										$admin_email ,
+										'Applicant Edited Documents ',
+										"'$username' has resubmitted his/her application for investment certificate application. Please 
+										login to your account and process it. Link http://198.154.203.38:8234/backend.php ");
+			////
+			          $msg = new Messages(); 
+				      $notify = new Notifications(); 
+				  ////notify admin first
+				      $msg->sender = "noreply@rdb.com";
+					  $msg->recepient = $admin_name ;
+					  $msg->message = "'$username' has resubmitted his/her application for investment certificate application. Please 
+										login to your account and process it. Link http://198.154.203.38:8234/backend.php ";
+					  $msg->created_at = date('Y-m-d H:i:s');
+					  ///
+					 $notify->recepient = $email;
+				     $notify->message = "'$username' has resubmitted his/her application for investment certificate application";
+				     $notify->created_at = date('Y-m-d H:i:s');
+				       ///
+					 $msg->save();
+				     $notify->save();
+					 ///
+					 $notify2 = new Notifications(); 
+					 $notify2->recepient = $email;
+				     $notify2->message = "Resubmission of Application received";
+				     $notify2->created_at = date('Y-m-d H:i:s');
+					 $notify2->save();
+					 ///
+			 $this->redirect('investmentapp/index');
+					 
+		 }
+	 
     }
   }
 }

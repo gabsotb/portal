@@ -97,6 +97,13 @@
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
+					<?php echo $form['token']->render(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => 'Select City / Province', 'data-original-title' => 'Business Setup Province/City')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
 					
 					<?php echo $form->renderHiddenFields(); ?>
 				</div>

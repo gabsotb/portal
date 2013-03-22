@@ -12,7 +12,7 @@ class InvestmentResubmissionForm extends BaseInvestmentResubmissionForm
 {
   public function configure()
   {
-   unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by']);
+    unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by']);
 	$this->setDefault('created_at',date('Y-m-d 00:00:00'));
     //we get a session variable for this user
      $this->id = sfContext::getInstance()->getUser()->getAttribute('business_id');

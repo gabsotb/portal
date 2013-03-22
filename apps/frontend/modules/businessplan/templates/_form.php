@@ -300,9 +300,6 @@
 		 <tr>
         <td colspan="2">
           <!--&nbsp;<a href="<?php //echo url_for('businessplan/index') ?>">Back to list</a> -->
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'businessplan/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-          <?php endif; ?>
           <input class="btn btn-primary" type="submit" value="Submit" />
         </td>
 		</tr>
@@ -352,7 +349,10 @@
 
             $parent.find('button[name=load]').click(function () {
               $.ajax({
-                url: "<?php echo url_for('businessplan/loading') ?>",
+                url: "<?php 
+				  //$id = 1 ;
+				  //$token = "87feb264974d9c9e9627859108705d31d63129b9" ;
+				echo url_for('businessplan/loading') ?>",
                 dataType: 'json',
                 type: 'GET',
                  success: function (res) {

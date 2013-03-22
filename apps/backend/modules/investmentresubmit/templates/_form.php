@@ -14,7 +14,7 @@
 					<?php echo $form['message_subject']->renderRow(array('class' => 'span10 popovers' ,'size' => '20', 'data-content' => 'Please Provide a descriptive title' , 'data-trigger' => 'hover', 'data-original-title' => 'Subject')) ?>
 				</div>
 			</div>
-		</div>
+		</div>	
 	  <div class="control-group">
 					<div class="controls">
 						<div class="input-prepend">

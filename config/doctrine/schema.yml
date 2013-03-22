@@ -56,7 +56,7 @@ InvestmentResubmission:
    updated: { name: updated_by,type: string}
  columns:
   business_id : {type: integer, notnull: true, unique: true}
-  message_subject: {type: string(500), notnull: true}
+  message_subject: {type: string(255), notnull: true}
   message: {type: string(2000), notnull: true}
 ######  table for testing auto saving and loading
 Structurefinancial: ## for Start up expenses costs

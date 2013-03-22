@@ -16,4 +16,32 @@ class InvestmentResubmissionTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('InvestmentResubmission');
     }
+	//method to check for existance of business_id
+	public function checkIdExistance($business_id)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	  SELECT business_id FROM  investment_resubmission 	WHERE business_id = '$business_id' limit 1
+	  ");
+	  $id = null ;
+	  foreach($query as $q)
+	  {
+	   $id = $q['business_id'];
+	  }
+	  //
+	  return $id;
+	}
+	//get the user who created InvestmentResubmission Account
+	public function getCreatedBy($business_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT created_by FROM investment_resubmission WHERE
+	 business_id = '$business_id' ");
+	 //
+	 $id = null ;
+	 foreach($query as $q)
+	 {
+	  $id = $q['created_by'] ;
+	 }
+	 ///
+	 return $id;
+	}
 }

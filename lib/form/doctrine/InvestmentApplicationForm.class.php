@@ -54,6 +54,9 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
   $this->validatorSchema['registration_number']  = new sfValidatorString(array(),array('required' => 'The Company Registration Number is Required?'));
  // $this->validatorSchema['company_legal_nature']  = new sfValidatorString(array(), array('required' => 'What is Your company Legal Nature?'));
  // $this->validatorSchema['company_representative']  = new sfValidatorString(array(), array('required' => 'Who is your company representatives?'));
-  
+   $date = date('Y-m-d H:i:s');
+  $this->setDefault('token',sha1($date.rand(11111, 99999)) );
+  //hide token
+  $this->widgetSchema['token'] = new sfWidgetFormInputHidden();
   }
 }

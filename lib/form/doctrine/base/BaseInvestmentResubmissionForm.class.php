@@ -17,7 +17,7 @@ abstract class BaseInvestmentResubmissionForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'              => new sfWidgetFormInputHidden(),
       'business_id'     => new sfWidgetFormInputText(),
-      'message_subject' => new sfWidgetFormTextarea(),
+      'message_subject' => new sfWidgetFormInputText(),
       'message'         => new sfWidgetFormTextarea(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
@@ -28,7 +28,7 @@ abstract class BaseInvestmentResubmissionForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'business_id'     => new sfValidatorInteger(),
-      'message_subject' => new sfValidatorString(array('max_length' => 500)),
+      'message_subject' => new sfValidatorString(array('max_length' => 255)),
       'message'         => new sfValidatorString(array('max_length' => 2000)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),

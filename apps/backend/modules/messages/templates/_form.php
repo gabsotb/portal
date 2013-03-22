@@ -30,7 +30,7 @@
     <tfoot>
       <tr>
         <td colspan="2">
-        
+          <?php echo $form->renderHiddenFields(); ?>
           <input type="submit" class="btn btn-success"  value="Send" />
         </td>
       </tr>

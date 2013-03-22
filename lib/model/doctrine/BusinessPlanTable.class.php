@@ -37,6 +37,20 @@ class BusinessPlanTable extends Doctrine_Table
 	   ");
 	   return $query;
 	}
+	//a method that returns a business user created_by id given a particular business_id
+	public function getUserId($business_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	 SELECT business_plan.created_by FROM business_plan WHERE business_plan.investment_id = '$business_id'
+	 ");
+	 $created_by = null;
+	 foreach($query as $q)
+	 {
+	   $created_by = $q['created_by'];
+	 }
+	 return $created_by;
+	 
+	}
 	//we select email addresses for users who have rights to assignjobs to data admins and notify them 
 	public function getUsers($role)
 	{
