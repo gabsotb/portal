@@ -38,4 +38,9 @@ all:
   escaping_method:        ESC_SPECIALCHARS
   # Enable the database manager
   use_database:           true
+  i18n: true
+  charset: utf-8
+  # Enable the database manager
+  use_database:           true
+  standard_helpers: [Partial,Cache,I18N]
   

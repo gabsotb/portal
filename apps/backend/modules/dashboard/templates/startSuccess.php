@@ -52,16 +52,16 @@
 				   <div id="widget-resubmit" class="modal hide">
 						<div class="modal-header">
 							<button data-dismiss="modal" class="close" type="button">×</button>
-							<h3>Request Document Resubmission</h3>
+							<h3><?php echo __('Request Document Resubmission') ?></h3>
 						</div>
 						<div class="modal-body">
-							<p>Please Note that You are about to request this client to resubmit data. This therefore means the client 
+							<p><?php echo __('Please Note that You are about to request this client to resubmit data. This therefore means the client 
 							documents processing will continue after he/she resubmits. You will not be able to process the application untill
-							the client resubmits his/her application.</p>
-							<p>Are you sure about this? </p>
+							the client resubmits his/her application')?>.</p>
+							<p><?php echo __('Are you sure about this')?>? </p>
 							
-							 <a href="<?php echo url_for('investmentresubmit/new?id='.$id)?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> Okay I understand</button> </a>&nbsp;&nbsp;&nbsp;
-							 <button data-dismiss="modal" class="close" type="button">Cancel</button>
+							 <a href="<?php echo url_for('investmentresubmit/new?id='.$id)?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Okay I understand') ?></button> </a>&nbsp;&nbsp;&nbsp;
+							 <button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
 							
 							
 							
@@ -71,15 +71,15 @@
 				 <div id="widget-decline" class="modal hide">
 						<div class="modal-header">
 							<button data-dismiss="modal" class="close" type="button">×</button>
-							<h3>Decline Application</h3>
+							<h3><?php echo __('Decline Application') ?></h3>
 						</div>
 						<div class="modal-body">
-							<p>Your are about to decline this applicant application. It is a good idea to inform the Manager and share your decision. You can send a message to the Manager/ Supervisor who assigned you this task and inform them of your
-							decision by clicking <a href="<?php echo url_for('messages/new')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> Send Message</button></a></p>
+							<p><?php echo __('Your are about to decline this applicant application. It is a good idea to inform the Manager and share your decision. You can send a message to the Manager/ Supervisor who assigned you this task and inform them of your
+							decision by clicking')?> <a href="<?php echo url_for('messages/new')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Message') ?></button></a></p>
 							
-							<p> If you are sure about you decision, then click continue or just cancel</p>
-							 <button class="btn btn-warning"><i class="icon-plus icon-white"></i> Continue</button> &nbsp;&nbsp;&nbsp;
-							 <button data-dismiss="modal" class="close" type="button">Cancel</button>
+							<p> <?php echo __('If you are sure about you decision, then click continue or just cancel') ?></p>
+							 <button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> &nbsp;&nbsp;&nbsp;
+							 <button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
 							
 							
 							
@@ -93,16 +93,18 @@
 							<!-- BEGIN GENERAL PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><?php echo("BUSINESS PROPOSAL FOR $name") ?></h4>
+									<h4><?php echo __('BUSINESS PROPOSAL FOR') ?>
+									<?php echo $name ?>
+									</h4>
 															
 								</div>
 								<div class="widget-body">
 									<div class="row-fluid">
 										<div class="span9">
 											<div class="alert alert-block alert-danger">
-										<h4 class="alert-heading"><?php echo("Important!") ?></h4>
+										<h4 class="alert-heading"><?php echo __('Important!') ?></h4>
 										<p>
-											<?php echo("This is the business proposal for  $name. Please Read it Carefully before generating report."); ?>
+											<?php echo __('This is the business proposal for  $name. Please Read it Carefully before generating report'); ?>.
 										</p>
 										
 									         </div>
@@ -113,7 +115,7 @@
 										 <div class="span10">
 										  <div class="widget">
 										        <div class="widget-title">
-												<h4><?php echo("PROJECT BRIEF") ;?> </h4>
+												<h4><?php echo __('PROJECT BRIEF') ;?> </h4>
 																		
 											  </div>
 										      <div class="widget-body">
@@ -140,32 +142,32 @@
 												 <ul class="item-list scroller padding" data-height="307" data-always-visible="1">
 												   <li>
 													<span><i class="icon-user"></i></span>
-													<span>APPLICANT FULL NAMES: </span>
+													<span><?php echo __('APPLICANT FULL NAMES') ?>: </span>
 													<span><?php echo $first_name; echo $last_name; ?> </span>
 												  </li>
 												   <li>
 													<span><i class="icon-user-md"></i></span>
-													<span>TITLE IN THE COMPANY: </span>
+													<span><?php echo __('TITLE IN THE COMPANY') ?>: </span>
 													<span>Manager</span>
 												  </li>
 												   <li>
 													<span><i class="icon-globe"></i></span>
-													<span>CITIZENSHIP: </span>
+													<span><?php echo __('CITIZENSHIP') ?>: </span>
 													<span><?php echo $citizenship ?></span>
 												  </li>
 												   <li>
 													<span><i class="icon-mobile-phone"></i></span>
-													<span>TELEPHONE (mobile): </span>
+													<span><?php echo __('TELEPHONE (mobile)') ?>: </span>
 													<span><?php echo $phone_number ?></span>
 												  </li>
 												  <li>
 													<span><i class="icon-tablet"></i></span>
-													<span>FAX: </span>
+													<span><?php echo __('FAX') ?>: </span>
 													<span>3434</span>
 												  </li>
 												   <li>
 													<span><i class="icon-envelope"></i></span>
-													<span>PERSONAL E-MAIL: </span>
+													<span><?php echo __('PERSONAL E-MAIL') ?>: </span>
 													<span><?php echo $email_address ?></span>
 												  </li>
 												  </ul>
@@ -179,7 +181,7 @@
 										  <div class="widget">
 										     
 										      <div class="widget-title">
-												<h4><?php echo ("COMPANY DETAILS") ?></h4>						
+												<h4><?php echo __('COMPANY DETAILS') ?></h4>						
 											 
 											 </div>
 										      <div class="widget-body">

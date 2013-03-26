@@ -10,10 +10,10 @@ $(function () {
 				width: 650
             },
             title: {
-                text: 'RDB Performance Analysis, year 2013'
+                text: '<?php echo __('RDB Performance Analysis, year 2013')?>'
             },
             subtitle: {
-                text: 'Source: RDB E-portal System'
+                text: '<?php echo __('Source: RDB E-portal System') ?>'
             },
             xAxis: {
                 categories: [
@@ -34,7 +34,7 @@ $(function () {
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Number of Transaction Processed'
+                    text: '<?php echo __('Number of Transaction Processed') ?>'
                 }
             },
             legend: {
@@ -60,15 +60,15 @@ $(function () {
                 }
             },
                 series: [{
-                name: 'Investment Certificates Issued',
+                name: '<?php echo __('Investment Certificates Issued') ?>',
                 data: [49.9, 71.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     
             }, {
-                name: 'EIA Certificates Issued',
+                name: '<?php echo __('EIA Certificates Issued')?>',
                 data: [83.6, 78.8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     
             }, {
-                name: 'Tax Exemptions Granted',
+                name: '<?php echo __('Tax Exemptions Granted') ?>',
                 data: [48.9, 38.8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     
             }]

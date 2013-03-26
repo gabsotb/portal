@@ -14,6 +14,17 @@
 <!-- END HEAD -->
 <body class="fixed-top">
 	<?php if($sf_user->isAuthenticated()): ?>
+	 <div id="widget-language" class="modal hide">
+						<div class="modal-header">
+							<button data-dismiss="modal" class="close" type="button">×</button>
+							<h3><?php echo __('Language Change') ?></h3>
+						</div>
+						<div class="modal-body">
+							<b><?php echo __('Please Select your prefered Language:') ?></b> <br/>
+							
+							 <?php include_component('language', 'language') ?>
+						</div>
+				</div>
 	<!-- BEGIN HEADER -->
 	<div id="header" class="navbar navbar-inverse navbar-fixed-top">
 		<!-- BEGIN TOP NAVIGATION BAR -->
@@ -88,7 +99,7 @@
 							</a>
 							<ul class="dropdown-menu extended notification">
 								<li>
-									<p>You have <?php echo $no ; ?> notifications</p>
+									<p><?php echo __('You have') ?> <?php echo $no ; ?> <?php echo __('notifications') ?></p>
 								</li>
 								<?php 
                                    $notification = Doctrine_Core::getTable('Notifications')->getNotifications($user);?>
@@ -129,7 +140,7 @@
 							</a>
 							<ul class="dropdown-menu extended inbox">
 								<li>
-									<p>You have <?php echo $messages; ?> new messages</p>
+									<p><?php echo __('You have') ?> <?php echo $messages; ?> <?php echo __('new messages') ?></p>
 								</li>
 									<!-- Now, we show the user his/her messages. maximum of 5 -->
 								<?php 
@@ -152,7 +163,7 @@
 								<?php endforeach; ?>
 								
 								<li>
-									<a href="<?php echo url_for('my_inbox') ?>">See all messages</a>
+									<a href="<?php echo url_for('my_inbox') ?>"><?php echo __('See all messages') ?></a>
 								</li>
 							</ul>
 						</li>
@@ -165,8 +176,9 @@
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="<?php echo url_for('settings') ?>"><i class="icon-cogs"></i> Account Settings</a></li>
-								<li><a href="#"><i class="icon-pushpin"></i> Support</a></li>							
+								<li><a href="<?php echo url_for('settings') ?>"><i class="icon-cogs"></i> <?php echo __('Account Settings') ?></a></li>
+								<li><a href="#widget-language"  data-toggle="modal"><i class="icon-wrench"></i> <?php echo __('Change Language') ?></a></li>
+								<li><a href="#"><i class="icon-pushpin"></i> <?php echo __('Support') ?></a></li>							
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
@@ -188,9 +200,9 @@
 									?>
 								
 								</a></li>
-								<li><a href="<?php echo url_for('my_inbox') ?>"><i class="icon-envelope-alt"></i> Inbox</a></li>
+								<li><a href="<?php echo url_for('my_inbox') ?>"><i class="icon-envelope-alt"></i> <?php echo __('Inbox') ?></a></li>
 								<li class="divider"></li>
-								<li><?php echo link_to('<i class="icon-signout"></i> Logout','@sf_guard_signout'); ?></li>
+								<li><a href="<?php echo url_for('sf_guard_signout') ?>"<i class="icon-key"></i> <?php echo __('Logout') ?></a></li>
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
@@ -222,63 +234,63 @@
 				<?php if($sf_user->hasCredential('assignJob')):?>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-group"></i> User Management
+					<i class="icon-group"></i> <?php echo __('User Management') ?>
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><?php echo link_to('<i class="icon-user"></i> User Accounts', '@sf_guard_users') ?> </li>
-						<li class=""><?php echo link_to('<i class="icon-group"></i> User Groups', '@sf_guard_user_groups') ?> </li>
-						<li class=""><?php echo link_to('<i class="icon-filter"></i> Groups Permissions', '@sf_guard_user_permissions') ?> </li>
+						<li><a href="<?php echo url_for('sf_guard_users') ?>"><i class="icon-key"></i> <?php echo __('User Accounts') ?></a> </li>
+						<li><a href="<?php echo url_for('sf_guard_user_groups') ?>"><i class="icon-key"></i> <?php echo __('User Groups') ?></a></li>
+						<li><a href="<?php echo url_for('sf_guard_user_permissions') ?>"><i class="icon-key"></i> <?php echo __('Groups Permissions') ?></a></li>
 					</ul>
 				</li>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bar-chart"></i> Approve Requests
+					<i class="icon-bar-chart"></i> <?php echo __('Approve Requests') ?>
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-fire"></i> Investment Certificates </a></li>
-						<li class=""> <a href ="#"><i class="icon-fire"></i> EIA Certificates </a></li>
+						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificates') ?> </a></li>
 					</ul>
 				</li>
-				<li class=""><?php echo link_to('<i class="icon-user"></i> Information Portlets', 'information_portlets') ?> </li>
+				<li> <a href ="<?php echo url_for('information_portlets') ?>"><i class="icon-user"></i> <?php echo __('Information Portlets') ?> </a> </li>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bar-chart"></i>Certificates Issued
+					<i class="icon-bar-chart"></i><?php echo __('Certificates Issued') ?>
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-fire"></i> Investment Certificates </a></li>
-						<li class=""> <a href ="#"><i class="icon-fire"></i> EIA Certificates </a></li>
+						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificates') ?> </a></li>
 					</ul>
 				</li>
 				<?php endif ?>
 				<!-- end -->
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bar-chart"></i> Resubmission 
+					<i class="icon-bar-chart"></i> <?php echo __('Resubmission') ?> 
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-fire"></i> View Requests </a></li>
+						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('View Requests') ?> </a></li>
 						
 					</ul>
 				</li>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bar-chart"></i> Reporting
+					<i class="icon-bar-chart"></i> <?php echo __('Reporting') ?>
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-fire"></i> Investment Certificates </a></li>
-						<li class=""> <a href ="#"><i class="icon-fire"></i> EIA Certificates </a></li>
-						<li class="">  <a href ="#"><i class="icon-fire"></i> Tax Exemptions</a> </li>
+						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificates') ?> </a></li>
+						<li class="">  <a href ="#"><i class="icon-fire"></i> <?php echo __('Tax Exemptions') ?></a> </li>
 					</ul>
 				</li>
-				<li> <?php echo link_to('<i class="icon-lightbulb"></i> Help','@'); ?></li>
+				<li class="">  <a href ="#"><i class="icon-lightbulb"></i> <?php echo __('Help') ?></a> </li>
 				
 				<!--<li class="">  <a href ="<?php //echo url_for('sfKoreroChannel/index') ?>"><i class="icon-fire"></i> Managers Channel</a> </li>-->
-				<li> <?php echo link_to('<i class="icon-signout"></i> Logout','@sf_guard_signout'); ?></li>
+				<li><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-fire"></i> <?php echo __('Logout') ?> </a></li>
 			</ul>
 		</div>
 		
@@ -304,12 +316,12 @@
 						if($sf_user->hasCredential('investmentcert')):
 						?>
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">E-portal Investment Certificate Data Administrator Dashboard  </h3>
+						<h3 class="page-title"><?php echo __('E-portal Investment Certificate Data Administrator Dashboard') ?>  </h3>
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="<?php echo url_for('dashboard/index') ?>">Data Administrator Dashboard</a> <span class="divider">/</span>
-								<b>View Jobs assigned to you. Process Investment Certificates Tasks Assigned to you.</b>
+								<a href="<?php echo url_for('dashboard/index') ?>"><?php echo __('Data Administrator Dashboard') ?></a> <span class="divider">/</span>
+								<b><?php echo __('View Jobs assigned to you. Process Investment Certificates Tasks Assigned to you.')?></b>
 							</li>
 							
 							<li><a href="#"></a></li>
@@ -321,12 +333,12 @@
 						 if($sf_user->hasCredential('eiacert')):
 						?>
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">E-portal EIA Certificate Data Administrator Dashboard </h3>
+						<h3 class="page-title"><?php echo __('E-portal EIA Certificate Data Administrator Dashboard') ?> </h3>
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="<?php echo url_for('dashboard/index') ?>">Data Administrator Dashboard</a> <span class="divider">/</span>
-								<b>View Jobs assigned to you. Process EIA Certificates Tasks Assigned to you.</b>
+								<a href="<?php echo url_for('dashboard/index') ?>"><?php echo __('Data Administrator Dashboard') ?></a> <span class="divider">/</span>
+								<b><?php echo __('View Jobs assigned to you. Process EIA Certificates Tasks Assigned to you.') ?></b>
 							</li>
 							
 							<li><a href="#"></a></li>
@@ -360,7 +372,10 @@
 					<?php echo $sf_content ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
 				<div id="footer" class="footer_not_signed_in">
-				2013 &copy; Rwanda Development Board. All Rights Reserved.
+				<?php 
+				$date = date('Y') ;
+				?>
+				<?php __('$date &copy; Rwanda Development Board. All Rights Reserved.') ?>
 				</div>
 				<?php endif; ?>
 			<?php if($sf_user->isAuthenticated()): ?>
@@ -374,7 +389,10 @@
 	
 	<!-- BEGIN FOOTER -->
 	<div id="footer">
-		2012 &copy; Rwanda Development Board. All Rights Reserved.
+		<?php 
+				$date = date('Y') ;
+				?>
+				<?php __('$date &copy; Rwanda Development Board. All Rights Reserved.') ?>
 		<div class="span pull-right">
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
