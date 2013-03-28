@@ -67,7 +67,7 @@
 							
 							
 						</div>
-				</div>
+				   </div>
 				 <div id="widget-decline" class="modal hide">
 						<div class="modal-header">
 							<button data-dismiss="modal" class="close" type="button">×</button>
@@ -189,52 +189,52 @@
 												 <ul class="item-list scroller padding" data-height="307" data-always-visible="1">
 												   <li>
 													<span><i class="icon-suitcase"></i></span>
-													<span>BUSINESS NAME: </span>
+													<span><?php echo __('BUSINESS NAME')?>: </span>
 													<span><?php echo $business_name ; ?></span>
 												  </li>
 												   <li>
 													<span><i class="icon-cloud"></i></span>
-													<span>NATURE OF BUSINESS/SECTOR: </span>
+													<span><?php echo __('NATURE OF BUSINESS/SECTOR') ?>: </span>
 													<span><?php echo $business_nature; ?></span>
 												  </li>
 												   <li>
 													<span><i class="icon-briefcase"></i></span>
-													<span>BUSINESS CATEGORY: </span>
+													<span><?php echo __('BUSINESS CATEGORY') ?>: </span>
 													<span><?php echo  $business_category ?></span>
 												  </li>
 												   <li>
 													<span><i class="icon-mobile-phone"></i></span>
-													<span>TELEPHONE (mobile): </span>
+													<span><?php echo __('TELEPHONE (mobile)') ?>: </span>
 													<span><?php echo $office_telephone ?></span>
 												  </li>
 												  <li>
 													<span><i class="icon-tablet"></i></span>
-													<span>FAX: </span>
+													<span><?php echo __('FAX')?>: </span>
 													<span><?php echo $fax ?></span>
 												  </li>
 												   <li>
 													<span><i class="icon-tablet"></i></span>
-													<span>P.O BOX: </span>
+													<span><?php echo __('P.O BOX')?>: </span>
 													<span><?php echo $post_box ?></span>
 												  </li>
 												  <li>
 													<span><i class="icon-star"></i></span>
-													<span>LOCATION: </span>
+													<span><?php echo __('LOCATION')?>: </span>
 													<span><?php echo $location ?></span>
 												  </li>
 												  <li>
 													<span><i class="icon-star"></i></span>
-													<span>SECTOR: </span>
+													<span><?php echo __('SECTOR')?>: </span>
 													<span><?php  echo $sector ?></span>
 												  </li>
 												  <li>
 													<span><i class="icon-star"></i></span>
-													<span>DISTRICT: </span>
+													<span><?php echo __('DISTRICT')?>: </span>
 													<span><?php echo $district ?></span>
 												  </li>
 												  <li>
 													<span><i class="icon-star"></i></span>
-													<span>CITY/PROVINCE: </span>
+													<span><?php echo __('CITY/PROVINCE')?>: </span>
 													<span><?php echo $city_province ?></span>
 												  </li>
 												  </ul>
@@ -248,7 +248,7 @@
 										 <div class="span10">
 										  <div class="widget">
 										      <div class="widget-title">
-												<h4>INVESTMENT AND FINANCING SCHEDULE & CAPITAL COST </h4>
+												<h4><?php echo __('INVESTMENT AND FINANCING SCHEDULE & CAPITAL COST') ?> </h4>
 												<span class="tools">
 												<a href="javascript:;" class="icon-chevron-down"></a>
 												<a href="javascript:;" class="icon-refresh"></a>		
@@ -267,7 +267,7 @@
 										 <div class="span10">
 										  <div class="widget">
 										      <div class="widget-title">
-												<h4>START UP EXPENSES</h4>						
+												<h4><?php echo __('START UP EXPENSES') ?></h4>						
 											  </div>
 										      <div class="widget-body">
 											  <div class="alert alert-block alert-info">
@@ -282,7 +282,7 @@
 										 <div class="span10">
 										  <div class="widget">
 										      <div class="widget-title">
-												<h4>FINANCING STRUCTURE </h4>						
+												<h4><?php echo __('FINANCING STRUCTURE') ?> </h4>						
 											  </div>
 										      <div class="widget-body">
 											    <div class="alert alert-block alert-info">
@@ -297,13 +297,13 @@
 										 <div class="span10">
 										  <div class="widget">
 										      <div class="widget-title">
-												<h4>EMPLOYMENT DETAILS </h4>						
+												<h4><?php echo __('EMPLOYMENT DETAILS')?> </h4>						
 											  </div>
 										      <div class="widget-body">
 											       <div class="alert alert-block alert-info">
 												    <div class="alert alert-success">
 														
-														<strong>LOCAL EMPLOYEES</strong> 
+														<strong><?php echo __('LOCAL EMPLOYEES') ?></strong> 
 													</div>
 												    <div id="mytable4"> </div>
 													 <div id="mytableconsole4"> </div>
@@ -313,7 +313,7 @@
 											     <div class="alert alert-block alert-info">
 								                      <div class="alert alert-success">
 														
-														<strong>EXPATRIATE EMPLOYEES</strong> 
+														<strong><?php echo __('EXPATRIATE EMPLOYEES') ?></strong> 
 													</div>
 												     <div id="mytable5"> </div>
 													 <div id="mytableconsole5"> </div>
@@ -327,7 +327,7 @@
 										 <div class="span10">
 										  <div class="widget">
 										      <div class="widget-title">
-												<h4>PLANNED COMPANY PERFORMANCE </h4>						
+												<h4><?php echo __('PLANNED COMPANY PERFORMANCE') ?> </h4>						
 											  </div>
 										      <div class="widget-body">
 											      <div class="alert alert-block alert-info">
@@ -340,13 +340,13 @@
 									    </div>
 									<div class="row-fluid">
 										<div class="span8">
-											<a href="<?php echo url_for('projectSummary/new?id='.$id) ?>"> <button type="button" class="btn btn-success">Make Report</button> </a> &nbsp;&nbsp;&nbsp;
+											<a href="<?php echo url_for('projectSummary/new?id='.$id) ?>"> <button type="button" class="btn btn-success"><?php echo __('Make Report') ?></button> </a> &nbsp;&nbsp;&nbsp;
 											<a href="#widget-resubmit" data-toggle="modal">
-											<button type="button" class="btn btn-inverse">Request Resubmission</button></a>&nbsp;&nbsp;&nbsp;
+											<button type="button" class="btn btn-inverse"><?php echo __('Request Resubmission') ?></button></a>&nbsp;&nbsp;&nbsp;
 											</a>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<a href="#widget-decline" data-toggle="modal">
-											<button type="button" class="btn btn-danger">Decline</button> </a>
+											<button type="button" class="btn btn-danger"><?php echo __('Decline') ?></button> </a>
 										</div>
 										
 									</div>
@@ -358,20 +358,20 @@
 							<!-- BEGIN UNORDERED LISTS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-reorder"></i><?php echo $name; ?> >>Attached by Applicant</h4>
+									<h4><i class="icon-reorder"></i><?php echo $name; ?> >><?php echo __('Attached by Applicant') ?></h4>
 									<span class="tools">
 									<a href="javascript:;" class="icon-chevron-down"></a>
 									</span>							
 								</div>
 								<div class="widget-body">
-								 <p>Download These attachment to view and analyze them</p>
+								 <p><?php echo __('Download These attachment to view and analyze them') ?></p>
 									<ul>
-										<li><a href ="<?php echo url_for('dashboard/download1?id='.$id)?>">Exemption on imported machinery(List of Items) </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download2?id='.$id)?>">Exemption on raw materials(List of Items) </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download3?id='.$id)?>">Land Ownership Document</a></li>
-										<li><a href ="<?php echo url_for('dashboard/download4?id='.$id)?>">Bill of Quantity  </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download5?id='.$id)?>">Drawings Document </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download6?id='.$id)?>">Construction Permit </a></li>
+										<li><a href ="<?php echo url_for('dashboard/download1?id='.$id)?>"><?php echo __('Exemption on imported machinery(List of Items)')?> </a></li>
+										<li><a href ="<?php echo url_for('dashboard/download2?id='.$id)?>"><?php echo __('Exemption on raw materials(List of Items)')?> </a></li>
+										<li><a href ="<?php echo url_for('dashboard/download3?id='.$id)?>"><?php echo __('Land Ownership Document') ?></a></li>
+										<li><a href ="<?php echo url_for('dashboard/download4?id='.$id)?>"><?php echo __('Bill of Quantity') ?>  </a></li>
+										<li><a href ="<?php echo url_for('dashboard/download5?id='.$id)?>"><?php echo __('Drawings Document') ?> </a></li>
+										<li><a href ="<?php echo url_for('dashboard/download6?id='.$id)?>"><?php echo __('Construction Permit') ?> </a></li>
 									</ul>
 								</div>
 							</div>
@@ -383,10 +383,10 @@
 									<div class="alert alert-block alert-info fade in">
 										<h4 class="alert-heading"><?php echo("Hint") ?></h4>
 										<p>
-											<?php echo("You are now processing application for investment certificate for") ?>  <font color="red">
+											<?php echo __("You are now processing application for investment certificate for") ?>  <font color="red">
 											<?php echo $name; ?></font>. 
 										</p>
-										<p><?php echo("Download the attachments and read the business proposal on the left side of your screen.
+										<p><?php echo __("Download the attachments and read the business proposal on the left side of your screen.
 										When done Click on the Make report button to generate a business proposal summary.")?></p>
 										
 									</div>
@@ -418,8 +418,8 @@
             $container.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Land', 'Construction', 'Plant and Machinery', 'Furniture', 'Other fixed assets'],
-              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              rowHeaders: ['<?php echo __('Land') ?>', '<?php echo __('Construction') ?>', '<?php echo __('Plant and Machinery') ?>', '<?php echo __('Furniture') ?>', '<?php echo __('Other fixed assets') ?>'],
+              colHeaders: ['<?php echo __('Year1') ?>', '<?php echo __('Year2') ?>', '<?php echo __('Year3') ?>', '<?php echo __('Year4') ?>', '<?php echo __('Year5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
               contextMenu: true,
@@ -447,7 +447,7 @@
                   handsontable_financial.loadData(data);
 				  
 				//  alert(handsontable('getData')[selection[0]]);
-                  $console.text('Investment and financing schedule & Capital cost Data loaded');
+                  $console.text('<?php echo __('Investment and financing schedule & Capital cost Data loaded') ?>');
                 }
               });
 			  
@@ -462,8 +462,8 @@
             $container2.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Studies', 'Travel Expenses', 'Starting Capital', 'Administrative & Licensing', 'Rental Fees', 'Others'],
-              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              rowHeaders: ['<?php echo __('Studies') ?>', '<?php echo __('Travel Expenses') ?>', '<?php echo __('Starting Capital') ?>', '<?php echo __('Administrative & Licensing') ?>', '<?php echo __('Rental Fees') ?>', '<?php echo __('Others') ?>'],
+              colHeaders: ['<?php echo __('Year1') ?>', '<?php echo __('Year2') ?>', '<?php echo __('Year3') ?>', '<?php echo __('Year4') ?>', '<?php echo __('Year5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
               contextMenu: true,
@@ -507,8 +507,8 @@
             $container3.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Equity', 'Loan from bank', 'Loan from mother company', 'Grant'],
-              colHeaders: ['Foreign source', 'Local  source'],
+              rowHeaders: ['<?php echo __('Equity') ?>', '<?php echo __('Loan from bank') ?>', '<?php echo __('Loan from mother company') ?>', '<?php echo __('Grant') ?>'],
+              colHeaders: ['<?php echo __('Foreign source') ?>', '<?php echo __('Local  source') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
               contextMenu: true,
@@ -550,8 +550,8 @@
             $container4.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Top Management', 'Technical/Professional', 'Skilled labour', 'Others (manpower,casual etc)'],
-              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              rowHeaders: ['<?php echo __('Top Management') ?>', '<?php echo __('Technical/Professional') ?>', '<?php echo __('Skilled labour') ?>', '<?php echo __('Others (manpower,casual etc)')?>'],
+              colHeaders: ['<?php echo __('Year1') ?>', '<?php echo __('Year2') ?>', '<?php echo __('Year3') ?>', '<?php echo __('Year4') ?>', '<?php echo __('Year5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
               contextMenu: true,
@@ -597,8 +597,8 @@
             $container5.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Top Management', 'Technical/Professional', 'Skilled labour', 'Others (manpower,casual etc)'],
-              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              rowHeaders: ['<?php echo __('Top Management') ?>', '<?php echo __('Technical/Professional')?>', '<?php echo __('Skilled labour')?>', '<?php echo __('Others (manpower,casual etc') ?> '],
+              colHeaders: ['<?php echo __('Year1') ?>', '<?php echo __('Year2') ?>', '<?php echo __('Year3') ?>', '<?php echo __('Year4') ?>', '<?php echo __('Year5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
               contextMenu: true,
@@ -644,8 +644,8 @@
             $container6.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Sales/Income', 'Total cost of sales', 'Gross profit', 'Total Indirect expenses', 'Profit before tax', 'Tax expense (30%)', 'Net profit'],
-              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              rowHeaders: ['<?php echo __('Sales/Income')?>', '<?php echo __('Total cost of sales')?>', '<?php echo __('Gross profit')?>', '<?php echo __('Total Indirect expenses')?>', '<?php echo __('Profit before tax')?>', '<?php echo __('Tax expense (30%)')?>', '<?php echo __('Net profit')?>'],
+              colHeaders: ['<?php echo __('Year1') ?>', '<?php echo __('Year2') ?>', '<?php echo __('Year3') ?>', '<?php echo __('Year4') ?>', '<?php echo __('Year5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
               contextMenu: true,
@@ -674,7 +674,7 @@
                   handsontable_planned.loadData(data);
 				  
 				//  alert(handsontable('getData')[selection[0]]);
-                  $console6.text('Planned Company Performance  Data loaded');
+                  $console6.text('<?php echo __('Planned Company Performance  Data loaded')?>');
                 }
               });
 			  

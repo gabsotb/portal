@@ -117,13 +117,13 @@ sfGuardUser:
     created_at: '2013-02-11 14:47:34'
     updated_at: '2013-02-17 19:48:49'
   sfGuardUser_3:
-    first_name: Venessa
+    first_name: Bonie
     last_name: Bonie
-    email_address: venessa@gmail.com
-    username: venessa
+    email_address: bonie@gmail.com
+    username: bonie
     algorithm: sha1
     salt: 158c19be6adba06a5834ba80c2d745c0
-    password: venessa
+    password: bonie
     is_active: true
     is_super_admin: false
     last_login: '2013-02-11 19:20:49'

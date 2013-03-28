@@ -371,12 +371,14 @@
 			
 					<?php echo $sf_content ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>
-				<div id="footer" class="footer_not_signed_in">
-				<?php 
-				$date = date('Y') ;
-				?>
-				<?php __('$date &copy; Rwanda Development Board. All Rights Reserved.') ?>
-				</div>
+						<div id="footer" class="footer_not_signed_in">
+						<?php 
+						 $date = date('Y') ;
+				        echo $date;
+						?>
+						<?php echo __('&copy; Rwanda Development Board. All Rights Reserved.') ?>
+						
+						</div>
 				<?php endif; ?>
 			<?php if($sf_user->isAuthenticated()): ?>
 				
@@ -390,9 +392,10 @@
 	<!-- BEGIN FOOTER -->
 	<div id="footer">
 		<?php 
-				$date = date('Y') ;
+				 $date = date('Y') ;
+				 echo $date;
 				?>
-				<?php __('$date &copy; Rwanda Development Board. All Rights Reserved.') ?>
+				<?php echo __('&copy; Rwanda Development Board. All Rights Reserved.') ?>
 		<div class="span pull-right">
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>

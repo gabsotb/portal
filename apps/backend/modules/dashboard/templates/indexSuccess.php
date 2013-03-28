@@ -951,7 +951,7 @@ $(function () {
 							 <?php endif; ?>	
 							<?php if(count($mytasks) <= 0): ?>
 								<div class="alert alert-info">
-										<strong>Information!</strong> <br/><?php echo __('Sorry, I found no new tasks assigned to you
+										<strong><?php echo __('Information') ?>!</strong> <br/><?php echo __('Sorry, I found no new tasks assigned to you
 										to display. I will try later') ?>... 
 								</div>
 							 <?php  endif; ?>

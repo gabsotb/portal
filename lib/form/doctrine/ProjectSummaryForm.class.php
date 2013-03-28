@@ -13,7 +13,7 @@ class ProjectSummaryForm extends BaseProjectSummaryForm
   public function configure()
   {
    $this->setDefault('created_at',date('Y-m-d H:i:s'));
-   unset($this['updated_at'],$this['updated_by'],$this['created_by']);
+   unset($this['updated_at'],$this['updated_by'],$this['created_by'], $this['token'], $this['created_at']);
    //
    $this->widgetSchema->setLabels(array(
 			  'created_at'    => 'Date'
