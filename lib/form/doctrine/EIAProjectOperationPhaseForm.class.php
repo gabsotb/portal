@@ -35,5 +35,7 @@ class EIAProjectOperationPhaseForm extends BaseEIAProjectOperationPhaseForm
 	  'choices'  => Doctrine_Core::getTable('EIAProjectDescription')->getQuestionValues(),
 	  'expanded' => false,
     ));
+	$this->widgetSchema['eiaproject_id'] = new sfWidgetFormInputHidden() ;
+	$this->setDefault('eiaproject_id', Doctrine_Core::getTable('EIAProjectDetail')->getProjectId());
   }
 }

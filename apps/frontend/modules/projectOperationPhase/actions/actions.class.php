@@ -25,7 +25,14 @@ class projectOperationPhaseActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new EIAProjectOperationPhaseForm();
+	if(!is_null($species=Doctrine_Core::getTable('EIAProjectImpactMeasures')->find(array($request->getParameter('id')))) && $species->getToken()==$request->getParameter('token'))
+	{
+		$this->form = new EIAProjectOperationPhaseForm();
+		
+	}else{
+		$this->getUser()->setFlash('notice','Please Fill in this form first before proceeding');
+		$this->redirect('@project_detail'); 
+	}
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -73,7 +80,7 @@ class projectOperationPhaseActions extends sfActions
     {
       $eia_project_operation_phase = $form->save();
 
-      $this->redirect('projectOperationPhase/edit?id='.$eia_project_operation_phase->getId());
+      $this->redirect('projectAttachment/new?id='.$eia_project_operation_phase->getId().'&token='.$eia_project_operation_phase->getToken());
     }
   }
 }

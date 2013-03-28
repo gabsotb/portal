@@ -50,8 +50,9 @@ class investmentappActions extends sfActions
 	
 	$this->checkCertificationStatus = Doctrine_Core::getTable('InvestmentApplication')->getCertificationStatus($userid);
 	//print_r($this->checkCertificationStatus); exit;
-	//Get EIA status for current user
-	//$this->eiaStatus = Doctrine_Core::getTable('EIApplication')->getStatus();
+	////////// EIA ///////////
+	//eia status for current user
+	$this->eiaStatus = Doctrine_Core::getTable('EIApplicationStatus')->getUserStatus();
 	//Get Project impact
 	//$this->impacts = Doctrine_Core::getTable('ProjectImpact')->getImpacts();
 	//$this->torStatus=Doctrine_Core::getTable('TorStatus')->getStatus();

@@ -25,7 +25,14 @@ class projectSocialEconomicActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new EIAProjectSocialEconomicForm();
+	if(!is_null($species=Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->find(array($request->getParameter('id')))) && $species->getToken()==$request->getParameter('token'))
+	{
+		$this->form = new EIAProjectSocialEconomicForm();
+		
+	}else{
+		$this->getUser()->setFlash('notice','Please Fill in this form first before proceeding');
+		$this->redirect('@project_detail'); 
+	}
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -73,7 +80,7 @@ class projectSocialEconomicActions extends sfActions
     {
       $eia_project_social_economic = $form->save();
 
-      $this->redirect('projectSocialEconomic/edit?id='.$eia_project_social_economic->getId());
+      $this->redirect('projectImpactMeasures/new?id='.$eia_project_social_economic->getId().'&token='.$eia_project_social_economic->getToken());
     }
   }
 }

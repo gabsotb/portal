@@ -41,8 +41,9 @@ class projectDetailActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($eia_project_detail = Doctrine_Core::getTable('EIAProjectDetail')->find(array($request->getParameter('id'))), sprintf('Object eia_project_detail does not exist (%s).', $request->getParameter('id')));
-    $this->form = new EIAProjectDetailForm($eia_project_detail);
+    $this->forward404Unless($eia_project_detail = Doctrine_Core::getTable('EIAProjectDetail')->find(array($request->getParameter('id'))) , sprintf('Object eia_project_detail does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($eia_project_detail->getToken == $request->getParameter('token'),'No such token exists');
+	$this->form = new EIAProjectDetailForm($eia_project_detail);
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -72,8 +73,10 @@ class projectDetailActions extends sfActions
     if ($form->isValid())
     {
       $eia_project_detail = $form->save();
-
-      $this->redirect('projectDetail/edit?id='.$eia_project_detail->getId());
+	  //Retieve values from the form and redirect
+		
+		//$this->getUser()->addFormHistory($eia_project_detail->getId(),$eia_project_detail->getToken());
+      $this->redirect('eiaProjectDeveloper/new?id='.$eia_project_detail->getId().'&token='.$eia_project_detail->getToken());
     }
   }
 }

@@ -25,7 +25,15 @@ class eiaProjectDeveloperActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new EIAProjectDeveloperForm();
+	if(!is_null($projectDetail=Doctrine_Core::getTable('EIAProjectDetail')->find(array($request->getParameter('id')))) && $projectDetail->getToken()==$request->getParameter('token'))
+	{
+		$this->form = new EIAProjectDeveloperForm();
+		
+	}else{
+		$this->getUser()->setFlash('notice','Please Fill in this form first before proceeding');
+		$this->redirect('@project_detail'); 
+	}
+		
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -73,7 +81,7 @@ class eiaProjectDeveloperActions extends sfActions
     {
       $eia_project_developer = $form->save();
 
-      $this->redirect('eiaProjectDeveloper/edit?id='.$eia_project_developer->getId());
+      $this->redirect('ProjectDescription/new?id='.$eia_project_developer->getId().'&token='.$eia_project_developer->getToken());
     }
   }
 }

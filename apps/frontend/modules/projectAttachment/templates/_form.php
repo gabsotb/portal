@@ -7,6 +7,9 @@
 <?php endif; ?>
  
  <div class="widget">
+ <div class="widget-title">
+	<h4>Attachments</h4>
+</div>
  <div class="widget-body">
   <table class="table table-striped table-bordered" id="table10">
    <tbody>

@@ -537,6 +537,7 @@ EIAProjectAttachment: ## for any attachment for a particula submitted applicatio
   perimeter_area_map:  {type: string(255), notnull: false}
   location_area_map:  {type: string(255), notnull: false}
   other_supporting_document:  {type: string(255), notnull: false}
+  project_reference_number: {type: string(255), notnull:false}
   token: {type: string(255), notnull: false} 
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIAProjectDetailAttachment }

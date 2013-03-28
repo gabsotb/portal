@@ -6,6 +6,10 @@
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
 <div class="widget">
+	<div class="widget-title">
+		<h4> Socio-Economic </h4>
+	</div>
+	<div class="widget-body">
   <table class="table table-striped table-bordered" id="sample_8">
    <thead>
 		<tr>
@@ -59,16 +63,10 @@
 	   </td>
 	  </tr>
     </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="2">
-          
-         
-        </td>
-      </tr>
-    </tfoot>
+
     
   </table>
+  </div>
   </div>
  <div class="widget">
 	                           <div class="widget-title">

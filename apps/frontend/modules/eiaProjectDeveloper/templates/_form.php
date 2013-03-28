@@ -68,7 +68,7 @@
   </table>
     <div class="form-actions">
           <?php echo $form->renderHiddenFields(false) ?>
-          &nbsp;<a href="<?php echo url_for('eiaProjectDeveloper/index') ?>" class="btn">Back</a>
+          &nbsp;<a href="<?php //echo url_for('projectDetail/edit?id=') ?>" class="btn">Back</a>
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php //echo link_to('Delete', 'eiaProjectDeveloper/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
           <?php endif; ?>

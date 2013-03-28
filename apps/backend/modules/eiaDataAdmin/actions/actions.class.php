@@ -21,6 +21,11 @@ class eiaDataAdminActions extends sfActions
 	//$this->tors = Doctrine_Core::getTable('Tor')->
   }
   
+	public function executeShow(sfWebRequest $request)
+	{
+		$this->task=Doctrine_Core::getTable('EITaskAssignment')->find(array($request->getParameter('id')));
+	}
+  
     public function executeShowEia(sfWebRequest $request)
 	{
 		$this->eia = Doctrine_Core::getTable('EIApplication')->find(array($request->getParameter('id')));

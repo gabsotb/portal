@@ -14,6 +14,7 @@
  * @property string $perimeter_area_map
  * @property string $location_area_map
  * @property string $other_supporting_document
+ * @property string $project_reference_number
  * @property string $token
  * @property EIAProjectDetail $EIAProjectDetail
  * 
@@ -26,6 +27,7 @@
  * @method string               getPerimeterAreaMap()          Returns the current record's "perimeter_area_map" value
  * @method string               getLocationAreaMap()           Returns the current record's "location_area_map" value
  * @method string               getOtherSupportingDocument()   Returns the current record's "other_supporting_document" value
+ * @method string               getProjectReferenceNumber()    Returns the current record's "project_reference_number" value
  * @method string               getToken()                     Returns the current record's "token" value
  * @method EIAProjectDetail     getEIAProjectDetail()          Returns the current record's "EIAProjectDetail" value
  * @method EIAProjectAttachment setEiaprojectId()              Sets the current record's "eiaproject_id" value
@@ -37,6 +39,7 @@
  * @method EIAProjectAttachment setPerimeterAreaMap()          Sets the current record's "perimeter_area_map" value
  * @method EIAProjectAttachment setLocationAreaMap()           Sets the current record's "location_area_map" value
  * @method EIAProjectAttachment setOtherSupportingDocument()   Sets the current record's "other_supporting_document" value
+ * @method EIAProjectAttachment setProjectReferenceNumber()    Sets the current record's "project_reference_number" value
  * @method EIAProjectAttachment setToken()                     Sets the current record's "token" value
  * @method EIAProjectAttachment setEIAProjectDetail()          Sets the current record's "EIAProjectDetail" value
  * 
@@ -91,6 +94,11 @@ abstract class BaseEIAProjectAttachment extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('other_supporting_document', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('project_reference_number', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
              'length' => 255,

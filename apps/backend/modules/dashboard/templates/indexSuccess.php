@@ -273,37 +273,43 @@ $(function () {
 									<h4>Recent Applications for  EIA Certificates</h4>						
 								</div>
 								<div class="widget-body">
+								<?php if(count($unassigned) == 0): ?>
+									<div class="alert alert-block alert-info fade in">
+									<h4 class="alert-heading">No recent application has been found</h4>
+									<p>Please try again later/ Refresh the page</p>
+									</div>
+								<?php endif; ?>
+								<?php if(count($unassigned)>0): ?>
+									<?php foreach($unassigned as $unassign): ?>
 									<table class="table table-striped table-bordered" id="eia_manager">
-										
 										<thead>
 											<tr class="odd gradeX">
-											  <th><i class="icon-user"> </i><span class="hidden-phone">Submitted By</span></th>
-												<th><i class="icon-truck"></i> <span class="hidden-phone ">Developer's Name</span></th>
-												<th><i class="icon-time"> </i><span class="hidden-phone">Submitted On</span></th>
+											  <th>Reference No.</th>
+												<th>Title</th>
+												<th>Developer</th>
 												<th>Actions</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td><?php echo 'first_name' ?></td>
-												<td><?php echo 'name' ?> </td>
-												<td><?php echo 'created_at' ?></td>
-												<td> <a href="<?php echo url_for('eiaTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td><?php echo $unassign['project_reference_number'] ?></td>
+												<td><?php echo $unassign['project_title'] ?> </td>
+												<td><?php echo $unassign['developer_name'] ?></td>
+												<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$unassign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 									
 											</tr>
-											
-											
 										</tbody>
-										
 									</table>
-								
+									<?php endforeach; ?>
+								<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
 								</div>
 							</div>
-					</div>	</div>		
+						</div>	
+					</div>		
          <div class="row-fluid">
                  <div class="span8">
 						<div class="widget">
@@ -693,47 +699,41 @@ $(function () {
 
 </div>   
 <div class="row-fluid">
-    <div class="span6">
+						<div class="span8">
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
 									<h4>Recent Applications for  EIA Certificates</h4>						
 								</div>
 								<div class="widget-body">
-									<?php if(count($unassigned) == 0 || is_null($unassigned)): ?>
-									<div class="alert alert-block alert-success fade in">
-										<p><strong>Information!</strong> <br/>Seems like all applications
-										for EIA Certificate have been assigned to data admins or there are no new applications.
-										I will try later... </p>
-										 
+									<?php if(count($unassigned) == 0 ): ?>
+									<div class="alert alert-block alert-info fade in">
+									<h4 class="alert-heading">No recent application has been found</h4>
+									<p>Please try again later/ Refresh the page</p>
 									</div>
 									<?php endif; ?>
 									<?php if(count($unassigned) > 0): ?>
-									<table class="table table-striped table-bordered" id="eia_manager">
 										<?php foreach($unassigned as $unassign): ?>
-										<thead>
-											<tr class="odd gradeX">
-											  <th><i class="icon-user"> </i><span class="hidden-phone">Submitted By</span></th>
-												<th><i class="icon-truck"></i> <span class="hidden-phone ">Developer's Name</span></th>
-												<th><i class="icon-time"> </i><span class="hidden-phone">Submitted On</span></th>
-												<th>Actions</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><?php echo $unassign['first_name'] ?></td>
-												<td><?php echo $unassign['name'] ?> </td>
-												<td><?php echo $unassign['created_at'] ?></td>
-												<td> <a href="<?php echo url_for('eiaTaskAssign/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
-									
-											</tr>
-											
-											
-										</tbody>
+										<table class="table table-striped table-bordered" id="eia_manager">
+											<thead>
+												<tr class="odd gradeX">
+												  <th>Reference No.</th>
+													<th>Title</th>
+													<th>Developer</th>
+													<th>Actions</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><?php echo $unassign['project_reference_number'] ?></td>
+													<td><?php echo $unassign['project_title'] ?> </td>
+													<td><?php echo $unassign['developer_name'] ?></td>
+													<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$unassign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+										
+												</tr>
+											</tbody>
+										</table>
 										<?php endforeach; ?>
-									</table>
-									
-									
 									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
@@ -1079,140 +1079,84 @@ $(function () {
 <!-- This section is for users with less administrative privealenges The data admins belong to this -->
   		<!-- BEGIN OVERVIEW STATISTIC BARS-->
 	<div class="row-fluid">
-						<div class="row-fluid stats-overview-cont">
-								<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat ok huge">
-											<span class="line-chart">5, 6, 7, 11, 14, 10, 15, 19, 15, 2</span>
-											<div class="percent">100%</div>
-										</div>
-										<div class="details">
-											<div class="title">Pending Tasks</div>
-											<div class="numbers"><?php echo count($jobs) ?></div>
-										</div>
-										<div class="progress progress-info">
-											<div class="bar" style="width: 100%"></div>
-										</div>
-									</div>
-								</div>
-								<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat good huge">
-											<span class="line-chart">2,6,8,12, 11, 15, 16, 11, 16, 11, 10, 3, 7, 8, 12, 19</span>
-											<div class="percent">0%</div>
-										</div>
-										<div class="details">
-											<div class="title">Completed Tasks</div>
-											<div class="numbers">0</div>
-											<div class="progress progress-warning">
-												<div class="bar" style="width: 16%"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat bad huge">
-											<span class="line-chart">2,6,8,11, 14, 11, 12, 13, 15, 12, 9, 5, 11, 12, 15, 9,3</span>
-											
-										</div>
-										<div class="details">
-											<div class="title"> Inbox Messages</div>
-											<div class="numbers">0</div>
-											<div class="progress progress-success">
-												<div class="bar" style="width: 16%"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-							</div>
-		<!-- END STATISTICS -->
-   </div>	
+		<a href="#" class="icon-btn span3"><i class="icon-building"></i><div>Projects</div><span class="badge badge-important"><?php echo count($jobAdmin) ?></span></a>
+		<a href="#" class="icon-btn span3"><i class="icon-envelope"></i><div>Inbox</div><span class="badge badge-info">03</span></a>
+   </div>
+   <!-- END STATISTICS -->	
 <!-- When logged, they can only see tasks assigned to them by the department administrators -->	
 					<div class="row-fluid">
-						<div class="span10">
+						<div class="span8">
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-reorder"></i>Available Jobs For EIA Certificates Applications</h4>
-														
+									<h4><i class="icon-reorder"></i>EIA Certificates Applications</h4>
 								</div>
 								<div class="widget-body">
-									<?php if(count($jobs) == 0 || is_null($jobs)): ?>
-									<div class="alert alert-info">
-										<p><strong>Information!</strong> <br/> No jobs assigned.</p>
-										<p>Reload the Page or Try Again Later</p>
-									</div>
-									<?php endif; ?>
-									<?php if(count($jobs) > 0): ?>
-									<?php foreach($jobs as $job ): ?>
 									<table class="table table-striped table-bordered table-advance table-hover">
+									<?php foreach($jobAdmin as $job): ?>
 										<thead>
 											<tr>
-												<th><i class="icon-briefcase"></i> <span class="hidden-phone">Developer</span></th>
-												<th><i class="icon-user"></i> <span class="hidden-phone ">Instructions</span></th>
-												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Due date</span></th>
-												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Assigned by</span></th>
-												<th></th>
+												<th>Reference No.</th>
+												<th>Project Title</th>
+												<th>Assign by:</th>
+												<th>Actions</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td><?php echo $job['name'] ?></td>
-												<td><?php echo $job['instructions'] ?></td>
-												<td><?php echo $job['duedate'] ?></td>
-												<td><?php echo $job['updated_by'] ?></td>
-												<td><?php echo button_to('Process','eiaDataAdmin/showEia?id='.$job['company_id'],array('class' => 'btn btn-inverse')); ?></td>
+												<td class="highlight"><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+												<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?> </td>
+												<td><?php echo $job->getSfGuardUser()->getLastName() ?></td>
+												<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-inverse"><i class="icon-circle-blank"></i> Process</button></a></td>
+									
 											</tr>
-											
-											
 										</tbody>
-									</table>
 									<?php endforeach; ?>
-									<?php endif; ?>
+									</table>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="<?php echo url_for('eiaDataAdmin/index') ?>" class="btn btn-mini pull-right">View All</a>
+										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
 									</div>
 								</div>
 							</div>
 						</div> 
-					</div>
-				<div class="row-fluid">
-					<div class="span8">
-						<div class="widget">
-							<div class="widget-title">
-								<h4><i class="icon-reorder"></i> Recent T.O.R Applications </h4>
-							</div>
-							<div class="widget-body">
-								<?php if(count($tors) == 0 || is_null($tors)): ?>
-								<div class="alert alert-info">
-									<p><strong>Information!</strong> <br/> No Recent T.O.R Applications Found</p>
-										<p>Reload the Page or Try Again Later</p>
-									</div>
-									<?php endif; ?>
-							
-							<?php foreach($tors as $tor): ?>
-							<table class="table table-striped table-bordered table-advance table-hover">
-								<thead>
-									<tr>
-										<th> Developer</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><?php echo $tor->getProjectImpact()->getEIApplication()->getName() ?></td>
-										<td><?php echo button_to('View','eiaDataAdmin/showTor?id='.$tor->getImpactId(),array('class' => 'btn btn-inverse')) ?></td>
-									</tr>
-								</tbody>
-							</table>
-							<?php endforeach; ?>
+						<div class="span4">
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-bell"></i>Notifications</h4>
+									<span class="tools">
+									<a href="javascript:;" class="icon-chevron-down"></a>
+									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
+									<a href="javascript:;" class="icon-refresh"></a>
+									</span>							
+								</div>
+								<div class="widget-body">
+								<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
+								<?php 
+								$user = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+								$notification = Doctrine_Core::getTable('Notifications')->getNotifications($user);
+								?>
+								 <?php foreach($notification as $notify): ?>
+									   <li>
+											<span class="label label-success"><i class="icon-bell"></i></span>
+											<span><?php echo $notify['message'] ;?>.</span><br/>
+											<span class="small italic"><?php
+											date_default_timezone_set('UTC');
+											$time = date("H:i:s", strtotime($notify['created_at'])) ;
+											echo "Received at ".$time  ; ?>
+											
+											</span>
+										</li>
+								<?php endforeach; ?>
+								<?php if($notification == null){ ?>
+										 No New Notifications......  
+									 
+								<?php } ?>
+								  </ul>
+								 </div>
 							</div>
 						</div>
 					</div>
-				</div>
 					
 <?php endif; ?>		
 <!-- ********************************************************************** -->
