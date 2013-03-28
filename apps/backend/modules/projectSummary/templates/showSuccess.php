@@ -1,4 +1,36 @@
 <div id="page">
+    <div id="widget-accept" class="modal hide">
+						<div class="modal-header">
+							<button data-dismiss="modal" class="close" type="button">×</button>
+							<h3><?php echo __('Accept Investor Application') ?></h3>
+						</div>
+						<div class="modal-body">
+							<p><?php echo __('You are About to Accept this Investor application for Issuance of Investment Registration Certificate.')?>.</p>
+							<p><?php echo __('To do this you will need permission from the Manager/ Supervisor who assigned this Task.')?>.</p>
+							<p><?php echo __('Are you sure about this')?>? </p>
+							
+							 <button data-dismiss="modal" class="btn btn-success" type="button"><?php echo __('Request Permission') ?></button>
+							 <a href="<?php echo url_for('projectSummary/accept?id='.$project_summary->getInvestmentId()) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> </a>&nbsp;&nbsp;&nbsp;
+							 <button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
+							
+						</div>
+	 </div>
+	  <div id="widget-decline" class="modal hide">
+						<div class="modal-header">
+							<button data-dismiss="modal" class="close" type="button">×</button>
+							<h3><?php echo __('Decline Investor Application') ?></h3>
+						</div>
+						<div class="modal-body">
+							<p><?php echo __('You are About to Decline this Investor application for Issuance of Investment Registration Certificate.')?>.</p>
+							<p><?php echo __('To do this you will need permission from the Manager/ Supervisor who assigned this Task.')?>.</p>
+							<p><?php echo __('Are you sure about this')?>? </p>
+							
+							 <button data-dismiss="modal" class="btn btn-success" type="button"><?php echo __('Request Permission') ?></button>
+							 <a href="<?php echo url_for('projectSummary/accept?id='.$project_summary->getInvestmentId()) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> </a>&nbsp;&nbsp;&nbsp;
+							 <button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
+							
+						</div>
+	 </div>
  <!-- END OVERVIEW STATISTIC BARS-->
 					<div class="row-fluid" id="right_column">
 						<div class="span8">
@@ -6,19 +38,19 @@
 							<!-- BEGIN GENERAL PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4>Business Proposal for <?php  ?></h4>
+									<h4><?php echo __('Business Proposal for') ?> <?php  ?></h4>
 															
 								</div>
 								<div class="widget-body">
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="alert alert-block alert-info fade in">
-										<h4 class="alert-heading">Info!</h4>
+										<h4 class="alert-heading"><?php echo __('Information') ?>!</h4>
 										<p>
-											This is final business proposal summary for <?php  ?>. 
+											<?php echo __('This is final business proposal summary for Someone. 
 											At this step, you can either accept or reject this application. If you accept, 
 											the system will auto-generate and acceptance letter and send it to the client. 
-											If you reject, you will be required to manually draft a rejection letter and send it to the investor.
+											If you reject, you will be required to manually draft a rejection letter and send it to the investor') ?>.
 										</p>
 										
 									</div>
@@ -27,13 +59,13 @@
 									</div>
 									<div class="row-fluid">
 										 <div class="span6">
-											<h3>Project Classification</h3>
+											<h3><?php echo __('Project Classification') ?></h3>
 											<p>
 											<?php echo $project_summary->getBusinessSector() ?>
 											</p>
 										</div>
 										<div class="span6">
-											<h3>Name of Company</h3>
+											<h3><?php echo __('Name of Company') ?></h3>
 											<p>
 											<?php echo $project_summary->getInvestmentApplication()->getName() ?>
 											</p>
@@ -42,30 +74,30 @@
 									<div class="row-fluid">
 										
 										<div class="span6">
-											<h3>Place and Address of Company</h3>
+											<h3><?php echo __('Place and Address of Company') ?></h3>
 											<p><?php echo $project_summary->getInvestmentApplication()->getLocation() ?></p>
 										</div>
 										
 										<div class="span6">
-											<h3>Planned Capital Investment</h3>
+											<h3><?php echo __('Planned Capital Investment') ?></h3>
 											<p><?php echo $project_summary->getPlannedInvestment() ?></p>
 										</div>
 									</div>
 									<div class="row-fluid">
 										
 										<div class="span6">
-											<h3>Employment Created</h3>
+											<h3><?php echo __('Employment Created') ?></h3>
 											<p><?php echo $project_summary->getEmploymentCreated() ?></p>
 											
 										</div>
 										<div class="span6">
-											<h3>Technical Viability</h3>
+											<h3><?php echo __('Technical Viability') ?></h3>
 											<p><?php echo $project_summary->getTechinicalViability() ?></p>
 										</div>
 									</div>
 									<div class="row-fluid">
 										<div class="span6">
-											<h3>Categories of Jobs Created</h3>
+											<h3><?php echo __('Categories of Jobs Created') ?></h3>
 											<p><?php echo $project_summary->getJobCategories() ?></p>
 										</div>
 										
@@ -73,9 +105,9 @@
 									
 									<div class="row-fluid">
 										<div class="span6">
-											<a href="#<?php //echo url_for('projectSummary/print?id='.$project_summary->getId()) ?>"> <button type="button" class="btn btn-success">Print</button> </a> 
+											<a href="#<?php //echo url_for('projectSummary/print?id='.$project_summary->getId()) ?>"> <button type="button" class="btn btn-success"><?php echo __('Print') ?></button> </a> 
 											<a href="<?php echo url_for('projectSummary/edit?id='.$project_summary->getId()) ?>"> 
-											<button class="btn btn-primary"><i class="icon-pencil icon-white"></i> Edit</button></a>
+											<button class="btn btn-primary"><i class="icon-pencil icon-white"></i><?php echo __('Edit') ?></button></a>
 											
 										</div>
 										
@@ -89,7 +121,7 @@
 							<!-- BEGIN NOTIFICATIONS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4>Actions</h4>
+									<h4><?php echo __('Actions') ?></h4>
 									<span class="tools">
 									<a href="javascript:;" class="icon-chevron-down"></a>
 									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
@@ -97,13 +129,8 @@
 									</span>							
 								</div>
 								<div class="widget-body">
-									<a href="<?php echo url_for('projectSummary/accept?id='.$project_summary->getInvestmentId()) ?>"> <button type="button" class="btn btn-success">Accept Application</button> </a>
-									<a href="<?php echo url_for('dashboard/index') ?>"> <button type="button" class="btn btn-danger">Decline Application</button></a>
-                                    
-                                       									
-									
-									
-									
+									<a href="#widget-accept" data-toggle="modal"> <button type="button" class="btn btn-success"><?php echo __('Accept Application') ?></button> </a>
+									<a href="#widget-decline" data-toggle="modal"> <button type="button" class="btn btn-danger"><?php echo __('Decline Application') ?></button> </a>
 								</div>
 							</div>
 							<!-- END NOTIFICATIONS PORTLET-->

@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="rw" datatype="plaintext" original="messages" date="2013-03-22T20:26:21Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>You have</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>notification(s)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>new message(s)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>See all messages</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Account Settings</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Change Language</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Support</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Inbox</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Logout</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Dashboard</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Investment Certificate</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Complete</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Review</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Application Form</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Investment Certificates</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>EIA Certificate</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Help</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>$date &amp;copy; Rwanda Development Board. All Rights Reserved.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>INVESTMENT CERTIFICATES -- Your Investment Details</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Step 2</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>Please Tell us more about Your Planned Investment i.e. Investment Details</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>INVESTMENT AND FINANCIAL SCHEDULE</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>If this is your first application,
+														click on Load Button to Start Updating your INVESTMENT AND FINANCIAL SCHEDULE </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>Load Data</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>Click "Load" to load data from server</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>START UP EXPENSES</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>If this is your first application,
+														click on Load Button to Start Updating your START UP EXPENSES</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>Autosave</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>FINANCIAL STRUCTURE</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>If this is your first application,
+														click on Load Button to Start Updating your FINANCIAL STRUCTURE</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>EMPLOYMENT OPPORTUNITIES</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>If this is your first application,
+														click on Load Button to Start Updating your Local Jobs</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>If this is your first application,
+														click on Load Button to Start Updating your Foreign Jobs</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>PLANNED COMPANY PERFORMANCE</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>If this is your first application,
+														click on Load Button to Start Updating your PLANNED COMPANY PERFORMANCE</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>APPLIED FOR INCENTIVES</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>Exemptions On Imported Machinery(Attach List word or pdf documents supported)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>Exemptions On Imported Raw Materials(Describe Nature)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>Exemptions On Imported Building Materials(Please Attach Following documents(word or pdf documents supported))</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>Land OwnerShip Document</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>Approved Bill of Quantities by District</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>Drawings</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>Construction Permits</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>Investment Allowances</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>Additional Incentives(Precise Nature)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>Visa and Work permits and fist arrival privileges forexpatriates (precise names, skills and citizenship)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>Land</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>Construction</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>Plants</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>Furniture</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>Others</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>Year 1</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>Year 2</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>Year 3</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>Year 4</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>Year 5</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>Data loaded</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>Studies</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>Travel Expenses</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>Starting Capital</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>Administrative Fees</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>Rental Fees</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>Equity</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>Loan From Bank</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Mother Company Loan</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>Grant</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Local Source</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>Foreign Source</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>Top Management</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>Technical/ Professional</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Skilled Labour</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>Others(manpower,casual etc)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>Sales/Income</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>Total cost of Sales</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>Gross Profit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>Total Indirect Expense</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>Profit before Tax</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>Tax Expense(30%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>Net Profit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>Register and monitor applications for EIA and Investment Certificates Applications.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="81">
+        <source>Home</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>Welcome, You are logged in as </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>Logged in on</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>General RDB Performace Analysis</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>Information</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>Below statistics for Investment Certificates issued, EIA Certificates Issued and Tax Exmptions
+												Request Granted to Registered Investors. This is an Overall Representation</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>Number of Investment Certificates Issued</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>Number Of IEA Certificates Issued</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>Tax Exemptions Granted</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>Graphical Analysis - RDB Overall Perfomance Representation</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>Status of Applications</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>Investment Certificate Application</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>Progress Monitor</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="94">
+        <source>Company</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>Comments</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>Incomplete Application !</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>Please Complete your Initial application
+																 for Investment Certificate for</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>Alert!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>There are no New applications
+																		for investment certificate for your account! However your have</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>complete application(s) for Investment Certificate. Click Button Below to apply for 
+																		Certification of another business. </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>Apply for Investment Certificate</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>There are no applications
+																		for investment certificate for your account! &lt;br/&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>Resubmit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>Application Document Resubmission</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>Please make sure that you have properly reviewed your work as stipulate in the message you received
+															informing you of resubmission. Make sure to make changes and submit your work. By doing so you we will try to process your application asap. Thank you</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Do you feel satisfied and want to resubmit? </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>Cancel</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>EIA Certificate Application</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>There are no applications
+																		for EIA Certificate for your account! </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>Apply for EIA Certificate</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>Investment Certificates ---- Company Details Form</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Step 1</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>Please Provide Below Fields to Start your application for investment certificate</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Important</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>To successfuly submit this information, make sure that you have a valid business 
+											registration number. You company must be registered via the Business Registration System</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>Enter Business Registration Number. This is the Number that was issued when
+					you registered your business</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>Business Number</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>Enter A Valid Business Name, The Name entered will be verified and counter checked
+					from the business registration system. Make sure you have a registered name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Business Name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="120">
+        <source>Enter Your Title in The Company.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="121">
+        <source>Company Address</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="122">
+        <source>Select a Business Sector.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="123">
+        <source>Business Sector</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="124">
+        <source>Select a Business Category.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="125">
+        <source>Business Category</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="126">
+        <source>Enter Office Telephone Number</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="127">
+        <source>Office Telephone</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="128">
+        <source>Enter Fax Number</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="129">
+        <source>Fax</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="130">
+        <source>Enter you P.O Box Information </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="131">
+        <source>Post Address</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="132">
+        <source>Select Business Location</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="133">
+        <source>Business Location</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="134">
+        <source>Select Business Sector</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="135">
+        <source>Select District</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="136">
+        <source>Business District</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="137">
+        <source>Select City / Province</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="138">
+        <source>Business Setup Province/City</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="139">
+        <source>Submit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="140">
+        <source>Oops! The page you asked for is secure and you do not have proper credentials.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="141">
+        <source>Login below to gain access</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="142">
+        <source>Enter UserName</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="143">
+        <source>Enter your Password</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="144">
+        <source>Welcome to RDB Investor E-portal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="145">
+        <source>Tax Info</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="146">
+        <source>EIA Info</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="147">
+        <source>Inv. Cert</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="148">
+        <source>Enter your username and password</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="149">
+        <source>Forgot password?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="150">
+        <source>Apply for Account</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="151">
+        <source>Signin</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

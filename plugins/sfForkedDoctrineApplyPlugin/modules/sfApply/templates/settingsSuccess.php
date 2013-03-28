@@ -29,6 +29,17 @@
 				<div class="sf_apply sf_apply_settings" >
 					<?php echo $form->renderGlobalErrors() ?>
 					<form method="post" action="<?php echo url_for('sfApply/apply') ?>" name="sf_apply_apply_form" id="sf_apply_apply_form" class="form-horizontal">
+					   <?php echo $form['salutation']->renderError() ?>
+						<div class="control-group">
+							
+								<div class="controls">
+								<div class="input-prepend"> 
+								<?php echo $form['salutation']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+								</div> 
+								<?php echo $form['salutation']->render(array('placeholder' => 'Salutation','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Select Salutation')) ?>
+								</div>
+							
+						</div>
 						<?php echo $form['firstname']->renderError() ?>
 						<div class="control-group">
 							
@@ -52,6 +63,17 @@
 								</div>
 							
 						</div>
+						<?php echo $form['citizenship']->renderError() ?>
+						<div class="control-group">
+							
+								<div class="controls">
+								<div class="input-prepend"> 
+								<?php echo $form['citizenship']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+								</div> 
+								<?php echo $form['citizenship']->render(array('placeholder' => 'Country','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Select Country')) ?>
+								</div>
+							
+						</div>
 						
 						<?php echo $form['phone_number']->renderError() ?>
 						<div class="control-group">
@@ -65,50 +87,18 @@
 							
 						</div>
 						
-						<?php echo $form['birth_date']->renderError() ?>
-						<div class="control-group">
-							
-								<div class="controls">
-								<div class="input-prepend"> 
-								<?php echo $form['birth_date']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
-								</div> 
-								<?php echo $form['birth_date']->render(array('placeholder' => 'Birth date','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Select ')) ?>
-								</div>
-							
-						</div>
+					
 						
-						<?php echo $form['age']->renderError() ?>
-						<div class="control-group">
-							
-								<div class="controls">
-								<div class="input-prepend"> 
-								<?php echo $form['age']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
-								</div> 
-								<?php echo $form['age']->render(array('placeholder' => 'Your Age','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Select Age')) ?>
-								</div>
-							
-						</div>
-						
-						<?php echo $form['country']->renderError() ?>
-						<div class="control-group">
-							
-								<div class="controls">
-								<div class="input-prepend"> 
-								<?php echo $form['country']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
-								</div> 
-								<?php echo $form['country']->render(array('placeholder' => 'Country','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Select..')) ?>
-								</div>
-							
-						</div>
+					
 
-						<?php echo $form['thumbnail']->renderError() ?>
+						<?php echo $form['id_passport']->renderError() ?>
 						<div class="control-group">
 							
 								<div class="controls">
 								<div class="input-prepend"> 
-								<?php echo $form['thumbnail']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
+								<?php echo $form['id_passport']->renderLabel('<i class="icon-user"></i>',array('class' => 'add-on')) ?>
 								</div> 
-								<?php echo $form['thumbnail']->render(array('placeholder' => 'Thumbnail','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Select..')) ?>
+								<?php echo $form['id_passport']->render(array('placeholder' => 'Thumbnail','class' => 'span8 tooltips', 'data-trigger' => 'hover', 'data-original-title' => 'Select..')) ?>
 								</div>
 							
 						</div>

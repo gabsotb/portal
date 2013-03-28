@@ -802,14 +802,19 @@ class sfCultureInfo
   public function getLanguages($languages = null)
   {
     $allLanguages = $this->findInfo('Languages', true);
+	///
+	
 
     // restrict languages to a sub-set
     if (null !== $languages)
     {
       if ($problems = array_diff($languages, array_keys($allLanguages)))
       {
+	   
         throw new InvalidArgumentException(sprintf('The following languages do not exist: %s.', implode(', ', $problems)));
+		//print_r($languages);
       }
+	  
 
       $allLanguages = array_intersect_key($allLanguages, array_flip($languages));
     }

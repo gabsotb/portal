@@ -2,15 +2,15 @@
   <div class="span8">
 				<div class="widget">
 				 <div class="widget-title">
-					<h4><i class="icon-reorder"></i>Edit Application Detail Step 1</h4>						
+					<h4><i class="icon-reorder"></i><?php echo __('Edit Application Detail Step 1') ?></h4>						
 					</div>
             <div class="widget-body">
 			<div class="alert alert-block alert-info fade in">
 														
 							
 							<p>
-								Please make changes below and click submit to resubmit your application for 
-								investment certificate.
+								<?php echo __('Please make changes below and click submit to resubmit your application for 
+								investment certificate') ?>.
 							</p>
 						 </div>
 			         <?php include_partial('form', array('form' => $form)) ?>

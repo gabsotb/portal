@@ -12,10 +12,10 @@ $(function () {
 				width: 700
             },
             title: {
-                text: 'RDB Tasks Performance Analysis. Year 2013'
+                text: '<?php echo __('RDB Tasks Performance Analysis. Year 2013') ?>'
             },
             subtitle: {
-                text: 'Source: Rwanda Development Board'
+                text: '<?php echo __('Source: Rwanda Development Board') ?>'
             },
             xAxis: {
                 categories: [
@@ -36,7 +36,7 @@ $(function () {
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Number of Items Processed'
+                    text: '<?php echo __('Number of Items Processed') ?>'
                 }
             },
 			credits:
@@ -66,19 +66,19 @@ $(function () {
                 }
             },
                 series: [{
-                name: 'Investment Certificates',
+                name: '<?php echo __('Investment Certificates') ?>',
                 data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
     
             }, {
-                name: 'EIA Certificates',
+                name: '<?php echo __('EIA Certificates') ?>',
                 data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
     
             }, {
-                name: 'Tax Exemptions',
+                name: '<?php echo __('Tax Exemptions') ?>',
                 data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
     
             }, {
-                name: 'Visa Issued',
+                name: '<?php echo __('Visa Issued') ?>',
                 data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
     
             }]
@@ -100,17 +100,17 @@ $(function () {
 						<!-- END STYLE CUSTOMIZER-->    	
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">
-							Managers Account
-							<small>Assign Tasks and Manage User Accounts</small>
+							<?php echo __('Managers Account') ?>
+							<small><?php echo __('Assign Tasks and Manage User Accounts')?></small>
 						</h3>
 							<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="<?php echo url_for('dashboard/index')?>">Dashboard</a> <span class="divider">/</span>
+								<a href="<?php echo url_for('dashboard/index')?>"><?php echo __('Dashboard') ?></a> <span class="divider">/</span>
 							</li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="<?php echo url_for('dashboard/index')?>">Manager</a></li> <span class="divider">/</span>
+							<a href="<?php echo url_for('dashboard/index')?>"><?php echo __('Manager') ?></a></li> <span class="divider">/</span>
 							<li>
 							<i class="icon-user"></i>
 							<a href="#">
@@ -124,7 +124,7 @@ $(function () {
 							</a></li>
 							<li class="pull-right dashboard-report-li">
 							<i class="icon-time"></i>
-				              Logged in on <font color="blue">
+				              <?php echo __('Logged in on') ?> <font color="blue">
 									<?php
                                        $date = date("F j, Y");
 									   print $date;
@@ -146,7 +146,7 @@ $(function () {
 											<div class="percent">+66%</div>
 										</div>
 										<div class="details">
-											<div class="title">Total Registered Investors</div>
+											<div class="title"><?php echo __('Total Registered Investors') ?></div>
 											<div class="numbers">1360</div>
 										</div>
 										<div class="progress progress-info">
@@ -161,7 +161,7 @@ $(function () {
 											<div class="percent">+16%</div>
 										</div>
 										<div class="details">
-											<div class="title">Total Investment Certificates Issued</div>
+											<div class="title"><?php echo __('Total Investment Certificates Issued') ?></div>
 											<div class="numbers">1800</div>
 											<div class="progress progress-warning">
 												<div class="bar" style="width: 16%"></div>
@@ -176,7 +176,7 @@ $(function () {
 											<div class="percent">+6%</div>
 										</div>
 										<div class="details">
-											<div class="title">Total EIA Certificates Issued</div>
+											<div class="title"><?php echo __('Total EIA Certificates Issued') ?></div>
 											<div class="numbers">509</div>
 											<div class="progress progress-success">
 												<div class="bar" style="width: 16%"></div>
@@ -191,7 +191,7 @@ $(function () {
 											<div class="percent">+15%</div>
 										</div>
 										<div class="details">
-											<div class="title">Tax Exemptions Granted</div>
+											<div class="title"><?php echo __('Tax Exemptions Granted') ?></div>
 											<div class="numbers">2090</div>
 											<div class="progress progress-success">
 												<div class="bar" style="width: 15%"></div>
@@ -206,7 +206,7 @@ $(function () {
 											<div class="percent">+15%</div>
 										</div>
 										<div class="details">
-											<div class="title">Visa Issued by Immigration</div>
+											<div class="title"><?php echo __('Visa Issued by Immigration') ?></div>
 											<div class="numbers">2090</div>
 											<div class="progress progress-success">
 												<div class="bar" style="width: 15%"></div>
@@ -223,24 +223,24 @@ $(function () {
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4>Recent Applications For Investment Certificates</h4>						
+									<h4><?php echo __('Recent Applications For Investment Certificates') ?></h4>						
 								</div>
 								<div class="widget-body">
 								<?php if(count($new_applications) <= 0): ?>
 								<div class="alert alert-info">
-										<strong>Information!</strong> <br/>Seems like all applications
+										<strong><?php echo __('Information') ?></strong> <br/><?php echo __('Seems like all applications
 										for Investment Certificate have been assigned to data admins or there are no new applications.
-										I will try later... 
+										I will try later') ?>... 
 								</div>
 							    <?php  endif; ?>
 								<?php if(count($new_applications) != null) : ?>
 									<table class="table table-striped table-bordered" id="investment_applications_manager">
 										<thead>
 											<tr>
-												<th><i class="icon-user"></i> <span class="hidden-phone">Submitted by</span></th>
-												<th><i class="icon-briefcase"></i> <span class="hidden-phone ">Business Name</span></th>
-												<th><i class="icon-time"> </i><span class="hidden-phone">Submitted On</span></th>
-												<th>Actions</th>
+												<th><i class="icon-user"></i> <span class="hidden-phone"><?php echo __('Submitted by') ?></span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone "><?php echo __('Business Name') ?></span></th>
+												<th><i class="icon-time"> </i><span class="hidden-phone"><?php echo __('Submitted On') ?></span></th>
+												<th><?php echo __('Actions') ?></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -251,7 +251,7 @@ $(function () {
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?business='.$available['name']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?business='.$available['name']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
@@ -260,7 +260,7 @@ $(function () {
 									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
+										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-small btn-primary"><?php echo __('View All Assigned Tasks') ?></a>
 									</div>
 								</div>
 							</div>
@@ -270,7 +270,7 @@ $(function () {
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4>Recent Applications for  EIA Certificates</h4>						
+									<h4><?php echo __('Recent Applications for  EIA Certificates') ?></h4>						
 								</div>
 								<div class="widget-body">
 								<?php if(count($unassigned) == 0): ?>
@@ -287,7 +287,7 @@ $(function () {
 											  <th>Reference No.</th>
 												<th>Title</th>
 												<th>Developer</th>
-												<th>Actions</th>
+												<th><?php echo __('Actions') ?></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -304,7 +304,7 @@ $(function () {
 								<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
+										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-small btn-primary"><?php echo __('View All Assigned Tasks') ?></a>
 									</div>
 								</div>
 							</div>
@@ -314,7 +314,7 @@ $(function () {
                  <div class="span8">
 						<div class="widget">
 						          <div class="widget-title">
-									<h4><i class="icon-signal"></i>RDB Task Processing Performance Pie Chart</h4>
+									<h4><i class="icon-signal"></i><?php echo __('RDB Task Processing Performance Pie Chart') ?></h4>
 															
 								</div>
 								<div id="cont" class="widget-body">
@@ -326,7 +326,7 @@ $(function () {
 				 <div class="span4">
 					 <div class="widget">
 					     <div class="widget-title">
-									<h4><i class="icon-bell"></i>Notifications</h4>
+									<h4><i class="icon-bell"></i><?php echo __('Notifications') ?></h4>
 									<span class="tools">
 									<a href="javascript:;" class="icon-chevron-down"></a>
 									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
@@ -369,20 +369,20 @@ $(function () {
 						<!-- END STYLE CUSTOMIZER-->    	
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">
-							Investment Registration Certificate Supervisor account
-							<small>Assign Tasks to Investment Certificate Data Administrators</small>
+							<?php echo __('Investment Registration Certificate Supervisor account') ?>
+							<small><?php echo __('Assign Tasks to Investment Certificate Data Administrators') ?></small>
 						</h3>
 							<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="#">Dashboard</a> <span class="divider">/</span>
+								<a href="#"><?php echo __('Dashboard') ?></a> <span class="divider">/</span>
 							</li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Supervisor</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('Supervisor') ?></a></li> <span class="divider">/</span>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Investment Certificates</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('Investment Certificates') ?></a></li> <span class="divider">/</span>
 							<li>
 							
 							<i class="icon-user"></i>
@@ -390,14 +390,14 @@ $(function () {
 							   <b>
 								  <font color="blue">
 									<?php $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-                                      print 'Welcome, You are logged in as '.$username;
 									?>
+									  <?php echo __('Welcome, You are logged in as') ?> <?php echo $username ?>
 									</font>
 								</b>
 							</a></li>
 							<li class="pull-right dashboard-report-li">
 							<i class="icon-time"></i>
-				              Logged in on <font color="blue">
+				              <?php echo __('Logged in on') ?> <font color="blue">
 									<?php
                                        $date = date("F j, Y");
 									   print $date;
@@ -416,7 +416,7 @@ $(function () {
 											<div class="percent">+66%</div>
 										</div>
 										<div class="details">
-											<div class="title">Total No of Assigned Jobs</div>
+											<div class="title"><?php echo __('Total No of Assigned Jobs') ?></div>
 											<div class="numbers">130</div>
 										</div>
 										<div class="progress progress-info">
@@ -431,7 +431,7 @@ $(function () {
 											<div class="percent">+16%</div>
 										</div>
 										<div class="details">
-											<div class="title">Completed Tasks by Assigned Admins</div>
+											<div class="title"><?php echo __('Completed Tasks by Assigned Admins') ?></div>
 											<div class="numbers">180</div>
 											<div class="progress progress-warning">
 												<div class="bar" style="width: 16%"></div>
@@ -447,7 +447,7 @@ $(function () {
 											<div class="percent">+15%</div>
 										</div>
 										<div class="details">
-											<div class="title">Number of Data Admins</div>
+											<div class="title"><?php echo __('Number of Data Admins') ?></div>
 											<div class="numbers">20</div>
 											<div class="progress progress-success">
 												<div class="bar" style="width: 15%"></div>
@@ -463,24 +463,24 @@ $(function () {
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4>Recent Applications  Investment Certificates</h4>						
+									<h4><?php echo __('Recent Applications  Investment Certificates') ?></h4>						
 								</div>
 								<div class="widget-body">
 								<?php if(count($new_applications) <= 0): ?>
 								<div class="alert alert-info">
-										<strong>Information!</strong> <br/>Seems like all applications
+										<strong><?php echo __('Information') ?>!</strong> <br/><?php echo __('Seems like all applications
 										for Investment Certificate have been assigned to data admins or there are no new applications.
-										I will try later... 
+										I will try later') ?>... 
 								</div>
 							    <?php  endif; ?>
 								<?php if(count($new_applications) != null) : ?>
 									<table class="table table-striped table-bordered" id="investment_applications_manager">
 										<thead>
 											<tr>
-												<th><i class="icon-user"></i> <span class="hidden-phone">Submitted by</span></th>
-												<th><i class="icon-briefcase"></i> <span class="hidden-phone ">Business Name</span></th>
-												<th><i class="icon-time"> </i><span class="hidden-phone">Submitted On</span></th>
-												<th>Actions</th>
+												<th><i class="icon-user"></i> <span class="hidden-phone"><?php echo __('Submitted by') ?></span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone "><?php echo __('Business Name') ?></span></th>
+												<th><i class="icon-time"> </i><span class="hidden-phone"><?php echo __('Submitted On') ?></span></th>
+												<th><?php echo __('Actions') ?></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -491,7 +491,7 @@ $(function () {
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
@@ -503,7 +503,7 @@ $(function () {
 									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
+										<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>" class="btn btn-small btn-primary"><?php echo __('View All Assigned Tasks') ?></a>
 									</div>
 								</div>
 							</div>
@@ -512,7 +512,7 @@ $(function () {
 			 <div class="span4">
 					 <div class="widget">
 					     <div class="widget-title">
-									<h4><i class="icon-bell"></i>Notifications</h4>
+									<h4><i class="icon-bell"></i><?php echo __('Notifications') ?></h4>
 									<span class="tools">
 									<a href="javascript:;" class="icon-chevron-down"></a>
 									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
@@ -547,7 +547,7 @@ $(function () {
    <div class="span12">
        <div class="widget">
 								<div class="widget-title">
-									<h4>Completed Assigned Tasks - This is a Record of Tasks completed by data administrators that you assigned</h4>
+									<h4><?php echo __('Completed Assigned Tasks - This is a Record of Tasks completed by data administrators that you assigned') ?></h4>
 									<span class="tools">
 									<a href="javascript:;" class="icon-chevron-down"></a>
 									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
@@ -566,12 +566,12 @@ $(function () {
 										<thead>
 											<tr>
 												<th style="width:8px"><input type="checkbox" class="group-checkable" data-set=".checkboxes" /></th>
-												<th><i class="icon-user"></i> <span class="hidden-phone">Assigned To</span></th>
-												<th><i class="icon-briefcase"></i> <span class="hidden-phone ">For Business</span></th>
-												<th><span class="hidden-phone">Instructions</span></th>
-												<th><span class="hidden-phone">Work Status</span></th>
-												<th><span class="hidden-phone">Due Date</span></th>
-												<th><span class="hidden-phone">Date Assigned</span></th>
+												<th><i class="icon-user"></i> <span class="hidden-phone"><?php echo __('Assigned To') ?></span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone "><?php echo __('For Business') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Instructions') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Work Status') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Due Date') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Date Assigned') ?></span></th>
 												
 											</tr>
 										</thead>
@@ -594,7 +594,7 @@ $(function () {
 									
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="#" class="btn btn-success"><i class="icon-print"></i>Print</a> &nbsp; <a href="#" class="btn btn-primary"><i class="icon-eject"></i>Export CSV</a> &nbsp; <a href="#" class="btn btn-inverse"><i class="icon-eject"></i>Export Excel</a> 
+										<a href="#" class="btn btn-success"><i class="icon-print"></i><?php echo __('Print') ?></a> &nbsp; <a href="#" class="btn btn-primary"><i class="icon-eject"></i><?php echo __('Export CSV') ?></a> &nbsp; <a href="#" class="btn btn-inverse"><i class="icon-eject"></i><?php echo __('Export Excel') ?></a> 
 									</div>
 				                </div>
 		</div>
@@ -609,35 +609,34 @@ $(function () {
 						<!-- END STYLE CUSTOMIZER-->    	
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">
-							EIA Certificate Supervisor account
-							<small>Assign Tasks to EIA Data Administrators</small>
+							<?php echo __('EIA Certificate Supervisor account') ?>
+							<small><?php echo __('Assign Tasks to EIA Data Administrators') ?></small>
 						</h3>
 							<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="#">Dashboard</a> <span class="divider">/</span>
+								<a href="#"><?php echo __('Dashboard') ?></a> <span class="divider">/</span>
 							</li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Supervisor</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('Supervisor') ?></a></li> <span class="divider">/</span>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">EIA Certificates</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('EIA Certificates') ?></a></li> <span class="divider">/</span>
 							<li>
 							
 							<i class="icon-user"></i>
 							<a href="#">
 							   <b>
 								  <font color="blue">
-									<?php $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-                                      print 'Welcome, You are logged in as '.$username;
-									?>
+									<?php $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();?>
+									<?php echo __('Welcome, You are logged in as ') ?> <?php echo $username ?>
 									</font>
 								</b>
 							</a></li>
 							<li class="pull-right dashboard-report-li">
 							<i class="icon-time"></i>
-				              Logged in on <font color="blue">
+				              <?php echo __('Logged in on') ?> <font color="blue">
 									<?php
                                        $date = date("F j, Y");
 									   print $date;
@@ -656,7 +655,7 @@ $(function () {
 											<div class="percent">+66%</div>
 										</div>
 										<div class="details">
-											<div class="title">Total No of Assigned Jobs</div>
+											<div class="title"><?php echo __('Total No of Assigned Jobs') ?></div>
 											<div class="numbers">130</div>
 										</div>
 										<div class="progress progress-info">
@@ -671,7 +670,7 @@ $(function () {
 											<div class="percent">+16%</div>
 										</div>
 										<div class="details">
-											<div class="title">Completed Tasks by Assigned Admins</div>
+											<div class="title"><?php echo __('Completed Tasks by Assigned Admins') ?></div>
 											<div class="numbers">180</div>
 											<div class="progress progress-warning">
 												<div class="bar" style="width: 16%"></div>
@@ -687,7 +686,7 @@ $(function () {
 											<div class="percent">+15%</div>
 										</div>
 										<div class="details">
-											<div class="title">Number of Data Admins</div>
+											<div class="title"><?php echo __('Number of Data Admins') ?></div>
 											<div class="numbers">20</div>
 											<div class="progress progress-success">
 												<div class="bar" style="width: 15%"></div>
@@ -703,7 +702,7 @@ $(function () {
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4>Recent Applications for  EIA Certificates</h4>						
+									<h4><?php echo __('Recent Applications for  EIA Certificates') ?></h4>						
 								</div>
 								<div class="widget-body">
 									<?php if(count($unassigned) == 0 ): ?>
@@ -737,7 +736,7 @@ $(function () {
 									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-mini pull-right">View All</a>
+										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-mini pull-right"><?php echo __('View All') ?></a>
 									</div>
 								</div>
 							</div>
@@ -746,7 +745,7 @@ $(function () {
 			 <div class="span4">
 					 <div class="widget">
 					     <div class="widget-title">
-									<h4><i class="icon-bell"></i>Notifications</h4>
+									<h4><i class="icon-bell"></i><?php echo __('Notifications') ?></h4>
 									<span class="tools">
 									<a href="javascript:;" class="icon-chevron-down"></a>
 									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
@@ -771,7 +770,7 @@ $(function () {
 								</li>
 						<?php endforeach; ?>
 						<?php if($notification == null){ ?>
-						         No New Notifications......  
+						         <?php echo __('No New Notifications') ?>......  
 						     
 						<?php } ?>
 						  </ul>
@@ -785,7 +784,7 @@ $(function () {
    <div class="span12">
        <div class="widget">
 								<div class="widget-title">
-									<h4>Completed Assigned Tasks - This is a Record of Tasks completed by data administrators that you assigned</h4>
+									<h4><?php echo __('Completed Assigned Tasks - This is a Record of Tasks completed by data administrators that you assigned') ?></h4>
 									<span class="tools">
 									<a href="javascript:;" class="icon-chevron-down"></a>
 									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
@@ -798,12 +797,12 @@ $(function () {
 										
 											<tr>
 												<th style="width:8px"><input type="checkbox" class="group-checkable" data-set=".checkboxes" /></th>
-												<th><i class="icon-user"></i> <span class="hidden-phone">Assigned To</span></th>
-												<th><i class="icon-briefcase"></i> <span class="hidden-phone ">For Business</span></th>
-												<th><span class="hidden-phone">Instructions</span></th>
-												<th><span class="hidden-phone">Work Status</span></th>
-												<th><span class="hidden-phone">Due Date</span></th>
-												<th><span class="hidden-phone">Date Assigned</span></th>
+												<th><i class="icon-user"></i> <span class="hidden-phone"><?php echo __('Assigned To') ?></span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone "><?php echo __('For Business') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Instructions') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Work Status') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Due Date') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Date Assigned') ?></span></th>
 												
 											</tr>
 											
@@ -849,7 +848,7 @@ $(function () {
 											<div class="percent">+66%</div>
 										</div>
 										<div class="details">
-											<div class="title">Pending Tasks</div>
+											<div class="title"><?php echo __('Pending Tasks') ?></div>
 											<div class="numbers">1360</div>
 										</div>
 										<div class="progress progress-info">
@@ -865,12 +864,14 @@ $(function () {
 										</div>
 										<div class="details">
 											<div class="title">
-											View Your
+											<?php echo __('View Your') ?>
 											<a href="<?php echo url_for('investment_certificates') ?>">
-											Completed Tasks
+											<?php echo __('Completed Tasks') ?>
 											</a>
 											</div>
-											<div class="numbers">1</div>
+											<div class="numbers"><?php 
+											$no = 1 ;
+											echo $no ?></div>
 											
 										</div>
 									</div>
@@ -882,7 +883,7 @@ $(function () {
 											
 										</div>
 										<div class="details">
-											<div class="title"> Your Inbox Messages. You have</div>
+											<div class="title"> <?php echo __('Your Inbox Messages. You have') ?></div>
 											<div class="numbers">
 												<?php
 											 $messages = 0 ;
@@ -898,7 +899,7 @@ $(function () {
 												
 								               
 							                     ?>
-											<a href="<?php echo url_for('my_inbox') ?>"> <?php echo $messages; ?>  Messages </a>
+											<a href="<?php echo url_for('my_inbox') ?>"> <?php echo $messages; ?>  <?php echo __('Messages') ?> </a>
 											 </div>
 											
 										</div>
@@ -914,7 +915,7 @@ $(function () {
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-reorder"></i>Available Jobs For Investment Certificates Applications</h4>
+									<h4><i class="icon-reorder"></i><?php echo __('Available Jobs For Investment Certificates Applications') ?></h4>
 															
 								</div>
 								<div class="widget-body">
@@ -922,10 +923,10 @@ $(function () {
 									<table id="investmentadminstartwork" class="table table-striped table-bordered" >
 										<thead>
 											<tr>
-												<th><i class="icon-briefcase"></i> <span class="hidden-phone">For Business</span></th>
-												<th><i class="icon-user"></i> <span class="hidden-phone ">Instructions</span></th>
-												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Status</span></th>
-												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone">Due date</span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone"><?php echo __('For Business') ?></span></th>
+												<th><i class="icon-user"></i> <span class="hidden-phone "><?php echo __('Instructions')?></span></th>
+												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone"><?php echo __('Status') ?></span></th>
+												<th><i class="icon-shopping-cart"> </i><span class="hidden-phone"><?php echo __('Due date') ?></span></th>
 												<th></th>
 											</tr>
 										</thead>
@@ -936,7 +937,7 @@ $(function () {
 												<td><?php echo $tasks['instructions'] ?></td>
 												<td><?php echo $tasks['work_status'] ?></td>
 												<td><?php echo $tasks['duedate'] ?></td>
-												<td> <a href="<?php echo url_for('dashboard/start?id='.$tasks['investmentapp_id']) ?>"><button class="btn btn-small btn-primary">Start</button></a></td>
+												<td> <a href="<?php echo url_for('dashboard/start?id='.$tasks['investmentapp_id']) ?>"><button class="btn btn-small btn-primary"><?php echo __('Start') ?></button></a></td>
 											</tr>
 									  <?php endforeach; ?>
 											
@@ -945,13 +946,13 @@ $(function () {
 							
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="#" class="btn btn-mini pull-right">View All</a>
+										<a href="#" class="btn btn-mini pull-right"><?php echo __('View All') ?></a>
 									</div>
 							 <?php endif; ?>	
 							<?php if(count($mytasks) <= 0): ?>
 								<div class="alert alert-info">
-										<strong>Information!</strong> <br/>Sorry, I found no new tasks assigned to you
-										to display. I will try later... 
+										<strong><?php echo __('Information') ?>!</strong> <br/><?php echo __('Sorry, I found no new tasks assigned to you
+										to display. I will try later') ?>... 
 								</div>
 							 <?php  endif; ?>
 								</div>
@@ -961,7 +962,7 @@ $(function () {
 							<!-- BEGIN NOTIFICATIONS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-bell"></i>Task Monitor Notifications</h4>
+									<h4><i class="icon-bell"></i><?php echo __('Task Monitor Notifications') ?></h4>
 															
 								</div>
 								<div class="widget-body">
@@ -969,8 +970,8 @@ $(function () {
 									<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
 										<li>
 											<span class="label label-success"><i class="icon-bell"></i></span>
-											<span>Not Tasks Yet Started. Please Start your Tasks </span>
-											<span>The Administrator has assigned you 0 tasks. Remember you have a deadline to meet! </span>
+											<span><?php echo __('Not Tasks Yet Started. Please Start your Tasks') ?> </span>
+											<span><?php echo __('The Administrator has assigned you 0 tasks. Remember you have a deadline to meet')?>! </span>
 											
 										</li>
 									</ul>
@@ -979,7 +980,7 @@ $(function () {
 								<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
 									<li>
 									<span class="label label-important"><i class="icon-bolt"></i></span>
-									<span>No new Tasks Assigned to you.</span>
+									<span><?php echo __('No new Tasks Assigned to you')?>.</span>
 									</li>
 								</ul>
 								<?php  endif; ?>
@@ -1002,7 +1003,7 @@ $(function () {
 							<!-- BEGIN EXAMPLE TABLE PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-reorder"></i>Table - Showing Tasks Not Yet Complete But Started</h4>
+									<h4><i class="icon-reorder"></i><?php echo __('Table - Showing Tasks Not Yet Complete But Started') ?></h4>
 															
 								</div>
 								<div class="widget-body">
@@ -1011,12 +1012,12 @@ $(function () {
 										<thead>
 											<tr>
 												
-												<th>Business Name</th>
-												<th class="hidden-phone">Address</th>
-												<th class="hidden-phone">Application For</th>
-												<th class="hidden-phone">Due Date</th>
-												<th class="hidden-phone">Task Status</th>
-												<th>Actions</th>
+												<th><?php echo __('Business Name') ?></th>
+												<th class="hidden-phone"><?php echo __('Address') ?></th>
+												<th class="hidden-phone"><?php echo __('Application For') ?></th>
+												<th class="hidden-phone"><?php echo __('Due Date') ?></th>
+												<th class="hidden-phone"><?php echo __('Task Status') ?></th>
+												<th><?php echo __('Actions') ?></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -1036,16 +1037,16 @@ $(function () {
 											  investment certificate. This is hot!!!!!!!!!!!!! demn it!!!!
 											  -->
 										   <?php  if($notdone['work_status'] == "started" ): ?>
-											<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Process </button></a>
+											<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Process') ?> </button></a>
 											 <?php endif; ?>
 											 <?php  if($notdone['work_status'] == "reporting" ): ?>
-											<a href="<?php echo url_for('projectSummary/show?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Accept or Decline </button></a>
+											<a href="<?php echo url_for('projectSummary/show?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i><?php echo __('Accept or Decline') ?> </button></a>
 											 <?php endif; ?>
 											 <?php  if($notdone['work_status'] == "awaitingpayment" ): ?>
-											<a href="<?php echo url_for('confirm/index?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Confirm Payment </button></a>
+											<a href="<?php echo url_for('confirm/index?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Confirm Payment') ?> </button></a>
 											 <?php endif; ?>
 											  <?php  if($notdone['work_status'] == "paymentconfirmed" ): ?>
-											<a href="<?php echo url_for('dashboard/investcert?business='.$notdone['name']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Issue Certificate</button></a>
+											<a href="<?php echo url_for('dashboard/investcert?business='.$notdone['name']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Issue Certificate') ?></button></a>
 											 <?php endif; ?>
 											</td>
 											
@@ -1057,7 +1058,7 @@ $(function () {
 								<?php if(count($mytasksnotcomplete) == 0): ?> <!-- Show this if result is  null -->
 								<div id="pulsate-regular" style="padding:5px;">	
 								    <div class="alert alert-error">
-										<strong>Warning!</strong> No Tasks Yet Started. Please Start a Task
+										<strong><?php echo __('Warning') ?>!</strong> <?php echo __('No Tasks Yet Started. Please Start a Task') ?>
 									</div>
 									</div>
 								<?php endif; ?>

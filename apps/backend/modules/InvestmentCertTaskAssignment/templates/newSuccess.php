@@ -5,24 +5,24 @@
 						<!-- END STYLE CUSTOMIZER-->    	
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">
-							Managers Account
-							<small>Assign Tasks </small>
+							<?php echo __('Managers Account') ?>
+							<small><?php echo __('Assign Tasks') ?> </small>
 						</h3>
 							<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="#">Dashboard</a> <span class="divider">/</span>
+								<a href="#"><?php echo __('Dashboard') ?></a> <span class="divider">/</span>
 							</li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Manager</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('Manager') ?></a></li> <span class="divider">/</span>
 							<li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Task Assignment</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('Task Assignment') ?></a></li> <span class="divider">/</span>
 							<li class="pull-right dashboard-report-li">
 							<i class="icon-time"></i>
-				              Logged in on <font color="blue">
+				              <?php echo __('Logged in on') ?> <font color="blue">
 									<?php
                                        $date = date("F j, Y");
 									   print $date;
@@ -37,14 +37,14 @@
 			  <div class="span10">
 				<div class="widget">
 				 <div class="widget-title">
-					<h4><i class="icon-reorder"></i>Investment Certificates</h4>						
+					<h4><i class="icon-reorder"></i><?php echo __('Investment Certificates') ?></h4>						
 							</div>
 					<div class="widget-body">
 					<div class="alert alert-block alert-info fade in">
 																
-									<h4 class="alert-heading">Task Management</h4>
+									<h4 class="alert-heading"><?php echo __('Task Management') ?></h4>
 									<p>
-										Use This Field To Assign Task To Data Administrator
+										<?php echo __('Use This Field To Assign Task To Data Administrator') ?>
 									</p>
 								 </div>
 							 <?php include_partial('form', array('form' => $form)) ?>

@@ -8,7 +8,7 @@
 						 <div class="widget-body">	
                                 <div class="alert alert-block alert-info">
 										<p>
-											<span>INVESTMENT AND FINANCIAL SCHEDULE</span>
+											<span><?php echo __('INVESTMENT AND FINANCIAL SCHEDULE') ?></span>
 										</p>
 								    </div>						 
 										<!-- **************************************8 -->
@@ -16,15 +16,15 @@
 												  <div class="descLayout">
 													<div class="pad">
 													  <p>
-														 If this is your first application,
-														click on Load Button to Start Updating your INVESTMENT AND FINANCIAL SCHEDULE
-														<button name="load">Load Data</button>
+														<?php echo __('If this is your first application,
+														click on Load Button to Start Updating your INVESTMENT AND FINANCIAL SCHEDULE ') ?>
+														<button name="load"><?php echo __('Load Data') ?></button>
 														<!--<button name="save">Save</button> -->
 														<label>
-														<input type="checkbox" name="autosave" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+														<input type="checkbox" name="autosave" disabled="true" checked="checked" autocomplete="off"> <?php echo ('Autosave') ?></label>
 													  </p>
 
-													  <div id="exampleConsole" class="console">Click "Load" to load data from server</div>
+													  <div id="exampleConsole" class="console"><?php echo __('Click "Load" to load data from server') ?></div>
 
 													 
 													</div>
@@ -44,7 +44,7 @@
 						 <div class="widget-body">	
                                 <div class="alert alert-block alert-info">
 										<p>
-											<span>START UP EXPENSES</span>
+											<span><?php echo __('START UP EXPENSES') ?></span>
 										</p>
 								    </div>						 
 										<!-- **************************************8 -->
@@ -52,15 +52,15 @@
 												  <div class="descLayout1">
 													<div class="pad1">
 													  <p>
-														 If this is your first application,
-														click on Load Button to Start Updating your START UP EXPENSES
-														<button name="load1">Load Data</button>
+														 <?php echo __('If this is your first application,
+														click on Load Button to Start Updating your START UP EXPENSES') ?>
+														<button name="load1"><?php echo __('Load Data') ?></button>
 														<!--<button name="save">Save</button> -->
 														<label>
-														<input type="checkbox" name="autosave1" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+														<input type="checkbox" name="autosave1" disabled="true" checked="checked" autocomplete="off"> <?php echo __('Autosave') ?></label>
 													  </p>
 
-													  <div id="startupconsole" class="console">Click "Load" to load data from server</div>
+													  <div id="startupconsole" class="console"><?php echo __('Click "Load" to load data from server') ?></div>
 
 													 
 													</div>
@@ -80,7 +80,7 @@
 						 <div class="widget-body">	
                                 <div class="alert alert-block alert-info">
 										<p>
-											<span>FINANCIAL STRUCTURE</span>
+											<span><?php echo __('FINANCIAL STRUCTURE') ?></span>
 										</p>
 								    </div>						 
 										<!-- **************************************8 -->
@@ -88,15 +88,15 @@
 												  <div class="descLayout2">
 													<div class="pad2">
 													  <p>
-														 If this is your first application,
-														click on Load Button to Start Updating your FINANCIAL STRUCTURE
-														<button name="load2">Load Data</button>
+														<?php echo __('If this is your first application,
+														click on Load Button to Start Updating your FINANCIAL STRUCTURE') ?>
+														<button name="load2"><?php echo __('Load Data') ?></button>
 														<!--<button name="save">Save</button> -->
 														<label>
-														<input type="checkbox" name="autosave2" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+														<input type="checkbox" name="autosave2" disabled="true" checked="checked" autocomplete="off"> <?php echo __('Autosave') ?></label>
 													  </p>
 
-													  <div id="financialconsole" class="console">Click "Load" to load data from server</div>
+													  <div id="financialconsole" class="console"><?php echo ('Click "Load" to load data from server') ?></div>
 
 													 
 													</div>
@@ -116,7 +116,7 @@
 						 <div class="widget-body">	
                                 <div class="alert alert-block alert-info">
 										<p>
-											<span>EMPLOYMENT OPPORTUNITIES</span>
+											<span><?php echo __('EMPLOYMENT OPPORTUNITIES') ?></span>
 										</p>
 								    </div>						 
 										<!-- **************************************8 -->
@@ -124,15 +124,15 @@
 												  <div class="descLayout3">
 													<div class="pad3">
 													  <p>
-														 If this is your first application,
-														click on Load Button to Start Updating your Local Jobs
-														<button name="load3">Load Data</button>
+														 <?php echo __('If this is your first application,
+														click on Load Button to Start Updating your Local Jobs') ?>
+														<button name="load3"><?php echo __('Load Data') ?></button>
 														<!--<button name="save">Save</button> -->
 														<label>
-														<input type="checkbox" name="autosave3" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+														<input type="checkbox" name="autosave3" disabled="true" checked="checked" autocomplete="off"> <?php echo __('Autosave') ?></label>
 													  </p>
 
-													  <div id="local_jobs_console" class="console">Click "Load" to load data from server</div>
+													  <div id="local_jobs_console" class="console"><?php echo __('Click "Load" to load data from server') ?></div>
 
 													 
 													</div>
@@ -146,15 +146,15 @@
 												  <div class="descLayout4">
 													<div class="pad4">
 													  <p>
-														 If this is your first application,
-														click on Load Button to Start Updating your Foreign Jobs
-														<button name="load4">Load Data</button>
+														 <?php echo __('If this is your first application,
+														click on Load Button to Start Updating your Foreign Jobs') ?>
+														<button name="load4"><?php echo __('Load Data') ?></button>
 														<!--<button name="save">Save</button> -->
 														<label>
-														<input type="checkbox" name="autosave4" disabled="true" checked="checked" autocomplete="off"> Autosave</label>
+														<input type="checkbox" name="autosave4" disabled="true" checked="checked" autocomplete="off"> <?php echo __('Autosave') ?></label>
 													  </p>
 
-													  <div id="foreign_console" class="console">Click "Load" to load data from server</div>
+													  <div id="foreign_console" class="console"><?php echo __('Click "Load" to load data from server') ?></div>
 
 													 
 													</div>
@@ -174,7 +174,7 @@
 						 <div class="widget-body">	
                                 <div class="alert alert-block alert-info">
 										<p>
-											<span>PLANNED COMPANY PERFORMANCE</span>
+											<span><?php echo __('PLANNED COMPANY PERFORMANCE') ?></span>
 										</p>
 								    </div>						 
 										<!-- **************************************8 -->
@@ -182,16 +182,16 @@
 												  <div class="descLayout3">
 													<div class="pad3">
 													  <p>
-														 If this is your first application,
-														click on Load Button to Start Updating your PLANNED COMPANY PERFORMANCE
-														<button name="load5">Load Data</button>
+														 <?php echo __('If this is your first application,
+														click on Load Button to Start Updating your PLANNED COMPANY PERFORMANCE') ?>
+														<button name="load5"><?php echo __('Load Data') ?></button>
 														<!--<button name="save">Save</button> -->
 														<label>
-														<input type="checkbox" name="autosave5" disabled="true" checked="checked" autocomplete="off"> Autosave
+														<input type="checkbox" name="autosave5" disabled="true" checked="checked" autocomplete="off"> <?php echo __('Autosave') ?>
 														</label>
 													  </p>
 
-													  <div id="performance_console" class="console">Click "Load" to load data from server</div>
+													  <div id="performance_console" class="console"><?php echo __('Click "Load" to load data from server') ?></div>
 
 													 
 													</div>
@@ -240,7 +240,7 @@
 			<div class="widget">
 						                <div class="alert alert-block alert-info fade in">
 										<p>
-											<span>APPLIED FOR INCENTIVES</span>
+											<span><?php echo __('APPLIED FOR INCENTIVES') ?></span>
 										</p>
 								    </div>	
 										 <div class="widget-body">	
@@ -248,43 +248,43 @@
 												
 												<tbody>
 													<tr>
-														<td>Exemptions On Imported Machinery(Attach List word or pdf documents supported) 
+														<td><?php echo __('Exemptions On Imported Machinery(Attach List word or pdf documents supported)')?> 
 														<?php echo $form['exemption_on_machinery']->renderError() ?>
 														</td>
 														<td> <?php echo $form['exemption_on_machinery']->render(array('class' => 'default')) ?></td>
 													</tr>
 													<tr>
-														<td>Exemptions On Imported Raw Materials(Describe Nature)</td>
+														<td><?php echo __('Exemptions On Imported Raw Materials(Describe Nature)') ?></td>
 														<td><?php echo $form['exemption_raw_materials']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?></td>
 													</tr>
 													<tr>
-													 <td>Exemptions On Imported Building Materials(Please Attach Following documents(word or pdf documents supported)) </td>
-													 <td><span>Land OwnerShip Document:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													 <td><?php echo __('Exemptions On Imported Building Materials(Please Attach Following documents(word or pdf documents supported))')?> </td>
+													 <td><span><?php echo __('Land OwnerShip Document')?>:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $form['land_ownership_document']->render(array('class' => 'default')) ?><br/>
-													 <span>Approved Bill of Quantities by District:</span>&nbsp;&nbsp;<?php echo $form['bill_of_quantiy']->render(array('class' => 'default')) ?> <br/>
-													 <span>Drawings:</span>
+													 <span><?php echo __('Approved Bill of Quantities by District')?>:</span>&nbsp;&nbsp;<?php echo $form['bill_of_quantiy']->render(array('class' => 'default')) ?> <br/>
+													 <span><?php echo __('Drawings') ?>:</span>
 													 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													 
 													 <?php echo $form['drawings']->render(array('class' => 'default')) ?><br/>
-													  <span>Construction Permits:</span>
+													  <span><?php echo __('Construction Permits') ?>:</span>
 													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													  <?php echo $form['construction_permits']->render(array('class' => 'default')) ?><br/>
 													 </td>
 													</tr>
 													<tr>
-													  <td>Investment Allowances</td>
+													  <td><?php echo __('Investment Allowances') ?></td>
 													  <td><?php echo $form['investment_allowances']->render() ?></td>
 													</tr>
 													<tr>
-													 <td>Additional Incentives(Precise Nature)</td>
+													 <td><?php echo __('Additional Incentives(Precise Nature)')?></td>
 														<td><?php echo $form['additional_incentives']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?></td>
 													</tr>
 													<tr>
-													 <td>Visa and Work permits and fist arrival privileges forexpatriates (precise names, skills and citizenship)</td>
+													 <td><?php echo __('Visa and Work permits and fist arrival privileges forexpatriates (precise names, skills and citizenship)') ?></td>
 														<td><?php echo $form['visa_work_permits']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?></td>
 													</tr>
 												</tbody>
@@ -315,8 +315,8 @@
             $container.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Land', 'Construction', 'Plants', 'Furniture' , 'Others'],
-              colHeaders: ['Year 1', 'Year 2', 'Year 3' , 'Year 4', 'Year 5'],
+              rowHeaders: ['<?php echo __('Land') ?>', '<?php echo __('Construction') ?>', '<?php echo __('Plants')?>', '<?php echo __('Furniture') ?>' , '<?php echo __('Others') ?>'],
+              colHeaders: ['<?php echo __('Year 1') ?>', '<?php echo __('Year 2') ?>', '<?php echo __('Year 3') ?>' , '<?php echo __('Year 4')?>', '<?php echo __('Year 5') ?>'],
               minSpareCols: 0,
               minSpareRows: 0,
               contextMenu: true,
@@ -379,7 +379,7 @@
                   handsontable.loadData(data);
 				 
 				//  alert(handsontable('getData')[selection[0]]);
-                  $console.text('Data loaded');
+                  $console.text('<?php echo __('Data loaded') ?>');
                 }
               });
             }).click(); //execute immediately
@@ -406,7 +406,7 @@
 
             $parent.find('input[name=autosave]').click(function () {
               if ($(this).is(':checked')) {
-                $console.text('Changes will be autosaved');
+                $console.text('<?php echo('Changes will be autosaved') ?>');
 				
               }
               else {
@@ -431,8 +431,8 @@
             $container1.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Studies', 'Travel Expenses', 'Starting Capital', 'Administrative Fees' , 'Rental Fees'],
-              colHeaders: ['Year 1', 'Year 2', 'Year 3' , 'Year 4', 'Year 5'],
+              rowHeaders: ['<?php echo __('Studies') ?>', '<?php echo __('Travel Expenses') ?>', '<?php echo __('Starting Capital') ?>', '<?php echo __('Administrative Fees')?>' , '<?php echo __('Rental Fees') ?>'],
+              colHeaders: ['<?php echo __('Year 1') ?>', '<?php echo __('Year 2') ?>', '<?php echo __('Year 3') ?>' , '<?php echo __('Year 4') ?>', '<?php echo __('Year 5') ?>'],
               minSpareCols: 0,
               minSpareRows: 0,
               contextMenu: true,
@@ -520,8 +520,8 @@
             $container2.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Equity', 'Loan From Bank', 'Mother Company Loan', 'Grant'],
-              colHeaders: ['Local Source', 'Foreign Source'],
+              rowHeaders: ['<?php echo __('Equity') ?>', '<?php echo __('Loan From Bank') ?>', '<?php echo __('Mother Company Loan') ?>', '<?php echo __('Grant') ?>'],
+              colHeaders: ['<?php echo __('Local Source') ?>', '<?php echo __('Foreign Source') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
               contextMenu: true,
@@ -605,8 +605,8 @@
             $container3.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Top Management', 'Technical/ Professional', 'Skilled Labour', 'Others(manpower,casual etc)'],
-              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              rowHeaders: ['<?php echo __('Top Management')?>', '<?php echo __('Technical/ Professional') ?>', '<?php echo __('Skilled Labour') ?>', '<?php echo __('Others(manpower,casual etc)') ?>'],
+              colHeaders: ['<?php echo __('Year 1') ?>', '<?php echo __('Year 2') ?>', '<?php echo __('Year 3') ?>' , '<?php echo __('Year 4') ?>', '<?php echo __('Year 5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
               contextMenu: true,
@@ -692,8 +692,8 @@
             $container4.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Top Management', 'Technical/ Professional', 'Skilled Labour', 'Others(manpower,casual etc)'],
-              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              rowHeaders: ['<?php echo __('Top Management')?>', '<?php echo __('Technical/ Professional') ?>', '<?php echo __('Skilled Labour') ?>', '<?php echo __('Others(manpower,casual etc)') ?>'],
+              colHeaders: ['<?php echo __('Year 1') ?>', '<?php echo __('Year 2') ?>', '<?php echo __('Year 3') ?>' , '<?php echo __('Year 4') ?>', '<?php echo __('Year 5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
               contextMenu: true,
@@ -779,8 +779,8 @@
             $container5.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['Sales/Income', 'Total cost of Sales', 'Gross Profit', 'Total Indirect Expense', 'Profit before Tax', 'Tax Expense(30%)','Net Profit'],
-              colHeaders: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5'],
+              rowHeaders: ['<?php echo __('Sales/Income')?>', '<?php echo __('Total cost of Sales') ?>', '<?php echo __('Gross Profit')?>', '<?php echo __('Total Indirect Expense') ?>', '<?php echo __('Profit before Tax') ?>', '<?php echo __('Tax Expense(30%)')?>','<?php echo __('Net Profit') ?>'],
+              colHeaders: ['<?php echo __('Year 1') ?>', '<?php echo __('Year 2') ?>', '<?php echo __('Year 3') ?>' , '<?php echo __('Year 4') ?>', '<?php echo __('Year 5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
               contextMenu: true,

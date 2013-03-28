@@ -12,12 +12,14 @@ class investmentappActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
+      //$languages = $this->getRequest()->getLanguages();
+	 // print_r( $languages); exit; 
      ////////////////////// setting user culture
 	  if (!$request->getParameter('sf_culture'))
 	  {
 		if ($this->getUser()->isFirstRequest())
 		{
-		  $culture = $request->getPreferredCulture(array('en', 'fr'));
+		  $culture = $request->getPreferredCulture(array('en', 'fr', 'sw', 'rw'));
 		  $this->getUser()->setCulture($culture);
 		  $this->getUser()->isFirstRequest(false);
 		}

@@ -6,24 +6,24 @@
 						<!-- END STYLE CUSTOMIZER-->    	
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">
-							Managers Account
-							<small>Assign Tasks and Manage User Accounts</small>
+							<?php echo __('Managers Account') ?>
+							<small><?php echo __('Assign Tasks and Manage User Accounts') ?></small>
 						</h3>
 							<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="#">Dashboard</a> <span class="divider">/</span>
+								<a href="#"><?php echo __('Dashboard') ?></a> <span class="divider">/</span>
 							</li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Manager</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('Manager') ?></a></li> <span class="divider">/</span>
 							<li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Task Assignment</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('Task Assignment') ?></a></li> <span class="divider">/</span>
 							<li class="pull-right dashboard-report-li">
 							<i class="icon-time"></i>
-				              Logged in on <font color="blue">
+				              <?php echo __('Logged in on') ?> <font color="blue">
 									<?php
                                        $date = date("F j, Y");
 									   print $date;
@@ -39,20 +39,20 @@
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4>Investment Certificates - Task Assignment Record</h4>						
+									<h4><?php echo __('Investment Certificates - Task Assignment Record') ?></h4>						
 								</div>
 								<div class="widget-body">
 								<?php if(count($task_assignments) != null) : ?>
 									<table class="table table-striped table-bordered" id="tasks_monitor">
 										<thead>
 											<tr>
-												<th><i class="icon-user"></i> <span class="hidden-phone">Assigned To</span></th>
-												<th><i class="icon-briefcase"></i> <span class="hidden-phone ">For Business</span></th>
-												<th><span class="hidden-phone">Instructions</span></th>
-												<th><span class="hidden-phone">Work Status</span></th>
-												<th><span class="hidden-phone">Due Date</span></th>
-												<th><span class="hidden-phone">Date Assigned</span></th>
-												<th><span class="hidden-phone">Actions</span></th>
+												<th><i class="icon-user"></i> <span class="hidden-phone"><?php echo __('Assigned To') ?></span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone "><?php echo __('For Business') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Instructions') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Work Status') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Due Date') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Date Assigned') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Actions') ?></span></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -80,7 +80,7 @@
 												
 												<td> 
 												 <?php if($status !='complete'): ?>
-												<a href="<?php echo url_for('InvestmentCertTaskAssignment/edit?id='.$available['id'])?>">Edit</a>
+												<a href="<?php echo url_for('InvestmentCertTaskAssignment/edit?id='.$available['id'])?>"><?php echo __('Edit') ?></a>
 												<?php endif; ?>
 												</td>
 												
@@ -92,13 +92,13 @@
 								<?php endif; ?>
 							    <?php if(count($task_assignments) <= 0): ?>
 								<div class="alert alert-info">
-										<strong>Information!</strong> <br/>Sorry, I found no record to display. 
+										<strong><?php echo __('Information') ?>!</strong> <br/><?php echo __('Sorry, I found no record to display')?>. 
 								</div>
 							    <?php  endif; ?>
 								<?php if(count($task_assignments) > 0): ?>
 									<div class="space7"></div>
 									<div class="clearfix">
-										<a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>" class="btn btn-primary">Assign Tasks</a>
+										<a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>" class="btn btn-primary"><?php echo __('Assign Tasks') ?></a>
 									</div>
 								 <?php  endif; ?>
 								</div>

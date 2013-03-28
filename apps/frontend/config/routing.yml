@@ -9,7 +9,7 @@ localized_homepage:
   url:   /:sf_culture/
   param: { module: investmentapp, action: index }
   requirements:
-   sf_culture: (?:fr|en)
+   sf_culture: (?:fr|en|sw|rw)
 change_language:
   url:   /change_language
   param: { module: language, action: changeLanguage }

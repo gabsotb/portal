@@ -3,7 +3,7 @@ task_assignment_taskManagement:
   options:
     model:                TaskAssignment
     module:               taskManagement
-    prefix_path:          /taskManagement
+    prefix_path:          /:sf_culture/taskManagement
     column:               id
     with_wildcard_routes: true
 
@@ -12,31 +12,31 @@ task_assignment:
   options:
     model:                TaskAssignment
     module:               dataAdminJob
-    prefix_path:          /dataAdminJob
+    prefix_path:          /:sf_culture/dataAdminJob
     column:               id
     with_wildcard_routes: true
 ####Route for message module for frontend
 my_inbox:
- url: /inbox
+ url: /:sf_culture/inbox
  param: { module: messages, action: index}
 
 user_tasks:
- url: /mytasks
+ url: /:sf_culture/mytasks
  param: {module: taskManagement, action: tasks }
 start_work:
- url: /start
+ url: /:sf_culture/start
  param: {module: dashboard, action:start}
 make_report: #Route for creating a new Project Summary Report
- url: /make/report
+ url: /:sf_culture/make/report
  param: {module: projectSummary, action: new}
 investment_cert_task:
- url: /certificate/taskAssign
+ url: /:sf_culture/certificate/taskAssign
  param: { module: InvestmentCertTaskAssignment, action: index }
 information_portlets:
- url: /information/portlets
+ url: /:sf_culture/information/portlets
  param: { module: portlets, action: index }
 investment_resubmit:
- url: /resubmit/application
+ url: /:sf_culture/resubmit/application
  param: {module: investmentresubmit, action: new}
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
@@ -57,9 +57,17 @@ message:
 homepage:
   url:   /
   param: { module: dashboard, action: index }
+localized_homepage:
+ url:   /:sf_culture/
+ param: { module: dashboard, action: index }
+ requirements:
+  sf_culture: (?:fr|en|sw|rw)
+change_language:
+  url:   /change_language
+  param: { module: language, action: changeLanguage }
 # Task assignment route
 task:
- url: /tasks
+ url: /:sf_culture/tasks
  param: {module: taskAssign, action: index}
 # generic rules
 # please, remove them by adding more specific rules
@@ -67,43 +75,43 @@ task:
 #  url:   /:module
  # param: { action: index }
 investment_certificates:
- url: /certificates
+ url: /:sf_culture/certificates
  param: {module: investmentcertificates, action: index }
 default:
   url:   /:module/:action/*
 ################### Application Security routing ################################
 sf_guard_signin:
- url:   /login
+ url:   /:sf_culture/login
  param: { module: sfGuardAuth, action: signin }
 sf_guard_signout:
- url:   /logout
+ url:   /:sf_culture/logout
  param: { module: sfGuardAuth, action: signout }
 sf_guard_users:
- url:   /users
+ url:   /:sf_culture/users
  param: { module: sfGuardUser, action: index }
 sf_guard_user_groups:
- url:   /groups
+ url:   /:sf_culture/groups
  param: { module: sfGuardGroup, action: index }
 sf_guard_user_permissions:
- url:   /permissions
+ url:   /:sf_culture/permissions
  param: { module: sfGuardPermission, action: index }
 
 ##################ApplyPlugin route################# 
 apply:
- url:  /apply
+ url:  /:sf_culture/apply
  param: { module: sfApply, action: apply }
 reset:
- url: /reset
+ url: /:sf_culture/reset
  param: { module: sfApply, action: reset }
 resetRequest:
- url: /reset-request
+ url: /:sf_culture/reset-request
  param: { module: sfApply, action: resetRequest }
 validate:
- url: /confirm/:validate
+ url: /:sf_culture/confirm/:validate
  param: { module: sfApply, action: confirm }
 settings:
- url: /settings
+ url: /:sf_culture/settings
  param: { module: sfApply, action: settings }
 sf_guard_password_reset:
- url: /reset-request
+ url: /:sf_culture/reset-request
  param: { module: sfApply, action: resetRequest }

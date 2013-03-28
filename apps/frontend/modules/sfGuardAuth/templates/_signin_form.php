@@ -127,7 +127,7 @@
 							<input type="submit" id="login-btn" class="btn btn-block btn-inverse" value="<?php echo __('Signin', null, 'sf_guard') ?>" />
 
 					</form>
-					<?php include_component('language', 'language') ?>
+					
 						
 				</div>
 			

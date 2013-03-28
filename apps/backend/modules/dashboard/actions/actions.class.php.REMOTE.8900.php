@@ -38,19 +38,6 @@ class dashboardActions extends sfActions
 	$this->new_applications = Doctrine_Core::getTable('InvestmentApplication')->getUnassignedApplications($status); // pass status for the where clause
 	///we need to call a function to return user available tasks
 	//action to retrieve assigned tasks for currently logged in admin
-<<<<<<< HEAD
-	//let us retrieve the id of logged in user
-   $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
-   //echo $userId; exit;
-   $this->mytasks = Doctrine_Core::getTable('TaskAssignment')->getUserTasks($userId);
-   $this->mytasksnotcomplete = Doctrine_Core::getTable('TaskAssignment')->getUserTasksNotComplete($userId);
-   ////////////EIA////////////
-	$this->unassigned= Doctrine_Core::getTable('EIApplicationStatus')->getApplicationStatus('submitted');
-	$this->jobAdmin= Doctrine_Core::getTable('EITaskAssignment')->findByUserAssigned($userId);
-   //////////TOR/////
- //  $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
-   //////////////////////////
-=======
 		//let us retrieve the id of logged in user
 	   $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 	   //echo $userId; exit;
@@ -62,7 +49,6 @@ class dashboardActions extends sfActions
 	   //////////TOR/////
 	 //  $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
 	   //////////////////////////
->>>>>>> a053933b7568062aa39b0d012ff8c5a9470aa768
  
    	
   } 

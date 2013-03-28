@@ -4,21 +4,21 @@
 						    	
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">
-							Inbox
-							<small>View your Messages</small>
+							<?php echo __('Inbox') ?>
+							<small><?php echo __('View your Messages') ?></small>
 						</h3>
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="<?php echo url_for('investmentapp/index') ?>">Dashboard</a> <span class="divider">/</span>
+								<a href="<?php echo url_for('investmentapp/index') ?>"><?php echo __('Dashboard') ?></a> <span class="divider">/</span>
 							</li>
 							<li>
 								<i class="icon-envelope-alt"></i>
-								<a href="#">inbox</a> <span class="divider">/</span>
+								<a href="#"><?php echo __('inbox') ?></a> <span class="divider">/</span>
 							</li>
 							<li>
 								<i class="icon-zoom-in"></i>
-								<a href="#">view-message</a> <span class="divider">/</span>
+								<a href="#"><?php echo __('view-message') ?></a> <span class="divider">/</span>
 							</li>
 							
 						</ul>
@@ -33,8 +33,8 @@
 								<div class="widget-body">
 									<div class="row-fluid">
 										<div class="span6">
-											<p class="text-warning">From: <?php echo $messages['sender']?></p>
-											 <p class="text-success">Date: <?php echo $messages['created_at'] ?></p></p>
+											<p class="text-warning"><?php echo __('From:') ?> <?php echo $messages['sender']?></p>
+											 <p class="text-success"><?php echo __('Date:') ?> <?php echo $messages['created_at'] ?></p></p>
 											<p class="lead">
 												<?php echo $messages['message'] ?>
 											</p>
@@ -43,7 +43,7 @@
 											</p>
 											<p>
 											  <a href="<?php echo url_for('messages/index') ?>">
-											  <button type="button" class="btn btn-primary">inbox</button>
+											  <button type="button" class="btn btn-primary"><?php echo __('inbox') ?></button>
 											  </a>
 											
 											</p>
