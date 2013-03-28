@@ -429,15 +429,14 @@ $(function () {
 								
 								<div class="widget">
 								   <div class="widget-title">
-																<h4><?php echo __('EIA Certificate Application') ?></h4>						
+										<h4><?php echo __('EIA Certificate Application') ?></h4>						
 									</div>
 									<div class="widget-body">
-															  <strong><?php echo __('Alert!') ?></strong> <br/><?php echo __('There are no applications
-																		for EIA Certificate for your account! ');?> </br>
-										  <strong>Alert!</strong> <br/>There are no applications for EIA Certificate for your account! <br/>
-											<a href="<?php echo url_for('projectDetail/new') ?>">
-																		 <button type="button" class="btn btn-success">
-																		 <?php echo __('Apply for EIA Certificate') ?></button>
+										<?php if(count($eiaStatus)==0): ?>
+										<div class="alert alert-block alert-info fade in">
+										<strong><?php echo __('Alert!') ?></strong> <br/><?php echo __('There are no applications for EIA Certificate for your account! ');?><br/>
+										<a href="<?php echo url_for('projectDetail/new') ?>">
+										<button type="button" class="btn btn-success"><?php echo __('Apply for EIA Certificate') ?></button></a>
 										</div>
 										<?php endif; ?>
 										<?php if(count($eiaStatus)>0): ?>
