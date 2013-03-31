@@ -5,57 +5,52 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-	<div class="control-group error">
+  <table class="table table-striped table-hover">
+    <tbody>
       <?php echo $form->renderGlobalErrors() ?>
-	</div>
-      <div class="control-group">
-        <?php echo $form['user_assigned']->renderLabel(NULL,array('class' => 'control-label')) ?>
-        <div class="controls">
+      <tr>
+        <th><?php echo $form['user_assigned']->renderLabel('Assign to:') ?></th>
+        <td>
+          <?php echo $form['user_assigned']->renderError() ?>
           <?php echo $form['user_assigned'] ?>
-		  <span class="help-inline"><?php echo $form['user_assigned']->renderError() ?></span>
-          
-        </div>
-      </div>
-      <div class="control-group">
-        <?php echo $form['company_id']->renderLabel(NULL,array('class' => 'control-label')) ?>
-        <div class="controls">
-          <?php echo $form['company_id'] ?>
-		  <span class="help-inline"><?php echo $form['company_id']->renderError() ?></span>
-          
-        </div>
-      </div>
-      <div class="control-group">
-        <?php echo $form['instructions']->renderLabel(NULL,array('class' => 'control-label')) ?>
-        <div class="controls">
-          <?php echo $form['instructions'] ?>
-		  <span class="help-inline"><?php echo $form['instructions']->renderError() ?></span>
-          
-        </div>
-      </div>
-      <div class="control-group">
-        <?php echo $form['duedate']->renderLabel(NULL,array('class' => 'control-label')) ?>
-        <div class="controls">
-          <?php echo $form['duedate'] ?>
-		  <span class="help-inline"><?php echo $form['duedate']->renderError() ?></span>
-          
-        </div>
-      </div>
-      <div class="control-group">
-        <?php echo $form['work_status']->renderLabel(NULL,array('class' => 'control-label')) ?>
-        <div class="controls">
-          <?php echo $form['work_status'] ?>
-		  <span class="help-inline"><?php echo $form['work_status']->renderError() ?></span>
-          
-        </div>
-      </div>
-	  
-		<div class="form-actions">
-		<?php echo $form->renderHiddenFields(false) ?>
-		&nbsp;<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-primary">Back to list</a>
-		<?php if (!$form->getObject()->isNew()): ?>
-		&nbsp;<?php echo link_to('Delete', 'eiaTaskAssign/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?','class' => 'btn btn-danger')) ?>
-		<?php endif; ?>
-		<input type="submit" value="Assign" class="btn btn-success"/>
-		</div>
-
+        </td>
+      </tr>
+      <tr>
+        <th><?php echo $form['eiaproject_id']->renderLabel() ?></th>
+        <td>
+          <?php echo $form['eiaproject_id']->renderError() ?>
+          <?php echo $form['eiaproject_id'] ?>
+        </td>
+      </tr>
+      <tr>
+        <th><?php echo $form['instructions']->renderLabel() ?></th>
+        <td>
+          <?php echo $form['instructions']->renderError() ?>
+          <?php echo $form['instructions']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
+        </td>
+      </tr>
+      <tr>
+        <th><?php echo $form['duedate']->renderLabel('Due Date:') ?></th>
+        <td>
+          <?php echo $form['duedate']->renderError() ?>
+          <?php echo $form['duedate']->render(array('class' => 'span6 input-small date-picker')) ?>
+		</td>
+	  </tr>
+	  <tr>
+		<th><?php echo $form['duedate']->renderLabel('Time:') ?></th>
+		<td>
+        <?php echo $form['duedate']->render(array('class' => 'timepicker-24 input-small')) ?>
+        </td>
+      </tr>
+	</tbody>
+ </table>
+    <div class="form-actions">
+          <?php echo $form->renderHiddenFields(false) ?>
+          &nbsp;<a href="<?php echo url_for('eiaTaskAssign/index') ?>"class="btn">Back to list</a>
+          <?php if (!$form->getObject()->isNew()): ?>
+            &nbsp;<?php echo link_to('Delete', 'eiaTaskAssign/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?','class' => 'btn btn-danger')) ?>
+          <?php endif; ?>
+          <input type="submit" value="Assign" class="btn btn-success"/>
+    </div>
+ 
 </form>

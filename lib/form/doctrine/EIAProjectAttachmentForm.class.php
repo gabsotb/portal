@@ -93,7 +93,7 @@ class EIAProjectAttachmentForm extends BaseEIAProjectAttachmentForm
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/eia_documents',
 	   )); 
 	   ///
-	   $this->widgetSchema['location_area_ma'] = new sfWidgetFormInputFileEditable(array(
+	   $this->widgetSchema['location_area_map'] = new sfWidgetFormInputFileEditable(array(
 	  # 'label'=>'ShareHolders List',
 	   'file_src' =>'/uploads/documents/eia_documents'.$this->getObject()->getPanoramicView(),
 	   #'is_image' => true,
@@ -101,7 +101,7 @@ class EIAProjectAttachmentForm extends BaseEIAProjectAttachmentForm
 	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
 	   ));
 	   //also change the default validator
-	  $this->validatorSchema['location_area_ma'] = new sfValidatorFile(array(
+	  $this->validatorSchema['location_area_map'] = new sfValidatorFile(array(
 	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/eia_documents',
 	   )); 
@@ -131,5 +131,7 @@ class EIAProjectAttachmentForm extends BaseEIAProjectAttachmentForm
 	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/eia_documents',
 	   )); 
+	$this->widgetSchema['eiaproject_id'] = new sfWidgetFormInputHidden() ;
+	$this->setDefault('eiaproject_id', Doctrine_Core::getTable('EIAProjectDetail')->getProjectId());
   }
 }

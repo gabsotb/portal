@@ -14,5 +14,9 @@ class EIAProjectSurroundingSpeciesForm extends BaseEIAProjectSurroundingSpeciesF
   {
    unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by'] , $this['token']);
 	$this->setDefault('created_at',date('Y-m-d 00:00:00'));
+	
+	$this->widgetSchema['project_surrounding_id'] = new sfWidgetFormInputHidden() ;
+	$this->setDefault('project_surrounding_id', Doctrine_Core::getTable('EIAProjectSurrounding')->getProjectSurroundingId());
+
   }
 }

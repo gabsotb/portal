@@ -25,7 +25,14 @@ class projectSorroundingSpeciesActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new EIAProjectSurroundingSpeciesForm();
+	if(!is_null($species=Doctrine_Core::getTable('EIAProjectSurrounding')->find(array($request->getParameter('id')))) && $species->getToken()==$request->getParameter('token'))
+	{
+		$this->form = new EIAProjectSurroundingSpeciesForm();
+		
+	}else{
+		$this->getUser()->setFlash('notice','Please Fill in this form first before proceeding');
+		$this->redirect('@project_detail'); 
+	}
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -73,7 +80,7 @@ class projectSorroundingSpeciesActions extends sfActions
     {
       $eia_project_surrounding_species = $form->save();
 
-      $this->redirect('projectSorroundingSpecies/edit?id='.$eia_project_surrounding_species->getId());
+      $this->redirect('projectSocialEconomic/new?id='.$eia_project_surrounding_species->getId().'&token='.$eia_project_surrounding_species->getToken());
     }
   }
 }

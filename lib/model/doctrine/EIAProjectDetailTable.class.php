@@ -89,14 +89,16 @@ class EIAProjectDetailTable extends Doctrine_Table
 		return $value;
 	  }
 	}
-	
-	public function getIds()
+
+	public function getProjectId()
 	{
-		$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
-		$q = $this->createQuery('d')
-			->select('d.id')
-			->where('d.created_by = ?', $userId);
-		return $q->fetchArray();
-	}	
+		$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId(); // get the id of the user logged
+		$query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT e_i_a_project_detail.id FROM e_i_a_project_detail WHERE created_by = '$userId' order by e_i_a_project_detail.id desc limit 1 ");
 		
+		foreach($query as $q){
+			$id=$q['id'];
+		}
+		
+		return $id;
+	}
 }

@@ -321,18 +321,20 @@
 					<div class="header_not_signed_in">
 					<img src="/images/logo_example.png" alt='logo'/>
 					</div>
-				<?php endif ?>
+				<?php endif; ?>
 				<?php if ($sf_user->hasFlash('notice')): ?>
-				<div class="flash_notice">
-					<?php echo $sf_user->getFlash('notice') ?>
-				</div>
-				<?php endif ?>	
+					<div class="alert">
+						<button class="close" data-dismiss="alert">x</button>
+						<?php echo $sf_user->getFlash('notice') ?>
+					</div>
+				<?php endif; ?>	
 			
 				<?php if ($sf_user->hasFlash('error')): ?>
-				<div class="flash_error">
-					<?php echo $sf_user->getFlash('error') ?>
-				</div>
-				<?php endif ?>
+					<div class="alert alert-error">
+						<button class="close" data-dismiss="alert">x</button>
+						<?php echo $sf_user->getFlash('error') ?>
+					</div>
+				<?php endif; ?>
 			
 					<?php echo $sf_content ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>

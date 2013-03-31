@@ -15,6 +15,8 @@ class EIAProjectDescriptionForm extends BaseEIAProjectDescriptionForm
    unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by'] , $this['token']);
 	$this->setDefault('created_at',date('Y-m-d 00:00:00'));
 	//
+	$this->widgetSchema['eiaproject_id']=new sfWidgetFormInputHidden();
+	$this->setDefault('eiaproject_id', Doctrine_Core::getTable('EIAProjectDetail')->getProjectId());
 	//natures
    $this->widgetSchema['project_nature'] = new sfWidgetFormChoice(array(
 	 # 'label' => 'Category',

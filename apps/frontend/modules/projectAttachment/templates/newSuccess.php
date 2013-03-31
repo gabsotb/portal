@@ -7,9 +7,9 @@
             <div class="widget-body">
 			<div class="alert alert-block alert-info fade in">
 														
-							<h4 class="alert-heading">Last Step</h4>
+							<h4 class="alert-heading"><?php echo __('Last Step') ?></h4>
 							<p>
-								Please Attach the following documents where applicable, The items marked ** are mandatory.
+								<?php echo __('Please Attach the following documents where applicable, The items marked ** are mandatory.') ?>
 							</p>
 						 </div>
 			         <?php include_partial('form', array('form' => $form)) ?>

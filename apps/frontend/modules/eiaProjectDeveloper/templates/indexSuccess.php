@@ -44,4 +44,3 @@
 </table>
 
   <a href="<?php echo url_for('eiaProjectDeveloper/new') ?>">New</a>
-  

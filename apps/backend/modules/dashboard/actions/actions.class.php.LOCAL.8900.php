@@ -17,28 +17,12 @@ class dashboardActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-       if (!$request->getParameter('sf_culture'))
-	  {
-		if ($this->getUser()->isFirstRequest())
-		{
-		  $culture = $request->getPreferredCulture(array('en', 'fr', 'sw', 'rw'));
-		  $this->getUser()->setCulture($culture);
-		  $this->getUser()->isFirstRequest(false);
-		}
-		else
-		{
-		  $culture = $this->getUser()->getCulture();
-		}
-	 
-		$this->redirect('localized_homepage');
-	  }
     //$this->forward('default', 'module');
 	//we call method to select records from InvestmentApplications submitted who's status is submitted i.e. not assigned to a staff.
 	 $status = 'submitted';
 	$this->new_applications = Doctrine_Core::getTable('InvestmentApplication')->getUnassignedApplications($status); // pass status for the where clause
 	///we need to call a function to return user available tasks
 	//action to retrieve assigned tasks for currently logged in admin
-<<<<<<< HEAD
 	//let us retrieve the id of logged in user
    $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
    //echo $userId; exit;
@@ -50,19 +34,6 @@ class dashboardActions extends sfActions
    //////////TOR/////
  //  $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
    //////////////////////////
-=======
-		//let us retrieve the id of logged in user
-	   $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
-	   //echo $userId; exit;
-	   $this->mytasks = Doctrine_Core::getTable('TaskAssignment')->getUserTasks($userId);
-	   $this->mytasksnotcomplete = Doctrine_Core::getTable('TaskAssignment')->getUserTasksNotComplete($userId);
-	   ////////////EIA////////////
-	  // $this->unassigned= Doctrine_Core::getTable('EIApplication')->getApplications('submitted');
-	 //  $this->jobs= Doctrine_Core::getTable('EITaskAssignment')->getJobs('notstarted');
-	   //////////TOR/////
-	 //  $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
-	   //////////////////////////
->>>>>>> a053933b7568062aa39b0d012ff8c5a9470aa768
  
    	
   } 

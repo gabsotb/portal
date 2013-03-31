@@ -18,7 +18,7 @@ class EIAProjectSurroundingForm extends BaseEIAProjectSurroundingForm
 		);
 	
 	$this->widgetSchema['eiaproject_id'] = new sfWidgetFormInputHidden() ;
-	
+	$this->setDefault('eiaproject_id', Doctrine_Core::getTable('EIAProjectDetail')->getProjectId());
 	$this->widgetSchema['watershed_near_distance_units'] = new sfWidgetFormChoice(array(
 	'choices'  => Doctrine_Core::getTable('EIAProjectSurrounding')->getUnits(),
 	'multiple' => false,

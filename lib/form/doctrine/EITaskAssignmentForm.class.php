@@ -16,9 +16,13 @@ class EITaskAssignmentForm extends BaseEITaskAssignmentForm
 		$this['created_by'], $this['updated_by'], $this['created_at'], $this['updated_at']
 	);
 	
-	$this->setDefault('work_status','notstarted' );
+	$this->setDefault('work_status','notstarted');
+	$this->widgetSchema['work_status'] = new sfWidgetFormInputHidden();
+
 	$this->setDefault('duedate',date('Y-m-d G:i:s',time()+ 84600*2 ));
-	
+	$this->widgetSchema['duedate'] = new sfWidgetFormInputText();
+	$this->widgetSchema['instructions'] = new sfWidgetFormTextarea();
+	$this->widgetSchema['token'] = new sfWidgetFormInputHidden();
   }
   
 }
