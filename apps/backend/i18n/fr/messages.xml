@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="fr" datatype="plaintext" original="messages" date="2013-03-31T09:10:28Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>Language Change</source>
+        <target>Changer la langue</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Please Select your prefered Language:</source>
+        <target>S'il vous plaît Choisissez votre langue préférée:</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>You have</source>
+        <target>Vous avez</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>notifications</source>
+        <target>notifications</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>new messages</source>
+        <target>les nouveaux messages</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>See all messages</source>
+        <target>Voir tous les messages</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Account Settings</source>
+        <target>Paramètres du compte</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Change Language</source>
+        <target>Changer la langue</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Support</source>
+        <target>soutenir</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Inbox</source>
+        <target>Boîte de réception</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Logout</source>
+        <target>Déconnexion</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>User Management</source>
+        <target>Gestion des utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>User Accounts</source>
+        <target>Comptes d'utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>User Groups</source>
+        <target>Groupes d'utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Groups Permissions</source>
+        <target>Permission groupes</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Approve Requests</source>
+        <target>Approuver les Demandes</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Investment Certificates</source>
+        <target>Certificat de placement</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>EIA Certificates</source>
+         <target>EIA Certificats</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>Information Portlets</source>
+        <target>Les portlets d'information</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Certificates Issued</source>
+        <target>Certificats délivrés</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>Resubmission</source>
+        <target>Resubmission</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>View Requests</source>
+        <target>Afficher les demandes de</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>Reporting</source>
+        <target>Rapports</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>Tax Exemptions</source>
+        <target>Exonérations fiscales</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>Help</source>
+        <target>Aider</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>E-portal Investment Certificate Data Administrator Dashboard</source>
+        <target>E-portail Certificat de placement Data Administrator tableau de bord</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>Data Administrator Dashboard</source>
+        <target>Administrateur de données de tableau de bord</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>View Jobs assigned to you. Process Investment Certificates Tasks Assigned to you.</source>
+        <target>Afficher les emplois qui vous sont assignées. Processus des certificats de placement Tâches assignées à vous</target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>E-portal EIA Certificate Data Administrator Dashboard</source>
+        <target>E-portail EIA Certificat Administrateur de données de tableau de bord</target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>View Jobs assigned to you. Process EIA Certificates Tasks Assigned to you.</source>
+        <target>Afficher les emplois qui vous sont assignées. Processus des certificats de placement Tâches assignées à vous</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>&amp;copy; Rwanda Development Board. All Rights Reserved.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>RDB Tasks Performance Analysis. Year 2013</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>Source: Rwanda Development Board</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>Number of Items Processed</source>
+        <target>Nombre d'éléments transformés</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>Visa Issued</source>
+        <target>l'octroi du visa</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>Managers Account</source>
+        <target>Les directeurs de comptes</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>Assign Tasks and Manage User Accounts</source>
+        <target>Attribuer les tâches et gérer des comptes d'utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>Dashboard</source>
+		<target> Tableau de bord</target>
+        <target/>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>Manager</source>
+        <target>Directeur</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>Logged in on</source>
+        <target>Connecté sur</target>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>Total Registered Investors</source>
+        <target>Total des investisseurs enregistrés</target>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>Total Investment Certificates Issued</source>
+        <target>Certificats de placement émis totaux</target>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>Total EIA Certificates Issued</source>
+        <target>Total des certificats d'émission EIA</target>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>Tax Exemptions Granted</source>
+        <target>Exonérations fiscales accordées</target>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>Visa Issued by Immigration</source>
+        <target>Visa délivré par l'immigration</target>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>Recent Applications For Investment Certificates</source>
+        <target>Applications récentes des certificats de placement</target>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>Information</source>
+        <target>Informations</target>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>Seems like all applications
+										for Investment Certificate have been assigned to data admins or there are no new applications.
+										I will try later</source>
+        <target>On dirait que toutes les demandes de certificat de placement ont été attribuées aux administrateurs de données ou il n'ya pas de nouvelle applications.I va essayer plus tard</target>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>Submitted by</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>Business Name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>Submitted On</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>Actions</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>Assign</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>View All Assigned Tasks</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>Recent Applications for  EIA Certificates</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>Submitted By</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>Developers Name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>RDB Task Processing Performance Pie Chart</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>Notifications</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>Investment Registration Certificate Supervisor account</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>Assign Tasks to Investment Certificate Data Administrators</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>Supervisor</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>Welcome, You are logged in as</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>Total No of Assigned Jobs</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Completed Tasks by Assigned Admins</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>Number of Data Admins</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Recent Applications  Investment Certificates</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>Completed Assigned Tasks - This is a Record of Tasks completed by data administrators that you assigned</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>Assigned To</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>For Business</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Instructions</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>Work Status</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>Due Date</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>Date Assigned</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>Print</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>Export CSV</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>Export Excel</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>EIA Certificate Supervisor account</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>Assign Tasks to EIA Data Administrators</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>Welcome, You are logged in as </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="81">
+        <source>Seems like all applications
+										for EIA Certificate have been assigned to data admins or there are no new applications.
+										I will try later</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>View All</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>No New Notifications</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>Pending Tasks</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>View Your</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>Completed Tasks</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>Your Inbox Messages. You have</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>Messages</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>Available Jobs For Investment Certificates Applications</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>Status</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>Due date</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>Start</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>Sorry, I found no new tasks assigned to you
+										to display. I will try later</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="94">
+        <source>Task Monitor Notifications</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>Not Tasks Yet Started. Please Start your Tasks</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>The Administrator has assigned you 0 tasks. Remember you have a deadline to meet</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>No new Tasks Assigned to you</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>Table - Showing Tasks Not Yet Complete But Started</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>Address</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>Application For</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>Task Status</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>Process</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>Accept or Decline</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>Confirm Payment</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>Issue Certificate</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Warning</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>No Tasks Yet Started. Please Start a Task</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Inbox Messages</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Available Jobs For EIA Certificates Applications</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>No jobs assigned</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>Reload the Page or Try Again Later</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Developer</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>Assigned by</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Recent T.O.R Applications</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>No Recent T.O.R Applications Found</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>Administrative Fee Payment Validation System</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>Error Detected</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>Sorry, This Receipt Number Is Invalid</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Are you sure this investor has paid? Please try later</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="120">
+        <source>Okay</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="121">
+        <source>Payment Confirmed</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="122">
+        <source>The Payment For Adminsitrative Fee of usd 500 has been confirmed</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="123">
+        <source>Go ahead and issue Investment Certificate to</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="124">
+        <source>Cancel</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="125">
+        <source>Request Document Resubmission</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="126">
+        <source>Please Note that You are about to request this client to resubmit data. This therefore means the client &#13;
+							documents processing will continue after he/she resubmits. You will not be able to process the application untill&#13;
+							the client resubmits his/her application</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="127">
+        <source>Are you sure about this</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="128">
+        <source>Okay I understand</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="129">
+        <source>Decline Application</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="130">
+        <source>Your are about to decline this applicant application. It is a good idea to inform the Manager and share your decision. You can send a message to the Manager/ Supervisor who assigned you this task and inform them of your&#13;
+							decision by clicking</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="131">
+        <source>Send Message</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="132">
+        <source>If you are sure about you decision, then click continue or just cancel</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="133">
+        <source>Continue</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="134">
+        <source>BUSINESS PROPOSAL FOR</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="135">
+        <source>Important!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="136">
+        <source>This is the business proposal for  $name. Please Read it Carefully before generating report</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="137">
+        <source>PROJECT BRIEF</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="138">
+        <source>APPLICANT FULL NAMES</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="139">
+        <source>TITLE IN THE COMPANY</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="140">
+        <source>CITIZENSHIP</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="141">
+        <source>TELEPHONE (mobile)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="142">
+        <source>FAX</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="143">
+        <source>PERSONAL E-MAIL</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="144">
+        <source>COMPANY DETAILS</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="145">
+        <source>BUSINESS NAME</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="146">
+        <source>NATURE OF BUSINESS/SECTOR</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="147">
+        <source>BUSINESS CATEGORY</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="148">
+        <source>P.O BOX</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="149">
+        <source>LOCATION</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="150">
+        <source>SECTOR</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="151">
+        <source>DISTRICT</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="152">
+        <source>CITY/PROVINCE</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="153">
+        <source>INVESTMENT AND FINANCING SCHEDULE &amp; CAPITAL COST</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="154">
+        <source>START UP EXPENSES</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="155">
+        <source>FINANCING STRUCTURE</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="156">
+        <source>EMPLOYMENT DETAILS</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="157">
+        <source>LOCAL EMPLOYEES</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="158">
+        <source>EXPATRIATE EMPLOYEES</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="159">
+        <source>PLANNED COMPANY PERFORMANCE</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="160">
+        <source>Make Report</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="161">
+        <source>Request Resubmission</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="162">
+        <source>Decline</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="163">
+        <source>Attached by Applicant</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="164">
+        <source>Download These attachment to view and analyze them</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="165">
+        <source>Exemption on imported machinery(List of Items)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="166">
+        <source>Exemption on raw materials(List of Items)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="167">
+        <source>Land Ownership Document</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="168">
+        <source>Bill of Quantity</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="169">
+        <source>Drawings Document</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="170">
+        <source>Construction Permit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="171">
+        <source>You are now processing application for investment certificate for</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="172">
+        <source>Download the attachments and read the business proposal on the left side of your screen.&#13;
+										When done Click on the Make report button to generate a business proposal summary.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="173">
+        <source>Land</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="174">
+        <source>Construction</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="175">
+        <source>Plant and Machinery</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="176">
+        <source>Furniture</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="177">
+        <source>Other fixed assets</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="178">
+        <source>Year1</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="179">
+        <source>Year2</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="180">
+        <source>Year3</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="181">
+        <source>Year4</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="182">
+        <source>Year5</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="183">
+        <source>Investment and financing schedule &amp; Capital cost Data loaded</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="184">
+        <source>Studies</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="185">
+        <source>Travel Expenses</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="186">
+        <source>Starting Capital</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="187">
+        <source>Administrative &amp; Licensing</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="188">
+        <source>Rental Fees</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="189">
+        <source>Others</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="190">
+        <source>Equity</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="191">
+        <source>Loan from bank</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="192">
+        <source>Loan from mother company</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="193">
+        <source>Grant</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="194">
+        <source>Foreign source</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="195">
+        <source>Local  source</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="196">
+        <source>Top Management</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="197">
+        <source>Technical/Professional</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="198">
+        <source>Skilled labour</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="199">
+        <source>Others (manpower,casual etc)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="200">
+        <source>Others (manpower,casual etc</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>Sales/Income</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="202">
+        <source>Total cost of sales</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="203">
+        <source>Gross profit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="204">
+        <source>Total Indirect expenses</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="205">
+        <source>Profit before tax</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="206">
+        <source>Tax expense (30%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="207">
+        <source>Net profit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="208">
+        <source>Planned Company Performance  Data loaded</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="209">
+        <source>Data admin Jobs Management</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="210">
+        <source>Edit Job Assigned To %%sfGuard_user%%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="211">
+        <source>Assign A New Task To a Data Admin</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="212">
+        <source>User Assigned</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="213">
+        <source>Task Assignment</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="214">
+        <source>Edit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="215">
+        <source>Edit Task assignment Record</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="216">
+        <source>Investment Certificates - Task Assignment Record</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="217">
+        <source>Sorry, I found no record to display</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="218">
+        <source>Assign Tasks</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="219">
+        <source>Task Management</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="220">
+        <source>Use This Field To Assign Task To Data Administrator</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="221">
+        <source>Language</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="222">
+        <source>Business Proposal Summary</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="223">
+        <source>Please Provide the fields below to create Business Proposal Summary  for this business</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="224">
+        <source>Accept Investor Application</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="225">
+        <source>You are About to Accept this Investor application for Issuance of Investment Registration Certificate.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="226">
+        <source>To do this you will need permission from the Manager/ Supervisor who assigned this Task.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="227">
+        <source>Request Permission</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="228">
+        <source>Decline Investor Application</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="229">
+        <source>You are About to Decline this Investor application for Issuance of Investment Registration Certificate.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="230">
+        <source>Business Proposal for</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="231">
+        <source>This is final business proposal summary for Someone. 
+											At this step, you can either accept or reject this application. If you accept, 
+											the system will auto-generate and acceptance letter and send it to the client. 
+											If you reject, you will be required to manually draft a rejection letter and send it to the investor</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="232">
+        <source>Project Classification</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="233">
+        <source>Name of Company</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="234">
+        <source>Place and Address of Company</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="235">
+        <source>Planned Capital Investment</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="236">
+        <source>Employment Created</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="237">
+        <source>Technical Viability</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="238">
+        <source>Categories of Jobs Created</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="239">
+        <source>Accept Application</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="240">
+        <source>Save</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="241">
+        <source>Oops! The page you asked for is secure and you do not have proper credentials.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="242">
+        <source>Login below to gain access</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="243">
+        <source>Enter your Username</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="244">
+        <source>Enter your Password</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="245">
+        <source>Enter your username and password</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="246">
+        <source>Forgot password?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="247">
+        <source>Signin</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

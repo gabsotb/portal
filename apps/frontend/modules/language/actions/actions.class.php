@@ -19,11 +19,11 @@ class languageActions extends sfActions
   {
     $form = new sfFormLanguage(
       $this->getUser(),
-      array('languages' => array('en', 'fr', 'sw','rw'))
+      array('languages' => array('en', 'fr','rw'))
     );
- 
+    // print_r($request); exit;
     $form->process($request);
- 
+     
     return $this->redirect('localized_homepage');
   }
 }

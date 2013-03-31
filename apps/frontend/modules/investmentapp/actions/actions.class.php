@@ -19,7 +19,7 @@ class investmentappActions extends sfActions
 	  {
 		if ($this->getUser()->isFirstRequest())
 		{
-		  $culture = $request->getPreferredCulture(array('en', 'fr', 'sw', 'rw'));
+		  $culture = $request->getPreferredCulture(array('en', 'fr', 'rw'));
 		  $this->getUser()->setCulture($culture);
 		  $this->getUser()->isFirstRequest(false);
 		}
