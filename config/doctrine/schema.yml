@@ -35,12 +35,12 @@ BusinessPlan:
   ### Project Brief Information
   project_brief: {type: string(4000), notnull: true}
   ### Applied on Incentives
-  exemption_on_machinery: {type: string(255), notnull: false}
+  exemption_on_machinery: {type: string(255), notnull: false, unique: true}
   exemption_raw_materials: {type: string(4000), notnull: false}
-  land_ownership_document: {type: string(255), notnull: false}
-  bill_of_quantiy: {type: string(255), notnull: false}
-  drawings: {type: string(255), notnull: false}
-  construction_permits: {type: string(255), notnull: false}
+  land_ownership_document: {type: string(255), notnull: false, unique: true}
+  bill_of_quantiy: {type: string(255), notnull: false, unique: true}
+  drawings: {type: string(255), notnull: false, unique: true}
+  construction_permits: {type: string(255), notnull: false, unique: true}
   investment_allowances: {type: string(255), notnull: false}
   additional_incentives: {type: string(4000), notnull: false}
   visa_work_permits: {type: string(4000), notnull: false}
@@ -717,7 +717,7 @@ Messages:
   recepient: {type: string(255), notnull: true}
   message_subject: {type: string(300), notnull: false}
   message: {type: string(4000), notnull: true}
-  attachement: {type: string(255), notnull: true}
+  attachement: {type: string(255), notnull: false, unique: true}
   token: {type: string(255), notnull: false} 
 Notifications:
  actAs: {Timestampable: ~}

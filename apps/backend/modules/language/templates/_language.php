@@ -10,7 +10,7 @@
   <optgroup><option value="rw"><?php echo __('Kinyarwanda') ?></option></optgroup>
   <optgroup><option value="fr"><?php echo __('French') ?></option></optgroup>
   <optgroup><option value="en"><?php echo __('English') ?></option></optgroup>
-  </select><input type="hidden" name="_csrf_token" value="f559f114593b0914617b26453f462af3" id="csrf_token" /></td>
+  </select><?php echo $form['_csrf_token']->render() ?></td>
 </tr>  
   <input type="submit" value="ok" />
 </form>

@@ -5,12 +5,14 @@
   
   ?>
 <tr>
-  <th><label for="language"> <?php echo __('Language') ?></label></th>
+  <th><label for="language"> <?php echo __('Language') ?> </label></th>
   <td><select name="language" id="language">
   <optgroup><option value="rw"><?php echo __('Kinyarwanda') ?></option></optgroup>
   <optgroup><option value="fr"><?php echo __('French') ?></option></optgroup>
   <optgroup><option value="en"><?php echo __('English') ?></option></optgroup>
-  </select><input type="hidden" name="_csrf_token" value="20be5ad57e6d1e6f7cb824844f453d38" id="csrf_token" /></td>
+  </select>
+  <?php echo $form['_csrf_token']->render() ?>
+  </td>
 </tr>
   
   

@@ -20,17 +20,12 @@ class EIAProjectAttachment extends BaseEIAProjectAttachment
 		  {
 			  
 			  ///
-		  if (!$this->getToken() && !$this->getProjectReferenceNumber())
+		  if (!$this->getToken())
 		  {
 			$this->setToken(sha1(date().rand(11111, 99999)));
-			//get the incremental number and set it
-			$number = Doctrine_Core::getTable('EIAProjectDetail')->createIncrementalReferenceNumber();
-			$this->setProjectReferenceNumber($number);
 			
 		  }
-		  //we want also to set an incremental reference number for each and every project
-		  
-				//Save status of application
+		 	//Save status of application
 				$status = new EIApplicationStatus();
 				$status->eiaproject_id=$this->getEiaprojectId();
 				$status->application_status='submitted';

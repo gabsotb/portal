@@ -197,6 +197,20 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  //
 	  return $name;
 	}
+	//custom method to retrieve a user id given a business name
+	public function getUserId($business_name)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT investment_application.created_by FROM investment_application WHERE investment_application.name = '$business_name' limit 1
+	  ");
+	  $id = 0; 
+	  foreach( $query as $q)
+	  {
+	   $id = $q['id'] ;
+	  }
+	  return $id;
+	  
+	}
 	//a custom method to retrieve business id given a business name
 	public function getBusinessId($name)
 	{

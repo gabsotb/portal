@@ -15,6 +15,7 @@
 	  $sector = $data['sector'];
 	  $district = $data['district'];
 	  $city_province = $data['city_province'];
+	  $exemption_on_machinery = $data['exemption_on_machinery'];
 	  //Variables for the table land costs
 	  
 	 }
@@ -104,7 +105,9 @@
 											<div class="alert alert-block alert-danger">
 										<h4 class="alert-heading"><?php echo __('Important!') ?></h4>
 										<p>
-											<?php echo __('This is the business proposal for  $name. Please Read it Carefully before generating report'); ?>.
+										     <?php echo __('This is the business proposal for:') ?>
+										     <?php echo $name ?>
+											 <?php echo __(' Please Read it Carefully before generating report'); ?>.
 										</p>
 										
 									         </div>
@@ -339,14 +342,17 @@
 										</div>
 									    </div>
 									<div class="row-fluid">
-										<div class="span8">
+										<div class="span9">
 											<a href="<?php echo url_for('projectSummary/new?id='.$id) ?>"> <button type="button" class="btn btn-success"><?php echo __('Make Report') ?></button> </a> &nbsp;&nbsp;&nbsp;
 											<a href="#widget-resubmit" data-toggle="modal">
 											<button type="button" class="btn btn-inverse"><?php echo __('Request Resubmission') ?></button></a>&nbsp;&nbsp;&nbsp;
 											</a>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<a href="#widget-decline" data-toggle="modal">
-											<button type="button" class="btn btn-danger"><?php echo __('Decline') ?></button> </a>
+											<button type="button" class="btn btn-danger"><?php echo __('Decline') ?></button> </a> <br/><br/><br/>
+											<a href="<?php echo url_for('dashboard/proposal?id='.$id) ?>">
+											
+											<button type="button" class="btn btn-info"><i class="icon-print"></i><?php echo __('Print PDF') ?></button> </a>
 										</div>
 										
 									</div>
@@ -366,12 +372,107 @@
 								<div class="widget-body">
 								 <p><?php echo __('Download These attachment to view and analyze them') ?></p>
 									<ul>
-										<li><a href ="<?php echo url_for('dashboard/download1?id='.$id)?>"><?php echo __('Exemption on imported machinery(List of Items)')?> </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download2?id='.$id)?>"><?php echo __('Exemption on raw materials(List of Items)')?> </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download3?id='.$id)?>"><?php echo __('Land Ownership Document') ?></a></li>
-										<li><a href ="<?php echo url_for('dashboard/download4?id='.$id)?>"><?php echo __('Bill of Quantity') ?>  </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download5?id='.$id)?>"><?php echo __('Drawings Document') ?> </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download6?id='.$id)?>"><?php echo __('Construction Permit') ?> </a></li>
+									  <?php
+                                              $model = new BusinessPlan();
+										 ?>
+									<?php foreach($details as $file) { ?>
+										<li>
+										<?php 
+										
+										  if($file['exemption_on_machinery'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										  //
+										   if($file['exemption_on_machinery'] != null)
+											  {
+											   echo link_to('exemption_on_machinery', '/uploads/documents/investment_docs/'.$file['exemption_on_machinery'], array('target' => '_blank')); 
+											  }
+										
+										
+										
+										?>
+										
+										</li>
+										
+										<li>
+										  
+										<?php 
+										 if($file['exemption_raw_materials'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										///
+										 if($file['exemption_on_machinery'] != null)
+											  {
+											   echo link_to('exemption_raw_materials', '/uploads/documents/investment_docs/'.$file['exemption_raw_materials'], array('target' => '_blank')); 
+											  }
+										
+										
+										
+										?>
+										</li>
+										
+										<li>
+										<?php 
+										 if($file['land_ownership_document'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										//
+										 if($file['land_ownership_document'] != null)
+											  {
+											   echo link_to('land_ownership_document', '/uploads/documents/investment_docs/'.$file['land_ownership_document'], array('target' => '_blank')); 
+										
+											  }
+										
+										
+										
+										?></li>
+										
+										<li><?php 
+										if($file['bill_of_quantiy'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										 if($file['bill_of_quantiy'] != null)
+											  {
+											   echo link_to('bill_of_quantiy', '/uploads/documents/investment_docs/'.$file['bill_of_quantiy'], array('target' => '_blank')); 
+										
+											  }	  
+										
+										
+										?></li>
+										
+										<li><?php 
+										if($file['construction_permits'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										if($file['construction_permits'] != null)
+											  {
+											  echo link_to('construction_permits', '/uploads/documents/investment_docs/'.$file['construction_permits'], array('target' => '_blank')); 
+										
+											  }		  
+										
+										
+										
+										?></li>
+										
+										<li>
+										<?php 
+										 if($file['drawings'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										if($file['drawings'] != null)
+											  {
+											  echo link_to('drawings', '/uploads/documents/investment_docs/'.$file['drawings'], array('target' => '_blank'));
+										
+											  }	
+										 ?></li>
+										
+								  <?php } ?>
 									</ul>
 								</div>
 							</div>

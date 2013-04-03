@@ -76,7 +76,8 @@ class messagesActions extends sfActions
     {
       $messages = $form->save();
 
-      $this->redirect('messages/edit?id='.$messages->getId());
+      //$this->redirect('messages/edit?id='.$messages->getId());
+	  $this->redirect('dashboard/index');
     }
   }
 }

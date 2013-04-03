@@ -39,7 +39,12 @@
 												<?php echo $messages['message'] ?>
 											</p>
 											<p>
-											 <?php echo $messages['attachement'] ?>
+											 
+											 <?php 
+											  // $model = new Messages() ;
+											 ?>
+											 <?php echo link_to('download attachment', '/uploads/documents/messages_docs/'.$messages['attachement'], array('target' => '_blank')); ?>
+											 
 											</p>
 											<p>
 											  <a href="<?php echo url_for('messages/index') ?>">

@@ -6,17 +6,17 @@
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
   <table>
-  <div class="control-group">
-					<div class="controls">
-						<div class="input-prepend">
-						<span> <label class="control-label"><?php echo $form['recepient']->renderLabel() ?>
-							 <?php echo $form['recepient']->renderError() ?> 
-							 </label></span>
-							<?php echo $form['recepient']->render() ?>
-						</div>
-					</div>
- </div> 
-     <div class="control-group">
+		  <div class="control-group">
+							<div class="controls">
+								<div class="input-prepend">
+								<span> <label class="control-label"><?php echo $form['recepient']->renderLabel() ?>
+									 <?php echo $form['recepient']->renderError() ?> 
+									 </label></span>
+									<?php echo $form['recepient']->render() ?>
+								</div>
+							</div>
+		 </div> 
+       <div class="control-group">
 					<div class="controls">
 						<div class="input-prepend">
 							 <span> <label class="control-label"><?php echo $form['message']->renderLabel() ?>
@@ -27,6 +27,21 @@
 						</div>
 					</div>
 		</div>
+		<div class="control-group">
+                                 <label class="control-label"><?php echo $form['attachement']->renderLabel() ?>
+								  <?php echo $form['attachement']->renderError() ?> 
+								 </label>
+                                 <div class="controls">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                      <div class="input-append">
+                                        <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div><span class="btn btn-file">
+										<span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span>
+                                        <?php echo $form['attachement']->render(array('class'=>'default')) ?>
+                                          </span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                      </div>
+                                    </div>
+                                 </div>
+                              </div> 
     <tfoot>
       <tr>
         <td colspan="2">

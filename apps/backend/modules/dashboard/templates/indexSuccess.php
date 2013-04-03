@@ -491,7 +491,7 @@ $(function () {
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?business='.$available['name']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
@@ -1027,7 +1027,30 @@ $(function () {
 											<td><?php echo $notdone['location'] ?></td>
 											<td><?php echo "Investment Certificate"?></td>
 											<td><?php echo $notdone['duedate'] ?></td>
-											<td><?php echo $notdone['work_status']  ?></td>
+											<td><?php echo $notdone['work_status']  ;
+											  //Here, we will also check and see if this record has a resubmission request by the logged in admin
+											  //and inform the admin that we are waiting for resubmission. if resubmitted, we will not show this 
+											  //message.
+											 // $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+											    $name = $notdone['name'] ;
+												//echo $name;
+											    $q = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($name);
+												
+											  $id = Doctrine_Core::getTable('InvestmentResubmission')->checkIdExistance($q);
+											   if($id != null)
+											   {
+											    echo ("<br/>");
+											    echo ("<font color='red'>") ;
+											    echo __('Awaiting Investor Document Resubmission') ;
+												echo ("</font>");
+											   }
+											
+											?>
+											  
+											
+											
+											
+											</td>
 											
 											<td>
 										
@@ -1036,9 +1059,18 @@ $(function () {
 											  application and show us a link for accepting or reject user application for
 											  investment certificate. This is hot!!!!!!!!!!!!! demn it!!!!
 											  -->
-										   <?php  if($notdone['work_status'] == "started" ): ?>
-											<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Process') ?> </button></a>
-											 <?php endif; ?>
+										    <?php  if($notdone['work_status'] == "started" ): ?>
+												<?php if($id != null): ?>
+												  <a href="#">
+												<button class="btn btn-inverse disabled"><i class="icon-refresh icon-white"></i> <?php echo __('Process') ?> </button></a>
+												<?php endif; ?>
+												<?php if($id == null): ?>
+												<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id']) ?>">
+												<button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Process') ?> </button></a>
+												 <?php endif; ?>
+											
+										   <?php endif; ?>
+											 
 											 <?php  if($notdone['work_status'] == "reporting" ): ?>
 											<a href="<?php echo url_for('projectSummary/show?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i><?php echo __('Accept or Decline') ?> </button></a>
 											 <?php endif; ?>

@@ -221,7 +221,9 @@ class dashboardActions extends sfActions
 				
 				   
 				   $out = array('financial' => $data) ;
-				   echo(json_encode($out)); exit;	
+				   echo(json_encode($out)); 
+				   
+				   exit;	
 					
 				 }
 				 
@@ -886,4 +888,353 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
           // Stop symfony process */
           throw new sfStopException();
   }
+  //method to print an investor business proposal summary
+   public function executeProposal(sfWebRequest $request)
+	{
+	   
+	   $this->value = $request->getParameter('id'); // here we get the parameter 
+	
+		/*Since we have the id of the business, we now retrieve all details for this application for investment certificate from
+		the three tables. InvestmentApplication, BusinessPlan and TaskAssignment*/
+		$details = Doctrine_Core::getTable('TaskAssignment')->getApplicationDetails($this->value);
+		//select Investment and financing schedule &Capital cost Details
+		$investment_financial = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($this->value);
+		$this->forward404Unless($details);
+		///////////////////////Now we get the user current details //////////////////////////////
+		//get the business application information
+	    foreach($details as $data)
+		 {
+		  $id = $data['id'];
+		  $name = $data['name']; 
+		  $project_brief = $data['project_brief'];
+		  $business_name = $data['name'];
+		  $business_nature = $data['business_sector'];
+		  $business_category = $data['business_category'];
+		  $office_telephone = $data['office_telephone'];
+		  $fax = $data['fax'];
+		  $post_box = $data['post_box'];
+		  $location = $data['location'];
+		  $sector = $data['sector'];
+		  $district = $data['district'];
+		  $city_province = $data['city_province'];
+		  $exemption_on_machinery = $data['exemption_on_machinery'];
+		  //Variables for the table land costs
+		  
+		 }
+		 /////
+		 $applicantId = Doctrine_Core::getTable('TaskAssignment')->getApplicantId($request->getParameter('id')) ;
+											   
+			   ///
+			   $applicant_details = Doctrine_Core::getTable('TaskAssignment')->getApplicantInformation($applicantId);
+			   /// variables
+			   $first_name = null;
+			   $last_name = null;
+			   $salutation = null;
+			   $phone_number = null;
+			   $citizenship = null;
+			   $surname = null ;
+			   $id_passport = null ;
+			   $email_address = null ;
+				foreach($applicant_details as $d)
+				{
+				   $first_name = $d['first_name'] ;
+				   $last_name = $d['last_name'] ;
+				   $salutation = $d['salutation'] ;
+				   $phone_number = $d['phone_number'] ;
+				   $citizenship = $d['citizenship'] ;
+				   $surname = $d['surname'] ;
+				   $id_passport = $d['id_passport'] ;
+				   $email_address = $d['email_address'] ;
+				}
+											   
+		 ///
+		 //set variables here
+	  //  personal details
+		$brief_title = $this->getContext()->getI18N()->__('PROJECT BRIEF');
+		$brief_part1 = $this->getContext()->getI18N()->__('This is the business proposal for:');
+		$brief_part2 = $this->getContext()->getI18N()->__('Please Read it Carefully before generating report.');
+		$personal_details_title = $this->getContext()->getI18N()->__('APPLICANT PERSONAL DETAILS');
+		$names_title = $this->getContext()->getI18N()->__('APPLICANT FULL NAMES:');
+		$company_title = $this->getContext()->getI18N()->__('TITLE IN THE COMPANY:');
+		$citizenship_title = $this->getContext()->getI18N()->__('CITIZENSHIP:');
+		$telephone_title = $this->getContext()->getI18N()->__('TELEPHONE:');
+		$fax_title = $this->getContext()->getI18N()->__('FAX:');
+		$email_title = $this->getContext()->getI18N()->__('PERSONAL E-MAIL:');
+		//company details
+		$company_details_title = $this->getContext()->getI18N()->__('COMPANY DETAILS:');
+		$business_title = $this->getContext()->getI18N()->__('BUSINESS NAME:');
+		$business_sector_title = $this->getContext()->getI18N()->__('NATURE OF BUSINESS/SECTOR:');
+		$business_category_title = $this->getContext()->getI18N()->__('BUSINESS CATEGORY:');
+		$business_telephone_title = $this->getContext()->getI18N()->__('TELEPHONE (mobile):');
+		$business_fax_title = $this->getContext()->getI18N()->__('FAX:');
+		$business_box_title = $this->getContext()->getI18N()->__('P.O BOX:');
+		$business_location_title = $this->getContext()->getI18N()->__('LOCATION:');
+		//$business_sector_title = $this->getContext()->getI18N()->__('SECTOR:');
+		$business_district_title = $this->getContext()->getI18N()->__('DISTRICT:');
+		$business_province_title = $this->getContext()->getI18N()->__('CITY/PROVINCE:');
+	    //financial_costs
+        $financial_costs_title = $this->getContext()->getI18N()->__('INVESTMENT AND FINANCING SCHEDULE & CAPITAL COST:');
+		// echo $project_brief ; exit;
+		$config = sfTCPDFPluginConfigHandler::loadConfig();
+    
+    // pdf object
+    $pdf = new sfTCPDF();
+
+    // set document information
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor('E-Portal');
+    $pdf->SetTitle('Business Proposal');
+    $pdf->SetSubject('Business Proposal for business name');
+    //$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+
+    // set default header data
+    $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING);
+
+    // set header and footer fonts
+    $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+    // set default monospaced font
+    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+    //set margins
+    $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+    $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+    $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+    //set auto page breaks
+    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+    //set image scale factor
+    $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+    // ---------------------------------------------------------
+
+    // set default font subsetting mode
+    $pdf->setFontSubsetting(true);
+
+    // Set font
+    // dejavusans is a UTF-8 Unicode font, if you only need to
+    // print standard ASCII chars, you can use core fonts like
+    // helvetica or times to reduce file size.
+    $pdf->SetFont('times', '', 10, '', true);
+
+    // Add a page
+    // This method has several options, check the source code documentation for more information.
+    $pdf->AddPage();
+      
+    // Set some content to print
+	
+	
+	///////
+    
+        // output some RTL HTML content
+			$html = '<div style="text-align:center"><u> '.$brief_part1.''.$name.''.$brief_part2.' </u> <br/> </div>';
+			$pdf->writeHTML($html, true, false, true, false, '');
+
+			// test some inline CSS
+			$html = '<p> '.$brief_title.': <br/>
+			'.$project_brief.' <br/><br/>
+			</p>';
+
+			$pdf->writeHTML($html, true, false, true, false, '');
+			///
+			$html = '<h4> '.$personal_details_title.': <h4/>
+			</p>';
+			$pdf->writeHTML($html, true, false, true, false, '');
+			//
+			$html = '<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
+			    <li>
+				
+				<span>'.$names_title.' </span>
+				<span> '.$first_name. ' '.$last_name.' </span>
+				</li>
+				<li>
+				
+				<span>'.$company_title.' </span>
+				<span></span>  
+				
+				</li>
+				<li>
+				
+				
+				<span>'.$citizenship_title.' </span>
+			    <span>'.$citizenship.'</span>
+
+				</li>
+				<li>
+                 
+				<span>'.$telephone_title.' </span>
+			    <span>'.$phone_number.'</span>
+
+				</li>
+				<li>
+                   
+				   <span>'.$fax_title.' </span>
+			       <span>'.$fax.'</span>
+
+				</li>
+				<li> 
+				   
+				   <span>'.$email_title.' </span>
+			       <span>'.$email_address.'</span>
+                 				
+				</li>
+			</ul> <br/> <br/>';
+
+			$pdf->writeHTML($html, true, false, true, false, '');
+			////
+			$html = '<h4> '.$company_details_title.': <h4/>
+			</p>';
+			$pdf->writeHTML($html, true, false, true, false, '');
+			$html = '<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
+			    <li>
+				
+				<span>'.$business_title.' </span>
+				<span> '.$business_name.' </span>
+				</li>
+				<li>
+				
+				<span>'.$business_sector_title.' </span>
+				<span>'.$business_nature.'</span>  
+				
+				</li>
+				<li>
+				
+				
+				<span>'.$business_category_title.' </span>
+			    <span>'.$business_category.'</span>
+
+				</li>
+				<li>
+                  
+				<span>'.$business_telephone_title.' </span>
+			    <span>'.$office_telephone.'</span>
+
+				</li>
+				<li>
+                   
+				   <span>'.$business_fax_title.' </span>
+			       <span>'.$fax.'</span>
+
+				</li>
+				<li> 
+				   
+				   <span>'.$business_box_title.' </span>
+			       <span>'.$post_box.'</span>
+                 				
+				</li>
+				<li> 
+				   
+				   <span>'.$business_location_title.' </span>
+			       <span>'.$location.'</span>
+                 				
+				</li>
+				<li> 
+				   <span><i class="icon-globe"></i></span>
+				   <span>'.$email_title.' </span>
+			       <span>'.$office_telephone.'</span>
+                 				
+				</li>
+				
+				<li> 
+				  
+				   <span>'.$business_box_title.' </span>
+			       <span>'.$office_telephone.'</span>
+                 				
+				</li>
+				<li> 
+				   <span><i class="icon-globe"></i></span>
+				   <span>'.$business_location_title.' </span>
+			       <span>'.$office_telephone.'</span>
+                 				
+				</li>
+				<li> 
+				   <span><i class="icon-globe"></i></span>
+				   <span>'.$business_location_title.' </span>
+			       <span>'.$office_telephone.'</span>
+                 				
+				</li>
+				<li> 
+				   
+				   <span>'.$business_sector_title.' </span>
+			       <span>'.$sector.'</span>
+                 				
+				</li>
+				<li> 
+				   
+				   <span>'.$business_district_title.' </span>
+			       <span>'.$district.'</span>
+                 				
+				</li>
+				<li> 
+				  
+				   <span>'.$business_province_title.' </span>
+			       <span>'.$city_province.'</span>
+                 				
+				</li>
+			</ul> <br/> <br/>';
+
+			$pdf->writeHTML($html, true, false, true, false, '');
+			////
+			$html = '<h4> '.$financial_costs_title.': <h4/>
+			</p>';
+			$pdf->writeHTML($html, true, false, true, false, '');
+			//Table Financial Schedule and Investment
+			     $id = $request->getParameter('id');
+				   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
+				   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
+				   ///
+				  $financial =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN costs ON costs.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ; 
+				
+			  $head = '
+			<table style="background-color:#fff;">
+			  <thead>
+				<tr style="background-color:#000;color:#fff;">
+				  <th>Fixed Assets</th>
+				  <th>Year1</th>
+				  <th>Year2</th>
+				  <th>Year3</th>
+				  <th>Year4</th>
+				  <th>Year5</th>
+				</tr>
+			  </thead>
+			  ';
+	     $body = '';
+		 $assets = array("Land","Construction", "Plant/Machinery", "Furniture","Others") ;
+		 $item = null;
+		 foreach($assets as $v =>$value)
+		   {
+		    //echo "Key=" . $v . ", Value=" . $value;
+			$item = $value;
+			 
+		   } 
+		   foreach ($financial as $q){
+           $body .= '
+			  <tr bgcolor="#cccccc">
+				<th>'.$q['id'].'</th>
+				<td>'.$q['year1'].'</td>
+				<td>'.$q['year2'].'</td>
+				<td>'.$q['year3'].'</td>
+				<td>'.$q['year4'].'</td>
+				<td>'.$q['year5'].'</td>
+			  </tr>
+			  ';			
+		 }
+		
+		 
+ 		$tail = '</table>'; 
+		$pdf->writeHTML($head.$body.$tail, true, false, true, false, '');
+			//end table
+			
+			
+			
+		ob_end_clean();
+		$pdf->Output('business_proposal.pdf', 'I');
+		throw new sfStopException();	
+		 /////////////////////////////////////////////////
+		 
+  }
+  
 }
+

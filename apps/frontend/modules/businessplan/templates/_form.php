@@ -254,8 +254,8 @@
 														<td> <?php echo $form['exemption_on_machinery']->render(array('class' => 'default')) ?></td>
 													</tr>
 													<tr>
-														<td><?php echo __('Exemptions On Imported Raw Materials(Describe Nature)') ?></td>
-														<td><?php echo $form['exemption_raw_materials']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?></td>
+														<td><?php echo __('Exemptions On Imported Raw Materials(Attach a list)') ?></td>
+														<td><?php echo $form['exemption_raw_materials']->render(array('class' => 'default')) ?></td>
 													</tr>
 													<tr>
 													 <td><?php echo __('Exemptions On Imported Building Materials(Please Attach Following documents(word or pdf documents supported))')?> </td>
