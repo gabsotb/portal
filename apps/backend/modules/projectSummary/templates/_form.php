@@ -10,7 +10,7 @@
       	<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['investment_id']->renderRow(array('class' => 'span7 chosen', 'data-placeholder' => 'Choose a Category', 'tabindex' => '1')) ?>
+					<?php echo $form['investment_id']->renderRow(array('class' => 'span8 chosen', 'data-placeholder' => 'Choose a Category', 'tabindex' => '1')) ?>
 				</div>
 			</div>
 		</div>

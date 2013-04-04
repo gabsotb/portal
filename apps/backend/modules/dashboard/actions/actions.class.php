@@ -1184,8 +1184,8 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 			     $id = $request->getParameter('id');
 				   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
 				   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
-				   ///
-				  $financial =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN costs ON costs.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ; 
+				   ///we will have to echo 1 row at a time. then we will look for a better solution for this task
+				  $financial_row1 =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN costs ON costs.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 1 ") ; 
 				
 			  $head = '
 			<table style="background-color:#fff;">
@@ -1203,25 +1203,36 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 	     $body = '';
 		 $assets = array("Land","Construction", "Plant/Machinery", "Furniture","Others") ;
 		 $item = null;
-		 foreach($assets as $v =>$value)
+		 foreach($assets as $v)
 		   {
-		    //echo "Key=" . $v . ", Value=" . $value;
-			$item = $value;
+		   
 			 
-		   } 
-		   foreach ($financial as $q){
-           $body .= '
-			  <tr bgcolor="#cccccc">
-				<th>'.$q['id'].'</th>
-				<td>'.$q['year1'].'</td>
-				<td>'.$q['year2'].'</td>
-				<td>'.$q['year3'].'</td>
-				<td>'.$q['year4'].'</td>
-				<td>'.$q['year5'].'</td>
-			  </tr>
-			  ';			
-		 }
-		
+		   }
+          	   foreach ($financial_row1 as $q){
+		        $value = "Land" ;
+			    $body .= '
+				  <tr bgcolor="#cccccc">
+					<td>'.$value .'</td>
+					<td>'.$q['year1'].'</td>
+					<td>'.$q['year2'].'</td>
+					<td>'.$q['year3'].'</td>
+					<td>'.$q['year4'].'</td>
+					<td>'.$q['year5'].'</td>
+				  </tr>
+				  ';	}  
+		       ///
+			   foreach ($financial_row2 as $q){
+		        $value = "Construction" ;
+			    $body .= '
+				  <tr bgcolor="#cccccc">
+					<td>'.$value .'</td>
+					<td>'.$q['year1'].'</td>
+					<td>'.$q['year2'].'</td>
+					<td>'.$q['year3'].'</td>
+					<td>'.$q['year4'].'</td>
+					<td>'.$q['year5'].'</td>
+				  </tr>
+				  ';	} 
 		 
  		$tail = '</table>'; 
 		$pdf->writeHTML($head.$body.$tail, true, false, true, false, '');

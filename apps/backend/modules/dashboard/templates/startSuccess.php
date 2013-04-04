@@ -4,6 +4,7 @@
 	 {
 	  $id = $data['id'];
 	  $name = $data['name']; 
+	  $regno = $data['registration_number'];
 	  $project_brief = $data['project_brief'];
 	  $business_name = $data['name'];
 	  $business_nature = $data['business_sector'];
@@ -76,10 +77,39 @@
 						</div>
 						<div class="modal-body">
 							<p><?php echo __('Your are about to decline this applicant application. It is a good idea to inform the Manager and share your decision. You can send a message to the Manager/ Supervisor who assigned you this task and inform them of your
-							decision by clicking')?> <a href="<?php echo url_for('messages/new')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Message') ?></button></a></p>
+							decision by clicking')?> <a href="<?php echo url_for('messages/new?value=decline')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Message') ?></button></a></p>
 							
-							<p> <?php echo __('If you are sure about you decision, then click continue or just cancel') ?></p>
-							 <button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> &nbsp;&nbsp;&nbsp;
+							
+							<?php 
+							 //we will hide this button if the user has not yet been granted the necessary permission to decline
+							 //so we connect to the table that stores permission from managers/supervisors and we query for
+							 //accept where request type is decline_application
+							 $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+							 //print $username; 
+							// print $regno;
+							 //exit;
+							 $query = Doctrine_Core::getTable('InvestmentRequests')->queryPermission($regno, $username);
+							// print_r($query); exit;
+							 //
+							 
+							 
+							?>
+							
+							<?php if(count($query) == 0): ?>
+							<font color="red">
+							 <?php //no permission yet
+                                echo __('Sorry,Permission not granted. If you have contacted your supervisor please wait
+							  as he/she responds to your request. If not please send a message asap. Thank you for understanding') ;?>
+							<?php endif; ?>
+							</font> 
+							 <?php if(count($query) != 0): ?>
+							 <p> <?php echo __('If you are sure about you decision, then click continue or just cancel') ?></p>
+							 <a href="<?php echo url_for('investment_reject')?>">
+							 <button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> 
+							 </a>
+							 <?php endif; ?>
+							 
+							 &nbsp;&nbsp;&nbsp;
 							 <button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
 							
 							
@@ -106,7 +136,9 @@
 										<h4 class="alert-heading"><?php echo __('Important!') ?></h4>
 										<p>
 										     <?php echo __('This is the business proposal for:') ?>
-										     <?php echo $name ?>
+										     <?php echo $name;?>
+											 <?php echo __('Registration Number is'); ?>
+											 <?php echo $regno; ?>
 											 <?php echo __(' Please Read it Carefully before generating report'); ?>.
 										</p>
 										
@@ -260,7 +292,12 @@
 										      <div class="widget-body">
 											    <div class="alert alert-block alert-info">
 									             <div id="mytable1"> </div>
-												 <div id="mytableconsole"> </div>
+												 <div id="mytableconsole"> 
+												   
+												 </div>
+												  <a href="javascript:void(0);" id="printPage">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 												</div>
 											  </div>
 										</div>	
@@ -276,6 +313,9 @@
 											  <div class="alert alert-block alert-info">
 												 <div id="mytable2"> </div>
 												 <div id="mytableconsole2"> </div>
+												 <a href="javascript:void(0);" id="printPage2">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 											  </div>
 											  </div>
 										</div>	
@@ -291,6 +331,9 @@
 											    <div class="alert alert-block alert-info">
 												 <div id="mytable3"> </div>
 												 <div id="mytableconsole3"> </div>
+												 <a href="javascript:void(0);" id="printPage3">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 												 </div>
 											  </div>
 										</div>	
@@ -310,6 +353,9 @@
 													</div>
 												    <div id="mytable4"> </div>
 													 <div id="mytableconsole4"> </div>
+													 <a href="javascript:void(0);" id="printPage4">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 												    </div>	
 											</div>
 											<div class="widget-body">
@@ -320,6 +366,9 @@
 													</div>
 												     <div id="mytable5"> </div>
 													 <div id="mytableconsole5"> </div>
+													 <a href="javascript:void(0);" id="printPage5">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 												 </div>
 										
 											  </div>
@@ -336,6 +385,9 @@
 											      <div class="alert alert-block alert-info">
 												   <div id="mytableconsole6"> </div>
 												    <div id="mytable6"> </div>
+													<a href="javascript:void(0);" id="printPage6">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 												   </div>	
 											  </div>
 										</div>	
@@ -350,9 +402,9 @@
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<a href="#widget-decline" data-toggle="modal">
 											<button type="button" class="btn btn-danger"><?php echo __('Decline') ?></button> </a> <br/><br/><br/>
-											<a href="<?php echo url_for('dashboard/proposal?id='.$id) ?>">
 											
-											<button type="button" class="btn btn-info"><i class="icon-print"></i><?php echo __('Print PDF') ?></button> </a>
+											<!--<a href="<?php //echo url_for('dashboard/proposal?id='.$id) ?>">
+											<button type="button" class="btn btn-info"><i class="icon-print"></i><?php //echo __('Print PDF') ?></button> </a> -->
 										</div>
 										
 									</div>
@@ -782,4 +834,115 @@
             });
 
          
-		  </script>				  
+		  </script>	
+
+
+<!--Printing scripts -->
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable1').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable2').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage2').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable3').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage4').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable4').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage5').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable5').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage6').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable6').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 

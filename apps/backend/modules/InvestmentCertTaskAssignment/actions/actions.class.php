@@ -30,10 +30,14 @@ class InvestmentCertTaskAssignmentActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
    //before we create a form we get the necessary parameters from url
-   $name = $request->getParameter('business') ;
-   $group = $request->getParameter('group');
+   $regno = $request->getParameter('registration') ;
+   $token = $request->getParameter('token') ;
+  // $variable = $name ;
+  // print $name; exit;
+   //$group = $request->getParameter('group');
    //if parameters are empty invalid, we also get the business parameter and counter check it from the database and make sure that it exists.
-    $this->validity = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($name);
+    $this->validity = Doctrine_Core::getTable('InvestmentApplication')->ValidateBusiness($regno,$token);
+	//print ($this->validity); exit;
 	$this->forward404Unless($this->validity);
     /// then if this business is valid, we pass necessary parameters to our methods to help us in task assignment
 	/*$value = new TaskAssignmentTable();

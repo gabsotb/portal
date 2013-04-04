@@ -62,5 +62,15 @@ class BusinessPlanTable extends Doctrine_Table
 	   ");
 	   return $query;
 	}
+	public function getUserNames($role)
+	{
+	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	    SELECT sf_guard_user.username
+		from sf_guard_user_group left join sf_guard_group on sf_guard_user_group.group_id = sf_guard_group.id
+		left join sf_guard_user on sf_guard_user_group.user_id = sf_guard_user.id
+		 where sf_guard_group.name = '$role'
+	   ");
+	   return $query;
+	}
 	
 }
