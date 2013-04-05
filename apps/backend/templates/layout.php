@@ -202,7 +202,9 @@
 								</a></li>
 								<li><a href="<?php echo url_for('my_inbox') ?>"><i class="icon-envelope-alt"></i> <?php echo __('Inbox') ?></a></li>
 								<li class="divider"></li>
-								<li><a href="<?php echo url_for('sf_guard_signout') ?>"<i class="icon-key"></i> <?php echo __('Logout') ?></a></li>
+								<li>
+								<a href="<?php echo url_for('sf_guard_signout') ?>"><i class="icon-off"></i> <?php echo __('Logout') ?></a>
+								</li>
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
@@ -291,7 +293,7 @@
 				<li class="">  <a href ="#"><i class="icon-lightbulb"></i> <?php echo __('Help') ?></a> </li>
 				
 				<!--<li class="">  <a href ="<?php //echo url_for('sfKoreroChannel/index') ?>"><i class="icon-fire"></i> Managers Channel</a> </li>-->
-				<li><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-fire"></i> <?php echo __('Logout') ?> </a></li>
+				<li><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-off"></i> <?php echo __('Logout') ?> </a></li>
 			</ul>
 		</div>
 		

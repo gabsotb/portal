@@ -22,7 +22,27 @@ class RejectedApplications extends BaseRejectedApplications
 					  {
 						$this->setToken(sha1(date().rand(11111, 99999)));
 					  }
+			  ///we change the status of application to rejected
+			  //we get the business id by using the supplied business registration number
+			  $business_regno = $this->getBusinessRegistration();
+			  $id = Doctrine_Core::getTable('InvestmentApplication')->getBusinessIdentity($business_regno);
 			  ///
+			 // $task_id = Doctrine_Core::getTable('TaskAssignment')->getTaskId($id);
+			  //
+			  
+			  ///
+			 $tasks = new TaskAssignment();
+			  $status = "rejected" ;
+			  $comments = "We regret to inform you that your application for investment certificate has been rejected. please check your inbox for more information";
+			  $percentage = 100 ;
+			  ///pass values to functions for updating
+			   $tasks->updateStatus($id,$status);
+			   $tasks->updateComment($id,$comments);
+			   $tasks->updateValue($id,$percentage);
+			   //update user task status
+			   $tasks->updateTaskRejection($id);
+			   ///
+			 /////		   
 			  $ret = parent::save($conn);
 				$conn->commit();
 				return $ret ;

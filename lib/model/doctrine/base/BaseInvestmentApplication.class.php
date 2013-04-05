@@ -17,6 +17,7 @@
  * @property string $sector
  * @property string $district
  * @property string $city_province
+ * @property string $applicant_reference_number
  * @property string $token
  * @property Doctrine_Collection $InvestmentBusinessPlan
  * @property Doctrine_Collection $StructureFinancial
@@ -43,6 +44,7 @@
  * @method string                getSector()                        Returns the current record's "sector" value
  * @method string                getDistrict()                      Returns the current record's "district" value
  * @method string                getCityProvince()                  Returns the current record's "city_province" value
+ * @method string                getApplicantReferenceNumber()      Returns the current record's "applicant_reference_number" value
  * @method string                getToken()                         Returns the current record's "token" value
  * @method Doctrine_Collection   getInvestmentBusinessPlan()        Returns the current record's "InvestmentBusinessPlan" collection
  * @method Doctrine_Collection   getStructureFinancial()            Returns the current record's "StructureFinancial" collection
@@ -68,6 +70,7 @@
  * @method InvestmentApplication setSector()                        Sets the current record's "sector" value
  * @method InvestmentApplication setDistrict()                      Sets the current record's "district" value
  * @method InvestmentApplication setCityProvince()                  Sets the current record's "city_province" value
+ * @method InvestmentApplication setApplicantReferenceNumber()      Sets the current record's "applicant_reference_number" value
  * @method InvestmentApplication setToken()                         Sets the current record's "token" value
  * @method InvestmentApplication setInvestmentBusinessPlan()        Sets the current record's "InvestmentBusinessPlan" collection
  * @method InvestmentApplication setStructureFinancial()            Sets the current record's "StructureFinancial" collection
@@ -95,13 +98,11 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'unique' => true,
              'length' => 255,
              ));
         $this->hasColumn('registration_number', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'unique' => true,
              'length' => 255,
              ));
         $this->hasColumn('title_in_company', 'string', 255, array(
@@ -109,10 +110,10 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              'notnull' => false,
              'length' => 255,
              ));
-        $this->hasColumn('business_sector', 'string', 255, array(
+        $this->hasColumn('business_sector', 'string', 1000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('business_category', 'string', 255, array(
              'type' => 'string',
@@ -150,6 +151,11 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('city_province', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('applicant_reference_number', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
              'length' => 255,

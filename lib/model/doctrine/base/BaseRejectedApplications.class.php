@@ -46,10 +46,10 @@ abstract class BaseRejectedApplications extends sfDoctrineRecord
              'notnull' => true,
              'length' => 1000,
              ));
-        $this->hasColumn('comment', 'string', 255, array(
+        $this->hasColumn('comment', 'string', 1000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 1000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

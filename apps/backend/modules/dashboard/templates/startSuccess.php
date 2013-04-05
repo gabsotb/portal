@@ -2,9 +2,11 @@
 	 //get the business application information
 	 foreach($details as $data)
 	 {
-	  $id = $data['id'];
+	  $id = $data['investmentapp_id'];
+	  //$id = 2;
 	  $name = $data['name']; 
 	  $regno = $data['registration_number'];
+	  $applicant_reference = $data['applicant_reference_number'];
 	  $project_brief = $data['project_brief'];
 	  $business_name = $data['name'];
 	  $business_nature = $data['business_sector'];
@@ -136,9 +138,11 @@
 										<h4 class="alert-heading"><?php echo __('Important!') ?></h4>
 										<p>
 										     <?php echo __('This is the business proposal for:') ?>
-										     <?php echo $name;?>
+										     <font color="green"><?php echo $name;?></font>
 											 <?php echo __('Registration Number is'); ?>
-											 <?php echo $regno; ?>
+											<font color="green"> <?php echo $regno; ?></font>
+											 <?php echo __('Applicant reference number is')?>
+											<font color="green"> (<?php echo $applicant_reference; ?>)</font>
 											 <?php echo __(' Please Read it Carefully before generating report'); ?>.
 										</p>
 										

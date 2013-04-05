@@ -54,7 +54,7 @@ class BusinessPlan extends BaseBusinessPlan
 				  
 				  if (!$this->getToken() )
 					  {
-						$this->setToken(sha1(date().rand(11111, 99999)));
+						$this->setToken(sha1(date('Y-m-d').rand(11111, 99999)));
 					  }
 				  ///
 				  $ret = parent::save($conn);

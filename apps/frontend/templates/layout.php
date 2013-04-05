@@ -170,7 +170,7 @@
 								<li><a href="<?php echo url_for('my_inbox') ?>"><i class="icon-envelope-alt"></i> <?php echo __('Inbox') ?></a></li>
 								<li class="divider"></li>
 								<li>
-								<a href="<?php echo url_for('sf_guard_signout') ?>"<i class="icon-key"></i> <?php echo __('Logout') ?></a>
+								<a href="<?php echo url_for('sf_guard_signout') ?>"><i class=" icon-off"></i> <?php echo __('Logout') ?></a>
 								</li>
 							</ul>
 						</li>
@@ -231,6 +231,7 @@
 															
 															//now we pass this to businessplan table method
 															$p = Doctrine_Core::getTable('BusinessPlan')->getBusinessPlanDetails($investment_id);
+															$rejection = Doctrine_Core::getTable('BusinessApplicationStatus')->checkStatus($investment_id);
 															$response = null;
 															//print_r($p); exit;
 															//
@@ -241,7 +242,7 @@
 															// 
 															  
 															?>
-														<?php if($investment_id != null){ ?>
+														<?php if($investment_id != null && $rejection != "rejected_completed"){ ?>
 														 
 															 <!-- if it is null we show buttons -->
 															 <?php if($response == null) { ?>
@@ -258,7 +259,7 @@
 																
 															 <?php } ?>
 														 <?php } ?>
-															 <?php if($investment_id != null){ 
+															 <?php if($investment_id != null ){ 
 															 $value = 0;
 															
 															 ?>
@@ -273,14 +274,16 @@
 															    }
 																// exit;
 																?>
-																<?php if($value > 0 && $response != null) { ?>
+																<?php if($value > 0 && $response != null ) { ?>
 																
 																<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i><?php echo __('Application Form') ?></a></li>
 																<?php } ?>
 															    <?php if($value <= 0  && $response != null ) { ?>
 																	 	<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i><?php echo __('Application Form') ?></a></li>
 																<?php } ?>
-															
+															 <?php if($investment_id != null &&  $rejection == "rejected_completed"){ ?>
+															 	<li class=""><a href ="<?php echo url_for('investmentapp/new') ?>"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
+															 <?php } ?>
 												<!--we will prevent users from applying for certificate if they have pending applications -->
                                                          
 														
@@ -288,7 +291,7 @@
 														   <?php if($investment_id == null  ){  ?>
 														<li class=""><a href ="<?php echo url_for('investmentapp/new') ?>"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>		
 														  <?php } ?>
-															
+															  
 														<?php endif; ?>
 						
 			<!-- End control code -->	
@@ -306,7 +309,7 @@
 					</a>
 				</li>				
 				<li> 
-				<li class=""><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-fire"></i> <?php echo __('Logout') ?> </a></li>
+				<li class=""><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-off"></i> <?php echo __('Logout') ?> </a></li>
 				
 			</ul>
 		</div>

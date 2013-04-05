@@ -29,7 +29,7 @@ class MessagesTable extends Doctrine_Table
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
 	 SELECT messages.id,messages.sender,messages.created_at,messages.message FROM messages WHERE recepient = '$username'  ORDER BY created_at DESC
-	 LIMIT 5
+	 LIMIT 2
 	 ");
 	 return $query;
 	}

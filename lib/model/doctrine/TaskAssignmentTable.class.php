@@ -121,6 +121,17 @@ class TaskAssignmentTable extends Doctrine_Table
 	 ->WHERE('investmentapp_id = ?', $taskId);
 	 $q->execute();
 	}
+	//this function updates status to rejected if this applicant rejects an application for issuance of investment certificate
+	public function updateTaskStatusRejection($taskId)
+	{
+	 $value = "rejected";
+	 //
+      $q = Doctrine_Query::create()
+	 ->UPDATE('TaskAssignment')
+	 ->SET('work_status', '?' , $value)
+	 ->WHERE('investmentapp_id = ?', $taskId);
+	 $q->execute();
+	}
 	//this function updates the status of work to reporting i.e. report generation status
 	//within this method we will also update status of BusinessApplicationStatus table for the user to analyze
 	public function updateUserTaskStatus($taskId)
@@ -293,6 +304,29 @@ class TaskAssignmentTable extends Doctrine_Table
 		 $values = array($q['id'] => $q['name']);
 		}
 	 return $values;
+	}
+	//we create a method to retrieve the manager/supervisor who assigned a particular job to a logged data admin
+	//we supply this method with the business_id and user_assigned details to request for manager email address and username for 
+	//our notifications and message purposes
+	public function getManagerSupervisor($business_id, $user_assigned)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT updated_by,email_address  FROM task_assignment left join sf_guard_user on  task_assignment.created_by = sf_guard_user.id where task_assignment.investmentapp_id = '$business_id' and task_assignment.user_assigned = '$user_assigned' ");
+	  ///
+	  return $query;
+	}
+	//method to get task id given a business id from TaskAssignment table
+	public function getTaskId($business_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT id FROM task_assignment WHERE investmentapp_id = '$business_id'");
+	 //
+	 $id = 0;
+	 ///
+	 foreach($query as $q)
+	 {
+	  $id = $q['id'];
+	 }
+	 //
+	 return $id;
 	}
 	
 }

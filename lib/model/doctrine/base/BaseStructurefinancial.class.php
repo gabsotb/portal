@@ -56,7 +56,8 @@ abstract class BaseStructurefinancial extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('InvestmentApplication', array(
              'local' => 'business_plan',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $signable0 = new Doctrine_Template_Signable(array(

@@ -131,6 +131,9 @@ class businessplanActions extends sfActions
 				 // $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getOnlyUserBusinesses();
 				  //let us use another better method
 				  $company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessName($userId);
+				  //this point needs meditation
+				  //$company =  Doctrine_Core::getTable('InvestmentApplication')->getBusinessNameStatusNotRejected($userId);
+				  
 				  $business_plan = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($company);
 				//  print($business_plan); exit;
 				  //working if we select all
@@ -1030,7 +1033,7 @@ class businessplanActions extends sfActions
 	  //resaving the same record again.
 	  $allFormValues = $request->getParameter($this->form->getName());
 	 //access values
-      $business_id = $allFormValues['business_id'];
+      $business_id = $allFormValues['investmentapp_id'];
 	  
 	  ///
 	  $id = Doctrine_Core::getTable('InvestmentResubmission')->checkIdExistance($business_id);
@@ -1054,6 +1057,7 @@ class businessplanActions extends sfActions
 				  $this->getMailer()->send($message);
 				 ///we also send a mail to user inbox account of our system
 				  $msg = new Messages();
+				  
 				  //set message content
 				  $sender = "noreply@rdb.com";
 				  $receipient = $receiver;
@@ -1061,17 +1065,20 @@ class businessplanActions extends sfActions
 				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window
 				  in your account. Thank you" ;
 				  //
-				  $msg->sender = $sender;
-				  $msg->recepient = $receipient;
-				  $msg->message = $content ;
-				  $msg->created_at = date('Y-m-d H:i:s');
-				  $msg->save();
+				  $msg3 = new Messages();
+				  $msg3->sender = $sender;
+				  $msg3->recepient = $receipient;
+				  $msg3->message = $content ;
+				  $msg3->created_at = date('Y-m-d H:i:s');
+				  $msg3->save();
 				  /////////////Also we add a new notification
 				  $notify = new Notifications();
-				  $notify->recepient = $receipient;
-				  $notify->message = "Your application for investment certificate received";
-				  $notify->created_at = date('Y-m-d H:i:s');
-				  $notify->save();
+				  //
+				  $notify3 = new Notifications();
+				  $notify3->recepient = $receipient;
+				  $notify3->message = "Your application for investment certificate received";
+				  $notify3->created_at = date('Y-m-d H:i:s');
+				  $notify3->save();
 				  ///we want to also notify managers that this investor has submitted an application for investment certificate so.....
 				  //we will use the business plan table for that purpose
 				  //get email managers addresses

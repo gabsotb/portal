@@ -95,4 +95,9 @@ class TaskAssignment extends BaseTaskAssignment
   {
    $query = Doctrine_Core::getTable('BusinessApplicationStatus')->updateValue($id,$value);
   }
+  //
+  public function updateTaskRejection($taskId)
+	{
+	  $query = Doctrine_Core::getTable('TaskAssignment')->updateTaskStatusRejection($taskId);
+	}
 }

@@ -69,7 +69,25 @@ class investmentappActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
+    //we want to do a trick here. 
+	//if we have a situation where a parameter is passed here, that means the value is for a business name for which
+	//application for investment certificate has been rejected and thus this user is now applying a fresh for investment certificate.
+	//we want to archive the previous application for history reasons and future requirements and we will use the passed parameter
+	//name of the business. so
+	//$name = $request->getParameter('id');
+	$reference = $request->getParameter('reference');
+	//we check the status of this application, if it is rejected, we hide it and allow the investor to re-apply
+	//otherwise we continue with normal system flow.
+	$business_id = Doctrine_Core::getTable('InvestmentApplication')->getIdFromReferenceNumber($reference);
+	//we update status of business application
+	$tasks = new TaskAssignment(); 
+	$status = "rejected_completed"; //Status used to hide this applicant application. Final for Rejection
+	$tasks->updateStatus($business_id,$status);
+	
+	//now with the name. we archive these records.
+      	
     $this->form = new InvestmentApplicationForm();
+	
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -194,7 +212,7 @@ class investmentappActions extends sfActions
 	foreach($data as $d)
 	{
 	  //
-	  $info[] = array( 'business_name' =>$d['business_name'], 'business_sector' => $d['business_sector'], 'office_telephone' => $d['office_telephone'] , 
+	  $info[] = array( 'business_name' =>$d['business_name'], 'business_sector' => $d['GROUP_CONCAT( business_sector )'], 'office_telephone' => $d['office_telephone'] , 
 	'fax' => $d['fax'] , 'post_box' => $d['post_box'] , 'location' => $d['location'],'sector' => $d['sector'],'district' => $d['district'],'city_province' => $d['city_province']
 	);
 	}
