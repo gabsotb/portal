@@ -23,11 +23,14 @@ class EITaskAssignment extends BaseEITaskAssignment
 					$this->setToken(sha1(date().rand(11111,99999)));
 				}
 				$statusId=Doctrine_Core::getTable('EIApplicationStatus')->findByEiaprojectId($this->getEiaprojectId());
-				$status=Doctrine_Core::getTable('EIApplicationStatus')->find(array($statusId[0]['id']));
-				$status->setApplicationStatus('assigned');
-				$status->setComments('Your Document has been assigned to a RDB Data Admin Staff');
-				$status->setPercentage(30);
-				$status->save();
+				if($statusId[0]['application_status'] == 'submitted')
+				{
+					$status=Doctrine_Core::getTable('EIApplicationStatus')->find(array($statusId[0]['id']));
+					$status->setApplicationStatus('assigned');
+					$status->setComments('Your Document has been assigned to a RDB Data Admin Staff');
+					$status->setPercentage(30);
+					$status->save();
+				}
 				  $ret = parent::save($conn);
 					$conn->commit();
 				//Doctrine_Core::getTable('EIApplicationStatus')->updateApplicationStatus("assigned",	$this->getCompanyId());

@@ -38,7 +38,7 @@ abstract class BaseEIAProjectAttachmentForm extends BaseFormDoctrine
       'eiaproject_id'             => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'))),
       'panoramic_view'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'perspective_site_impact'   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'preliminary_approval'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'preliminary_approval'      => new sfValidatorString(array('max_length' => 255)),
       'land_ownership_doc'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'ministrial_document'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'perimeter_area_map'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),

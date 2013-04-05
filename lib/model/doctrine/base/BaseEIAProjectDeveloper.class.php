@@ -82,7 +82,7 @@ abstract class BaseEIAProjectDeveloper extends sfDoctrineRecord
              ));
         $this->hasColumn('email_address', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('communication_mode', 'string', 255, array(

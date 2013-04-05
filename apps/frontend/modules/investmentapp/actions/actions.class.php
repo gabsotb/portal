@@ -55,6 +55,11 @@ class investmentappActions extends sfActions
 	////////// EIA ///////////
 	//eia status for current user
 	$this->eiaStatus = Doctrine_Core::getTable('EIApplicationStatus')->getUserStatus();
+	if(count($this->eiaStatus)!=0)
+	{
+		$this->briefDecision=Doctrine_Core::getTable('EIAProjectBriefDecision')->findByEiaprojectId($this->eiaStatus[0]['id']);
+		
+	}
 	//Get Project impact
 	//$this->impacts = Doctrine_Core::getTable('ProjectImpact')->getImpacts();
 	//$this->torStatus=Doctrine_Core::getTable('TorStatus')->getStatus();

@@ -16,7 +16,7 @@ abstract class BaseEIAProjectAttachmentFormFilter extends BaseFormFilterDoctrine
       'eiaproject_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'), 'add_empty' => true)),
       'panoramic_view'            => new sfWidgetFormFilterInput(),
       'perspective_site_impact'   => new sfWidgetFormFilterInput(),
-      'preliminary_approval'      => new sfWidgetFormFilterInput(),
+      'preliminary_approval'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'land_ownership_doc'        => new sfWidgetFormFilterInput(),
       'ministrial_document'       => new sfWidgetFormFilterInput(),
       'perimeter_area_map'        => new sfWidgetFormFilterInput(),

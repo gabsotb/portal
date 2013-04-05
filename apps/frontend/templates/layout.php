@@ -30,7 +30,7 @@
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
-				<a class="brand" href="#">
+				<a class="brand" href="<?php echo url_for('@homepage') ?>">
 				<img  src="/images/logo.gif" alt ="LOGO" />
 				</a>
 				<!-- END LOGO -->

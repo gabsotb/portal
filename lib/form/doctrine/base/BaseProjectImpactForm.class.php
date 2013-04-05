@@ -17,7 +17,7 @@ abstract class BaseProjectImpactForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'            => new sfWidgetFormInputHidden(),
       'eiaproject_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'), 'add_empty' => false)),
-      'impact_level'  => new sfWidgetFormInputText(),
+      'impact_level'  => new sfWidgetFormTextarea(),
       'comments'      => new sfWidgetFormTextarea(),
       'token'         => new sfWidgetFormInputText(),
       'created_at'    => new sfWidgetFormDateTime(),
@@ -29,7 +29,7 @@ abstract class BaseProjectImpactForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'eiaproject_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'))),
-      'impact_level'  => new sfValidatorInteger(),
+      'impact_level'  => new sfValidatorString(),
       'comments'      => new sfValidatorString(array('max_length' => 400, 'required' => false)),
       'token'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
@@ -37,6 +37,10 @@ abstract class BaseProjectImpactForm extends BaseFormDoctrine
       'created_by'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
       'updated_by'    => new sfValidatorString(array('required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'ProjectImpact', 'column' => array('eiaproject_id')))
+    );
 
     $this->widgetSchema->setNameFormat('project_impact[%s]');
 

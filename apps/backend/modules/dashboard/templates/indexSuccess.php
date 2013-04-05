@@ -1114,7 +1114,23 @@ $(function () {
   		<!-- BEGIN OVERVIEW STATISTIC BARS-->
 	<div class="row-fluid">
 		<a href="#" class="icon-btn span3"><i class="icon-building"></i><div>Projects</div><span class="badge badge-important"><?php echo count($jobAdmin) ?></span></a>
-		<a href="#" class="icon-btn span3"><i class="icon-envelope"></i><div>Inbox</div><span class="badge badge-info">03</span></a>
+		<?php
+			 $messages = 0 ;
+			 //we call a message that will return the number of messages available for the current logged in user
+			 //am not sure if this is the right way???????
+			 $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+			 $this->countmsgs = Doctrine_Core::getTable('Messages')->countMessages($username);
+			 
+			 foreach( $this->countmsgs as $msg)
+				{
+				 $messages  = $msg['COUNT(message)'];
+				}
+				
+			   
+		?>
+
+		<a href="<?php echo url_for('my_inbox') ?>" class="icon-btn span3"><i class="icon-envelope"></i><div>Inbox</div><span class="badge badge-info"><?php echo $messages ?></span></a>
+		<a href="#" class="icon-btn span3"><i class="icon-bar-chart"></i><div>Reports</div></a>
    </div>
    <!-- END STATISTICS -->	
 <!-- When logged, they can only see tasks assigned to them by the department administrators -->	
@@ -1126,27 +1142,79 @@ $(function () {
 									<h4><i class="icon-reorder"></i>EIA Certificates Applications</h4>
 								</div>
 								<div class="widget-body">
-									<table class="table table-striped table-bordered table-advance table-hover">
+								<?php if(count($jobAdmin)== 0): ?>
+									<div class="alert alert-block alert-info fade in">
+									<h4 class="alert-heading">No new task has been found</h4>
+									<p>Please try again later/ Reload the page</p>
+									</div>
+								<?php endif; ?>
 									<?php foreach($jobAdmin as $job): ?>
-										<thead>
-											<tr>
-												<th>Reference No.</th>
-												<th>Project Title</th>
-												<th>Assign by:</th>
-												<th>Actions</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td class="highlight"><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-												<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?> </td>
-												<td><?php echo $job->getSfGuardUser()->getLastName() ?></td>
-												<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-inverse"><i class="icon-circle-blank"></i> Process</button></a></td>
-									
-											</tr>
-										</tbody>
+									<div class="row-fluid">
+										<?php if($job->getWorkStatus() == 'notstarted'): ?>
+										<h4>New Applications</h4>
+											<table class="table table-striped table-bordered table-advance table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+														<th>Assign by:</th>
+														<th>Actions</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="highlight"><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?> </td>
+														<td><?php echo $job->getSfGuardUser()->getLastName() ?></td>
+														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-inverse"><i class="icon-circle-blank"></i> Process</button></a></td>
+											
+													</tr>
+												</tbody>
+											</table>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'started'): ?>
+										<h4>Applications been processed</h4>
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+											
+													</tr>
+												</tbody>
+											</table>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'assess'): ?>
+										<h4>Applications awaiting assessment</h4>
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+											
+													</tr>
+												</tbody>
+											</table>
+										<?php endif; ?>
+									</div>
 									<?php endforeach; ?>
-									</table>
+									
 									<div class="space7"></div>
 									<div class="clearfix">
 										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>

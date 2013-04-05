@@ -16,7 +16,7 @@
         </td>
       </tr>
       <tr>
-        <th><?php echo $form['eiaproject_id']->renderLabel() ?></th>
+        <th><?php echo $form['eiaproject_id']->renderLabel('Project:') ?></th>
         <td>
           <?php echo $form['eiaproject_id']->renderError() ?>
           <?php echo $form['eiaproject_id'] ?>
@@ -36,12 +36,6 @@
           <?php echo $form['duedate']->render(array('class' => 'span6 input-small date-picker')) ?>
 		</td>
 	  </tr>
-	  <tr>
-		<th><?php echo $form['duedate']->renderLabel('Time:') ?></th>
-		<td>
-        <?php echo $form['duedate']->render(array('class' => 'timepicker-24 input-small')) ?>
-        </td>
-      </tr>
 	</tbody>
  </table>
     <div class="form-actions">

@@ -32,15 +32,11 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
       'recepient'       => new sfValidatorString(array('max_length' => 255)),
       'message_subject' => new sfValidatorString(array('max_length' => 300, 'required' => false)),
       'message'         => new sfValidatorString(array('max_length' => 4000)),
-      'attachement'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'attachement'     => new sfValidatorString(array('max_length' => 255)),
       'token'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
     ));
-
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'Messages', 'column' => array('attachement')))
-    );
 
     $this->widgetSchema->setNameFormat('messages[%s]');
 

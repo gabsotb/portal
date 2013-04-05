@@ -17,7 +17,7 @@ abstract class BaseMessagesFormFilter extends BaseFormFilterDoctrine
       'recepient'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'message_subject' => new sfWidgetFormFilterInput(),
       'message'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'attachement'     => new sfWidgetFormFilterInput(),
+      'attachement'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'token'           => new sfWidgetFormFilterInput(),
       'created_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
