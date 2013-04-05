@@ -13,6 +13,7 @@
  * @property string $sector
  * @property string $district
  * @property string $province
+ * @property string $name
  * @property string $token
  * @property Doctrine_Collection $EIAProjectDeveloperDetails
  * @property Doctrine_Collection $EIAProjectDetailsDescription
@@ -38,6 +39,7 @@
  * @method string              getSector()                         Returns the current record's "sector" value
  * @method string              getDistrict()                       Returns the current record's "district" value
  * @method string              getProvince()                       Returns the current record's "province" value
+ * @method string              getName()                           Returns the current record's "name" value
  * @method string              getToken()                          Returns the current record's "token" value
  * @method Doctrine_Collection getEIAProjectDeveloperDetails()     Returns the current record's "EIAProjectDeveloperDetails" collection
  * @method Doctrine_Collection getEIAProjectDetailsDescription()   Returns the current record's "EIAProjectDetailsDescription" collection
@@ -62,6 +64,7 @@
  * @method EIAProjectDetail    setSector()                         Sets the current record's "sector" value
  * @method EIAProjectDetail    setDistrict()                       Sets the current record's "district" value
  * @method EIAProjectDetail    setProvince()                       Sets the current record's "province" value
+ * @method EIAProjectDetail    setName()                           Sets the current record's "name" value
  * @method EIAProjectDetail    setToken()                          Sets the current record's "token" value
  * @method EIAProjectDetail    setEIAProjectDeveloperDetails()     Sets the current record's "EIAProjectDeveloperDetails" collection
  * @method EIAProjectDetail    setEIAProjectDetailsDescription()   Sets the current record's "EIAProjectDetailsDescription" collection
@@ -125,6 +128,11 @@ abstract class BaseEIAProjectDetail extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('province', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
              'length' => 255,

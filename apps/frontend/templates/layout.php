@@ -30,7 +30,7 @@
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
-				<a class="brand" href="#">
+				<a class="brand" href="<?php echo url_for('@homepage') ?>">
 				<img  src="/images/logo.gif" alt ="LOGO" />
 				</a>
 				<!-- END LOGO -->
@@ -170,7 +170,7 @@
 								<li><a href="<?php echo url_for('my_inbox') ?>"><i class="icon-envelope-alt"></i> <?php echo __('Inbox') ?></a></li>
 								<li class="divider"></li>
 								<li>
-								<a href="<?php echo url_for('sf_guard_signout') ?>"<i class="icon-key"></i> <?php echo __('Logout') ?></a>
+								<a href="<?php echo url_for('sf_guard_signout') ?>"><i class="icon-key"></i> <?php echo __('Logout') ?></a>
 								</li>
 							</ul>
 						</li>

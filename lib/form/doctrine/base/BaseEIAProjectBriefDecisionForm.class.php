@@ -40,6 +40,10 @@ abstract class BaseEIAProjectBriefDecisionForm extends BaseFormDoctrine
       'updated_by'    => new sfValidatorString(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'EIAProjectBriefDecision', 'column' => array('eiaproject_id')))
+    );
+
     $this->widgetSchema->setNameFormat('eia_project_brief_decision[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

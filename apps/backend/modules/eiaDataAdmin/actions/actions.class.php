@@ -23,22 +23,51 @@ class eiaDataAdminActions extends sfActions
   
 	public function executeShow(sfWebRequest $request)
 	{
-		$this->task=Doctrine_Core::getTable('EITaskAssignment')->find(array($request->getParameter('id')));
+			
+		$this->detail=Doctrine_Core::getTable('EITaskAssignment')->find(array($request->getParameter('id')));
+		//Update status////
+		$this->updateStatus($this->detail->getEiaprojectId(),'processing','Your application is been processed',40);
+		$this->detail->setWorkStatus('started')->save();
+		///////////
+		$this->developers=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($this->detail->getEiaprojectId());
+		$this->descriptions=Doctrine_Core::getTable('EIAProjectDescription')->findByEiaprojectId($this->detail->getEiaprojectId());
+		$this->surroundings=Doctrine_Core::getTable('EIAProjectSurrounding')->findByEiaprojectId($this->detail->getEiaprojectId());
+		$this->economics=Doctrine_Core::getTable('EIAProjectSocialEconomic')->findByEiaprojectId($this->detail->getEiaprojectId());
+		$this->impacts=Doctrine_Core::getTable('EIAProjectImpactMeasures')->findByEiaprojectId($this->detail->getEiaprojectId());
+		$this->impactsOperation=Doctrine_Core::getTable('EIAProjectOperationPhase')->findByEiaprojectId($this->detail->getEiaprojectId());
+		$this->attachments=Doctrine_Core::getTable('EIAProjectAttachment')->findByEiaprojectId($this->detail->getEiaprojectId());
 	}
   
-    public function executeShowEia(sfWebRequest $request)
-	{
-		$this->eia = Doctrine_Core::getTable('EIApplication')->find(array($request->getParameter('id')));
-		$this->forward404Unless($this->eia);
-		Doctrine_Core::getTable('EIApplicationStatus')->updateApplicationStatus('processing',$request->getParameter('id'));
-		Doctrine_Core::getTable('EIApplicationStatus')->updateComment('Your Document is been processed',$request->getParameter('id'));
-		Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage('20',$request->getParameter('id'));
+	public function updateStatus($eiaProjectId,$state,$comment,$percent)
+	{	
+		$this->forward404Unless($statues=Doctrine_Core::getTable('EIApplicationStatus')->findByEiaprojectId($eiaProjectId));
+		$id=NULL;
+		foreach($statues as $status)
+		{
+			$id=$status->getId();
+		}
+		$s=Doctrine_Core::getTable('EIApplicationStatus')->find(array($id));
+		$s->setApplicationStatus($state);
+		$s->setComments($comment);
+		$s->setPercentage($percent);
+		$s->save();
 	}
 	
-	public function executeShowTor(sfWebRequest $request)
+	public function executeResubmission(sfWebRequest $request)
 	{
-		$this->tor = Doctrine_Core::getTable('Tor')->getTor($request->getParameter('id'));
-		$this->forward404Unless($this->tor);
+		$eiaProjectId=$request->getParameter('id');
+		$decision= new EIAProjectBriefDecision();
+		$decision->eiaproject_id=$eiaProjectId;
+		$decision->decision="resubmission";
+		$decision->processed_by=sfContext::getInstance()->getUser()->getGuardUser()->getId();
+		$decision->save();
+		$this->updateStatus($eiaProjectId,'resubmit','Request for resubmission',50);
+		$id=NULL;
+		foreach(Doctrine_Core::getTable('EIAProjectBriefDecision')->findByEiaprojectId($eiaProjectId) as $decision)
+		{ 
+			$id=$decision->getId();
+		}
+		$this->redirect('eiaProjectBreifDecision/edit?id='.$id);
 	}
 
 }

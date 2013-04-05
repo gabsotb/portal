@@ -40,7 +40,7 @@ abstract class BaseEIAProjectDeveloperForm extends BaseFormDoctrine
       'address'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'telephone'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'mobile_phone'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'email_address'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'email_address'        => new sfValidatorString(array('max_length' => 255)),
       'communication_mode'   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'social_media_account' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'token'                => new sfValidatorString(array('max_length' => 255, 'required' => false)),

@@ -265,6 +265,7 @@ EIAProjectDetail:
   sector: {type: string(255), notnull: false}
   district: {type: string(255), notnull: false}
   province: {type: string(255), notnull: false}
+  name: {type: string(255), notnull: false}
   token: {type: string(255), notnull: false} 
 EIAProjectDeveloper: ##Details of the Developer
   actAs:
@@ -279,7 +280,7 @@ EIAProjectDeveloper: ##Details of the Developer
    address: {type: string(255), notnull: false}
    telephone: {type: string(255), notnull: false}
    mobile_phone: {type: string(255), notnull: false}
-   email_address: {type: string(255), notnull: false}
+   email_address: {type: string(255), notnull: true}
    communication_mode: { type: string(255), notnull: false}
    social_media_account: {type: string(255), notnull: false}
    token: {type: string(255), notnull: false} 
@@ -531,7 +532,7 @@ EIAProjectAttachment: ## for any attachment for a particula submitted applicatio
   eiaproject_id: {type: integer, notnull: true, unique: true}
   panoramic_view:  {type: string(255), notnull: false}
   perspective_site_impact:  {type: string(255), notnull: false}
-  preliminary_approval:  {type: string(255), notnull: false}
+  preliminary_approval:  {type: string(255), notnull: true}
   land_ownership_doc:  {type: string(255), notnull: false}
   ministrial_document:  {type: string(255), notnull: false}
   perimeter_area_map:  {type: string(255), notnull: false}
@@ -560,7 +561,7 @@ EIAProjectBriefDecision: ## Allow the data admin to reject the applications imme
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
-  eiaproject_id: {type: integer, notnull: true}
+  eiaproject_id: {type: integer, notnull: true, unique: true}
   decision: {type: string(255), notnull: true}
   comments: {type: string(255), notnull: true}
   processed_by: {type: integer, notnull: true}

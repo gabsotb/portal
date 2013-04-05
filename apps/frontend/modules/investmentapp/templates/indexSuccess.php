@@ -456,8 +456,14 @@ $(function () {
 											<div style="width:<?php echo $status['percentage'] ?>%;" class="bar"></div>
 										</div>
 										<div class="alert alert-block alert-info fade in">
-											<button type="button" class="close" data-dismiss="alert">X</button>
+											<button type="button" class="close" data-dismiss="alert">x</button>
 											<p><?php echo $status['comments'] ?></p>
+											<!-- resubmission -->
+											<?php if(count($briefDecision)!=0): ?>
+											<a href="#widget-resubmission" data-toggle="modal">
+											<button type="button" class="btn btn-block"><?php echo __('More info') ?></button></a>
+												
+											<?php endif; ?>
 										</div>
 										<?php endif; ?>
 									</div>
@@ -480,5 +486,13 @@ $(function () {
 					</div>
 					
 	<!-- End overview -->
-	
+<div id="widget-resubmission" class="modal hide">
+		<div class="modal-header">
+			<h3><?php echo __('Reason for resubmission') ?></h3>
+		</div>
+		<div class="modal-body">
+			<p><?php echo $briefDecision[0]['comments'] ?></p>
+			<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
+		</div>
+</div>
 	

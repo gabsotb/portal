@@ -108,7 +108,7 @@ class projectAttachmentActions extends sfActions
 				  /////////////Also we add a new notification
 				  $notifyUser = new Notifications();
 				  $notifyUser->recepient = $receipient;
-				  $notifyUser->message = "Your application for Environmental Impact Assessment certificate received";
+				  $notifyUser->message = "Your application for Environmental Impact Assessment certificate has been received";
 				  $notifyUser->created_at = date('Y-m-d H:i:s');
 				  $notifyUser->save();
 				  ///we want to also notify managers that this investor has submitted an application for Environmental Impact Assessment certificate so.....

@@ -28,6 +28,10 @@ class EIAProjectDetail extends BaseEIAProjectDetail
 			$this->setProjectReferenceNumber($number);
 			
 		  }
+		  	if(!$this->getName())
+			{
+				$this->setName($this->getProjectTitle());
+			}
 		  //we want also to set an incremental reference number for each and every project
 		  
 			  $ret = parent::save($conn);
@@ -41,4 +45,6 @@ class EIAProjectDetail extends BaseEIAProjectDetail
 		  throw $e;
 		  }
   }
+  
+
 }

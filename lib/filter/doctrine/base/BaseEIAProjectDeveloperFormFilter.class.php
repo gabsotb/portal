@@ -19,7 +19,7 @@ abstract class BaseEIAProjectDeveloperFormFilter extends BaseFormFilterDoctrine
       'address'              => new sfWidgetFormFilterInput(),
       'telephone'            => new sfWidgetFormFilterInput(),
       'mobile_phone'         => new sfWidgetFormFilterInput(),
-      'email_address'        => new sfWidgetFormFilterInput(),
+      'email_address'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'communication_mode'   => new sfWidgetFormFilterInput(),
       'social_media_account' => new sfWidgetFormFilterInput(),
       'token'                => new sfWidgetFormFilterInput(),

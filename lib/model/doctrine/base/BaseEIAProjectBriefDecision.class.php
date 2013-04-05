@@ -41,6 +41,7 @@ abstract class BaseEIAProjectBriefDecision extends sfDoctrineRecord
         $this->hasColumn('eiaproject_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             'unique' => true,
              ));
         $this->hasColumn('decision', 'string', 255, array(
              'type' => 'string',

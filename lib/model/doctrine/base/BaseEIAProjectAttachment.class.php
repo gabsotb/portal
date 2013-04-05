@@ -70,7 +70,7 @@ abstract class BaseEIAProjectAttachment extends sfDoctrineRecord
              ));
         $this->hasColumn('preliminary_approval', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('land_ownership_doc', 'string', 255, array(
