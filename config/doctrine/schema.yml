@@ -12,16 +12,16 @@ InvestmentApplication: ## Contains the application details from the investors
  columns:
   name: {type: string(255), notnull: true, unique: true}  
   registration_number: {type: string(255), notnull: true,  unique: true}
-  title_in_company: { type: string(255), notnull: false }
+  title_in_company: { type: string(255), notnull: true }
   business_sector: {type: string(255), notnull: true}
   business_category: {type: string(255), notnull: true}
-  office_telephone: {type: string(255), notnull: false}
-  fax: {type: string(255), notnull: false}
-  post_box: {type: string(255), notnull: false}
-  location: {type: string(255), notnull: false}
-  sector: {type: string(255), notnull: false}
-  district: {type: string(255), notnull: false}
-  city_province: {type: string(255), notnull: false}
+  office_telephone: {type: string(255), notnull: true}
+  fax: {type: string(255), notnull: true}
+  post_box: {type: string(255), notnull: true}
+  location: {type: string(255), notnull: true}
+  sector: {type: string(255), notnull: true}
+  district: {type: string(255), notnull: true}
+  city_province: {type: string(255), notnull: true}
   token: {type: string(255), notnull: false} 
 ### Stores the Business Proposal of the user applying for the investment certificate
 BusinessPlan:
@@ -35,12 +35,12 @@ BusinessPlan:
   ### Project Brief Information
   project_brief: {type: string(4000), notnull: true}
   ### Applied on Incentives
-  exemption_on_machinery: {type: string(255), notnull: false, unique: true}
+  exemption_on_machinery: {type: string(255), notnull: false}
   exemption_raw_materials: {type: string(4000), notnull: false}
-  land_ownership_document: {type: string(255), notnull: false, unique: true}
-  bill_of_quantiy: {type: string(255), notnull: false, unique: true}
-  drawings: {type: string(255), notnull: false, unique: true}
-  construction_permits: {type: string(255), notnull: false, unique: true}
+  land_ownership_document: {type: string(255), notnull: false}
+  bill_of_quantiy: {type: string(255), notnull: false}
+  drawings: {type: string(255), notnull: false}
+  construction_permits: {type: string(255), notnull: false}
   investment_allowances: {type: string(255), notnull: false}
   additional_incentives: {type: string(4000), notnull: false}
   visa_work_permits: {type: string(4000), notnull: false}
@@ -199,36 +199,24 @@ BusinessApplicationStatus: # Shows business application status, pending,processi
   token: {type: string(255), notnull: false} 
  relations:
   InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentAppBusinesStatus}
-##### For supervisors/managers to approve requests from data administrators. 
-InvestmentRequests:
- actAs:
-  Timestampable: ~
-  Signable:
-   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
-   updated: { name: updated_by,type: string}
- columns:
-  requestor: {type: string(255), notnull: true}
-  request_type: {type: string(255), notnull: true}
-  status: {type: string(255), notnull: true}
-  business_registration: {type: integer, notnull: true}
-  comments: {type: string(1000), notnull: false}
 ApprovedApplications: # Shows approved businesses application
  actAs: {Timestampable: ~}
  columns:
   business_id: {type: integer, notnull:true, , unique: true}
   application_type: {type: string(255), notnull: true}
-  comment: {type: string(1000), notnull: false}
+  comment: {type: string(255), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
   InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentApprovedBusiness}
 RejectedApplications: # Shows rejected businesses application
  actAs: {Timestampable: ~}
  columns:
-  business_registration: {type: integer, notnull:true}
+  business_id: {type: integer, notnull:true, unique: true}
   application_type: {type: string(255), notnull: true}
-  reason: {type: string(1000), notnull: true}
-  comment: {type: string(1000), notnull: false}
+  comment: {type: string(255), notnull: false}
   token: {type: string(255), notnull: false} 
+ relations:
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentRejectedBusiness}
 ##Used to simulate the user payment status from the financial business registration system
 Payment:
  actAs:
@@ -606,8 +594,8 @@ ProjectImpact:
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
-  eiaproject_id: {type: integer, notnull: true}
-  impact_level: {type: integer, notnull: true}
+  eiaproject_id: {type: integer, notnull: true, unique: true}
+  impact_level: {type: string, notnull: true}
   comments: {type: string(400), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
@@ -730,7 +718,7 @@ Messages:
   recepient: {type: string(255), notnull: true}
   message_subject: {type: string(300), notnull: false}
   message: {type: string(4000), notnull: true}
-  attachement: {type: string(255), notnull: false, unique: true}
+  attachement: {type: string(255), notnull: true}
   token: {type: string(255), notnull: false} 
 Notifications:
  actAs: {Timestampable: ~}

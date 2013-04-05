@@ -50,7 +50,7 @@ class EIAProjectAttachmentForm extends BaseEIAProjectAttachmentForm
 	   ));
 	   //also change the default validator
 	  $this->validatorSchema['preliminary_approval'] = new sfValidatorFile(array(
-	   'required' => false,
+	   'required' => true,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/eia_documents',
 	   )); 
 	   ////
@@ -132,6 +132,6 @@ class EIAProjectAttachmentForm extends BaseEIAProjectAttachmentForm
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/eia_documents',
 	   )); 
 	$this->widgetSchema['eiaproject_id'] = new sfWidgetFormInputHidden() ;
-	$this->setDefault('eiaproject_id', Doctrine_Core::getTable('EIAProjectDetail')->getProjectId());
-  }
+	$this->setDefault('eiaproject_id', Doctrine_Core::getTable('EIAProjectDetail')->getProjectId()); 
+	}
 }

@@ -13,11 +13,12 @@ class ProjectImpactForm extends BaseProjectImpactForm
   public function configure()
   {
 	unset(
-		$this['created_at'], $this['created_by'], $this['updated_by'], $this['updated_at']
+		$this['created_at'], $this['created_by'], $this['updated_by'], $this['updated_at'],
+		$this['eiaproject_id'], $this['token']
 	);
 	
 	$this->widgetSchema['impact_level'] = new sfWidgetFormChoice(array(
-		'choices' => array_keys(Doctrine_Core::getTable('Projectimpact')->getImpactLevels()),
+		'choices' => Doctrine_Core::getTable('Projectimpact')->getImpactLevels(),
 		'multiple' => false,
 		'expanded' => false,
 	));	
@@ -25,6 +26,8 @@ class ProjectImpactForm extends BaseProjectImpactForm
 	$this->ValidatorSchema['impact_level'] = new sfValidatorChoice(array(
 		'choices' => array_keys(Doctrine_Core::getTable('Projectimpact')->getImpactLevels()),
 	));
+	
+	$thid->widgetSchema['comments'] = new sfWidgetFormTextarea();
 	
   }
 }

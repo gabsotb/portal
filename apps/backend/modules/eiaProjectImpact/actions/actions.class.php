@@ -1,14 +1,14 @@
 <?php
 
 /**
- * projectImpact actions.
+ * eiaProjectImpact actions.
  *
  * @package    rdbeportal
- * @subpackage projectImpact
+ * @subpackage eiaProjectImpact
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class projectImpactActions extends sfActions
+class eiaProjectImpactActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
@@ -17,16 +17,9 @@ class projectImpactActions extends sfActions
       ->execute();
   }
 
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->project_impact = Doctrine_Core::getTable('ProjectImpact')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->project_impact);
-  }
-
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new ProjectImpactForm();
-	$this->name = $request->getParameter('name');
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -64,7 +57,7 @@ class projectImpactActions extends sfActions
     $this->forward404Unless($project_impact = Doctrine_Core::getTable('ProjectImpact')->find(array($request->getParameter('id'))), sprintf('Object project_impact does not exist (%s).', $request->getParameter('id')));
     $project_impact->delete();
 
-    $this->redirect('projectImpact/index');
+    $this->redirect('eiaProjectImpact/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -74,7 +67,7 @@ class projectImpactActions extends sfActions
     {
       $project_impact = $form->save();
 
-      $this->redirect('dashboard/index');
+      $this->redirect('@homepage');
     }
   }
 }

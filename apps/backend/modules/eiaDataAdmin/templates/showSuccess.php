@@ -1018,18 +1018,44 @@
 	</div>
 </div>
  <div id="widget-resubmission" class="modal hide">
-		<div class="modal-header">
-			<button data-dismiss="modal" class="close" type="button">×</button>
-			<h3><?php echo __('Resubmission') ?></h3>
-		</div>
-		<div class="modal-body">
-			<p><?php echo __('Your are about to request for a resubmission of the clients data')?>.</p>
-			<p><?php echo __('If you are sure about you decision, then click continue or just cancel') ?></p>
-			<?php echo button_to('continue','eiaDataAdmin/resubmission?id='.$detail->getEiaprojectId()) ?>
-			<button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
-		</div>
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button">×</button>
+		<h3><?php echo __('Request Resubmission') ?></h3>
+	</div>
+	<div class="modal-body">
+		<p><?php echo __('Your are about to request for a resubmission of the clients data')?>.</p>
+		<p><?php echo __('If you are sure about you decision, then click continue or just cancel') ?></p>
+		<?php echo button_to('continue','eiaDataAdmin/resubmission?id='.$detail->getEiaprojectId()) ?>
+		<button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
+	</div>
+</div>
+<div id="widget-confirm" class="modal hide">
+	<div class="modal-header">
+		<h3><?php echo __('Confirm Request') ?></h3>
+	</div>
+	<div class="modal-body">
+		<p><?php echo __('This confirms you have read and analysed the application and you are satisfied with the information provided by the applicant') ?>.</p> 
+		<p><?php echo __('Proceed to allocate an impact level for the project') ?>.</p>
+		<?php echo button_to('Proceed','eiaDataAdmin/impact?id='.$detail->getEiaprojectId(),array('class' => 'btn btn-success')) ?>
+		<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
+	</div>
+</div>
+<div id="widget-reject" class="modal hide">
+	<div class="modal-header">
+		<h3><?php echo __('Reject Application') ?></h3>
+	</div>
+	<div class="modal-body">
+		<p><?php echo __('You are about to reject the application') ?>.</p> 
+		<p><?php echo __('Proceed to specify the reasons for this action') ?>.</p>
+		<?php echo button_to('Proceed','eiaDataAdmin/reject?id='.$detail->getEiaprojectId(),array('class' => 'btn btn-success')) ?>
+		<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
+	</div>
 </div>
 <div class="form-actions">
 	<a href="#widget-resubmission" data-toggle="modal">
 	<button type="button" class="btn btn-inverse"><?php echo __('Request Resubmission') ?></button></a>
+	<a href="#widget-confirm" data-toggle="modal">
+	<button type="button" class="btn btn-inverse"><?php echo __('Project Impact') ?></button></a>
+	<a href="#widget-reject" data-toggle="modal">
+	<button type="button" class="btn btn-inverse"><?php echo __('Reject') ?></button></a>
 </div>

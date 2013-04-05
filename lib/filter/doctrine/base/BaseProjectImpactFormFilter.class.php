@@ -25,7 +25,7 @@ abstract class BaseProjectImpactFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'eiaproject_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('EIAProjectDetail'), 'column' => 'id')),
-      'impact_level'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'impact_level'  => new sfValidatorPass(array('required' => false)),
       'comments'      => new sfValidatorPass(array('required' => false)),
       'token'         => new sfValidatorPass(array('required' => false)),
       'created_at'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -53,7 +53,7 @@ abstract class BaseProjectImpactFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'            => 'Number',
       'eiaproject_id' => 'ForeignKey',
-      'impact_level'  => 'Number',
+      'impact_level'  => 'Text',
       'comments'      => 'Text',
       'token'         => 'Text',
       'created_at'    => 'Date',

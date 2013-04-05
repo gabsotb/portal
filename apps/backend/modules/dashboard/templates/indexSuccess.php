@@ -1192,6 +1192,26 @@ $(function () {
 											</table>
 										<?php endif; ?>
 									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'assess'): ?>
+										<h4>Applications awaiting assessment</h4>
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+											
+													</tr>
+												</tbody>
+											</table>
+										<?php endif; ?>
+									</div>
 									<?php endforeach; ?>
 									
 									<div class="space7"></div>

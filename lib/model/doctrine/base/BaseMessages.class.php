@@ -57,8 +57,7 @@ abstract class BaseMessages extends sfDoctrineRecord
              ));
         $this->hasColumn('attachement', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
-             'unique' => true,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('token', 'string', 255, array(

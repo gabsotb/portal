@@ -11,17 +11,18 @@
 		<tr>
 			<td>
 			  <?php echo $form['comments']->renderError() ?>
-			  <?php echo $form['comments'] ?>
+			  <?php echo $form['comments']->render(array('class' => 'span12 wysihtml5','rows' => '12')) ?>
 			</td>
 		</tr>
     </tbody>
   </table>
-    <div class="form-actions">
+  <div class="form-actions">
           <?php echo $form->renderHiddenFields(false) ?>
           <!--&nbsp;<a href="<?php //echo url_for('eiaProjectBreifDecision/index') ?>">Back to list</a>-->
           <?php //if (!$form->getObject()->isNew()): ?>
             <!--&nbsp;<?php /*echo link_to('Delete', 'eiaProjectBreifDecision/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?> 
           <?php endif; */?>-->
-          <input type="submit" value="Submit" class="btn btn-success btn-large"/>
+          <input type="submit" value="Submit" class="btn btn-success btn-large "/>
     </div>
+	
 </form>

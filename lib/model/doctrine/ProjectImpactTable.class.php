@@ -18,10 +18,9 @@ class ProjectImpactTable extends Doctrine_Table
     }
 	
 	static public $impacts = array(
-		'Reject'  => 0,
-		'level 1' => 1,
-		'level 2' => 2,
-		'level 3' => 3,
+		'level_1' => 'Level 1',
+		'level_2' => 'Level 2',
+		'level_3' => 'Level 3',
 	);
 	
 	public function getImpactLevels()

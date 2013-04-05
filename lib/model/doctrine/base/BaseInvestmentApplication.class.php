@@ -29,6 +29,7 @@
  * @property Doctrine_Collection $ApplicationAssigment
  * @property Doctrine_Collection $InvestmentAppBusinesStatus
  * @property Doctrine_Collection $InvestmentApprovedBusiness
+ * @property Doctrine_Collection $InvestmentRejectedBusiness
  * @property Doctrine_Collection $InvestmentCertificate
  * 
  * @method string                getName()                          Returns the current record's "name" value
@@ -55,6 +56,7 @@
  * @method Doctrine_Collection   getApplicationAssigment()          Returns the current record's "ApplicationAssigment" collection
  * @method Doctrine_Collection   getInvestmentAppBusinesStatus()    Returns the current record's "InvestmentAppBusinesStatus" collection
  * @method Doctrine_Collection   getInvestmentApprovedBusiness()    Returns the current record's "InvestmentApprovedBusiness" collection
+ * @method Doctrine_Collection   getInvestmentRejectedBusiness()    Returns the current record's "InvestmentRejectedBusiness" collection
  * @method Doctrine_Collection   getInvestmentCertificate()         Returns the current record's "InvestmentCertificate" collection
  * @method InvestmentApplication setName()                          Sets the current record's "name" value
  * @method InvestmentApplication setRegistrationNumber()            Sets the current record's "registration_number" value
@@ -80,6 +82,7 @@
  * @method InvestmentApplication setApplicationAssigment()          Sets the current record's "ApplicationAssigment" collection
  * @method InvestmentApplication setInvestmentAppBusinesStatus()    Sets the current record's "InvestmentAppBusinesStatus" collection
  * @method InvestmentApplication setInvestmentApprovedBusiness()    Sets the current record's "InvestmentApprovedBusiness" collection
+ * @method InvestmentApplication setInvestmentRejectedBusiness()    Sets the current record's "InvestmentRejectedBusiness" collection
  * @method InvestmentApplication setInvestmentCertificate()         Sets the current record's "InvestmentCertificate" collection
  * 
  * @package    rdbeportal
@@ -106,7 +109,7 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              ));
         $this->hasColumn('title_in_company', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('business_sector', 'string', 255, array(
@@ -121,37 +124,37 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              ));
         $this->hasColumn('office_telephone', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('fax', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('post_box', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('location', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('sector', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('district', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('city_province', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('token', 'string', 255, array(
@@ -205,6 +208,10 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              'foreign' => 'business_id'));
 
         $this->hasMany('ApprovedApplications as InvestmentApprovedBusiness', array(
+             'local' => 'id',
+             'foreign' => 'business_id'));
+
+        $this->hasMany('RejectedApplications as InvestmentRejectedBusiness', array(
              'local' => 'id',
              'foreign' => 'business_id'));
 

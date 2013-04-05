@@ -58,16 +58,52 @@ class eiaDataAdminActions extends sfActions
 		$eiaProjectId=$request->getParameter('id');
 		$decision= new EIAProjectBriefDecision();
 		$decision->eiaproject_id=$eiaProjectId;
-		$decision->decision="resubmission";
+		$decision->decision="resubmit";
 		$decision->processed_by=sfContext::getInstance()->getUser()->getGuardUser()->getId();
 		$decision->save();
 		$this->updateStatus($eiaProjectId,'resubmit','Request for resubmission',50);
+		$assignment=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
+		Doctrine_Core::getTable('EITaskAssignment')->find(array($assignment[0]['id']))->setWorkStatus('resubmission')->save();
+		$assignment=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
+		Doctrine_Core::getTable('EITaskAssignment')->find(array($assignment[0]['id']))->setWorkStatus('assess')->save();
 		$id=NULL;
 		foreach(Doctrine_Core::getTable('EIAProjectBriefDecision')->findByEiaprojectId($eiaProjectId) as $decision)
 		{ 
 			$id=$decision->getId();
 		}
-		$this->redirect('eiaProjectBreifDecision/edit?id='.$id);
+		$this->redirect('eiaProjectBreifDecision/edit?id='.$id.'&act=resubmit');
 	}
+	
+	public function executeImpact(sfWebRequest $request)
+	{
+		$impact= new ProjectImpact();
+		$impact->eiaproject_id=$request->getParameter('id');
+		$impact->save();
+		$this->updateStatus($request->getParameter('id'),'assessing','Accessing application',60);
+		$assignment=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
+		Doctrine_Core::getTable('EITaskAssignment')->find(array($assignment[0]['id']))->setWorkStatus('assess')->save();
+		foreach(Doctrine_Core::getTable('ProjectImpact')->findByEiaprojectId($request->getParameter('id')) as $projetcImpact)
+		{
+			$impactId=$projetcImpact->getId();
+		}
+		$this->redirect('eiaProjectImpact/edit?id='.$impactId);
+	}
+	
+	public function executeReject(sfWebRequest $request)
+	{
+		$reject = new EIAProjectBriefDecision();
+		$reject->eiaproject_id=$request->getParameter('id');
+		$reject->decision="rejected";
+		$reject->processed_by=sfContext::getInstance()->getUser()->getGuardUser()->getId();
+		$reject->save();
+		$this->updateStatus($request->getParameter('id'),'rejected','Application has been rejected',60);
+		$assignment=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
+		Doctrine_Core::getTable('EITaskAssignment')->find(array($assignment[0]['id']))->setWorkStatus('rejected')->save();
+		foreach(Doctrine_Core::getTable('EIAProjectBriefDecision')->findByEiaprojectId($request->getParameter('id')) as $rejectDecision)
+		{ 
+			$id=$rejectDecision->getId();
+		}
+		$this->redirect('eiaProjectBreifDecision/edit?id='.$id.'&act=reject');
+	}	
 
 }

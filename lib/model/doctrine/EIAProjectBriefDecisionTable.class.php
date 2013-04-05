@@ -16,4 +16,24 @@ class EIAProjectBriefDecisionTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('EIAProjectBriefDecision');
     }
+	
+	public static $actionResubmit=array(
+		'heading' => 'Resubmission',
+		'body' => 'Please specify to the applicant why you are requesting for a resubmission'
+	);
+	
+	public static $actionReject=array(
+		'heading' => 'Rejection',
+		'body' => 'Please specify to the applicant why you are rejecting the application'
+	);
+	
+	public function getActionResubmit()
+	{
+		return self::$actionResubmit;
+	}
+	
+	public function getActionReject()
+	{
+		return self::$actionReject;
+	}
 }
