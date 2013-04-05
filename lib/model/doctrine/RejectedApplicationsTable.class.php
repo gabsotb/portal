@@ -16,4 +16,12 @@ class RejectedApplicationsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('RejectedApplications');
     }
+	static public $category = array(
+    'investment_cert' => 'Investment Certificate',
+  );
+  ///
+  public function getCategories()
+  {
+   return self::$category ;
+  }
 }

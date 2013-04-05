@@ -28,7 +28,8 @@ class messagesActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new MessagesForm();
+    // $param = $request->getParameter('value'); 
+     $this->form = new MessagesForm();
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -76,7 +77,8 @@ class messagesActions extends sfActions
     {
       $messages = $form->save();
 
-      $this->redirect('messages/edit?id='.$messages->getId());
+      //$this->redirect('messages/edit?id='.$messages->getId());
+	  $this->redirect('dashboard/index');
     }
   }
 }

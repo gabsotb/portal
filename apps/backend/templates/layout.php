@@ -249,6 +249,7 @@
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
+					    <li class=""><a href ="<?php echo url_for('investment_request') ?>"><i class="icon-fire"></i> <?php echo __('IC Application') ?> </a></li>
 						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
 						<li class=""> <a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificates') ?> </a></li>
 					</ul>

@@ -4,6 +4,7 @@
 	 {
 	  $id = $data['id'];
 	  $name = $data['name']; 
+	  $regno = $data['registration_number'];
 	  $project_brief = $data['project_brief'];
 	  $business_name = $data['name'];
 	  $business_nature = $data['business_sector'];
@@ -15,6 +16,7 @@
 	  $sector = $data['sector'];
 	  $district = $data['district'];
 	  $city_province = $data['city_province'];
+	  $exemption_on_machinery = $data['exemption_on_machinery'];
 	  //Variables for the table land costs
 	  
 	 }
@@ -75,10 +77,39 @@
 						</div>
 						<div class="modal-body">
 							<p><?php echo __('Your are about to decline this applicant application. It is a good idea to inform the Manager and share your decision. You can send a message to the Manager/ Supervisor who assigned you this task and inform them of your
-							decision by clicking')?> <a href="<?php echo url_for('messages/new')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Message') ?></button></a></p>
+							decision by clicking')?> <a href="<?php echo url_for('messages/new?value=decline')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Message') ?></button></a></p>
 							
-							<p> <?php echo __('If you are sure about you decision, then click continue or just cancel') ?></p>
-							 <button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> &nbsp;&nbsp;&nbsp;
+							
+							<?php 
+							 //we will hide this button if the user has not yet been granted the necessary permission to decline
+							 //so we connect to the table that stores permission from managers/supervisors and we query for
+							 //accept where request type is decline_application
+							 $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+							 //print $username; 
+							// print $regno;
+							 //exit;
+							 $query = Doctrine_Core::getTable('InvestmentRequests')->queryPermission($regno, $username);
+							// print_r($query); exit;
+							 //
+							 
+							 
+							?>
+							
+							<?php if(count($query) == 0): ?>
+							<font color="red">
+							 <?php //no permission yet
+                                echo __('Sorry,Permission not granted. If you have contacted your supervisor please wait
+							  as he/she responds to your request. If not please send a message asap. Thank you for understanding') ;?>
+							<?php endif; ?>
+							</font> 
+							 <?php if(count($query) != 0): ?>
+							 <p> <?php echo __('If you are sure about you decision, then click continue or just cancel') ?></p>
+							 <a href="<?php echo url_for('investment_reject')?>">
+							 <button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> 
+							 </a>
+							 <?php endif; ?>
+							 
+							 &nbsp;&nbsp;&nbsp;
 							 <button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
 							
 							
@@ -104,7 +135,11 @@
 											<div class="alert alert-block alert-danger">
 										<h4 class="alert-heading"><?php echo __('Important!') ?></h4>
 										<p>
-											<?php echo __('This is the business proposal for  $name. Please Read it Carefully before generating report'); ?>.
+										     <?php echo __('This is the business proposal for:') ?>
+										     <?php echo $name;?>
+											 <?php echo __('Registration Number is'); ?>
+											 <?php echo $regno; ?>
+											 <?php echo __(' Please Read it Carefully before generating report'); ?>.
 										</p>
 										
 									         </div>
@@ -257,7 +292,12 @@
 										      <div class="widget-body">
 											    <div class="alert alert-block alert-info">
 									             <div id="mytable1"> </div>
-												 <div id="mytableconsole"> </div>
+												 <div id="mytableconsole"> 
+												   
+												 </div>
+												  <a href="javascript:void(0);" id="printPage">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 												</div>
 											  </div>
 										</div>	
@@ -273,6 +313,9 @@
 											  <div class="alert alert-block alert-info">
 												 <div id="mytable2"> </div>
 												 <div id="mytableconsole2"> </div>
+												 <a href="javascript:void(0);" id="printPage2">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 											  </div>
 											  </div>
 										</div>	
@@ -288,6 +331,9 @@
 											    <div class="alert alert-block alert-info">
 												 <div id="mytable3"> </div>
 												 <div id="mytableconsole3"> </div>
+												 <a href="javascript:void(0);" id="printPage3">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 												 </div>
 											  </div>
 										</div>	
@@ -307,6 +353,9 @@
 													</div>
 												    <div id="mytable4"> </div>
 													 <div id="mytableconsole4"> </div>
+													 <a href="javascript:void(0);" id="printPage4">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 												    </div>	
 											</div>
 											<div class="widget-body">
@@ -317,6 +366,9 @@
 													</div>
 												     <div id="mytable5"> </div>
 													 <div id="mytableconsole5"> </div>
+													 <a href="javascript:void(0);" id="printPage5">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 												 </div>
 										
 											  </div>
@@ -333,20 +385,26 @@
 											      <div class="alert alert-block alert-info">
 												   <div id="mytableconsole6"> </div>
 												    <div id="mytable6"> </div>
+													<a href="javascript:void(0);" id="printPage6">
+												  <button type="button" class="btn btn-warning"><i class="icon-print"></i> Print</button>
+												 </a> 
 												   </div>	
 											  </div>
 										</div>	
 										</div>
 									    </div>
 									<div class="row-fluid">
-										<div class="span8">
+										<div class="span9">
 											<a href="<?php echo url_for('projectSummary/new?id='.$id) ?>"> <button type="button" class="btn btn-success"><?php echo __('Make Report') ?></button> </a> &nbsp;&nbsp;&nbsp;
 											<a href="#widget-resubmit" data-toggle="modal">
 											<button type="button" class="btn btn-inverse"><?php echo __('Request Resubmission') ?></button></a>&nbsp;&nbsp;&nbsp;
 											</a>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<a href="#widget-decline" data-toggle="modal">
-											<button type="button" class="btn btn-danger"><?php echo __('Decline') ?></button> </a>
+											<button type="button" class="btn btn-danger"><?php echo __('Decline') ?></button> </a> <br/><br/><br/>
+											
+											<!--<a href="<?php //echo url_for('dashboard/proposal?id='.$id) ?>">
+											<button type="button" class="btn btn-info"><i class="icon-print"></i><?php //echo __('Print PDF') ?></button> </a> -->
 										</div>
 										
 									</div>
@@ -366,12 +424,107 @@
 								<div class="widget-body">
 								 <p><?php echo __('Download These attachment to view and analyze them') ?></p>
 									<ul>
-										<li><a href ="<?php echo url_for('dashboard/download1?id='.$id)?>"><?php echo __('Exemption on imported machinery(List of Items)')?> </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download2?id='.$id)?>"><?php echo __('Exemption on raw materials(List of Items)')?> </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download3?id='.$id)?>"><?php echo __('Land Ownership Document') ?></a></li>
-										<li><a href ="<?php echo url_for('dashboard/download4?id='.$id)?>"><?php echo __('Bill of Quantity') ?>  </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download5?id='.$id)?>"><?php echo __('Drawings Document') ?> </a></li>
-										<li><a href ="<?php echo url_for('dashboard/download6?id='.$id)?>"><?php echo __('Construction Permit') ?> </a></li>
+									  <?php
+                                              $model = new BusinessPlan();
+										 ?>
+									<?php foreach($details as $file) { ?>
+										<li>
+										<?php 
+										
+										  if($file['exemption_on_machinery'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										  //
+										   if($file['exemption_on_machinery'] != null)
+											  {
+											   echo link_to('exemption_on_machinery', '/uploads/documents/investment_docs/'.$file['exemption_on_machinery'], array('target' => '_blank')); 
+											  }
+										
+										
+										
+										?>
+										
+										</li>
+										
+										<li>
+										  
+										<?php 
+										 if($file['exemption_raw_materials'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										///
+										 if($file['exemption_on_machinery'] != null)
+											  {
+											   echo link_to('exemption_raw_materials', '/uploads/documents/investment_docs/'.$file['exemption_raw_materials'], array('target' => '_blank')); 
+											  }
+										
+										
+										
+										?>
+										</li>
+										
+										<li>
+										<?php 
+										 if($file['land_ownership_document'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										//
+										 if($file['land_ownership_document'] != null)
+											  {
+											   echo link_to('land_ownership_document', '/uploads/documents/investment_docs/'.$file['land_ownership_document'], array('target' => '_blank')); 
+										
+											  }
+										
+										
+										
+										?></li>
+										
+										<li><?php 
+										if($file['bill_of_quantiy'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										 if($file['bill_of_quantiy'] != null)
+											  {
+											   echo link_to('bill_of_quantiy', '/uploads/documents/investment_docs/'.$file['bill_of_quantiy'], array('target' => '_blank')); 
+										
+											  }	  
+										
+										
+										?></li>
+										
+										<li><?php 
+										if($file['construction_permits'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										if($file['construction_permits'] != null)
+											  {
+											  echo link_to('construction_permits', '/uploads/documents/investment_docs/'.$file['construction_permits'], array('target' => '_blank')); 
+										
+											  }		  
+										
+										
+										
+										?></li>
+										
+										<li>
+										<?php 
+										 if($file['drawings'] == null)
+											  {
+											  //if there is no attachment show nothing
+											  }
+										if($file['drawings'] != null)
+											  {
+											  echo link_to('drawings', '/uploads/documents/investment_docs/'.$file['drawings'], array('target' => '_blank'));
+										
+											  }	
+										 ?></li>
+										
+								  <?php } ?>
 									</ul>
 								</div>
 							</div>
@@ -681,4 +834,115 @@
             });
 
          
-		  </script>				  
+		  </script>	
+
+
+<!--Printing scripts -->
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable1').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable2').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage2').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable3').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage4').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable4').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage5').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable5').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 
+<script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage6').click(function(){
+        var data = '<input type="button" value="Send To Printer" onClick="window.print()">';           
+        data += '<div id="div_print">';
+        data += $('#mytable6').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=500,height=100');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+</script> 

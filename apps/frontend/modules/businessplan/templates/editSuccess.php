@@ -2,7 +2,7 @@
   <div class="span11">
 				<div class="widget">
 				 <div class="widget-title">
-					<h4><i class="icon-reorder"></i><?php echo__('Edit Application Detail Step 2') ?></h4>						
+					<h4><i class="icon-reorder"></i><?php echo __('Edit Application Detail Step 2') ?></h4>						
 					</div>
             <div class="widget-body">
 			<div class="alert alert-block alert-info fade in">

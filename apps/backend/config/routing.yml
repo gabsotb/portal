@@ -19,7 +19,12 @@ task_assignment:
 my_inbox:
  url: /:sf_culture/inbox
  param: { module: messages, action: index}
-
+investment_request:
+ url: /:sf_culture/investment/requests
+ param: {module: investmentrequest, action: index}
+investment_reject:
+ url: /:sf_culture/investment/reject
+ param: {module: investmentrejected, action: index}
 user_tasks:
  url: /:sf_culture/mytasks
  param: {module: taskManagement, action: tasks }

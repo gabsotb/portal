@@ -24,7 +24,9 @@ abstract class BaseEIAProjectAttachmentForm extends BaseFormDoctrine
       'land_ownership_doc'        => new sfWidgetFormInputText(),
       'ministrial_document'       => new sfWidgetFormInputText(),
       'perimeter_area_map'        => new sfWidgetFormInputText(),
+      'location_area_map'         => new sfWidgetFormInputText(),
       'other_supporting_document' => new sfWidgetFormInputText(),
+      'project_reference_number'  => new sfWidgetFormInputText(),
       'token'                     => new sfWidgetFormInputText(),
       'created_at'                => new sfWidgetFormDateTime(),
       'updated_at'                => new sfWidgetFormDateTime(),
@@ -37,11 +39,13 @@ abstract class BaseEIAProjectAttachmentForm extends BaseFormDoctrine
       'eiaproject_id'             => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'))),
       'panoramic_view'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'perspective_site_impact'   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'preliminary_approval'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'preliminary_approval'      => new sfValidatorString(array('max_length' => 255)),
       'land_ownership_doc'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'ministrial_document'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'perimeter_area_map'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'location_area_map'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'other_supporting_document' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'project_reference_number'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'token'                     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'                => new sfValidatorDateTime(),
       'updated_at'                => new sfValidatorDateTime(),
@@ -83,6 +87,7 @@ abstract class BaseEIAProjectAttachmentForm extends BaseFormDoctrine
       'perimeter_area_map'        => new sfWidgetFormInputText(),
       'location_area_map'         => new sfWidgetFormInputText(),
       'other_supporting_document' => new sfWidgetFormInputText(),
+      'project_reference_number'  => new sfWidgetFormInputText(),
       'token'                     => new sfWidgetFormInputText(),
       'created_at'                => new sfWidgetFormDateTime(),
       'updated_at'                => new sfWidgetFormDateTime(),
@@ -101,6 +106,7 @@ abstract class BaseEIAProjectAttachmentForm extends BaseFormDoctrine
       'perimeter_area_map'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'location_area_map'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'other_supporting_document' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'project_reference_number'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'token'                     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'                => new sfValidatorDateTime(),
       'updated_at'                => new sfValidatorDateTime(),
@@ -127,4 +133,4 @@ abstract class BaseEIAProjectAttachmentForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> c3e182cf3539b22e99d6d2b8b35510fa265e43ef
+>>>>>>> cc2863a2ce3b22a12c79b6457b8417c1c318f015

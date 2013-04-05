@@ -28,7 +28,7 @@
 					<?php echo $form['registration_number']->renderRow(array('class' => 'span6 popovers' ,'onkeyup' => 'showDetails(this.value)','data-content' => $registration_number  , 'data-trigger' => 'hover', 'data-original-title' => $registration_number2))  ?>
 				</div>
 			</div>
-		</div>
+		    </div>
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">

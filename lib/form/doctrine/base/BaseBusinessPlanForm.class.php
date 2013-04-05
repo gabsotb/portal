@@ -55,7 +55,14 @@ abstract class BaseBusinessPlanForm extends BaseFormDoctrine
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'BusinessPlan', 'column' => array('investment_id')))
+      new sfValidatorAnd(array(
+        new sfValidatorDoctrineUnique(array('model' => 'BusinessPlan', 'column' => array('investment_id'))),
+        new sfValidatorDoctrineUnique(array('model' => 'BusinessPlan', 'column' => array('exemption_on_machinery'))),
+        new sfValidatorDoctrineUnique(array('model' => 'BusinessPlan', 'column' => array('land_ownership_document'))),
+        new sfValidatorDoctrineUnique(array('model' => 'BusinessPlan', 'column' => array('bill_of_quantiy'))),
+        new sfValidatorDoctrineUnique(array('model' => 'BusinessPlan', 'column' => array('drawings'))),
+        new sfValidatorDoctrineUnique(array('model' => 'BusinessPlan', 'column' => array('construction_permits'))),
+      ))
     );
 
     $this->widgetSchema->setNameFormat('business_plan[%s]');

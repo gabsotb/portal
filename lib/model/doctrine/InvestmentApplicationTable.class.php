@@ -28,6 +28,28 @@ class InvestmentApplicationTable extends Doctrine_Table
   {
    return self::$category ;
   }
+  //get users with the permission for processing investment certificates ie investmentcert users
+	public function getInvestmentCertUsers($group)
+	{
+	 //print $group;
+	 $users = Doctrine_Core::getTable('BusinessPlan')->getUserNames($group);
+	 $user_names = null ;
+	 $value = null;
+	 foreach($users as $value)
+	 {
+	   // $user_names['username']=$value;
+		//$user_names = $value['username']
+		///
+		$user_names = array($value['username'] => $value['username']) ;
+		
+	   
+	 }
+	// $array = array($value => $value);
+	 ///
+	// print_r($users); exit;
+	
+	 return $user_names;
+	}
 	// This method selects data from the investment table and returns it to the controller if called
 	public function getTotalInvestmentApplications(Doctrine_Query $query = null)
 	{
@@ -92,7 +114,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	//now we use this method to retrieve applications that is not yet assigned to any RDB data admin
 	public function getUnassignedApplications($status)
 	{
-	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name, 
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name, investment_application.registration_number ,investment_application.token, 
 	 business_plan.created_at, business_plan.updated_by, business_application_status.business_id
 	 FROM business_plan LEFT JOIN investment_application ON business_plan.investment_id  = investment_application.id
 	LEFT JOIN  business_application_status ON business_plan.id = business_application_status.business_id 
@@ -197,11 +219,38 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  //
 	  return $name;
 	}
+	//custom method to retrieve a user id given a business name
+	public function getUserId($business_name)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT investment_application.created_by FROM investment_application WHERE investment_application.name = '$business_name' limit 1
+	  ");
+	  $id = 0; 
+	  foreach( $query as $q)
+	  {
+	   $id = $q['id'] ;
+	  }
+	  return $id;
+	  
+	}
 	//a custom method to retrieve business id given a business name
 	public function getBusinessId($name)
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
 	   SELECT investment_application.id FROM investment_application WHERE investment_application.name = '$name' limit 1
+	  ");
+	  $id = 0;
+	  foreach( $query as $q)
+	  {
+	   $id = $q['id'] ;
+	  }
+	  return $id;
+	}
+	//we create a custom method to validate business , we use token and regno of the business.
+	public function ValidateBusiness($regno,$token)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT investment_application.id FROM investment_application WHERE investment_application.registration_number = '$regno' and investment_application.token = '$token' limit 1
 	  ");
 	  $id = 0;
 	  foreach( $query as $q)
@@ -224,5 +273,6 @@ class InvestmentApplicationTable extends Doctrine_Table
 	 ///
 	 return $query;
 	}
+	
 	
 }

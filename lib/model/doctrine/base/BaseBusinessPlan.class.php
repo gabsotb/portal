@@ -69,6 +69,7 @@ abstract class BaseBusinessPlan extends sfDoctrineRecord
         $this->hasColumn('exemption_on_machinery', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
+             'unique' => true,
              'length' => 255,
              ));
         $this->hasColumn('exemption_raw_materials', 'string', 4000, array(
@@ -79,21 +80,25 @@ abstract class BaseBusinessPlan extends sfDoctrineRecord
         $this->hasColumn('land_ownership_document', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
+             'unique' => true,
              'length' => 255,
              ));
         $this->hasColumn('bill_of_quantiy', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
+             'unique' => true,
              'length' => 255,
              ));
         $this->hasColumn('drawings', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
+             'unique' => true,
              'length' => 255,
              ));
         $this->hasColumn('construction_permits', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
+             'unique' => true,
              'length' => 255,
              ));
         $this->hasColumn('investment_allowances', 'string', 255, array(

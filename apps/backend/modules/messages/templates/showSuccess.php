@@ -1,29 +1,6 @@
 <div id="page" class="dashboard">
 <div class="row-fluid">
-					<div class="span12">
-						    	
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
-						<h3 class="page-title">
-							Inbox
-							<small>View your Messages</small>
-						</h3>
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home"></i>
-								<a href="<?php echo url_for('investmentapp/index') ?>">Dashboard</a> <span class="divider">/</span>
-							</li>
-							<li>
-								<i class="icon-envelope-alt"></i>
-								<a href="#">inbox</a> <span class="divider">/</span>
-							</li>
-							<li>
-								<i class="icon-zoom-in"></i>
-								<a href="#">view-message</a> <span class="divider">/</span>
-							</li>
-							
-						</ul>
-						<!-- END PAGE TITLE & BREADCRUMB-->
-					</div>
+					
 				</div>
 					<div class="row-fluid">
 						<div class="span12">
@@ -39,7 +16,12 @@
 												<?php echo $messages['message'] ?>
 											</p>
 											<p>
-											 <?php echo $messages['attachement'] ?>
+											 
+											 <?php 
+											  // $model = new Messages() ;
+											 ?>
+											 <?php echo link_to('download attachment', '/uploads/documents/messages_docs/'.$messages['attachement'], array('target' => '_blank')); ?>
+											 
 											</p>
 											<p>
 											  <a href="<?php echo url_for('messages/index') ?>">
