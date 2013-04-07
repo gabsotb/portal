@@ -13,27 +13,29 @@ abstract class BaseInvestmentRequestsFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'requestor'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'request_type'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'status'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'business_registration' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'comments'              => new sfWidgetFormFilterInput(),
-      'created_at'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'updated_at'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'created_by'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
-      'updated_by'            => new sfWidgetFormFilterInput(),
+      'requestor'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'request_type'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'status'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'reference_number' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'comments'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'token'            => new sfWidgetFormFilterInput(),
+      'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'created_by'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
+      'updated_by'       => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'requestor'             => new sfValidatorPass(array('required' => false)),
-      'request_type'          => new sfValidatorPass(array('required' => false)),
-      'status'                => new sfValidatorPass(array('required' => false)),
-      'business_registration' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'comments'              => new sfValidatorPass(array('required' => false)),
-      'created_at'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'updated_at'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'created_by'            => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Creator'), 'column' => 'id')),
-      'updated_by'            => new sfValidatorPass(array('required' => false)),
+      'requestor'        => new sfValidatorPass(array('required' => false)),
+      'request_type'     => new sfValidatorPass(array('required' => false)),
+      'status'           => new sfValidatorPass(array('required' => false)),
+      'reference_number' => new sfValidatorPass(array('required' => false)),
+      'comments'         => new sfValidatorPass(array('required' => false)),
+      'token'            => new sfValidatorPass(array('required' => false)),
+      'created_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'updated_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'created_by'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Creator'), 'column' => 'id')),
+      'updated_by'       => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('investment_requests_filters[%s]');
@@ -53,16 +55,17 @@ abstract class BaseInvestmentRequestsFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'                    => 'Number',
-      'requestor'             => 'Text',
-      'request_type'          => 'Text',
-      'status'                => 'Text',
-      'business_registration' => 'Number',
-      'comments'              => 'Text',
-      'created_at'            => 'Date',
-      'updated_at'            => 'Date',
-      'created_by'            => 'ForeignKey',
-      'updated_by'            => 'Text',
+      'id'               => 'Number',
+      'requestor'        => 'Text',
+      'request_type'     => 'Text',
+      'status'           => 'Text',
+      'reference_number' => 'Text',
+      'comments'         => 'Text',
+      'token'            => 'Text',
+      'created_at'       => 'Date',
+      'updated_at'       => 'Date',
+      'created_by'       => 'ForeignKey',
+      'updated_by'       => 'Text',
     );
   }
 }

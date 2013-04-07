@@ -10,11 +10,18 @@
        <div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['business_registration']->renderRow(array('class' => 'span6 popovers' ,'onkeyup' => 'showDetails(this.value)','data-content' => 'Business Regno'  , 'data-trigger' => 'hover', 'data-original-title' => 'Start Typing'))  ?>
+					<?php echo $form['applicant_reference_number']->renderRow(array('class' => 'span6 popovers' ,'onkeyup' => 'showDetails(this.value)','data-content' => 'Enter Reference Number'  , 'data-trigger' => 'hover', 'data-original-title' => 'Type'))  ?>
 				</div>
 			</div>
 			
 	   </div>
+	   <div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['business_registration']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' =>'Business Registration' , 'data-original-title' => 'Business Registration' )) ?>
+				</div>
+			</div>
+		</div>
 	   <div class="control-group">
 			<div class="controls">
 			  <div class="input-prepend">
@@ -25,14 +32,14 @@
 	    <div class="control-group">
 			<div class="controls">
 			  <div class="input-prepend">
-					<?php echo $form['reason']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
+					<?php echo $form['reasons']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 	            </div>
 			  </div>
 	   </div>
 	   <div class="control-group">
 			<div class="controls">
 			  <div class="input-prepend">
-					<?php echo $form['comment']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
+					<?php echo $form['comments']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
 	            </div>
 			  </div>
 			  <?php echo $form->renderHiddenFields(); ?>
@@ -52,3 +59,44 @@
     
   </table>
 </form>
+<script type="text/javascript">
+      function showDetails(str)
+				{
+				  var minlength = 3;
+				  var id = str;
+				if (id=="")
+				  {
+				  document.getElementById("txtHint").innerHTML="";
+				  return;
+				  }
+				  if (window.XMLHttpRequest)
+				  {// code for IE7+, Firefox, Chrome, Opera, Safari
+				  xmlhttp=new XMLHttpRequest();
+				  }
+				else
+				  {// code for IE6, IE5
+				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				  }
+				xmlhttp.onreadystatechange=function()
+				  {
+				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+					 var data = JSON.parse(xmlhttp.responseText);
+				   // document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+					 for(var i=0;i<data.length;i++) 
+					 {
+					
+					 //document.getElementById("txtHint").innerHTML += data[i].business_name + ' - ' + data[i].business_sector + ' - ' + data[i].office_telephone;
+					 //try to set values
+					 document.getElementById('rejected_applications_business_registration').value = data[i].registration_number;
+					 document.getElementById('rejected_applications_business_id').value = data[i].business_id;
+					 }
+					
+					}
+				  }
+				xmlhttp.open("GET", "details?id="+id, true);
+				xmlhttp.send(); 
+
+}
+	
+</script>

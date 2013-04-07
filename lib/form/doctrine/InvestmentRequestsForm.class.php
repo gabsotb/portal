@@ -33,6 +33,6 @@ class InvestmentRequestsForm extends BaseInvestmentRequestsForm
 	  'expanded' => false,
     ));
 	//set label
-	$this->widgetSchema->setLabel('business_registration','Enter Business Registration No');
+	$this->widgetSchema->setLabel('reference_number','Enter Business Application Reference Number');
   }
 }

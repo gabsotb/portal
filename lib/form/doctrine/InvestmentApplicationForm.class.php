@@ -11,7 +11,7 @@
 class InvestmentApplicationForm extends BaseInvestmentApplicationForm
 {
   
-   //here we want to get current username and set it to our database using Dependency Injection
+  
   
   public function generateNumbers()
   {
@@ -22,13 +22,8 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
 		}
 		return $numbers;
   }
-  public function legalNatureValues()
-  {
-   $natures = array("Private Limited","Private Limited Liability","Public Limited ","Public Limited Liability");
-   return $natures;
-   
-  }
- // protected static $numbers =  generateNumbers();
+ 
+ 
   
   public function configure()
   {
@@ -48,15 +43,12 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
 	  'expanded' => false,
     ));
    ////
- //  $this->widgetSchema['company_legal_nature'] = new sfWidgetFormSelect(array('choices' => self::legalNatureValues()));
+   $this->widgetSchema['token'] = new sfWidgetFormInputHidden();
+  $token = sha1(date('Y-m-d').rand(11111, 99999));
+  $this->setDefault('token',$token); 
   //customize error messages
   $this->validatorSchema['name']  = new sfValidatorString(array(), array('required' => 'Please Provide Company name'));
   $this->validatorSchema['registration_number']  = new sfValidatorString(array(),array('required' => 'The Company Registration Number is Required?'));
- // $this->validatorSchema['company_legal_nature']  = new sfValidatorString(array(), array('required' => 'What is Your company Legal Nature?'));
- // $this->validatorSchema['company_representative']  = new sfValidatorString(array(), array('required' => 'Who is your company representatives?'));
-   $date = date('Y-m-d H:i:s');
-  $this->setDefault('token',sha1($date.rand(11111, 99999)) );
-  //hide token
-  $this->widgetSchema['token'] = new sfWidgetFormInputHidden();
+
   }
 }

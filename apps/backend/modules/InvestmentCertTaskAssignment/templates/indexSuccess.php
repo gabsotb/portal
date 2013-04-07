@@ -35,7 +35,7 @@
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>
 					
-					<div class="span10">
+					<div class="span11">
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
@@ -48,6 +48,7 @@
 											<tr>
 												<th><i class="icon-user"></i> <span class="hidden-phone"><?php echo __('Assigned To') ?></span></th>
 												<th><i class="icon-briefcase"></i> <span class="hidden-phone "><?php echo __('For Business') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Applicant Reference No') ?></span></th>
 												<th><span class="hidden-phone"><?php echo __('Instructions') ?></span></th>
 												<th><span class="hidden-phone"><?php echo __('Work Status') ?></span></th>
 												<th><span class="hidden-phone"><?php echo __('Due Date') ?></span></th>
@@ -61,6 +62,7 @@
 												<td class="highlight">
 													<?php echo $available['username'] ?></td>
 												<td><?php echo $available['name'] ?></td>
+												<td><?php echo $available['applicant_reference_number']?> </td>
 												<td> <?php echo $available['instructions'] ?> </td>
 												<td> 
 												<!-- we are going to mark this red if not started -->
@@ -80,7 +82,11 @@
 												
 												<td> 
 												 <?php if($status !='complete'): ?>
-												<a href="<?php echo url_for('InvestmentCertTaskAssignment/edit?id='.$available['id'])?>"><?php echo __('Edit') ?></a>
+												 <?php if($status !='rejected'): ?>
+												 <a href="<?php echo url_for('InvestmentCertTaskAssignment/edit?id='.$available['id'])?>"><?php echo __('Edit') ?></a>
+												 <?php endif; ?>
+												
+												
 												<?php endif; ?>
 												</td>
 												

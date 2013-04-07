@@ -88,10 +88,10 @@
 							 //accept where request type is decline_application
 							 $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
 							 //print $username; 
-							// print $regno;
+							 //print $applicant_reference;
 							 //exit;
-							 $query = Doctrine_Core::getTable('InvestmentRequests')->queryPermission($regno, $username);
-							// print_r($query); exit;
+							 $query = Doctrine_Core::getTable('InvestmentRequests')->queryPermission($applicant_reference, $username);
+							//print_r($query); exit;
 							 //
 							 
 							 
@@ -101,7 +101,9 @@
 							<font color="red">
 							 <?php //no permission yet
                                 echo __('Sorry,Permission not granted. If you have contacted your supervisor please wait
-							  as he/she responds to your request. If not please send a message asap. Thank you for understanding') ;?>
+							  as he/she responds to your request. If not please send a message asap. Thank you for understanding') ;
+							  
+							  ?>
 							<?php endif; ?>
 							</font> 
 							 <?php if(count($query) != 0): ?>
@@ -599,7 +601,7 @@
 					row[4] = result4.financial[i].year5;
                     data[result4.financial[i].id - result4.financial[0].id ] = row;
 					
-					
+					//alert(data[result4.financial[i].id - result4.financial[0].id ]);
                   }
                   handsontable_financial.loadData(data);
 				  

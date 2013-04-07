@@ -202,7 +202,7 @@
 					</a>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-table"></i> <?php echo __('Investment Certificate') ?>
+					<i class="icon-certificate"></i> <?php echo __('Investment Certificate') ?>
 					<span class="arrow"></span>
 					</a>					
 					<ul class="sub">
@@ -276,13 +276,15 @@
 																?>
 																<?php if($value > 0 && $response != null ) { ?>
 																
-																<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i><?php echo __('Application Form') ?></a></li>
+																<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-certificate"></i><?php echo __('Application Form') ?></a></li>
 																<?php } ?>
 															    <?php if($value <= 0  && $response != null ) { ?>
-																	 	<li class=""><a href="<?php echo url_for('investmentapp/new') ?>"><i class="icon-tag"></i><?php echo __('Application Form') ?></a></li>
+																      <?php $reference = "new" ; ?>
+																	 	<li class=""><a href="<?php echo url_for('investmentapp/new?reference='.$reference) ?>"><i class="icon-certificate"></i><?php echo __('Application Form') ?></a></li>
 																<?php } ?>
 															 <?php if($investment_id != null &&  $rejection == "rejected_completed"){ ?>
-															 	<li class=""><a href ="<?php echo url_for('investmentapp/new') ?>"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
+															 <?php $reference = "new" ; ?>
+															 	<li class=""><a href ="<?php echo url_for('investmentapp/new?reference='.$reference) ?>"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
 															 <?php } ?>
 												<!--we will prevent users from applying for certificate if they have pending applications -->
                                                          
@@ -297,9 +299,9 @@
 			<!-- End control code -->	
 					</ul>
 				</li>
-				<li class="has-sub"><a href="javascript:;"><i class="icon-table"></i> <?php echo __('EIA Certificate') ?> <span class="arrow"></span></a>
+				<li class="has-sub"><a href="javascript:;"><i class="icon-certificate"></i> <?php echo __('EIA Certificate') ?> <span class="arrow"></span></a>
 				<ul class="sub">
-					<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificate') ?> </a></li>
+					<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificate') ?> </a></li>
 				</ul>
 					
 				</li>

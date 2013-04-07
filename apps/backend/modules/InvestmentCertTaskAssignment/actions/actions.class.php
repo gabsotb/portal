@@ -32,6 +32,14 @@ class InvestmentCertTaskAssignmentActions extends sfActions
    //before we create a form we get the necessary parameters from url
    $regno = $request->getParameter('registration') ;
    $token = $request->getParameter('token') ;
+   $reference = $request->getParameter('reference') ;
+   ///session variable
+   $this->getUser()->setAttribute('investmentapp_id', $reference);
+  // $session_investmentapp_id = $this->getUser()->getAttribute('investmentapp_id');
+   
+   //print $session_value; 
+   //$this->getUser()->getAttributeHolder()->clear();
+   //print "Value after resetting".$session_value; exit;
   // $variable = $name ;
   // print $name; exit;
    //$group = $request->getParameter('group');
@@ -142,6 +150,8 @@ class InvestmentCertTaskAssignmentActions extends sfActions
 				  $msg->created_at = date('Y-m-d H:i:s');
 				  $msg->save();
       //$this->redirect('InvestmentCertTaskAssignment/edit?id='.$task_assignment->getId());
+	  //remove attribute from session
+	  $this->getUser()->getAttributeHolder()->remove('investmentapp_id');
 	  $this->redirect('InvestmentCertTaskAssignment/index');
     }
   }

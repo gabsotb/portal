@@ -12,17 +12,17 @@ InvestmentApplication: ## Contains the application details from the investors
  columns:
   name: {type: string(255), notnull: true}  
   registration_number: {type: string(255), notnull: true}
-  title_in_company: { type: string(255), notnull: true }
+  title_in_company: { type: string(255), notnull: false }
   business_sector: {type: string(1000), notnull: true}
   business_category: {type: string(255), notnull: true}
-  office_telephone: {type: string(255), notnull: true}
-  fax: {type: string(255), notnull: true}
-  post_box: {type: string(255), notnull: true}
-  location: {type: string(255), notnull: true}
-  sector: {type: string(255), notnull: true}
-  district: {type: string(255), notnull: true}
-  city_province: {type: string(255), notnull: true}
-  applicant_reference_number: {type: string(255), notnull: false}
+  office_telephone: {type: string(255), notnull: false}
+  fax: {type: string(255), notnull: false}
+  post_box: {type: string(255), notnull: false}
+  location: {type: string(255), notnull: false}
+  sector: {type: string(255), notnull: false}
+  district: {type: string(255), notnull: false}
+  city_province: {type: string(255), notnull: false}
+  applicant_reference_number: {type: string(255), notnull: false, unique: true}
   token: {type: string(255), notnull: false} 
 ### Stores the Business Proposal of the user applying for the investment certificate
 BusinessPlan:
@@ -200,24 +200,50 @@ BusinessApplicationStatus: # Shows business application status, pending,processi
   token: {type: string(255), notnull: false} 
  relations:
   InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentAppBusinesStatus, onDelete: CASCADE}
-ApprovedApplications: # Shows approved businesses application
- actAs: {Timestampable: ~}
+InvestmentRequests:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
  columns:
-  business_id: {type: integer, notnull:true, , unique: true}
+  requestor: {type: string(255), notnull: true}
+  request_type: {type: string(255), notnull: true}
+  status: {type: string(255), notnull: true}
+  reference_number: {type: string(255), notnull: true}
+  comments: {type: string(1000), notnull: true}
+  token: {type: string(255), notnull: false}
+ApprovedApplications: # Shows approved businesses application
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  business_id: {type: integer, notnull: true}
+  applicant_reference_number: {type: string(255), notnull: true, unique: true}
+  business_registration: {type: integer, notnull:true}
   application_type: {type: string(255), notnull: true}
   comment: {type: string(255), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
   InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentApprovedBusiness, onDelete: CASCADE}
 RejectedApplications: # Shows rejected businesses application
- actAs: {Timestampable: ~}
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
  columns:
-  business_id: {type: integer, notnull:true, unique: true}
+  business_id: {type: integer, notnull: true}
+  applicant_reference_number: {type: string(255), notnull: true, unique: true}
+  business_registration: {type: integer, notnull:true}
   application_type: {type: string(255), notnull: true}
-  comment: {type: string(255), notnull: false}
+  reasons: {type: string(1000), notnull: false}
+  comments: {type: string(1000), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
-  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentRejectedBusiness}
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentRejectedBusiness, onDelete: CASCADE}
 ##Used to simulate the user payment status from the financial business registration system
 Payment:
  actAs:
@@ -778,3 +804,46 @@ Portlets:
   eia_certificate: {type: string(7000), notnull: true}
   tax_exemptions: {type: string(7000), notnull: true}
   token: {type: string(255), notnull: false} 
+###### Tax Exemption Processing #######
+##Table to store tax exemption details
+TaxExemptionDetails:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  office_name: {type: string(255), notnull: false}
+  office_code: {type: string(255), notnull: false}
+  company_name: {type: string(255), notnull: false}
+  investment_certificate: {type: string(255), notnull: false}
+  company_tin: {type: integer, notnull: false}
+  declarant_name: {type: string(255), notnull: false}
+  declarant_reference: {type: string(255), notnull: false}
+  declarant_code: {type: string(255), notnull: false}
+  electronic_request_number: {type: string(255), notnull: false}
+  electronic_authrization_number: {type: string(255), notnull: false}
+  customs_declaration_reference: {type: string(255), notnull: false}
+  revenue_officer: {type: string(255), notnull: false}
+  revenue_officer_e_verification_date: {type: timestamp, notnull: false}
+  revenue_officer_remarks: {type: string(1000), notnull: false}
+  rdb_officer_remarks: {type: string(1000), notnull: false}
+  status: {type: string(255), notnull: false}
+### Table to Store tax exemption items
+TaxExemptionItems:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  tax_details_id: {type: integer, notnull: true}
+  rdb: {type: boolean, notnull: false}
+  rra: {type: boolean, notnull: false}
+  hs_code: {type: integer, notnull: false}
+  description: {type: string(600), notnull: false}
+  cif: {type: integer, notnull: false}
+  quantity: {type: integer, notnull: false}
+  import_duties: {type: integer, notnull: false}
+ relations:
+  TaxExemptionDetails: {local: tax_details_id, foreign: id, foreignAlias: TaxDetailsItems, onDelete: CASCADE}

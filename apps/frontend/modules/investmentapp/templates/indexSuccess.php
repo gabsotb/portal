@@ -239,9 +239,9 @@ $(function () {
 													</tr>
 												</thead>
 												<tbody>
-												  
+												  <?php foreach($applications as $apps): ?>
 													<tr>
-														<?php foreach($applications as $apps): ?>
+														
 														<?php $point = $apps['percentage'] ?>
 														<?php $commentI = $apps['comment'] ?>
 														 <td><?php echo $apps['name'] ?></td>
@@ -267,9 +267,9 @@ $(function () {
 												
 														 
 														  </td>
-														<?php endforeach; ?>
+														
 													</tr>
-													
+													<?php endforeach; ?>
 												</tbody>
 											</table>
 											</div>
@@ -349,14 +349,16 @@ $(function () {
 											  
 											?>
 										<?php if($investment_id != null ){ ?>
-										 
+									<?php 
+									//$business_session_id = null ;
+									//sfContext::getInstance()->getUser()->setAttribute('session_business_id',$business_session_id ); ?>
 											 <!-- if it is null we show buttons -->
 											 <?php if($response == null  && $rejection != "rejected_completed") { ?>
 												 <div class="alert alert-block alert-warning fade in">
 																 <strong><?php echo __('Incomplete Application !')?></strong> <br/>
 																 <?php echo __('Please Complete your Initial application
 																 for Investment Certificate for') ?> <?php echo $business_name; ?>.  <br/><br/>
-												<a href="<?php echo url_for('businessplan/new?id='.$business_name.'&token='.$token) ?>"> 
+												<a href="<?php echo url_for('businessplan/new?id='.$business_name.'&token='.$token.'&id_value='.$investment_id) ?>"> 
 																<button type="button" class="btn btn-primary"><?php echo __('Complete') ?></button>&nbsp;&nbsp;
 												&nbsp;&nbsp;
 												</a>
@@ -405,21 +407,23 @@ $(function () {
 										
 										  <?php } ?> 
 										   <?php if($investment_id == null){  ?>
+										    <?php $reference = "new" ; ?>
 														    <strong><?php echo __('Alert!') ?></strong> <br/><?php echo __('There are no applications
 																		for investment certificate for your account! <br/>') ?>
-														 <a href="<?php echo url_for('investmentapp/new') ?>">
+														 <a href="<?php echo url_for('investmentapp/new?reference='.$reference) ?>">
 																		 <button type="button" class="btn btn-primary">
 																		 <?php echo __('Apply for Investment Certificate') ?></button>
 														 </a>
 										  <?php } ?>
 										   <?php if($investment_id != null && $rejection == "rejected_completed"){  ?>
+										   <?php $reference = "new" ; ?>
 														    <strong><?php echo __('Alert!') ?></strong> <br/><?php 
 															
-															echo __("There are no applications
+															echo __("There are no new applications
 																		for investment certificate for your account! <br/>
 																		However you application for investment certificate for $biz was declined. but you can still apply for Investment Certificate if you have met all requirement that led to your disqualification or apply for a new business. Thank you.
 																		") ?>
-														 <a href="<?php echo url_for('investmentapp/new') ?>">
+														 <a href="<?php echo url_for('investmentapp/new?reference='.$reference) ?>">
 																		 <button type="button" class="btn btn-primary">
 																		 <?php echo __('Apply for Investment Certificate') ?></button>
 														 </a>
@@ -473,7 +477,7 @@ $(function () {
 												   $token = $res['token'];
 												 }
 											?>
-															 <a href="<?php echo url_for('investmentapp/edit?id='.$investment_id.'&token='.$token) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i><?php echo __('Yes') ?></button> </a>&nbsp;&nbsp;&nbsp;
+															 <a href="<?php echo url_for('investmentapp/edit?id='.$investment_id.'&token='.$token) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i><?php echo __('Yah') ?></button> </a>&nbsp;&nbsp;&nbsp;
 															 <button data-dismiss="modal" class="close" type="button">
 															 <?php echo __('Cancel') ?></button>
 											

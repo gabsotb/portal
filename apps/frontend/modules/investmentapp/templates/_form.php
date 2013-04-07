@@ -1,6 +1,6 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
-
+<?php //exit; ?>
 <form  action="<?php echo url_for('investmentapp/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
   <table class="table table-striped table-bordered" id="investment_table">
 		<?php 
@@ -109,13 +109,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="control-group">
-			<div class="controls">
-				<div class="input-prepend">
-					<?php echo $form['token']->render(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => __('Select City / Province'), 'data-original-title' => __('Business Setup Province/City'))) ?>
-				</div>
-			</div>
-		</div>
+		
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">

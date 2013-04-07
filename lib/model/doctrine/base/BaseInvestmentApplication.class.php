@@ -110,7 +110,7 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              ));
         $this->hasColumn('title_in_company', 'string', 255, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('business_sector', 'string', 1000, array(
@@ -125,42 +125,43 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              ));
         $this->hasColumn('office_telephone', 'string', 255, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('fax', 'string', 255, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('post_box', 'string', 255, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('location', 'string', 255, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('sector', 'string', 255, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('district', 'string', 255, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('city_province', 'string', 255, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 255,
              ));
         $this->hasColumn('applicant_reference_number', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
+             'unique' => true,
              'length' => 255,
              ));
         $this->hasColumn('token', 'string', 255, array(

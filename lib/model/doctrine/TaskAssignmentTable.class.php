@@ -242,10 +242,10 @@ class TaskAssignmentTable extends Doctrine_Table
 	public function getAssignedTasks($username)
 	{
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	  SELECT task_assignment.id, sf_guard_user.username,investment_application.name,task_assignment.work_status,task_assignment.duedate, task_assignment.instructions,
+	  SELECT task_assignment.id, sf_guard_user.username,investment_application.name,investment_application.applicant_reference_number,task_assignment.work_status,task_assignment.duedate, task_assignment.instructions,
 	  task_assignment.created_at from task_assignment left join sf_guard_user on task_assignment.user_assigned = sf_guard_user.id
 	  left join investment_application on task_assignment.investmentapp_id = investment_application.id
-	  where task_assignment.updated_by = '$username' 
+	  where task_assignment.updated_by = '$username' order by created_at desc
 	  ");
 	  return $query;
 	}

@@ -1,3 +1,5 @@
+
+<?php //exit; ?>
 <div class="row-fluid">
 			  <div class="span8">
 				<div class="widget">
@@ -12,6 +14,7 @@
 								<?php echo __('Please Provide Below Fields to Start your application for investment certificate') ?> 
 							</p>
 						 </div>
+						 <?php //exit; ?>
 			         <?php include_partial('form', array('form' => $form)) ?>
 		    </div>			 
 

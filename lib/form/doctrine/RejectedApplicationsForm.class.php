@@ -19,6 +19,10 @@ class RejectedApplicationsForm extends BaseRejectedApplicationsForm
 	  'label' => 'Application For',
 	  'choices'  => Doctrine_Core::getTable('RejectedApplications')->getCategories(),
 	  'expanded' => false,
-    ));
+    )); 
+	$this->widgetSchema->setLabel('applicant_reference_number', 'Enter Refernce Number');
+	//
+	$this->widgetSchema['applicant_reference_number'] = new sfWidgetFormInputText();
+	$this->widgetSchema['business_id'] = new sfWidgetFormInputHidden();
   }
 }

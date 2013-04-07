@@ -251,7 +251,7 @@ $(function () {
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?registration='.$available['registration_number'].'&token='.$available['token']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?registration='.$available['registration_number'].'&token='.$available['token'].'&reference='.$available['applicant_reference_number']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										

@@ -8,19 +8,22 @@
  * @property string $requestor
  * @property string $request_type
  * @property string $status
- * @property integer $business_registration
+ * @property string $reference_number
  * @property string $comments
+ * @property string $token
  * 
- * @method string             getRequestor()             Returns the current record's "requestor" value
- * @method string             getRequestType()           Returns the current record's "request_type" value
- * @method string             getStatus()                Returns the current record's "status" value
- * @method integer            getBusinessRegistration()  Returns the current record's "business_registration" value
- * @method string             getComments()              Returns the current record's "comments" value
- * @method InvestmentRequests setRequestor()             Sets the current record's "requestor" value
- * @method InvestmentRequests setRequestType()           Sets the current record's "request_type" value
- * @method InvestmentRequests setStatus()                Sets the current record's "status" value
- * @method InvestmentRequests setBusinessRegistration()  Sets the current record's "business_registration" value
- * @method InvestmentRequests setComments()              Sets the current record's "comments" value
+ * @method string             getRequestor()        Returns the current record's "requestor" value
+ * @method string             getRequestType()      Returns the current record's "request_type" value
+ * @method string             getStatus()           Returns the current record's "status" value
+ * @method string             getReferenceNumber()  Returns the current record's "reference_number" value
+ * @method string             getComments()         Returns the current record's "comments" value
+ * @method string             getToken()            Returns the current record's "token" value
+ * @method InvestmentRequests setRequestor()        Sets the current record's "requestor" value
+ * @method InvestmentRequests setRequestType()      Sets the current record's "request_type" value
+ * @method InvestmentRequests setStatus()           Sets the current record's "status" value
+ * @method InvestmentRequests setReferenceNumber()  Sets the current record's "reference_number" value
+ * @method InvestmentRequests setComments()         Sets the current record's "comments" value
+ * @method InvestmentRequests setToken()            Sets the current record's "token" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -47,14 +50,20 @@ abstract class BaseInvestmentRequests extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('business_registration', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('reference_number', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
+             'length' => 255,
              ));
         $this->hasColumn('comments', 'string', 1000, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 1000,
+             ));
+        $this->hasColumn('token', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
              ));
     }
 

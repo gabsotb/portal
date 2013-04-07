@@ -16,7 +16,25 @@ class investmentrejectedActions extends sfActions
       ->createQuery('a')
       ->execute();
   }
-
+  public function executeDetails(sfWebRequest $request)
+  {
+    $info = array();
+    $reference_number = $request->getParameter('id');
+	///
+	$data = Doctrine_Core::getTable('InvestmentApplication')->getDetails($reference_number);
+	/// loop
+	foreach($data as $d)
+	{
+	  //
+	  $info[] = array( 'registration_number' =>$d['registration_number'],'business_id' =>$d['id']);
+	}
+	
+	
+	echo json_encode($info);
+	exit; 
+	//$this->redirect('investmentapp/new');
+	//print "Value is ".$value ;exit
+  }
   public function executeShow(sfWebRequest $request)
   {
     $this->rejected_applications = Doctrine_Core::getTable('RejectedApplications')->find(array($request->getParameter('id')));

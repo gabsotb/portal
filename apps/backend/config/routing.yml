@@ -25,6 +25,9 @@ investment_request:
 investment_reject:
  url: /:sf_culture/investment/reject
  param: {module: investmentrejected, action: index}
+tax_exemptions:
+ url:   /:sf_culture/tax/exemptions
+ param: {module: taxexemptions, action: index}
 user_tasks:
  url: /:sf_culture/mytasks
  param: {module: taskManagement, action: tasks }

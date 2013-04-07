@@ -58,6 +58,10 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
       'updated_by'                 => new sfValidatorString(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'InvestmentApplication', 'column' => array('applicant_reference_number')))
+    );
+
     $this->widgetSchema->setNameFormat('investment_application[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

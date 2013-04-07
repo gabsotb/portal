@@ -247,35 +247,44 @@
 				</li>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bar-chart"></i> <?php echo __('Approve Requests') ?>
+					<i class="icon-bar-chart"></i> <?php echo __('Tax Exemptions') ?>
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-					    <li class=""><a href ="<?php echo url_for('investment_request') ?>"><i class="icon-fire"></i> <?php echo __('IC Application') ?> </a></li>
-						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
-						<li class=""> <a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificates') ?> </a></li>
+					    <li class=""><a href ="<?php echo url_for('taxexemptions/index')?>"><i class="icon-fire"></i> <?php echo __('Process Request') ?> </a></li>
 					</ul>
 				</li>
-				<li> <a href ="<?php echo url_for('information_portlets') ?>"><i class="icon-user"></i> <?php echo __('Information Portlets') ?> </a> </li>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bar-chart"></i><?php echo __('Certificates Issued') ?>
+					<i class="icon-unlock"></i> <?php echo __('Approve Requests') ?>
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
-						<li class=""> <a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificates') ?> </a></li>
+					    <li class=""><a href ="<?php echo url_for('investment_request') ?>"><i class="icon-trash"></i> <?php echo __('IC App Reject') ?> </a></li>
+						<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
+					</ul>
+				</li>
+				<li> <a href ="<?php echo url_for('information_portlets') ?>"><i class="icon-book"></i> <?php echo __('Information Portlets') ?> </a> </li>
+				<li class="has-sub">
+					<a href="javascript:;" class="">
+					<i class="icon-certificate"></i><?php echo __('Certificates Issued') ?>
+					<span class="arrow"></span>
+					</a>
+					<ul class="sub">
+						<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
 					</ul>
 				</li>
 				<?php endif ?>
 				<!-- end -->
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bar-chart"></i> <?php echo __('Resubmission') ?> 
+					<i class="icon-double-angle-up"></i> <?php echo __('Resubmission') ?> 
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('View Requests') ?> </a></li>
+						<li class=""><a href ="#"><i class="icon-check"></i> <?php echo __('View Requests') ?> </a></li>
 						
 					</ul>
 				</li>
@@ -285,9 +294,9 @@
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
-						<li class=""> <a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificates') ?> </a></li>
-						<li class="">  <a href ="#"><i class="icon-fire"></i> <?php echo __('Tax Exemptions') ?></a> </li>
+						<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
+						<li class="">  <a href ="#"><i class="icon-certificate"></i> <?php echo __('Tax Exemptions') ?></a> </li>
 					</ul>
 				</li>
 				<li class="">  <a href ="#"><i class="icon-lightbulb"></i> <?php echo __('Help') ?></a> </li>
