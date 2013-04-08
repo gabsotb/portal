@@ -7,13 +7,13 @@
 <?php endif; ?>
   <table class="table table-striped table-bordered">
    <tbody>
-      	<div class="control-group">
+      	<!--<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['investment_id']->renderRow(array('class' => 'span8 chosen', 'data-placeholder' => 'Choose a Category', 'tabindex' => '1')) ?>
+					<?php //echo $form['investment_id']->renderRow() ?>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">

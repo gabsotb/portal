@@ -20,11 +20,28 @@ class projectSummaryActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->project_summary = Doctrine_Core::getTable('ProjectSummary')->find(array($request->getParameter('id')));
+	$task_id = $request->getParameter('id'); //we retrieve the task id
+	//print $task_id; exit;
     $this->forward404Unless($this->project_summary);
   }
 
   public function executeNew(sfWebRequest $request)
   {
+    $id = $request->getParameter('id');
+	//print $id; exit;
+	//we will set a session variable here and clear it after process this record.
+	$this->getUser()->setAttribute('investment_id', $id);
+	///
+	$token = $request->getParameter('token');
+	if($token == null)
+	{
+	 $this->forward404(sprintf('Sorry Validation Error: Token parameter Null.'));
+	}
+	
+	///try to get the session value
+	//$session_variable = $this->getUser()->getAttribute('investment_id');
+	//print "dddd".$session_variable; exit;
+	
     //we validate the ID passed is Valid and Exist, Later we use token to hide the ID from Hackers. if 
 	//some1 tries to access this url with a valid ID we forward to 404 page
     $this->validate = Doctrine_Core::getTable('InvestmentApplication')->find(array($request->getParameter('id')));
@@ -94,7 +111,13 @@ class projectSummaryActions extends sfActions
   public function executeAccept(sfWebRequest $request)
   {
     //we will validate this business and make sure that it is valid
-	 $this->validate = Doctrine_Core::getTable('ProjectSummary')->find(array($request->getParameter('id')));
+	// $this->validate = Doctrine_Core::getTable('ProjectSummary')->find(array($request->getParameter('id')));
+	 $validate = $request->getParameter('id') ;
+	 $query_validate = Doctrine_Core::getTable('ProjectSummary')->validateId($validate);
+	 if(count($query_validate) == null)
+	 {
+	   $this->forward404(sprintf('Validation Error: Invalid parameter for id'));
+	 }
 	 //now let us call a method to retrieve information about this investor
 	 $query = Doctrine_Core::getTable('ProjectSummary')->getApplicantDetails($request->getParameter('id'));
 	// print_r($query); exit;
@@ -111,9 +134,9 @@ class projectSummaryActions extends sfActions
 	  $company = $q['name'];
 	  $fname = $q['first_name'];
 	  $lname = $q['last_name'];
-	  $address = $q['company_address'];
+	  $address = $q['location'];
 	 }
-     $this->forward404Unless($this->validate);
+    
 	 ///we get email address of the applicant
 	  //we will output the file and send it to the Investors email address. Get the email address of the investor
 	 $userEmail = null;
@@ -123,7 +146,7 @@ class projectSummaryActions extends sfActions
 	 {
 	    $userEmail = $em['email_address'] ;
 	 }
-	 
+	// print $userEmail; exit;
    //execute action for printing pdf document of this report
 	  $config = sfTCPDFPluginConfigHandler::loadConfig();
           sfTCPDFPluginConfigHandler::includeLangFile($this->getUser()->getCulture());
@@ -228,8 +251,9 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 			 
 
 			$this->getMailer()->send($message);
+			//print $validate; exit;
 			//after sending email, we also need to change the status of this business application. 
-			$this->updatestatus = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus2($this->validate);
+			$this->updatestatus = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus2($validate);
 	       $this->redirect('dashboard/index');
           // Stop symfony process
           throw new sfStopException();
@@ -238,6 +262,93 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
   //method for printing testing purpose
   public function executePrint(sfWebRequest $request)
   {
-    
+   //  $id = $request->getParameter('id'); 
+	 //so we get passed user business summary information and print a pdf.
+     $project_summary = Doctrine_Core::getTable('ProjectSummary')->find(array($request->getParameter('id')));
+     ////
+     $business_sector = $project_summary->getBusinessSector();
+	 $name = $project_summary->getInvestmentApplication()->getName();
+	 $location = $project_summary->getInvestmentApplication()->getLocation();
+	 $investment_planned = $project_summary->getPlannedInvestment();
+	 $employment_created = $project_summary->getEmploymentCreated() ;
+	 $summary = $project_summary->getTechinicalViability();
+	 $jobs_categories =  $project_summary->getJobCategories();
+	 /////////////////
+	  //execute action for printing pdf document of this report
+	  $config = sfTCPDFPluginConfigHandler::loadConfig();
+          sfTCPDFPluginConfigHandler::includeLangFile($this->getUser()->getCulture());
+
+          $doc_title    = "RDB - Appliaction For Investment Certificates";
+          $doc_subject  = "Letter Of Acceptance";
+          $doc_keywords = "test keywords";
+          $htmlcontent  = "&lt; &euro; €אטילעש &copy; &gt;<br />
+		<p>
+		 
+		
+		</p>";
+
+          //create new PDF document (document units are set by default to millimeters)
+          $pdf = new sfTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true);
+
+          // set document information
+          $pdf->SetCreator(PDF_CREATOR);
+          $pdf->SetAuthor(PDF_AUTHOR);
+          $pdf->SetTitle($doc_title);
+          $pdf->SetSubject($doc_subject);
+          $pdf->SetKeywords($doc_keywords);
+
+          $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+
+          //set margins
+          $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+
+          //set auto page breaks
+          $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+          $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+          $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+          $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO); //set image scale factor
+
+          $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+          $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+          //initialize document
+          $pdf->AliasNbPages();
+          $pdf->AddPage();
+         
+
+          // add page header/footer
+          $pdf->setPrintHeader(true);
+          $pdf->setPrintFooter(true);
+
+         // Set some content to print
+$html = "
+         <p>
+		  <b>Project Classification: </b>  $business_sector
+		 </p>
+		 <p>
+		    <b>Name of Company: </b>  $name
+		 </p>
+		  <p>
+		    <b>Place and Address of Company: </b>  $location
+		 </p>
+		  <p>
+		    <b>Planned Capital Investment: </b>  $investment_planned
+		 </p>
+		  <p>
+		    <b>Employment Created: </b>  $employment_created
+		 </p>
+		  <p>
+		    <b>Categories of Jobs Created: </b> <br/> $jobs_categories
+		 </p>
+		  <p>
+		    <b>Technical Viability: </b> <br/> $summary
+		 </p>
+		";
+
+// Print text using writeHTMLCell()
+$pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+	 /////////////////
+	 $pdf->Output('business_summary.pdf', 'I');
+	  throw new sfStopException();
   }
 }

@@ -477,7 +477,7 @@ $(function () {
 												   $token = $res['token'];
 												 }
 											?>
-															 <a href="<?php echo url_for('investmentapp/edit?id='.$investment_id.'&token='.$token) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i><?php echo __('Yah') ?></button> </a>&nbsp;&nbsp;&nbsp;
+															 <a href="<?php echo url_for('investmentapp/edit?id='.$investment_id.'&token='.$token) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i><?php echo __('Yes') ?></button> </a>&nbsp;&nbsp;&nbsp;
 															 <button data-dismiss="modal" class="close" type="button">
 															 <?php echo __('Cancel') ?></button>
 											

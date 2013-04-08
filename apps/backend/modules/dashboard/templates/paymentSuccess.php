@@ -8,8 +8,8 @@
 										<div class="alert alert-block alert-success fade in">
 										<h4 class="alert-heading"><?php echo __('Payment Confirmed')?>!</h4>
 										<p>
-											<?php echo __('The Payment For Adminsitrative Fee of usd 500 has been confirmed')?>. <br/>
-											<?php echo __('Go ahead and issue Investment Certificate to'?> <?php echo $business; ?>.
+									<?php echo __('The Payment For Adminsitrative Fee of usd 500 has been confirmed') ?>. <br/>
+											<?php echo __('Go ahead and issue Investment Certificate to')?> <?php echo $business ?>.
 											
 										</p>
 										<p>

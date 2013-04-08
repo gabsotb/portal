@@ -27,11 +27,25 @@ class TaskAssignmentTable extends Doctrine_Table
 	 ") ;
 	 return $query;
 	}
+	//method to count number of task assigned to a logged in data admin
+	public function countUserAssignedTasks($userId)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT COUNT(*) FROM task_assignment WHERE task_assignment.user_assigned ='$userId' AND 
+	 task_assignment.work_status = 'notstarted'
+	 ") ;
+	 $number = 0;
+	 //loop through the result
+	 foreach($query as $q)
+	 {
+	  $number = $q['COUNT(*)'];
+	 }
+	 return $number; //return the number
+	}
 	//Get Tasks of this user who's status is not complete
 	public function getUserTasksNotComplete($userId)
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.investmentapp_id,
-	 task_assignment.instructions,task_assignment.work_status,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
 	 task_assignment.duedate, investment_application.name, investment_application.location FROM task_assignment 
 	 LEFT JOIN investment_application ON 
 	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
@@ -52,9 +66,9 @@ class TaskAssignmentTable extends Doctrine_Table
 	 return $query;
 	}
 	//get all application details for Investment Certificate for a given user
-	public function getApplicationDetails($id)
+	public function getApplicationDetails($id,$token)
 	{
-	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id  LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id WHERE task_assignment.investmentapp_id = '$id'
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id  LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id WHERE task_assignment.investmentapp_id = '$id' and task_assignment.token = '$token'
 	  ") ;
 	  //
 	  //we also need to change the status of business application 
@@ -327,6 +341,12 @@ class TaskAssignmentTable extends Doctrine_Table
 	 }
 	 //
 	 return $id;
+	}
+	///method to validate token
+	public function validateToken($token)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection("SELECT investmentapp_id FROM task_assignment WHERE token = '$token' ");
+	 return $query;
 	}
 	
 }

@@ -7,10 +7,33 @@
 						<div class="modal-body">
 							<p><?php echo __('You are About to Accept this Investor application for Issuance of Investment Registration Certificate.')?>.</p>
 							<p><?php echo __('To do this you will need permission from the Manager/ Supervisor who assigned this Task.')?>.</p>
-							<p><?php echo __('Are you sure about this')?>? </p>
 							
-							 <button data-dismiss="modal" class="btn btn-success" type="button"><?php echo __('Request Permission') ?></button>
-							 <a href="<?php echo url_for('projectSummary/accept?id='.$project_summary->getInvestmentId()) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> </a>&nbsp;&nbsp;&nbsp;
+							
+							
+							 <?php //we will query for permission for accepting this user application for investment certificate
+							  $id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+							  //we query for applicant_reference_number
+							   $applicant_reference = Doctrine_Core::getTable('ProjectSummary')->getApplicantReferenceNumber(
+							   $project_summary->getInvestmentId());
+							   //print "ssss". $applicant_reference; exit;
+                               $permission = Doctrine_Core::getTable('InvestmentRequests')->queryAcceptPermission($applicant_reference, $id);
+							 ?>
+							 
+							<?php if(count($permission) == 0): ?>
+							<font color="red">
+							 <?php //no permission yet
+                                echo __('Sorry,Permission not granted. If you have contacted your supervisor please wait
+							  as he/she responds to your request. If not please send a message asap. Thank you for understanding') ;
+							  
+							  ?><br/>
+							  <a href="<?php echo url_for('messages/new?value=decline')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a>
+							<?php endif; ?>
+							</font> 
+							  <?php if(count($permission) != 0): ?>
+							      <p><?php echo __('Are you sure about this')?>? </p> <br/>
+							      <a href="<?php echo url_for('projectSummary/accept?id='.$project_summary->getInvestmentId()) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> </a>
+							 <?php endif; ?>
+							 &nbsp;&nbsp;&nbsp;
 							 <button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
 							
 						</div>
@@ -105,7 +128,7 @@
 									
 									<div class="row-fluid">
 										<div class="span6">
-											<a href="#<?php //echo url_for('projectSummary/print?id='.$project_summary->getId()) ?>"> <button type="button" class="btn btn-success"><?php echo __('Print') ?></button> </a> 
+											<a href="<?php echo url_for('projectSummary/print?id='.$project_summary->getId()) ?>"> <button type="button" class="btn btn-success"><?php echo __('Print') ?></button> </a> 
 											<a href="<?php echo url_for('projectSummary/edit?id='.$project_summary->getId()) ?>"> 
 											<button class="btn btn-primary"><i class="icon-pencil icon-white"></i><?php echo __('Edit') ?></button></a>
 											

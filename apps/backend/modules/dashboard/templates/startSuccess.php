@@ -3,7 +3,8 @@
 	 foreach($details as $data)
 	 {
 	  $id = $data['investmentapp_id'];
-	  //$id = 2;
+	  //$id = 2
+	  $token = $data['token'];
 	  $name = $data['name']; 
 	  $regno = $data['registration_number'];
 	  $applicant_reference = $data['applicant_reference_number'];
@@ -79,14 +80,14 @@
 						</div>
 						<div class="modal-body">
 							<p><?php echo __('Your are about to decline this applicant application. It is a good idea to inform the Manager and share your decision. You can send a message to the Manager/ Supervisor who assigned you this task and inform them of your
-							decision by clicking')?> <a href="<?php echo url_for('messages/new?value=decline')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Message') ?></button></a></p>
+							decision by clicking')?> <a href="<?php echo url_for('messages/new?value=decline')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a></p>
 							
 							
 							<?php 
 							 //we will hide this button if the user has not yet been granted the necessary permission to decline
 							 //so we connect to the table that stores permission from managers/supervisors and we query for
 							 //accept where request type is decline_application
-							 $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+							 $id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 							 //print $username; 
 							 //print $applicant_reference;
 							 //exit;
@@ -401,7 +402,7 @@
 									    </div>
 									<div class="row-fluid">
 										<div class="span9">
-											<a href="<?php echo url_for('projectSummary/new?id='.$id) ?>"> <button type="button" class="btn btn-success"><?php echo __('Make Report') ?></button> </a> &nbsp;&nbsp;&nbsp;
+											<a href="<?php echo url_for('projectSummary/new?id='.$id.'&token='.$token) ?>"> <button type="button" class="btn btn-success"><?php echo __('Make Report') ?></button> </a> &nbsp;&nbsp;&nbsp;
 											<a href="#widget-resubmit" data-toggle="modal">
 											<button type="button" class="btn btn-inverse"><?php echo __('Request Resubmission') ?></button></a>&nbsp;&nbsp;&nbsp;
 											</a>

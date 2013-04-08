@@ -3,14 +3,17 @@ Session:
     id: 96idqmkbm43ubggmcnmbcsra24
     sessiondata: ''
     time: '1362035549'
+    token: null
   Session_ieoaucimet8rkkk3sk63f0r8i7:
     id: ieoaucimet8rkkk3sk63f0r8i7
     sessiondata: 'symfony/user/sfUser/lastRequest|i:1362035933;symfony/user/sfUser/authenticated|b:1;symfony/user/sfUser/credentials|a:1:{i:0;s:16:"investmentassign";}symfony/user/sfUser/attributes|a:5:{s:30:"symfony/user/sfUser/attributes";a:0:{}s:12:"admin_module";a:3:{s:16:"sfGuardUser.sort";a:2:{i:0;N;i:1;N;}s:17:"sfGuardGroup.sort";a:2:{i:0;N;i:1;N;}s:22:"sfGuardPermission.sort";a:2:{i:0;N;i:1;N;}}s:25:"symfony/user/sfUser/flash";a:0:{}s:32:"symfony/user/sfUser/flash/remove";a:0:{}s:19:"sfGuardSecurityUser";a:1:{s:7:"user_id";s:1:"7";}}symfony/user/sfUser/culture|s:2:"en";'
     time: '1362035934'
+    token: null
   Session_ne6dkoonqb6imdf6hdn9foplf7:
     id: ne6dkoonqb6imdf6hdn9foplf7
     sessiondata: ''
     time: '1362035527'
+    token: null
 sfGuardGroup:
   sfGuardGroup_1:
     name: investmentcertadmins
@@ -194,6 +197,45 @@ sfGuardUser:
     last_login: null
     created_at: '2013-02-28 07:52:58'
     updated_at: '2013-02-28 07:52:58'
+  sfGuardUser_9:
+    first_name: Investor3
+    last_name: Investor3
+    email_address: investor3@gmail.com
+    username: investor3
+    algorithm: sha1
+    salt: ee8fad9e2e4075573d4f168fbb3af81b
+    password: investor3
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2013-04-08 12:29:39'
+    updated_at: '2013-04-08 12:29:39'
+  sfGuardUser_10:
+    first_name: Investor4
+    last_name: Investor4
+    email_address: investor4@gmail.com
+    username: investor4
+    algorithm: sha1
+    salt: 53df2ba4275731089e060617dc501847
+    password: investor4
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2013-04-08 12:30:28'
+    updated_at: '2013-04-08 12:30:28'
+  sfGuardUser_11:
+    first_name: Investor5
+    last_name: Investor5
+    email_address: investor5@gmail.com
+    username: investor5
+    algorithm: sha1
+    salt: 46a4f0ccc47cefd44787d8fbce3fc163
+    password: investor5
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2013-04-08 12:31:01'
+    updated_at: '2013-04-08 12:31:01'
 sfGuardUserGroup:
   sfGuardUserGroup_1_2:
     User: sfGuardUser_1
@@ -244,8 +286,11 @@ sfGuardUserProfile:
     lastname: null
     validate_at: '2013-02-12 15:34:19'
     validate: r5fed2d86cb890f01d227e2cb2345e9b3
+    salutation: ''
+    citizenship: ''
+    surname: ''
+    phone_number: ''
     id_passport: ''
-    phone_number: null
     created_at: '2013-02-12 15:34:19'
     updated_at: '2013-02-12 15:34:19'
 sfKoreroChannel:

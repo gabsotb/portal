@@ -79,9 +79,9 @@ task:
  param: {module: taskAssign, action: index}
 # generic rules
 # please, remove them by adding more specific rules
-#default_index:
-#  url:   /:module
- # param: { action: index }
+default_index:
+ url:   /:module
+ param: { action: index }
 investment_certificates:
  url: /:sf_culture/certificates
  param: {module: investmentcertificates, action: index }

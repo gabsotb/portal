@@ -6,6 +6,7 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
+	<META HTTP-EQUIV="refresh" CONTENT="60">
 	<link rel="shortcut icon" href="/favicon.png" />
 	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>
@@ -260,7 +261,7 @@
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-					    <li class=""><a href ="<?php echo url_for('investment_request') ?>"><i class="icon-trash"></i> <?php echo __('IC App Reject') ?> </a></li>
+					    <li class=""><a href ="<?php echo url_for('investment_request') ?>"><i class="icon-trash"></i> <?php echo __('IC Applications') ?> </a></li>
 						<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
 						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
 					</ul>

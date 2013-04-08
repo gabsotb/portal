@@ -14,10 +14,11 @@ class InvestmentRequestsForm extends BaseInvestmentRequestsForm
   {
    unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by']);
    ///we create select fields for users who have role investment data admins
-    $group = "investmentcertadmins";
+    $data_admins = "investmentcertadmins";
+	$managers = "departmentadmins" ;
     $this->widgetSchema['requestor'] = new sfWidgetFormChoice(array(
 	  'label' => 'Data Admin Requesting',
-	  'choices'  => Doctrine_Core::getTable('InvestmentApplication')->getInvestmentCertUsers($group),
+	  'choices'  => Doctrine_Core::getTable('InvestmentApplication')->getAllInvestmentCertWorkers($data_admins,$managers),
 	  'expanded' => false,
     ));
 	//

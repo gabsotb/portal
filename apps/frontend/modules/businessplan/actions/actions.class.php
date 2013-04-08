@@ -965,6 +965,7 @@ class businessplanActions extends sfActions
    //if not so, we forward to 404
     $this->business_name = $request->getParameter('id');
 	$id_value = $request->getParameter('id_value'); 
+
 	///session variable
 	sfContext::getInstance()->getUser()->setAttribute('session_business_id',$id_value);
 	//print $id_value;

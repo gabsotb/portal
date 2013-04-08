@@ -6,6 +6,7 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
+	<META HTTP-EQUIV="refresh" CONTENT="60">
 	<link rel="shortcut icon" href="/favicon.png" />
 	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>
@@ -291,7 +292,7 @@
 														
 														  <?php } ?> 
 														   <?php if($investment_id == null  ){  ?>
-														<li class=""><a href ="<?php echo url_for('investmentapp/new') ?>"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>		
+														<li class=""><a href ="<?php echo url_for('investmentapp/new') ?>"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>		
 														  <?php } ?>
 															  
 														<?php endif; ?>

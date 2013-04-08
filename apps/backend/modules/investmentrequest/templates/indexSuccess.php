@@ -56,7 +56,11 @@
 									<?php foreach ($investment_requestss as $investment_requests): ?>
 									<tr>
 									  
-									  <td><?php echo $investment_requests->getRequestor() ?></td>
+									  <td><?php 
+									     //we get the name of requestor
+										 $requestor = Doctrine_Core::getTable('InvestmentRequests')->getUserName($investment_requests->getRequestor());
+									  
+									  echo $requestor;  ?></td>
 									  <td><?php echo $investment_requests->getRequestType() ?></td>
 									  <td><?php echo $investment_requests->getStatus() ?></td>
 									  <td><?php echo $investment_requests->getReferenceNumber() ?></td>

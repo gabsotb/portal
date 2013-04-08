@@ -3,7 +3,7 @@
         
     <?php
      //get set attribute
-	 $id = sfContext::getInstance()->getUser()->getAttribute('session_biz');
+	 $id = sfContext::getInstance()->getUser()->getAttribute('session_business_id');
 	 
 	 //print "session id". $id; exit;
 
