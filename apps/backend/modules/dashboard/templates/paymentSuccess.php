@@ -14,7 +14,7 @@
 										</p>
 										<p>
 										<!-- This Code Has a small problem that needs fixing later -->
-								<a class="btn btn-success" href="<?php //echo url_for('dashboard/investcert?business='.$business) ?>"><?php echo __('Issue Certificate') ?></a>
+								<a class="btn btn-success" href="<?php echo url_for('dashboard/investcert?business='.$business) ?>"><?php echo __('Issue Certificate') ?></a>
 								<!-- end -->
 											<a class="btn" href="<?php echo url_for('dashboard/index') ?>"><?php echo __('Cancel') ?></a>
 										</p>

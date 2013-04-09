@@ -160,7 +160,7 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              ));
         $this->hasColumn('applicant_reference_number', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'unique' => true,
              'length' => 255,
              ));
