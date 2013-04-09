@@ -3,7 +3,7 @@
 	 foreach($details as $data)
 	 {
 	  $id = $data['investmentapp_id'];
-	  //$id = 2
+	  //$id = 2;
 	  $token = $data['token'];
 	  $name = $data['name']; 
 	  $regno = $data['registration_number'];
@@ -23,7 +23,7 @@
 	  //Variables for the table land costs
 	  
 	 }
-	
+
 	?>
 	  <?php 
 											   $applicantId = Doctrine_Core::getTable('TaskAssignment')->getApplicantId($id) ;
@@ -87,7 +87,7 @@
 							 //we will hide this button if the user has not yet been granted the necessary permission to decline
 							 //so we connect to the table that stores permission from managers/supervisors and we query for
 							 //accept where request type is decline_application
-							 $id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+							 $username = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
 							 //print $username; 
 							 //print $applicant_reference;
 							 //exit;
@@ -587,7 +587,7 @@
             var handsontable_financial = $container.data('handsontable');
 			  $(document).ready(function () {
               $.ajax({
-                url: "<?php echo url_for('dashboard/loadfinancial?id='.$id ) ?>",
+                url: "<?php echo url_for('dashboard/loadfinancial?id='.$id) ?>",
                 dataType: 'json',
                 type: 'GET',
                  success: function (result4) {

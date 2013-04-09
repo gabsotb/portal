@@ -52,10 +52,10 @@ class InvestmentRequestsTable extends Doctrine_Table
   }
   public function queryAcceptPermission($reference, $username)
   {
-  // print $reference; exit;
+ // print $reference; exit;
     $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT request_type from investment_requests WHERE 
-	investment_requests.reference_number = '$reference' and investment_requests.requestor = '$username' and status = 'accept'
-    and request_type = 'accept_application'
+	 investment_requests.requestor = '$username' and status = 'accept'
+    and request_type = 'accept_application' and reference_number = '$reference'
 	");
 	return $query;
   }

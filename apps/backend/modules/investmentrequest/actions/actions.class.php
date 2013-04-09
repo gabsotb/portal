@@ -72,7 +72,9 @@ class investmentrequestActions extends sfActions
     if ($form->isValid())
     {
 	  $allFormValues = $request->getParameter($this->form->getName()); // get form values
-	  $data_admin = $allFormValues['requestor'];
+	  $data_admin_id = $allFormValues['requestor'];
+	  //now get the username using data_admin value from the form
+	  $data_admin = Doctrine_Core::getTable('InvestmentRequests')->getUserName($data_admin_id);
 	  $status =  $allFormValues['status'];
 	  $comments = $allFormValues['comments'];
 	  $permission_type = $allFormValues['request_type'];

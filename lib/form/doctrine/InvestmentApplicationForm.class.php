@@ -44,8 +44,13 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
     ));
    ////
    $this->widgetSchema['token'] = new sfWidgetFormInputHidden();
-  $token = sha1(date('Y-m-d').rand(11111, 99999));
-  $this->setDefault('token',$token); 
+   $token = sha1(date('Y-m-d').rand(11111, 99999));
+   $this->setDefault('token',$token); 
+  //applicant reference number
+   $this->widgetSchema['applicant_reference_number'] = new sfWidgetFormInputHidden();
+   $applicant_reference_number = Doctrine_Core::getTable('InvestmentApplication')->createIncrementalReferenceNumber();
+    ////  
+   $this->setDefault('applicant_reference_number',$applicant_reference_number); 
   //customize error messages
   $this->validatorSchema['name']  = new sfValidatorString(array(), array('required' => 'Please Provide Company name'));
   $this->validatorSchema['registration_number']  = new sfValidatorString(array(),array('required' => 'The Company Registration Number is Required?'));

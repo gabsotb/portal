@@ -25,7 +25,7 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
       'sector'                     => new sfWidgetFormFilterInput(),
       'district'                   => new sfWidgetFormFilterInput(),
       'city_province'              => new sfWidgetFormFilterInput(),
-      'applicant_reference_number' => new sfWidgetFormFilterInput(),
+      'applicant_reference_number' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'token'                      => new sfWidgetFormFilterInput(),
       'created_at'                 => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'                 => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),

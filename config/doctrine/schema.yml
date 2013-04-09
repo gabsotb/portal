@@ -22,7 +22,7 @@ InvestmentApplication: ## Contains the application details from the investors
   sector: {type: string(255), notnull: false}
   district: {type: string(255), notnull: false}
   city_province: {type: string(255), notnull: false}
-  applicant_reference_number: {type: string(255), notnull: false, unique: true}
+  applicant_reference_number: {type: string(255), notnull: true, unique: true}
   token: {type: string(255), notnull: false} 
 ### Stores the Business Proposal of the user applying for the investment certificate
 BusinessPlan:

@@ -6,21 +6,25 @@
 						</div>
 						<div class="modal-body">
 							<p><?php echo __('You are About to Accept this Investor application for Issuance of Investment Registration Certificate.')?>.</p>
-							<p><?php echo __('To do this you will need permission from the Manager/ Supervisor who assigned this Task.')?>.</p>
+							<p><?php echo __('You have been permitted to accept this applicant application.')?>.</p>
 							
 							
 							
 							 <?php //we will query for permission for accepting this user application for investment certificate
-							  $id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+							  $username = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
 							  //we query for applicant_reference_number
 							   $applicant_reference = Doctrine_Core::getTable('ProjectSummary')->getApplicantReferenceNumber(
 							   $project_summary->getInvestmentId());
-							   //print "ssss". $applicant_reference; exit;
-                               $permission = Doctrine_Core::getTable('InvestmentRequests')->queryAcceptPermission($applicant_reference, $id);
+							  // print "ssss". $project_summary->getInvestmentId(); exit;
+							 // print $applicant_reference;
+							 // print $username; exit;
+                               $permission = Doctrine_Core::getTable('InvestmentRequests')->queryAcceptPermission($applicant_reference, $username);
+							  // print_r($permission); exit;
 							 ?>
 							 
 							<?php if(count($permission) == 0): ?>
 							<font color="red">
+							 <?php echo __('To Accept this application you will need permission from the Manager/ Supervisor who assigned this Task.')?>
 							 <?php //no permission yet
                                 echo __('Sorry,Permission not granted. If you have contacted your supervisor please wait
 							  as he/she responds to your request. If not please send a message asap. Thank you for understanding') ;
@@ -30,7 +34,7 @@
 							<?php endif; ?>
 							</font> 
 							  <?php if(count($permission) != 0): ?>
-							      <p><?php echo __('Are you sure about this')?>? </p> <br/>
+							      <p><?php echo __('Continue please')?>! </p> <br/>
 							      <a href="<?php echo url_for('projectSummary/accept?id='.$project_summary->getInvestmentId()) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> </a>
 							 <?php endif; ?>
 							 &nbsp;&nbsp;&nbsp;

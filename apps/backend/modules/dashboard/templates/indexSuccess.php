@@ -985,7 +985,7 @@ $(function () {
 												<td><?php echo $tasks['instructions'] ?></td>
 												<td><?php echo $tasks['work_status'] ?></td>
 												<td><?php echo $tasks['duedate'] ?></td>
-												<td> <a href="<?php echo url_for('dashboard/start?id='.$tasks['investmentapp_id']) ?>"><button class="btn btn-small btn-primary"><?php echo __('Start') ?></button></a></td>
+												<td> <a href="<?php echo url_for('dashboard/start?id='.$tasks['investmentapp_id'].'&token='.$tasks['token']) ?>"><button class="btn btn-small btn-primary"><?php echo __('Start') ?></button></a></td>
 											</tr>
 									  <?php endforeach; ?>
 											

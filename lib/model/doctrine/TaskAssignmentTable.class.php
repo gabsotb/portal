@@ -20,7 +20,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	public function getUserTasks($userId)
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.investmentapp_id,
-	 task_assignment.instructions,task_assignment.work_status,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
 	 task_assignment.duedate, investment_application.name FROM task_assignment LEFT JOIN investment_application ON 
 	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
 	 task_assignment.work_status = 'notstarted'
