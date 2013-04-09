@@ -6,6 +6,7 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
+	<META HTTP-EQUIV="refresh" CONTENT="60">
 	<link rel="shortcut icon" href="/favicon.png" />
 	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>
@@ -202,7 +203,9 @@
 								</a></li>
 								<li><a href="<?php echo url_for('my_inbox') ?>"><i class="icon-envelope-alt"></i> <?php echo __('Inbox') ?></a></li>
 								<div class="divider"></div>
-								<li><a href="<?php echo url_for('sf_guard_signout') ?>"><i class="icon-key"></i> <?php echo __('Logout') ?></a></li>
+								<li>
+								<a href="<?php echo url_for('sf_guard_signout') ?>"><i class="icon-off"></i> <?php echo __('Logout') ?></a>
+								</li>
 							</ul>
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
@@ -245,35 +248,44 @@
 				</li>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bar-chart"></i> <?php echo __('Approve Requests') ?>
+					<i class="icon-bar-chart"></i> <?php echo __('Tax Exemptions') ?>
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-					    <li class=""><a href ="<?php echo url_for('investment_request') ?>"><i class="icon-fire"></i> <?php echo __('IC Application') ?> </a></li>
-						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
-						<li class=""> <a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificates') ?> </a></li>
+					    <li class=""><a href ="<?php echo url_for('taxexemptions/index')?>"><i class="icon-fire"></i> <?php echo __('Process Request') ?> </a></li>
 					</ul>
 				</li>
-				<li> <a href ="<?php echo url_for('information_portlets') ?>"><i class="icon-user"></i> <?php echo __('Information Portlets') ?> </a> </li>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bar-chart"></i><?php echo __('Certificates Issued') ?>
+					<i class="icon-unlock"></i> <?php echo __('Approve Requests') ?>
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
-						<li class=""> <a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificates') ?> </a></li>
+					    <li class=""><a href ="<?php echo url_for('investment_request') ?>"><i class="icon-trash"></i> <?php echo __('IC Applications') ?> </a></li>
+						<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
+					</ul>
+				</li>
+				<li> <a href ="<?php echo url_for('information_portlets') ?>"><i class="icon-book"></i> <?php echo __('Information Portlets') ?> </a> </li>
+				<li class="has-sub">
+					<a href="javascript:;" class="">
+					<i class="icon-certificate"></i><?php echo __('Certificates Issued') ?>
+					<span class="arrow"></span>
+					</a>
+					<ul class="sub">
+						<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
 					</ul>
 				</li>
 				<?php endif ?>
 				<!-- end -->
 				<li class="has-sub">
 					<a href="javascript:;" class="">
-					<i class="icon-bar-chart"></i> <?php echo __('Resubmission') ?> 
+					<i class="icon-double-angle-up"></i> <?php echo __('Resubmission') ?> 
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('View Requests') ?> </a></li>
+						<li class=""><a href ="#"><i class="icon-check"></i> <?php echo __('View Requests') ?> </a></li>
 						
 					</ul>
 				</li>
@@ -283,15 +295,15 @@
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-fire"></i> <?php echo __('Investment Certificates') ?> </a></li>
-						<li class=""> <a href ="#"><i class="icon-fire"></i> <?php echo __('EIA Certificates') ?> </a></li>
-						<li class="">  <a href ="#"><i class="icon-fire"></i> <?php echo __('Tax Exemptions') ?></a> </li>
+						<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
+						<li class="">  <a href ="#"><i class="icon-certificate"></i> <?php echo __('Tax Exemptions') ?></a> </li>
 					</ul>
 				</li>
 				<li class="">  <a href ="#"><i class="icon-lightbulb"></i> <?php echo __('Help') ?></a> </li>
 				
 				<!--<li class="">  <a href ="<?php //echo url_for('sfKoreroChannel/index') ?>"><i class="icon-fire"></i> Managers Channel</a> </li>-->
-				<li><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-fire"></i> <?php echo __('Logout') ?> </a></li>
+				<li><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-off"></i> <?php echo __('Logout') ?> </a></li>
 			</ul>
 		</div>
 		

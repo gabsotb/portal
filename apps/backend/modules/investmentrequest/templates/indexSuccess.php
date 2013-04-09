@@ -46,7 +46,7 @@
 									  <th><?php echo __('Requestor') ?></th>
 									  <th><?php echo __('Request type') ?></th>
 									  <th><?php echo __('Status') ?></th>
-									  <th><?php echo __('Business name') ?></th>
+									  <th><?php echo __('Applicant Reference Number') ?></th>
 									  <th><?php echo __('Comments') ?></th>
 									  <th><?php echo __('Date') ?></th>
 									  
@@ -56,10 +56,14 @@
 									<?php foreach ($investment_requestss as $investment_requests): ?>
 									<tr>
 									  
-									  <td><?php echo $investment_requests->getRequestor() ?></td>
+									  <td><?php 
+									     //we get the name of requestor
+										 $requestor = Doctrine_Core::getTable('InvestmentRequests')->getUserName($investment_requests->getRequestor());
+									  
+									  echo $requestor;  ?></td>
 									  <td><?php echo $investment_requests->getRequestType() ?></td>
 									  <td><?php echo $investment_requests->getStatus() ?></td>
-									  <td><?php echo $investment_requests->getBusinessRegistration() ?></td>
+									  <td><?php echo $investment_requests->getReferenceNumber() ?></td>
 									  <td><?php echo $investment_requests->getComments() ?></td>
 									  <td><?php echo $investment_requests->getCreatedAt() ?></td>
 									 

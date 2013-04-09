@@ -12,5 +12,5 @@
  */
 class InvestmentRequests extends BaseInvestmentRequests
 {
-
+ 
 }

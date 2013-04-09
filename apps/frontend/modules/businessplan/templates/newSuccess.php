@@ -13,6 +13,11 @@
 											<?php echo __('Please Tell us more about Your Planned Investment i.e. Investment Details') ?> 
 										</p>
 									 </div>
+									 <?php 
+									 //$id = sfContext::getInstance()->getUser()->getAttribute('session_business_id');
+	                                 //print "value is ".$id; exit; 
+									 
+									 ?>
 								 <?php include_partial('businessplan/form', array('form' => $form)) ?>
 					         </div>			 
 

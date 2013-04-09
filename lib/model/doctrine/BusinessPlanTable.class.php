@@ -72,5 +72,29 @@ class BusinessPlanTable extends Doctrine_Table
 	   ");
 	   return $query;
 	}
+	//get all users who can process application for investment certificates
+	public function getAllWorkersUserNames($data_admins,$managers)
+	{
+	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	    SELECT sf_guard_user.username,sf_guard_user.id
+		from sf_guard_user_group left join sf_guard_group on sf_guard_user_group.group_id = sf_guard_group.id
+		left join sf_guard_user on sf_guard_user_group.user_id = sf_guard_user.id
+		 where sf_guard_group.name = '$data_admins' or sf_guard_group.name = '$managers'
+	   ");
+	   return $query;
+	}
+	//query for id from businessplan table using supplied investment id
+	public function queryForId($investment_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("Select id from business_plan where investment_id = '$investment_id' limit 1");
+	 ///
+	 $id = null;
+	 foreach($query as $q)
+	 {
+	  $id = $q['id'] ;
+	 }
+	 ///
+	 return $id;
+	}
 	
 }

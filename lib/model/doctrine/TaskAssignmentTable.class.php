@@ -27,11 +27,25 @@ class TaskAssignmentTable extends Doctrine_Table
 	 ") ;
 	 return $query;
 	}
+	//method to count number of task assigned to a logged in data admin
+	public function countUserAssignedTasks($userId)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT COUNT(*) FROM task_assignment WHERE task_assignment.user_assigned ='$userId' AND 
+	 task_assignment.work_status = 'notstarted'
+	 ") ;
+	 $number = 0;
+	 //loop through the result
+	 foreach($query as $q)
+	 {
+	  $number = $q['COUNT(*)'];
+	 }
+	 return $number; //return the number
+	}
 	//Get Tasks of this user who's status is not complete
 	public function getUserTasksNotComplete($userId)
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.investmentapp_id,
-	 task_assignment.instructions,task_assignment.work_status,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
 	 task_assignment.duedate, investment_application.name, investment_application.location FROM task_assignment 
 	 LEFT JOIN investment_application ON 
 	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
@@ -52,9 +66,9 @@ class TaskAssignmentTable extends Doctrine_Table
 	 return $query;
 	}
 	//get all application details for Investment Certificate for a given user
-	public function getApplicationDetails($id)
+	public function getApplicationDetails($id,$token)
 	{
-	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id  LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id WHERE task_assignment.investmentapp_id = '$id'
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id  LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id WHERE task_assignment.investmentapp_id = '$id' and task_assignment.token = '$token'
 	  ") ;
 	  //
 	  //we also need to change the status of business application 
@@ -114,6 +128,17 @@ class TaskAssignmentTable extends Doctrine_Table
 	public function updateTaskStatus($taskId)
 	{
 	 $value = "started";
+	 //
+      $q = Doctrine_Query::create()
+	 ->UPDATE('TaskAssignment')
+	 ->SET('work_status', '?' , $value)
+	 ->WHERE('investmentapp_id = ?', $taskId);
+	 $q->execute();
+	}
+	//this function updates status to rejected if this applicant rejects an application for issuance of investment certificate
+	public function updateTaskStatusRejection($taskId)
+	{
+	 $value = "rejected";
 	 //
       $q = Doctrine_Query::create()
 	 ->UPDATE('TaskAssignment')
@@ -231,10 +256,10 @@ class TaskAssignmentTable extends Doctrine_Table
 	public function getAssignedTasks($username)
 	{
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	  SELECT task_assignment.id, sf_guard_user.username,investment_application.name,task_assignment.work_status,task_assignment.duedate, task_assignment.instructions,
+	  SELECT task_assignment.id, sf_guard_user.username,investment_application.name,investment_application.applicant_reference_number,task_assignment.work_status,task_assignment.duedate, task_assignment.instructions,
 	  task_assignment.created_at from task_assignment left join sf_guard_user on task_assignment.user_assigned = sf_guard_user.id
 	  left join investment_application on task_assignment.investmentapp_id = investment_application.id
-	  where task_assignment.updated_by = '$username' 
+	  where task_assignment.updated_by = '$username' order by created_at desc
 	  ");
 	  return $query;
 	}
@@ -293,6 +318,35 @@ class TaskAssignmentTable extends Doctrine_Table
 		 $values = array($q['id'] => $q['name']);
 		}
 	 return $values;
+	}
+	//we create a method to retrieve the manager/supervisor who assigned a particular job to a logged data admin
+	//we supply this method with the business_id and user_assigned details to request for manager email address and username for 
+	//our notifications and message purposes
+	public function getManagerSupervisor($business_id, $user_assigned)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT updated_by,email_address  FROM task_assignment left join sf_guard_user on  task_assignment.created_by = sf_guard_user.id where task_assignment.investmentapp_id = '$business_id' and task_assignment.user_assigned = '$user_assigned' ");
+	  ///
+	  return $query;
+	}
+	//method to get task id given a business id from TaskAssignment table
+	public function getTaskId($business_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT id FROM task_assignment WHERE investmentapp_id = '$business_id'");
+	 //
+	 $id = 0;
+	 ///
+	 foreach($query as $q)
+	 {
+	  $id = $q['id'];
+	 }
+	 //
+	 return $id;
+	}
+	///method to validate token
+	public function validateToken($token)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection("SELECT investmentapp_id FROM task_assignment WHERE token = '$token' ");
+	 return $query;
 	}
 	
 }

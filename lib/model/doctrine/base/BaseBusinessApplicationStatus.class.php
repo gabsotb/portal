@@ -65,7 +65,8 @@ abstract class BaseBusinessApplicationStatus extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('InvestmentApplication', array(
              'local' => 'business_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

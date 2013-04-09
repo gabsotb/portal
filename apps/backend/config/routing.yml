@@ -25,6 +25,9 @@ investment_request:
 investment_reject:
  url: /:sf_culture/investment/reject
  param: {module: investmentrejected, action: index}
+tax_exemptions:
+ url:   /:sf_culture/tax/exemptions
+ param: {module: taxexemptions, action: index}
 user_tasks:
  url: /:sf_culture/mytasks
  param: {module: taskManagement, action: tasks }
@@ -76,9 +79,9 @@ task:
  param: {module: taskAssign, action: index}
 # generic rules
 # please, remove them by adding more specific rules
-#default_index:
-#  url:   /:module
- # param: { action: index }
+default_index:
+ url:   /:module
+ param: { action: index }
 investment_certificates:
  url: /:sf_culture/certificates
  param: {module: investmentcertificates, action: index }

@@ -31,24 +31,33 @@ class InvestmentApplicationTable extends Doctrine_Table
   //get users with the permission for processing investment certificates ie investmentcert users
 	public function getInvestmentCertUsers($group)
 	{
-	 //print $group;
 	 $users = Doctrine_Core::getTable('BusinessPlan')->getUserNames($group);
 	 $user_names = null ;
 	 $value = null;
 	 foreach($users as $value)
 	 {
-	   // $user_names['username']=$value;
-		//$user_names = $value['username']
 		///
 		$user_names = array($value['username'] => $value['username']) ;
-		
-	   
 	 }
-	// $array = array($value => $value);
-	 ///
-	// print_r($users); exit;
-	
 	 return $user_names;
+	}
+	///Function to get Users who can work on applications for Investment Certificates
+	public function getAllInvestmentCertWorkers($data_admins,$managers)
+	{
+	 $users = Doctrine_Core::getTable('BusinessPlan')->getAllWorkersUserNames($data_admins,$managers);
+	 $user_names = array() ;
+	 $value = null;
+	 foreach($users as $value)
+	 {
+		$user_names[] = array($value['id'] => $value['username']) ;
+	 }
+	 $real = array();
+	 foreach($user_names as $r)
+	 {
+	  
+	  $real[] = $r;
+	 }
+	 return $real; 
 	}
 	// This method selects data from the investment table and returns it to the controller if called
 	public function getTotalInvestmentApplications(Doctrine_Query $query = null)
@@ -74,7 +83,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  left join business_application_status on 
 	  business_plan.investment_id = business_application_status.business_id where 
 	  business_plan.created_by = '$userid' 
-	  and business_application_status.application_status != 'certificateissued'
+	  and business_application_status.application_status != 'certificateissued' and business_application_status.application_status != 'rejected_completed'
 		");
 		return $query; 
 	}
@@ -106,7 +115,7 @@ class InvestmentApplicationTable extends Doctrine_Table
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT business_application_status.application_status,
      business_application_status.comment,business_application_status.percentage,investment_application.name FROM business_application_status 
 	 LEFT JOIN investment_application ON business_application_status.business_id = investment_application.id WHERE created_by = '$userid' 
-	 and business_application_status.application_status !='certificateissued'
+	 and business_application_status.application_status !='certificateissued' and business_application_status.application_status !='rejected_completed'
 	 ");
 	 return $query;
 	}
@@ -114,11 +123,9 @@ class InvestmentApplicationTable extends Doctrine_Table
 	//now we use this method to retrieve applications that is not yet assigned to any RDB data admin
 	public function getUnassignedApplications($status)
 	{
-	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name, investment_application.registration_number ,investment_application.token, 
-	 business_plan.created_at, business_plan.updated_by, business_application_status.business_id
-	 FROM business_plan LEFT JOIN investment_application ON business_plan.investment_id  = investment_application.id
-	LEFT JOIN  business_application_status ON business_plan.id = business_application_status.business_id 
-	WHERE business_application_status.application_status = '$status' ");
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name, investment_application.registration_number,investment_application.applicant_reference_number ,investment_application.token, 
+	 business_plan.created_at, business_plan.updated_by,business_application_status.business_id from business_plan left join investment_application on
+business_plan.investment_id = investment_application.id left join  business_application_status on business_plan.investment_id =  business_application_status.business_id WHERE business_application_status.application_status = '$status'");
 	return $query;
 	}
 	//get completed jobs for issuance of Investment Registration Certificate
@@ -219,6 +226,24 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  //
 	  return $name;
 	}
+	//custom method to retrieve business name given a user id whose status is not rejected_completed
+	public function getBusinessNameStatusNotRejected($user_id)
+	{
+	  //we will select the investment id for current logged user
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT investment_application.name FROM investment_application left join business_application_status
+       on investment_application.id = business_application_status.business_id  WHERE created_by = '$user_id' AND 
+	   business_application_status.application_status !='rejected_completed'
+	  
+	  ");
+	  $name = null;
+	  foreach($query as $q)
+	  {
+	   $name = $q['name'];
+	  }
+	  //
+	  return $name;
+	}
 	//custom method to retrieve a user id given a business name
 	public function getUserId($business_name)
 	{
@@ -246,6 +271,19 @@ class InvestmentApplicationTable extends Doctrine_Table
 	  }
 	  return $id;
 	}
+	//a custom method to retrieve business id given a business registration number
+	public function getBusinessIdentity($regno)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT investment_application.id FROM investment_application WHERE investment_application.registration_number = '$regno' limit 1
+	  ");
+	  $id = 0;
+	  foreach( $query as $q)
+	  {
+	   $id = $q['id'] ;
+	  }
+	  return $id;
+	}
 	//we create a custom method to validate business , we use token and regno of the business.
 	public function ValidateBusiness($regno,$token)
 	{
@@ -262,7 +300,14 @@ class InvestmentApplicationTable extends Doctrine_Table
 	//this function retrieves data of a user when he/she enter a valid TIN Number
 	public function getClientDetails($tinNumber)
 	{
-	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select * from business_registration where business_regno = '$tinNumber' ");
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select business_name,business_regno,GROUP_CONCAT( business_sector ),office_telephone,fax,post_box,location ,sector,district,city_province from business_registration where business_regno = '$tinNumber' ");
+	  ///
+	  return $query;
+	}
+	//select business_registration using supplied reference number
+	public function getDetails($referenceNumber)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select registration_number, id from investment_application where applicant_reference_number = '$referenceNumber' ");
 	  ///
 	  return $query;
 	}
@@ -273,6 +318,81 @@ class InvestmentApplicationTable extends Doctrine_Table
 	 ///
 	 return $query;
 	}
-	
+	//this method will retrieve the username and email address of investor when supplied with business registration number
+	public function getEmailAndUsername($regno)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	   SELECT updated_by, email_address  FROM investment_application left join sf_guard_user ON  investment_application.created_by = sf_guard_user.id where investment_application.registration_number = '$regno'
+	  ");
+	  return $query;
+	}
+	//////for incremental reference number
+	public function createIncrementalReferenceNumber()
+	{
+	  $start = 1000 ; //start number
+	  $id = 1;
+	  $date = date('Y');
+	 // $newNumber = $start + 1 ; // new number incremental
+	  //query to select the first record
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT applicant_reference_number, id FROM investment_application
+	  ORDER BY investment_application.id DESC LIMIT 1"); //this should return the last record inserted
+	  $number = null ;
+	  $primary_id = null;
+	  //loop
+	  foreach($query as $q)
+	  {
+	   $number = $q['applicant_reference_number'] ;
+	   $primary_id = $q['id'] ;
+	  }
+	  //check the value of $number 
+	  if($number == null && $primary_id == null)
+	  {
+	   //start point
+	   return $id."-".$start."-".$date;
+	  }
+	  if($number != null && $primary_id != null)
+	  {
+	    //continue with incrementing the number
+		
+		$value = $number + $start ;
+		$id_value = $primary_id + $id ;
+		return $id_value."-".$value."-".$date;
+	  }
+	}
+	//we create a method that will retrieve applicant reference number for a particular application, we supply business id
+	public function getReferenceNumber($id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT applicant_reference_number from investment_application where id = '$id' ");
+	 $reference_number = 0;
+	 ///
+	 foreach($query as $q)
+	 {
+	  $reference_number = $q['applicant_reference_number'];
+	 }
+	 ///
+	 return $reference_number;
+	}
+	//get the id of business given reference number
+	public function getIdFromReferenceNumber($reference_number)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT id from investment_application where applicant_reference_number = '$reference_number' ");
+	 $id = 0;
+	 ///
+	 foreach($query as $q)
+	 {
+	  $id = $q['id'];
+	 }
+	 ///
+	 return $id;
+	}
+	///get Businesses for the current logged in user whose status is rejected_completed
+	public function getBusiness($id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select name from investment_application where
+	 id = '$id' ");
+	 //
+	 return $query;
+	 
+	}
 	
 }

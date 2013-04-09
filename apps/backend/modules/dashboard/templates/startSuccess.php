@@ -2,9 +2,12 @@
 	 //get the business application information
 	 foreach($details as $data)
 	 {
-	  $id = $data['id'];
+	  $id = $data['investmentapp_id'];
+	  //$id = 2
+	  $token = $data['token'];
 	  $name = $data['name']; 
 	  $regno = $data['registration_number'];
+	  $applicant_reference = $data['applicant_reference_number'];
 	  $project_brief = $data['project_brief'];
 	  $business_name = $data['name'];
 	  $business_nature = $data['business_sector'];
@@ -77,19 +80,19 @@
 						</div>
 						<div class="modal-body">
 							<p><?php echo __('Your are about to decline this applicant application. It is a good idea to inform the Manager and share your decision. You can send a message to the Manager/ Supervisor who assigned you this task and inform them of your
-							decision by clicking')?> <a href="<?php echo url_for('messages/new?value=decline')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Message') ?></button></a></p>
+							decision by clicking')?> <a href="<?php echo url_for('messages/new?value=decline')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a></p>
 							
 							
 							<?php 
 							 //we will hide this button if the user has not yet been granted the necessary permission to decline
 							 //so we connect to the table that stores permission from managers/supervisors and we query for
 							 //accept where request type is decline_application
-							 $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+							 $id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 							 //print $username; 
-							// print $regno;
+							 //print $applicant_reference;
 							 //exit;
-							 $query = Doctrine_Core::getTable('InvestmentRequests')->queryPermission($regno, $username);
-							// print_r($query); exit;
+							 $query = Doctrine_Core::getTable('InvestmentRequests')->queryPermission($applicant_reference, $username);
+							//print_r($query); exit;
 							 //
 							 
 							 
@@ -99,7 +102,9 @@
 							<font color="red">
 							 <?php //no permission yet
                                 echo __('Sorry,Permission not granted. If you have contacted your supervisor please wait
-							  as he/she responds to your request. If not please send a message asap. Thank you for understanding') ;?>
+							  as he/she responds to your request. If not please send a message asap. Thank you for understanding') ;
+							  
+							  ?>
 							<?php endif; ?>
 							</font> 
 							 <?php if(count($query) != 0): ?>
@@ -136,9 +141,11 @@
 										<h4 class="alert-heading"><?php echo __('Important!') ?></h4>
 										<p>
 										     <?php echo __('This is the business proposal for:') ?>
-										     <?php echo $name;?>
+										     <font color="green"><?php echo $name;?></font>
 											 <?php echo __('Registration Number is'); ?>
-											 <?php echo $regno; ?>
+											<font color="green"> <?php echo $regno; ?></font>
+											 <?php echo __('Applicant reference number is')?>
+											<font color="green"> (<?php echo $applicant_reference; ?>)</font>
 											 <?php echo __(' Please Read it Carefully before generating report'); ?>.
 										</p>
 										
@@ -395,7 +402,7 @@
 									    </div>
 									<div class="row-fluid">
 										<div class="span9">
-											<a href="<?php echo url_for('projectSummary/new?id='.$id) ?>"> <button type="button" class="btn btn-success"><?php echo __('Make Report') ?></button> </a> &nbsp;&nbsp;&nbsp;
+											<a href="<?php echo url_for('projectSummary/new?id='.$id.'&token='.$token) ?>"> <button type="button" class="btn btn-success"><?php echo __('Make Report') ?></button> </a> &nbsp;&nbsp;&nbsp;
 											<a href="#widget-resubmit" data-toggle="modal">
 											<button type="button" class="btn btn-inverse"><?php echo __('Request Resubmission') ?></button></a>&nbsp;&nbsp;&nbsp;
 											</a>
@@ -595,7 +602,7 @@
 					row[4] = result4.financial[i].year5;
                     data[result4.financial[i].id - result4.financial[0].id ] = row;
 					
-					
+					//alert(data[result4.financial[i].id - result4.financial[0].id ]);
                   }
                   handsontable_financial.loadData(data);
 				  

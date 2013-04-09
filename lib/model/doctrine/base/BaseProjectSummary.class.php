@@ -46,10 +46,10 @@ abstract class BaseProjectSummary extends sfDoctrineRecord
              'notnull' => true,
              'unique' => true,
              ));
-        $this->hasColumn('business_sector', 'string', 255, array(
+        $this->hasColumn('business_sector', 'string', 500, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 255,
+             'length' => 500,
              ));
         $this->hasColumn('techinical_viability', 'string', 4000, array(
              'type' => 'string',
@@ -81,7 +81,8 @@ abstract class BaseProjectSummary extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('InvestmentApplication', array(
              'local' => 'investment_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $signable0 = new Doctrine_Template_Signable(array(

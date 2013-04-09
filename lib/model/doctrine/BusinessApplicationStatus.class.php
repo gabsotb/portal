@@ -12,5 +12,9 @@
  */
 class BusinessApplicationStatus extends BaseBusinessApplicationStatus
 {
-
+   //we write a function to update status for application rejection by data administrator
+   /*public function updateApplicantRejectionStatus($status,$comments,$percentage)
+   {
+    
+   }*/
 }

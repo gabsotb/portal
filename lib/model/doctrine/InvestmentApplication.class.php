@@ -26,11 +26,21 @@ class InvestmentApplication extends BaseInvestmentApplication
    $conn->beginTransaction();
 		  try
 		  {
-			 
+		if (!$this->getToken() && !$this->getApplicantReferenceNumber())
+		  {
+			$this->setToken(sha1(date().rand(11111, 99999)));
+			//get the incremental number and set it
+			 $number = Doctrine_Core::getTable('InvestmentApplication')->createIncrementalReferenceNumber();
+		     $this->setApplicantReferenceNumber($number);
+		  }
+		  
+		 
+		  
+		  
 			  ///
 			  $ret = parent::save($conn);
-				$conn->commit();
-				return $ret ;
+			  $conn->commit();
+			  return $ret ;
 			
 		  }
 		  catch(Exception $e)

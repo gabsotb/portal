@@ -25,4 +25,88 @@ class ProjectSummaryTable extends Doctrine_Table
 	 investment_application.id = '$id'"); 
 	 return $query;
 	}
+	///method to get business details supplied with business id
+	public function getBusinessInformation($business_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.business_sector FROM investment_application WHERE investment_application.id = '$business_id' ");
+	 
+	 return $query; 
+	 
+	}
+	//calculate local jobs total for a given business
+	public function getTotalLocalJobs($business_id)
+	{
+	 $local_jobs_query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT sum(year1) as year1, sum(year2) as year2,sum(year3) as year3,sum(year4) as year4, sum(year5) as year5   FROM employementlocal WHERE business_plan = '$business_id' ");
+	 return $local_jobs_query ;
+	}
+	//calculate local jobs total for a given business
+	public function getTotalForeignJobs($business_id)
+	{
+	 $local_foreign_query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT sum(year1) as year1, sum(year2) as year2,sum(year3) as year3,sum(year4) as year4, sum(year5) as year5   FROM employementforeign WHERE business_plan = '$business_id' ");
+	 return $local_foreign_query ;
+	}
+	//Method to calculate financial costs for a business
+	public function getTotalFinancialCost($business_id)
+	{
+	 $costs = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT sum(year1) as year1, sum(year2) as year2, sum(year3) as year3, sum(year4) as year4, sum(year5) as year5 FROM costs WHERE id = '$business_id' ");
+	 //
+	 return $costs;
+	}
+	//Method to calculate Planned Performance costs for a business
+	public function getTotalPlannedPerformance($business_id)
+	{
+	$performace = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT sum(year1) as year1, sum(year2) as year2, sum(year3) as year3, sum(year4) as year4, sum(year5) as year5 FROM plannedperformance WHERE id = '$business_id' ");
+	 //
+	 return $performace;
+	}
+	//Method to calculate Startup Expense costs for a business
+	public function getTotalStartupExpense($business_id)
+	{
+	 $startup = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT sum(year1) as year1, sum(year2) as year2, sum(year3) as year3, sum(year4) as year4, sum(year5) as year5 FROM startupexpenses WHERE id = '$business_id' ");
+	 //
+	 return $startup;
+	}
+	//Method to calculate structure Financial costs for a business
+	public function getTotalStructureFinancial($business_id)
+	{
+	 $structure = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT sum(foreign_source) as foreign_source, sum(local_source) as local_source FROM structurefinancial WHERE id = '$business_id' ");
+	 //
+	 return $structure;
+	}
+	//get a pk id using business id
+	public function getSummaryId($business_id)
+	{
+	  $id = 0;
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT  id from project_summary where investment_id  = '$business_id' limit 1 ");
+	  ///
+	  foreach($query as $q)
+	  {
+	   $id = $q['id'];
+	  }
+	  //
+	 // print $id; exit;
+	  return $id;
+	}
+	//get applicant reference number when queried with business id from investmentapplication table
+	public function getApplicantReferenceNumber($business_id)
+	{
+	  $id = 0;
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT  applicant_reference_number from investment_application where id  = '$business_id' limit 1 ");
+	  ///
+	  foreach($query as $q)
+	  {
+	   $id = $q['applicant_reference_number'];
+	  }
+	  //
+	 // print $id; exit;
+	  return $id;
+	}
+	//method to validate an id
+	public function validateId($id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT id from project_summary where investment_id = '$id' ");
+	 return $query;
+	}
+	
+	
 }

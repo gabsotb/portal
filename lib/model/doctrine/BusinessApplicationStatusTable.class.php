@@ -51,4 +51,19 @@ class BusinessApplicationStatusTable extends Doctrine_Table
 	 $q->execute();
 	}
 	// End Updating Functions
+	//check if a certain business application for investment certificate has been rejected
+	public function checkStatus($investment_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select application_status from business_application_status where business_id = '$investment_id' ");
+	 //
+	 $status = null ;
+	 //
+	 foreach($query as $q)
+	 {
+	   $status = $q['application_status'];
+	 }
+	 //
+	 return $status;
+	}
+	
 }

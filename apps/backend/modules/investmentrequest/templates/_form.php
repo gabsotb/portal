@@ -17,8 +17,8 @@
 					<?php echo $form['status']->renderRow(array('class' => 'span7 chosen', 'data-placeholder' => 'Choose a Category', 'tabindex' => '1')) ?>
 	  </div>
 	   <div class="input-prepend">
-	                <?php echo $form['business_registration']->renderError() ?> 
-					<?php echo $form['business_registration']->renderRow(array('class' => 'span7')) ?>
+	                <?php echo $form['reference_number']->renderError() ?> 
+					<?php echo $form['reference_number']->renderRow(array('class' => 'span7')) ?>
 	  </div>
 	   <div class="input-prepend">
 					<?php echo $form['comments']->renderRow(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>

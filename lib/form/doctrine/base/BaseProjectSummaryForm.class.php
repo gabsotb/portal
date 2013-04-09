@@ -17,7 +17,7 @@ abstract class BaseProjectSummaryForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                   => new sfWidgetFormInputHidden(),
       'investment_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'), 'add_empty' => false)),
-      'business_sector'      => new sfWidgetFormInputText(),
+      'business_sector'      => new sfWidgetFormTextarea(),
       'techinical_viability' => new sfWidgetFormTextarea(),
       'planned_investment'   => new sfWidgetFormInputText(),
       'employment_created'   => new sfWidgetFormInputText(),
@@ -32,7 +32,7 @@ abstract class BaseProjectSummaryForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'investment_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
-      'business_sector'      => new sfValidatorString(array('max_length' => 255)),
+      'business_sector'      => new sfValidatorString(array('max_length' => 500)),
       'techinical_viability' => new sfValidatorString(array('max_length' => 4000)),
       'planned_investment'   => new sfValidatorInteger(),
       'employment_created'   => new sfValidatorInteger(),

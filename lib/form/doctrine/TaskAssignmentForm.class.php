@@ -17,7 +17,22 @@ class TaskAssignmentForm extends BaseTaskAssignmentForm
     //$access = new TaskAssignmentFormVariables();
     //Labels
   
-   $this->widgetSchema->setLabel('user_assigned', 'Assign To ');
+    // $this->widgetSchema->setLabel('user_assigned', 'Assign To ');
+   ////
+    $data_admins = "investmentcertadmins";
+	$managers = "departmentadmins" ;
+	
+    $this->widgetSchema['user_assigned'] = new sfWidgetFormChoice(array(
+	  'label' => 'Assign To',
+	  'choices'  => Doctrine_Core::getTable('InvestmentApplication')->getAllInvestmentCertWorkers($data_admins,$managers),
+	  'expanded' => false,
+    ));
+   ////
+   ///we get the value from session variable
+    $value = sfContext::getInstance()->getUser()->getAttribute('investmentapp_id') ;
+	$this->widgetSchema['investmentapp_id'] = new sfWidgetFormInputHidden();
+    $this->setDefault('investmentapp_id',$value); 
+	
    $this->widgetSchema->setLabel('investmentapp_id', 'Application Documents  For ');
    //$this->widgetSchema = new sfWidgetFormSelect(array('choices' => date('Y-m-d H:i:s')));
    //set default date and time

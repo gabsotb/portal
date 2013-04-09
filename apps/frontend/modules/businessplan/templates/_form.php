@@ -1,7 +1,13 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
         
+    <?php
+     //get set attribute
+	 $id = sfContext::getInstance()->getUser()->getAttribute('session_business_id');
+	 
+	 //print "session id". $id; exit;
 
+	?>
 		  <div class="control-group">
 		
 					    <div class="widget">
@@ -327,7 +333,7 @@
                 if ($parent.find('input[name=autosave]').is(':checked')) {
                   clearTimeout(autosaveNotification);
                   $.ajax({
-                    url: "<?php echo url_for('businessplan/save') ?>",
+                    url: "<?php echo url_for('businessplan/save?id='.$id) ?>",
                     dataType: "json",
                     type: "POST",
                     data: {
@@ -352,7 +358,7 @@
                 url: "<?php 
 				  //$id = 1 ;
 				  //$token = "87feb264974d9c9e9627859108705d31d63129b9" ;
-				echo url_for('businessplan/loading') ?>",
+				echo url_for('businessplan/loading?id='.$id) ?>",
                 dataType: 'json',
                 type: 'GET',
                  success: function (res) {
@@ -386,7 +392,7 @@
 
             $parent.find('button[name=save]').click(function () {
               $.ajax({
-                url: "<?php echo url_for('businessplan/save') ?>",
+                url: "<?php echo url_for('businessplan/save?id='.$id) ?>",
                 data: {"data": handsontable.getData()}, //returns all cells' data
                 dataType: 'json',
                 type: 'POST',
@@ -443,7 +449,7 @@
                 if ($parent1.find('input[name=autosave1]').is(':checked')) {
                   clearTimeout(autosaveNotification);
                   $.ajax({
-                    url: "<?php echo url_for('businessplan/savestartup') ?>",
+                    url: "<?php echo url_for('businessplan/savestartup?id='.$id) ?>",
                     dataType: "json",
                     type: "POST",
                     data: {
@@ -465,7 +471,7 @@
 
             $parent1.find('button[name=load1]').click(function () {
               $.ajax({
-                url: "<?php echo url_for('businessplan/loadstartup') ?>",
+                url: "<?php echo url_for('businessplan/loadstartup?id='.$id) ?>",
                 dataType: 'json',
                 type: 'GET',
                  success: function (result) {
@@ -532,7 +538,7 @@
                 if ($parent2.find('input[name=autosave2]').is(':checked')) {
                   clearTimeout(autosaveNotification);
                   $.ajax({
-                    url: "<?php echo url_for('businessplan/savefinancial') ?>",
+                    url: "<?php echo url_for('businessplan/savefinancial?id='.$id) ?>",
                     dataType: "json",
                     type: "POST",
                     data: {
@@ -554,7 +560,7 @@
 			//
 			 $parent2.find('button[name=load2]').click(function () {
               $.ajax({
-                url: "<?php echo url_for('businessplan/loadfinancial') ?>",
+                url: "<?php echo url_for('businessplan/loadfinancial?id='.$id) ?>",
                 dataType: 'json',
                 type: 'GET',
                  success: function (result1) {
@@ -617,7 +623,7 @@
                 if ($parent3.find('input[name=autosave3]').is(':checked')) {
                   clearTimeout(autosaveNotification);
                   $.ajax({
-                    url: "<?php echo url_for('businessplan/savelocal') ?>",
+                    url: "<?php echo url_for('businessplan/savelocal?id='.$id) ?>",
                     dataType: "json",
                     type: "POST",
                     data: {
@@ -638,7 +644,7 @@
             var handsontable_local = $container3.data('handsontable');
 			 $parent3.find('button[name=load3]').click(function () {
               $.ajax({
-                url: "<?php echo url_for('businessplan/loadlocal') ?>",
+                url: "<?php echo url_for('businessplan/loadlocal?id='.$id) ?>",
                 dataType: 'json',
                 type: 'GET',
                  success: function (result2) {
@@ -704,7 +710,7 @@
                 if ($parent4.find('input[name=autosave4]').is(':checked')) {
                   clearTimeout(autosaveNotification);
                   $.ajax({
-                    url: "<?php echo url_for('businessplan/saveforeign') ?>",
+                    url: "<?php echo url_for('businessplan/saveforeign?id='.$id) ?>",
                     dataType: "json",
                     type: "POST",
                     data: {
@@ -725,7 +731,7 @@
             var handsontable_foreign= $container4.data('handsontable');
 			 $parent4.find('button[name=load4]').click(function () {
               $.ajax({
-                url: "<?php echo url_for('businessplan/loadforeign') ?>",
+                url: "<?php echo url_for('businessplan/loadforeign?id='.$id) ?>",
                 dataType: 'json',
                 type: 'GET',
                  success: function (result3) {
@@ -791,7 +797,7 @@
                 if ($parent5.find('input[name=autosave5]').is(':checked')) {
                   clearTimeout(autosaveNotification);
                   $.ajax({
-                    url: "<?php echo url_for('businessplan/saveperformance') ?>",
+                    url: "<?php echo url_for('businessplan/saveperformance?id='.$id) ?>",
                     dataType: "json",
                     type: "POST",
                     data: {
@@ -812,7 +818,7 @@
             var handsontable_performance = $container5.data('handsontable');
 			 $parent5.find('button[name=load5]').click(function () {
               $.ajax({
-                url: "<?php echo url_for('businessplan/loadperformance') ?>",
+                url: "<?php echo url_for('businessplan/loadperformance?id='.$id) ?>",
                 dataType: 'json',
                 type: 'GET',
                  success: function (result4) {

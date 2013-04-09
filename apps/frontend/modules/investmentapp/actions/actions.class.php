@@ -74,7 +74,40 @@ class investmentappActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
+    //we want to do a trick here. 
+	//if we have a situation where a parameter is passed here, that means the value is for a business name for which
+	//application for investment certificate has been rejected and thus this user is now applying a fresh for investment certificate.
+	//we want to archive the previous application for history reasons and future requirements and we will use the passed parameter
+	//name of the business. so
+	//$name = $request->getParameter('id');
+	$reference = $request->getParameter('reference');
+	//reset all variables
+	//$this->getUser()->getAttributeHolder()->clear();
+	//$this->forward404Unless($reference);
+	//we check the status of this application, if it is rejected, we hide it and allow the investor to re-apply
+	//otherwise we continue with normal system flow.
+	if($reference != "new")
+	{
+	 $business_id = Doctrine_Core::getTable('InvestmentApplication')->getIdFromReferenceNumber($reference);
+	//we update status of business application
+	$tasks = new TaskAssignment(); 
+	$status = "rejected_completed"; //Status used to hide this applicant application. Final for Rejection
+	$tasks->updateStatus($business_id,$status);
+      ///////////
+	  $this->form = new InvestmentApplicationForm();
+	}
+    else if ($reference == "new")
+	{
+	 //$session = $this->getUser()->getAttribute('session_business_id');
+	 //print 'sess'.$session;
+	// exit;
+      
     $this->form = new InvestmentApplicationForm();
+	//print "he";
+  // $this->form = new BusinessPlanForm();
+	 // exit;
+	}
+	
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -109,7 +142,7 @@ class investmentappActions extends sfActions
   }
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($investment_application = Doctrine_Core::getTable('InvestmentApplication')->find(array($request->getParameter('id'))), sprintf('Object investment_application does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($investment_application = Doctrine_Core::getTable('InvestmentApplication')->find(array($request->getParameter('id'))), sprintf('Object investment_application does not exist (%s).', $request->getParameter('id'))); 
 	///
 	//use the token for securing application
 	$token = $request->getParameter('token');
@@ -177,12 +210,20 @@ class investmentappActions extends sfActions
 	 //
      if($id == null)
 	 {
-	  $this->redirect('businessplan/new?id='.$name.'&token='.$token);
+	  //set a session variable
+	 // $session = sfContext::getInstance()->getUserd()->getUser()->setAttribute('business_id',$business_id );
+	 // print $session; exit;
+	  $this->redirect('businessplan/new?id='.$name.'&token='.$token.'&id_value='.$business_id);
+	  
 	 }	 
 	 //
 	 if($id != null)
 	 {
-	  $this->redirect('businessplan/edit?id='.$id.'&token='.$token);
+	 //
+	  $value = Doctrine_Core::getTable('BusinessPlan')->queryForId($id);
+	  ///
+	  sfContext::getInstance()->getUser()->setAttribute('session_biz',$id);
+	  $this->redirect('businessplan/edit?id='.$value.'&token='.$token);
 	 }
     }
   }
@@ -199,7 +240,7 @@ class investmentappActions extends sfActions
 	foreach($data as $d)
 	{
 	  //
-	  $info[] = array( 'business_name' =>$d['business_name'], 'business_sector' => $d['business_sector'], 'office_telephone' => $d['office_telephone'] , 
+	  $info[] = array( 'business_name' =>$d['business_name'], 'business_sector' => $d['GROUP_CONCAT( business_sector )'], 'office_telephone' => $d['office_telephone'] , 
 	'fax' => $d['fax'] , 'post_box' => $d['post_box'] , 'location' => $d['location'],'sector' => $d['sector'],'district' => $d['district'],'city_province' => $d['city_province']
 	);
 	}
@@ -207,7 +248,7 @@ class investmentappActions extends sfActions
 	
 	echo json_encode($info);
 	exit; 
-	$this->redirect('investmentapp/new');
+	//$this->redirect('investmentapp/new');
 	//print "Value is ".$value ;exit
   }
   

@@ -10,18 +10,19 @@ InvestmentApplication: ## Contains the application details from the investors
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
-  name: {type: string(255), notnull: true, unique: true}  
-  registration_number: {type: string(255), notnull: true,  unique: true}
-  title_in_company: { type: string(255), notnull: true }
-  business_sector: {type: string(255), notnull: true}
+  name: {type: string(255), notnull: true}  
+  registration_number: {type: string(255), notnull: true}
+  title_in_company: { type: string(255), notnull: false }
+  business_sector: {type: string(1000), notnull: true}
   business_category: {type: string(255), notnull: true}
-  office_telephone: {type: string(255), notnull: true}
-  fax: {type: string(255), notnull: true}
-  post_box: {type: string(255), notnull: true}
-  location: {type: string(255), notnull: true}
-  sector: {type: string(255), notnull: true}
-  district: {type: string(255), notnull: true}
-  city_province: {type: string(255), notnull: true}
+  office_telephone: {type: string(255), notnull: false}
+  fax: {type: string(255), notnull: false}
+  post_box: {type: string(255), notnull: false}
+  location: {type: string(255), notnull: false}
+  sector: {type: string(255), notnull: false}
+  district: {type: string(255), notnull: false}
+  city_province: {type: string(255), notnull: false}
+  applicant_reference_number: {type: string(255), notnull: false, unique: true}
   token: {type: string(255), notnull: false} 
 ### Stores the Business Proposal of the user applying for the investment certificate
 BusinessPlan:
@@ -46,7 +47,7 @@ BusinessPlan:
   visa_work_permits: {type: string(4000), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
-  InvestmentApplication: {local: investment_id, foreign:id , foreignAlias: InvestmentBusinessPlan}
+  InvestmentApplication: {local: investment_id, foreign:id , foreignAlias: InvestmentBusinessPlan, onDelete: CASCADE}
 ### We need to create a table to record resubmission requests when a data admin decides that a certain business requires to resubmit information
 InvestmentResubmission:
  actAs:
@@ -71,7 +72,7 @@ Structurefinancial: ## for Start up expenses costs
    foreign_source: {type: integer, notnull: false}
    token: {type: string(255), notnull: false} 
   relations:
-   InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: StructureFinancial}
+   InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: StructureFinancial, onDelete: CASCADE}
 Costs: ## for Investment Costs
   actAs:
     Timestampable: ~
@@ -87,7 +88,7 @@ Costs: ## for Investment Costs
    year5: {type: integer, notnull: false}
    token: {type: string(255), notnull: false} 
   relations:
-   InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: BusinessPlanCosts}
+   InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: BusinessPlanCosts, onDelete: CASCADE}
 Startupexpenses: ## for Start up expenses costs
   actAs:
     Timestampable: ~
@@ -103,7 +104,7 @@ Startupexpenses: ## for Start up expenses costs
    year5: {type: integer, notnull: false}
    token: {type: string(255), notnull: false} 
   relations:
-   InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: BusinessPlanStartup}
+   InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: BusinessPlanStartup, onDelete: CASCADE}
 Employementlocal: ## for employment local
  actAs:
     Timestampable: ~
@@ -119,7 +120,7 @@ Employementlocal: ## for employment local
   year5: {type: integer, notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
-  InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: EmploymentLocal}
+  InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: EmploymentLocal, onDelete: CASCADE}
 Employementforeign: ## for employment foreign
  actAs:
     Timestampable: ~
@@ -135,7 +136,7 @@ Employementforeign: ## for employment foreign
   year5: {type: integer, notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
-  InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: EmploymentForeign}
+  InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: EmploymentForeign, onDelete: CASCADE}
 Plannedperformance:
  actAs:
     Timestampable: ~
@@ -151,7 +152,7 @@ Plannedperformance:
   year5: {type: integer, notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
-  InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: PlannedPerformanceApplication}
+  InvestmentApplication: {local: business_plan, foreign: id , foreignAlias: PlannedPerformanceApplication, onDelete: CASCADE}
 ##### We will create new tables for auto saving of users details. 
 ####
 # Contains a summary of the application from the InvestmentApplication and Business Plan Tables
@@ -163,14 +164,14 @@ ProjectSummary:
    updated: { name: updated_by,type: string} 
  columns:
   investment_id: {type: integer, notnull: true, unique: true}
-  business_sector: {type: string(255), notnull: true}
+  business_sector: {type: string(500), notnull: true}
   techinical_viability: {type: string(4000), notnull: true}
   planned_investment: {type: integer, notnull: true}
   employment_created: {type: integer, notnull: true}
   job_categories: {type: string(4000), notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
-  InvestmentApplication: {local:investment_id, foreign: id, foreignAlias: InvestmentSummary }
+  InvestmentApplication: {local:investment_id, foreign: id, foreignAlias: InvestmentSummary, onDelete: CASCADE }
 #Table records the tasks assigned to a user, the status and user to whom the task is assigned to is recorded in this table   
 TaskAssignment: 
  actAs:
@@ -198,25 +199,51 @@ BusinessApplicationStatus: # Shows business application status, pending,processi
   percentage: {type: integer, notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
-  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentAppBusinesStatus}
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentAppBusinesStatus, onDelete: CASCADE}
+InvestmentRequests:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  requestor: {type: string(255), notnull: true}
+  request_type: {type: string(255), notnull: true}
+  status: {type: string(255), notnull: true}
+  reference_number: {type: string(255), notnull: true}
+  comments: {type: string(1000), notnull: true}
+  token: {type: string(255), notnull: false}
 ApprovedApplications: # Shows approved businesses application
- actAs: {Timestampable: ~}
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
  columns:
-  business_id: {type: integer, notnull:true, , unique: true}
+  business_id: {type: integer, notnull: true}
+  applicant_reference_number: {type: string(255), notnull: true, unique: true}
+  business_registration: {type: integer, notnull:true}
   application_type: {type: string(255), notnull: true}
   comment: {type: string(255), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
-  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentApprovedBusiness}
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentApprovedBusiness, onDelete: CASCADE}
 RejectedApplications: # Shows rejected businesses application
- actAs: {Timestampable: ~}
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
  columns:
-  business_id: {type: integer, notnull:true, unique: true}
+  business_id: {type: integer, notnull: true}
+  applicant_reference_number: {type: string(255), notnull: true, unique: true}
+  business_registration: {type: integer, notnull:true}
   application_type: {type: string(255), notnull: true}
-  comment: {type: string(255), notnull: false}
+  reasons: {type: string(1000), notnull: false}
+  comments: {type: string(1000), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
-  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentRejectedBusiness}
+  InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentRejectedBusiness, onDelete: CASCADE}
 ##Used to simulate the user payment status from the financial business registration system
 Payment:
  actAs:
@@ -243,7 +270,7 @@ InvestmentCertificate:
   business_id: {type: integer, notnull: true, unique: true}
   token: {type: string(255), notnull: false} 
  relations:
-  InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate}
+  InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate, onDelete: CASCADE}
 ####################################### End Investment Certificate Registration Tables ##############################
 #################################################
 ########################################### Start EIA Certificate Application Process Tables ##########################
@@ -792,3 +819,46 @@ Portlets:
   eia_certificate: {type: string(7000), notnull: true}
   tax_exemptions: {type: string(7000), notnull: true}
   token: {type: string(255), notnull: false} 
+###### Tax Exemption Processing #######
+##Table to store tax exemption details
+TaxExemptionDetails:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  office_name: {type: string(255), notnull: false}
+  office_code: {type: string(255), notnull: false}
+  company_name: {type: string(255), notnull: false}
+  investment_certificate: {type: string(255), notnull: false}
+  company_tin: {type: integer, notnull: false}
+  declarant_name: {type: string(255), notnull: false}
+  declarant_reference: {type: string(255), notnull: false}
+  declarant_code: {type: string(255), notnull: false}
+  electronic_request_number: {type: string(255), notnull: false}
+  electronic_authrization_number: {type: string(255), notnull: false}
+  customs_declaration_reference: {type: string(255), notnull: false}
+  revenue_officer: {type: string(255), notnull: false}
+  revenue_officer_e_verification_date: {type: timestamp, notnull: false}
+  revenue_officer_remarks: {type: string(1000), notnull: false}
+  rdb_officer_remarks: {type: string(1000), notnull: false}
+  status: {type: string(255), notnull: false}
+### Table to Store tax exemption items
+TaxExemptionItems:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  tax_details_id: {type: integer, notnull: true}
+  rdb: {type: boolean, notnull: false}
+  rra: {type: boolean, notnull: false}
+  hs_code: {type: integer, notnull: false}
+  description: {type: string(600), notnull: false}
+  cif: {type: integer, notnull: false}
+  quantity: {type: integer, notnull: false}
+  import_duties: {type: integer, notnull: false}
+ relations:
+  TaxExemptionDetails: {local: tax_details_id, foreign: id, foreignAlias: TaxDetailsItems, onDelete: CASCADE}

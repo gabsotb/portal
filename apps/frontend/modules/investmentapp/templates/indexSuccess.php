@@ -234,28 +234,63 @@ $(function () {
 													<tr>
 														
 																		<th><?php echo __('Company') ?></th>
-														<th>Status</th>
+														<th><?php echo __('Status') ?></th>
 														
 													</tr>
 												</thead>
 												<tbody>
-												  
+												  <?php foreach($applications as $apps): ?>
 													<tr>
-														<?php foreach($applications as $apps): ?>
+														
 														<?php $point = $apps['percentage'] ?>
 														<?php $commentI = $apps['comment'] ?>
 														 <td><?php echo $apps['name'] ?></td>
-														  <td><span class="label label-success"><?php echo $apps['application_status'] ?></span></td>
-														<?php endforeach; ?>
+														  <td>
+														   <?php $status = $apps['application_status']; 
+														         $name = $apps['name'];
+														   ?>
+														   
+														   <?php if($status == "rejected"): ?>
+														   <span class="label label-success">
+												           <font color ="red"><?php echo $apps['application_status'] ?>
+														  
+														   </font>
+												           </span>
+														   <?php endif; ?>
+														   <!-- ///// -->
+														   <?php if($status != "rejected"): ?>
+														     <span class="label label-success">
+												            <?php echo $apps['application_status'] ?>
+												             </span>
+														   <?php endif; ?>
+														  
+												
+														 
+														  </td>
+														
 													</tr>
-													
+													<?php endforeach; ?>
 												</tbody>
 											</table>
 											</div>
+											<?php if($status == "rejected"): ?>
+											<div class="progress progress-striped progress-danger active">
+												<div style="width: <?php echo $point ?>%;" class="bar"></div>
+											</div>
+											<?php 
+											 //we want to hide a project applicant whose status has been rejected. 
+											 $business_id = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($name) ;
+											 $reference = Doctrine_Core::getTable('InvestmentApplication')->getReferenceNumber($business_id);
+											?>
+										<a href="<?php echo url_for('investmentapp/new?id='.$name.'&reference='.$reference) ?>"> 
+												<button type="button" class="btn btn-primary"><?php echo __('New Application') ?></button>
+												</a>
+											<?php endif; ?>
+											<?php if($status != "rejected"): ?>
 											<div class="progress progress-striped active">
 												<div style="width: <?php echo $point?>%;" class="bar"></div>
 											</div>									
-											
+											<?php endif; ?>
 										</div>
 											</div>
 												<!-- end table -->
@@ -270,7 +305,8 @@ $(function () {
 												
 											</div>
 											<?php endif; ?>
-										<?php if(count($investment_applications) <= 0): ?>
+											
+								<?php if(count($investment_applications) <= 0): ?>
 											<div class="alert alert-error">
 											 <!-- if a User has completed step 1 and is yet to complete step 2, we show
 											 a link for completing his application -->
@@ -290,6 +326,18 @@ $(function () {
 											
 											//now we pass this to businessplan table method
 											$p = Doctrine_Core::getTable('BusinessPlan')->getBusinessPlanDetails($investment_id);
+											//check if a business application is already rejected
+								        	$rejection = Doctrine_Core::getTable('BusinessApplicationStatus')->checkStatus($investment_id);
+											//get the names of businesses for the current logged user whose status is rejected_completed
+											///
+											$id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+											$query5 = Doctrine_Core::getTable('InvestmentApplication')->getBusiness($id);
+											$biz = null ;
+											//loop
+											 foreach($query5 as $q)
+											 {
+											  $biz  = $q['name']; 
+											 }
 											$response = null;
 											//print_r($p); exit;
 											//
@@ -300,15 +348,17 @@ $(function () {
 											// 
 											  
 											?>
-										<?php if($investment_id != null){ ?>
-										 
+										<?php if($investment_id != null ){ ?>
+									<?php 
+									//$business_session_id = null ;
+									//sfContext::getInstance()->getUser()->setAttribute('session_business_id',$business_session_id ); ?>
 											 <!-- if it is null we show buttons -->
-											 <?php if($response == null) { ?>
+											 <?php if($response == null  && $rejection != "rejected_completed") { ?>
 												 <div class="alert alert-block alert-warning fade in">
 																 <strong><?php echo __('Incomplete Application !')?></strong> <br/>
 																 <?php echo __('Please Complete your Initial application
 																 for Investment Certificate for') ?> <?php echo $business_name; ?>.  <br/><br/>
-												<a href="<?php echo url_for('businessplan/new?id='.$business_name.'&token='.$token) ?>"> 
+												<a href="<?php echo url_for('businessplan/new?id='.$business_name.'&token='.$token.'&id_value='.$investment_id) ?>"> 
 																<button type="button" class="btn btn-primary"><?php echo __('Complete') ?></button>&nbsp;&nbsp;
 												&nbsp;&nbsp;
 												</a>
@@ -357,9 +407,23 @@ $(function () {
 										
 										  <?php } ?> 
 										   <?php if($investment_id == null){  ?>
+										    <?php $reference = "new" ; ?>
 														    <strong><?php echo __('Alert!') ?></strong> <br/><?php echo __('There are no applications
 																		for investment certificate for your account! <br/>') ?>
-														 <a href="<?php echo url_for('investmentapp/new') ?>">
+														 <a href="<?php echo url_for('investmentapp/new?reference='.$reference) ?>">
+																		 <button type="button" class="btn btn-primary">
+																		 <?php echo __('Apply for Investment Certificate') ?></button>
+														 </a>
+										  <?php } ?>
+										   <?php if($investment_id != null && $rejection == "rejected_completed"){  ?>
+										   <?php $reference = "new" ; ?>
+														    <strong><?php echo __('Alert!') ?></strong> <br/><?php 
+															
+															echo __("There are no new applications
+																		for investment certificate for your account! <br/>
+																		However you application for investment certificate for $biz was declined. but you can still apply for Investment Certificate if you have met all requirement that led to your disqualification or apply for a new business. Thank you.
+																		") ?>
+														 <a href="<?php echo url_for('investmentapp/new?reference='.$reference) ?>">
 																		 <button type="button" class="btn btn-primary">
 																		 <?php echo __('Apply for Investment Certificate') ?></button>
 														 </a>

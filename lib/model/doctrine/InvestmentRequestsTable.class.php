@@ -41,13 +41,35 @@ class InvestmentRequestsTable extends Doctrine_Table
   //we create a function that querys for permission for declining an applicant application for issuance of investment certificate.
   //we pass business registration number here. this method will query for passed regno and search for status = accept, 
   //request_type = decline_application for the current logged in user
-  public function queryPermission($regno, $username)
+  public function queryPermission($reference, $username)
   {
    // print $username; exit;
     $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT request_type from investment_requests WHERE 
-	investment_requests.business_registration = '$regno' and investment_requests.requestor = '$username' and status = 'accept'
+	investment_requests.reference_number = '$reference' and investment_requests.requestor = '$username' and status = 'accept'
     and request_type = 'decline_application'
 	");
 	return $query;
+  }
+  public function queryAcceptPermission($reference, $username)
+  {
+  // print $reference; exit;
+    $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT request_type from investment_requests WHERE 
+	investment_requests.reference_number = '$reference' and investment_requests.requestor = '$username' and status = 'accept'
+    and request_type = 'accept_application'
+	");
+	return $query;
+  }
+  //get username using supplied id
+  public function getUserName($id)
+  {
+   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT username from sf_guard_user where id = '$id'
+	");
+	$username = "" ;
+	foreach($query  as $q)
+	{
+	  $username = $q['username'];
+	}
+	//
+	return $username;
   }
 }
