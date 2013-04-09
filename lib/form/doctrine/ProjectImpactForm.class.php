@@ -27,7 +27,9 @@ class ProjectImpactForm extends BaseProjectImpactForm
 		'choices' => array_keys(Doctrine_Core::getTable('Projectimpact')->getImpactLevels()),
 	));
 	
-	$thid->widgetSchema['comments'] = new sfWidgetFormTextarea();
+	$this->widgetSchema['site_visit'] = new sfWidgetFormInputText();
+	$this->widgetSchema['comments'] = new sfWidgetFormTextarea();
+
 	
   }
 }

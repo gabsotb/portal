@@ -1026,10 +1026,12 @@
 		<p><?php echo __('Your are about to request for a resubmission of the clients data')?>.</p>
 		<p><?php echo __('If you are sure about you decision, then click continue or just cancel') ?></p>
 		<?php echo button_to('continue','eiaDataAdmin/resubmission?id='.$detail->getEiaprojectId()) ?>
+	</div>
+	<div class="modal-footer">
 		<button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
 	</div>
 </div>
-<div id="widget-confirm" class="modal hide">
+<div id="widget-confirm" class="modal hide fade">
 	<div class="modal-header">
 		<h3><?php echo __('Confirm Request') ?></h3>
 	</div>
@@ -1037,6 +1039,8 @@
 		<p><?php echo __('This confirms you have read and analysed the application and you are satisfied with the information provided by the applicant') ?>.</p> 
 		<p><?php echo __('Proceed to allocate an impact level for the project') ?>.</p>
 		<?php echo button_to('Proceed','eiaDataAdmin/impact?id='.$detail->getEiaprojectId(),array('class' => 'btn btn-success')) ?>
+	</div>
+	<div class="modal-footer">
 		<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
 	</div>
 </div>
@@ -1048,6 +1052,8 @@
 		<p><?php echo __('You are about to reject the application') ?>.</p> 
 		<p><?php echo __('Proceed to specify the reasons for this action') ?>.</p>
 		<?php echo button_to('Proceed','eiaDataAdmin/reject?id='.$detail->getEiaprojectId(),array('class' => 'btn btn-success')) ?>
+	</div>
+	<div class="modal-footer">
 		<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
 	</div>
 </div>

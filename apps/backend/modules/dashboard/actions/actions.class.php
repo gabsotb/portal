@@ -45,6 +45,7 @@ class dashboardActions extends sfActions
 	   $this->mytasksnotcomplete = Doctrine_Core::getTable('TaskAssignment')->getUserTasksNotComplete($userId);
 	   ////////////EIA////////////
 	$this->unassigned= Doctrine_Core::getTable('EIApplicationStatus')->getApplicationStatus('submitted');
+	$this->assessments=Doctrine_Core::getTable('EITaskAssignment')->getAwaitingApproval();
 	$this->jobAdmin= Doctrine_Core::getTable('EITaskAssignment')->findByUserAssigned($userId);
 	   //////////TOR/////
 	 //  $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
@@ -1127,6 +1128,17 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 		 /////////////////////////////////////////////////
 		 
   }
+  
+	public function executeAssessmentDecision(sfWebRequest $request)
+	{
+		$decision = new EIAAssessmentDecision();
+		$decision->taskassignment_id= $request->getParameter('id');
+		$decision->save();
+		$accessments=Doctrine_Core::getTable('EIAAssessmentDecision')->findByTaskassignmentId($request->getParameter('id'));
+		
+		$this->redirect('eiaAssessmentDecision/edit?id='.$accessments[0]['id']);
+	
+	}
   
 }
 

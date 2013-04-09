@@ -28,6 +28,13 @@
         </td>
       </tr>
       <tr>
+        <th><?php echo $form['site_visit']->renderLabel() ?></th>
+        <td>
+          <?php echo $form['site_visit']->renderError() ?>
+          <?php echo $form['site_visit']->render(array('class' => 'input-small date-picker')) ?>
+        </td>
+      </tr>
+      <tr>
         <th><?php echo $form['comments']->renderLabel('Remarks:') ?></th>
         <td>
           <?php echo $form['comments']->renderError() ?>

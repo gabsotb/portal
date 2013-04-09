@@ -13,23 +13,26 @@
  * @property string $token
  * @property EIAProjectDetail $EIAProjectDetail
  * @property sfGuardUser $sfGuardUser
+ * @property Doctrine_Collection $EiaAssessmentDecision
  * 
- * @method integer          getUserAssigned()     Returns the current record's "user_assigned" value
- * @method integer          getEiaprojectId()     Returns the current record's "eiaproject_id" value
- * @method string           getInstructions()     Returns the current record's "instructions" value
- * @method timestamp        getDuedate()          Returns the current record's "duedate" value
- * @method string           getWorkStatus()       Returns the current record's "work_status" value
- * @method string           getToken()            Returns the current record's "token" value
- * @method EIAProjectDetail getEIAProjectDetail() Returns the current record's "EIAProjectDetail" value
- * @method sfGuardUser      getSfGuardUser()      Returns the current record's "sfGuardUser" value
- * @method EITaskAssignment setUserAssigned()     Sets the current record's "user_assigned" value
- * @method EITaskAssignment setEiaprojectId()     Sets the current record's "eiaproject_id" value
- * @method EITaskAssignment setInstructions()     Sets the current record's "instructions" value
- * @method EITaskAssignment setDuedate()          Sets the current record's "duedate" value
- * @method EITaskAssignment setWorkStatus()       Sets the current record's "work_status" value
- * @method EITaskAssignment setToken()            Sets the current record's "token" value
- * @method EITaskAssignment setEIAProjectDetail() Sets the current record's "EIAProjectDetail" value
- * @method EITaskAssignment setSfGuardUser()      Sets the current record's "sfGuardUser" value
+ * @method integer             getUserAssigned()          Returns the current record's "user_assigned" value
+ * @method integer             getEiaprojectId()          Returns the current record's "eiaproject_id" value
+ * @method string              getInstructions()          Returns the current record's "instructions" value
+ * @method timestamp           getDuedate()               Returns the current record's "duedate" value
+ * @method string              getWorkStatus()            Returns the current record's "work_status" value
+ * @method string              getToken()                 Returns the current record's "token" value
+ * @method EIAProjectDetail    getEIAProjectDetail()      Returns the current record's "EIAProjectDetail" value
+ * @method sfGuardUser         getSfGuardUser()           Returns the current record's "sfGuardUser" value
+ * @method Doctrine_Collection getEiaAssessmentDecision() Returns the current record's "EiaAssessmentDecision" collection
+ * @method EITaskAssignment    setUserAssigned()          Sets the current record's "user_assigned" value
+ * @method EITaskAssignment    setEiaprojectId()          Sets the current record's "eiaproject_id" value
+ * @method EITaskAssignment    setInstructions()          Sets the current record's "instructions" value
+ * @method EITaskAssignment    setDuedate()               Sets the current record's "duedate" value
+ * @method EITaskAssignment    setWorkStatus()            Sets the current record's "work_status" value
+ * @method EITaskAssignment    setToken()                 Sets the current record's "token" value
+ * @method EITaskAssignment    setEIAProjectDetail()      Sets the current record's "EIAProjectDetail" value
+ * @method EITaskAssignment    setSfGuardUser()           Sets the current record's "sfGuardUser" value
+ * @method EITaskAssignment    setEiaAssessmentDecision() Sets the current record's "EiaAssessmentDecision" collection
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -81,6 +84,10 @@ abstract class BaseEITaskAssignment extends sfDoctrineRecord
         $this->hasOne('sfGuardUser', array(
              'local' => 'user_assigned',
              'foreign' => 'id'));
+
+        $this->hasMany('EIAAssessmentDecision as EiaAssessmentDecision', array(
+             'local' => 'id',
+             'foreign' => 'taskAssignment_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $signable0 = new Doctrine_Template_Signable(array(

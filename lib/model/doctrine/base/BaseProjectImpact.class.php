@@ -7,17 +7,20 @@
  * 
  * @property integer $eiaproject_id
  * @property string $impact_level
+ * @property timestamp $site_visit
  * @property string $comments
  * @property string $token
  * @property EIAProjectDetail $EIAProjectDetail
  * 
  * @method integer          getEiaprojectId()     Returns the current record's "eiaproject_id" value
  * @method string           getImpactLevel()      Returns the current record's "impact_level" value
+ * @method timestamp        getSiteVisit()        Returns the current record's "site_visit" value
  * @method string           getComments()         Returns the current record's "comments" value
  * @method string           getToken()            Returns the current record's "token" value
  * @method EIAProjectDetail getEIAProjectDetail() Returns the current record's "EIAProjectDetail" value
  * @method ProjectImpact    setEiaprojectId()     Sets the current record's "eiaproject_id" value
  * @method ProjectImpact    setImpactLevel()      Sets the current record's "impact_level" value
+ * @method ProjectImpact    setSiteVisit()        Sets the current record's "site_visit" value
  * @method ProjectImpact    setComments()         Sets the current record's "comments" value
  * @method ProjectImpact    setToken()            Sets the current record's "token" value
  * @method ProjectImpact    setEIAProjectDetail() Sets the current record's "EIAProjectDetail" value
@@ -40,6 +43,10 @@ abstract class BaseProjectImpact extends sfDoctrineRecord
         $this->hasColumn('impact_level', 'string', null, array(
              'type' => 'string',
              'notnull' => true,
+             ));
+        $this->hasColumn('site_visit', 'timestamp', null, array(
+             'type' => 'timestamp',
+             'notnull' => false,
              ));
         $this->hasColumn('comments', 'string', 400, array(
              'type' => 'string',
