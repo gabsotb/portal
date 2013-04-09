@@ -17,6 +17,17 @@ class EITaskAssignmentTable extends Doctrine_Table
         return Doctrine_Core::getTable('EITaskAssignment');
     }
 	
+	public function getAwaitingApproval()
+	{
+		$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+		$q=$this->createQuery('t')
+			->leftJoin('t.EIAProjectDetail d')
+			->leftJoin('t.sfGuardUser u')
+			->where('t.work_status = ?','assess')
+			->andWhere('t.created_by = ?',$userId);
+		return $q->fetchArray();
+	}
+
 	public function getJobs($status=NULL)
 	{
 		$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();

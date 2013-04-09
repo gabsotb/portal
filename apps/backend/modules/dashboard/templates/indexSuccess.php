@@ -309,7 +309,32 @@ $(function () {
 								</div>
 							</div>
 						</div>	
-					</div>		
+					</div>
+					<?php if(count($assessments) != 0): ?>
+					<div class="row-fluid">
+						<div class="widget">
+							<div class="widget-title">
+								<h4><i class="icon-reorder"></i>EIA --- Awaiting Approval</h4>
+							</div>
+							<div class="widget-body">
+							<?php foreach($assessments as $assessment): ?>
+								<table class="table table-striped table-hover">
+								<tr>
+									<th>Project</th>
+									<th>Assigned to</th>
+									<th>Action</th>
+								</tr>
+								<tr>
+									<td><?php echo $assessment['EIAProjectDetail']['project_title']?></td>
+									<td><?php echo $assessment['sfGuardUser']['last_name'] ?></td>
+									<td><?php echo button_to('Assess','dashboard/assessmentDecision?id='.$assessment['id'],array('class' => 'btn')); ?></td>
+								</tr>
+								</table>
+							<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+					<?php endif; ?>
          <div class="row-fluid">
                  <div class="span8">
 						<div class="widget">
@@ -1206,6 +1231,28 @@ $(function () {
 													<tr>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
 														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+											
+													</tr>
+												</tbody>
+											</table>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'assessed'): ?>
+										<h4>Applications assessed</h4>
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
+														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn')); ?></td>
 											
 													</tr>
 												</tbody>

@@ -596,10 +596,25 @@ ProjectImpact:
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
   impact_level: {type: string, notnull: true}
+  site_visit: {type: timestamp, notnull: false}
   comments: {type: string(400), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
-  EIAProjectDetail: {local:eiaproject_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE }  
+  EIAProjectDetail: {local:eiaproject_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE } 
+#table to approve/reject requeted assessments  
+EIAAssessmentDecision:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  taskassignment_id: {type: integer, notnull: true, unique: true}
+  verdict: {type: string, notnull: true }
+  remarks: {type: string(255), notnull: false }
+  token: {type: string(255), notnull: false} 
+ relations:
+  EITaskAssignment: {local:taskAssignment_id, foreign: id, foreignAlias: EiaAssessmentDecision, onDelete:CASCADE } 
 EIAProjectImpactPass: ## This table will store all project that do not require issuance of EIACertificate
  actAs:
   Timestampable: ~

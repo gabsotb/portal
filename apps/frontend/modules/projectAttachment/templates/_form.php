@@ -15,35 +15,35 @@
    <tbody>
        <tr>
 	    <td><?php echo("Panoramic view of the project site and its immediate vicinity") ?></td>
-		<td><?php echo $form['panoramic_view']->render() ?></td>
+		<td><?php echo $form['panoramic_view']->renderError() ?><?php echo $form['panoramic_view']->render() ?></td>
 	   </tr>
 	   <tr>
 	     <td><?php echo("Plans for each floor, perspective and site layout plan") ?></td>
-		<td><?php echo $form['perspective_site_impact']->render() ?></td>
+		<td><?php echo $form['perspective_site_impact']->renderError() ?><?php echo $form['perspective_site_impact']->render() ?></td>
 	   </tr>
 	   <tr>
 	     <td><?php echo("Preliminary approval(for compliance with Master plan)**") ?></td>
-		<td><?php echo $form['preliminary_approval']->render() ?></td>
+		<td><?php echo $form['preliminary_approval']->renderError() ?><?php echo $form['preliminary_approval']->render() ?></td>
 	   </tr>
 	   <tr>
 	      <td><?php echo("Land Ownership Documents") ?></td>
-		<td><?php echo $form['land_ownership_doc']->render() ?></td>
+		<td><?php echo $form['land_ownership_doc']->renderError() ?><?php echo $form['land_ownership_doc']->render() ?></td>
 	   </tr>
 	   <tr>
 	     <td><?php echo("Relevant Ministrial Order Documents") ?></td>
-		<td><?php echo $form['ministrial_document']->render() ?></td>
+		<td><?php echo $form['ministrial_document']->renderError() ?><?php echo $form['ministrial_document']->render() ?></td>
 	   </tr>
 	   <tr>
 	      <td><?php echo("Maps showing  perimeter area, with coordintates") ?></td>
-		<td><?php echo $form['perimeter_area_map']->render() ?></td>
+		<td><?php echo $form['perimeter_area_map']->renderError() ?><?php echo $form['perimeter_area_map']->render() ?></td>
 	   </tr>
 	   <tr>
 	      <td><?php echo("Maps showing location of each project components for big and spartial project (Hydropower projects, Dams and Irrigation schemes/infrastructures)") ?></td>
-		<td><?php echo $form['location_area_map']->render() ?></td>
+		<td><?php echo $form['location_area_map']->renderError() ?><?php echo $form['location_area_map']->render() ?></td>
 	   </tr>
 	   <tr>
-	      <td><?php echo("Other Usefull document") ?></td>
-		<td><?php echo $form['other_supporting_document']->render() ?></td>
+	      <td><?php echo("Other Usefull document(i.e: Terms of Reference)") ?></td>
+		<td><?php echo $form['other_supporting_document']->renderError() ?><?php echo $form['other_supporting_document']->render() ?></td>
 	   </tr>
     </tbody> 
   </table>

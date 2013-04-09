@@ -105,5 +105,13 @@ class eiaDataAdminActions extends sfActions
 		}
 		$this->redirect('eiaProjectBreifDecision/edit?id='.$id.'&act=reject');
 	}	
+	
+	public function executeProcess(sfWebRequest $request)
+	{
+		$this->projectDetail=Doctrine_Core::getTable('EIAProjectDetail')->find(array($request->getParameter('id')));
+		$this->projectDeveloper=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($request->getParameter('id'));
+		$this->projectDescription=Doctrine_Core::getTable('EIAProjectDescription')->findByEiaprojectId($request->getParameter('id'));
+		$this->projectImpact=Doctrine_Core::getTable('ProjectImpact')->findByEiaprojectId($request->getParameter('id'));
+	}
 
 }

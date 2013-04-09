@@ -66,8 +66,8 @@ class eiaProjectImpactActions extends sfActions
     if ($form->isValid())
     {
       $project_impact = $form->save();
-
-      $this->redirect('@homepage');
+      
+	  $this->redirect('@homepage');
     }
   }
 }
