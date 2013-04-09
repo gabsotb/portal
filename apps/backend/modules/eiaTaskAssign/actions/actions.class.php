@@ -29,8 +29,8 @@ class eiaTaskAssignActions extends sfActions
 	//Update status
 	if($status)
 	{
-		$status->setApplicationStatus('processing');
-		$status->setComments('Your application is been processed.');
+		$status->setApplicationStatus('assigning');
+		$status->setComments('Your application is been assigned.');
 		$status->setPercentage(20);
 		$status->save();
 	}
@@ -81,7 +81,12 @@ class eiaTaskAssignActions extends sfActions
     if ($form->isValid())
     {
       $ei_task_assignment = $form->save();
-	
+		$eiaIds=Doctrine_Core::getTable('EIApplicationStatus')->findByEiaprojectId($ei_task_assignment->getEiaprojectId());
+		$status=Doctrine_Core::getTable('EIApplicationStatus')->find(array($eiaIds[0]['id']));
+		$status->setApplicationStatus('assigned');
+		$status->setComments('Your application has been assigned.');
+		$status->setPercentage(30);
+		$status->save();
      //we send message to the investor informing them of successful application
 	 //get the current logged in user email address
 				$email = sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();

@@ -45,6 +45,7 @@ class dashboardActions extends sfActions
 	   $this->mytasksnotcomplete = Doctrine_Core::getTable('TaskAssignment')->getUserTasksNotComplete($userId);
 	   ////////////EIA////////////
 	$this->unassigned= Doctrine_Core::getTable('EIApplicationStatus')->getApplicationStatus('submitted');
+	$this->assigning=Doctrine_Core::getTable('EIApplicationStatus')->getApplicationStatus('assigning');
 	$this->assessments=Doctrine_Core::getTable('EITaskAssignment')->getAwaitingApproval();
 	$this->jobAdmin= Doctrine_Core::getTable('EITaskAssignment')->findByUserAssigned($userId);
 	   //////////TOR/////
@@ -59,22 +60,14 @@ class dashboardActions extends sfActions
   {
     
 	$this->value = $request->getParameter('id'); // here we get the parameter 
-	//we also use the token to validate this request
-	$this->token = $request->getParameter('token');
-	//$this->validation = Doctrine_Core::getTable('TaskAssignment')->validateToken($this->token);
-	//print_r ($this->validation); exit;
-	//if(count($this->validation) == 0)
-	//{
-	// $this->forward404Unless($this->validation,sprintf('Validation Error'));
-	//}
 	
 	/*Since we have the id of the business, we now retrieve all details for this application for investment certificate from
 	the three tables. InvestmentApplication, BusinessPlan and TaskAssignment*/
-	$this->details = Doctrine_Core::getTable('TaskAssignment')->getApplicationDetails($this->value,$this->token);
+	$this->details = Doctrine_Core::getTable('TaskAssignment')->getApplicationDetails($this->value);
 //	print_r($this->details);exit;
 	//select Investment and financing schedule &Capital cost Details
 	$this->investment_financial = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($this->value);
-	$this->forward404Unless($this->details,sprintf('Validation Error. Invalid parameters for this request'));
+	$this->forward404Unless($this->details);
 	//
 	$this->form = new InvestmentResubmissionForm();
 	
@@ -89,8 +82,7 @@ class dashboardActions extends sfActions
 				   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
 				   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 				   ///
-				 /* $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN costs ON costs.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ; */
-				 $data =  $db->fetchAssoc("SELECT id, year1, year2, year3, year4, year5 FROM costs  where business_plan = '$id'  limit 5 ") ;
+				  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN costs ON costs.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ; 
 				
 				   
 				   $out = array('financial' => $data) ;
@@ -113,9 +105,7 @@ class dashboardActions extends sfActions
 				   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
 				   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 				   ///
-				 /* $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN startupexpenses ON startupexpenses.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ; */
-				 $data =  $db->fetchAssoc("SELECT id, year1, year2, year3, year4, year5 FROM startupexpenses  where business_plan = '$id'  limit 5 ") ;
-                   				  
+				  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN startupexpenses ON startupexpenses.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    
 				   $out = array('startupexpenses' => $data) ;
 				   echo(json_encode($out)); exit;	
 					
@@ -134,8 +124,7 @@ class dashboardActions extends sfActions
 					   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
 					   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 					   ///
-					/*  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN structurefinancial ON structurefinancial.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    */
-					   $data =  $db->fetchAssoc("SELECT id, local_source, foreign_source FROM structurefinancial  where business_plan = '$id'  limit 5 ") ;
+					  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN structurefinancial ON structurefinancial.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    
 					   $out = array('structurefinancial' => $data) ;
 					   echo(json_encode($out)); exit;	
 						
@@ -155,8 +144,7 @@ class dashboardActions extends sfActions
 					   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
 					   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 					   ///
-					  /*$data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN employementlocal ON employementlocal.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;   */ ///
-					   $data =  $db->fetchAssoc("SELECT id, year1, year2, year3, year4, year5 FROM  employementlocal  where business_plan = '$id'  limit 5 ") ;
+					  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN employementlocal ON employementlocal.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    
 					   $out = array('localjobs' => $data) ;
 					   echo(json_encode($out)); exit;	
 						
@@ -176,9 +164,7 @@ class dashboardActions extends sfActions
 					   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
 					   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 					   ///
-					/*  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN employementforeign ON employementforeign.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;   */
-//
-                        $data =  $db->fetchAssoc("SELECT id, year1, year2, year3, year4, year5 FROM  employementforeign  where business_plan = '$id'  limit 5 ") ;					  
+					  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN employementforeign ON employementforeign.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    
 					   $out = array('foreignjobs' => $data) ;
 					   echo(json_encode($out)); exit;	
 						
@@ -198,10 +184,7 @@ class dashboardActions extends sfActions
 					   //$data = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($id) ;
 					   $db = Doctrine_Manager::getInstance()->getCurrentConnection();
 					   ///
-					/*  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN plannedperformance ON plannedperformance.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ; 
-					*/
-                     ///
-                     $data =  $db->fetchAssoc("SELECT id, year1, year2, year3, year4, year5 FROM  plannedperformance  where business_plan = '$id'  limit 5 ") ;					 
+					  $data =  $db->fetchAssoc("SELECT * FROM task_assignment LEFT JOIN business_plan ON business_plan.investment_id = task_assignment.investmentapp_id LEFT JOIN plannedperformance ON plannedperformance.business_plan = business_plan.id WHERE task_assignment.investmentapp_id = '$id' limit 5 ") ;    
 					   $out = array('plannedperformance' => $data) ;
 					   echo(json_encode($out)); exit;	
 						

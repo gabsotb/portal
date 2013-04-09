@@ -251,7 +251,7 @@ $(function () {
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?registration='.$available['registration_number'].'&token='.$available['token'].'&reference='.$available['applicant_reference_number']) ?>"><button class="btn btn-mini btn-primary"><i class="icon-user icon-white"></i> <?php echo __('Assign') ?></button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?registration='.$available['registration_number'].'&token='.$available['token']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
@@ -273,7 +273,7 @@ $(function () {
 									<h4><?php echo __('Recent Applications for  EIA Certificates') ?></h4>						
 								</div>
 								<div class="widget-body">
-								<?php if(count($unassigned) == 0): ?>
+								<?php if(count($unassigned) == 0 && count($assigning)==0): ?>
 									<div class="alert alert-block alert-info fade in">
 									<h4 class="alert-heading">No recent application has been found</h4>
 									<p>Please try again later/ Refresh the page</p>
@@ -296,6 +296,29 @@ $(function () {
 												<td><?php echo $unassign['project_title'] ?> </td>
 												<td><?php echo $unassign['developer_name'] ?></td>
 												<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$unassign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+									
+											</tr>
+										</tbody>
+									</table>
+									<?php endforeach; ?>
+								<?php endif; ?>
+								<?php if(count($assigning)>0): ?>
+									<?php foreach($assigning as $assign): ?>
+									<table class="table table-striped table-bordered" id="eia_manager">
+										<thead>
+											<tr class="odd gradeX">
+											  <th>Reference No.</th>
+												<th>Title</th>
+												<th>Developer</th>
+												<th><?php echo __('Actions') ?></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><?php echo $assign['project_reference_number'] ?></td>
+												<td><?php echo $assign['project_title'] ?> </td>
+												<td><?php echo $assign['developer_name'] ?></td>
+												<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$assign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 									
 											</tr>
 										</tbody>
@@ -993,30 +1016,20 @@ $(function () {
 								<div class="widget-body">
 								<?php if(count($mytasks) != null) : ?>
 									<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
-									 <?php //get the number of tasks assigned to this user
-									        $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
-									        $number = Doctrine_Core::getTable('TaskAssignment')->countUserAssignedTasks($userId);
-									 ?>
 										<li>
 											<span class="label label-success"><i class="icon-bell"></i></span>
-											<span class="text-error"><?php echo __('Not Tasks Yet Started. Please Start your Tasks') ?></span>
-											<span class="text-success"><?php echo __("The Administrator has assigned you $number tasks. Remember you have a deadline to beat")?>! </span>
+											<span><?php echo __('Not Tasks Yet Started. Please Start your Tasks') ?> </span>
+											<span><?php echo __('The Administrator has assigned you 0 tasks. Remember you have a deadline to meet')?>! </span>
 											
 										</li>
 									</ul>
 								<?php endif; ?>
 								<?php if(count($mytasks) <= 0): ?>
-								 <?php //we retrieve notification messages for this user
-								     $username = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
-                                     $notify_win = Doctrine_Core::getTable('Notifications')->getNotifications($username);
-								 ?>
 								<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
-								    <?php foreach($notify_win  as $notify): ?>
 									<li>
 									<span class="label label-important"><i class="icon-bolt"></i></span>
-									<span><?php echo $notify['message']; ?>.</span>
+									<span><?php echo __('No new Tasks Assigned to you')?>.</span>
 									</li>
-								    <?php endforeach; ?>	
 								</ul>
 								<?php  endif; ?>
 								<?php //if(count($mytasks) != null) : ?>
@@ -1056,9 +1069,8 @@ $(function () {
 											</tr>
 										</thead>
 										<tbody>
-										<?php foreach($mytasksnotcomplete as $notdone) :?>
 											<tr class="odd gradeX">
-											
+											<?php foreach($mytasksnotcomplete as $notdone) :?>
 											<td><?php echo $notdone['name'] ?></td>
 											<td><?php echo $notdone['location'] ?></td>
 											<td><?php echo "Investment Certificate"?></td>
@@ -1101,21 +1113,14 @@ $(function () {
 												<button class="btn btn-inverse disabled"><i class="icon-refresh icon-white"></i> <?php echo __('Process') ?> </button></a>
 												<?php endif; ?>
 												<?php if($id == null): ?>
-												<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id'].'&token='.$notdone['token']) ?>">
+												<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id']) ?>">
 												<button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Process') ?> </button></a>
 												 <?php endif; ?>
 											
 										   <?php endif; ?>
 											 
 											 <?php  if($notdone['work_status'] == "reporting" ): ?>
-											 <?php //for purpose of show method, we retrieve Summary  pk id using investmentapp_id
-											       //value 
-												 //  print "va".$notdone['investmentapp_id']; exit;
-												   $identity = $notdone['investmentapp_id'] ;
-												   $task_id = Doctrine_Core::getTable('ProjectSummary')->getSummaryId($identity);
-												   
-											 ?>
-											<a href="<?php echo url_for('projectSummary/show?id='.$task_id) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i><?php echo __('Accept or Decline') ?> </button></a>
+											<a href="<?php echo url_for('projectSummary/show?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i><?php echo __('Accept or Decline') ?> </button></a>
 											 <?php endif; ?>
 											 <?php  if($notdone['work_status'] == "awaitingpayment" ): ?>
 											<a href="<?php echo url_for('confirm/index?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Confirm Payment') ?> </button></a>
@@ -1125,8 +1130,8 @@ $(function () {
 											 <?php endif; ?>
 											</td>
 											
-												
-											</tr> <?php endforeach; ?>
+											<?php endforeach; ?>	
+											</tr>
 										</tbody>
 									</table>
 								<?php endif; ?>
