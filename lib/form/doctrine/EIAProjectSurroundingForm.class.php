@@ -36,7 +36,7 @@ class EIAProjectSurroundingForm extends BaseEIAProjectSurroundingForm
 		$this->widgetSchema[$widget] = new sfWidgetFormTextarea();
 	}
 	//function to retieve id
-	$this->setDefault('eiaproject_id', 1);
+	$this->setDefault('eiaproject_id', Doctrine_Core::getTable('EIAProjectDetail')->getProjectId());
 	
     /*$this->widgetSchema->setLabels(array(
      ));*/
