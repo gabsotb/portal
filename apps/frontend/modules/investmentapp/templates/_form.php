@@ -17,8 +17,10 @@
 		$business_sector =  __('Select a Business Sector.') ;
 		$business_sector2 =   __('Business Sector') ;
 		///
-		$business_category =  __('Select a Business Category.') ;
+		 $business_category =  __('Select a Business Category.') ;
 		 $business_category2 =  __('Business Category') ;
+		 $rep = __('Enter Company Representative Name');
+		 $rep2 = __('Representative');
 		
  		?>
     <tbody>
@@ -56,6 +58,13 @@
 			<div class="controls">
 				<div class="input-prepend">
 					<?php echo $form['business_category']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' => $business_category , 'data-original-title' => $business_category2)) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['representative_name']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' =>$rep, 'data-original-title' =>$rep2 )) ?>
 				</div>
 			</div>
 		</div>

@@ -15,6 +15,7 @@ InvestmentApplication: ## Contains the application details from the investors
   title_in_company: { type: string(255), notnull: false }
   business_sector: {type: string(1000), notnull: true}
   business_category: {type: string(255), notnull: true}
+  representative_name: {type: string(255), notnull: true}
   office_telephone: {type: string(255), notnull: false}
   fax: {type: string(255), notnull: false}
   post_box: {type: string(255), notnull: false}
@@ -210,7 +211,7 @@ InvestmentRequests:
   requestor: {type: string(255), notnull: true}
   request_type: {type: string(255), notnull: true}
   status: {type: string(255), notnull: true}
-  reference_number: {type: string(255), notnull: true}
+  reference_number: {type: string(255), notnull: true, unique: true}
   comments: {type: string(1000), notnull: true}
   token: {type: string(255), notnull: false}
 ApprovedApplications: # Shows approved businesses application
