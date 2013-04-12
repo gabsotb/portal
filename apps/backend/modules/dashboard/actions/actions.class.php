@@ -61,14 +61,20 @@ class dashboardActions extends sfActions
   {
     
 	$this->value = $request->getParameter('id'); // here we get the parameter 
+	$token = $request->getParameter('token');
+	//$task_token=Doctrine_Core::getTable('InvestmentApplication')->findByToken($token);
+	$this->forward404Unless($query = Doctrine_Core::getTable('InvestmentApplication')->find(array($request->getParameter('id'))), sprintf('Object project_impact does not exist (%s).', $request->getParameter('id')));
+	///
+	
+	///
 	
 	/*Since we have the id of the business, we now retrieve all details for this application for investment certificate from
 	the three tables. InvestmentApplication, BusinessPlan and TaskAssignment*/
-	$this->details = Doctrine_Core::getTable('TaskAssignment')->getApplicationDetails($this->value);
+	$this->details = Doctrine_Core::getTable('TaskAssignment')->getApplicationDetails($this->value,$token);
 //	print_r($this->details);exit;
 	//select Investment and financing schedule &Capital cost Details
 	$this->investment_financial = Doctrine_Core::getTable('TaskAssignment')->getInvestmentFinancialDetails($this->value);
-	$this->forward404Unless($this->details);
+	//$this->forward404Unless($this->details);
 	//
 	$this->form = new InvestmentResubmissionForm();
 	

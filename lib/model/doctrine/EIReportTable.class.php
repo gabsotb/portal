@@ -23,4 +23,15 @@ class EIReportTable extends Doctrine_Table
 	 //
 	 return $query;
 	}
+	//updates status after a user resubmits successfuly
+	public function updateStatus($project_id)
+	{
+	 $value = "awaitinganalysis";
+	 //
+      $q = Doctrine_Query::create()
+	 ->UPDATE('EIReport')
+	 ->SET('status', '?' , $value)
+	 ->WHERE('eiaproject_id  = ?', $project_id);
+	 $q->execute();
+	}
 }

@@ -1122,7 +1122,7 @@ $(function () {
 												<button class="btn btn-inverse disabled"><i class="icon-refresh icon-white"></i> <?php echo __('Process') ?> </button></a>
 												<?php endif; ?>
 												<?php if($id == null): ?>
-												<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id']) ?>">
+												<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id'].'&token='.$notdone['token']) ?>">
 												<button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Process') ?> </button></a>
 												 <?php endif; ?>
 											

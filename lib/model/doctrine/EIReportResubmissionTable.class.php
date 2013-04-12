@@ -22,4 +22,15 @@ class EIReportResubmissionTable extends Doctrine_Table
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select eiaproject_id,status  from e_i_report where status = 'awaitingresubmission' and created_by = '$user_id' ");
 	 return $query;
 	}
+	//updates status after a user resubmits successfuly
+	public function updateStatus($project_id)
+	{
+	 $value = "awaitinganalysis";
+	 //
+      $q = Doctrine_Query::create()
+	 ->UPDATE('EIReportResubmission')
+	 ->SET('status', '?' , $value)
+	 ->WHERE('eiaproject_id  = ?', $project_id);
+	 $q->execute();
+	}
 }
