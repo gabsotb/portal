@@ -8,6 +8,8 @@
  * @property integer $eiaproject_id
  * @property string $word_doc
  * @property string $pdf_doc
+ * @property string $status
+ * @property string $comments
  * @property string $token
  * @property EIAProjectDetail $EIAProjectDetail
  * @property Doctrine_Collection $StudyDecision
@@ -16,6 +18,8 @@
  * @method integer             getEiaprojectId()               Returns the current record's "eiaproject_id" value
  * @method string              getWordDoc()                    Returns the current record's "word_doc" value
  * @method string              getPdfDoc()                     Returns the current record's "pdf_doc" value
+ * @method string              getStatus()                     Returns the current record's "status" value
+ * @method string              getComments()                   Returns the current record's "comments" value
  * @method string              getToken()                      Returns the current record's "token" value
  * @method EIAProjectDetail    getEIAProjectDetail()           Returns the current record's "EIAProjectDetail" value
  * @method Doctrine_Collection getStudyDecision()              Returns the current record's "StudyDecision" collection
@@ -23,6 +27,8 @@
  * @method EIReport            setEiaprojectId()               Sets the current record's "eiaproject_id" value
  * @method EIReport            setWordDoc()                    Sets the current record's "word_doc" value
  * @method EIReport            setPdfDoc()                     Sets the current record's "pdf_doc" value
+ * @method EIReport            setStatus()                     Sets the current record's "status" value
+ * @method EIReport            setComments()                   Sets the current record's "comments" value
  * @method EIReport            setToken()                      Sets the current record's "token" value
  * @method EIReport            setEIAProjectDetail()           Sets the current record's "EIAProjectDetail" value
  * @method EIReport            setStudyDecision()              Sets the current record's "StudyDecision" collection
@@ -52,6 +58,16 @@ abstract class BaseEIReport extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              'length' => 255,
+             ));
+        $this->hasColumn('status', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('comments', 'string', 1000, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 1000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

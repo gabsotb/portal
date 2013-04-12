@@ -51,7 +51,8 @@ class dashboardActions extends sfActions
 	   //////////TOR/////
 	 //  $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
 	   //////////////////////////
- 
+     //method to retrieve all EIReport submitted by investors for which this EIA data admin is processing
+	 $this->eireports = Doctrine_Core::getTable('EIReport')->getEIReports();
    	
   } 
   ///////////////////////////////////////////////////////////////////////////////////////////
@@ -375,13 +376,14 @@ class dashboardActions extends sfActions
 	  $nofojobs = null;
 	  $expjobs = 0;
 	  $invstment = 0;
+	 // $applicant_name = null ;
 	  foreach($query as $q)
 	  {
 	    $date = $q['created_at'] ;
 		$year = $q['created_at'] ;
 		$company = $q['name'] ;
 		$serial = $q['serial_number'] ;
-		$rep = $q['name'] ;
+		$rep = $q['representative_name'] ;
 		$issuerF = $q['first_name'] ;
 		$issuerL = $q['last_name'] ;
 		$sector = $q['business_sector'] ;
@@ -475,7 +477,7 @@ $pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
 // ---------------------------------------------------------
  // Set some content to print
 $html = '                               <div style="text-align:center"> 
-                                         <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/rdblogo.jpg" alt="RDB" width="600" height="200" border="0" />
+                                         <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/rdblogo.jpg" alt="RDB" width="600" height="300" border="0" />
 										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
 										 <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>C/'.$serial.'/'.$year.'</b>
@@ -485,7 +487,8 @@ $html = '                               <div style="text-align:center">
 										   Date: <b>'.$day.'</b>
 										 </p>
 										 <p style= "font-size: xx-small;text-align:left ">
-										&nbsp;&nbsp;&nbsp;Issued To <b>'.$company.'</b> Represented by <b>'.$rep.'</b>
+										&nbsp;&nbsp;&nbsp;Issued To <b>'.$company.'</b> <br/> &nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp
+										Represented by <b>'.$rep.'</b>
 										 </p>
 										 <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;Business Sector <b>'.$sector.' </b>
@@ -498,7 +501,7 @@ $html = '                               <div style="text-align:center">
 										  &nbsp;Total Number of jobs planned <b>'.$noofjobs.'</b>
 										  </p>
 										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> Jobs For expatriates <b>'.$expjobs.'</b>
+										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> <br/> Jobs For expatriates <b>'.$expjobs.'</b>
 										 </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;This Certificate has been issued to <b>'.$company.'</b> under the seal of <br/>
@@ -569,6 +572,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
           // Stop symfony process */
           throw new sfStopException();
   }
+  //method to print and send certificate to an investor
   ///
   public function scorpionComplete($taskId)
   {
@@ -595,7 +599,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 		$year = $q['created_at'] ;
 		$company = $q['name'] ;
 		$serial = $q['serial_number'] ;
-		$rep = $q['name'] ;
+		$rep = $q['representative_name'] ;
 		$issuerF = $q['first_name'] ;
 		$issuerL = $q['last_name'] ;
 		$sector = $q['business_sector'] ;
@@ -699,7 +703,7 @@ $html = '                               <div style="text-align:center">
 										   Date: <b>'.$day.'</b>
 										 </p>
 										 <p style= "font-size: xx-small;text-align:left ">
-										&nbsp;&nbsp;&nbsp;Issued To <b>'.$company.'</b> Represented by <b>'.$rep.'</b>
+										&nbsp;&nbsp;&nbsp;Issued To <b>'.$company.'</b> <br/> &nbsp;&nbsp;&nbsp;&nbsp;Represented by <b>'.$rep.'</b>
 										 </p>
 										 <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;Business Sector <b>'.$sector.' </b>
@@ -712,7 +716,7 @@ $html = '                               <div style="text-align:center">
 										  &nbsp;Total Number of jobs planned <b>'.$noofjobs.'</b>
 										  </p>
 										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> Jobs For expatriates <b>'.$expjobs.'</b>
+										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> <br/> Jobs For expatriates <b>'.$expjobs.'</b>
 										 </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;This Certificate has been issued to <b>'.$company.'</b> under the seal of <br/>

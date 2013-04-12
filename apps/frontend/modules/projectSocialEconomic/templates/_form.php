@@ -1,6 +1,26 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
-
+<?php
+  $eiaprojectid = sfContext::getInstance()->getUser()->getAttribute('eiaprojectid');
+  //this is a bit tricky,
+  //we will get the EIAProjectSurrounding id and use it to retrieve details of EIAProjectSurroundingSpecies
+  $surrrounding_id_query = Doctrine_Core::getTable('EIAProjectSurrounding')->getProjectSurroundingTokenAndId($eiaprojectid);
+  $surrrounding_id = null ;
+  foreach($surrrounding_id_query  as $q)
+  {
+   $surrrounding_id = $q['id'];
+  }
+  $eiaproject_query = Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->getProjectSurroundingSpeciesTokenAndId($surrrounding_id);
+  $eai_project_s_species_token = null ;
+  $eia_project_s_species_id = null ;
+  //
+  foreach($eiaproject_query as $q)
+  {
+   $eai_project_s_species_token = $q['token'];
+   $eia_project_s_species_id = $q['id'];
+  }
+  ///
+  ?>
 <form action="<?php echo url_for('projectSocialEconomic/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
@@ -117,6 +137,7 @@
 								</div>
 </div> 
  <?php echo $form->renderHiddenFields(); ?>
+ <a href="<?php echo url_for('projectSorroundingSpecies/edit?id='.$eia_project_s_species_id.'&token='.$eai_project_s_species_token) ?>" class="btn"><?php echo __('Previous') ?> <i class="icon-step-backward"></i></a>
  <input type="submit" class="btn btn-primary" value="Next" />
 </form>
 <script>

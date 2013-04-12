@@ -5,20 +5,91 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-  <table>
-    <tfoot>
-      <tr>
-        <td colspan="2">
-          &nbsp;<a href="<?php echo url_for('messages/index') ?>">Back to list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'messages/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-          <?php endif; ?>
-          <input type="submit" value="Save" />
-        </td>
-      </tr>
-    </tfoot>
-    <tbody>
-      <?php echo $form ?>
-    </tbody>
-  </table>
+    	   <div class="control-group">
+			<div class="controls">
+			   <label class="control-label"><strong><?php echo $form['recepient']->renderLabel() ?></strong></label>
+				<div class="input-prepend">
+					<?php echo $form['recepient']->render(array('class' => 'span8'))  ?>
+				</div>
+			</div>
+		    </div>
+			<div class="control-group">
+			<div class="controls">
+			     <label class="control-label"><strong><?php echo $form['cc_email']->renderLabel() ?></strong></label>
+				<div class="input-prepend">
+					<?php echo $form['cc_email']->render(array('class' => 'span8'))  ?>
+				</div>
+			</div>
+		    </div>
+			<div class="control-group">
+			<div class="controls">
+			    <label class="control-label"><strong><?php echo $form['message_subject']->renderLabel() ?></strong></label>
+				<div class="input-prepend">
+					<?php echo $form['message_subject']->render(array('class' => 'span8'))  ?>
+				</div>
+			</div>
+		    </div>
+			<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					
+					<?php echo $form->renderHiddenFields(); ?>
+				</div>
+			</div>
+		    </div>
+    
+          <div class="control-group">
+		   <div class="controls">
+		   <label class="control-label"><strong><?php echo $form['message']->renderLabel() ?></strong></label>
+				<div class="input-prepend">
+				<?php echo $form['message']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
+				</div>
+			</div>
+		    </div>
+			<div class="control-group"> 
+                                 <div class="controls">
+								 <label class="control-label"><?php echo $form['attachement']->renderLabel() ?></label>
+                                     <div class="fileupload fileupload-new" data-provides="fileupload">
+                                      <span class="btn btn-file"><span class="fileupload-new"><i class="icon-upload"> </i></span><span class="fileupload-exists"><i class="icon-remove"> </i></span><?php echo $form['attachement']->render(array('class' => 'default'))?></span>
+                                      <span class="fileupload-preview"></span>
+                                      <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                                    </div>
+                                 </div>
+            </div>  
+          <div class="control-group">
+		   <div class="controls">
+				<div class="">
+				<input type="submit" class="btn btn-success" value="Send" />
+				<a href="<?php echo url_for('messages/index') ?>">
+				  <input type="button" class="btn btn-danger" value="<?php echo __('Cancel') ?>">
+				</a>
+				</div>
+			</div>
+		    </div>
 </form>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+ <script type="text/javascript">
+				$(function() {
+				var availableTags = [];
+				//ajax request
+				$.ajax({                                      
+					  url: "<?php echo url_for('messages/emails') ?>",                      							  
+					  dataType: 'json',
+                      type: 'GET',					  
+					  success: function(response) 
+					  {
+					   var data = [] ;
+					   var i = 0 ;
+					   $.each(data, function(i, item) {
+							alert(data[i].email_address);
+						});
+											  } 
+					});
+				//
+				
+				$( "#messages_recepient" ).autocomplete({
+				source: availableTags
+				});
+				});
+</script>

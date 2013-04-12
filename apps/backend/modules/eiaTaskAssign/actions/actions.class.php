@@ -15,6 +15,8 @@ class eiaTaskAssignActions extends sfActions
     $this->ei_task_assignments = Doctrine_Core::getTable('EITaskAssignment')
       ->createQuery('a')
       ->execute();
+	  //we write a function that retrieves records
+	  $this->ei_task_assignments = Doctrine_Core::getTable('EITaskAssignment')->getCurrentLoggedUserAssignTasks();
  }
 
   public function executeShow(sfWebRequest $request)
@@ -26,6 +28,10 @@ class eiaTaskAssignActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
 	$this->forward404Unless($status = Doctrine_Core::getTable('EIApplicationStatus')->find(array($request->getParameter('id'))),'No such application exist');
+	//get the parameter and use it to set a session variable.
+	$parameter = $request->getParameter('id');
+	///
+	$this->getUser()->setAttribute('eiaprojectdetail_id',$parameter);
 	//Update status
 	if($status)
 	{
@@ -183,7 +189,7 @@ class eiaTaskAssignActions extends sfActions
 				  }
 				   $msg->save();
 				   $notify->save();
-				  
+				  sfContext::getInstance()->getUser()->getAttributeHolder()->remove('eiaprojectdetail_id'); //clear session variable
 	             /////////////////////////////////////////////////
       $this->redirect('@homepage');
     }

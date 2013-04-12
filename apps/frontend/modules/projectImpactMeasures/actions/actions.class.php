@@ -79,8 +79,29 @@ class projectImpactMeasuresActions extends sfActions
     if ($form->isValid())
     {
       $eia_project_impact_measures = $form->save();
-
-      $this->redirect('projectOperationPhase/new?id='.$eia_project_impact_measures->getId().'&token='.$eia_project_impact_measures->getToken());
+      ///
+	   ////////
+     $query2 = Doctrine_Core::getTable('EIAProjectOperationPhase')->queryForId($project_id);
+	 $queried_id = null ;
+	 $queried_token = null;
+	 foreach($query2 as $q)
+	 {
+	  $queried_id = $q['id'];
+	  $queried_token = $q['token'];
+	 }
+	// print $queried_id; exit;
+	 //
+	 if($queried_id != null) //edit, we redirect to editing method
+	 {
+	 $this->redirect('projectOperationPhase/edit?id='.$queried_id.'&token='.$queried_token);
+	 }
+	 else if($queried_id  == null ) //new, we redirect to new method
+	 {
+	     $this->redirect('projectOperationPhase/new?id='.$eia_project_impact_measures->getId().'&token='.$eia_project_impact_measures->getToken());
+	 }
+		////////
+	  
+    
     }
   }
 }

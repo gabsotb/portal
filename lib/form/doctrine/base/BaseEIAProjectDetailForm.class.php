@@ -34,7 +34,7 @@ abstract class BaseEIAProjectDetailForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                       => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'project_reference_number' => new sfValidatorInteger(),
+      'project_reference_number' => new sfValidatorString(array('max_length' => 255)),
       'project_title'            => new sfValidatorString(array('max_length' => 255)),
       'project_plot_number'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'village'                  => new sfValidatorString(array('max_length' => 255, 'required' => false)),

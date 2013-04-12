@@ -16,4 +16,11 @@ class EIReportTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('EIReport');
     }
+	//get eireports submitted by users
+	public function getEIReports()
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * from e_i_report");
+	 //
+	 return $query;
+	}
 }

@@ -63,4 +63,20 @@ class EITaskAssignmentTable extends Doctrine_Table
 		
 		return $q->execute();
 	}
+	//method to get all assigned tasks
+	public function getCurrentLoggedUserAssignTasks()
+	{
+	$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select e_i_task_assignment.id,e_i_a_project_detail.name,e_i_task_assignment.duedate,e_i_a_project_detail.project_reference_number ,sf_guard_user.username ,e_i_task_assignment.instructions, e_i_task_assignment.duedate ,e_i_task_assignment.work_status from e_i_task_assignment 
+		left join sf_guard_user on e_i_task_assignment.user_assigned = sf_guard_user .id
+		left join e_i_a_project_detail on e_i_task_assignment.eiaproject_id = e_i_a_project_detail.id
+		where e_i_task_assignment.created_by = '$userId' ");
+	 return $query;
+	}
+	//check existance of eiaproject_id 
+	public function checkEiaExistance($eiaproject_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select id from  e_i_task_assignment where eiaproject_id = '$eiaproject_id' ");
+	 return $query;
+	}
 }

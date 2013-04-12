@@ -73,8 +73,35 @@ class eiaProjectSurroundingActions extends sfActions
     if ($form->isValid())
     {
       $eia_project_surrounding = $form->save();
-
-      $this->redirect('projectSorroundingSpecies/new?id='.$eia_project_surrounding->getId().'&token='.$eia_project_surrounding->getToken());
+       ///
+	    //get the setAttribute
+	  $project_id = $this->getUser()->getAttribute('eiaprojectid');
+	  //we also control if it new or edit action to be execute for eiaprojectdeveloper module
+	  //
+	 $query2 = Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->queryForId($project_id);
+	 $queried_id = null ;
+	 $queried_token = null;
+	 foreach($query2 as $q)
+	 {
+	  $queried_id = $q['id'];
+	  $queried_token = $q['token'];
+	 }
+	// print $queried_id; exit;
+	 //
+	 if($queried_id != null) //edit, we redirect to editing method
+	 {
+	 $this->redirect('projectSorroundingSpecies/edit?id='.$queried_id.'&token='.$queried_token);
+	 }
+	 else if($queried_id  == null ) //new, we redirect to new method
+	 {
+	  $this->redirect('projectSorroundingSpecies/new?id='.$eia_project_surrounding->getId().'&token='.$eia_project_surrounding->getToken());
+	 }
+	   
+	   
+	   
+	   
+	   
+      
     }
   }
 }

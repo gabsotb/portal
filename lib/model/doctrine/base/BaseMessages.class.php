@@ -7,6 +7,9 @@
  * 
  * @property string $sender
  * @property string $recepient
+ * @property string $sender_email
+ * @property string $recepient_email
+ * @property string $cc_email
  * @property string $message_subject
  * @property string $message
  * @property string $attachement
@@ -14,12 +17,18 @@
  * 
  * @method string   getSender()          Returns the current record's "sender" value
  * @method string   getRecepient()       Returns the current record's "recepient" value
+ * @method string   getSenderEmail()     Returns the current record's "sender_email" value
+ * @method string   getRecepientEmail()  Returns the current record's "recepient_email" value
+ * @method string   getCcEmail()         Returns the current record's "cc_email" value
  * @method string   getMessageSubject()  Returns the current record's "message_subject" value
  * @method string   getMessage()         Returns the current record's "message" value
  * @method string   getAttachement()     Returns the current record's "attachement" value
  * @method string   getToken()           Returns the current record's "token" value
  * @method Messages setSender()          Sets the current record's "sender" value
  * @method Messages setRecepient()       Sets the current record's "recepient" value
+ * @method Messages setSenderEmail()     Sets the current record's "sender_email" value
+ * @method Messages setRecepientEmail()  Sets the current record's "recepient_email" value
+ * @method Messages setCcEmail()         Sets the current record's "cc_email" value
  * @method Messages setMessageSubject()  Sets the current record's "message_subject" value
  * @method Messages setMessage()         Sets the current record's "message" value
  * @method Messages setAttachement()     Sets the current record's "attachement" value
@@ -45,15 +54,30 @@ abstract class BaseMessages extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('message_subject', 'string', 300, array(
+        $this->hasColumn('sender_email', 'string', 255, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 300,
+             'length' => 255,
              ));
-        $this->hasColumn('message', 'string', 4000, array(
+        $this->hasColumn('recepient_email', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('cc_email', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('message_subject', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('message', 'string', 10000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 4000,
+             'length' => 10000,
              ));
         $this->hasColumn('attachement', 'string', 255, array(
              'type' => 'string',

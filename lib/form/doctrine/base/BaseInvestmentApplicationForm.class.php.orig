@@ -22,6 +22,7 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
       'title_in_company'           => new sfWidgetFormInputText(),
       'business_sector'            => new sfWidgetFormTextarea(),
       'business_category'          => new sfWidgetFormInputText(),
+      'representative_name'        => new sfWidgetFormInputText(),
       'office_telephone'           => new sfWidgetFormInputText(),
       'fax'                        => new sfWidgetFormInputText(),
       'post_box'                   => new sfWidgetFormInputText(),
@@ -44,6 +45,7 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
       'title_in_company'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'business_sector'            => new sfValidatorString(array('max_length' => 1000)),
       'business_category'          => new sfValidatorString(array('max_length' => 255)),
+      'representative_name'        => new sfValidatorString(array('max_length' => 255)),
       'office_telephone'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'fax'                        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'post_box'                   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
@@ -51,7 +53,7 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
       'sector'                     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'district'                   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'city_province'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'applicant_reference_number' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'applicant_reference_number' => new sfValidatorString(array('max_length' => 255)),
       'token'                      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'                 => new sfValidatorDateTime(),
       'updated_at'                 => new sfValidatorDateTime(),
@@ -145,4 +147,4 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> d33b56d38c59bda6f5bdc7678282e1673275be64
+>>>>>>> f96885150764993174e024e4524cd25945e560f5

@@ -79,4 +79,12 @@ class messagesActions extends sfActions
       $this->redirect('messages/edit?id='.$messages->getId());
     }
   }
+  //this is a method that retrieves email address of all users
+  public function executeEmails()
+  {
+    $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT email_address from sf_guard_user");
+	//$emails = array();
+	//$emails = array('emails' => $query) ;
+	 echo(json_encode($query)); exit;
+  }
 }
