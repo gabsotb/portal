@@ -1,6 +1,18 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
-
+<?php
+  $eiaprojectid = sfContext::getInstance()->getUser()->getAttribute('eiaprojectid');
+  $eiaproject_query = Doctrine_Core::getTable('EIAProjectAttachment')->getProjectDetailTokenAndId($eiaprojectid);
+  $eai_project_attachment_token = null ;
+  $eia_project_attachment_id = null ;
+  //
+  foreach($eiaproject_query as $q)
+  {
+   $eai_project_attachment_token = $q['token'];
+   $eia_project_attachment_id = $q['id'];
+  }
+  ///
+  ?>
 <form action="<?php echo url_for('projectAttachment/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
@@ -50,5 +62,6 @@
   </div>
   </div>
   <?php echo $form->renderHiddenFields(); ?>
+  <a href="<?php echo url_for('projectOperationPhase/edit?id='.$eia_project_attachment_id.'&token='.$eai_project_attachment_token) ?>" class="btn"><?php echo __('Previous') ?> <i class="icon-step-backward"></i></a> 
    <input type="submit" class="btn btn-success" value="Finish" />
 </form>

@@ -51,7 +51,8 @@ class dashboardActions extends sfActions
 	   //////////TOR/////
 	 //  $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
 	   //////////////////////////
- 
+     //method to retrieve all EIReport submitted by investors for which this EIA data admin is processing
+	 $this->eireports = Doctrine_Core::getTable('EIReport')->getEIReports();
    	
   } 
   ///////////////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,20 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 
+<?php
+  $eiaprojectid = sfContext::getInstance()->getUser()->getAttribute('eiaprojectid');
+  $eiaproject_query = Doctrine_Core::getTable('EIAProjectDeveloper')->getProjectDetailTokenAndId($eiaprojectid);
+  $eai_project_developer_token = null ;
+  $eia_project_developer_id = null ;
+  //
+  foreach($eiaproject_query as $q)
+  {
+   $eai_project_developer_token = $q['token'];
+   $eia_project_developer_id = $q['id'];
+  }
+  ///
+  ?>
+
 <form action="<?php echo url_for('projectDescription/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
@@ -355,6 +369,7 @@
 								</div>
 </div>
  <div>
+    <a href="<?php echo url_for('eiaProjectDeveloper/edit?id='.$eia_project_developer_id.'&token='.$eai_project_developer_token) ?>" class="btn"><?php echo __('Previous') ?> <i class="icon-step-backward"></i></a> 
    <input type="submit" class="btn btn-primary" value="Next" />
  </div>
 </form>

@@ -1,14 +1,14 @@
 <?php
 
 /**
- * eiReport actions.
+ * eireport actions.
  *
  * @package    rdbeportal
- * @subpackage eiReport
+ * @subpackage eireport
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class eiReportActions extends sfActions
+class eireportActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
@@ -63,7 +63,7 @@ class eiReportActions extends sfActions
     $this->forward404Unless($ei_report = Doctrine_Core::getTable('EIReport')->find(array($request->getParameter('id'))), sprintf('Object ei_report does not exist (%s).', $request->getParameter('id')));
     $ei_report->delete();
 
-    $this->redirect('eiReport/index');
+    $this->redirect('eireport/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -73,7 +73,8 @@ class eiReportActions extends sfActions
     {
       $ei_report = $form->save();
 
-      $this->redirect('eiReport/edit?id='.$ei_report->getId());
+     // $this->redirect('eireport/edit?id='.$ei_report->getId());
+	 $this->redirect('investmentapp/index');
     }
   }
 }

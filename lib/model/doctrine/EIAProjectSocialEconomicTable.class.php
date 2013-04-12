@@ -16,4 +16,12 @@ class EIAProjectSocialEconomicTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('EIAProjectSocialEconomic');
     }
+	//
+	///method to search for a certain id
+	public function queryForId($project_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT id, token from e_i_a_project_social_economic WHERE eiaproject_id = '$project_id' limit 1 ");
+	 ///
+	 return $query;
+	}
 }

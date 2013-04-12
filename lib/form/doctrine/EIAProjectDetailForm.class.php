@@ -12,7 +12,12 @@ class EIAProjectDetailForm extends BaseEIAProjectDetailForm
 {
   public function configure()
   {
-    unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by'] , $this['token'], $this['project_reference_number']);
+    unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by'] , $this['token']);
+	$number = Doctrine_Core::getTable('EIAProjectDetail')->createIncrementalReferenceNumber();
+	//$this->setProjectReferenceNumber($number);
+	$this->setDefault('project_reference_number', $number) ;
+	///
+	$this->widgetSchema['project_reference_number'] = new sfWidgetFormInputHidden();
 	$this->setDefault('created_at',date('Y-m-d 00:00:00'));
 	//////we also generate a unique reference number for each application of a user
 	//set some default Fields Text

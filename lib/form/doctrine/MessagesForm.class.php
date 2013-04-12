@@ -24,7 +24,7 @@ class MessagesForm extends BaseMessagesForm
 	//$this->widgetSchema->setLabel('attachement','Any Attachment?');
 	///
 	$this->widgetSchema['attachement'] = new sfWidgetFormInputFileEditable(array(
-	   'label'=>'Any Attachment?',
+	   'label'=>'Attach File',
 	   'file_src' =>'/uploads/documents/messages_docs'.$this->getObject()->getAttachement(),
 	   #'is_image' => true,
 	   'edit_mode' => !$this->isNew(),
@@ -35,5 +35,8 @@ class MessagesForm extends BaseMessagesForm
 	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/messages_docs',
 	   ));
+	   //set labels
+	   $this->widgetSchema->setLabels(array('recepient' => 'Recepient(s):' ,'cc_email' => 'Cc:', 'message_subject' => 'Subject:','message' => 'Message:' ));
+	   
   }
 }

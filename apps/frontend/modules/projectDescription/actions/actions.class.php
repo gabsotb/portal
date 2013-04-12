@@ -28,7 +28,8 @@ class projectDescriptionActions extends sfActions
 	if(!is_null($developer=Doctrine_Core::getTable('EIAProjectDeveloper')->find(array($request->getParameter('id')))) && $developer->getToken()==$request->getParameter('token')){
 	
 		$this->form = new EIAProjectDescriptionForm();
-	}else{
+	}
+	else{
 		$this->getUser()->setFlash('notice','Please fill in this form first before proceeding');
 		$this->redirect('@project_detail');
 	}

@@ -20,12 +20,11 @@ class EIAProjectDetail extends BaseEIAProjectDetail
 		  try
 		  {
 			  ///
-		  if (!$this->getToken() && !$this->getProjectReferenceNumber())
+		  if (!$this->getToken())
 		  {
 			$this->setToken(sha1(date().rand(11111, 99999)));
 			//get the incremental number and set it
-			$number = Doctrine_Core::getTable('EIAProjectDetail')->createIncrementalReferenceNumber();
-			$this->setProjectReferenceNumber($number);
+			
 			
 		  }
 		  	if(!$this->getName())

@@ -1,6 +1,18 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
-
+<?php
+  $eiaprojectid = sfContext::getInstance()->getUser()->getAttribute('eiaprojectid');
+  $eiaproject_query = Doctrine_Core::getTable('EIAProjectDescription')->getProjectDetailTokenAndId($eiaprojectid);
+  $eai_project_desc_token = null ;
+  $eia_project_desc_id = null ;
+  //
+  foreach($eiaproject_query as $q)
+  {
+   $eai_project_desc_token = $q['token'];
+   $eia_project_desc_id = $q['id'];
+  }
+  ///
+  ?>
 <form action="<?php echo url_for('eiaProjectSurrounding/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?> class="form-horizontal">
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
@@ -262,11 +274,11 @@
     <div class="form-actions">
   
           <?php echo $form->renderHiddenFields(false) ?>
-          &nbsp;<a href="<?php echo url_for('eiaProjectSurrounding/index') ?>" class="btn">Back</a>
+          &nbsp;<a href="<?php echo url_for('projectDescription/edit?id='.$eia_project_desc_id.'&token='.$eai_project_desc_token) ?>" class="btn"><?php echo __('Previous') ?><i class="icon-step-backward"></i></a>
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php //echo link_to('Delete', 'eiaProjectSurrounding/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
           <?php endif; ?>
-          <input type="submit" value="Next" class="btn btn-primary" />
+          <input type="submit" value="<?php echo __('Next') ?>" class="btn btn-primary" />
 
     </div>
 	

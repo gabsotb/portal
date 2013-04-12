@@ -46,6 +46,9 @@ information_portlets:
 investment_resubmit:
  url: /:sf_culture/resubmit/application
  param: {module: investmentresubmit, action: new}
+eireport_resubmission:
+ url: /:sf_culture/resubmit/report
+ param: {module: eireportresubmit, action: new}
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 channel:

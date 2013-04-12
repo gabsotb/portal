@@ -30,7 +30,7 @@ abstract class BaseEIAProjectDetailFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'project_reference_number' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'project_reference_number' => new sfValidatorPass(array('required' => false)),
       'project_title'            => new sfValidatorPass(array('required' => false)),
       'project_plot_number'      => new sfValidatorPass(array('required' => false)),
       'village'                  => new sfValidatorPass(array('required' => false)),
@@ -64,7 +64,7 @@ abstract class BaseEIAProjectDetailFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                       => 'Number',
-      'project_reference_number' => 'Number',
+      'project_reference_number' => 'Text',
       'project_title'            => 'Text',
       'project_plot_number'      => 'Text',
       'village'                  => 'Text',

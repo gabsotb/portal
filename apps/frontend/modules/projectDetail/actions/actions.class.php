@@ -42,7 +42,7 @@ class projectDetailActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($eia_project_detail = Doctrine_Core::getTable('EIAProjectDetail')->find(array($request->getParameter('id'))) , sprintf('Object eia_project_detail does not exist (%s).', $request->getParameter('id')));
-    $this->forward404Unless($eia_project_detail->getToken == $request->getParameter('token'),'No such token exists');
+   // $this->forward404Unless($eia_project_detail->getToken == $request->getParameter('token'),'No such token exists');
 	$this->form = new EIAProjectDetailForm($eia_project_detail);
   }
 
@@ -76,7 +76,30 @@ class projectDetailActions extends sfActions
 	  //Retieve values from the form and redirect
 		
 		//$this->getUser()->addFormHistory($eia_project_detail->getId(),$eia_project_detail->getToken());
-      $this->redirect('eiaProjectDeveloper/new?id='.$eia_project_detail->getId().'&token='.$eia_project_detail->getToken());
+		//we will set a session id value to eiaprojectid for the current logged user application and delete it when the user
+		//completes the last step
+	  $this->getUser()->setAttribute('eiaprojectid',$eia_project_detail->getId());
+	  //get the setAttribute
+	  $project_id = $this->getUser()->getAttribute('eiaprojectid');
+	  //we also control if it new or edit action to be execute for eiaprojectdeveloper module
+	  //
+	 $query2 = Doctrine_Core::getTable('EIAProjectDeveloper')->queryForId($project_id);
+	 $queried_id = null ;
+	 foreach($query2 as $q)
+	 {
+	  $queried_id = $q['id'];
+	 }
+	// print $queried_id; exit;
+	 //
+	 if($queried_id != null) //edit, we redirect to editing method
+	 {
+	 $this->redirect('eiaProjectDeveloper/edit?id='.$eia_project_detail->getId().'&token='.$eia_project_detail->getToken());
+	 }
+	 else if($queried_id  == null ) //new, we redirect to new method
+	 {
+	  $this->redirect('eiaProjectDeveloper/new?id='.$eia_project_detail->getId().'&token='.$eia_project_detail->getToken());
+	 }
+      
     }
   }
 }

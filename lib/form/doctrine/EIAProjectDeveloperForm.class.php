@@ -17,8 +17,11 @@ class EIAProjectDeveloperForm extends BaseEIAProjectDeveloperForm
 				$this['token']
 			);
 		$this->widgetSchema['eiaproject_id'] = new sfWidgetFormInputHidden() ;
-		$this->setDefault('eiaproject_id', Doctrine_Core::getTable('EIAProjectDetail')->getProjectId());
-		
+		//we get the eiaproject_id from session variable
+		$eiaproject_id = sfContext::getInstance()->getUser()->getAttribute('eiaprojectid');
+		//print $eiaproject_id ; exit;
+		$this->setDefault('eiaproject_id', $eiaproject_id );
+		//$this->setDefault('developer_name', $eiaproject_id);
 		$this->validatorSchema['email_address'] = new sfValidatorAnd(array(
 		  $this->validatorSchema['email_address'],
 		  new sfValidatorEmail(),

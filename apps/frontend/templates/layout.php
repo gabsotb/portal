@@ -302,14 +302,257 @@
 				</li>
 				<li class="has-sub"><a href="javascript:;"><i class="icon-certificate"></i> <?php echo __('EIA Certificate') ?> <span class="arrow"></span></a>
 				<ul class="sub">
-					<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificate') ?> </a></li>
+				<!-- Custom code -------->
+				<?php	$eiaStatus = Doctrine_Core::getTable('EIApplicationStatus')->getUserStatus(); ?>
+				
+				<?php if(count($eiaStatus)==0): ?>
+				      <?php
+                                         //lets create a method that checks for id in table eaiprojectdetail and not in eaiprojectdeveloper table
+										 //get the current user id
+										 $logged_user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+										 //write a method to retrieve record updated by this user from table eaiprojectdetail .
+										 $query = Doctrine_Core::getTable('EIAProjectDetail')->getUserSubmission($logged_user_id);
+										 //we have id, project_reference_number
+										 $project_id = null;
+										 $project_reference_number = null ;
+										 $pdetail_token = null ;
+										 ///
+										 foreach( $query as $q)
+										 {
+										   $project_id = $q['id'];
+										   $project_reference_number = $q['project_reference_number'];
+										   $pdetail_token = $q['token'];
+										 }
+										 // step 2 
+										 //we need to query for this id in table eaiprojectdeveloper
+										 $query2 = Doctrine_Core::getTable('EIAProjectDeveloper')->queryForId($project_id);
+										 $queried_id = null ;
+										 $pdeveloper_token = null;
+										 foreach($query2 as $q)
+										 {
+										  $queried_id = $q['id'];
+										  $pdeveloper_token = $q['token'];
+										 }
+										 //step 3
+										 //we also query for this id in table eiprojectdecsription
+										 $query3 = Doctrine_Core::getTable('EIAProjectDescription')->queryForId($project_id);
+										 $queried_id2 = null ;
+										 $pdescription_token = null ;
+										 
+										 foreach($query3 as $q)
+										 {
+										  $queried_id2 = $q['id'];
+										   $pdescription_token = $q['token'];
+										 }
+										 /// step 4
+										 $query3 = Doctrine_Core::getTable('EIAProjectSurrounding')->queryForId($project_id);
+										 $queried_id3 = null ;
+										 $psurrounding_token = null ;
+										 
+										 foreach($query3 as $q)
+										 {
+										  $queried_id3 = $q['id'];
+										   $psurrounding_token = $q['token'];
+										 }
+										  //we also query for this id in table eiprojectsorroundingspecies. we will pass id for
+										  //EIAProjectSurrounding
+										  //step 5
+										 $query4 = Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->queryForId($queried_id2);
+										 $queried_id4 = null ;
+										 
+										 
+										 foreach($query4 as $q)
+										 {
+										   $queried_id4 = $q['id'];
+										   $psurrounding_species_token = $q['token'];
+										 }
+										 //step 6
+										  $query5 = Doctrine_Core::getTable('EIAProjectSocialEconomic')->queryForId($project_id);
+										 $queried_id5 = null ;
+										 
+										 
+										 foreach($query5 as $q)
+										 {
+										   $queried_id5 = $q['id'];
+										   $psocial_economic_token = $q['token'];
+										 }
+										 //step 7
+										   $query6 = Doctrine_Core::getTable('EIAProjectImpactMeasures')->queryForId($project_id);
+										   $queried_id6 = null ;
+										 
+										 
+										 foreach($query6 as $q)
+										 {
+										   $queried_id6 = $q['id'];
+										   $psocial_impact_token = $q['token'];
+										 }
+										 //step 8
+										    $query7 = Doctrine_Core::getTable('EIAProjectOperationPhase')->queryForId($project_id);
+										    $queried_id7 = null ;
+										 
+										 
+										 foreach($query7 as $q)
+										 {
+										   $queried_id7 = $q['id'];
+										   $psocial_operation_token = $q['token'];
+										 }
+										 //step 9
+										  $query8 = Doctrine_Core::getTable('EIAProjectAttachment')->queryForId($project_id);
+										    $queried_id8 = null ;
+										 
+										 
+										 foreach($query8 as $q)
+										 {
+										   $queried_id8 = $q['id'];
+										   $attachment_token = $q['token'];
+										 }
+										// print "queried_id3". $queried_id3; exit;
+										 //
+								     //  print "Searched id is ".$queried_id; exit;
+									 
+										?>
+										<!-- Incase User Has Compeleted step 1 and exited -->
+										<?php if($project_id != null && $queried_id == null):?>
+										
+										
+										<li class=""><a href ="<?php echo url_for('eiaProjectDeveloper/new?id='.$project_id.'&token='.$pdetail_token) ?>"><i class="icon-certificate"></i> <?php echo __('EIA Complete') ?> </a>
+										  </li>	
+										  <li class=""><a href="<?php echo url_for('projectDetail/edit?id='.$project_id.'&token='.$pdetail_token) ?>"> <i class="icon-certificate"></i><?php echo __('Review') ?>
+												</a>
+										  </li>
+										 
+										<?php endif; ?>
+										<!-- End testing -->
+										
+										<!-- Incase User Has Compeleted step 1,2 but exited -->
+										<?php if($project_id != null && $queried_id2 == null && $queried_id != null):?>
+										
+										  <li class=""><a href ="<?php echo url_for('projectDescription/new?id='.$project_id.'&token='.$pdeveloper_token) ?>"><i class="icon-certificate"></i> <?php echo __('EIA Complete') ?> </a>
+										  </li>	
+										  <li class=""><a href="<?php echo url_for('projectDetail/edit?id='.$project_id.'&token='.$pdetail_token) ?>"><i class="icon-certificate"></i> <?php echo __('Review') ?>
+												</a>
+										  </li>
+										<?php endif; ?>
+										<!-- End testing -->
+										
+										<!-- Incase User Has Compeleted step 1,2,3 but exited -->
+										<?php if($project_id != null && $queried_id3 == null && $queried_id2 != null):?>
+										
+										 <?php //if applicant is not yet done with step 3,4,5,6,7,8,9, we hide this section ?>
+											  
+											 
+											
+											 <li class=""><a href ="<?php echo url_for('eiaProjectSurrounding/new?id='.$project_id.'&token='.$pdescription_token) ?>"><i class="icon-certificate"></i> <?php echo __('EIA Complete') ?> </a>
+										  </li>	
+										  <li class=""><a href="<?php echo url_for('projectDetail/edit?id='.$project_id.'&token='.$pdetail_token) ?>"> <i class="icon-certificate"></i><?php echo __('Review') ?>
+												</a>
+										  </li>
+											  
+											 
+											 
+											 
+										<?php endif; ?>
+										<!-- End testing -->
+										
+										
+										<!-- Incase User Has Compeleted step 1,2,3,4 but exited -->
+										<?php if($project_id != null && $queried_id4 == null && $queried_id3 != null):?>
+										
+										
+										  <li class=""><a href ="<?php echo url_for('projectSorroundingSpecies/new?id='.$project_id.'&token='.$psurrounding_token) ?>"><i class="icon-certificate"></i> <?php echo __('EIA Complete') ?> </a>
+										  </li>	
+										  <li class=""><a href="<?php echo url_for('projectDetail/edit?id='.$project_id.'&token='.$pdetail_token) ?>"> <i class="icon-certificate"></i><?php echo __('Review') ?>
+												</a>
+										  </li>
+										<?php endif; ?>
+										<!-- End testing -->
+										
+										<!-- Incase User Has Compeleted step 1,2,3,4,5 but exited -->
+										<?php if($project_id != null && $queried_id5 == null && $queried_id4 != null):?>
+										<?php 
+										   $psorrounding_species_details = Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->getTablePrimaryIdAndToken($queried_id3);
+										   $psorrounding_species_id = null;
+										   $psorrounding_species_token = null;
+										   foreach($psorrounding_species_details as $q)
+										   {
+										    $psorrounding_species_id = $q['id'];
+											$psorrounding_species_token = $q['token'];
+										   }
+										
+										?>
+										 
+										 <li class=""><a href ="<?php echo url_for('projectSocialEconomic/new?id='.$psorrounding_species_id.'&token='.$psorrounding_species_token) ?>"><i class="icon-certificate"></i> <?php echo __('EIA Complete') ?> </a>
+										  </li>	
+										  <li class=""><a href="<a href="<a href="<?php echo url_for('projectDetail/edit?id='.$project_id.'&token='.$pdetail_token) ?>"> <i class="icon-certificate"></i><?php echo __('Review') ?>
+												</a>
+										  </li>
+										<?php endif; ?>
+										<!-- End testing -->
+										
+										<!-- Incase User Has Compeleted step 1,2,3,4,5,6 but exited -->
+										  <?php if($project_id != null && $queried_id6 == null && $queried_id5 != null):?>
+										
+										 <li class=""><a href ="<?php echo url_for('projectImpactMeasures/new?id='.$queried_id5.'&token='.$psocial_economic_token) ?>"><i class="icon-certificate"></i> <?php echo __('EIA Complete') ?> </a>
+										  </li>	
+										  <li class=""><a href="<a href="<?php echo url_for('projectDetail/edit?id='.$project_id.'&token='.$pdetail_token) ?>"> <i class="icon-certificate"></i><?php echo __('Review') ?>
+												</a>
+										  </li>
+										<?php endif; ?>
+										<!-- End testing -->
+										
+										<!-- Incase User Has Compeleted step 1,2,3,4,5,6, 7 but exited -->
+										  <?php if($project_id != null && $queried_id7 == null && $queried_id6 != null):?>
+										
+										<li class=""><a href ="<?php echo url_for('projectOperationPhase/new?id='.$project_id.'&token='.$psocial_impact_token) ?>"><i class="icon-certificate"></i> <?php echo __('EIA Complete') ?> </a>
+										  </li>	
+										  <li class=""><a href="<?php echo url_for('projectDetail/edit?id='.$project_id.'&token='.$pdetail_token) ?>"> <i class="icon-certificate"></i><?php echo __('Review') ?>
+												</a>
+										  </li>
+										 
+										<?php endif; ?>
+										<!-- End testing -->
+										
+										<!-- Incase User Has Compeleted step 1,2,3,4,5,6, 7,9 but exited -->
+										  <?php if($project_id != null && $queried_id8 == null && $queried_id7 != null):?>
+										
+										  <li class=""><a href ="<?php echo url_for('projectAttachment/new?id='.$project_id.'&token='.$psocial_operation_token) ?>"><i class="icon-certificate"></i> <?php echo __('EIA Complete') ?> </a>
+										  </li>	
+										  <li class=""><a href="<?php echo url_for('projectDetail/edit?id='.$project_id.'&token='.$pdetail_token) ?>"> <i class="icon-certificate"></i><?php echo __('Review') ?>
+												</a>
+										  </li>
+										
+										 
+										<?php endif; ?>
+										<?php if($project_id == null):?>
+										<li class=""><a href ="<?php echo url_for('projectDetail/new') ?>"><i class="icon-certificate"></i> <?php echo __('EIA Certificate') ?> </a></li>
+										<?php endif; ?>
+				<?php endif; ?>
+				
+				<?php if(count($eiaStatus)>0): ?>
+				 <?php foreach($eiaStatus as $status): ?>
+				  <li class=""><a href ="#"><i class="icon-certificate"></i><span class="label label-success"> <?php echo $status['application_status'] ?> </span> <i class="icon-certificate"></i></a></li>
+				  <?php endforeach; ?>
+				<?php endif; ?>
+				<!-- end Custom Code ------>
+                <li class=""> <a href="<?php echo url_for('eireport/new')?>"> <i class="icon-edit"></i> <?php echo __('EIReport') ?> </a></li>				
 				</ul>
 					
+				</li>
+				<li class="has-sub">
+				    <a href="javascript:;" class="">
+					<i class="icon-envelope"></i> <?php echo __('Messaging') ?>
+					<span class="arrow"></span>
+					</a>
+					<ul class="sub">
+					<li class=""> <a href="<?php echo url_for('messages/new') ?>"> <i class="icon-edit"></i> <?php echo __('Create') ?> </a></li>
+					<li class=""><a href="<?php echo url_for('messages/index') ?>"> <i class="icon-envelope-alt"></i> <?php echo __('View') ?> </a></li>
+					</ul>
 				</li>
 				<li class="">
 					<a href="" >
 					<i class="icon-lightbulb"></i> <?php echo __('Help') ?>
 					</a>
+					
 				</li>				
 				<li> 
 				<li class=""><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-off"></i> <?php echo __('Logout') ?> </a></li>
