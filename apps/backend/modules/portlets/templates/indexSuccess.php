@@ -70,9 +70,9 @@
 										<?php foreach ($portletss as $portlets): ?>
 										<tr class="odd gradeX">
 										  
-										  <td><?php echo $portlets->getInvestmentCertificate() ?></td>
-										  <td><?php echo $portlets->getEiaCertificate() ?></td>
-										  <td><?php echo $portlets->getTaxExemptions() ?></td>
+										  <td><?php echo html_entity_decode($portlets->getInvestmentCertificate()) ?></td>
+										  <td><?php echo html_entity_decode($portlets->getEiaCertificate()) ?></td>
+										  <td><?php echo html_entity_decode($portlets->getTaxExemptions()) ?></td>
 										  <td><a href="<?php echo url_for('portlets/show?id='.$portlets->getId()) ?>"><button class="btn"><i class="icon-eye-open"></i> View</button></a></td>
 										</tr>
 										<?php endforeach; ?>
