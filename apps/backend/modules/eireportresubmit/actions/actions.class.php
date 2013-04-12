@@ -46,7 +46,9 @@ class eireportresubmitActions extends sfActions
 	{
 	 //set a session id for the project_id
 	$this->getUser()->setAttribute('project_id_resubmit', $project_id);
-    $this->form = new EIReportResubmissionForm();
+	
+	
+   $this->form = new EIReportResubmissionForm();
 	}
 	
   }
@@ -94,9 +96,71 @@ class eireportresubmitActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
-      $ei_report_resubmission = $form->save();
-
-      $this->redirect('eireportresubmit/edit?id='.$ei_report_resubmission->getId());
+        
+       //we notify the client/investor that of this request from the data admin
+        //retrieve the session id and use it to get the email address of the client and username.
+		$project_id = $this->getUser()->getAttribute('project_id_resubmit');
+		//get values from form
+	   $allFormValues = $request->getParameter($this->form->getName());
+		//
+		$message = $allFormValues['comments'];
+		
+		
+		//retrieve the client username and password.
+		$query_investor = Doctrine_Core::getTable('EIAProjectDetail')->getInvestorInfo($project_id);
+		$investor_name = null;
+		$investor_email = null ;
+		//loop
+		foreach($query_investor  as $q)
+		{
+		 $investor_name = $q['updated_by'];
+		 $investor_email = $q['email_address'];
+		}
+		//pass values to method resposible for messaging
+		//print $message; exit;
+		
+	    $ei_report_resubmission = $form->save();
+		$this->sendMessages($investor_name, $investor_email,$message);
+		$this->updateEIReportStatus($project_id);
+     // $this->redirect('eireportresubmit/edit?id='.$ei_report_resubmission->getId());
+	   $this->redirect('dashboard/index');
     }
   }
+  //custom method to send emails and notifications
+  public function sendMessages($investor_name, $investor_email,$msg)
+  {
+   //get current logged in username
+		//$logged_user = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
+		 $logged_user = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
+		 $logged_user_email = sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
+		//print  $logged_user; exit;
+		//
+		$message = new Messages();
+		$message->sender = $logged_user ;
+		$message->recepient = $investor_name;
+		$message->sender_email = $logged_user_email;
+		$message->recepient_email = $investor_email;
+		$message->message = $msg;
+		$message->created_at = date('Y-m-d H:i:s');
+		$message->save();
+		/// notifications
+		//notify the user logged of successful request sent
+		$notifications = new Notifications();
+		$notifications->recepient = $logged_user ;
+		$notifications->message = "Request for EIReport Resubmission sent successfuly." ;
+		$notifications->save();
+		//we also update the status of the EIReport
+		
+  }
+  //custom method to update the status of eireport
+  public function updateEIReportStatus($eiaproject_id)
+	{
+	 $value = "awaitingresubmission";
+	 //
+      $q = Doctrine_Query::create()
+	 ->UPDATE('EIReport')
+	 ->SET('status ', '?' , $value)
+	 ->WHERE('eiaproject_id = ?', $eiaproject_id);
+	 $q->execute();
+	}
 }

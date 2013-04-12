@@ -42,6 +42,8 @@ class eireportActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($ei_report = Doctrine_Core::getTable('EIReport')->find(array($request->getParameter('id'))), sprintf('Object ei_report does not exist (%s).', $request->getParameter('id')));
+	//we also set a session variable for status
+	$this-getUser()->setAttribute('eireport_submission_status',$request->getParameter('status'));
     $this->form = new EIReportForm($ei_report);
   }
 
@@ -72,7 +74,10 @@ class eireportActions extends sfActions
     if ($form->isValid())
     {
       $ei_report = $form->save();
-
+      ///
+	  $allFormValues = $request->getParameter($this->form->getName());
+	  $project_id = $allFormValues['eiaproject_id'];
+	  //we access a method that updates the status in EIReport and EIReportSubmission
      // $this->redirect('eireport/edit?id='.$ei_report->getId());
 	 $this->redirect('investmentapp/index');
     }

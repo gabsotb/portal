@@ -1362,7 +1362,13 @@ $(function () {
 										<tbody>
 											<tr class="odd gradeX">
 												<td class="highlight">
-													<?php echo $report['eiaproject_id'] ?></td>
+													<?php 
+													 
+													//
+													 $value = Doctrine_Core::getTable('EIAProjectDetail')->getReferenceNo($report['eiaproject_id']);
+													//
+													echo $value;
+													?></td>
 												<td>
 												<?php echo link_to('Download Doc', '/uploads/documents/eia_documents/user_eireports/'.$report['word_doc'], array('target' => '_blank')); ?>
 												</td>
@@ -1370,12 +1376,27 @@ $(function () {
 												  <?php echo link_to('Download Doc', '/uploads/documents/eia_documents/user_eireports/'.$report['pdf_doc'], array('target' => '_blank')); ?>
 												</td>
 												<td> <?php echo $report['created_at'] ?> </td>
-												<td> <?php echo $report['status'] ?></td>
-												<td><a href="#widget-resubmit" data-toggle="modal"><button class="btn btn-danger"><i class="icon-remove icon-white"></i> <?php 
+												<td> 
+												   <div class="alert alert-success">
+														<?php echo $report['status'] ?>
+													</div>
+												   
+												</td>
+												<td>
+												<?php if( $report['status'] == "awaitingresubmission"): ?>
+												   <div class="alert alert-error">
+														<button class="close" data-dismiss="alert">×</button>
+														<strong><?php echo __('Sorry Not Available') ?></strong>
+													</div>
+												 <?php endif; ?>
+												 <?php if( $report['status'] != "awaitingresubmission"): ?>
+												 <a href="#widget-resubmit" data-toggle="modal"><button class="btn btn-danger"><i class="icon-remove icon-white"></i> <?php 
 												$project_id = $report['eiaproject_id'] ;
 												echo __('Resubmit') ?></button></a>
+												
 												<a href="<?php echo url_for('eireport/approve')?>">
 												 <button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Approve') ?></button></a>
+												 <?php endif; ?>
 												</td>
 											</tr>
 											

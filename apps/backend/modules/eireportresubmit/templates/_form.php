@@ -5,20 +5,29 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-  <table>
+  <table class="table table-striped table-bordered">
+    <tbody>
+      <div class="control-group">
+		  <?php echo $form['comments']->renderError() ?>
+			<div class="controls">
+			<label class="control-label"><?php echo $form['comments']->renderLabel() ?></label>
+			    
+				<div class="input-prepend">
+					<?php echo $form['comments']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?>
+					
+				</div>
+			</div>
+			 <?php echo $form->renderHiddenFields(); ?>
+		</div>
+    </tbody>
     <tfoot>
       <tr>
         <td colspan="2">
-          &nbsp;<a href="<?php echo url_for('eireportresubmit/index') ?>">Back to list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'eireportresubmit/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-          <?php endif; ?>
-          <input type="submit" value="Save" />
+          &nbsp;<a href="<?php echo url_for('eireportresubmit/index') ?>"><button type="button" class="btn btn-danger"><?php echo __('Cancel') ?></button></a>
+          <input type="submit" class="btn btn-primary" value="<?php echo __('Request') ?>" />
         </td>
       </tr>
     </tfoot>
-    <tbody>
-      <?php echo $form ?>
-    </tbody>
+    
   </table>
 </form>

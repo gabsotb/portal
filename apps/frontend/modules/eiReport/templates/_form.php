@@ -10,27 +10,26 @@
 		  <h4><?php echo __('Upload The Followind Documents') ?></h4>
 		</div>
 		<div class="widget-body">
-         <div class="control-group"> 
+          <div class="control-group">
+                                <label class="control-label"><?php echo $form['word_doc']->renderLabel() ?></label>
                                  <div class="controls">
-								 <label class="control-label"><?php echo $form['word_doc']->renderLabel() ?></label>
-                                     <div class="fileupload fileupload-new" data-provides="fileupload">
-                                      <span class="btn btn-file"><span class="fileupload-new"><i class="icon-upload"> </i></span><span class="fileupload-exists"><i class="icon-remove"> </i></span><?php echo $form['word_doc']->render(array('class' => 'default'))?></span>
-                                      <span class="fileupload-preview"></span>
-                                      <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                      <div class="input-append">
+                                        <?php echo $form['word_doc']->render(array('class' => 'default'))?>
+                                      </div>
                                     </div>
                                  </div>
-            </div> 
-			<div class="control-group"> 
+            </div>
+			<div class="control-group">
+                                <label class="control-label"><?php echo $form['pdf_doc']->renderLabel() ?></label>
                                  <div class="controls">
-								 <label class="control-label"><?php echo $form['pdf_doc']->renderLabel() ?></label>
-                                     <div class="fileupload fileupload-new" data-provides="fileupload">
-                                      <span class="btn btn-file"><span class="fileupload-new"><i class="icon-upload"> </i></span><span class="fileupload-exists"><i class="icon-remove"> </i></span><?php echo $form['pdf_doc']->render(array('class' => 'default'))?></span>
-                                      <span class="fileupload-preview"></span>
-                                      <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                      <div class="input-append">
+                                        <?php echo $form['pdf_doc']->render(array('class' => 'default'))?>
+                                      </div>
                                     </div>
                                  </div>
-								 <?php echo $form->renderHiddenFields(); ?>
-            </div> 
+            </div>
 			<div class="control-group">
 			<div class="controls">
 			 <label class="control-label"><?php echo $form['comments']->renderLabel() ?></label>
@@ -39,6 +38,14 @@
 				</div>
 			</div>
 		    </div>
+			<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					
+					<?php echo $form->renderHiddenFields(); ?>
+				</div>
+			 </div>
+		      </div>
 			<div class="controls">
 				<div class="">
 				<input type="submit" class="btn btn-success" value="Submit" />

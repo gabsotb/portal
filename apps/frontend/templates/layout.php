@@ -534,7 +534,7 @@
 				  <?php endforeach; ?>
 				<?php endif; ?>
 				<!-- end Custom Code ------>
-                <li class=""> <a href="<?php echo url_for('eireport/new')?>"> <i class="icon-edit"></i> <?php echo __('EIReport') ?> </a></li>				
+                <li class=""> <a href="<?php echo url_for('eireport/new')?>"> <i class="icon-edit"></i> <?php echo __('EIReport') ?> </a></li>						
 				</ul>
 					
 				</li>

@@ -165,4 +165,22 @@ class EIAProjectDetailTable extends Doctrine_Table
 	 }
 	 return $real; 
 	}
+	//function to retrieve applicant details
+	public function getInvestorInfo($project_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select updated_by, email_address from e_i_a_project_detail left join sf_guard_user on e_i_a_project_detail.created_by = sf_guard_user.id ");
+	 //
+	 return $query;
+	}
+	//method to retrieve project reference number
+	public function getReferenceNo($project_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT project_reference_number from e_i_a_project_detail where id = '$project_id' ");
+	 $number = null ;
+	 foreach($query as $q)
+	 {
+	  $number = $q['project_reference_number'];
+	 }
+	 return $number;
+	}
 }

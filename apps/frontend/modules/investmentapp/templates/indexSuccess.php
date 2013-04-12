@@ -836,8 +836,24 @@ $(function () {
 										</div>
 										<?php endif; ?>
 									</div>
-											
+										
 								</div>
+								<?php //to make it possible for users to resubmit, we will access the table EIReportResubmission
+                                        //we check for report EIReport submitted by this user whose status is awaitingresubmission
+									$userId = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
+									$query_status = Doctrine_Core::getTable('EIReportResubmission')->checkResubmissionStatus($user_id);	
+									$value_status = null;
+									$value_status_name = null;
+									foreach($query_status as $q)
+									{
+									 $value_status = $q['eiaproject_id'];
+									 $value_status_name = $q['status'];
+									}
+				                    ?>
+								<?php if($value_status != null): ?>
+								<a href="<?php echo url_for('eiReport/edit?id='.$value_status.'&status='.$value_status_name) ?>">
+											<button type="button" class="btn btn-block"><?php echo __('Resubmit Report') ?></button></a>
+								<?php endif; ?>
 								<!-- end EIA -->	 
 								
 									
