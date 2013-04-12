@@ -7441,3 +7441,411 @@ Apr 12 17:18:27 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/
 Apr 12 17:18:27 symfony [info] {sfWebDebugLogger} Component "language/language" 24.79 ms (1)
 Apr 12 17:18:27 symfony [info] {sfWebDebugLogger} Partial "language/_language" 3.30 ms (1)
 Apr 12 17:18:27 symfony [info] {sfWebResponse} Send content (110390 o)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/guard/users/filter.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/guard/users/batch.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/guard/users.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/guard/users/new.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/guard/users.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/guard/users/:id/edit.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/guard/users/:id.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/guard/users/:id.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/guard/users/:id.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/guard/users/:id/:action.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/guard/users/:action/action.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/guard/groups/filter.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/guard/groups/batch.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/guard/groups.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/guard/groups/new.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/guard/groups.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/guard/groups/:id/edit.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/guard/groups/:id.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/guard/groups/:id.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/guard/groups/:id.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/guard/groups/:id/:action.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/guard/groups/:action/action.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/guard/permissions/filter.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/guard/permissions/batch.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/guard/permissions.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/guard/permissions/new.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/guard/permissions.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/guard/permissions/:id/edit.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/guard/permissions/:id.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/guard/permissions/:id.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/guard/permissions/:id.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/guard/permissions/:id/:action.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/guard/permissions/:action/action.:sf_format)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfRoute "apply" (/user/new)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfRoute "reset" (/user/password-reset)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfRoute "resetRequest" (/user/reset-request)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfRoute "resetCancel" (/user/reset-cancel)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfRoute "validate" (/user/confirm/:validate)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Connect sfRoute "settings" (/user/settings)
+Apr 12 21:27:12 symfony [info] {sfPatternRouting} Match route "localized_homepage" (/:sf_culture/) for /en/ with parameters array (  'module' => 'dashboard',  'action' => 'index',  'sf_culture' => 'en',)
+Apr 12 21:27:12 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 12 21:27:12 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 12 21:27:12 symfony [info] {sfFilterChain} Executing filter "sfBasicSecurityFilter"
+Apr 12 21:27:12 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 12 21:27:12 symfony [info] {dashboardActions} Call "dashboardActions->executeIndex()"
+Apr 12 21:27:12 symfony [info] {Doctrine_Connection_Mysql} query : SELECT investment_application.name, investment_application.registration_number,investment_application.applicant_reference_number ,investment_application.token, 
+	 business_plan.created_at, business_plan.updated_by,business_application_status.business_id from business_plan left join investment_application on
+business_plan.investment_id = investment_application.id left join  business_application_status on business_plan.investment_id =  business_application_status.business_id WHERE business_application_status.application_status = 'submitted' - ()
+Apr 12 21:27:12 symfony [info] {Doctrine_Connection_Statement} execute : SELECT s.id AS s__id, s.first_name AS s__first_name, s.last_name AS s__last_name, s.email_address AS s__email_address, s.username AS s__username, s.algorithm AS s__algorithm, s.salt AS s__salt, s.password AS s__password, s.is_active AS s__is_active, s.is_super_admin AS s__is_super_admin, s.last_login AS s__last_login, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM sf_guard_user s WHERE (s.id = ?) LIMIT 1 - (1)
+Apr 12 21:27:12 symfony [info] {Doctrine_Connection_Mysql} query : SELECT task_assignment.investmentapp_id,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
+	 task_assignment.duedate, investment_application.name FROM task_assignment LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='1' AND 
+	 task_assignment.work_status = 'notstarted'
+	  - ()
+Apr 12 21:27:12 symfony [info] {Doctrine_Connection_Mysql} query : SELECT task_assignment.investmentapp_id,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
+	 task_assignment.duedate, investment_application.name, investment_application.location FROM task_assignment 
+	 LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='1' AND 
+	 task_assignment.work_status != 'complete' AND task_assignment.work_status != 'notstarted'
+	  - ()
+Apr 12 21:27:12 symfony [info] {Doctrine_Connection_Mysql} query : SELECT e_i_application_status.id,e_i_a_project_detail.project_reference_number,e_i_a_project_detail.project_title,e_i_a_project_developer.developer_name FROM e_i_application_status LEFT JOIN e_i_a_project_detail ON e_i_a_project_detail.id = e_i_application_status.eiaproject_id LEFT JOIN e_i_a_project_developer ON e_i_a_project_developer.eiaproject_id = e_i_a_project_detail.id WHERE e_i_application_status.application_status = 'submitted' ORDER BY e_i_a_project_detail.project_reference_number DESC  - ()
+Apr 12 21:27:12 symfony [info] {Doctrine_Connection_Mysql} query : SELECT e_i_application_status.id,e_i_a_project_detail.project_reference_number,e_i_a_project_detail.project_title,e_i_a_project_developer.developer_name FROM e_i_application_status LEFT JOIN e_i_a_project_detail ON e_i_a_project_detail.id = e_i_application_status.eiaproject_id LEFT JOIN e_i_a_project_developer ON e_i_a_project_developer.eiaproject_id = e_i_a_project_detail.id WHERE e_i_application_status.application_status = 'assigning' ORDER BY e_i_a_project_detail.project_reference_number DESC  - ()
+Apr 12 21:27:12 symfony [info] {Doctrine_Connection_Statement} execute : SELECT e.id AS e__id, e.user_assigned AS e__user_assigned, e.eiaproject_id AS e__eiaproject_id, e.instructions AS e__instructions, e.duedate AS e__duedate, e.work_status AS e__work_status, e.token AS e__token, e.created_at AS e__created_at, e.updated_at AS e__updated_at, e.created_by AS e__created_by, e.updated_by AS e__updated_by, e2.id AS e2__id, e2.project_reference_number AS e2__project_reference_number, e2.project_title AS e2__project_title, e2.project_plot_number AS e2__project_plot_number, e2.village AS e2__village, e2.cell AS e2__cell, e2.sector AS e2__sector, e2.district AS e2__district, e2.province AS e2__province, e2.name AS e2__name, e2.token AS e2__token, e2.created_at AS e2__created_at, e2.updated_at AS e2__updated_at, e2.created_by AS e2__created_by, e2.updated_by AS e2__updated_by, s.id AS s__id, s.first_name AS s__first_name, s.last_name AS s__last_name, s.email_address AS s__email_address, s.username AS s__username, s.algorithm AS s__algorithm, s.salt AS s__salt, s.password AS s__password, s.is_active AS s__is_active, s.is_super_admin AS s__is_super_admin, s.last_login AS s__last_login, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM e_i_task_assignment e LEFT JOIN e_i_a_project_detail e2 ON e.eiaproject_id = e2.id LEFT JOIN sf_guard_user s ON e.user_assigned = s.id WHERE (e.work_status = ? AND e.created_by = ?) - (assess, 1)
+Apr 12 21:27:12 symfony [info] {Doctrine_Connection_Statement} execute : SELECT e.id AS e__id, e.user_assigned AS e__user_assigned, e.eiaproject_id AS e__eiaproject_id, e.instructions AS e__instructions, e.duedate AS e__duedate, e.work_status AS e__work_status, e.token AS e__token, e.created_at AS e__created_at, e.updated_at AS e__updated_at, e.created_by AS e__created_by, e.updated_by AS e__updated_by FROM e_i_task_assignment e WHERE (e.user_assigned = ?) - (1)
+Apr 12 21:27:12 symfony [info] {sfPHPView} Render "C:\xampp\htdocs\portal\apps\backend\modules/dashboard/templates/indexSuccess.php"
+Apr 12 21:27:12 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT notifications.message,notifications.created_at FROM notifications WHERE notifications.recepient = 'manager'
+	 ORDER BY notifications.created_at DESC LIMIT 3
+	  - ()
+Apr 12 17:27:12 symfony [info] {sfPHPView} Decorate content with "C:\xampp\htdocs\portal\apps\backend\templates/layout.php"
+Apr 12 17:27:12 symfony [info] {sfPHPView} Render "C:\xampp\htdocs\portal\apps\backend\templates/layout.php"
+Apr 12 17:27:12 symfony [info] {main} Get slot "title"
+Apr 12 17:27:12 symfony [info] {main} Call "language->executeLanguage()"
+Apr 12 17:27:12 symfony [info] {sfPartialView} Render "C:\xampp\htdocs\portal\apps\backend\modules/language/templates/_language.php"
+Apr 12 17:27:12 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT COUNT(notifications.message) FROM notifications WHERE notifications.recepient = 'manager' 
+	  - ()
+Apr 12 17:27:12 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT notifications.message,notifications.created_at FROM notifications WHERE notifications.recepient = 'manager'
+	 ORDER BY notifications.created_at DESC LIMIT 3
+	  - ()
+Apr 12 17:27:12 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT COUNT(message) FROM messages WHERE recepient = 'manager'
+	  - ()
+Apr 12 17:27:12 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT messages.id,messages.sender,messages.created_at,messages.message FROM messages WHERE recepient = 'manager'  ORDER BY created_at DESC
+	 LIMIT 2
+	  - ()
+Apr 12 17:27:12 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Apr 12 17:27:12 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 12 17:27:12 symfony [info] {sfWebDebugLogger} Configuration 2404.74 ms (11)
+Apr 12 17:27:12 symfony [info] {sfWebDebugLogger} Factories 293.61 ms (1)
+Apr 12 17:27:12 symfony [info] {sfWebDebugLogger} Database (Doctrine) 10.13 ms (14)
+Apr 12 17:27:12 symfony [info] {sfWebDebugLogger} Action "dashboard/index" 93.88 ms (1)
+Apr 12 17:27:12 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/index" 150.79 ms (1)
+Apr 12 17:27:12 symfony [info] {sfWebDebugLogger} Component "language/language" 24.62 ms (1)
+Apr 12 17:27:12 symfony [info] {sfWebDebugLogger} Partial "language/_language" 2.91 ms (1)
+Apr 12 17:27:12 symfony [info] {sfWebResponse} Send content (110325 o)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/guard/users/filter.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/guard/users/batch.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/guard/users.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/guard/users/new.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/guard/users.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/guard/users/:id/edit.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/guard/users/:id.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/guard/users/:id.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/guard/users/:id.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/guard/users/:id/:action.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/guard/users/:action/action.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/guard/groups/filter.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/guard/groups/batch.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/guard/groups.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/guard/groups/new.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/guard/groups.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/guard/groups/:id/edit.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/guard/groups/:id.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/guard/groups/:id.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/guard/groups/:id.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/guard/groups/:id/:action.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/guard/groups/:action/action.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/guard/permissions/filter.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/guard/permissions/batch.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/guard/permissions.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/guard/permissions/new.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/guard/permissions.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/guard/permissions/:id/edit.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/guard/permissions/:id.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/guard/permissions/:id.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/guard/permissions/:id.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/guard/permissions/:id/:action.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/guard/permissions/:action/action.:sf_format)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfRoute "apply" (/user/new)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfRoute "reset" (/user/password-reset)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfRoute "resetRequest" (/user/reset-request)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfRoute "resetCancel" (/user/reset-cancel)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfRoute "validate" (/user/confirm/:validate)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Connect sfRoute "settings" (/user/settings)
+Apr 12 21:28:28 symfony [info] {sfPatternRouting} Match route "localized_homepage" (/:sf_culture/) for /en/ with parameters array (  'module' => 'dashboard',  'action' => 'index',  'sf_culture' => 'en',)
+Apr 12 21:28:28 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 12 21:28:28 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 12 21:28:28 symfony [info] {sfFilterChain} Executing filter "sfBasicSecurityFilter"
+Apr 12 21:28:28 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 12 21:28:28 symfony [info] {dashboardActions} Call "dashboardActions->executeIndex()"
+Apr 12 21:28:28 symfony [info] {Doctrine_Connection_Mysql} query : SELECT investment_application.name, investment_application.registration_number,investment_application.applicant_reference_number ,investment_application.token, 
+	 business_plan.created_at, business_plan.updated_by,business_application_status.business_id from business_plan left join investment_application on
+business_plan.investment_id = investment_application.id left join  business_application_status on business_plan.investment_id =  business_application_status.business_id WHERE business_application_status.application_status = 'submitted' - ()
+Apr 12 21:28:28 symfony [info] {Doctrine_Connection_Statement} execute : SELECT s.id AS s__id, s.first_name AS s__first_name, s.last_name AS s__last_name, s.email_address AS s__email_address, s.username AS s__username, s.algorithm AS s__algorithm, s.salt AS s__salt, s.password AS s__password, s.is_active AS s__is_active, s.is_super_admin AS s__is_super_admin, s.last_login AS s__last_login, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM sf_guard_user s WHERE (s.id = ?) LIMIT 1 - (1)
+Apr 12 21:28:28 symfony [info] {Doctrine_Connection_Mysql} query : SELECT task_assignment.investmentapp_id,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
+	 task_assignment.duedate, investment_application.name FROM task_assignment LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='1' AND 
+	 task_assignment.work_status = 'notstarted'
+	  - ()
+Apr 12 21:28:28 symfony [info] {Doctrine_Connection_Mysql} query : SELECT task_assignment.investmentapp_id,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
+	 task_assignment.duedate, investment_application.name, investment_application.location FROM task_assignment 
+	 LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='1' AND 
+	 task_assignment.work_status != 'complete' AND task_assignment.work_status != 'notstarted'
+	  - ()
+Apr 12 21:28:28 symfony [info] {Doctrine_Connection_Mysql} query : SELECT e_i_application_status.id,e_i_a_project_detail.project_reference_number,e_i_a_project_detail.project_title,e_i_a_project_developer.developer_name FROM e_i_application_status LEFT JOIN e_i_a_project_detail ON e_i_a_project_detail.id = e_i_application_status.eiaproject_id LEFT JOIN e_i_a_project_developer ON e_i_a_project_developer.eiaproject_id = e_i_a_project_detail.id WHERE e_i_application_status.application_status = 'submitted' ORDER BY e_i_a_project_detail.project_reference_number DESC  - ()
+Apr 12 21:28:28 symfony [info] {Doctrine_Connection_Mysql} query : SELECT e_i_application_status.id,e_i_a_project_detail.project_reference_number,e_i_a_project_detail.project_title,e_i_a_project_developer.developer_name FROM e_i_application_status LEFT JOIN e_i_a_project_detail ON e_i_a_project_detail.id = e_i_application_status.eiaproject_id LEFT JOIN e_i_a_project_developer ON e_i_a_project_developer.eiaproject_id = e_i_a_project_detail.id WHERE e_i_application_status.application_status = 'assigning' ORDER BY e_i_a_project_detail.project_reference_number DESC  - ()
+Apr 12 21:28:29 symfony [info] {Doctrine_Connection_Statement} execute : SELECT e.id AS e__id, e.user_assigned AS e__user_assigned, e.eiaproject_id AS e__eiaproject_id, e.instructions AS e__instructions, e.duedate AS e__duedate, e.work_status AS e__work_status, e.token AS e__token, e.created_at AS e__created_at, e.updated_at AS e__updated_at, e.created_by AS e__created_by, e.updated_by AS e__updated_by, e2.id AS e2__id, e2.project_reference_number AS e2__project_reference_number, e2.project_title AS e2__project_title, e2.project_plot_number AS e2__project_plot_number, e2.village AS e2__village, e2.cell AS e2__cell, e2.sector AS e2__sector, e2.district AS e2__district, e2.province AS e2__province, e2.name AS e2__name, e2.token AS e2__token, e2.created_at AS e2__created_at, e2.updated_at AS e2__updated_at, e2.created_by AS e2__created_by, e2.updated_by AS e2__updated_by, s.id AS s__id, s.first_name AS s__first_name, s.last_name AS s__last_name, s.email_address AS s__email_address, s.username AS s__username, s.algorithm AS s__algorithm, s.salt AS s__salt, s.password AS s__password, s.is_active AS s__is_active, s.is_super_admin AS s__is_super_admin, s.last_login AS s__last_login, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM e_i_task_assignment e LEFT JOIN e_i_a_project_detail e2 ON e.eiaproject_id = e2.id LEFT JOIN sf_guard_user s ON e.user_assigned = s.id WHERE (e.work_status = ? AND e.created_by = ?) - (assess, 1)
+Apr 12 21:28:29 symfony [info] {Doctrine_Connection_Statement} execute : SELECT e.id AS e__id, e.user_assigned AS e__user_assigned, e.eiaproject_id AS e__eiaproject_id, e.instructions AS e__instructions, e.duedate AS e__duedate, e.work_status AS e__work_status, e.token AS e__token, e.created_at AS e__created_at, e.updated_at AS e__updated_at, e.created_by AS e__created_by, e.updated_by AS e__updated_by FROM e_i_task_assignment e WHERE (e.user_assigned = ?) - (1)
+Apr 12 21:28:29 symfony [info] {sfPHPView} Render "C:\xampp\htdocs\portal\apps\backend\modules/dashboard/templates/indexSuccess.php"
+Apr 12 21:28:29 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT notifications.message,notifications.created_at FROM notifications WHERE notifications.recepient = 'manager'
+	 ORDER BY notifications.created_at DESC LIMIT 3
+	  - ()
+Apr 12 17:28:29 symfony [info] {sfPHPView} Decorate content with "C:\xampp\htdocs\portal\apps\backend\templates/layout.php"
+Apr 12 17:28:29 symfony [info] {sfPHPView} Render "C:\xampp\htdocs\portal\apps\backend\templates/layout.php"
+Apr 12 17:28:29 symfony [info] {main} Get slot "title"
+Apr 12 17:28:29 symfony [info] {main} Call "language->executeLanguage()"
+Apr 12 17:28:29 symfony [info] {sfPartialView} Render "C:\xampp\htdocs\portal\apps\backend\modules/language/templates/_language.php"
+Apr 12 17:28:29 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT COUNT(notifications.message) FROM notifications WHERE notifications.recepient = 'manager' 
+	  - ()
+Apr 12 17:28:29 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT notifications.message,notifications.created_at FROM notifications WHERE notifications.recepient = 'manager'
+	 ORDER BY notifications.created_at DESC LIMIT 3
+	  - ()
+Apr 12 17:28:29 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT COUNT(message) FROM messages WHERE recepient = 'manager'
+	  - ()
+Apr 12 17:28:29 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT messages.id,messages.sender,messages.created_at,messages.message FROM messages WHERE recepient = 'manager'  ORDER BY created_at DESC
+	 LIMIT 2
+	  - ()
+Apr 12 17:28:29 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Apr 12 17:28:29 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 12 17:28:29 symfony [info] {sfWebDebugLogger} Configuration 44.18 ms (11)
+Apr 12 17:28:29 symfony [info] {sfWebDebugLogger} Factories 138.17 ms (1)
+Apr 12 17:28:29 symfony [info] {sfWebDebugLogger} Database (Doctrine) 7.99 ms (14)
+Apr 12 17:28:29 symfony [info] {sfWebDebugLogger} Action "dashboard/index" 118.59 ms (1)
+Apr 12 17:28:29 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/index" 197.17 ms (1)
+Apr 12 17:28:29 symfony [info] {sfWebDebugLogger} Component "language/language" 25.90 ms (1)
+Apr 12 17:28:29 symfony [info] {sfWebDebugLogger} Partial "language/_language" 4.70 ms (1)
+Apr 12 17:28:29 symfony [info] {sfWebResponse} Send content (110324 o)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/guard/users/filter.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/guard/users/batch.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/guard/users.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/guard/users/new.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/guard/users.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/guard/users/:id/edit.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/guard/users/:id.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/guard/users/:id.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/guard/users/:id.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/guard/users/:id/:action.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/guard/users/:action/action.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/guard/groups/filter.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/guard/groups/batch.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/guard/groups.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/guard/groups/new.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/guard/groups.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/guard/groups/:id/edit.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/guard/groups/:id.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/guard/groups/:id.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/guard/groups/:id.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/guard/groups/:id/:action.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/guard/groups/:action/action.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/guard/permissions/filter.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/guard/permissions/batch.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/guard/permissions.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/guard/permissions/new.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/guard/permissions.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/guard/permissions/:id/edit.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/guard/permissions/:id.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/guard/permissions/:id.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/guard/permissions/:id.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/guard/permissions/:id/:action.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/guard/permissions/:action/action.:sf_format)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfRoute "apply" (/user/new)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfRoute "reset" (/user/password-reset)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfRoute "resetRequest" (/user/reset-request)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfRoute "resetCancel" (/user/reset-cancel)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfRoute "validate" (/user/confirm/:validate)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Connect sfRoute "settings" (/user/settings)
+Apr 12 21:37:14 symfony [info] {sfPatternRouting} Match route "localized_homepage" (/:sf_culture/) for /en/ with parameters array (  'module' => 'dashboard',  'action' => 'index',  'sf_culture' => 'en',)
+Apr 12 21:37:14 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 12 21:37:14 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 12 21:37:14 symfony [info] {sfFilterChain} Executing filter "sfBasicSecurityFilter"
+Apr 12 21:37:14 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 12 21:37:14 symfony [info] {dashboardActions} Call "dashboardActions->executeIndex()"
+Apr 12 21:37:14 symfony [info] {Doctrine_Connection_Mysql} query : SELECT investment_application.name, investment_application.registration_number,investment_application.applicant_reference_number ,investment_application.token, 
+	 business_plan.created_at, business_plan.updated_by,business_application_status.business_id from business_plan left join investment_application on
+business_plan.investment_id = investment_application.id left join  business_application_status on business_plan.investment_id =  business_application_status.business_id WHERE business_application_status.application_status = 'submitted' - ()
+Apr 12 21:37:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT s.id AS s__id, s.first_name AS s__first_name, s.last_name AS s__last_name, s.email_address AS s__email_address, s.username AS s__username, s.algorithm AS s__algorithm, s.salt AS s__salt, s.password AS s__password, s.is_active AS s__is_active, s.is_super_admin AS s__is_super_admin, s.last_login AS s__last_login, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM sf_guard_user s WHERE (s.id = ?) LIMIT 1 - (1)
+Apr 12 21:37:14 symfony [info] {Doctrine_Connection_Mysql} query : SELECT task_assignment.investmentapp_id,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
+	 task_assignment.duedate, investment_application.name FROM task_assignment LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='1' AND 
+	 task_assignment.work_status = 'notstarted'
+	  - ()
+Apr 12 21:37:14 symfony [info] {Doctrine_Connection_Mysql} query : SELECT task_assignment.investmentapp_id,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
+	 task_assignment.duedate, investment_application.name, investment_application.location FROM task_assignment 
+	 LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='1' AND 
+	 task_assignment.work_status != 'complete' AND task_assignment.work_status != 'notstarted'
+	  - ()
+Apr 12 21:37:14 symfony [info] {Doctrine_Connection_Mysql} query : SELECT e_i_application_status.id,e_i_a_project_detail.project_reference_number,e_i_a_project_detail.project_title,e_i_a_project_developer.developer_name FROM e_i_application_status LEFT JOIN e_i_a_project_detail ON e_i_a_project_detail.id = e_i_application_status.eiaproject_id LEFT JOIN e_i_a_project_developer ON e_i_a_project_developer.eiaproject_id = e_i_a_project_detail.id WHERE e_i_application_status.application_status = 'submitted' ORDER BY e_i_a_project_detail.project_reference_number DESC  - ()
+Apr 12 21:37:14 symfony [info] {Doctrine_Connection_Mysql} query : SELECT e_i_application_status.id,e_i_a_project_detail.project_reference_number,e_i_a_project_detail.project_title,e_i_a_project_developer.developer_name FROM e_i_application_status LEFT JOIN e_i_a_project_detail ON e_i_a_project_detail.id = e_i_application_status.eiaproject_id LEFT JOIN e_i_a_project_developer ON e_i_a_project_developer.eiaproject_id = e_i_a_project_detail.id WHERE e_i_application_status.application_status = 'assigning' ORDER BY e_i_a_project_detail.project_reference_number DESC  - ()
+Apr 12 21:37:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT e.id AS e__id, e.user_assigned AS e__user_assigned, e.eiaproject_id AS e__eiaproject_id, e.instructions AS e__instructions, e.duedate AS e__duedate, e.work_status AS e__work_status, e.token AS e__token, e.created_at AS e__created_at, e.updated_at AS e__updated_at, e.created_by AS e__created_by, e.updated_by AS e__updated_by, e2.id AS e2__id, e2.project_reference_number AS e2__project_reference_number, e2.project_title AS e2__project_title, e2.project_plot_number AS e2__project_plot_number, e2.village AS e2__village, e2.cell AS e2__cell, e2.sector AS e2__sector, e2.district AS e2__district, e2.province AS e2__province, e2.name AS e2__name, e2.token AS e2__token, e2.created_at AS e2__created_at, e2.updated_at AS e2__updated_at, e2.created_by AS e2__created_by, e2.updated_by AS e2__updated_by, s.id AS s__id, s.first_name AS s__first_name, s.last_name AS s__last_name, s.email_address AS s__email_address, s.username AS s__username, s.algorithm AS s__algorithm, s.salt AS s__salt, s.password AS s__password, s.is_active AS s__is_active, s.is_super_admin AS s__is_super_admin, s.last_login AS s__last_login, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM e_i_task_assignment e LEFT JOIN e_i_a_project_detail e2 ON e.eiaproject_id = e2.id LEFT JOIN sf_guard_user s ON e.user_assigned = s.id WHERE (e.work_status = ? AND e.created_by = ?) - (assess, 1)
+Apr 12 21:37:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT e.id AS e__id, e.user_assigned AS e__user_assigned, e.eiaproject_id AS e__eiaproject_id, e.instructions AS e__instructions, e.duedate AS e__duedate, e.work_status AS e__work_status, e.token AS e__token, e.created_at AS e__created_at, e.updated_at AS e__updated_at, e.created_by AS e__created_by, e.updated_by AS e__updated_by FROM e_i_task_assignment e WHERE (e.user_assigned = ?) - (1)
+Apr 12 21:37:14 symfony [info] {sfPHPView} Render "C:\xampp\htdocs\portal\apps\backend\modules/dashboard/templates/indexSuccess.php"
+Apr 12 21:37:14 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT notifications.message,notifications.created_at FROM notifications WHERE notifications.recepient = 'manager'
+	 ORDER BY notifications.created_at DESC LIMIT 3
+	  - ()
+Apr 12 17:37:14 symfony [info] {sfPHPView} Decorate content with "C:\xampp\htdocs\portal\apps\backend\templates/layout.php"
+Apr 12 17:37:14 symfony [info] {sfPHPView} Render "C:\xampp\htdocs\portal\apps\backend\templates/layout.php"
+Apr 12 17:37:14 symfony [info] {main} Get slot "title"
+Apr 12 17:37:14 symfony [info] {main} Call "language->executeLanguage()"
+Apr 12 17:37:14 symfony [info] {sfPartialView} Render "C:\xampp\htdocs\portal\apps\backend\modules/language/templates/_language.php"
+Apr 12 17:37:14 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT COUNT(notifications.message) FROM notifications WHERE notifications.recepient = 'manager' 
+	  - ()
+Apr 12 17:37:14 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT notifications.message,notifications.created_at FROM notifications WHERE notifications.recepient = 'manager'
+	 ORDER BY notifications.created_at DESC LIMIT 3
+	  - ()
+Apr 12 17:37:14 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT COUNT(message) FROM messages WHERE recepient = 'manager'
+	  - ()
+Apr 12 17:37:14 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT messages.id,messages.sender,messages.created_at,messages.message FROM messages WHERE recepient = 'manager'  ORDER BY created_at DESC
+	 LIMIT 2
+	  - ()
+Apr 12 17:37:14 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Apr 12 17:37:14 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 12 17:37:14 symfony [info] {sfWebDebugLogger} Configuration 35.25 ms (11)
+Apr 12 17:37:14 symfony [info] {sfWebDebugLogger} Factories 159.06 ms (1)
+Apr 12 17:37:14 symfony [info] {sfWebDebugLogger} Database (Doctrine) 7.08 ms (14)
+Apr 12 17:37:14 symfony [info] {sfWebDebugLogger} Action "dashboard/index" 112.72 ms (1)
+Apr 12 17:37:14 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/index" 123.69 ms (1)
+Apr 12 17:37:14 symfony [info] {sfWebDebugLogger} Component "language/language" 28.00 ms (1)
+Apr 12 17:37:14 symfony [info] {sfWebDebugLogger} Partial "language/_language" 4.29 ms (1)
+Apr 12 17:37:15 symfony [info] {sfWebResponse} Send content (110324 o)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/guard/users/filter.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/guard/users/batch.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/guard/users.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/guard/users/new.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/guard/users.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/guard/users/:id/edit.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/guard/users/:id.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/guard/users/:id.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/guard/users/:id.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/guard/users/:id/:action.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/guard/users/:action/action.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/guard/groups/filter.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/guard/groups/batch.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/guard/groups.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/guard/groups/new.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/guard/groups.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/guard/groups/:id/edit.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/guard/groups/:id.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/guard/groups/:id.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/guard/groups/:id.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/guard/groups/:id/:action.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/guard/groups/:action/action.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/guard/permissions/filter.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/guard/permissions/batch.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/guard/permissions.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/guard/permissions/new.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/guard/permissions.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/guard/permissions/:id/edit.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/guard/permissions/:id.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/guard/permissions/:id.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/guard/permissions/:id.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/guard/permissions/:id/:action.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/guard/permissions/:action/action.:sf_format)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfRoute "apply" (/user/new)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfRoute "reset" (/user/password-reset)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfRoute "resetRequest" (/user/reset-request)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfRoute "resetCancel" (/user/reset-cancel)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfRoute "validate" (/user/confirm/:validate)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Connect sfRoute "settings" (/user/settings)
+Apr 12 21:38:31 symfony [info] {sfPatternRouting} Match route "localized_homepage" (/:sf_culture/) for /en/ with parameters array (  'module' => 'dashboard',  'action' => 'index',  'sf_culture' => 'en',)
+Apr 12 21:38:31 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Apr 12 21:38:31 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Apr 12 21:38:31 symfony [info] {sfFilterChain} Executing filter "sfBasicSecurityFilter"
+Apr 12 21:38:31 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Apr 12 21:38:31 symfony [info] {dashboardActions} Call "dashboardActions->executeIndex()"
+Apr 12 21:38:31 symfony [info] {Doctrine_Connection_Mysql} query : SELECT investment_application.name, investment_application.registration_number,investment_application.applicant_reference_number ,investment_application.token, 
+	 business_plan.created_at, business_plan.updated_by,business_application_status.business_id from business_plan left join investment_application on
+business_plan.investment_id = investment_application.id left join  business_application_status on business_plan.investment_id =  business_application_status.business_id WHERE business_application_status.application_status = 'submitted' - ()
+Apr 12 21:38:31 symfony [info] {Doctrine_Connection_Statement} execute : SELECT s.id AS s__id, s.first_name AS s__first_name, s.last_name AS s__last_name, s.email_address AS s__email_address, s.username AS s__username, s.algorithm AS s__algorithm, s.salt AS s__salt, s.password AS s__password, s.is_active AS s__is_active, s.is_super_admin AS s__is_super_admin, s.last_login AS s__last_login, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM sf_guard_user s WHERE (s.id = ?) LIMIT 1 - (1)
+Apr 12 21:38:31 symfony [info] {Doctrine_Connection_Mysql} query : SELECT task_assignment.investmentapp_id,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
+	 task_assignment.duedate, investment_application.name FROM task_assignment LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='1' AND 
+	 task_assignment.work_status = 'notstarted'
+	  - ()
+Apr 12 21:38:31 symfony [info] {Doctrine_Connection_Mysql} query : SELECT task_assignment.investmentapp_id,
+	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
+	 task_assignment.duedate, investment_application.name, investment_application.location FROM task_assignment 
+	 LEFT JOIN investment_application ON 
+	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='1' AND 
+	 task_assignment.work_status != 'complete' AND task_assignment.work_status != 'notstarted'
+	  - ()
+Apr 12 21:38:31 symfony [info] {Doctrine_Connection_Mysql} query : SELECT e_i_application_status.id,e_i_a_project_detail.project_reference_number,e_i_a_project_detail.project_title,e_i_a_project_developer.developer_name FROM e_i_application_status LEFT JOIN e_i_a_project_detail ON e_i_a_project_detail.id = e_i_application_status.eiaproject_id LEFT JOIN e_i_a_project_developer ON e_i_a_project_developer.eiaproject_id = e_i_a_project_detail.id WHERE e_i_application_status.application_status = 'submitted' ORDER BY e_i_a_project_detail.project_reference_number DESC  - ()
+Apr 12 21:38:31 symfony [info] {Doctrine_Connection_Mysql} query : SELECT e_i_application_status.id,e_i_a_project_detail.project_reference_number,e_i_a_project_detail.project_title,e_i_a_project_developer.developer_name FROM e_i_application_status LEFT JOIN e_i_a_project_detail ON e_i_a_project_detail.id = e_i_application_status.eiaproject_id LEFT JOIN e_i_a_project_developer ON e_i_a_project_developer.eiaproject_id = e_i_a_project_detail.id WHERE e_i_application_status.application_status = 'assigning' ORDER BY e_i_a_project_detail.project_reference_number DESC  - ()
+Apr 12 21:38:31 symfony [info] {Doctrine_Connection_Statement} execute : SELECT e.id AS e__id, e.user_assigned AS e__user_assigned, e.eiaproject_id AS e__eiaproject_id, e.instructions AS e__instructions, e.duedate AS e__duedate, e.work_status AS e__work_status, e.token AS e__token, e.created_at AS e__created_at, e.updated_at AS e__updated_at, e.created_by AS e__created_by, e.updated_by AS e__updated_by, e2.id AS e2__id, e2.project_reference_number AS e2__project_reference_number, e2.project_title AS e2__project_title, e2.project_plot_number AS e2__project_plot_number, e2.village AS e2__village, e2.cell AS e2__cell, e2.sector AS e2__sector, e2.district AS e2__district, e2.province AS e2__province, e2.name AS e2__name, e2.token AS e2__token, e2.created_at AS e2__created_at, e2.updated_at AS e2__updated_at, e2.created_by AS e2__created_by, e2.updated_by AS e2__updated_by, s.id AS s__id, s.first_name AS s__first_name, s.last_name AS s__last_name, s.email_address AS s__email_address, s.username AS s__username, s.algorithm AS s__algorithm, s.salt AS s__salt, s.password AS s__password, s.is_active AS s__is_active, s.is_super_admin AS s__is_super_admin, s.last_login AS s__last_login, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM e_i_task_assignment e LEFT JOIN e_i_a_project_detail e2 ON e.eiaproject_id = e2.id LEFT JOIN sf_guard_user s ON e.user_assigned = s.id WHERE (e.work_status = ? AND e.created_by = ?) - (assess, 1)
+Apr 12 21:38:31 symfony [info] {Doctrine_Connection_Statement} execute : SELECT e.id AS e__id, e.user_assigned AS e__user_assigned, e.eiaproject_id AS e__eiaproject_id, e.instructions AS e__instructions, e.duedate AS e__duedate, e.work_status AS e__work_status, e.token AS e__token, e.created_at AS e__created_at, e.updated_at AS e__updated_at, e.created_by AS e__created_by, e.updated_by AS e__updated_by FROM e_i_task_assignment e WHERE (e.user_assigned = ?) - (1)
+Apr 12 21:38:31 symfony [info] {sfPHPView} Render "C:\xampp\htdocs\portal\apps\backend\modules/dashboard/templates/indexSuccess.php"
+Apr 12 21:38:31 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT notifications.message,notifications.created_at FROM notifications WHERE notifications.recepient = 'manager'
+	 ORDER BY notifications.created_at DESC LIMIT 3
+	  - ()
+Apr 12 17:38:31 symfony [info] {sfPHPView} Decorate content with "C:\xampp\htdocs\portal\apps\backend\templates/layout.php"
+Apr 12 17:38:31 symfony [info] {sfPHPView} Render "C:\xampp\htdocs\portal\apps\backend\templates/layout.php"
+Apr 12 17:38:31 symfony [info] {main} Get slot "title"
+Apr 12 17:38:31 symfony [info] {main} Call "language->executeLanguage()"
+Apr 12 17:38:31 symfony [info] {sfPartialView} Render "C:\xampp\htdocs\portal\apps\backend\modules/language/templates/_language.php"
+Apr 12 17:38:31 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT COUNT(notifications.message) FROM notifications WHERE notifications.recepient = 'manager' 
+	  - ()
+Apr 12 17:38:31 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT notifications.message,notifications.created_at FROM notifications WHERE notifications.recepient = 'manager'
+	 ORDER BY notifications.created_at DESC LIMIT 3
+	  - ()
+Apr 12 17:38:31 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT COUNT(message) FROM messages WHERE recepient = 'manager'
+	  - ()
+Apr 12 17:38:31 symfony [info] {Doctrine_Connection_Mysql} query : 
+	 SELECT messages.id,messages.sender,messages.created_at,messages.message FROM messages WHERE recepient = 'manager'  ORDER BY created_at DESC
+	 LIMIT 2
+	  - ()
+Apr 12 17:38:31 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Apr 12 17:38:31 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Apr 12 17:38:31 symfony [info] {sfWebDebugLogger} Configuration 30.00 ms (11)
+Apr 12 17:38:31 symfony [info] {sfWebDebugLogger} Factories 113.73 ms (1)
+Apr 12 17:38:31 symfony [info] {sfWebDebugLogger} Database (Doctrine) 7.39 ms (14)
+Apr 12 17:38:31 symfony [info] {sfWebDebugLogger} Action "dashboard/index" 88.34 ms (1)
+Apr 12 17:38:31 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/index" 112.84 ms (1)
+Apr 12 17:38:31 symfony [info] {sfWebDebugLogger} Component "language/language" 24.89 ms (1)
+Apr 12 17:38:31 symfony [info] {sfWebDebugLogger} Partial "language/_language" 2.88 ms (1)
+Apr 12 17:38:31 symfony [info] {sfWebResponse} Send content (110323 o)
