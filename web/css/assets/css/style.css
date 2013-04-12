@@ -638,13 +638,13 @@ form legend {
 
 .widget-title {
   background-color: #EFEFEF;
-  background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FDFDFD), to(#EAEAEA));
-  background-image: -webkit-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
-  background-image: -moz-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
-  background-image: -ms-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
-  background-image: -o-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
-  background-image: -linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#eaeaea',GradientType=0 );
+  background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#55AE3A), to(#A6D785));
+  background-image: -webkit-linear-gradient(top, #55AE3A 0%, #A6D785 100%);
+  background-image: -moz-linear-gradient(top, #55AE3A 0%, #A6D785 100%);
+  background-image: -ms-linear-gradient(top, #55AE3A 0%, #A6D785 100%);
+  background-image: -o-linear-gradient(top, #55AE3A 0%, #A6D785 100%);
+  background-image: -linear-gradient(top, #55AE3A 0%, #A6D785 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55AE3A', endColorstr='#A6D785',GradientType=0 );
   border-bottom: 1px solid #e0dede;
   height: 36px; 
 
@@ -654,7 +654,7 @@ form legend {
 }
 
 .widget-title h4 {
-  color: #444;
+  color: #fff;
   float: left;
   font-size: 13px;
   font-weight1: bold;
