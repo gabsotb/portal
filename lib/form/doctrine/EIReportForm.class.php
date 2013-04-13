@@ -25,18 +25,22 @@ class EIReportForm extends BaseEIReportForm
    $token = sha1(date('Y-m-d').rand(11111, 99999));
    $this->setDefault('token',$token); 
    //
-    $this->widgetSchema['word_doc'] = new sfWidgetFormInputFileEditable(array(
+      $this->widgetSchema['word_doc'] = new sfWidgetFormInputFileEditable(array(
 	  # 'label'=>'ShareHolders List',
 	   'file_src' =>'/uploads/documents/eia_documents/user_eireports'.$this->getObject()->getWordDoc(),
 	   #'is_image' => true,
 	   'edit_mode' => !$this->isNew(),
 	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
 	   ));
+	   //$this->validatorSchema['word_doc_delete'] = new sfValidatorPass();
+	//  
 	   //also change the default validator
-	  $this->validatorSchema['word_doc'] = new sfValidatorFile(array(
-	   'required' => false,
+	  //  $this->validatorSchema['word_doc'] = new sfValidatorPass();  
+	 $this->validatorSchema['word_doc'] = new sfValidatorFile(array(
+	   'required' => true,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/eia_documents/user_eireports',
 	   )); 
+	   
 	   //
 	    $this->widgetSchema['pdf_doc'] = new sfWidgetFormInputFileEditable(array(
 	  # 'label'=>'ShareHolders List',
@@ -45,12 +49,15 @@ class EIReportForm extends BaseEIReportForm
 	   'edit_mode' => !$this->isNew(),
 	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
 	   ));
+	   //$this->validatorSchema['pdf_doc_delete'] = new sfValidatorPass();
 	   //also change the default validator
-	  $this->validatorSchema['pdf_doc'] = new sfValidatorFile(array(
-	   'required' => false,
+	 $this->validatorSchema['pdf_doc'] = new sfValidatorFile(array(
+	   'required' => true,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/eia_documents/user_eireports',
 	   )); 
+	//  $this->validatorSchema['pdf_doc'] = new sfValidatorPass();  
 	   ///
+	   
 	   $this->widgetSchema->setLabels(array('word_doc'=>'Report In Word Document Format:', 'pdf_doc' =>'Report In PDF Document Format:'));
   }
   

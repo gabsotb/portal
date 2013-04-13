@@ -23,7 +23,7 @@
     <tfoot>
       <tr>
         <td colspan="2">
-          &nbsp;<a href="<?php echo url_for('eireportresubmit/index') ?>"><button type="button" class="btn btn-danger"><?php echo __('Cancel') ?></button></a>
+          &nbsp;<a href="<?php echo url_for('dashboard/index') ?>"><button type="button" class="btn btn-danger"><?php echo __('Cancel') ?></button></a>
           <input type="submit" class="btn btn-primary" value="<?php echo __('Request') ?>" />
         </td>
       </tr>

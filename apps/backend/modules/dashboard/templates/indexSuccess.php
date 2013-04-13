@@ -1078,8 +1078,9 @@ $(function () {
 											</tr>
 										</thead>
 										<tbody>
+										<?php foreach($mytasksnotcomplete as $notdone) :?>
 											<tr class="odd gradeX">
-											<?php foreach($mytasksnotcomplete as $notdone) :?>
+											
 											<td><?php echo $notdone['name'] ?></td>
 											<td><?php echo $notdone['location'] ?></td>
 											<td><?php echo "Investment Certificate"?></td>
@@ -1139,8 +1140,9 @@ $(function () {
 											 <?php endif; ?>
 											</td>
 											
-											<?php endforeach; ?>	
-											</tr> <br/>
+												
+											</tr> 
+											<?php endforeach; ?>
 										</tbody>
 									</table>
 								<?php endif; ?>
