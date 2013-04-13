@@ -238,7 +238,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 	//save pdf
 	$pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\letter.pdf','F');
 	$target_path = "uploads/documents/letter.pdf";
-	   
+	$this->updatestatus = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus2($validate);
 			 
 	    $message = Swift_Message::newInstance()
 			  ->setFrom('admin@rdb.com')
@@ -253,7 +253,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 			$this->getMailer()->send($message);
 			//print $validate; exit;
 			//after sending email, we also need to change the status of this business application. 
-			$this->updatestatus = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus2($validate);
+			
 	       $this->redirect('dashboard/index');
           // Stop symfony process
           throw new sfStopException();
