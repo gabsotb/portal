@@ -1140,7 +1140,7 @@ $(function () {
 											</td>
 											
 											<?php endforeach; ?>	
-											</tr>
+											</tr> <br/>
 										</tbody>
 									</table>
 								<?php endif; ?>
