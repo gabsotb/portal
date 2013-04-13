@@ -714,6 +714,7 @@ EIReportResubmission:
   eiaproject_id: {type: integer, notnull: true, unique: true}
   status: {type: string(255), notnull: true}
   comments: {type: string(10000}, notnull: true}
+  commets_doc: {type: string(255), notnull: true}
 EIComments: ## We allow the data admin to attach documents he/she has processed and send copies to manager
   actAs:
    Timestampable: ~

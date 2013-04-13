@@ -49,6 +49,9 @@ investment_resubmit:
 eireport_resubmission:
  url: /:sf_culture/resubmit/report
  param: {module: eireportresubmit, action: new}
+eireport_approve:
+ url: /:sf_culture/approve/report
+ param: {module: eiaReport, action: approve}
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 channel:

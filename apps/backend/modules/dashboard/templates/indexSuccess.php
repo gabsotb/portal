@@ -1392,12 +1392,21 @@ $(function () {
 													</div>
 												 <?php endif; ?>
 												 <?php if( $report['status'] != "awaitingresubmission"): ?>
+												    <?php if( $report['status'] != "done"): ?>
 												 <a href="#widget-resubmit" data-toggle="modal"><button class="btn btn-danger"><i class="icon-remove icon-white"></i> <?php 
 												$project_id = $report['eiaproject_id'] ;
+												$token = $report['token'];
 												echo __('Resubmit') ?></button></a>
 												
-												<a href="<?php echo url_for('eireport/approve')?>">
+												<a href="<?php echo url_for('eiaReport/approve?id='.$project_id.'&token='.$token)?>">
 												 <button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Approve') ?></button></a>
+												        <?php endif; ?>
+														 <?php if( $report['status'] == "done"): ?>
+														 <div class="alert alert-error">
+														   <button class="close" data-dismiss="alert">×</button>
+														   <strong><?php echo __('Report approved') ?></strong>
+													      </div>
+														 <?php endif; ?>
 												 <?php endif; ?>
 												</td>
 											</tr>
