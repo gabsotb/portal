@@ -34,4 +34,10 @@ class EIReportTable extends Doctrine_Table
 	 ->WHERE('eiaproject_id  = ?', $project_id);
 	 $q->execute();
 	}
+	//get user details who created a certain report
+	public function getInvestor($project_id)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select updated_by from  e_i_a_project_detail where id = '$project_id' ");
+	  return $query;
+	}
 }

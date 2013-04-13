@@ -75,4 +75,54 @@ class eiaReportActions extends sfActions
       $this->redirect('eiaReport/edit?id='.$eia_reports->getId());
     }
   }
+  //this is a method used to approve iereport by a data admin
+  public function executeApprove(sfWebRequest $request)
+  {
+   //this basically means we simply change the status of eireport in the table. we need the id of item to change status for.
+   //we also change the updated_by value and created_by value to reflect the individual who has updated this record
+   $eiaproject_id = $request->getParameter('id');
+   //
+   $report_status = "done" ; //we set report status to done
+   //get current logged user info
+    $id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+	$username = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
+	  $q = Doctrine_Query::create()
+	 ->UPDATE('EIReport')
+	 ->SET('status', '?' , $report_status)
+	 ->SET('created_by', '?' , $id)
+	 ->SET('updated_by', '?' , $username)
+	 ->WHERE('eiaproject_id = ?', $eiaproject_id);
+	 $q->execute();
+	 ///
+	 $q = Doctrine_Query::create()
+	 ->UPDATE('EIReportResubmission')
+	 ->SET('status', '?' , $report_status)
+	 ->SET('created_by', '?' , $id)
+	 ->SET('updated_by', '?' , $username)
+	 ->WHERE('eiaproject_id = ?', $eiaproject_id);
+	 $q->execute();
+	 //Notifications
+	 //Infor Data admin of successful approval
+	 $notify = new Notifications();
+	 $notify->recepient = $username;
+	 $notify->message = "EIReport Approved Successfuly";
+	 $notify->created_at = date('Y-m-d H:i:s');
+	 $notify->save();
+	 //inform invesstor
+	 $query_investor = Doctrine_Core::getTable('EIReport')-> getInvestor($eiaproject_id);
+	 $investor_name = null;
+	 foreach($query_investor as $q)
+	 {
+	  $investor_name = $q['updated_by'];
+	 }
+	 //investor inform
+	 $notify2 = new Notifications();
+	 $notify2->recepient = $username;
+	 $notify2->message = "Congrats Your EIReport has been Approved!";
+	 $notify2->created_at = date('Y-m-d H:i:s');
+	 $notify2->save();
+	 
+	 //redirect
+	 $this->redirect('dashboard/index');
+  }
 }

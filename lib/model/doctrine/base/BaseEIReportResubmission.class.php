@@ -8,13 +8,16 @@
  * @property integer $eiaproject_id
  * @property string $status
  * @property string $comments
+ * @property string $commets_doc
  * 
  * @method integer              getEiaprojectId()  Returns the current record's "eiaproject_id" value
  * @method string               getStatus()        Returns the current record's "status" value
  * @method string               getComments()      Returns the current record's "comments" value
+ * @method string               getCommetsDoc()    Returns the current record's "commets_doc" value
  * @method EIReportResubmission setEiaprojectId()  Sets the current record's "eiaproject_id" value
  * @method EIReportResubmission setStatus()        Sets the current record's "status" value
  * @method EIReportResubmission setComments()      Sets the current record's "comments" value
+ * @method EIReportResubmission setCommetsDoc()    Sets the current record's "commets_doc" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -39,6 +42,11 @@ abstract class BaseEIReportResubmission extends sfDoctrineRecord
         $this->hasColumn('comments', 'string', 1000, array(
              'type' => 'string',
              'length' => '1000',
+             ));
+        $this->hasColumn('commets_doc', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
              ));
     }
 
