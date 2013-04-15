@@ -256,7 +256,7 @@ Payment:
  columns:
   business_id: {type: integer, notnull: true}
   payment_status: {type: string(255), notnull: true, default: notpaid}
-  slip_number: {type: integer, notnull: true, unique: true}
+  slip_number: {type: string(255), notnull: true, unique: true}
   token: {type: string(255), notnull: false} 
 # relations:
 #  InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate}  
