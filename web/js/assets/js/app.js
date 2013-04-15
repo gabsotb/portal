@@ -1914,13 +1914,9 @@ var App = function () {
             return;
         }
 
-        $('#investment_applications_sectors').dataTable({
+        $('#investment_applications_manager').dataTable({
             "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
             "sPaginationType": "bootstrap",
-			"oTableTools": {
-            "sSwfPath": "/swf/copy_csv_xls_pdf.swf"
-        },
-			
             "oLanguage": {
                 "sLengthMenu": "_MENU_ records per page",
                 "oPaginate": {
