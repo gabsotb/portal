@@ -55,7 +55,9 @@ class EIAAssessmentDecisionTable extends Doctrine_Table
 		$q=$this->createQuery('a')
 			->select('a.*')
 			->where('a.taskassignment_id = ?',$taskAssignment_id)
-			->andWhere('a.eia_stage = ?',$eia_stage);
+			->andWhere('a.eia_stage = ?',$eia_stage)
+			->orderBy('a.id DESC')
+			->limit(1);
 		return $q->fetchArray();
 	}
 			

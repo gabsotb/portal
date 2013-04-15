@@ -76,6 +76,7 @@
 				<div class="alert alert-info">
 				<p><strong>Date:</strong>&nbsp;&nbsp;<?php echo date('D jS F Y',strtotime($siteVisit[0]['site_visit'])) ?></p>
 				</div>
+				<?php if(count($assessmentSiteVisit) != 0): ?>
 				<div class="well">
 				<h4>Supervisor verdict</h4>
 				<?php if($assessmentSiteVisit[0]['verdict']=='accept' ): ?>
@@ -83,8 +84,9 @@
 				<h4 class="alert-heading">Request accepted</h4>
 				<p><strong>Remarks</strong></p>
 				<p><?php echo html_entity_decode($assessmentSiteVisit[0]['remarks']) ?></p>
+				<br/>
 				<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
-				<?php echo mail_to($applicantEmail->getEmailAddress(),'Email applicant',array('class' => 'btn')) ?></p>
+				<a href="#newSiteDate" role="button" class="btn btn-warning" data-toggle="modal">New site visit</a></p>
 				</div>
 				<?php endif; ?>
 				<?php if($assessmentSiteVisit[0]['verdict'] == 'decline'): ?>
@@ -92,17 +94,28 @@
 				<h4 class="alert-heading">Request declined</h4>
 				<p><strong>Remarks</strong></p>
 				<p><?php echo html_entity_decode($assessmentSiteVisit[0]['remarks']) ?></p>
+				<br/>
 				<p><?php echo button_to('Reschedule','eiaSiteVisit/edit?id='.$siteVisit[0]['id'].'&act=reschedule',array('class' => 'btn btn-primary')) ?></p>
 				</div>
 				<?php endif; ?>
 				<?php if($assessmentSiteVisit[0]['verdict'] == 'reviewed'): ?>
 				<div class="alert alert-block alert-info fade in">
 				<h4 class="alert-heading">Request reviewed</h4>
-				<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-success')) ?>
-				<?php echo mail_to($applicantEmail->getEmailAddress(),'Email applicant',array('class' => 'btn')) ?></p>
+				<br/>
+				<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
+				<a href="#newSiteDate" role="button" class="btn btn-warning" data-toggle="modal">New site visit</a></p>
 				</div>
 				<?php endif; ?>
 				</div>
+				<?php endif; ?>
+				<?php if(count($assessmentSiteVisit) == 0): ?>
+				<div class="alert alert-block alert-info fade in">
+					<button type="button" class="close" data-dismiss="alert">x</button>
+					<h4>Awaiting supervisor assessment on selected site visit date</h4>
+					<p>Refresh Page/Come back Later</p>
+					<!-- some actions -->
+				</div>
+				<?php endif; ?>
 				</div>
 			</div>
 		<?php endif; ?>
@@ -113,16 +126,16 @@
 				</div>
 				<div class="widget-body">
 				<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
-				<div class="alert alert-info">
+				<div class="alert">
 				<p><strong>Project Recommendation:</strong> Rejection</p>
 				</div>
 				<?php endif; ?>
 				<?php if($projectImpact[0]['impact_level'] != 'reject'): ?>
 				<div class="alert alert-info">
-				<p><strong>Project Impact</strong></p>
-				<p><?php echo strtoupper(str_replace("_"," ",$projectImpact[0]['impact_level']))?></p>
+				<p>Project Impact:&nbsp;&nbsp;<b><?php echo strtoupper(str_replace("_"," ",$projectImpact[0]['impact_level']))?></b></p>
 				</div>
 				<?php endif; ?>
+				<?php if(count($assessmentImpact) != 0): ?>
 				<div class="well">
 					<h4>Supervisor verdict</h4>
 					<?php if($assessmentImpact[0]['verdict']=='accept' ): ?>
@@ -130,7 +143,20 @@
 					<h4 class="alert-heading">Request accepted</h4>
 					<p><strong>Remarks</strong></p>
 					<p><?php echo html_entity_decode($assessmentImpact[0]['remarks']) ?></p>
+					<br/>
 					<!-- some action -->
+					<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
+					<?php if($projectImpact[0]['impact_level'] == 'level_1'): ?>
+					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id=',array('class' => 'btn btn-success')) ?></p>
+					<?php endif; ?>
+					<?php if($projectImpact[0]['impact_level'] == 'level_2' || $projectImpact[0]['impact_level'] == 'level_3'): ?>
+					<?php echo button_to('Request TOR','eiaDataAdmin/messageTor?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary')) ?>
+					<?php echo button_to('Submit TOR','eiaDataAdmin/torSubmit',array('class' => 'btn-info')) ?> </p>
+					<?php endif; ?>
+					<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
+					<a href="#widget-reject" data-toggle="modal">
+					<button type="button" class="btn btn-inverse"><?php echo __('Reject') ?></button></a></p>
+					<?php endif; ?>
 					</div>
 					<?php endif; ?>
 					<?php if($assessmentImpact[0]['verdict'] == 'decline'): ?>
@@ -138,19 +164,70 @@
 					<h4 class="alert-heading">Request declined</h4>
 					<p><strong>Remarks</strong></p>
 					<p><?php echo html_entity_decode($assessmentImpact[0]['remarks']) ?></p>
+					<br/>
 					<!-- some action -->
+					<?php button_to('Review','eiaDataAdmin/show?id='.$tasks[0]['id'],array('class' => 'btn btn-inverse')) ?>
 					</div>
 					<?php endif; ?>
 					<?php if($assessmentImpact[0]['verdict'] == 'reviewed'): ?>
 					<div class="alert alert-block alert-info fade in">
 					<h4 class="alert-heading">Request reviewed</h4>
+					<br/>
+					<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
 					<!-- some action -->
+					<?php if($projectImpact[0]['impact_level'] == 'level_1'): ?>
+					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id=',array('class' => 'btn btn-success')) ?></p>
+					<?php endif; ?>
+					<?php if($projectImpact[0]['impact_level'] == 'level_2' || $projectImpact[0]['impact_level'] == 'level_3'): ?>
+					<?php echo button_to('Request TOR','eiaDataAdmin/messageTor?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-info')) ?></p>
+					<?php endif; ?>
+					<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
+					<a href="#widget-reject" data-toggle="modal">
+					<button type="button" class="btn btn-inverse"><?php echo __('Reject') ?></button></a></p>
+					<?php endif; ?>
 					</div>
 					<?php endif; ?>
 				</div>
+				<?php endif; ?>
+				<?php if(count($assessmentImpact) == 0): ?>
+				<div class="alert alert-block alert-info fade in">
+					<button type="button" class="close" data-dismiss="alert">x</button>
+					<h4>Awaiting supervisor assessment on your recommendation</h4>
+					<p>Refresh Page/Come back Later</p>
+					<!-- some actions -->
+				</div>
+				<?php endif; ?>
 				</div>
 			</div>
 		<?php endif; ?>
 		</div>
+	</div>
+</div>
+<div id="newSiteDate" class="modal hide fade" role="dialog" aria-hidden="true">
+	<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+	<h3>Site visit change</h3>
+	</div>
+	<div class="modal-body">
+	<p>Request for a new site visit date</p>
+	<p>Proceed if sure of this action</p>
+	</div>
+	<div class="modal-footer">
+	<button type="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	<?php echo button_to('Proceed','eiaSiteVisit/edit?id='.$siteVisit[0]['id'],array('class' => 'btn btn-success')) ?>
+	</div>
+</div>
+<div id="widget-reject" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button">×</button>
+		<h3><?php echo __('Reject Application') ?></h3>
+	</div>
+	<div class="modal-body">
+		<p><?php echo __('The applicant progress will be discontinued') ?>.</p> 
+		<p><?php echo __('Applicant will resubmit once they have satisfied your requirements') ?>.</p>
+	</div>
+	<div class="modal-footer">
+		<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
+		<?php echo button_to('Proceed','eiaDataAdmin/reject?id='.$projectDetail['id'],array('class' => 'btn btn-success')) ?>
 	</div>
 </div>

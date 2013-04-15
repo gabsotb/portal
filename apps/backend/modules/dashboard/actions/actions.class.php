@@ -1128,6 +1128,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 	{
 		$decision = new EIAAssessmentDecision();
 		$decision->taskassignment_id= $request->getParameter('id');
+		$decision->eia_stage=Doctrine_Core::getTable('EITaskAssignment')->find($request->getParameter('id'))->getStage();
 		$decision->save();
 		$accessments=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessmentId($request->getParameter('id'));
 		

@@ -50,7 +50,7 @@ class EIASiteVisitTable extends Doctrine_Table
 	{
 		$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId(); 
 		$q= $this->createQuery('s')
-			->select('s.eiaproject_id,s.site_visit,d.project_title')
+			->select('s.eiaproject_id,s.site_visit,s.visited,d.project_title')
 			->leftJoin('s.EIAProjectDetail d')
 			->where('s.created_by = ?',$userId )
 			->andWhere('s.site_visit >= ?',date('Y-m-d',time()))

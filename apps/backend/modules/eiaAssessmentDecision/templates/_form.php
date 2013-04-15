@@ -28,17 +28,10 @@
         </td>
       </tr>
       <tr>
-        <th><?php echo $form['eia_stage']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['eia_stage']->renderError() ?>
-          <?php echo $form['eia_stage'] ?>
-        </td>
-      </tr>
-      <tr>
         <th><?php echo $form['remarks']->renderLabel() ?></th>
         <td>
           <?php echo $form['remarks']->renderError() ?>
-          <?php echo $form['remarks']->render(array('class' => 'span12 wysihtml5', 'rows' => '6')) ?>
+          <?php echo $form['remarks']->render(array('class' => 'span12 wysihtml5', 'rows' => '8')) ?>
         </td>
       </tr>
     </tbody>

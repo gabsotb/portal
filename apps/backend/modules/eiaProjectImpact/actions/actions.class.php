@@ -70,7 +70,7 @@ class eiaProjectImpactActions extends sfActions
 	  if($project_impact->getImpactLevel())
 	  {
 		$taskId=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($project_impact->getEiaprojectId());
-		Doctrine_Core::getTable('EITaskAssignment')->find($taskId[0]['id'])->setWorkStatus('assess')->save();
+		Doctrine_Core::getTable('EITaskAssignment')->find($taskId[0]['id'])->setWorkStatus('assess')->setStage('impact-level')->save();
 		$notify= new Notifications();
 		$notify->recepient=Doctrine_Core::getTable('sfGuardUser')->find($taskId[0]['created_by'])->getUsername();
 		$notify->message="An application is awaiting assessment";

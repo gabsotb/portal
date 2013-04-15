@@ -22,7 +22,7 @@ class messagesActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->messages = Doctrine_Core::getTable('Messages')->find(array($request->getParameter('id')));
+    $this->messages = Doctrine_Core::getTable('Messages')->find($request->getParameter('id'));
     $this->forward404Unless($this->messages);
   }
 
@@ -44,6 +44,13 @@ class messagesActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
+	if($request->getParameter('user')== 'applicant')
+	{
+		$this->message=Doctrine_Core::getTable('Messages')->getMessageApplicant();
+	}else
+	{
+		$this->message=Doctrine_Core::getTable('Messages')->getEditMessage();
+	}
     $this->forward404Unless($messages = Doctrine_Core::getTable('Messages')->find(array($request->getParameter('id'))), sprintf('Object messages does not exist (%s).', $request->getParameter('id')));
     $this->form = new MessagesForm($messages);
   }
@@ -75,8 +82,15 @@ class messagesActions extends sfActions
     if ($form->isValid())
     {
       $messages = $form->save();
-
-      $this->redirect('messages/edit?id='.$messages->getId());
+	  if($messages->getRecepientEmail())
+	  {
+	  $this->getMailer()->composeAndSend('noreply@rdb.com',$messages->getRecepientEmail() ,$messages->getMessageSubject(),
+							"A new message has been sent to your account.\n".
+							 "Please login to your account to review it. Use the link below\n".
+							 "http://198.154.203.38:8234/"
+										  ); 
+	  }
+      $this->redirect('messages/index');
     }
   }
   //this is a method that retrieves email address of all users
@@ -87,4 +101,15 @@ class messagesActions extends sfActions
 	//$emails = array('emails' => $query) ;
 	 echo(json_encode($query)); exit;
   }
+	public function executeReply(sfWebRequest $request)
+	{
+		$message = new Messages();
+		$message->recepient=$request->getParameter('recepient');
+		$message->sender=sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+		$message->sender_email=sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
+		$message->recepient_email=$request->getParameter('email');
+		$message->save();
+		$messageId=Doctrine_Core::getTable('Messages')->getMessageId($request->getParameter('recepient'));
+		$this->redirect('messages/edit?id='.$messageId[0]['id'].'&user=applicant');
+	}
 }

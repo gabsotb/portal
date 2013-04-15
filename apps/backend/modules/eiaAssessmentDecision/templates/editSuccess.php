@@ -4,28 +4,23 @@
 			<h4><i class="icon-reorder"></i>Recommendations</h4>
 		</div>
 		<div class="widget-body">
-		<?php if(count($projectImpact) != 0): ?>
+		<?php if(count($projectImpact) != 0 && $eiaprojectId['stage']=='impact-level'): ?>
 			<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
-			<div class="well">
+			<div class="alert alert-block alert-warning fade in">
 				<h4>Impact Level Assessment</h4>
-				<div class="alert alert-block alert-warning fade in">
-				<h4 class="alert-heading">Rejecting the application has been recommended</h4>
-				</div>
+				<p>Rejecting the application has been recommended</p>
 				<p><b>Remarks</b></p>
-				<div class="well">
 				<?php echo html_entity_decode($projectImpact[0]['comments']) ?>
-				</div>
-				<a href="#siteVisitReport" role="button" class="btn" data-toggle="modal">View site visit report</a>
+				<br/>
+				<p><a href="#siteVisitReport" role="button" class="btn btn-inverse" data-toggle="modal">View site visit report</a></p>
 			</div>
 			<?php endif; ?>
 			<?php if($projectImpact[0]['impact_level'] != 'reject'): ?>
-			<div class="well">
+			<div class="alert alert-block alert-info fade in">
 				<h4>Project Impact</h4>
-				<p><b>Proposed Impact Level:</b>&nbsp;&nbsp;<?php echo strtoupper(str_replace("_"," ",$projectImpact[0]['impact_level'])) ?></p>
+				<p>Proposed Impact Level:&nbsp;&nbsp;<b><?php echo strtoupper(str_replace("_"," ",$projectImpact[0]['impact_level'])) ?></b></p>
 				<p><b>Remarks</b></p>
-				<div class="well">
-				<?php echo html_entity_decode($projectImpact[0]['comments']) ?>
-				</div>
+				<p><?php echo html_entity_decode($projectImpact[0]['comments']) ?></p>
 			</div>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -39,15 +34,13 @@
 				</div>
 			</div>
 		<?php endif; ?>
-		<?php if(count($sites) != 0): ?>
-			<div class="well">
+		<?php if(count($sites) != 0 && $eiaprojectId['stage']=='site-visit'): ?>
+			<div class="alert alert-block alert-info fade in">
 				<h4>Site visit</h4>
-				<p><b>Site visit requested day:</b>&nbsp;&nbsp;<?php echo date('D jS F Y',strtotime($sites[0]['site_visit'])) ?></p>
+				<p><strong>Requested day:</strong>&nbsp;&nbsp;<?php echo date('D jS F Y',strtotime($sites[0]['site_visit'])) ?></p>
 				<?php if(!empty($sites[0]['remarks'])): ?>
 				<p><b>Remarks</b></p>
-				<div class="well">
-				<?php echo html_entity_decode($sites[0]['remarks']) ?>
-				</div>
+				<p><?php echo html_entity_decode($sites[0]['remarks']) ?></p>
 				<?php endif; ?>
 			</div>
 		<?php endif; ?>

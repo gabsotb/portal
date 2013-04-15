@@ -36,22 +36,23 @@ class eiaAssessmentDecisionActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($eia_assessment_decision = Doctrine_Core::getTable('EIAAssessmentDecision')->find(array($request->getParameter('id'))), sprintf('Object eia_assessment_decision does not exist (%s).', $request->getParameter('id')));
-	$eiaprojectId=Doctrine_Core::getTable('EITaskAssignment')->find(array($eia_assessment_decision['taskassignment_id']));
-	if($projectImpacts=Doctrine_Core::getTable('ProjectImpact')->findByEiaprojectId($eiaprojectId['eiaproject_id']))
+	$this->eiaprojectId=Doctrine_Core::getTable('EITaskAssignment')->find(array($eia_assessment_decision['taskassignment_id']));
+	$visits=Doctrine_Core::getTable('EIASiteVisit')->findByEiaprojectId($this->eiaprojectId['eiaproject_id']);
+	if($projectImpacts=Doctrine_Core::getTable('ProjectImpact')->findByEiaprojectId($this->eiaprojectId['eiaproject_id']) )
 	{	
 		$this->projectImpact=$projectImpacts;
-	}
-	if($briefDecisions=Doctrine_Core::getTable('EIAProjectBriefDecision')->findByEiaprojectId($eiaprojectId['eiaproject_id']))
-	{
-		$this->briefDecision=$briefDecisions;
-	}
-	if($visits=Doctrine_Core::getTable('EIASiteVisit')->findByEiaprojectId($eiaprojectId['eiaproject_id']))
-	{
-		$this->sites=$visits;
 		if($reports=Doctrine_Core::getTable('EIASiteVisitReport')->findByEiasitevisitId($visits[0]['id']))
 		{
 			$this->report=$reports;
 		}
+	}
+	if($briefDecisions=Doctrine_Core::getTable('EIAProjectBriefDecision')->findByEiaprojectId($this->eiaprojectId['eiaproject_id']))
+	{
+		$this->briefDecision=$briefDecisions;
+	}
+	if($visits)
+	{
+		$this->sites=$visits;
 	}
     $this->form = new EIAAssessmentDecisionForm($eia_assessment_decision);
   }

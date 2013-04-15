@@ -1,4 +1,4 @@
-<?php
+ q<?php
 
 /**
  * EITaskAssignment form.
@@ -13,7 +13,7 @@ class EITaskAssignmentForm extends BaseEITaskAssignmentForm
   public function configure()
   {
 	unset(
-		$this['created_by'], $this['updated_by'], $this['created_at'], $this['updated_at']
+		$this['created_by'], $this['updated_by'], $this['created_at'], $this['updated_at'], $this['stage']
 	);
 	
 	$this->setDefault('work_status','notstarted');
@@ -39,6 +39,7 @@ class EITaskAssignmentForm extends BaseEITaskAssignmentForm
 	///
 	$this->setDefault('eiaproject_id',$eiaproject_id);
 	//$this->widgetSchema->setLabel('eiaproject_id', 'Project Name') ;
+	//$this->widgetSchema['stage'] = new sfWidgetFormInputHidden();
   }
   
 }

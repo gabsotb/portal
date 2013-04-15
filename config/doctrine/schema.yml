@@ -610,6 +610,7 @@ EITaskAssignment:
   instructions: {type: string(255), notnull: true}
   duedate: {type: date, notnull: true}
   work_status: {type: string(255), notnull: true}
+  stage: {type: string, notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: ApplicationAssigment , onDelete: CASCADE}
@@ -655,7 +656,7 @@ ProjectImpact:
   token: {type: string(255), notnull: false} 
  relations:
   EIAProjectDetail: {local:eiaproject_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE } 
-#table to approve/reject requeted assessments  
+#table to approve/reject requested assessments  
 EIAAssessmentDecision:
  actAs:
   Timestampable: ~
@@ -686,7 +687,7 @@ EIAProjectImpactPass: ## This table will store all project that do not require i
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: ApplicationImpactPass , onDelete: CASCADE}
   sfGuardUser: {local: processed_by, foreign: id, foreignAlias: GuardImpactPass}   
 #### These are reference instructions used by applicant to come up with EI Report and submitt it when done 
-Tor:
+TorSubmit:
  actAs:
   Timestampable: ~
   Signable:
@@ -694,10 +695,8 @@ Tor:
    updated: { name: updated_by,type: string}
  columns:
   eiaproject_id: {type: integer, notnull: true} 
-  issues_assessed: {type: string(400), notnull: true}
-  specific_tasks: {type: string(400), notnull: true}
-  stake_holders: {type: string(400), notnull: true}
-  experts: {type: string(400), notnull: true}
+  attachement: {type: string(255), notnull: true}
+  remarks: {type: string(400), notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
    EIAProjectDetail: {local:eiaproject_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE }  
@@ -802,7 +801,7 @@ Messages:
   sender_email: {type: string(255), notnull: false}
   recepient_email: {type: string(255), notnull: false}
   cc_email: {type: string(255), notnull: false}
-  message_subject: {type: string(255), notnull: false}
+  message_subject: {type: string(255), notnull: true}
   message: {type: string(10000), notnull: true}
   attachement: {type: string(255), notnull: true}
   token: {type: string(255), notnull: false} 

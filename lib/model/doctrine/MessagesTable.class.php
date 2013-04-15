@@ -61,4 +61,21 @@ class MessagesTable extends Doctrine_Table
 	{
 		return self::$editMessage;
 	}
+	public function getMessageId($recepient)
+	{
+		$q=$this->createQuery('m')
+			->select('m.id')
+			->where('m.recepient = ?',$recepient)
+			->orderBy('m.id DESC')
+			->limit(1);
+		return $q->fetchArray();
+	}
+	public static $messageApplicant=array(
+		'header' => 'New Reply Message',
+		'info' => 'Reply to data administrator',
+	);
+	public function getMessageApplicant()
+	{
+		return self::$messageApplicant;
+	}
 }

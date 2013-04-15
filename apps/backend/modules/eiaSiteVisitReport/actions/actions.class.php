@@ -76,7 +76,7 @@ class eiaSiteVisitReportActions extends sfActions
 	  if($eia_site_visit_report->getReport())
 	  {
 		$statusId=Doctrine_Core::getTable('EIApplicationStatus')->findByEiaprojectId($eia_site_visit_report->getEIASiteVisit()->getEiaprojectId());
-		Doctrine_Core::getTable('EIApplicationStatus')->find($statusId[0]['id'])->setApplicationStatus('Site visit assessment')->save();
+		Doctrine_Core::getTable('EIApplicationStatus')->find($statusId[0]['id'])->setApplicationStatus('Site visit assessment')->setPercentage(50)->save();
 		Doctrine_Core::getTable('EIASiteVisit')->find($eia_site_visit_report->getEiasitevisitId())->setVisited(1)->save();
 	  }
 		$this->redirect('eiaDataAdmin/impact?id='.$eia_site_visit_report->getEIASiteVisit()->getEiaprojectId());

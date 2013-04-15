@@ -63,7 +63,7 @@
 										   <?php foreach ($messagess as $messages): ?>
 											<tr class="odd gradeX">
 												<td><?php echo $messages['sender'] ?></td>
-												<td><?php echo $messages['message']?></td>
+												<td><?php echo html_entity_decode($messages['message'])?></td>
 												<td><?php echo $messages['attachement'] ?></td>
 												<td><?php echo $messages['created_at']?></td>
 												<td class="center">

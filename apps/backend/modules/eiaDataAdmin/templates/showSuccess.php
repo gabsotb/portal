@@ -137,7 +137,7 @@
 				  <h4><?php echo __('PROJECT OBJECTIVE') ?></h4>
 			      </div>
 				
-				<p><?php echo $description->getProjectObjective() ?></p>
+				<p><?php echo html_entity_decode($description->getProjectObjective()) ?></p>
 				</div>
 				<div class="well">
 				
@@ -1140,7 +1140,10 @@
 		<h3><?php echo __('Confirm Request') ?></h3>
 	</div>
 	<div class="modal-body">
-		<p><?php echo __('This confirms you have read and analysed the application and you are satisfied with the information provided by the applicant') ?>.</p> 
+		<p><?php echo __('This confirms you have read and analysed the application and you are satisfied with the information provided by the applicant') ?>.</p>
+		<p><?php echo __('Info applicant to recommend an appropriate date for the site visit') ?></p>
+		<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$applicant->getUsername(),array('class' => 'btn btn-primary')) ?></p>
+	<?php //echo mail_to($applicant->getEmailAddress(),'Email Applicant',array('class' =>'btn btn-inverse')) ?>
 		<p><?php echo __('Proceed to allocate a day for the site visit in which the applicant has made themselves available or a representative available') ?>.</p>
 	</div>
 	<div class="modal-footer">
@@ -1162,10 +1165,10 @@
 		<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
 	</div>
 </div>
+
 <div class="form-actions">
 	<a href="#widget-resubmission" data-toggle="modal">
 	<button type="button" class="btn btn-inverse"><?php echo __('Request Resubmission') ?></button></a>
-	<?php echo mail_to($applicantEmail,'Email Applicant',array('class' =>'btn btn-inverse')) ?>
 	<a href="#widget-confirm" data-toggle="modal">
-	<button type="button" class="btn btn-inverse"><?php echo __('Site Visit') ?></button></a>
+	<button type="button" class="btn btn-success"><?php echo __('Site Visit') ?></button></a>
 </div>

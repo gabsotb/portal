@@ -5,7 +5,6 @@
 		</div>
 		<div class="widget-body form">
 		<div class="alert alert-block alert-info fade in">
-			<button type="button" class="close" data-dismiss="alert">x</button>
 			<h4 class="alert-heading"><?php echo $message['info'] ?></h4>
 		</div>
 		<?php include_partial('form', array('form' => $form)) ?>
