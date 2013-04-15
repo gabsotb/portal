@@ -16,4 +16,28 @@ class EIReportTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('EIReport');
     }
+	//get eireports submitted by users
+	public function getEIReports()
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * from e_i_report");
+	 //
+	 return $query;
+	}
+	//updates status after a user resubmits successfuly
+	public function updateStatus($project_id)
+	{
+	 $value = "awaitinganalysis";
+	 //
+      $q = Doctrine_Query::create()
+	 ->UPDATE('EIReport')
+	 ->SET('status', '?' , $value)
+	 ->WHERE('eiaproject_id  = ?', $project_id);
+	 $q->execute();
+	}
+	//get user details who created a certain report
+	public function getInvestor($project_id)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select updated_by from  e_i_a_project_detail where id = '$project_id' ");
+	  return $query;
+	}
 }

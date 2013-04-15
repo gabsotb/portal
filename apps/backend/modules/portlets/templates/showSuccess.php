@@ -57,15 +57,15 @@
 				  <tbody>
 					<tr>
 					  <th>Investment Certificate:</th>
-					  <td><?php echo $portlets->getInvestmentCertificate() ?></td>
+					  <td><?php echo html_entity_decode($portlets->getInvestmentCertificate()) ?></td>
 					</tr>
 					<tr>
 					  <th>EIA Certificate:</th>
-					  <td><?php echo $portlets->getEiaCertificate() ?></td>
+					  <td><?php echo html_entity_decode($portlets->getEiaCertificate()) ?></td>
 					</tr>
 					<tr>
 					  <th>Tax Exemptions:</th>
-					  <td><?php echo $portlets->getTaxExemptions() ?></td>
+					  <td><?php echo html_entity_decode($portlets->getTaxExemptions()) ?></td>
 					</tr>
 					<tr>
 					  <th>Actions</th>

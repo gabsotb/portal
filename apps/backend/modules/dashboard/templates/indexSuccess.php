@@ -275,18 +275,19 @@ $(function () {
 								<div class="widget-body">
 								<?php if(count($unassigned) == 0 && count($assigning)==0): ?>
 									<div class="alert alert-block alert-info fade in">
-									<h4 class="alert-heading">No recent application has been found</h4>
-									<p>Please try again later/ Refresh the page</p>
+									<h4 class="alert-heading"><?php echo __('No recent application has been found
+									Please try again later/ Refresh the page') ?> </h4>
 									</div>
 								<?php endif; ?>
 								<?php if(count($unassigned)>0): ?>
+								  
 									<?php foreach($unassigned as $unassign): ?>
 									<table class="table table-striped table-bordered" id="eia_manager">
 										<thead>
 											<tr class="odd gradeX">
-											  <th>Reference No.</th>
-												<th>Title</th>
-												<th>Developer</th>
+											  <th><?php echo __('Reference No.') ?> </th>
+												<th><?php echo __('Title') ?></th>
+												<th><?php echo __('Developer') ?></th>
 												<th><?php echo __('Actions') ?></th>
 											</tr>
 										</thead>
@@ -295,7 +296,7 @@ $(function () {
 												<td><?php echo $unassign['project_reference_number'] ?></td>
 												<td><?php echo $unassign['project_title'] ?> </td>
 												<td><?php echo $unassign['developer_name'] ?></td>
-												<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$unassign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$unassign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
 									
 											</tr>
 										</tbody>
@@ -303,22 +304,30 @@ $(function () {
 									<?php endforeach; ?>
 								<?php endif; ?>
 								<?php if(count($assigning)>0): ?>
+								<?php //we will delete the session variable if any available incase this user fails to assign a task for a sessionid we have created
+								  $session_eai_id = sfContext::getInstance()->getUser()->getAttribute('eiaprojectdetail_id') ;
+								  // we clear the current variable
+								  
+								  
+								  ?>
+								
 									<?php foreach($assigning as $assign): ?>
 									<table class="table table-striped table-bordered" id="eia_manager">
 										<thead>
 											<tr class="odd gradeX">
-											  <th>Reference No.</th>
-												<th>Title</th>
-												<th>Developer</th>
+											    <th><?php echo __('Reference No.') ?> </th>
+												<th><?php echo __('Title') ?></th>
+												<th><?php echo __('Developer') ?></th>
 												<th><?php echo __('Actions') ?></th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td><?php echo $assign['project_reference_number'] ?></td>
+												<td><?php echo $assign['project_reference_number']."".$session_eai_id ?></td>
 												<td><?php echo $assign['project_title'] ?> </td>
 												<td><?php echo $assign['developer_name'] ?></td>
-												<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$assign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+												<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$assign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> 
+												<?php echo __('Assign') ?></button></a></td>
 									
 											</tr>
 										</tbody>
@@ -1069,8 +1078,9 @@ $(function () {
 											</tr>
 										</thead>
 										<tbody>
+										<?php foreach($mytasksnotcomplete as $notdone) :?>
 											<tr class="odd gradeX">
-											<?php foreach($mytasksnotcomplete as $notdone) :?>
+											
 											<td><?php echo $notdone['name'] ?></td>
 											<td><?php echo $notdone['location'] ?></td>
 											<td><?php echo "Investment Certificate"?></td>
@@ -1113,7 +1123,7 @@ $(function () {
 												<button class="btn btn-inverse disabled"><i class="icon-refresh icon-white"></i> <?php echo __('Process') ?> </button></a>
 												<?php endif; ?>
 												<?php if($id == null): ?>
-												<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id']) ?>">
+												<a href="<?php echo url_for('dashboard/start?id='.$notdone['investmentapp_id'].'&token='.$notdone['token']) ?>">
 												<button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Process') ?> </button></a>
 												 <?php endif; ?>
 											
@@ -1130,8 +1140,9 @@ $(function () {
 											 <?php endif; ?>
 											</td>
 											
-											<?php endforeach; ?>	
-											</tr>
+												
+											</tr> 
+											<?php endforeach; ?>
 										</tbody>
 									</table>
 								<?php endif; ?>
@@ -1285,9 +1296,6 @@ $(function () {
 									<?php endforeach; ?>
 									
 									<div class="space7"></div>
-									<div class="clearfix">
-										<a href="<?php echo url_for('eiaTaskAssign/index') ?>" class="btn btn-small btn-primary">View All Assigned Tasks</a>
-									</div>
 								</div>
 							</div>
 							<?php if(count($siteVisitsReport)!=0): ?>
@@ -1343,7 +1351,7 @@ $(function () {
 										</li>
 								<?php endforeach; ?>
 								<?php if($notification == null){ ?>
-										 No New Notifications......  
+										<?php echo __('No New Notifications......') ?>  
 									 
 								<?php } ?>
 								  </ul>
@@ -1379,6 +1387,108 @@ $(function () {
 								</div>
 							<?php endif; ?>	
 						</div>
+					</div>
+					<!-- Section For EIReports submitted by users -->
+					<div class="row-fluid">
+					 
+					   <div class="11">
+					      <div class="widget">
+								<div class="widget-title">
+									<h4><?php echo __('Environmental Impact Assessment Report - A List of EIReport Submitted By Applicants') ?></h4>						
+								</div>
+								<div class="widget-body">
+								 <div class="alert alert-success">
+										<button class="close" data-dismiss="alert">×</button>
+										<strong><?php echo __('Information!')?> </strong> <?php echo __('Download Below Documents to view and analyse. These are the EIReports as you requested from the applicant(s).') ?>
+								</div>
+								   <?php foreach($eireports as $report): ?>
+								      <table class="table table-striped table-bordered" id="tasks_monitor">
+										<thead>
+											<tr>
+												<th><i class="icon-user"></i> <span class="hidden-phone"><?php echo __(' Reference No') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Word Document') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('PDF Document') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Date Submitted') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Status') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Actions') ?></span></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="odd gradeX">
+												<td class="highlight">
+													<?php 
+													 
+													//
+													 $value = Doctrine_Core::getTable('EIAProjectDetail')->getReferenceNo($report['eiaproject_id']);
+													//
+													echo $value;
+													?></td>
+												<td>
+												<?php echo link_to('Download Doc', '/uploads/documents/eia_documents/user_eireports/'.$report['word_doc'], array('target' => '_blank')); ?>
+												</td>
+												<td>
+												  <?php echo link_to('Download Doc', '/uploads/documents/eia_documents/user_eireports/'.$report['pdf_doc'], array('target' => '_blank')); ?>
+												</td>
+												<td> <?php echo $report['created_at'] ?> </td>
+												<td> 
+												   <div class="alert alert-success">
+														<?php echo $report['status'] ?>
+													</div>
+												   
+												</td>
+												<td>
+												<?php if( $report['status'] == "awaitingresubmission"): ?>
+												   <div class="alert alert-error">
+														<button class="close" data-dismiss="alert">×</button>
+														<strong><?php echo __('Sorry Not Available') ?></strong>
+													</div>
+												 <?php endif; ?>
+												 <?php if( $report['status'] != "awaitingresubmission"): ?>
+												    <?php if( $report['status'] != "done"): ?>
+												 <a href="#widget-resubmit" data-toggle="modal"><button class="btn btn-danger"><i class="icon-remove icon-white"></i> <?php 
+												$project_id = $report['eiaproject_id'] ;
+												$token = $report['token'];
+												echo __('Resubmit') ?></button></a>
+												
+												<a href="<?php echo url_for('eiaReport/approve?id='.$project_id.'&token='.$token)?>">
+												 <button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Approve') ?></button></a>
+												        <?php endif; ?>
+														 <?php if( $report['status'] == "done"): ?>
+														 <div class="alert alert-error">
+														   <button class="close" data-dismiss="alert">×</button>
+														   <strong><?php echo __('Report approved') ?></strong>
+													      </div>
+														 <?php endif; ?>
+												 <?php endif; ?>
+												</td>
+											</tr>
+											
+										
+										</tbody>
+									</table>
+								   <?php endforeach; ?>
+								     <div id="widget-resubmit" class="modal hide">
+										<div class="modal-header">
+											<button data-dismiss="modal" class="close" type="button">×</button>
+											<h3><?php echo __('Request EIReport Resubmission') ?></h3>
+										</div>
+										<div class="modal-body">
+											<p><?php echo __('Please Note that You are about to request this client to resubmit data. This therefore means the client 
+											documents processing will continue after he/she resubmits. You will not be able to process the application untill
+											the client resubmits his/her IERepport Documents')?>.</p>
+											<p><?php echo __('Are you sure')?>? </p>
+											
+											 <a href="<?php echo url_for('eireportresubmit/new?id='.$project_id)?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Okay I understand') ?></button> </a>&nbsp;&nbsp;&nbsp;
+											 <button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
+											
+											
+											
+											
+										</div>
+				                      </div>
+								</div>
+						  </div>
+					   </div>
 					</div>
 									
 <?php endif; ?>		

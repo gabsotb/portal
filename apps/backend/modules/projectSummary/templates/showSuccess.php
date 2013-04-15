@@ -11,28 +11,34 @@
 							
 							
 							 <?php //we will query for permission for accepting this user application for investment certificate
-							  $username = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
+							  $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 							  //we query for applicant_reference_number
 							   $applicant_reference = Doctrine_Core::getTable('ProjectSummary')->getApplicantReferenceNumber(
 							   $project_summary->getInvestmentId());
 							  // print "ssss". $project_summary->getInvestmentId(); exit;
 							 // print $applicant_reference;
 							 // print $username; exit;
-                               $permission = Doctrine_Core::getTable('InvestmentRequests')->queryAcceptPermission($applicant_reference, $username);
+                               $permission = Doctrine_Core::getTable('InvestmentRequests')->queryAcceptPermission($applicant_reference, $user_id);
 							  // print_r($permission); exit;
 							 ?>
 							 
 							<?php if(count($permission) == 0): ?>
-							<font color="red">
+							  <font color="green">
 							 <?php echo __('To Accept this application you will need permission from the Manager/ Supervisor who assigned this Task.')?>
+							 <br/>
+							 </font> 
+							  <font color="red">
 							 <?php //no permission yet
                                 echo __('Sorry,Permission not granted. If you have contacted your supervisor please wait
 							  as he/she responds to your request. If not please send a message asap. Thank you for understanding') ;
 							  
-							  ?><br/>
+							  ?>
+							  </font> 
+							  <br/>
+							 
 							  <a href="<?php echo url_for('messages/new?value=decline')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a>
 							<?php endif; ?>
-							</font> 
+							
 							  <?php if(count($permission) != 0): ?>
 							      <p><?php echo __('Continue please')?>! </p> <br/>
 							      <a href="<?php echo url_for('projectSummary/accept?id='.$project_summary->getInvestmentId()) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> </a>

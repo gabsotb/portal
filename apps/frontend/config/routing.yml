@@ -13,6 +13,10 @@ localized_homepage:
 change_language:
   url:   /change_language
   param: { module: language, action: changeLanguage }
+### Route for eireport submission
+eireport:
+ url: /report/submission
+ param: {module: eireport, action: new}
 ####Route for message module for frontend
 my_inbox:
  url: /:sf_culture/inbox
@@ -56,9 +60,15 @@ businessplan_loading:
 project_detail:
  url: start/project/detail
  param: {module: projectDetail, action: new}
+project_developer:
+ url: project/developer
+ param: {module: eiaProjectDeveloper, action: new}
 project_description:
- url: project/description
+ url: /description
  param: {module: projectDescription, action: new}
+project_surrounding:
+ url: /project/surrounding
+ param: {module: eiaProjectSurrounding, action: new }
 project_surrounding_species:
  url: project/sorrounding/species
  param: {module: projectSorroundingSpecies, action: new}

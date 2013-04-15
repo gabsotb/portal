@@ -48,11 +48,11 @@
 		<?php endif; ?>
 	  
         <td colspan="2">
-          &nbsp;<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+          &nbsp;<a href="<?php echo url_for('InvestmentCertTaskAssignment/index') ?>"><button type="button" class="btn btn-danger"><?php echo __('Cancel') ?></button></a>
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php //echo link_to('Delete', 'investmentapp/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
           <?php endif; ?>
-          <input type="submit" class="btn btn-primary" value="Save" />
+          <input type="submit" class="btn btn-primary" value="<?php echo __('Assign')?>" />
 		  <?php //$form->validatorSchema->setOption('allow_extra_fields', true); ?>
         </td>
       </tr>

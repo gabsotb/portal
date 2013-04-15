@@ -53,6 +53,7 @@ abstract class BaseInvestmentRequests extends sfDoctrineRecord
         $this->hasColumn('reference_number', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
+             'unique' => true,
              'length' => 255,
              ));
         $this->hasColumn('comments', 'string', 1000, array(

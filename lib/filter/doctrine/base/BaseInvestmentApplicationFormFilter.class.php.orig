@@ -19,6 +19,7 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
       'title_in_company'           => new sfWidgetFormFilterInput(),
       'business_sector'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'business_category'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'representative_name'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'office_telephone'           => new sfWidgetFormFilterInput(),
       'fax'                        => new sfWidgetFormFilterInput(),
       'post_box'                   => new sfWidgetFormFilterInput(),
@@ -26,7 +27,7 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
       'sector'                     => new sfWidgetFormFilterInput(),
       'district'                   => new sfWidgetFormFilterInput(),
       'city_province'              => new sfWidgetFormFilterInput(),
-      'applicant_reference_number' => new sfWidgetFormFilterInput(),
+      'applicant_reference_number' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'token'                      => new sfWidgetFormFilterInput(),
       'created_at'                 => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'                 => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
@@ -40,6 +41,7 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
       'title_in_company'           => new sfValidatorPass(array('required' => false)),
       'business_sector'            => new sfValidatorPass(array('required' => false)),
       'business_category'          => new sfValidatorPass(array('required' => false)),
+      'representative_name'        => new sfValidatorPass(array('required' => false)),
       'office_telephone'           => new sfValidatorPass(array('required' => false)),
       'fax'                        => new sfValidatorPass(array('required' => false)),
       'post_box'                   => new sfValidatorPass(array('required' => false)),
@@ -78,6 +80,7 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
       'title_in_company'           => 'Text',
       'business_sector'            => 'Text',
       'business_category'          => 'Text',
+      'representative_name'        => 'Text',
       'office_telephone'           => 'Text',
       'fax'                        => 'Text',
       'post_box'                   => 'Text',
@@ -179,4 +182,4 @@ abstract class BaseInvestmentApplicationFormFilter extends BaseFormFilterDoctrin
     );
   }
 }
->>>>>>> d33b56d38c59bda6f5bdc7678282e1673275be64
+>>>>>>> f96885150764993174e024e4524cd25945e560f5

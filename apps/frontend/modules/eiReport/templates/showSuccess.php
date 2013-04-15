@@ -5,16 +5,20 @@
       <td><?php echo $ei_report->getId() ?></td>
     </tr>
     <tr>
-      <th>Company:</th>
-      <td><?php echo $ei_report->getCompanyId() ?></td>
+      <th>Eiaproject:</th>
+      <td><?php echo $ei_report->getEiaprojectId() ?></td>
     </tr>
     <tr>
-      <th>Ei doc:</th>
-      <td><?php echo $ei_report->getEiDoc() ?></td>
+      <th>Word doc:</th>
+      <td><?php echo $ei_report->getWordDoc() ?></td>
     </tr>
     <tr>
-      <th>Emp doc:</th>
-      <td><?php echo $ei_report->getEmpDoc() ?></td>
+      <th>Pdf doc:</th>
+      <td><?php echo $ei_report->getPdfDoc() ?></td>
+    </tr>
+    <tr>
+      <th>Token:</th>
+      <td><?php echo $ei_report->getToken() ?></td>
     </tr>
     <tr>
       <th>Created at:</th>
@@ -37,6 +41,6 @@
 
 <hr />
 
-<a href="<?php echo url_for('eiReport/edit?id='.$ei_report->getId()) ?>">Edit</a>
+<a href="<?php echo url_for('eireport/edit?id='.$ei_report->getId()) ?>">Edit</a>
 &nbsp;
-<a href="<?php echo url_for('eiReport/index') ?>">List</a>
+<a href="<?php echo url_for('eireport/index') ?>">List</a>

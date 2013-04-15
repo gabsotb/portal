@@ -394,5 +394,17 @@ business_plan.investment_id = investment_application.id left join  business_appl
 	 return $query;
 	 
 	}
-	
+	//get business id using supplied token
+	public function getBusinessFromToken($token)
+	{
+	 $id = null ;
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("Select id from investment_application where token = '$token' ");
+	 //loop
+	 foreach($query as $q)
+	 {
+	  $id  = $q['id'];
+	 }
+	 //
+	 return $id;
+	}
 }

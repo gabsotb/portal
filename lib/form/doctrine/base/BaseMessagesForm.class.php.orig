@@ -19,7 +19,7 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
       'id'              => new sfWidgetFormInputHidden(),
       'sender'          => new sfWidgetFormInputText(),
       'recepient'       => new sfWidgetFormInputText(),
-      'message_subject' => new sfWidgetFormTextarea(),
+      'message_subject' => new sfWidgetFormInputText(),
       'message'         => new sfWidgetFormTextarea(),
       'attachement'     => new sfWidgetFormInputText(),
       'token'           => new sfWidgetFormInputText(),
@@ -31,7 +31,7 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'sender'          => new sfValidatorString(array('max_length' => 255)),
       'recepient'       => new sfValidatorString(array('max_length' => 255)),
-      'message_subject' => new sfValidatorString(array('max_length' => 300, 'required' => false)),
+      'message_subject' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'message'         => new sfValidatorString(array('max_length' => 4000)),
       'attachement'     => new sfValidatorString(array('max_length' => 255)),
       'token'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
@@ -62,7 +62,10 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
       'id'              => new sfWidgetFormInputHidden(),
       'sender'          => new sfWidgetFormInputText(),
       'recepient'       => new sfWidgetFormInputText(),
-      'message_subject' => new sfWidgetFormTextarea(),
+      'sender_email'    => new sfWidgetFormInputText(),
+      'recepient_email' => new sfWidgetFormInputText(),
+      'cc_email'        => new sfWidgetFormInputText(),
+      'message_subject' => new sfWidgetFormInputText(),
       'message'         => new sfWidgetFormTextarea(),
       'attachement'     => new sfWidgetFormInputText(),
       'token'           => new sfWidgetFormInputText(),
@@ -74,8 +77,11 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'sender'          => new sfValidatorString(array('max_length' => 255)),
       'recepient'       => new sfValidatorString(array('max_length' => 255)),
-      'message_subject' => new sfValidatorString(array('max_length' => 300, 'required' => false)),
-      'message'         => new sfValidatorString(array('max_length' => 4000)),
+      'sender_email'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'recepient_email' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'cc_email'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'message_subject' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'message'         => new sfValidatorString(array('max_length' => 10000)),
       'attachement'     => new sfValidatorString(array('max_length' => 255)),
       'token'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'      => new sfValidatorDateTime(),
@@ -97,4 +103,4 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> b042e0d726f7f87869f2d7d092e8b1d7acca658a
+>>>>>>> 8a45578a6c5c1cbed13662effd99c1202e646474

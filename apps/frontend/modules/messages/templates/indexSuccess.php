@@ -22,8 +22,27 @@
 					</div>
 				</div>
 					<div class="row-fluid">
-						<div class="span12">
 						
+						 <?php if(count($messagess) == null): ?>
+						  <div class="span6">
+							   <div class="widget">
+								 <div class="widget-body">
+									  <div class="alert alert-block alert-info">
+											
+											<h4 class="alert-heading">Empty!</h4>
+											<p>
+												No New Messages Found
+											</p>
+											<p>
+												<a class="btn btn-danger" href="<?php echo url_for('dashboard/index')?>">Dashboard</a> <a class="btn" href="<?php echo url_for('messages/new')?>">Create</a>
+											</p>
+										</div>
+							   </div>
+								</div>
+							</div>
+						 <?php endif; ?>
+						  <?php if(count($messagess) != null): ?>
+						 <div class="span12">
 						<div class="widget">
 								<div class="widget-title">
 									<h4><i class="icon-envelope-alt"></i><?php echo __('Your Messages:') ?> </h4>						
@@ -60,7 +79,7 @@
 								</div>
 							</div>
 						
-						
+						 <?php endif; ?>
 						</div>	
 					</div>	
 </div>

@@ -32,9 +32,13 @@ class InvestmentCertTaskAssignmentActions extends sfActions
    //before we create a form we get the necessary parameters from url
    $regno = $request->getParameter('registration') ;
    $token = $request->getParameter('token') ;
-   $reference = $request->getParameter('reference') ;
+   //get investmentapp_id using token value
+   $reference = Doctrine_Core::getTable('InvestmentApplication')->getBusinessFromToken($token);
+  
    ///session variable
    $this->getUser()->setAttribute('investmentapp_id', $reference);
+   $id = $this->getUser()->getAttribute('investmentapp_id');
+  // print ($id); exit;
   // $session_investmentapp_id = $this->getUser()->getAttribute('investmentapp_id');
    
    //print $session_value; 

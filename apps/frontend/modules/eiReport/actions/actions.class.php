@@ -1,14 +1,14 @@
 <?php
 
 /**
- * eiReport actions.
+ * eireport actions.
  *
  * @package    rdbeportal
- * @subpackage eiReport
+ * @subpackage eireport
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class eiReportActions extends sfActions
+class eireportActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
@@ -42,6 +42,8 @@ class eiReportActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($ei_report = Doctrine_Core::getTable('EIReport')->find(array($request->getParameter('id'))), sprintf('Object ei_report does not exist (%s).', $request->getParameter('id')));
+	//we also set a session variable for status
+	sfContext::getInstance()->getUser()->setAttribute('eireport_submission_status',$request->getParameter('status'));
     $this->form = new EIReportForm($ei_report);
   }
 
@@ -63,7 +65,7 @@ class eiReportActions extends sfActions
     $this->forward404Unless($ei_report = Doctrine_Core::getTable('EIReport')->find(array($request->getParameter('id'))), sprintf('Object ei_report does not exist (%s).', $request->getParameter('id')));
     $ei_report->delete();
 
-    $this->redirect('eiReport/index');
+    $this->redirect('eireport/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -72,8 +74,19 @@ class eiReportActions extends sfActions
     if ($form->isValid())
     {
       $ei_report = $form->save();
-
-      $this->redirect('eiReport/edit?id='.$ei_report->getId());
+      ///
+	  $allFormValues = $request->getParameter($this->form->getName());
+	  $project_id = $allFormValues['eiaproject_id'];
+	  //we access a method that updates the status in EIReport and EIReportSubmission
+	  $this->updateStatus($project_id);
+     // $this->redirect('eireport/edit?id='.$ei_report->getId());
+	 $this->redirect('investmentapp/index');
     }
+  }
+  //update status for submission
+  public function updateStatus($project_id)
+  {
+   Doctrine_Core::getTable('EIReport')->updateStatus($project_id);
+   Doctrine_Core::getTable('EIReportResubmission')->updateStatus($project_id);
   }
 }
