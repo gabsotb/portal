@@ -892,7 +892,7 @@ $(function () {
 			<h3><?php echo __('Reason for resubmission') ?></h3>
 		</div>
 		<div class="modal-body">
-			<p><?php echo $briefDecision[0]['comments'] ?></p>
+			<p><?php echo html_entity_decode($briefDecision[0]['comments']) ?></p>
 			<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
 		</div>
 </div>
@@ -902,7 +902,7 @@ $(function () {
 			<h3><?php echo __('Reason for rejection') ?></h3>
 		</div>
 		<div class="modal-body">
-			<p><?php echo $briefDecision[0]['comments'] ?></p>
+			<p><?php echo html_entity_decode($briefDecision[0]['comments']) ?></p>
 			<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
 		</div>
 </div>

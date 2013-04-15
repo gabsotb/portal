@@ -1140,14 +1140,9 @@ $(function () {
 											 <?php endif; ?>
 											</td>
 											
-<<<<<<< HEAD
-											<?php endforeach; ?>	
-											</tr> <br/>
-=======
 												
 											</tr> 
 											<?php endforeach; ?>
->>>>>>> 2a3d7c58a6bea1fe32b196cff3ae0c65db9b26ce
 										</tbody>
 									</table>
 								<?php endif; ?>
@@ -1303,6 +1298,29 @@ $(function () {
 									<div class="space7"></div>
 								</div>
 							</div>
+							<?php if(count($siteVisitsReport)!=0): ?>
+								<div class="widget">
+									<div class="widget-title">
+										<h4><i class="icon-reorder"></i>Site Visit</h4>
+									</div>
+									<div class="widget-body">
+									<table class="table table-striped table-hover">
+									<?php foreach($siteVisitsReport as $siteVisitReport): ?>
+										<tr>
+											<th>Reference No.</th>
+											<th>Title</th>
+											<th>Action</th>
+										</tr>
+										<tr>
+											<td><?php echo $siteVisitReport['EIAProjectDetail']['project_reference_number'] ?></td>
+											<td><?php echo $siteVisitReport['EIAProjectDetail']['project_title'] ?></td>
+											<td><?php echo button_to('Report','eiaDataAdmin/siteVisitReport?id='.$siteVisitReport['id'],array('class' => 'btn')) ?></td>
+										</tr>
+									<?php endforeach; ?>	
+									</table>
+									</div>
+								</div>
+							<?php endif; ?>	
 						</div> 
 						<div class="span4">
 							<div class="widget">
@@ -1339,8 +1357,40 @@ $(function () {
 								  </ul>
 								 </div>
 							</div>
+							<?php if(count($siteVisits)!=0): ?>
+								<div class="widget">
+									<div class="widget-title">
+										<h4><i class="icon-tasks"></i>Site Visits</h4>
+									</div>
+									<div class="widget-body">
+										<ul class="item-list todo">
+										<?php foreach($siteVisits as $siteVisit): ?>
+											<li><?php echo link_to($siteVisit['EIAProjectDetail']['project_title'],'eiaDataAdmin/process?id='.$siteVisit['eiaproject_id']) ?>
+											<?php if(strtotime($siteVisit['site_visit']) <= time() && (strtotime($siteVisit['site_visit'])+86400) >= time())
+													{ 
+														$label="label-important"; 
+														$siteDate="today";
+													}else
+													{
+														$label="label-info";
+														$siteDate=date('jS M',strtotime($siteVisit['site_visit']));
+													}
+											?>
+											<span class="label <?php echo $label ?>">
+											<i class="icon-bell"></i>
+											<?php echo $siteDate ?>
+											</span>
+											</li>
+										<?php endforeach; ?>
+										</ul>
+									</div>
+								</div>
+							<?php endif; ?>	
 						</div>
 					</div>
+<<<<<<< HEAD
+									
+=======
 					<!-- Section For EIReports submitted by users -->
 					<div class="row-fluid">
 					 
@@ -1397,12 +1447,21 @@ $(function () {
 													</div>
 												 <?php endif; ?>
 												 <?php if( $report['status'] != "awaitingresubmission"): ?>
+												    <?php if( $report['status'] != "done"): ?>
 												 <a href="#widget-resubmit" data-toggle="modal"><button class="btn btn-danger"><i class="icon-remove icon-white"></i> <?php 
 												$project_id = $report['eiaproject_id'] ;
+												$token = $report['token'];
 												echo __('Resubmit') ?></button></a>
 												
-												<a href="<?php echo url_for('eireport/approve')?>">
+												<a href="<?php echo url_for('eiaReport/approve?id='.$project_id.'&token='.$token)?>">
 												 <button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Approve') ?></button></a>
+												        <?php endif; ?>
+														 <?php if( $report['status'] == "done"): ?>
+														 <div class="alert alert-error">
+														   <button class="close" data-dismiss="alert">×</button>
+														   <strong><?php echo __('Report approved') ?></strong>
+													      </div>
+														 <?php endif; ?>
 												 <?php endif; ?>
 												</td>
 											</tr>
@@ -1435,6 +1494,7 @@ $(function () {
 					   </div>
 					</div>
 					
+>>>>>>> 8a45578a6c5c1cbed13662effd99c1202e646474
 <?php endif; ?>		
 <!-- ********************************************************************** -->
 

@@ -275,8 +275,8 @@ $(function () {
 								<div class="widget-body">
 								<?php if(count($unassigned) == 0 && count($assigning)==0): ?>
 									<div class="alert alert-block alert-info fade in">
-									<h4 class="alert-heading"><?php echo __('No recent application has been found
-									Please try again later/ Refresh the page') ?> </h4>
+									<h4 class="alert-heading"><?php echo __('No recent application has been found') ?></h4>
+									<p><?php echo __('Please try again later/ Refresh the page') ?> </p>
 									</div>
 								<?php endif; ?>
 								<?php if(count($unassigned)>0): ?>
@@ -762,14 +762,15 @@ $(function () {
 									<h4><?php echo __('Recent Applications for  EIA Certificates') ?></h4>						
 								</div>
 								<div class="widget-body">
-									<?php if(count($unassigned) == 0 ): ?>
+								<?php if(count($unassigned) == 0 && count($assigning)==0): ?>
 									<div class="alert alert-block alert-info fade in">
 									<h4 class="alert-heading">No recent application has been found</h4>
 									<p>Please try again later/ Refresh the page</p>
 									</div>
-									<?php endif; ?>
-									<?php if(count($unassigned) > 0): ?>
+								<?php endif; ?>
+									<?php if(count($unassigned) != 0): ?>
 										<?php foreach($unassigned as $unassign): ?>
+										<h4>Application not assigned</h4>
 										<table class="table table-striped table-bordered" id="eia_manager">
 											<thead>
 												<tr class="odd gradeX">
@@ -785,6 +786,30 @@ $(function () {
 													<td><?php echo $unassign['project_title'] ?> </td>
 													<td><?php echo $unassign['developer_name'] ?></td>
 													<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$unassign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+										
+												</tr>
+											</tbody>
+										</table>
+										<?php endforeach; ?>
+									<?php endif; ?>
+									<?php if(count($assigning) != 0): ?>
+										<?php foreach($assigning as $assign): ?>
+										<h4>Application assigning </h4>
+										<table class="table table-striped table-bordered" id="eia_manager">
+											<thead>
+												<tr class="odd gradeX">
+												  <th>Reference No.</th>
+													<th>Title</th>
+													<th>Developer</th>
+													<th>Actions</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><?php echo $assign['project_reference_number'] ?></td>
+													<td><?php echo $assign['project_title'] ?> </td>
+													<td><?php echo $assign['developer_name'] ?></td>
+													<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$assign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 										
 												</tr>
 											</tbody>
@@ -837,6 +862,31 @@ $(function () {
 
 
 </div>
+					<?php if(count($assessments) != 0): ?>
+					<div class="row-fluid">
+						<div class="widget">
+							<div class="widget-title">
+								<h4><i class="icon-reorder"></i>EIA --- Awaiting Approval</h4>
+							</div>
+							<div class="widget-body">
+							<?php foreach($assessments as $assessment): ?>
+								<table class="table table-striped table-hover">
+								<tr>
+									<th>Project</th>
+									<th>Assigned to</th>
+									<th>Action</th>
+								</tr>
+								<tr>
+									<td><?php echo $assessment['EIAProjectDetail']['project_title']?></td>
+									<td><?php echo $assessment['sfGuardUser']['last_name'] ?></td>
+									<td><?php echo button_to('Assess','dashboard/assessmentDecision?id='.$assessment['id'],array('class' => 'btn')); ?></td>
+								</tr>
+								</table>
+							<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+					<?php endif; ?>
 <div class="row-fluid">
    <div class="span12">
        <div class="widget">
@@ -1293,11 +1343,56 @@ $(function () {
 											</table>
 										<?php endif; ?>
 									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'rejected'): ?>
+										<h4>Applications rejected</h4>
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
+														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn')); ?></td>
+											
+													</tr>
+												</tbody>
+											</table>
+										<?php endif; ?>
+									</div>
 									<?php endforeach; ?>
 									
 									<div class="space7"></div>
 								</div>
 							</div>
+							<?php if(count($siteVisitsReport)!=0): ?>
+								<div class="widget">
+									<div class="widget-title">
+										<h4><i class="icon-reorder"></i>Site Visit</h4>
+									</div>
+									<div class="widget-body">
+									<table class="table table-striped table-hover">
+									<?php foreach($siteVisitsReport as $siteVisitReport): ?>
+										<tr>
+											<th>Reference No.</th>
+											<th>Title</th>
+											<th>Action</th>
+										</tr>
+										<tr>
+											<td><?php echo $siteVisitReport['EIAProjectDetail']['project_reference_number'] ?></td>
+											<td><?php echo $siteVisitReport['EIAProjectDetail']['project_title'] ?></td>
+											<td><?php echo button_to('Report','eiaDataAdmin/siteVisitReport?id='.$siteVisitReport['id'],array('class' => 'btn')) ?></td>
+										</tr>
+									<?php endforeach; ?>	
+									</table>
+									</div>
+								</div>
+							<?php endif; ?>	
 						</div> 
 						<div class="span4">
 							<div class="widget">
@@ -1334,6 +1429,43 @@ $(function () {
 								  </ul>
 								 </div>
 							</div>
+							<?php if(count($siteVisits)!=0 ): ?>
+								<div class="widget">
+									<div class="widget-title">
+										<h4><i class="icon-tasks"></i>Site Visits</h4>
+									</div>
+									<div class="widget-body">
+										<ul class="item-list todo">
+										<?php foreach($siteVisits as $siteVisit): ?>
+											<?php if($siteVisit['visited'] == 0): ?>
+											<li><?php echo link_to($siteVisit['EIAProjectDetail']['project_title'],'eiaDataAdmin/process?id='.$siteVisit['eiaproject_id']) ?>
+											<?php if(strtotime($siteVisit['site_visit']) <= time() && (strtotime($siteVisit['site_visit'])+86400) >= time())
+													{ 
+														$label="label-important"; 
+														$siteDate="today";
+													}else
+													{
+														$label="label-info";
+														$siteDate=date('jS M',strtotime($siteVisit['site_visit']));
+													}
+											?>
+											<span class="label <?php echo $label ?>">
+											<i class="icon-bell"></i>
+											<?php echo $siteDate ?>
+											</span>
+											</li>
+											<?php endif; ?>
+										<?php endforeach; ?>
+										</ul>
+									<?php if($siteVisit['visited'] ==1 ): ?>
+									<div class="alert alert-block alert-info fade in">
+										<button type="button" class="close" data-dismiss="alert">x</button>
+										<h4>No upcoming site visits</h4>
+									</div>
+									<?php endif; ?>
+									</div>
+								</div>
+							<?php endif; ?>	
 						</div>
 					</div>
 					<!-- Section For EIReports submitted by users -->
@@ -1442,7 +1574,7 @@ $(function () {
 						  </div>
 					   </div>
 					</div>
-					
+									
 <?php endif; ?>		
 <!-- ********************************************************************** -->
 

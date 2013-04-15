@@ -19,6 +19,7 @@ abstract class BaseInvestmentCertificateForm extends BaseFormDoctrine
       'id'            => new sfWidgetFormInputHidden(),
       'serial_number' => new sfWidgetFormInputText(),
       'business_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'), 'add_empty' => false)),
+      'token'         => new sfWidgetFormInputText(),
       'created_at'    => new sfWidgetFormDateTime(),
       'updated_at'    => new sfWidgetFormDateTime(),
       'created_by'    => new sfWidgetFormTextarea(),
@@ -29,6 +30,7 @@ abstract class BaseInvestmentCertificateForm extends BaseFormDoctrine
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'serial_number' => new sfValidatorInteger(),
       'business_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
+      'token'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),
       'created_by'    => new sfValidatorString(array('required' => false)),
@@ -74,7 +76,7 @@ abstract class BaseInvestmentCertificateForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'serial_number' => new sfValidatorInteger(),
+      'serial_number' => new sfValidatorString(array('max_length' => 255)),
       'business_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
       'token'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
@@ -105,4 +107,4 @@ abstract class BaseInvestmentCertificateForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> df469ab3c284762d3943f53ca17239220e4644fe
+>>>>>>> 7d90088ba906948bffa802eb53291959e6485adc

@@ -20,6 +20,7 @@ abstract class BasePaymentForm extends BaseFormDoctrine
       'business_id'    => new sfWidgetFormInputText(),
       'payment_status' => new sfWidgetFormInputText(),
       'slip_number'    => new sfWidgetFormInputText(),
+      'token'          => new sfWidgetFormInputText(),
       'created_at'     => new sfWidgetFormDateTime(),
       'updated_at'     => new sfWidgetFormDateTime(),
       'created_by'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -30,7 +31,8 @@ abstract class BasePaymentForm extends BaseFormDoctrine
       'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'business_id'    => new sfValidatorInteger(),
       'payment_status' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'slip_number'    => new sfValidatorInteger(),
+      'slip_number'    => new sfValidatorString(array('max_length' => 255)),
+      'token'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'     => new sfValidatorDateTime(),
       'updated_at'     => new sfValidatorDateTime(),
       'created_by'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
@@ -103,4 +105,4 @@ abstract class BasePaymentForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> df469ab3c284762d3943f53ca17239220e4644fe
+>>>>>>> b6981561b33eb2439507ef586802c40c277c2ec9

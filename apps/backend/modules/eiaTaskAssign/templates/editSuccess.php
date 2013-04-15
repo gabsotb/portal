@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="widget">
-		<div class="widget-title form">
+		<div class="widget-title">
 		<h4><i class="icon-reorder"></i>EIA Task Assignment---Edit</h4>
 		</div>
 		<div class="widget-body">

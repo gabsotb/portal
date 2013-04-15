@@ -5,14 +5,6 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-    	   <div class="control-group">
-			<div class="controls">
-			   <label class="control-label"><strong><?php echo $form['recepient']->renderLabel() ?></strong></label>
-				<div class="input-prepend">
-					<?php echo $form['recepient']->render(array('class' => 'span8'))  ?>
-				</div>
-			</div>
-		    </div>
 			<div class="control-group">
 			<div class="controls">
 			     <label class="control-label"><strong><?php echo $form['cc_email']->renderLabel() ?></strong></label>
@@ -59,10 +51,10 @@
           <div class="control-group">
 		   <div class="controls">
 				<div class="">
-				<input type="submit" class="btn btn-success" value="Send" />
 				<a href="<?php echo url_for('messages/index') ?>">
 				  <input type="button" class="btn btn-danger" value="<?php echo __('Cancel') ?>">
 				</a>
+				<input type="submit" class="btn btn-success" value="Send" />
 				</div>
 			</div>
 		    </div>

@@ -36,7 +36,7 @@
 											<p class="text-warning"><?php echo __('From:') ?> <?php echo $messages['sender']?></p>
 											 <p class="text-success"><?php echo __('Date:') ?> <?php echo $messages['created_at'] ?></p></p>
 											<p class="lead">
-												<?php echo $messages['message'] ?>
+												<?php echo html_entity_decode($messages['message']) ?>
 											</p>
 											<p>
 											 <?php echo $messages['attachement'] ?>
@@ -45,7 +45,7 @@
 											  <a href="<?php echo url_for('messages/index') ?>">
 											  <button type="button" class="btn btn-primary"><?php echo __('inbox') ?></button>
 											  </a>
-											
+											<?php echo button_to('Reply','messages/reply?recepient='.$messages['sender'].'&email='.$messages['sender_email'],array('class' => 'btn btn-success')) ?>
 											</p>
 										</div>
 										

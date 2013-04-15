@@ -13,7 +13,7 @@
 											<p class="text-warning">From: <?php echo $messages['sender']?></p>
 											 <p class="text-success">Date: <?php echo $messages['created_at'] ?></p></p>
 											<p class="lead">
-												<?php echo $messages['message'] ?>
+												<?php echo html_entity_decode($messages['message']) ?>
 											</p>
 											<p>
 											 
@@ -27,7 +27,7 @@
 											  <a href="<?php echo url_for('messages/index') ?>">
 											  <button type="button" class="btn btn-primary">inbox</button>
 											  </a>
-											
+											<?php echo button_to('Reply','messages/reply?recepient='.$messages['sender'].'&email='.$messages['sender_email'],array('class' => 'btn btn-success')) ?>
 											</p>
 										</div>
 										
