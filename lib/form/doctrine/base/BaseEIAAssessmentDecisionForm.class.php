@@ -17,6 +17,7 @@ abstract class BaseEIAAssessmentDecisionForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
       'taskassignment_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EITaskAssignment'), 'add_empty' => false)),
+      'eia_stage'         => new sfWidgetFormTextarea(),
       'verdict'           => new sfWidgetFormTextarea(),
       'remarks'           => new sfWidgetFormInputText(),
       'token'             => new sfWidgetFormInputText(),
@@ -29,6 +30,7 @@ abstract class BaseEIAAssessmentDecisionForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'taskassignment_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EITaskAssignment'))),
+      'eia_stage'         => new sfValidatorString(),
       'verdict'           => new sfValidatorString(),
       'remarks'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'token'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
@@ -37,10 +39,6 @@ abstract class BaseEIAAssessmentDecisionForm extends BaseFormDoctrine
       'created_by'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
       'updated_by'        => new sfValidatorString(array('required' => false)),
     ));
-
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'EIAAssessmentDecision', 'column' => array('taskassignment_id')))
-    );
 
     $this->widgetSchema->setNameFormat('eia_assessment_decision[%s]');
 

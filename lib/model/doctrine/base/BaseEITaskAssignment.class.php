@@ -8,7 +8,7 @@
  * @property integer $user_assigned
  * @property integer $eiaproject_id
  * @property string $instructions
- * @property timestamp $duedate
+ * @property date $duedate
  * @property string $work_status
  * @property string $token
  * @property EIAProjectDetail $EIAProjectDetail
@@ -18,7 +18,7 @@
  * @method integer             getUserAssigned()          Returns the current record's "user_assigned" value
  * @method integer             getEiaprojectId()          Returns the current record's "eiaproject_id" value
  * @method string              getInstructions()          Returns the current record's "instructions" value
- * @method timestamp           getDuedate()               Returns the current record's "duedate" value
+ * @method date                getDuedate()               Returns the current record's "duedate" value
  * @method string              getWorkStatus()            Returns the current record's "work_status" value
  * @method string              getToken()                 Returns the current record's "token" value
  * @method EIAProjectDetail    getEIAProjectDetail()      Returns the current record's "EIAProjectDetail" value
@@ -57,8 +57,8 @@ abstract class BaseEITaskAssignment extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('duedate', 'timestamp', null, array(
-             'type' => 'timestamp',
+        $this->hasColumn('duedate', 'date', null, array(
+             'type' => 'date',
              'notnull' => true,
              ));
         $this->hasColumn('work_status', 'string', 255, array(

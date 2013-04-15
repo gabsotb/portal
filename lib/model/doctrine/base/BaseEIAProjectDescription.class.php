@@ -168,25 +168,25 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              ));
         $this->hasColumn('project_nature', 'string', 255, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('project_objective', 'string', 1000, array(
              'type' => 'string',
-             'notnull' => false,
+             'notnull' => true,
              'length' => 1000,
              ));
         $this->hasColumn('project_total_cost', 'integer', null, array(
              'type' => 'integer',
-             'notnull' => false,
+             'notnull' => true,
              ));
         $this->hasColumn('project_working_capital', 'integer', null, array(
              'type' => 'integer',
-             'notnull' => false,
+             'notnull' => true,
              ));
         $this->hasColumn('total_land_area', 'integer', null, array(
              'type' => 'integer',
-             'notnull' => false,
+             'notnull' => true,
              ));
         $this->hasColumn('existing_land_use', 'integer', null, array(
              'type' => 'integer',

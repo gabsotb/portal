@@ -5,7 +5,7 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-  <table class="table table-striped">
+  <table class="table table-striped table-hover">
     <tfoot>
       <tr>
         <td colspan="2">
@@ -25,6 +25,13 @@
         <td>
           <?php echo $form['verdict']->renderError() ?>
           <?php echo $form['verdict'] ?>
+        </td>
+      </tr>
+      <tr>
+        <th><?php echo $form['eia_stage']->renderLabel() ?></th>
+        <td>
+          <?php echo $form['eia_stage']->renderError() ?>
+          <?php echo $form['eia_stage'] ?>
         </td>
       </tr>
       <tr>

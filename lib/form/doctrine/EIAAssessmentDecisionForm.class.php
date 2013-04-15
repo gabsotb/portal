@@ -22,7 +22,14 @@ class EIAAssessmentDecisionForm extends BaseEIAAssessmentDecisionForm
 	$this->validatorSchema['verdict'] = new sfValidatorChoice(array(
 	  'choices' => array_keys(Doctrine_Core::getTable('EIAAssessmentDecision')->getDecisions()),
 	));  
-	
+	$this->widgetSchema['eia_stage']= new sfWidgetFormChoice(array(
+		'choices' => Doctrine_Core::getTable('EIAAssessmentDecision')->getStages(),
+		'multiple' => false,
+		'expanded' => false,
+	));
+	$this->validatorSchema['eia_stage'] = new sfValidatorChoice(array(
+	  'choices' => array_keys(Doctrine_Core::getTable('EIAAssessmentDecision')->getStages()),
+	));  
 	$this->widgetSchema['remarks'] = new sfWidgetFormTextarea();
   }
 }

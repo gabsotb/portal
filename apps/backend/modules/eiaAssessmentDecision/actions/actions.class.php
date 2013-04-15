@@ -45,6 +45,14 @@ class eiaAssessmentDecisionActions extends sfActions
 	{
 		$this->briefDecision=$briefDecisions;
 	}
+	if($visits=Doctrine_Core::getTable('EIASiteVisit')->findByEiaprojectId($eiaprojectId['eiaproject_id']))
+	{
+		$this->sites=$visits;
+		if($reports=Doctrine_Core::getTable('EIASiteVisitReport')->findByEiasitevisitId($visits[0]['id']))
+		{
+			$this->report=$reports;
+		}
+	}
     $this->form = new EIAAssessmentDecisionForm($eia_assessment_decision);
   }
 

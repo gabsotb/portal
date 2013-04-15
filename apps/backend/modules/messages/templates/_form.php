@@ -16,6 +16,16 @@
 								</div>
 							</div>
 		 </div> 
+		  <div class="control-group">
+							<div class="controls">
+								<div class="input-prepend">
+								<span> <label class="control-label"><?php echo $form['message_subject']->renderLabel() ?>
+									 <?php echo $form['message_subject']->renderError() ?> 
+									 </label></span>
+									<?php echo $form['message_subject']->render() ?>
+								</div>
+							</div>
+		 </div> 
        <div class="control-group">
 					<div class="controls">
 						<div class="input-prepend">

@@ -14,6 +14,7 @@ abstract class BaseEIAAssessmentDecisionFormFilter extends BaseFormFilterDoctrin
   {
     $this->setWidgets(array(
       'taskassignment_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EITaskAssignment'), 'add_empty' => true)),
+      'eia_stage'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'verdict'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'remarks'           => new sfWidgetFormFilterInput(),
       'token'             => new sfWidgetFormFilterInput(),
@@ -25,6 +26,7 @@ abstract class BaseEIAAssessmentDecisionFormFilter extends BaseFormFilterDoctrin
 
     $this->setValidators(array(
       'taskassignment_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('EITaskAssignment'), 'column' => 'id')),
+      'eia_stage'         => new sfValidatorPass(array('required' => false)),
       'verdict'           => new sfValidatorPass(array('required' => false)),
       'remarks'           => new sfValidatorPass(array('required' => false)),
       'token'             => new sfValidatorPass(array('required' => false)),
@@ -53,6 +55,7 @@ abstract class BaseEIAAssessmentDecisionFormFilter extends BaseFormFilterDoctrin
     return array(
       'id'                => 'Number',
       'taskassignment_id' => 'ForeignKey',
+      'eia_stage'         => 'Text',
       'verdict'           => 'Text',
       'remarks'           => 'Text',
       'token'             => 'Text',

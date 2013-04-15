@@ -1290,6 +1290,29 @@ $(function () {
 									</div>
 								</div>
 							</div>
+							<?php if(count($siteVisitsReport)!=0): ?>
+								<div class="widget">
+									<div class="widget-title">
+										<h4><i class="icon-reorder"></i>Site Visit</h4>
+									</div>
+									<div class="widget-body">
+									<table class="table table-striped table-hover">
+									<?php foreach($siteVisitsReport as $siteVisitReport): ?>
+										<tr>
+											<th>Reference No.</th>
+											<th>Title</th>
+											<th>Action</th>
+										</tr>
+										<tr>
+											<td><?php echo $siteVisitReport['EIAProjectDetail']['project_reference_number'] ?></td>
+											<td><?php echo $siteVisitReport['EIAProjectDetail']['project_title'] ?></td>
+											<td><?php echo button_to('Report','eiaDataAdmin/siteVisitReport?id='.$siteVisitReport['id'],array('class' => 'btn')) ?></td>
+										</tr>
+									<?php endforeach; ?>	
+									</table>
+									</div>
+								</div>
+							<?php endif; ?>	
 						</div> 
 						<div class="span4">
 							<div class="widget">
@@ -1326,9 +1349,38 @@ $(function () {
 								  </ul>
 								 </div>
 							</div>
+							<?php if(count($siteVisits)!=0): ?>
+								<div class="widget">
+									<div class="widget-title">
+										<h4><i class="icon-tasks"></i>Site Visits</h4>
+									</div>
+									<div class="widget-body">
+										<ul class="item-list todo">
+										<?php foreach($siteVisits as $siteVisit): ?>
+											<li><?php echo link_to($siteVisit['EIAProjectDetail']['project_title'],'eiaDataAdmin/process?id='.$siteVisit['eiaproject_id']) ?>
+											<?php if(strtotime($siteVisit['site_visit']) <= time() && (strtotime($siteVisit['site_visit'])+86400) >= time())
+													{ 
+														$label="label-important"; 
+														$siteDate="today";
+													}else
+													{
+														$label="label-info";
+														$siteDate=date('jS M',strtotime($siteVisit['site_visit']));
+													}
+											?>
+											<span class="label <?php echo $label ?>">
+											<i class="icon-bell"></i>
+											<?php echo $siteDate ?>
+											</span>
+											</li>
+										<?php endforeach; ?>
+										</ul>
+									</div>
+								</div>
+							<?php endif; ?>	
 						</div>
 					</div>
-					
+									
 <?php endif; ?>		
 <!-- ********************************************************************** -->
 

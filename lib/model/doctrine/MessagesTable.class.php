@@ -41,4 +41,24 @@ class MessagesTable extends Doctrine_Table
 	 ");
 	 return $query;
 	}
+	
+	public static $messageInvestor= array(
+		'header' => 'New Message',
+		'info' => 'Info applicant',
+	);
+	
+	public function getMessageInvestor()
+	{
+		return self::$messageInvestor;
+	}
+	
+	public static $editMessage= array(
+		'header' => 'Edit Message',
+		'info' => 'Edit the following message',
+	);
+	
+	public function getEditMessage()
+	{
+		return self::$editMessage;
+	}
 }

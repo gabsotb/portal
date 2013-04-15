@@ -25,6 +25,7 @@
  * @property Doctrine_Collection $EIApplicationStatus
  * @property Doctrine_Collection $ApplicationBriefDecision
  * @property Doctrine_Collection $ApplicationAssigment
+ * @property Doctrine_Collection $EiaSiteVisit
  * @property Doctrine_Collection $EIAProjectImpact
  * @property Doctrine_Collection $ApplicationImpactPass
  * @property Doctrine_Collection $ApplicationTorStatus
@@ -51,6 +52,7 @@
  * @method Doctrine_Collection getEIApplicationStatus()            Returns the current record's "EIApplicationStatus" collection
  * @method Doctrine_Collection getApplicationBriefDecision()       Returns the current record's "ApplicationBriefDecision" collection
  * @method Doctrine_Collection getApplicationAssigment()           Returns the current record's "ApplicationAssigment" collection
+ * @method Doctrine_Collection getEiaSiteVisit()                   Returns the current record's "EiaSiteVisit" collection
  * @method Doctrine_Collection getEIAProjectImpact()               Returns the current record's "EIAProjectImpact" collection
  * @method Doctrine_Collection getApplicationImpactPass()          Returns the current record's "ApplicationImpactPass" collection
  * @method Doctrine_Collection getApplicationTorStatus()           Returns the current record's "ApplicationTorStatus" collection
@@ -76,6 +78,7 @@
  * @method EIAProjectDetail    setEIApplicationStatus()            Sets the current record's "EIApplicationStatus" collection
  * @method EIAProjectDetail    setApplicationBriefDecision()       Sets the current record's "ApplicationBriefDecision" collection
  * @method EIAProjectDetail    setApplicationAssigment()           Sets the current record's "ApplicationAssigment" collection
+ * @method EIAProjectDetail    setEiaSiteVisit()                   Sets the current record's "EiaSiteVisit" collection
  * @method EIAProjectDetail    setEIAProjectImpact()               Sets the current record's "EIAProjectImpact" collection
  * @method EIAProjectDetail    setApplicationImpactPass()          Sets the current record's "ApplicationImpactPass" collection
  * @method EIAProjectDetail    setApplicationTorStatus()           Sets the current record's "ApplicationTorStatus" collection
@@ -184,6 +187,10 @@ abstract class BaseEIAProjectDetail extends sfDoctrineRecord
              'foreign' => 'eiaproject_id'));
 
         $this->hasMany('EITaskAssignment as ApplicationAssigment', array(
+             'local' => 'id',
+             'foreign' => 'eiaproject_id'));
+
+        $this->hasMany('EIASiteVisit as EiaSiteVisit', array(
              'local' => 'id',
              'foreign' => 'eiaproject_id'));
 

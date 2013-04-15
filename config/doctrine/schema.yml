@@ -321,11 +321,11 @@ EIAProjectDescription: ## Project Description
    updated: { name: updated_by,type: string}
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
-  project_nature: {type: string(255), notnull: false}
-  project_objective: {type: string(1000), notnull: false}
-  project_total_cost: {type: integer, notnull: false}
-  project_working_capital: {type: integer, notnull: false}
-  total_land_area: {type: integer, notnull: false}
+  project_nature: {type: string(255), notnull: true}
+  project_objective: {type: string(1000), notnull: true}
+  project_total_cost: {type: integer, notnull: true}
+  project_working_capital: {type: integer, notnull: true}
+  total_land_area: {type: integer, notnull: true}
   existing_land_use: {type: integer, notnull: false}
   site_location_developed_area: {type: boolean, notnull: false }
   site_location_undeveloped_area: {type: boolean, notnull: false }
@@ -607,12 +607,39 @@ EITaskAssignment:
   user_assigned: {type: integer, notnull: true}
   eiaproject_id: {type: integer, notnull: true }
   instructions: {type: string(255), notnull: true}
-  duedate: {type: timestamp, notnull: true}
+  duedate: {type: date, notnull: true}
   work_status: {type: string(255), notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: ApplicationAssigment , onDelete: CASCADE}
   sfGuardUser: {local: user_assigned, foreign: id, foreignAlias: GuardEIAssignment}  
+#Records site visit day
+EIASiteVisit:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  eiaproject_id: {type: integer, notnull: true, unique: true}
+  site_visit: {type: date, notnull: true}
+  remarks: {type: string(255), notnull: false}
+  visited: {type: boolean, notnull: false}
+  token: {type: string(255), notnull: false}
+ relations:
+  EIAProjectDetail: {local:eiaproject_id, foreign: id, foreignAlias: EiaSiteVisit, onDelete:CASCADE } 
+EIASiteVisitReport:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  eiasitevisit_id: { type: integer , notnull: true, unique: true}
+  report: { type: string(400) ,notnull: true}
+  token: {type: string(255), notnull: false}
+ relations:
+  EIASiteVisit: {local:eiasitevisit_id, foreign: id, foreignAlias: EIASiteVisitReport, onDelete:CASCADE } 
 #### Record the EIA Project Impact level, L1, L2 or L3
 ProjectImpact:
  actAs:
@@ -623,7 +650,6 @@ ProjectImpact:
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
   impact_level: {type: string, notnull: true}
-  site_visit: {type: timestamp, notnull: false}
   comments: {type: string(400), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
@@ -636,7 +662,8 @@ EIAAssessmentDecision:
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
-  taskassignment_id: {type: integer, notnull: true, unique: true}
+  taskassignment_id: {type: integer, notnull: true}
+  eia_stage: {type: string, notnull: true}
   verdict: {type: string, notnull: true }
   remarks: {type: string(255), notnull: false }
   token: {type: string(255), notnull: false} 
@@ -758,7 +785,7 @@ Messages:
  columns:
   sender: {type: string(255), notnull: true}
   recepient: {type: string(255), notnull: true}
-  message_subject: {type: string(300), notnull: false}
+  message_subject: {type: string(255), notnull: false}
   message: {type: string(4000), notnull: true}
   attachement: {type: string(255), notnull: true}
   token: {type: string(255), notnull: false} 

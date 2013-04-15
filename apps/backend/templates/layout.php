@@ -371,16 +371,16 @@
 				</div>
 				<?php endif ?>
 				<?php if ($sf_user->hasFlash('notice')): ?>
-				<div class="flash_notice">
+				<div class="alert alert-info">
 					<?php echo $sf_user->getFlash('notice') ?>
 				</div>
-				<?php endif ?>	
+				<?php endif; ?>	
 			
 				<?php if ($sf_user->hasFlash('error')): ?>
-				<div class="flash_error">
+				<div class="alert alert-error">
 					<?php echo $sf_user->getFlash('error') ?>
 				</div>
-				<?php endif ?>
+				<?php endif; ?>
 			
 					<?php echo $sf_content ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>

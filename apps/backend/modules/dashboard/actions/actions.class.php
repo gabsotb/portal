@@ -48,6 +48,8 @@ class dashboardActions extends sfActions
 	$this->assigning=Doctrine_Core::getTable('EIApplicationStatus')->getApplicationStatus('assigning');
 	$this->assessments=Doctrine_Core::getTable('EITaskAssignment')->getAwaitingApproval();
 	$this->jobAdmin= Doctrine_Core::getTable('EITaskAssignment')->findByUserAssigned($userId);
+	$this->siteVisitsReport=Doctrine_Core::getTable('EIASiteVisit')->getSiteVisitReport();
+	$this->siteVisits=Doctrine_Core::getTable('EIASiteVisit')->getSiteVisit();
 	   //////////TOR/////
 	 //  $this->tors = Doctrine_Core::getTable('Tor')->getRecentTor();
 	   //////////////////////////
@@ -1117,7 +1119,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 		$decision = new EIAAssessmentDecision();
 		$decision->taskassignment_id= $request->getParameter('id');
 		$decision->save();
-		$accessments=Doctrine_Core::getTable('EIAAssessmentDecision')->findByTaskassignmentId($request->getParameter('id'));
+		$accessments=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessmentId($request->getParameter('id'));
 		
 		$this->redirect('eiaAssessmentDecision/edit?id='.$accessments[0]['id']);
 	

@@ -20,7 +20,7 @@ class EIAProjectDeveloperTable extends Doctrine_Table
 	public static $socials= array( 
 		'twitter' => "Twitter",
 		'facebook' => "Facebook",
-		'google+' => "Google-plus",
+		'plus.google' => "Google-plus",
 		'linkedin' => "Linkedin",
 		);
 	public function getSocials()

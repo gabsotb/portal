@@ -21,6 +21,7 @@ class ProjectImpactTable extends Doctrine_Table
 		'level_1' => 'Level 1',
 		'level_2' => 'Level 2',
 		'level_3' => 'Level 3',
+		'reject' => 'Reject'
 	);
 	
 	public function getImpactLevels()

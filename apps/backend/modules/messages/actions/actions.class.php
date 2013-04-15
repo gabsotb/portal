@@ -45,6 +45,13 @@ class messagesActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
+	if($request->getParameter('user')== 'dataAdmin')
+	{
+		$this->message=Doctrine_Core::getTable('Messages')->messageInvestor();
+	}else
+	{
+		$this->message=Doctrine_Core::getTable('Messages')->getEditMessage();
+	}
     $this->forward404Unless($messages = Doctrine_Core::getTable('Messages')->find(array($request->getParameter('id'))), sprintf('Object messages does not exist (%s).', $request->getParameter('id')));
     $this->form = new MessagesForm($messages);
   }

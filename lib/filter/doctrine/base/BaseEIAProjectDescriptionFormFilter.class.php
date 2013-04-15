@@ -14,11 +14,11 @@ abstract class BaseEIAProjectDescriptionFormFilter extends BaseFormFilterDoctrin
   {
     $this->setWidgets(array(
       'eiaproject_id'                       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'), 'add_empty' => true)),
-      'project_nature'                      => new sfWidgetFormFilterInput(),
-      'project_objective'                   => new sfWidgetFormFilterInput(),
-      'project_total_cost'                  => new sfWidgetFormFilterInput(),
-      'project_working_capital'             => new sfWidgetFormFilterInput(),
-      'total_land_area'                     => new sfWidgetFormFilterInput(),
+      'project_nature'                      => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'project_objective'                   => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'project_total_cost'                  => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'project_working_capital'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'total_land_area'                     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'existing_land_use'                   => new sfWidgetFormFilterInput(),
       'site_location_developed_area'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'site_location_undeveloped_area'      => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),

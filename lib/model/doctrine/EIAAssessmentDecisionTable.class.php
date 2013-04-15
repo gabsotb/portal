@@ -26,4 +26,37 @@ class EIAAssessmentDecisionTable extends Doctrine_Table
 	{
 		return self::$decisions;
 	}
+	
+	public static $stages = array(
+		'site-visit' => 'Site visit',
+		'impact-level' => 'Impact level',
+		'tor' => 'Terms of Reference',
+		'eir' => 'EI Report',
+		'eia-cert' => 'EIA Certificate',
+	);
+	
+	public function getStages()
+	{
+		return self::$stages;
+	}
+	
+	public function getAssessmentId($taskAssignment_id)
+	{
+		$q= $this->createQuery('a')
+			->select('a.id')
+			->where('a.taskassignment_id = ?',$taskAssignment_id)
+			->orderBy('a.id DESC')
+			->limit(1);
+		return $q->fetchArray();
+	}
+	
+	public function getAssessment($taskAssignment_id,$eia_stage)
+	{
+		$q=$this->createQuery('a')
+			->select('a.*')
+			->where('a.taskassignment_id = ?',$taskAssignment_id)
+			->andWhere('a.eia_stage = ?',$eia_stage);
+		return $q->fetchArray();
+	}
+			
 }
