@@ -20,6 +20,7 @@
 	  $district = $data['district'];
 	  $city_province = $data['city_province'];
 	  $exemption_on_machinery = $data['exemption_on_machinery'];
+	  $currency = $data['currency_type'];
 	  //Variables for the table land costs
 	  
 	 }
@@ -578,7 +579,7 @@
             $container.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Land') ?>', '<?php echo __('Construction') ?>', '<?php echo __('Plant and Machinery') ?>', '<?php echo __('Furniture') ?>', '<?php echo __('Other fixed assets') ?>'],
+              rowHeaders: ['<?php echo __('Land\t'); echo __("($currency)"); ?>', '<?php echo __('Construction\t'); echo __("($currency)"); ?>', '<?php echo __('Plant and Machinery\t'); echo __("($currency)"); ?>', '<?php echo __('Furniture\t'); echo __("($currency)"); ?>', '<?php echo __('Other fixed assets\t'); echo __("($currency)"); ?>'],
               colHeaders: ['<?php echo __('Year1') ?>', '<?php echo __('Year2') ?>', '<?php echo __('Year3') ?>', '<?php echo __('Year4') ?>', '<?php echo __('Year5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
@@ -622,7 +623,7 @@
             $container2.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Studies') ?>', '<?php echo __('Travel Expenses') ?>', '<?php echo __('Starting Capital') ?>', '<?php echo __('Administrative & Licensing') ?>', '<?php echo __('Rental Fees') ?>', '<?php echo __('Others') ?>'],
+              rowHeaders: ['<?php echo __('Studies\t'); echo __("($currency)"); ?>', '<?php echo __('Travel Expenses\t'); echo __("($currency)"); ?>', '<?php echo __('Starting Capital\t'); echo __("($currency)"); ?>', '<?php echo __('Administrative & Licensing\t'); echo __("($currency)"); ?>', '<?php echo __('Rental Fees\t'); echo __("($currency)"); ?>', '<?php echo __('Others\t'); echo __("($currency)"); ?>'],
               colHeaders: ['<?php echo __('Year1') ?>', '<?php echo __('Year2') ?>', '<?php echo __('Year3') ?>', '<?php echo __('Year4') ?>', '<?php echo __('Year5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
@@ -667,7 +668,7 @@
             $container3.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Equity') ?>', '<?php echo __('Loan from bank') ?>', '<?php echo __('Loan from mother company') ?>', '<?php echo __('Grant') ?>'],
+              rowHeaders: ['<?php echo __('Equity\t'); echo __("($currency)"); ?>', '<?php echo __('Loan from bank\t'); echo __("($currency)"); ?>', '<?php echo __('Loan from mother company\t'); echo __("($currency)"); ?>', '<?php echo __('Grant\t'); echo __("($currency)"); ?>'],
               colHeaders: ['<?php echo __('Foreign source') ?>', '<?php echo __('Local  source') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
@@ -710,7 +711,7 @@
             $container4.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Top Management') ?>', '<?php echo __('Technical/Professional') ?>', '<?php echo __('Skilled labour') ?>', '<?php echo __('Others (manpower,casual etc)')?>'],
+              rowHeaders: ['<?php echo __('Top Management\t'); echo __("($currency)"); ?>', '<?php echo __('Technical/Professional\t'); echo __("($currency)"); ?>', '<?php echo __('Skilled labour\t'); echo __("($currency)"); ?>', '<?php echo __('Others (manpower,casual etc)\t'); echo __("($currency)");?>'],
               colHeaders: ['<?php echo __('Year1') ?>', '<?php echo __('Year2') ?>', '<?php echo __('Year3') ?>', '<?php echo __('Year4') ?>', '<?php echo __('Year5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
@@ -757,7 +758,7 @@
             $container5.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Top Management') ?>', '<?php echo __('Technical/Professional')?>', '<?php echo __('Skilled labour')?>', '<?php echo __('Others (manpower,casual etc') ?> '],
+              rowHeaders: ['<?php echo __('Top Management\t'); echo __("($currency)"); ?>', '<?php echo __('Technical/Professional\t'); echo __("($currency)");?>', '<?php echo __('Skilled labour\t'); echo __("($currency)");?>', '<?php echo __('Others (manpower,casual etc)\t'); echo __("($currency)"); ?> '],
               colHeaders: ['<?php echo __('Year1') ?>', '<?php echo __('Year2') ?>', '<?php echo __('Year3') ?>', '<?php echo __('Year4') ?>', '<?php echo __('Year5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
@@ -804,7 +805,7 @@
             $container6.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Sales/Income')?>', '<?php echo __('Total cost of sales')?>', '<?php echo __('Gross profit')?>', '<?php echo __('Total Indirect expenses')?>', '<?php echo __('Profit before tax')?>', '<?php echo __('Tax expense (30%)')?>', '<?php echo __('Net profit')?>'],
+              rowHeaders: ['<?php echo __('Sales/Income\t'); echo __("($currency)");?>', '<?php echo __('Total cost of sales\t'); echo __("($currency)");?>', '<?php echo __('Gross profit\t'); echo __("($currency)");?>', '<?php echo __('Total Indirect expenses\t'); echo __("($currency)");?>', '<?php echo __('Profit before tax\t'); echo __("($currency)");?>', '<?php echo __('Tax expense (30%)\t'); echo __("($currency)");?>', '<?php echo __('Net profit\t'); echo __("($currency)");?>'],
               colHeaders: ['<?php echo __('Year1') ?>', '<?php echo __('Year2') ?>', '<?php echo __('Year3') ?>', '<?php echo __('Year4') ?>', '<?php echo __('Year5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,

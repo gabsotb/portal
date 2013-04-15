@@ -23,7 +23,7 @@ abstract class BaseInvestmentCertificateFormFilter extends BaseFormFilterDoctrin
     ));
 
     $this->setValidators(array(
-      'serial_number' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'serial_number' => new sfValidatorPass(array('required' => false)),
       'business_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('InvestmentApplication'), 'column' => 'id')),
       'token'         => new sfValidatorPass(array('required' => false)),
       'created_at'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -50,7 +50,7 @@ abstract class BaseInvestmentCertificateFormFilter extends BaseFormFilterDoctrin
   {
     return array(
       'id'            => 'Number',
-      'serial_number' => 'Number',
+      'serial_number' => 'Text',
       'business_id'   => 'ForeignKey',
       'token'         => 'Text',
       'created_at'    => 'Date',

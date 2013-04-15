@@ -4,7 +4,8 @@
     <?php
      //get set attribute
 	 $id = sfContext::getInstance()->getUser()->getAttribute('session_business_id');
-	 
+	 //we get the currency type of this applicant
+	 $currency = Doctrine_Core::getTable('InvestmentApplication')->getInvestorCurrency($id);
 	 //print "session id". $id; exit;
 
 	?>
@@ -14,7 +15,7 @@
 						 <div class="widget-body">	
                                 <div class="alert alert-block alert-info">
 										<p>
-											<span><?php echo __('INVESTMENT AND FINANCIAL SCHEDULE') ?></span>
+											<span><?php echo __('INVESTMENT AND FINANCIAL SCHEDULE') ?> <?php echo __("Your Currency: $currency")?></span>
 										</p>
 								    </div>						 
 										<!-- **************************************8 -->
@@ -321,7 +322,7 @@
             $container.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Land') ?>', '<?php echo __('Construction') ?>', '<?php echo __('Plants')?>', '<?php echo __('Furniture') ?>' , '<?php echo __('Others') ?>'],
+              rowHeaders: ['<?php echo __('Land\t'); echo __("($currency)"); ?>', '<?php echo __('Construction\t'); echo __("($currency)"); ?>', '<?php echo __('Plants\t'); echo __("($currency)");?>', '<?php echo __('Furniture\t'); echo __("($currency)"); ?>' , '<?php echo __('Others\t'); echo __("($currency)"); ?>'],
               colHeaders: ['<?php echo __('Year 1') ?>', '<?php echo __('Year 2') ?>', '<?php echo __('Year 3') ?>' , '<?php echo __('Year 4')?>', '<?php echo __('Year 5') ?>'],
               minSpareCols: 0,
               minSpareRows: 0,
@@ -437,7 +438,7 @@
             $container1.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Studies') ?>', '<?php echo __('Travel Expenses') ?>', '<?php echo __('Starting Capital') ?>', '<?php echo __('Administrative Fees')?>' , '<?php echo __('Rental Fees') ?>'],
+              rowHeaders: ['<?php echo __('Studies\t'); echo __("($currency)"); ?> ', '<?php echo __('Travel Expenses\t'); echo __("($currency)"); ?>', '<?php echo __('Starting Capital\t'); echo __("($currency)"); ?>', '<?php echo __('Administrative Fees\t'); echo __("($currency)");?>' , '<?php echo __('Rental Fees\t'); echo __("($currency)"); ?>'],
               colHeaders: ['<?php echo __('Year 1') ?>', '<?php echo __('Year 2') ?>', '<?php echo __('Year 3') ?>' , '<?php echo __('Year 4') ?>', '<?php echo __('Year 5') ?>'],
               minSpareCols: 0,
               minSpareRows: 0,
@@ -526,7 +527,7 @@
             $container2.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Equity') ?>', '<?php echo __('Loan From Bank') ?>', '<?php echo __('Mother Company Loan') ?>', '<?php echo __('Grant') ?>'],
+              rowHeaders: ['<?php echo __('Equity\t'); echo __("($currency)"); ?>', '<?php echo __('Loan From Bank\t'); echo __("($currency)"); ?>', '<?php echo __('Mother Company Loan\t'); echo __("($currency)"); ?>', '<?php echo __('Grant\t'); echo __("($currency)"); ?>'],
               colHeaders: ['<?php echo __('Local Source') ?>', '<?php echo __('Foreign Source') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
@@ -611,7 +612,7 @@
             $container3.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Top Management')?>', '<?php echo __('Technical/ Professional') ?>', '<?php echo __('Skilled Labour') ?>', '<?php echo __('Others(manpower,casual etc)') ?>'],
+              rowHeaders: ['<?php echo __('Top Management\t'); echo __("($currency)");?>', '<?php echo __('Technical/ Professional\t'); echo __("($currency)"); ?>', '<?php echo __('Skilled Labour\t') ; echo __("($currency)");?>', '<?php echo __('Others(manpower,casual etc)\t'); echo __("($currency)"); ?>'],
               colHeaders: ['<?php echo __('Year 1') ?>', '<?php echo __('Year 2') ?>', '<?php echo __('Year 3') ?>' , '<?php echo __('Year 4') ?>', '<?php echo __('Year 5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
@@ -698,7 +699,7 @@
             $container4.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Top Management')?>', '<?php echo __('Technical/ Professional') ?>', '<?php echo __('Skilled Labour') ?>', '<?php echo __('Others(manpower,casual etc)') ?>'],
+              rowHeaders: ['<?php echo __('Top Management\t'); echo __("($currency)");?>', '<?php echo __('Technical/ Professional\t'); echo __("($currency)"); ?>', '<?php echo __('Skilled Labour\t'); echo __("($currency)"); ?>', '<?php echo __('Others(manpower,casual etc)\t'); echo __("($currency)"); ?>'],
               colHeaders: ['<?php echo __('Year 1') ?>', '<?php echo __('Year 2') ?>', '<?php echo __('Year 3') ?>' , '<?php echo __('Year 4') ?>', '<?php echo __('Year 5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,
@@ -785,7 +786,7 @@
             $container5.handsontable({
               startRows: 0,
               startCols: 0,
-              rowHeaders: ['<?php echo __('Sales/Income')?>', '<?php echo __('Total cost of Sales') ?>', '<?php echo __('Gross Profit')?>', '<?php echo __('Total Indirect Expense') ?>', '<?php echo __('Profit before Tax') ?>', '<?php echo __('Tax Expense(30%)')?>','<?php echo __('Net Profit') ?>'],
+              rowHeaders: ['<?php echo __('Sales/Income\t'); echo __("($currency)");?>', '<?php echo __('Total cost of Sales\t'); echo __("($currency)"); ?>', '<?php echo __('Gross Profit\t'); echo __("($currency)");?>', '<?php echo __('Total Indirect Expense\t'); echo __("($currency)"); ?>', '<?php echo __('Profit before Tax\t'); echo __("($currency)"); ?>', '<?php echo __('Tax Expense(30%)\t'); echo __("($currency)");?>','<?php echo __('Net Profit\t'); echo __("($currency)"); ?>'],
               colHeaders: ['<?php echo __('Year 1') ?>', '<?php echo __('Year 2') ?>', '<?php echo __('Year 3') ?>' , '<?php echo __('Year 4') ?>', '<?php echo __('Year 5') ?>'],
               minSpareCols: 0,
               minSpareRows: false,

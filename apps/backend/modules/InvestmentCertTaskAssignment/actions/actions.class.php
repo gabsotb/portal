@@ -113,6 +113,7 @@ class InvestmentCertTaskAssignmentActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
+	  try{
       $task_assignment = $form->save();
       //we will notify the data admin assigned to that job 
 	  $this->form = new TaskAssignmentForm();
@@ -157,6 +158,14 @@ class InvestmentCertTaskAssignmentActions extends sfActions
 	  //remove attribute from session
 	  $this->getUser()->getAttributeHolder()->remove('investmentapp_id');
 	  $this->redirect('InvestmentCertTaskAssignment/index');
+	  }
+	  catch(Exception $ex)
+	  {
+	   // $this->sprintf();
+		throw new Exception("Sorry a Server Error Occured while sending emails. More info -->".$ex->getMessage());
+		
+	  }
+	  
     }
   }
 }

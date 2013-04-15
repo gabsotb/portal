@@ -42,6 +42,12 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
 	  'choices'  => Doctrine_Core::getTable('InvestmentApplication')->getCategories(),
 	  'expanded' => false,
     ));
+	/////
+	 $this->widgetSchema['currency_type'] = new sfWidgetFormChoice(array(
+	  'label' => 'Choose Currency Type',
+	  'choices'  => Doctrine_Core::getTable('InvestmentApplication')->getCurrencies(),
+	  'expanded' => false,
+    ));
    ////
    $this->widgetSchema['token'] = new sfWidgetFormInputHidden();
    $token = sha1(date('Y-m-d').rand(11111, 99999));
@@ -54,6 +60,16 @@ class InvestmentApplicationForm extends BaseInvestmentApplicationForm
   //customize error messages
   $this->validatorSchema['name']  = new sfValidatorString(array(), array('required' => 'Please Provide Company name'));
   $this->validatorSchema['registration_number']  = new sfValidatorString(array(),array('required' => 'The Company Registration Number is Required?'));
-
+  ///setting default values
+ /* $this->widgetSchema['district'] = new sfWidgetFormChoice(array(
+	  'label' => 'Select District',
+	  'choices'  => Doctrine_Core::getTable('InvestmentApplication')->getDistricts(),
+	  'expanded' => false,
+    ));
+    $this->widgetSchema['city_province'] = new sfWidgetFormChoice(array(
+	  'label' => 'Select Province',
+	  'choices'  => Doctrine_Core::getTable('InvestmentApplication')->getProvinces(),
+	  'expanded' => false,
+    )); */
   }
 }

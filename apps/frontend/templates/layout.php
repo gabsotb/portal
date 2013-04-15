@@ -134,6 +134,7 @@
 								<li>
 									<a href="<?php echo url_for('my_inbox') ?>"><?php echo __('See all messages') ?></a>
 								</li>
+								
 							</ul>
 						</li>
 						<!-- END INBOX DROPDOWN -->

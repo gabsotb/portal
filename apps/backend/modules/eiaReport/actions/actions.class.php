@@ -25,7 +25,8 @@ class eiaReportActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new EIAReportsForm();
+   
+   $this->form = new EIAReportsForm();
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -117,7 +118,7 @@ class eiaReportActions extends sfActions
 	 }
 	 //investor inform
 	 $notify2 = new Notifications();
-	 $notify2->recepient = $username;
+	 $notify2->recepient = $investor_name;
 	 $notify2->message = "Congrats Your EIReport has been Approved!";
 	 $notify2->created_at = date('Y-m-d H:i:s');
 	 $notify2->save();

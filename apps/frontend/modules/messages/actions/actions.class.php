@@ -76,7 +76,8 @@ class messagesActions extends sfActions
     {
       $messages = $form->save();
 
-      $this->redirect('messages/edit?id='.$messages->getId());
+      //$this->redirect('messages/edit?id='.$messages->getId());
+	  $this->redirect('investmetapp/index');
     }
   }
   //this is a method that retrieves email address of all users

@@ -1406,6 +1406,10 @@ $(function () {
 														   <button class="close" data-dismiss="alert">×</button>
 														   <strong><?php echo __('Report approved') ?></strong>
 													      </div>
+														  <!-- ------>
+														  <a href="<?php echo url_for('eiacertificates/issue')?>">
+												 <button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Issue Certificate') ?></button></a>
+														  <!-- ------->
 														 <?php endif; ?>
 												 <?php endif; ?>
 												</td>

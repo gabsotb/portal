@@ -64,7 +64,14 @@
 											<tr class="odd gradeX">
 												<td><?php echo $messages['sender'] ?></td>
 												<td><?php echo $messages['message']?></td>
-												<td><?php echo $messages['attachement'] ?></td>
+												<td> <?php if($messages['attachement'] == null): ?>
+												  <?php echo __('No Attachment') ?>
+												  <?php endif; ?>
+												  <?php if($messages['attachement'] != null): ?>
+												  <?php echo link_to('download', '/uploads/documents/messages_docs/'.$messages['attachement'], array('target' => '_blank')); ?>
+												  <?php endif; ?>
+												
+												</td>
 												<td><?php echo $messages['created_at']?></td>
 												<td class="center">
 												<?php echo link_to('Delete', 'messages/delete?id='.$messages['id'], array('method' => 'delete', 'confirm' => 'Are you sure?')) ?><i class="icon-remove"></i>

@@ -91,6 +91,11 @@ project_attachments:
 
 default:
   url:   /:module/:action/*
+##Errors will complete on this later
+errors:
+ url: /error
+ param: {module: errors, action: index}
+
 ################### Application Security routing ################################
 sf_guard_forgot_password:
  url:   /password_recover
