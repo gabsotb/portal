@@ -64,6 +64,9 @@ class investmentappActions extends sfActions
 	//$this->impacts = Doctrine_Core::getTable('ProjectImpact')->getImpacts();
 	//$this->torStatus=Doctrine_Core::getTable('TorStatus')->getStatus();
 	//$this->torDecision=Doctrine_Core::getTable('TorDecisions')->getTorDecision();
+	//Simple reports. show the number of certificates issued to an individual EIA and Investment Certificates.
+	
+	
   }
 
   public function executeShow(sfWebRequest $request)
@@ -194,38 +197,64 @@ class investmentappActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
-     $investment_application = $form->save();
+     
 	 ///we will retrieve the value of business name from the form
 	 $this->form = new InvestmentApplicationForm();
 	 $allFormValues = $request->getParameter($this->form->getName());
 	 //access values
      $name = $allFormValues['name'];
 	 $token = $allFormValues['token'];
-	 //we will control the redirect procedure incase it is editing, we direct to edit of businessplan also
-	 //so, we will check if this user has any request to resubmit his or her work, since we have the name of the company we retrieve the 
-	 //id and check for record in InvestmentResubmission
-	 $business_id = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($name);
-	 //now we check for existance of $business_id in InvestmentResubmission table
-	 $id = Doctrine_Core::getTable('InvestmentResubmission')->checkIdExistance($business_id);
-	 //
-     if($id == null)
-	 {
-	  //set a session variable
-	 // $session = sfContext::getInstance()->getUserd()->getUser()->setAttribute('business_id',$business_id );
-	 // print $session; exit;
-	  $this->redirect('businessplan/new?id='.$name.'&token='.$token.'&id_value='.$business_id);
-	  
-	 }	 
-	 //
-	 if($id != null)
-	 {
-	 //
-	  $value = Doctrine_Core::getTable('BusinessPlan')->queryForId($id);
-	  ///
-	  sfContext::getInstance()->getUser()->setAttribute('session_biz',$id);
-	  $this->redirect('businessplan/edit?id='.$value.'&token='.$token);
-	 }
+	 $tinNumber = $allFormValues['registration_number'];
+	 //we will retrieve the tin number and make sure that this business is not issued with certificate.
+	$query_number = Doctrine_Core::getTable('InvestmentApplication')->checkTinNumber($tinNumber);
+	$company = null;
+	$reference_no = null;
+	foreach($query_number as $q)
+    {
+	 $company = $q['name'];
+	 $reference_no = $q['applicant_reference_number'];
+	}
+	if($company == null) //process application
+	{
+				   $investment_application = $form->save();
+				   //we will control the redirect procedure incase it is editing, we direct to edit of businessplan also
+				 //so, we will check if this user has any request to resubmit his or her work, since we have the name of the company we retrieve the 
+				 //id and check for record in InvestmentResubmission
+				 $business_id = Doctrine_Core::getTable('InvestmentApplication')->getBusinessId($name);
+				 //now we check for existance of $business_id in InvestmentResubmission table
+				 $id = Doctrine_Core::getTable('InvestmentResubmission')->checkIdExistance($business_id);
+				 //
+				 if($id == null)
+				 {
+				  //set a session variable
+				 // $session = sfContext::getInstance()->getUserd()->getUser()->setAttribute('business_id',$business_id );
+				 // print $session; exit;
+				  $this->redirect('businessplan/new?id='.$name.'&token='.$token.'&id_value='.$business_id);
+				  
+				 }	 
+				 //
+				 if($id != null)
+				 {
+				 //
+				  $value = Doctrine_Core::getTable('BusinessPlan')->queryForId($id);
+				  ///
+				  sfContext::getInstance()->getUser()->setAttribute('session_biz',$id);
+				  $this->redirect('businessplan/edit?id='.$value.'&token='.$token);
+				 }
+	}
+	else if($company != null)
+	{
+	 $this->redirect('investmentapp/issued?company='.$company.'&reference='.$reference_no);
+	}
+	
     }
+  }
+  //executed if a business tin number has already been issued with a certificate.
+  public function executeIssued(sfWebRequest $request)
+  {
+   $applicant_reference = $request->getParameter('reference');
+  // print $applicant_reference; exit;
+   $this->query_info = Doctrine_Core::getTable('InvestmentApplication')->getCertificateDetails($applicant_reference);//return certificate details and company info
   }
   ////now this is tricky he he he 
   //method to retrieve user details
@@ -234,8 +263,10 @@ class investmentappActions extends sfActions
   {
     $info = array();
     $tinNumber = $request->getParameter('id');
-	///
+
+	    	///
 	$data = Doctrine_Core::getTable('InvestmentApplication')->getClientDetails($tinNumber);
+	
 	/// loop
 	foreach($data as $d)
 	{
@@ -248,6 +279,9 @@ class investmentappActions extends sfActions
 	
 	echo json_encode($info);
 	exit; 
+	
+	
+
 	//$this->redirect('investmentapp/new');
 	//print "Value is ".$value ;exit
   }

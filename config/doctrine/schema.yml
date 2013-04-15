@@ -16,6 +16,7 @@ InvestmentApplication: ## Contains the application details from the investors
   business_sector: {type: string(1000), notnull: true}
   business_category: {type: string(255), notnull: true}
   representative_name: {type: string(255), notnull: true}
+  currency_type: {type: string(255), notnull: true}
   office_telephone: {type: string(255), notnull: false}
   fax: {type: string(255), notnull: false}
   post_box: {type: string(255), notnull: false}
@@ -267,7 +268,7 @@ InvestmentCertificate:
    created: { name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
-  serial_number: {type: integer, notnull: true, unique: true}
+  serial_number: {type: string(255), notnull: true, unique: true}
   business_id: {type: integer, notnull: true, unique: true}
   token: {type: string(255), notnull: false} 
  relations:

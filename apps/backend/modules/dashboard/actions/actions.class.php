@@ -61,10 +61,11 @@ class dashboardActions extends sfActions
   //function for start work
   public function executeStart(sfWebRequest $request)
   {
-    
+    try{
 	$this->value = $request->getParameter('id'); // here we get the parameter 
 	$token = $request->getParameter('token');
 	//$task_token=Doctrine_Core::getTable('InvestmentApplication')->findByToken($token);
+	
 	$this->forward404Unless($query = Doctrine_Core::getTable('InvestmentApplication')->find(array($request->getParameter('id'))), sprintf('Object project_impact does not exist (%s).', $request->getParameter('id')));
 	///
 	
@@ -79,6 +80,11 @@ class dashboardActions extends sfActions
 	//$this->forward404Unless($this->details);
 	//
 	$this->form = new InvestmentResubmissionForm();
+	}
+	catch(Exception $ex)
+	{
+	 throw new Exception("Sorry you are passing Invalid Parameters -->".$ex->getMessage());
+	}
 	
   }
   //we write functions to retrive relevant records
@@ -282,10 +288,24 @@ class dashboardActions extends sfActions
 	 switch($st)
 	 {
 	   case $x :
+	    try{
 	    $this->scorpionPayment($taskId);
+		}
+		catch(Exception $ex)
+		{
+		 throw new Exception('An Error Occured'.$ex->getMessage());
+		//$this->redirect('dashbord/index');
+		}
 		break;
 	   case  $y:
+	    try{
 		$this->scorpionComplete($taskId);
+		}
+		catch(Exception $ex)
+		{
+		 throw new Exception('An Error Occured Printing'.$ex->getMessage());
+		// $this->redirect('dashboard/index');
+		}
 		break;
 	   default:
          $this->forward404();	   
@@ -306,7 +326,8 @@ class dashboardActions extends sfActions
 	  */
 	  //Incremental Number
 	  $start = 1093 ;
-	  $newNumber = $start + 1;
+	//  $newNumber = $start + 1;
+	  $date = date('Y');
 	  //We also make sure that the business is not already issued with a certificate if so we just print the existing certificate instead of
 	  //saving a new record
 	  $q = Doctrine_Core::getTable('InvestmentCertificate')->searchBusiness($taskId);
@@ -320,20 +341,34 @@ class dashboardActions extends sfActions
 						//this is the first time therefore we save and print the certificate
 						//but we want to increment it whenever a new record is inserted. hence we fast make sure that the $start number variable
 					  //is not set in the database;
-					  $no = null;
+					 $number = null ;
+	                 $primary_id = null;
 					  $query = Doctrine_Core::getTable('InvestmentCertificate')->getLastRow();
 					   foreach($query as $q)
 					   {
-						$no = $q['serial_number'];
+						 $number = $q['serial_number'];
+						 $primary_id = $q['id'];
 					   }
-					  if($no != null)
+					  // print $number; 
+					   $number = explode('/',$number); 
+					  // print "Number 2".$number[1];
+					   $incremental_no = $number[1] ;
+					  // exit;
+					  if($incremental_no != null && $primary_id != null)
 					  {
-					   
+					 //  print $number; exit;
+					   // $number = "C/1093/2013";
+                        //print "Number ".$incremental_no; exit;
+                        // echo $number[1];
 					   //we first check and make sure that there exist a number, then we increment it by 1
 					   //and save it.
+					      $value = $incremental_no + 1 ;
+						 // print $value; exit;
+		                  $id_value = $primary_id + $id ;
+					      $date = date('Y');
 						  $cert = new InvestmentCertificate();
 						  $cert->business_id = $taskId ;
-						  $cert->serial_number = $no + 1 ;
+						  $cert->serial_number = "C/".($value)."/".$date ;
 						  $cert->save();
 						  //we then update the Status of application i.e. BusinessApplicationStatus
 						  //now this is the final step of application for investment certificate. 
@@ -346,14 +381,16 @@ class dashboardActions extends sfActions
 						  //we also update the status of work for this data admin.
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);
 					  }
-					  if($no == null)
+					  if($incremental_no == null && $primary_id == null)
 					  {
-					   $no = $start ;
+					   $number = $start ;
 					   //if this is the first record, then we set default value
 					   //and save
+					   //$id."-".$start."-".$date;
+					    //  $date = date('Y');
 						  $cert = new InvestmentCertificate();
 						  $cert->business_id = $taskId ;
-						  $cert->serial_number = $no + 1 ;
+						  $cert->serial_number = "C/".($number + 1)."/".$date ;
 						  $cert->save();
 						  //we then update the Status of application i.e. BusinessApplicationStatus
 						  //now this is the final step of application for investment certificate. 
@@ -488,7 +525,7 @@ $html = '                               <div style="text-align:center">
                                          <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/rdblogo.jpg" alt="RDB" width="600" height="300" border="0" />
 										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
 										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>C/'.$serial.'/'.$year.'</b>
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>'.$serial.'</b>
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -578,7 +615,8 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 	
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
           // Stop symfony process */
-          throw new sfStopException();
+		  $this->redirect('dashboard/index');
+        //  throw new sfStopException();
   }
   //method to print and send certificate to an investor
   ///
@@ -673,7 +711,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('courier', 'I', 18);
+$pdf->SetFont('courier', '', 18);
 
 // add a page
 $pdf->AddPage();
@@ -704,14 +742,14 @@ $html = '                               <div style="text-align:center">
                                          <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/rdblogo.jpg" alt="RDB" width="600" height="200" border="0" />
 										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
 										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>C/'.$serial.'/'.$year.'</b>
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>'.$serial.'</b>
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   Date: <b>'.$day.'</b>
 										 </p>
 										 <p style= "font-size: xx-small;text-align:left ">
-										&nbsp;&nbsp;&nbsp;Issued To <b>'.$company.'</b> <br/> &nbsp;&nbsp;&nbsp;&nbsp;Represented by <b>'.$rep.'</b>
+										&nbsp;&nbsp;&nbsp;Issued To <b>'.$company.'</b> Represented by <b>'.$rep.'</b>
 										 </p>
 										 <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;Business Sector <b>'.$sector.' </b>
@@ -724,12 +762,12 @@ $html = '                               <div style="text-align:center">
 										  &nbsp;Total Number of jobs planned <b>'.$noofjobs.'</b>
 										  </p>
 										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> <br/> Jobs For expatriates <b>'.$expjobs.'</b>
+										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> and  Jobs For expatriates <b>'.$expjobs.'</b>
 										 </p>
 										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;This Certificate has been issued to <b>'.$company.'</b> under the seal of <br/>
-										  &nbsp;&nbsp;&nbsp;RDB in accordance with law no 26/2005 EAC customs management act atests that <br/> &nbsp;&nbsp;&nbsp;the company is duly 
-										  registered and entitled to the rights and obligations <br/> &nbsp;&nbsp;&nbsp;contained in the law.
+										  &nbsp;This Certificate has been issued to <b>'.$company.'</b> <br/>&nbsp;&nbsp;&nbsp;under the seal of 
+										  RDB in accordance with law no 26/2005 EAC customs management act <br/> &nbsp;&nbsp;&nbsp;atests that the company is duly 
+										  registered and entitled to the rights and <br/> &nbsp;&nbsp;&nbsp;obligations contained in the law.
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;&nbsp;THE CHIEF EXECUTIVE OFFICER, 
@@ -763,7 +801,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 	
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
           // Stop symfony process */
-          throw new sfStopException();
+         // throw new sfStopException();
   }
   //method to print an investor business proposal summary
    public function executeProposal(sfWebRequest $request)
