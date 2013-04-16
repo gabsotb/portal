@@ -30,7 +30,7 @@ abstract class BasePaymentForm extends BaseFormDoctrine
       'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'business_id'    => new sfValidatorInteger(),
       'payment_status' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'slip_number'    => new sfValidatorInteger(),
+      'slip_number'    => new sfValidatorString(array('max_length' => 255)),
       'token'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'     => new sfValidatorDateTime(),
       'updated_at'     => new sfValidatorDateTime(),

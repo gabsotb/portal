@@ -7,12 +7,12 @@
  * 
  * @property integer $business_id
  * @property string $payment_status
- * @property integer $slip_number
+ * @property string $slip_number
  * @property string $token
  * 
  * @method integer getBusinessId()     Returns the current record's "business_id" value
  * @method string  getPaymentStatus()  Returns the current record's "payment_status" value
- * @method integer getSlipNumber()     Returns the current record's "slip_number" value
+ * @method string  getSlipNumber()     Returns the current record's "slip_number" value
  * @method string  getToken()          Returns the current record's "token" value
  * @method Payment setBusinessId()     Sets the current record's "business_id" value
  * @method Payment setPaymentStatus()  Sets the current record's "payment_status" value
@@ -39,10 +39,11 @@ abstract class BasePayment extends sfDoctrineRecord
              'default' => 'notpaid',
              'length' => 255,
              ));
-        $this->hasColumn('slip_number', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('slip_number', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
              'unique' => true,
+             'length' => 255,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',
