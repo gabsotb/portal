@@ -107,13 +107,13 @@ sf_guard_signout:
  url:   /:sf_culture/logout
  param: { module: sfGuardAuth, action: signout }
 sf_guard_users:
- url:   /:sf_culture/users
+ url:   /users
  param: { module: sfGuardUser, action: index }
 sf_guard_user_groups:
- url:   /:sf_culture/groups
+ url:   /groups
  param: { module: sfGuardGroup, action: index }
 sf_guard_user_permissions:
- url:   /:sf_culture/permissions
+ url:   /permissions
  param: { module: sfGuardPermission, action: index }
 
 ##################ApplyPlugin route################# 

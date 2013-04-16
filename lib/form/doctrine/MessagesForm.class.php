@@ -16,9 +16,9 @@ class MessagesForm extends BaseMessagesForm
 	//$this->setDefault('created_at',date('Y-m-d 00:00:00'));
 	///
 	//$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
-	//$username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+	$username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
 	//
-	//$this->setDefault('sender', $username);
+	$this->setDefault('sender', $username);
 	//
 	$this->widgetSchema['sender'] = new sfWidgetFormInputHidden();
 	//$this->widgetSchema->setLabel('attachement','Any Attachment?');
@@ -37,7 +37,7 @@ class MessagesForm extends BaseMessagesForm
 	   ));
 	   //set labels
 	   $this->widgetSchema->setLabels(array('recepient' => 'Recepient(s):' ,'cc_email' => 'Cc:', 'message_subject' => 'Subject:','message' => 'Message:' ));
-	$this->widgetSchema['recepient'] = new sfWidgetFormInputHidden();
+	//$this->widgetSchema['recepient'] = new sfWidgetFormInputHidden();
 	$this->widgetSchema['sender_email'] = new sfWidgetFormInputHidden();
 	$this->widgetSchema['recepient_email'] = new sfWidgetFormInputHidden();
 	//$this->setDefault('sender_email', sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress());

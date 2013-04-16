@@ -102,7 +102,10 @@ class BankOfKigaliPaymentCheck
 			 $taskId = $r['investmentapp_id'];
 			}
 			$update = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus3($taskId);
+			//$this->scorpionPayment($taskId);
+			
 		}
 	
   }
+    
 }

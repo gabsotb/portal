@@ -16,6 +16,35 @@ class ProjectSummaryTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('ProjectSummary');
     }
+	//set up for business sectors
+	static public $business_sectors = array(
+    'Agriculture' => 'Agriculture',
+    'Agriprocessing' => 'Agriprocessing',
+    'Tourism' => 'Tourism',
+	'ICT' => 'ICT',
+	'Manufacturing' => 'Manufacturing',
+    'P-Education' => 'P-Education',
+    'Construction' => 'Construction',
+	'Real estate' => 'Real estate',
+	'Mining' => 'Mining',
+    'Financial services' => 'Financial services',
+    'Electricity' => 'Electricity',
+	'Water supply' => 'Water supply',
+	'Wholesale and retail trade' => 'Wholesale and retail trade',
+    'Transportation and storage' => 'Transportation and storage',
+    'Professional/scientific' => 'Professional/scientific',
+	'Admin/ support services' => 'Admin/ support services',
+	'Public admin' => 'Public admin',
+    ' Human health/social work' => 'Human health/social work',
+    'Arts, entertainment and recreation' => 'Arts, entertainment and recreation',
+	'Other service activities' => 'Other service activities',
+	'Households as employers' => 'Households as employers',
+	'Extraterritorial organizations' => 'Extraterritorial organizations',
+  );
+  public function getBusinessSectors()
+  {
+   return self::$business_sectors ;
+  }
 	//get Applicant details for the pdf
 	public function getApplicantDetails($id)
 	{

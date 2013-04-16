@@ -241,9 +241,9 @@
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li><a href="<?php echo url_for('sf_guard_users') ?>"><i class="icon-key"></i> <?php echo __('User Accounts') ?></a> </li>
-						<li><a href="<?php echo url_for('sf_guard_user_groups') ?>"><i class="icon-key"></i> <?php echo __('User Groups') ?></a></li>
-						<li><a href="<?php echo url_for('sf_guard_user_permissions') ?>"><i class="icon-key"></i> <?php echo __('Groups Permissions') ?></a></li>
+						<li><a href="<?php echo url_for('sfGuardUser/index') ?>"><i class="icon-key"></i> <?php echo __('User Accounts') ?></a> </li>
+						<li><a href="<?php echo url_for('sfGuardGroup/index') ?>"><i class="icon-key"></i> <?php echo __('User Groups') ?></a></li>
+						<li><a href="<?php echo url_for('sfGuardPermission/index') ?>"><i class="icon-key"></i> <?php echo __('Groups Permissions') ?></a></li>
 					</ul>
 				</li>
 				<li class="has-sub">

@@ -6,6 +6,17 @@
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
   <table>
+           
+            <div class="control-group">
+							<div class="controls">
+								<div class="input-prepend">
+								<span> <label class="control-label"><?php echo $form['recepient']->renderLabel() ?>
+									 <?php echo $form['recepient']->renderError() ?> 
+									 </label></span>
+									<?php echo $form['recepient']->render(array('class' => 'span6')) ?>
+								</div>
+							</div>
+		 </div> 
 		  <div class="control-group">
 							<div class="controls">
 								<div class="input-prepend">

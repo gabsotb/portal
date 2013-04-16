@@ -19,6 +19,7 @@ class dashboardActions extends sfActions
   {
 		$bk = new BankOfKigaliPaymentCheck();
 		$bk->checkPayments();
+		
        if (!$request->getParameter('sf_culture'))
 	  {
 		if ($this->getUser()->isFirstRequest())
@@ -292,6 +293,7 @@ class dashboardActions extends sfActions
 	   case $x :
 	    try{
 	    $this->scorpionPayment($taskId);
+	 //  print "Paid issuing"; exit;
 		}
 		catch(Exception $ex)
 		{
@@ -302,6 +304,7 @@ class dashboardActions extends sfActions
 	   case  $y:
 	    try{
 		$this->scorpionComplete($taskId);
+		//print "Paid Just print"; exit;
 		}
 		catch(Exception $ex)
 		{
@@ -318,7 +321,7 @@ class dashboardActions extends sfActions
 	  
   }
   ///this function will be called inside the switch statement
-  public function scorpionPayment($taskId)
+   public function scorpionPayment($taskId)
   {
       ///if payment is successful, continue
 	  //confirm that this business has not been issued with a Certificate
@@ -337,9 +340,11 @@ class dashboardActions extends sfActions
 	  {
 	  //since this business has been issued with certificate, we just print it.
 	  //do nothing
+	   $this->scorpionComplete($taskId);
 	  }
 	  if(count($q) <= 0)
 	  {
+	         
 						//this is the first time therefore we save and print the certificate
 						//but we want to increment it whenever a new record is inserted. hence we fast make sure that the $start number variable
 					  //is not set in the database;
@@ -355,33 +360,36 @@ class dashboardActions extends sfActions
 					   $number = explode('/',$number); 
 					  // print "Number 2".$number[1];
 					   $incremental_no = $number[1] ;
+					   // print "Certificate Not Issued ".$incremental_no. "---".$primary_id ; exit;
 					  // exit;
 					  if($incremental_no != null && $primary_id != null)
 					  {
-					 //  print $number; exit;
-					   // $number = "C/1093/2013";
-                        //print "Number ".$incremental_no; exit;
-                        // echo $number[1];
+					 
 					   //we first check and make sure that there exist a number, then we increment it by 1
 					   //and save it.
 					      $value = $incremental_no + 1 ;
 						 // print $value; exit;
-		                  $id_value = $primary_id + $id ;
+		                //  $id_value = $primary_id + $id ;
 					      $date = date('Y');
-						  $cert = new InvestmentCertificate();
+						/*  $cert = new InvestmentCertificate();
 						  $cert->business_id = $taskId ;
 						  $cert->serial_number = "C/".($value)."/".$date ;
-						  $cert->save();
+						  $cert->save();  */
 						  //we then update the Status of application i.e. BusinessApplicationStatus
 						  //now this is the final step of application for investment certificate. 
 						  //we set values
 						  $value1 = "certificateissued"; //status
 						  $value2 = "You have been issued with Investment Registration Certificate.
-       						 Please check your email and download the attached certificate. Thankyou. "; //comment
+       						 Please check your email for more information. Thankyou. "; //comment
 						  $value3 = 100; //percentage
-						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+						  
 						  //we also update the status of work for this data admin.
-						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);
+						  $query_update = Doctrine_Core::getTable('TaskAssignment')->updateStatusAfterPayment($taskId,$value1,$value2,$value3);
+						 // print $query_update; exit;
+						  $query_update_task = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId,$value); 
+						  ///
+						  print $query_update_task; exit;
+						  
 					  }
 					  if($incremental_no == null && $primary_id == null)
 					  {
@@ -389,11 +397,11 @@ class dashboardActions extends sfActions
 					   //if this is the first record, then we set default value
 					   //and save
 					   //$id."-".$start."-".$date;
-					    //  $date = date('Y');
+					      $date = date('Y');
 						  $cert = new InvestmentCertificate();
 						  $cert->business_id = $taskId ;
 						  $cert->serial_number = "C/".($number + 1)."/".$date ;
-						  $cert->save();
+						  $cert->save(); 
 						  //we then update the Status of application i.e. BusinessApplicationStatus
 						  //now this is the final step of application for investment certificate. 
 						  $value1 = "certificateissued"; //status
@@ -403,6 +411,7 @@ class dashboardActions extends sfActions
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
 						  //we also update the status of work for this data admin.
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);
+						  
 					  }
 	 
 		
@@ -452,7 +461,7 @@ class dashboardActions extends sfActions
 	  //execute action for printing pdf document of this report
 	  /* I have used another class specifically for investment Certificates only */
 	      $config = sfTCPDFPluginConfigHandlerInvstCert::loadConfig('invst_configs');
-          sfTCPDFPluginConfigHandlerInvstCert::includeLangFile($this->getUser()->getCulture());
+       //   sfTCPDFPluginConfigHandlerInvstCert::includeLangFile($this->getUser()->getCulture());
 	///////////////////////////Certificate Configuration //////////////////////////////////////////////////////////////////////	  
 //create new PDF document (document units are set by default to millimeters)
           $pdf = new sfTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true);
@@ -592,7 +601,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 	    $userEmail = $em['email_address'] ;
 	 }
 	 //
-	   /*$target_path = "uploads/documents/certificate.pdf";
+	   /*$target_path = "uploads/documents/certificate.pdf";  
 	
 			 
 	    $message = Swift_Message::newInstance()
@@ -601,11 +610,11 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 			  ->setSubject('Investment Certificate')
 			  ->setBody('You have been issued with Investment Registration Certificate. Please download it. Thankyou')
 			   ->attach(Swift_Attachment::fromPath($target_path));
-			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/;
+			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/; */
 			 
 
-			$this->getMailer()->send($message); */
-			$this->getMailer()->composeAndSend('noreply@rdb.com',
+			//$this->getMailer()->send($message);
+			sfContext::getInstance()->getMailer()->composeAndSend('noreply@rdb.com',
 										$userEmail ,
 										'Investment Registration Certificate ',
 										"Congratulations! You Have been Issued with The Investment Registration Certificate. \n
@@ -617,8 +626,9 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 	
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
           // Stop symfony process */
-		  $this->redirect('dashboard/index');
+		 $this->redirect('dashboard/index');
         //  throw new sfStopException();
+		//exit;
   }
   //method to print and send certificate to an investor
   ///

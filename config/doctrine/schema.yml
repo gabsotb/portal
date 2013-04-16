@@ -166,7 +166,8 @@ ProjectSummary:
    updated: { name: updated_by,type: string} 
  columns:
   investment_id: {type: integer, notnull: true, unique: true}
-  business_sector: {type: string(500), notnull: true}
+  business_sector: {type: string(255), notnull: true}
+  business_sector_description: {type: string(1000), notnull: true}
   techinical_viability: {type: string(4000), notnull: true}
   planned_investment: {type: integer, notnull: true}
   employment_created: {type: integer, notnull: true}

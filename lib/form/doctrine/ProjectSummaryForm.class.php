@@ -29,10 +29,15 @@ class ProjectSummaryForm extends BaseProjectSummaryForm
 	 $business_sector = null;
 	 foreach($query as $q)
 	 {
-	  $business_sector = $q['business_sector'];
+	  $business_sector_desc = $q['business_sector'];
 	 }
 	 ///
-	 $this->setDefault('business_sector', $business_sector);
+	 $this->setDefault('business_sector_description', $business_sector_desc);
+	 $this->widgetSchema['business_sector'] = new sfWidgetFormChoice(array(
+	  'label' => 'Choose Business Sector',
+	  'choices'  => Doctrine_Core::getTable('ProjectSummary')->getBusinessSectors(),
+	  'expanded' => false,
+    ));
 	///we also calculate the number of jobs for local and foreign employees
 	$jobs_local_query = Doctrine_Core::getTable('ProjectSummary')->getTotalLocalJobs($session_variable);
 	$jobs_foreign_query = Doctrine_Core::getTable('ProjectSummary')->getTotalForeignJobs($session_variable);

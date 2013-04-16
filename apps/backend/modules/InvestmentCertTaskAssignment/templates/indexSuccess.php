@@ -83,7 +83,13 @@
 												<td> 
 												 <?php if($status !='complete'): ?>
 												 <?php if($status !='rejected'): ?>
-												 <a href="<?php echo url_for('InvestmentCertTaskAssignment/edit?id='.$available['id'])?>"><?php echo __('Edit') ?></a>
+												  <?php if($status !='started'): ?>
+												  <?php if($status !='paymentconfirmed'): ?>
+												 <a href="<?php echo url_for('InvestmentCertTaskAssignment/edit?id='.$available['id'])?>"><?php echo __('Edit') ?>
+												 
+												 </a>
+												     <?php endif; ?>
+													 <?php endif; ?>
 												 <?php endif; ?>
 												
 												

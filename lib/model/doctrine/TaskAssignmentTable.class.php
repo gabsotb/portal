@@ -202,13 +202,45 @@ class TaskAssignmentTable extends Doctrine_Table
 				 $this->updateBusinessApplicationStatus($id,$value1,$value2,$value3);
 				  
 	}
+	//function to update status after paymentconfirmed. re-created
+	public function updateStatusAfterPayment($id,$value1,$value2,$value3)
+	{
+	  ///////////////
+	   $q = Doctrine_Query::create()
+	 ->UPDATE('BusinessApplicationStatus')
+	 ->SET('application_status', '?' , $value1)
+	  ->SET('comment', '?' , $value2)
+	  ->SET('percentage', '?' , $value3)
+	 ->WHERE('business_id = ?', $id);
+	 $q->execute();
+	 //////////////////
+	/*  $q = Doctrine_Query::create()
+	 ->UPDATE('BusinessApplicationStatus')
+	 ->SET('comment', '?' , $value)
+	 ->WHERE('business_id = ?', $id);
+	 $q->execute();
+	 /////////
+	 $q = Doctrine_Query::create()
+	 ->UPDATE('BusinessApplicationStatus')
+	 ->SET('percentage', '?' , $value)
+	 ->WHERE('business_id = ?', $id);
+	 $q->execute(); */
+	  ///////////
+	  return "success";
+	}
 	//update business application status for the user to see that the task has been started
 	public function updateBusinessApplicationStatus($id,$value1,$value2,$value3)
 	{
-	  
+	  //print $id."".$value1."".$value2."".$value3; exit;
+	  try{
 	  $q1 = Doctrine_Core::getTable('BusinessApplicationStatus')->updateStatus($id,$value1);
 	  $q2 = Doctrine_Core::getTable('BusinessApplicationStatus')->updateComment($id,$value2 );
 	  $q3 = Doctrine_Core::getTable('BusinessApplicationStatus')->updateValue($id,$value3);
+	  }
+	  catch(Exception $ex)
+	  {
+	   throw new Exception('An Error Occured Updating'.$ex->getMessage());
+	  }
 	  
 	}
 	//the third part comes after confirmation of payment
@@ -229,7 +261,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	 $this->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
 	}
 	//the final part is after issuing of certificate.
-	public function updateUserTaskStatus4($taskId)
+	public function updateUserTaskStatus4($taskId,$value)
 	{
 	   $work_status = "complete" ;
 	  $q = Doctrine_Query::create()
@@ -237,6 +269,22 @@ class TaskAssignmentTable extends Doctrine_Table
 		 ->SET('work_status', '?' , $work_status)
 		 ->WHERE('investmentapp_id = ?', $taskId);
 		 $q->execute();
+		
+		 ////////////////////////
+		 $date = date('Y');
+		 try  {
+						   $cert = new InvestmentCertificate();
+						   $cert->business_id = $taskId ;
+						   $cert->serial_number = "C/".($value)."/".$date ;
+						   $cert->save();
+						  }
+						  catch(Exception $ex)
+						  {
+						    throw new Exception('Error'.$ex->getMessage());
+						  }
+		 /////////////////////////
+		 
+		 return "success";
 	}
 	//this method is called after successful confirmation of payment. parameter passed is name of business
 	public function updatingPaymentStatus($businesName)
@@ -356,6 +404,13 @@ class TaskAssignmentTable extends Doctrine_Table
 	public function validateToken($token)
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection("SELECT investmentapp_id FROM task_assignment WHERE token = '$token' ");
+	 return $query;
+	}
+	//check existance of a task
+	public function checkAssignment($data_admin_id, $id_task)
+	{
+	  //print $data_admin_id."-------".$id_task; exit;
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection("SELECT * FROM task_assignment WHERE investmentapp_id = '$id_task' and  user_assigned = '$data_admin_id' ");
 	 return $query;
 	}
 	
