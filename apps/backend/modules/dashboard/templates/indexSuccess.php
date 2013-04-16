@@ -1470,6 +1470,7 @@ $(function () {
 						</div>
 					</div>
 					<!-- Section For EIReports submitted by users -->
+					<?php if(count($eireports) != 0): ?>
 					<div class="row-fluid">
 					 
 					   <div class="11">
@@ -1540,7 +1541,7 @@ $(function () {
 														   <strong><?php echo __('Report approved') ?></strong>
 													      </div>
 														  <!-- ------>
-														  <a href="<?php echo url_for('eiacertificates/issue')?>">
+														  <a href="<?php echo url_for('eiacertificates/issue?id='.$report['id'])?>">
 												 <button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Issue Certificate') ?></button></a>
 														  <!-- ------->
 														 <?php endif; ?>
@@ -1575,7 +1576,7 @@ $(function () {
 						  </div>
 					   </div>
 					</div>
-									
+					<?php endif; ?>				
 <?php endif; ?>		
 <!-- ********************************************************************** -->
 

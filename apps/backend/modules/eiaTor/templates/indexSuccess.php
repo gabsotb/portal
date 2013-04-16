@@ -17,7 +17,7 @@
   <tbody>
     <?php foreach ($tor_submits as $tor_submit): ?>
     <tr>
-      <td><a href="<?php echo url_for('EiaTorSubmit/edit?id='.$tor_submit->getId()) ?>"><?php echo $tor_submit->getId() ?></a></td>
+      <td><a href="<?php echo url_for('eiaTor/edit?id='.$tor_submit->getId()) ?>"><?php echo $tor_submit->getId() ?></a></td>
       <td><?php echo $tor_submit->getEiaprojectId() ?></td>
       <td><?php echo $tor_submit->getAttachement() ?></td>
       <td><?php echo $tor_submit->getRemarks() ?></td>
@@ -31,4 +31,4 @@
   </tbody>
 </table>
 
-  <a href="<?php echo url_for('EiaTorSubmit/new') ?>">New</a>
+  <a href="<?php echo url_for('eiaTor/new') ?>">New</a>

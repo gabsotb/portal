@@ -151,7 +151,7 @@
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'level_2' || $projectImpact[0]['impact_level'] == 'level_3'): ?>
 					<?php echo button_to('Request TOR','eiaDataAdmin/messageTor?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary')) ?>
-					<?php echo button_to('Submit TOR','eiaDataAdmin/torSubmit',array('class' => 'btn-info')) ?> </p>
+					<?php echo button_to('Submit TOR','eiaDataAdmin/torSubmit?id='.$projectDeveloper[0]['id'],array('class' => 'btn btn-info')) ?> </p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
 					<a href="#widget-reject" data-toggle="modal">
@@ -179,7 +179,8 @@
 					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id=',array('class' => 'btn btn-success')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'level_2' || $projectImpact[0]['impact_level'] == 'level_3'): ?>
-					<?php echo button_to('Request TOR','eiaDataAdmin/messageTor?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-info')) ?></p>
+					<?php echo button_to('Request TOR','eiaDataAdmin/messageTor?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary')) ?>
+					<?php echo button_to('Submit TOR','eiaDataAdmin/torSubmit?id='.$projectDeveloper[0]['id'],array('class' => 'btn btn-info')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
 					<a href="#widget-reject" data-toggle="modal">
@@ -199,6 +200,47 @@
 				<?php endif; ?>
 				</div>
 			</div>
+		<?php endif; ?>
+		<?php if(count($torSubmit) != 0): ?>
+		<div class="widget">
+			<div class="widget-title">
+				<h4><i class="icon-reorder"></i>Terms Of Reference</h4>
+			</div>
+			<div class="widget-body">
+				<div class="alert alert-block alert-info">
+				<p>Download &nbsp;&nbsp;<?php echo link_to('download', '/uploads/documents/eia_documents/tor/'.$torSubmit[0]['attachement'], array('target' => '_blank')); ?></p>
+				</div>
+				<div class="well">
+					<h4>Supervisor verdict</h4>
+					<?php if($assessmentTor[0]['verdict'] == 'accept'): ?>
+					<div class="alert alert-block alert-success fade in">
+					<h4>TOR Approved</h4>
+					<p><b>Remarks</b></p>
+					<p><?php echo html_entity_decode($assessmentTor[0]['remarks']) ?></p>
+					<br/>
+					<p><?php echo button_to('Request EI study','eiaDataAdmin/messageEIReport?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary')) ?></p>
+					</div>
+					<?php endif; ?>
+					<?php if($assessmentTor[0]['verdict'] == 'decline'): ?>
+					<div class="alert alert-block alert-error fade in">
+					<h4>TOR declined</h4>
+					<p><b>Remarks</b></p>
+					<p><?php echo html_entity_decode($assessmentTor[0]['remarks']) ?></p>
+					<br/>
+					<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
+					<?php echo button_to('Resubmit TOR','eiaDataAdmin/torSubmit?id='.$projectDeveloper[0]['id'],array('class' => 'btn btn-info')) ?></p>
+					</div>
+					<?php endif; ?>
+					<?php if($assessmentTor[0]['verdict'] == 'reviewed'): ?>
+					<div class="alert alert-block alert-info fade in">
+					<h4 class="alert-heading">Request reviewed</h4>
+					<br/>
+					<p><?php echo button_to('Request EI study','eiaDataAdmin/messageEIReport?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary')) ?></p>
+					</div>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
 		<?php endif; ?>
 		</div>
 	</div>

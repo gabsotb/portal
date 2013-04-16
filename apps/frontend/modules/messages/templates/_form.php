@@ -40,12 +40,14 @@
 		    </div>
 			<div class="control-group"> 
                                  <div class="controls">
-								 <label class="control-label"><?php echo $form['attachement']->renderLabel() ?></label>
+								 <div class="input-prepend">
+								 <?php echo $form['attachement']->renderLabel(null,array('class' => 'control-label')) ?>
                                      <div class="fileupload fileupload-new" data-provides="fileupload">
                                       <span class="btn btn-file"><span class="fileupload-new"><i class="icon-upload"> </i></span><span class="fileupload-exists"><i class="icon-remove"> </i></span><?php echo $form['attachement']->render(array('class' => 'default'))?></span>
                                       <span class="fileupload-preview"></span>
                                       <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
                                     </div>
+								</div>
                                  </div>
             </div>  
           <div class="control-group">
