@@ -798,7 +798,7 @@ $(function () {
 										
 										
 										<?php endif; ?>
-										<?php if(count($eiaStatus)>0): ?>
+										<?php if(count($eiaStatus) != 0): ?>
 										<table class="table table-hover table-striped">
 										<?php foreach($eiaStatus as $status): ?>
 										<tr>
@@ -831,6 +831,10 @@ $(function () {
 											<?php endif; ?>	
 											<?php if($briefDecision[0]['decision'] == 'rejected'): ?>
 											<a href="#widget-rejected" data-toggle="modal">
+											<button type="button" class="btn btn-block"><?php echo __('More info') ?></button></a>
+											<?php endif; ?>	
+											<?php if($status['application_status'] == 'EIR'): ?>
+											<a href="#widget-EIR" data-toggle="modal">
 											<button type="button" class="btn btn-block"><?php echo __('More info') ?></button></a>
 											<?php endif; ?>	
 										</div>
@@ -904,5 +908,20 @@ $(function () {
 		<div class="modal-body">
 			<p><?php echo html_entity_decode($briefDecision[0]['comments']) ?></p>
 			<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
+		</div>
+</div>
+<div id="widget-EIR" class="modal hide">
+		<div class="modal-header">
+			<h3><?php echo __('Environmental Impact Study') ?></h3>
+		</div>
+		<div class="modal-body">
+			<p><?php echo __('Your application has been assessed and approved for environmental impact study to be conducted') ?>.</p>
+			<p><?php echo __('Check your email for more information from the data administrator') ?></p>
+			<p><?php echo button_to('Inbox','messages/index',array('class' => 'btn btn-info')) ?></p>
+			<p><?php echo __('If EI report is ready,please proceed to upload it') ?>.</p>
+		</div>
+		<div class="modal-footer">
+			<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
+			<?php echo button_to('Proceed','eiReport/new',array('class' => 'btn btn-success')) ?>
 		</div>
 </div>

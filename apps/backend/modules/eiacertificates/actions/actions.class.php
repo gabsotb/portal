@@ -85,24 +85,24 @@ class eiacertificatesActions extends sfActions
 	 
 	  /*Certificate Values
 	  */
-	  //Incremental Number
-	/*  $start = 1093 ;
+	  //Incremental Number */
+	  $start = 1093 ;
 	  $newNumber = $start + 1;
 	  //We also make sure that the business is not already issued with a certificate if so we just print the existing certificate instead of
 	  //saving a new record
-	  $q = Doctrine_Core::getTable('InvestmentCertificate')->searchBusiness($taskId);
-	  if(count($q) > 0)
+	  $q = Doctrine_Core::getTable('EIACertificate')->findByEireportId($request->getParameter('id'));
+	  if(count($q) != 0)
 	  {
 	  //since this business has been issued with certificate, we just print it.
 	  //do nothing
 	  }
-	  if(count($q) <= 0)
+	  if(count($q) == 0)
 	  {
 						//this is the first time therefore we save and print the certificate
 						//but we want to increment it whenever a new record is inserted. hence we fast make sure that the $start number variable
 					  //is not set in the database;
 					  $no = null;
-					  $query = Doctrine_Core::getTable('InvestmentCertificate')->getLastRow();
+					  $query = Doctrine_Core::getTable('EIACertificate')->getLastRow();
 					   foreach($query as $q)
 					   {
 						$no = $q['serial_number'];
@@ -112,39 +112,39 @@ class eiacertificatesActions extends sfActions
 					   
 					   //we first check and make sure that there exist a number, then we increment it by 1
 					   //and save it.
-						  $cert = new InvestmentCertificate();
-						  $cert->business_id = $taskId ;
+						  $cert = new EIACertificate();
+						  $cert->eireport_id = $request->getParameter('id') ;
 						  $cert->serial_number = $no + 1 ;
 						  $cert->save();
 						  //we then update the Status of application i.e. BusinessApplicationStatus
 						  //now this is the final step of application for investment certificate. 
 						  //we set values
-						  $value1 = "certificateissued"; //status
-						  $value2 = "You have been issued with Investment Registration Certificate.
+						 /* $value1 = "certificateissued"; //status
+						  $value2 = "You have been issued with Environmental Impact Assessment Certificate.
        						 Please check your email and download the attached certificate. Thankyou. "; //comment
 						  $value3 = 100; //percentage
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
 						  //we also update the status of work for this data admin.
-						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);
+						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);*/
 					  }
 					  if($no == null)
 					  {
 					   $no = $start ;
 					   //if this is the first record, then we set default value
 					   //and save
-						  $cert = new InvestmentCertificate();
-						  $cert->business_id = $taskId ;
+						  $cert = new EIACertificate();
+						  $cert->eireport_id = $request->getParameter('id') ;
 						  $cert->serial_number = $no + 1 ;
 						  $cert->save();
 						  //we then update the Status of application i.e. BusinessApplicationStatus
 						  //now this is the final step of application for investment certificate. 
-						  $value1 = "certificateissued"; //status
+						  /*$value1 = "certificateissued"; //status
 						  $value2 = "You have been issued with Investment Registration Certificate.
        						 Please check your email and download the attached certificate. Thankyou. "; //comment
 						  $value3 = 100; //percentage
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
 						  //we also update the status of work for this data admin.
-						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);
+						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);*/
 					  }
 	 
 		
@@ -152,7 +152,9 @@ class eiacertificatesActions extends sfActions
 	  
 	  
 	  ////Then we get the Applicant details for printing the certificate. we will use the business_id saved in the InvestmentCertificate Table
-	  $query = Doctrine_Core::getTable('InvestmentCertificate')->getApplicantDetails($taskId);
+	  /*$query =*/$report= Doctrine_Core::getTable('EIReport')->find($request->getParameter('id'));
+	  $projectDetail=Doctrine_Core::getTable('EIAProjectDetail')->find($report->getEiaprojectId());
+	 
 	  //loop over the result and set necessary variables
 	  $date = null ;
 	  $year = null ;
@@ -267,7 +269,7 @@ $html = '                               <div>
 										   Ref: 02/PLS/27/12/012 <b></b>
 										 </p>
 										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;This is to certify that an EIA related to Professional Logistics Solutions(PLS)s &nbsp;&nbsp;&nbsp;project entitled ............. represented by  ...............................
+										  &nbsp;This is to certify that an EIA related to Professional Logistics Solutions(PLS)s &nbsp;&nbsp;&nbsp;project entitled '.$project_title.'.......... represented by  ...............................
 										  <br/> &nbsp;&nbsp;&nbsp;has been approved.This project is to be located on plot number ........... in Cell <br/>&nbsp;&nbsp;&nbsp;.......... Sector...............District..............Province............
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">

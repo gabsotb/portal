@@ -16,4 +16,11 @@ class EIACertificateTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('EIACertificate');
     }
+	public function getLastRow()
+	{
+		$q=$this->createQuery('c')
+			->select('c.*')
+			->orderBy('c.serial_number DESC');
+		return $q->fetchArray();
+	}
 }

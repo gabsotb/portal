@@ -38,6 +38,10 @@ abstract class BaseTorSubmitForm extends BaseFormDoctrine
       'updated_by'    => new sfValidatorString(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'TorSubmit', 'column' => array('eiaproject_id')))
+    );
+
     $this->widgetSchema->setNameFormat('tor_submit[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

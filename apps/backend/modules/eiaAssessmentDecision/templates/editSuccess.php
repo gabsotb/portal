@@ -24,14 +24,13 @@
 			</div>
 			<?php endif; ?>
 		<?php endif; ?>
-		<?php if(count($briefDecision) != 0): ?>
-			<div class="well">
-				<h4>Project brief decision</h4>
-				<p><b>Decision:</b><?php echo $briefDecision[0]['decision'] ?></p>
-				<p><b>Remarks</b></p>
-				<div class="well">
-				<?php echo html_entity_decode($briefDecision[0]['comments']) ?>
-				</div>
+		<?php if(count($tor) != 0 && $eiaprojectId['stage']=='tor'): ?>
+			<div class="alert alert-block alert-warning fade in">
+			<h4>Terms of Reference</h4>
+			<p><b>Remarks</b></p>
+			<?php echo html_entity_decode($tor[0]['remarks']) ?>
+			<br/>
+			<p>Download &nbsp;&nbsp;<?php echo link_to('download', '/uploads/documents/eia_documents/tor/'.$tor[0]['attachement'], array('target' => '_blank','class' => 'btn')); ?></p>
 			</div>
 		<?php endif; ?>
 		<?php if(count($sites) != 0 && $eiaprojectId['stage']=='site-visit'): ?>

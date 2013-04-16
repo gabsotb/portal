@@ -1,14 +1,14 @@
 <?php
 
 /**
- * EiaTorSubmit actions.
+ * eiaTor actions.
  *
  * @package    rdbeportal
- * @subpackage EiaTorSubmit
+ * @subpackage eiaTor
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class EiaTorSubmitActions extends sfActions
+class eiaTorActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
@@ -57,7 +57,7 @@ class EiaTorSubmitActions extends sfActions
     $this->forward404Unless($tor_submit = Doctrine_Core::getTable('TorSubmit')->find(array($request->getParameter('id'))), sprintf('Object tor_submit does not exist (%s).', $request->getParameter('id')));
     $tor_submit->delete();
 
-    $this->redirect('EiaTorSubmit/index');
+    $this->redirect('eiaTor/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -66,8 +66,13 @@ class EiaTorSubmitActions extends sfActions
     if ($form->isValid())
     {
       $tor_submit = $form->save();
+	  if($tor_submit->getAttachement())
+	  {
+		$taskId=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($tor_submit->getEiaprojectId());
+		Doctrine_Core::getTable('EITaskAssignment')->find($taskId[0]['id'])->setWorkStatus('assess')->setStage('tor')->save();
+	  }
 
-      $this->redirect('EiaTorSubmit/edit?id='.$tor_submit->getId());
+      $this->redirect('@homepage');
     }
   }
 }

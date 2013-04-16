@@ -696,7 +696,7 @@ TorSubmit:
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
-  eiaproject_id: {type: integer, notnull: true} 
+  eiaproject_id: {type: integer, notnull: true, unique: true} 
   attachement: {type: string(255), notnull: true}
   remarks: {type: string(400), notnull: true}
   token: {type: string(255), notnull: false} 

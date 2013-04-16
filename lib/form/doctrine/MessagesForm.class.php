@@ -19,6 +19,7 @@ class MessagesForm extends BaseMessagesForm
 	$username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
 	//
 	$this->setDefault('sender', $username);
+	$this->setDefault('sender_email', sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress());
 	//
 	$this->widgetSchema['sender'] = new sfWidgetFormInputHidden();
 	//$this->widgetSchema->setLabel('attachement','Any Attachment?');
