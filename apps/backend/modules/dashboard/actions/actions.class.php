@@ -17,6 +17,8 @@ class dashboardActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+		$bk = new BankOfKigaliPaymentCheck();
+		$bk->checkPayments();
        if (!$request->getParameter('sf_culture'))
 	  {
 		if ($this->getUser()->isFirstRequest())
