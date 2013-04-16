@@ -607,7 +607,7 @@ EITaskAssignment:
    updated: { name: updated_by,type: string}
  columns:
   user_assigned: {type: integer, notnull: true}
-  eiaproject_id: {type: integer, notnull: true }
+  eiaproject_id: {type: integer, notnull: true, unique: true}
   instructions: {type: string(255), notnull: true}
   duedate: {type: date, notnull: true}
   work_status: {type: string(255), notnull: true}
