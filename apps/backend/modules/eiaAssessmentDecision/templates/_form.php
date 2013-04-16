@@ -5,7 +5,7 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-  <table class="table table-striped">
+  <table class="table table-striped table-hover">
     <tfoot>
       <tr>
         <td colspan="2">
@@ -31,7 +31,7 @@
         <th><?php echo $form['remarks']->renderLabel() ?></th>
         <td>
           <?php echo $form['remarks']->renderError() ?>
-          <?php echo $form['remarks']->render(array('class' => 'span12 wysihtml5', 'rows' => '6')) ?>
+          <?php echo $form['remarks']->render(array('class' => 'span12 wysihtml5', 'rows' => '8')) ?>
         </td>
       </tr>
     </tbody>

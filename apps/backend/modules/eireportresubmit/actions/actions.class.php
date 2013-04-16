@@ -46,7 +46,13 @@ class eireportresubmitActions extends sfActions
 	{
 	 //set a session id for the project_id
 	$this->getUser()->setAttribute('project_id_resubmit', $project_id);
-	
+    //print $project_id; exit;
+	//delete query
+	 $q = Doctrine_Query::create()
+	 ->DELETE('EIReportResubmission')
+	 ->WHERE('eiaproject_id  = ?', $project_id);
+	 $q->execute();
+	/////////
 	
    $this->form = new EIReportResubmissionForm();
 	}
@@ -104,6 +110,7 @@ class eireportresubmitActions extends sfActions
 	   $allFormValues = $request->getParameter($this->form->getName());
 		//
 		$message = $allFormValues['comments'];
+	//	$attachment = $allFormValues['commets_doc'];
 		
 		
 		//retrieve the client username and password.
@@ -120,14 +127,14 @@ class eireportresubmitActions extends sfActions
 		//print $message; exit;
 		
 	    $ei_report_resubmission = $form->save();
-		$this->sendMessages($investor_name, $investor_email,$message);
+		$this->sendMessages($investor_name, $investor_email,$message,$project_id);
 		$this->updateEIReportStatus($project_id);
      // $this->redirect('eireportresubmit/edit?id='.$ei_report_resubmission->getId());
 	   $this->redirect('dashboard/index');
     }
   }
   //custom method to send emails and notifications
-  public function sendMessages($investor_name, $investor_email,$msg)
+  public function sendMessages($investor_name, $investor_email, $msg, $project_id)
   {
    //get current logged in username
 		//$logged_user = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
@@ -141,6 +148,7 @@ class eireportresubmitActions extends sfActions
 		$message->sender_email = $logged_user_email;
 		$message->recepient_email = $investor_email;
 		$message->message = $msg;
+	//	$message->attachement = $this->getEditedDoc($project_id); //we need a trick here
 		$message->created_at = date('Y-m-d H:i:s');
 		$message->save();
 		/// notifications
@@ -162,5 +170,20 @@ class eireportresubmitActions extends sfActions
 	 ->SET('status ', '?' , $value)
 	 ->WHERE('eiaproject_id = ?', $eiaproject_id);
 	 $q->execute();
+	 //////////////////////////////////////////////////////
+	 
+	}
+	//we create a function that retrieves the column value for word_doc with status awaiting resubmission.
+	//represents word doc that the data admin comments on
+	public function getEditedDoc($project_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT word_doc from e_i_report WHERE e_i_report.eiaproject_id = '$project_id' ");
+	 $attachment = null ;
+	 foreach($query as $q)
+	 {
+	  $attachment = $q['word_doc'];
+	 }
+	 ///
+	 return $attachment;
 	}
 }

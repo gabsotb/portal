@@ -36,7 +36,7 @@ abstract class BaseMessagesForm extends BaseFormDoctrine
       'sender_email'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'recepient_email' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'cc_email'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'message_subject' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'message_subject' => new sfValidatorString(array('max_length' => 255)),
       'message'         => new sfValidatorString(array('max_length' => 10000)),
       'attachement'     => new sfValidatorString(array('max_length' => 255)),
       'token'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),

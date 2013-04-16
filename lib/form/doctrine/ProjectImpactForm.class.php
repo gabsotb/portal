@@ -26,9 +26,6 @@ class ProjectImpactForm extends BaseProjectImpactForm
 	$this->ValidatorSchema['impact_level'] = new sfValidatorChoice(array(
 		'choices' => array_keys(Doctrine_Core::getTable('Projectimpact')->getImpactLevels()),
 	));
-	
-	$this->widgetSchema['site_visit'] = new sfWidgetFormInputText();
-	$this->widgetSchema['comments'] = new sfWidgetFormTextarea();
 
 	
   }

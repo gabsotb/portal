@@ -91,6 +91,8 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
       'title_in_company'           => new sfWidgetFormInputText(),
       'business_sector'            => new sfWidgetFormTextarea(),
       'business_category'          => new sfWidgetFormInputText(),
+      'representative_name'        => new sfWidgetFormInputText(),
+      'currency_type'              => new sfWidgetFormInputText(),
       'office_telephone'           => new sfWidgetFormInputText(),
       'fax'                        => new sfWidgetFormInputText(),
       'post_box'                   => new sfWidgetFormInputText(),
@@ -113,6 +115,8 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
       'title_in_company'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'business_sector'            => new sfValidatorString(array('max_length' => 1000)),
       'business_category'          => new sfValidatorString(array('max_length' => 255)),
+      'representative_name'        => new sfValidatorString(array('max_length' => 255)),
+      'currency_type'              => new sfValidatorString(array('max_length' => 255)),
       'office_telephone'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'fax'                        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'post_box'                   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
@@ -147,4 +151,4 @@ abstract class BaseInvestmentApplicationForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> f96885150764993174e024e4524cd25945e560f5
+>>>>>>> 7d90088ba906948bffa802eb53291959e6485adc

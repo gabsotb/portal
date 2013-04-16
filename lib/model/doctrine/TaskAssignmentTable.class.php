@@ -180,6 +180,16 @@ class TaskAssignmentTable extends Doctrine_Table
 	  An email with further instruction for payment has been sent to your accout email. Thankyou";
 	  $value3 = 80;
 	 $this->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+	 //we also update the table that stores payment information.
+	 //set default values
+	 $slip_no = Doctrine_Core::getTable('InvestmentApplication')->getReferenceNumber($taskId);
+	 $payment = new Payment();
+	 $payment->business_id = $taskId;
+	 $payment->payment_status = "notpaid";
+	 $payment->slip_number =  $slip_no ;
+	 $payment->token = sha1(date('Y-m-d').rand(11111, 99999));
+	 $payment->save();
+	 ///////////
 	}
 	//call if the admin requests for resubmission of documents
 	public function updateBusinessStatusResubmission($id)

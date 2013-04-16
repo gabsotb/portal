@@ -28,4 +28,16 @@ class PaymentTable extends Doctrine_Table
 			 //print_r($query); exit;
 	return $query;
 	}
+
+	/*
+	This method returns reference numbers as a parameter and checks if it exists in the database table for payment simulation
+	*/
+	public function getPendingPayments()
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT slip_number,business_id FROM payment
+             WHERE payment_status = 'notpaid' ");
+			 //
+			 //print_r($query); exit;
+	return $query;
+	}
 }

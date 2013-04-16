@@ -26,10 +26,14 @@ class eiaDataAdminActions extends sfActions
 			
 		$this->detail=Doctrine_Core::getTable('EITaskAssignment')->find(array($request->getParameter('id')));
 		//Update status////
-		$this->updateStatus($this->detail->getEiaprojectId(),'processing','Your application is been processed',40);
-		$this->detail->setWorkStatus('started')->save();
+		if($this->detail->getWorkStatus() == 'notstarted')
+		{
+			$this->updateStatus($this->detail->getEiaprojectId(),'processing','Your application is been processed',30);
+			$this->detail->setWorkStatus('started')->save();
+		}
 		///////////
 		$this->developers=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($this->detail->getEiaprojectId());
+		$this->applicant=Doctrine_Core::getTable('sfGuardUser')->find($this->developers[0]['created_by']);
 		$this->descriptions=Doctrine_Core::getTable('EIAProjectDescription')->findByEiaprojectId($this->detail->getEiaprojectId());
 		$this->surroundings=Doctrine_Core::getTable('EIAProjectSurrounding')->findByEiaprojectId($this->detail->getEiaprojectId());
 		$this->economics=Doctrine_Core::getTable('EIAProjectSocialEconomic')->findByEiaprojectId($this->detail->getEiaprojectId());
@@ -79,9 +83,9 @@ class eiaDataAdminActions extends sfActions
 		$impact= new ProjectImpact();
 		$impact->eiaproject_id=$request->getParameter('id');
 		$impact->save();
-		$this->updateStatus($request->getParameter('id'),'assessing','Accessing application',60);
-		$assignment=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
-		Doctrine_Core::getTable('EITaskAssignment')->find(array($assignment[0]['id']))->setWorkStatus('assess')->save();
+		//$this->updateStatus($request->getParameter('id'),'assessing','Accessing application',60);
+		//$assignment=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
+		//Doctrine_Core::getTable('EITaskAssignment')->find(array($assignment[0]['id']))->setWorkStatus('assess')->save();
 		foreach(Doctrine_Core::getTable('ProjectImpact')->findByEiaprojectId($request->getParameter('id')) as $projetcImpact)
 		{
 			$impactId=$projetcImpact->getId();
@@ -106,12 +110,76 @@ class eiaDataAdminActions extends sfActions
 		$this->redirect('eiaProjectBreifDecision/edit?id='.$id.'&act=reject');
 	}	
 	
+	public function executeSiteVisit(sfWebRequest $request)
+	{
+		$site = new EIASiteVisit();
+		$site->eiaproject_id=$request->getParameter('id');
+		$site->visited=false;
+		$site->save();
+		$visits=Doctrine_Core::getTable('EIASiteVisit')->findByEiaprojectId($request->getParameter('id'));
+		$this->redirect('eiaSiteVisit/edit?id='.$visits[0]['id']);
+	}
 	public function executeProcess(sfWebRequest $request)
 	{
 		$this->projectDetail=Doctrine_Core::getTable('EIAProjectDetail')->find(array($request->getParameter('id')));
 		$this->projectDeveloper=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($request->getParameter('id'));
 		$this->projectDescription=Doctrine_Core::getTable('EIAProjectDescription')->findByEiaprojectId($request->getParameter('id'));
+		$this->siteVisit=Doctrine_Core::getTable('EIASiteVisit')->findByEiaprojectId($request->getParameter('id'));
+		$this->tasks=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
+		$this->assessmentSiteVisit=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessment($this->tasks[0]['id'],'site-visit');
+		$this->assessmentImpact=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessment($this->tasks[0]['id'],'impact-level');
+		$this->applicantEmail=Doctrine_Core::getTable('sfGuardUser')->find($this->projectDetail['created_by']);
 		$this->projectImpact=Doctrine_Core::getTable('ProjectImpact')->findByEiaprojectId($request->getParameter('id'));
 	}
+	public function executeMessage(sfWebRequest $request)
+	{
+		$message = new Messages();
+		$message->sender=sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+		$message->sender_email=sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
+		$message->recepient=$request->getParameter('applicant');
+		$applicant=Doctrine_Core::getTable('sfGuardUser')->findByUsername($request->getParameter('applicant'));
+		$message->recepient_email=$applicant[0]['email_address'];
+		$message->save();
+		/*change status
+		$statusId=Doctrine_Core::getTable('EIApplicationStatus')->findByEiaprojectId($request->getParameter('id'));
+		$status=Doctrine_Core::getTable('EIApplicationStatus')->find($statusId[0]['id']);
+		$status->application_status="site visit";
+		$status->comments="Site visit scheduled";
+		$status->percentage=50;
+		$status->save();*/
+		$messageId=Doctrine_Core::getTable('Messages')->getMessageId($request->getParameter('applicant'));	
+		$this->redirect('messages/edit?id='.$messageId[0]['id'].'&user=dataAdmin');
+	}
+	public function executeMessageTor(sfWebRequest $request)
+	{
+		$message = new Messages();
+		$message->sender=sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+		$message->sender_email=sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
+		$message->recepient=$request->getParameter('applicant');
+		$applicant=Doctrine_Core::getTable('sfGuardUser')->findByUsername($request->getParameter('applicant'));
+		$message->recepient_email=$applicant[0]['email_address'];
+		$message->save();
+		//change status
+		$statusId=Doctrine_Core::getTable('EIApplicationStatus')->findByEiaprojectId($request->getParameter('id'));
+		$status=Doctrine_Core::getTable('EIApplicationStatus')->find($statusId[0]['id']);
+		$status->application_status="T.O.R";
+		$status->comments="Terms of Reference assessment";
+		$status->percentage=70;
+		$status->save();
+		$messageId=Doctrine_Core::getTable('Messages')->getMessageId($request->getParameter('applicant'));	
+		$this->redirect('messages/edit?id='.$messageId[0]['id'].'&user=dataAdmin');
+	}
+	public function executeSiteVisitReport(sfWebRequest $request)
+	{
+		$report = new EIASiteVisitReport();
+		$report->eiasitevisit_id=$request->getParameter('id');
+		$report->save();
+		$report_id=Doctrine_Core::getTable('EIASiteVisitReport')->findByEiasitevisitId($request->getParameter('id'));
+		
+		$this->redirect('eiaSiteVisitReport/edit?id='.$report_id[0]['id']); 
+	}
+	//public function executeTorSubmit(sfWebRequest $request)
+	//{
+		
 
 }

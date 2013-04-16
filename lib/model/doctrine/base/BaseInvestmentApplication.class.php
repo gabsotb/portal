@@ -11,6 +11,7 @@
  * @property string $business_sector
  * @property string $business_category
  * @property string $representative_name
+ * @property string $currency_type
  * @property string $office_telephone
  * @property string $fax
  * @property string $post_box
@@ -40,6 +41,7 @@
  * @method string                getBusinessSector()                Returns the current record's "business_sector" value
  * @method string                getBusinessCategory()              Returns the current record's "business_category" value
  * @method string                getRepresentativeName()            Returns the current record's "representative_name" value
+ * @method string                getCurrencyType()                  Returns the current record's "currency_type" value
  * @method string                getOfficeTelephone()               Returns the current record's "office_telephone" value
  * @method string                getFax()                           Returns the current record's "fax" value
  * @method string                getPostBox()                       Returns the current record's "post_box" value
@@ -68,6 +70,7 @@
  * @method InvestmentApplication setBusinessSector()                Sets the current record's "business_sector" value
  * @method InvestmentApplication setBusinessCategory()              Sets the current record's "business_category" value
  * @method InvestmentApplication setRepresentativeName()            Sets the current record's "representative_name" value
+ * @method InvestmentApplication setCurrencyType()                  Sets the current record's "currency_type" value
  * @method InvestmentApplication setOfficeTelephone()               Sets the current record's "office_telephone" value
  * @method InvestmentApplication setFax()                           Sets the current record's "fax" value
  * @method InvestmentApplication setPostBox()                       Sets the current record's "post_box" value
@@ -127,6 +130,11 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('representative_name', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('currency_type', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'length' => 255,

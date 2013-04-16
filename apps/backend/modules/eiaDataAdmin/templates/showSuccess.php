@@ -56,7 +56,7 @@
 				<?php if(!is_null($developer->getMobilePhone())): ?>
 				<li><span><i class="icon-user"></i></span><b><?php echo __('Mobile Phone') ?></b>:&nbsp;<?php echo $developer->getMobilePhone() ?></li>
 				<?php endif; ?>
-				
+				<p><?php echo __('E-mail') ?>:&nbsp;<?php //echo mail_to($developer->getEmailAddress()) ?></p>
 				<li><span><i class="icon-user"></i></span><b><?php echo __('E-mail') ?></b>:&nbsp;<?php echo $developer->getEmailAddress() ?></li>
 				<li><span><i class="icon-eye-open"></i></span><b><?php echo __('Social Network') ?></b>:&nbsp;<?php echo $developer->getCommunicationMode() ?></li>
 				
@@ -137,7 +137,7 @@
 				  <h4><?php echo __('PROJECT OBJECTIVE') ?></h4>
 			      </div>
 				
-				<p><?php echo $description->getProjectObjective() ?></p>
+				<p><?php echo html_entity_decode($description->getProjectObjective()) ?></p>
 				</div>
 				<div class="well">
 				
@@ -1140,12 +1140,16 @@
 		<h3><?php echo __('Confirm Request') ?></h3>
 	</div>
 	<div class="modal-body">
-		<p><?php echo __('This confirms you have read and analysed the application and you are satisfied with the information provided by the applicant') ?>.</p> 
-		<p><?php echo __('Proceed to allocate an impact level for the project') ?>.</p>
-		<?php echo button_to('Proceed','eiaDataAdmin/impact?id='.$detail->getEiaprojectId(),array('class' => 'btn btn-success')) ?>
+		<p><?php echo __('This confirms you have read and analysed the application and you are satisfied with the information provided by the applicant') ?>.</p>
+		<p><?php echo __('Info applicant to recommend an appropriate date for the site visit') ?></p>
+		<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$applicant->getUsername(),array('class' => 'btn btn-primary')) ?></p>
+	<?php //echo mail_to($applicant->getEmailAddress(),'Email Applicant',array('class' =>'btn btn-inverse')) ?>
+		<p><?php echo __('Proceed to allocate a day for the site visit in which the applicant has made themselves available or a representative available') ?>.</p>
 	</div>
 	<div class="modal-footer">
-		<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
+		<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
+		<?php echo button_to('Proceed','eiaDataAdmin/siteVisit?id='.$detail->getEiaprojectId(),array('class' => 'btn btn-success')) ?>
+		
 	</div>
 </div>
 <div id="widget-reject" class="modal hide">
@@ -1161,11 +1165,10 @@
 		<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
 	</div>
 </div>
+
 <div class="form-actions">
 	<a href="#widget-resubmission" data-toggle="modal">
 	<button type="button" class="btn btn-inverse"><?php echo __('Request Resubmission') ?></button></a>
 	<a href="#widget-confirm" data-toggle="modal">
-	<button type="button" class="btn btn-inverse"><?php echo __('Project Impact') ?></button></a>
-	<a href="#widget-reject" data-toggle="modal">
-	<button type="button" class="btn btn-inverse"><?php echo __('Reject') ?></button></a>
+	<button type="button" class="btn btn-success"><?php echo __('Site Visit') ?></button></a>
 </div>

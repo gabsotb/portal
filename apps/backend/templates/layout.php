@@ -267,16 +267,7 @@
 					</ul>
 				</li>
 				<li> <a href ="<?php echo url_for('information_portlets') ?>"><i class="icon-book"></i> <?php echo __('Information Portlets') ?> </a> </li>
-				<li class="has-sub">
-					<a href="javascript:;" class="">
-					<i class="icon-certificate"></i><?php echo __('Certificates Issued') ?>
-					<span class="arrow"></span>
-					</a>
-					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
-						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
-					</ul>
-				</li>
+				
 				<?php endif ?>
 				<!-- end -->
 				<li class="has-sub">
@@ -295,7 +286,8 @@
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						<li class=""><a href ="<?php echo url_for('reports/issued')?>"><i class="icon-certificate"></i> <?php echo __('IC Issued') ?> </a></li>
+						<li class=""><a href ="<?php echo url_for('reports/sectors')?>"><i class="icon-certificate"></i> <?php echo __('IC Per Sector') ?> </a></li>
 						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
 						<li class="">  <a href ="#"><i class="icon-certificate"></i> <?php echo __('Tax Exemptions') ?></a> </li>
 					</ul>
@@ -371,16 +363,16 @@
 				</div>
 				<?php endif ?>
 				<?php if ($sf_user->hasFlash('notice')): ?>
-				<div class="flash_notice">
+				<div class="alert alert-info">
 					<?php echo $sf_user->getFlash('notice') ?>
 				</div>
-				<?php endif ?>	
+				<?php endif; ?>	
 			
 				<?php if ($sf_user->hasFlash('error')): ?>
-				<div class="flash_error">
+				<div class="alert alert-error">
 					<?php echo $sf_user->getFlash('error') ?>
 				</div>
-				<?php endif ?>
+				<?php endif; ?>
 			
 					<?php echo $sf_content ?>
 				<?php if(!$sf_user->isAuthenticated()): ?>

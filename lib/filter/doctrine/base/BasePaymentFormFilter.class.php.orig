@@ -17,6 +17,7 @@ abstract class BasePaymentFormFilter extends BaseFormFilterDoctrine
       'business_id'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'payment_status' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'slip_number'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'token'          => new sfWidgetFormFilterInput(),
       'created_at'     => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'     => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'created_by'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -26,7 +27,8 @@ abstract class BasePaymentFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'business_id'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'payment_status' => new sfValidatorPass(array('required' => false)),
-      'slip_number'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'slip_number'    => new sfValidatorPass(array('required' => false)),
+      'token'          => new sfValidatorPass(array('required' => false)),
       'created_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'created_by'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Creator'), 'column' => 'id')),
@@ -53,7 +55,8 @@ abstract class BasePaymentFormFilter extends BaseFormFilterDoctrine
       'id'             => 'Number',
       'business_id'    => 'Number',
       'payment_status' => 'Text',
-      'slip_number'    => 'Number',
+      'slip_number'    => 'Text',
+      'token'          => 'Text',
       'created_at'     => 'Date',
       'updated_at'     => 'Date',
       'created_by'     => 'ForeignKey',
@@ -116,4 +119,4 @@ abstract class BasePaymentFormFilter extends BaseFormFilterDoctrine
     );
   }
 }
->>>>>>> df469ab3c284762d3943f53ca17239220e4644fe
+>>>>>>> b6981561b33eb2439507ef586802c40c277c2ec9

@@ -19,6 +19,18 @@
 			</div>
 			 <?php echo $form->renderHiddenFields(); ?>
 		</div>
+		<div class="control-group">
+		  <?php echo $form['commets_doc']->renderError() ?>
+			<div class="controls">
+			<label class="control-label"><?php echo $form['commets_doc']->renderLabel() ?></label>
+			    
+				<div class="input-prepend">
+					<?php echo $form['commets_doc']->render(array('class' => 'default')) ?>
+					
+				</div>
+			</div>
+			
+		</div>
     </tbody>
     <tfoot>
       <tr>

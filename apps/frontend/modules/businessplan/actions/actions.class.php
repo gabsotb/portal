@@ -1092,7 +1092,7 @@ class businessplanActions extends sfActions
 		 {
 		   //////
       $business_plan = $form->save();
-      
+       try{
      //we send message to the investor informing them of successful application
 	 //get the current logged in user email address
 				  $email = sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
@@ -1208,10 +1208,16 @@ class businessplanActions extends sfActions
 				 //remove attribute from session
 	  $this->getUser()->getAttributeHolder()->remove('session_business_id');
 	    $this->redirect('investmentapp/index');
+		}
+		catch(Exception $ex)
+		{
+		throw new Exception("Sorry a Server Error Occured while sending emails. More info".$ex->getMessage());
+		}
 		 }	 
 	 //resubmission
 	 if($id != null)
 		 {
+		  try{
 		   	   //////
               $business_plan = $form->save();
 			  //we notify the data admin who requested for resubmission
@@ -1257,8 +1263,13 @@ class businessplanActions extends sfActions
 				     $notify2->created_at = date('Y-m-d H:i:s');
 					 $notify2->save();
 					 ///
-					$this->getUser()->getAttributeHolder()->remove('session_business_id');
+			 $this->getUser()->getAttributeHolder()->remove('session_business_id');
 			 $this->redirect('investmentapp/index');
+			 }
+			 catch(Exception $ex)
+				{
+				throw new Exception("Sorry a Server Error Occured while sending emails. More info -->".$ex->getMessage());
+				}
 					 
 		 }
 	 

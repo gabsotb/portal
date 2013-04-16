@@ -36,7 +36,7 @@
 							  </font> 
 							  <br/>
 							 
-							  <a href="<?php echo url_for('messages/new?value=decline')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a>
+							  <a href="<?php echo url_for('messages/new')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a>
 							<?php endif; ?>
 							
 							  <?php if(count($permission) != 0): ?>

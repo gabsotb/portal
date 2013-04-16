@@ -840,10 +840,12 @@ $(function () {
 								</div>
 								<?php //to make it possible for users to resubmit, we will access the table EIReportResubmission
                                         //we check for report EIReport submitted by this user whose status is awaitingresubmission
-									$userId = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
-									$query_status = Doctrine_Core::getTable('EIReportResubmission')->checkResubmissionStatus($user_id);	
+									$user_id = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
+								
+									$query_status = Doctrine_Core::getTable('EIReportResubmission')->checkResubmissionStatus($user_id );	
 									$value_status = null;
 									$value_status_name = null;
+									//$attachment = null ;
 									foreach($query_status as $q)
 									{
 									 $value_status = $q['eiaproject_id'];
@@ -853,6 +855,20 @@ $(function () {
 								<?php if($value_status != null): ?>
 								<a href="<?php echo url_for('eiReport/edit?id='.$value_status.'&status='.$value_status_name) ?>">
 											<button type="button" class="btn btn-block"><?php echo __('Resubmit Report') ?></button></a>
+								<!-- --------------->			
+									<?php	$query_doc = Doctrine_Core::getTable('EIReportResubmission')->getCommentsDocument( $value_status);	
+									$attachment = null ;
+									///
+									foreach($query_doc as $doc)
+									{
+									 $attachment = $doc['commets_doc']; 
+									}
+								//	print "Attachment is".$attachment."-".$user_id.'-'.$value_status;
+									?>
+								<div class="alert alert-block alert-success">	
+								<?php echo link_to('Please download comments document', '/uploads/documents/eia_documents/user_eireports/'.$attachment, array('target' => '_blank')); ?>	
+								<!-- ---------------->
+                                </div>								
 								<?php endif; ?>
 								<!-- end EIA -->	 
 								
@@ -876,7 +892,7 @@ $(function () {
 			<h3><?php echo __('Reason for resubmission') ?></h3>
 		</div>
 		<div class="modal-body">
-			<p><?php echo $briefDecision[0]['comments'] ?></p>
+			<p><?php echo html_entity_decode($briefDecision[0]['comments']) ?></p>
 			<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
 		</div>
 </div>
@@ -886,7 +902,7 @@ $(function () {
 			<h3><?php echo __('Reason for rejection') ?></h3>
 		</div>
 		<div class="modal-body">
-			<p><?php echo $briefDecision[0]['comments'] ?></p>
+			<p><?php echo html_entity_decode($briefDecision[0]['comments']) ?></p>
 			<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
 		</div>
 </div>

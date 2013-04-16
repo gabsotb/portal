@@ -61,6 +61,8 @@ class EIReportForm extends BaseEIReportForm
 	   ///
 	   
 	   $this->widgetSchema->setLabels(array('word_doc'=>'Report In Word Document Format:', 'pdf_doc' =>'Report In PDF Document Format:'));
+	   ////////////////////////////////////
+
   }
   
 }

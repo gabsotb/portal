@@ -57,7 +57,7 @@ class TaskAssignment extends BaseTaskAssignment
 				  //setting token
 				  if (!$this->getToken() )
 					  {
-						$this->setToken(sha1(date().rand(11111, 99999)));
+						$this->setToken(sha1(date('Y').rand(11111, 99999)));
 					  }
 				 // exit;
 				  ///

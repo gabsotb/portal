@@ -23,10 +23,68 @@ class InvestmentApplicationTable extends Doctrine_Table
     'expansion' => 'Expansion',
 	'reinvestment' => 'Reinvestment',
   );
-  ///
+  //setting default currency values
+  static public $currency = array(
+    'rwf' => 'RWF',
+    'euro' => 'Euro',
+    'usd' => 'USD',
+  );
+  //settings provinces
+   static public $provinces = array(
+    'East Province' => 'East Province',
+    'Kigali Province' => 'Kigali Province',
+    'North Province' => 'North Province',
+	'South Province' => 'South Province',
+	'West Province' => 'West Province',
+  );
+  ///setting districts
+   static public $districts = array(
+     'Bugesera' =>'Bugesera',
+	 'Gatsibo' => 'Gatsibo',
+	 'Kayonza' => 'Kayonza',
+	 'Kirehe' => 'Kirehe',
+	 'Ngoma'  => 'Ngoma',
+	 'Nyagatare' => 'Nyagatare',
+	 'Rwamagana' => 'Rwamagana',
+	 'Gasabo' => 'Gasabo',
+	 'Kicukiro' => 'Kicukiro',
+	 'Nyarugenge' => 'Nyarugenge',
+	 'Burera' => 'Burera',
+	 'Gakenke' => 'Gakenke',
+	 'Gicumbi' => 'Gicumbi',
+	 'Musanze' => 'Musanze',
+	 'Rulindo' => 'Rulindo',
+	 'Gisagara' => 'Gisagara',
+	 'Huye' => 'Huye',
+	 'Kamonyi' => 'Kamonyi',
+	 'Muhanga' =>  'Muhanga',
+	 'Nyamagabe' => 'Nyamagabe',
+	 'Nyanza' => 'Nyanza',
+	 'Nyaruguru' => 'Nyaruguru',
+	 'Ruhango' => 'Ruhango',
+	 'Karongi' => 'Karongi',
+	 'Ngororero' => 'Ngororero',
+	 'Nyabihu' => 'Nyabihu',
+	 'Nyamasheke' => 'Nyamasheke',
+	 'Rubavu' => 'Rubavu',
+	 'Rusizi' =>'Rusizi',
+	 'Rutsiro' =>'Rutsiro',
+  );
+  public function getDistricts()
+  {
+   return self::$districts ;
+  }
+   public function getProvinces()
+  {
+   return self::$provinces ;
+  }
   public function getCategories()
   {
    return self::$category ;
+  }
+  public function getCurrencies()
+  {
+   return self::$currency ;
   }
   //get users with the permission for processing investment certificates ie investmentcert users
 	public function getInvestmentCertUsers($group)
@@ -304,6 +362,19 @@ business_plan.investment_id = investment_application.id left join  business_appl
 	  ///
 	  return $query;
 	}
+	//check existance of tin number.
+	public function checkTinNumber($tinNumber)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name,investment_application.applicant_reference_number FROM  investment_application left join  investment_certificate on investment_application.id = investment_certificate.business_id where investment_application.registration_number = '$tinNumber' ");
+	 //
+	 return $query;
+	}
+	//method to retrieve certificate details given a tin number
+	public function getCertificateDetails($applicant_reference)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name, investment_application.location,investment_application.office_telephone, investment_certificate.serial_number,investment_certificate.created_at from investment_application left join investment_certificate on investment_application.id = investment_certificate.business_id where investment_application.applicant_reference_number = '$applicant_reference'  ");
+	  return $query;
+	}
 	//select business_registration using supplied reference number
 	public function getDetails($referenceNumber)
 	{
@@ -359,6 +430,8 @@ business_plan.investment_id = investment_application.id left join  business_appl
 		return $id_value."-".$value."-".$date;
 	  }
 	}
+	//reference number for investment certificate
+
 	//we create a method that will retrieve applicant reference number for a particular application, we supply business id
 	public function getReferenceNumber($id)
 	{
@@ -406,5 +479,17 @@ business_plan.investment_id = investment_application.id left join  business_appl
 	 }
 	 //
 	 return $id;
+	}
+	//custom method to retrieve the investor currency given an id
+	public function getInvestorCurrency($id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("Select currency_type from investment_application where id = '$id' ");
+	 $currency = null;
+	 foreach($query as $q)
+	 {
+	   $currency = $q['currency_type'];
+	 }
+	 //
+	 return $currency;
 	}
 }

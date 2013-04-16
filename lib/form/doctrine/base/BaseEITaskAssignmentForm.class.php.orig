@@ -18,10 +18,11 @@ abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'            => new sfWidgetFormInputHidden(),
       'user_assigned' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => false)),
-      'company_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIApplication'), 'add_empty' => false)),
+      'eiaproject_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'), 'add_empty' => false)),
       'instructions'  => new sfWidgetFormInputText(),
-      'duedate'       => new sfWidgetFormDateTime(),
+      'duedate'       => new sfWidgetFormDate(),
       'work_status'   => new sfWidgetFormInputText(),
+      'token'         => new sfWidgetFormInputText(),
       'created_at'    => new sfWidgetFormDateTime(),
       'updated_at'    => new sfWidgetFormDateTime(),
       'created_by'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -31,10 +32,11 @@ abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_assigned' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'))),
-      'company_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIApplication'))),
+      'eiaproject_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'))),
       'instructions'  => new sfValidatorString(array('max_length' => 255)),
-      'duedate'       => new sfValidatorDateTime(),
+      'duedate'       => new sfValidatorDate(),
       'work_status'   => new sfValidatorString(array('max_length' => 255)),
+      'token'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),
       'created_by'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
@@ -103,4 +105,4 @@ abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> df469ab3c284762d3943f53ca17239220e4644fe
+>>>>>>> 8a45578a6c5c1cbed13662effd99c1202e646474

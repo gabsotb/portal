@@ -20,7 +20,7 @@ class InvestmentCertificateTable extends Doctrine_Table
 	public function getLastRow()
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc('
-	 SELECT investment_certificate.serial_number FROM investment_certificate ORDER BY investment_certificate.id DESC LIMIT 1
+	 SELECT id,investment_certificate.serial_number FROM investment_certificate ORDER BY investment_certificate.id DESC LIMIT 1
 	 ');
 	 return $query;
 	}
@@ -34,6 +34,18 @@ class InvestmentCertificateTable extends Doctrine_Table
 		 FROM investment_certificate LEFT JOIN  investment_application ON investment_certificate.business_id 
 		LEFT JOIN project_summary ON investment_certificate.business_id = project_summary.investment_id 
 		LEFT JOIN sf_guard_user ON sf_guard_user.id = project_summary.created_by WHERE investment_application.id = '$business_id' "
+	  );
+	  return $query;
+	}
+	public function getApplicantCertificateDetails($id)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc(
+	  "SELECT  investment_certificate.created_at,investment_certificate.serial_number,
+		 investment_application.name, investment_application.name,investment_application.representative_name,project_summary.employment_created,
+		 project_summary.business_sector,project_summary.planned_investment, sf_guard_user.first_name,sf_guard_user.last_name
+		 FROM investment_certificate LEFT JOIN  investment_application ON investment_certificate.business_id 
+		LEFT JOIN project_summary ON investment_certificate.business_id = project_summary.investment_id 
+		LEFT JOIN sf_guard_user ON sf_guard_user.id = project_summary.created_by WHERE investment_application.id = '$id' "
 	  );
 	  return $query;
 	}
@@ -72,5 +84,14 @@ class InvestmentCertificateTable extends Doctrine_Table
 	 return $query;
 	}
 	//we show user notification for application of investment certificate.
+	//reporting method on all investment certificates successfully issued.
+	public function getAllIssuedCertificates()
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.id, investment_application.name AS company, investment_application.office_telephone AS contact, investment_application.business_sector AS description, project_summary.business_sector AS sector, investment_certificate.serial_number, project_summary.planned_investment AS investment,project_summary.employment_created as jobs
+		FROM investment_application
+		LEFT JOIN investment_certificate ON investment_application.id = investment_certificate.business_id
+		LEFT JOIN project_summary ON investment_application.id = project_summary.investment_id");
+	 return $query;
+	}
 	  
 }

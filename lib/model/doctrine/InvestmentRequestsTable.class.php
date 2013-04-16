@@ -18,7 +18,6 @@ class InvestmentRequestsTable extends Doctrine_Table
     }
 	//we set default fields for request_types
 	static public $request_types= array(
-    'issue_certificate' => 'Issue Certificate',
     'decline_application' => 'Decline Application',
     'accept_application' => 'Accept Application',
   );
