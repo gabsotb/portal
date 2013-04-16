@@ -35,6 +35,7 @@ abstract class BaseTorSubmit extends sfDoctrineRecord
         $this->hasColumn('eiaproject_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             'unique' => true,
              ));
         $this->hasColumn('attachement', 'string', 255, array(
              'type' => 'string',

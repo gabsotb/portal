@@ -128,8 +128,11 @@ class eiaDataAdminActions extends sfActions
 		$this->tasks=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
 		$this->assessmentSiteVisit=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessment($this->tasks[0]['id'],'site-visit');
 		$this->assessmentImpact=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessment($this->tasks[0]['id'],'impact-level');
+		$this->assessmentTor=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessment($this->tasks[0]['id'],'tor');
 		$this->applicantEmail=Doctrine_Core::getTable('sfGuardUser')->find($this->projectDetail['created_by']);
 		$this->projectImpact=Doctrine_Core::getTable('ProjectImpact')->findByEiaprojectId($request->getParameter('id'));
+		$this->torSubmit=Doctrine_Core::getTable('TorSubmit')->findByEiaprojectId($request->getParameter('id'));
+		
 	}
 	public function executeMessage(sfWebRequest $request)
 	{
@@ -178,8 +181,31 @@ class eiaDataAdminActions extends sfActions
 		
 		$this->redirect('eiaSiteVisitReport/edit?id='.$report_id[0]['id']); 
 	}
-	//public function executeTorSubmit(sfWebRequest $request)
-	//{
-		
-
+	public function executeTorSubmit(sfWebRequest $request)
+	{
+		$tor= new TorSubmit();
+		$tor->eiaproject_id=$request->getParameter('id');
+		$tor->save();
+		$torId=Doctrine_Core::getTable('TorSubmit')->findByEiaprojectId($request->getParameter('id'));
+		$this->redirect('eiaTor/edit?id='.$torId[0]['id']);
+	}
+	public function executeMessageEIReport(sfWebRequest $request)
+	{
+		$message = new Messages();
+		$message->sender=sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+		$message->sender_email=sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
+		$message->recepient=$request->getParameter('applicant');
+		$applicant=Doctrine_Core::getTable('sfGuardUser')->findByUsername($request->getParameter('applicant'));
+		$message->recepient_email=$applicant[0]['email_address'];
+		$message->save();
+		//change status
+		$statusId=Doctrine_Core::getTable('EIApplicationStatus')->findByEiaprojectId($request->getParameter('id'));
+		$status=Doctrine_Core::getTable('EIApplicationStatus')->find($statusId[0]['id']);
+		$status->application_status="EIR";
+		$status->comments="Environmental Impact Study assessment";
+		$status->percentage=80;
+		$status->save();
+		$messageId=Doctrine_Core::getTable('Messages')->getMessageId($request->getParameter('applicant'));	
+		$this->redirect('messages/edit?id='.$messageId[0]['id'].'&user=dataAdmin');
+	}
 }

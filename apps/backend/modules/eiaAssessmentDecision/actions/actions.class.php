@@ -46,9 +46,9 @@ class eiaAssessmentDecisionActions extends sfActions
 			$this->report=$reports;
 		}
 	}
-	if($briefDecisions=Doctrine_Core::getTable('EIAProjectBriefDecision')->findByEiaprojectId($this->eiaprojectId['eiaproject_id']))
+	if($torSubmit=Doctrine_Core::getTable('TorSubmit')->findByEiaprojectId($this->eiaprojectId['eiaproject_id']))
 	{
-		$this->briefDecision=$briefDecisions;
+		$this->tor=$torSubmit;
 	}
 	if($visits)
 	{
