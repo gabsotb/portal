@@ -23,4 +23,16 @@ class EIACertificateTable extends Doctrine_Table
 			->orderBy('c.serial_number DESC');
 		return $q->fetchArray();
 	}
+	///////a report function
+	public function calculateCertificatesIssued()
+	{
+	 $certs = 0;
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select count(serial_number) as total from e_i_a_certificate");
+	 foreach($query  as $q)
+	 {
+	  $certs = $q['total'];
+	 }
+	 //
+	 return $certs;
+	}
 }

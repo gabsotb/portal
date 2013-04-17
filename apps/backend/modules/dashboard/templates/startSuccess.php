@@ -424,113 +424,81 @@
 							<!-- BEGIN UNORDERED LISTS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-reorder"></i><?php echo $name; ?> >><?php echo __('Attached by Applicant') ?></h4>
+									<h4><i class="icon-reorder"></i><?php echo __('Attached by Applicant') ?></h4>
 									<span class="tools">
 									<a href="javascript:;" class="icon-chevron-down"></a>
 									</span>							
 								</div>
 								<div class="widget-body">
-								 <p><?php echo __('Download These attachment to view and analyze them') ?></p>
+								 <p>
+								 <?php 
+								 $attch1 = null ;
+								 $attch2 = null ;
+								 $attch3 = null ;
+								 $attch4 = null ;
+								 $attch5 = null ;
+								 $attch6 = null ;
+								 $attch7 = null ;
+								 foreach($details as $test)
+								 {
+								 $attch1 = $test['exemption_on_machinery'] ;
+								 $attch2 = $test['exemption_on_machinery'] ;
+								 $attch3 = $test['land_ownership_document'] ;
+								 $attch4 = $test['bill_of_quantiy'] ;
+								 $attch5 = $test['construction_permits'] ;
+								 $attch6 = $test['drawings']  ;
+								 //$attch7 = null ;
+								  
+								 }
+								 //////
+								  if( $attch1 == null &&  $attch2 == null &&  $attch3 == null &&  $attch4 == null &&  $attch5 == null && $attch6 == null )
+									  {
+									   echo __('No Attachment(s) Found');
+									  }
+								  else
+									  {
+									   echo __('Download These attachment to view and analyze them');
+									  }
+								 
+								 
+								 ?></p>
 									<ul>
 									  <?php
                                               $model = new BusinessPlan();
 										 ?>
 									<?php foreach($details as $file) { ?>
-										<li>
-										<?php 
-										
-										  if($file['exemption_on_machinery'] == null)
-											  {
-											  //if there is no attachment show nothing
-											  }
-										  //
-										   if($file['exemption_on_machinery'] != null)
-											  {
-											   echo link_to('exemption_on_machinery', '/uploads/documents/investment_docs/'.$file['exemption_on_machinery'], array('target' => '_blank')); 
-											  }
-										
-										
-										
-										?>
-										
-										</li>
-										
-										<li>
-										  
-										<?php 
-										 if($file['exemption_raw_materials'] == null)
-											  {
-											  //if there is no attachment show nothing
-											  }
-										///
-										 if($file['exemption_on_machinery'] != null)
-											  {
-											   echo link_to('exemption_raw_materials', '/uploads/documents/investment_docs/'.$file['exemption_raw_materials'], array('target' => '_blank')); 
-											  }
-										
-										
-										
-										?>
-										</li>
-										
-										<li>
-										<?php 
-										 if($file['land_ownership_document'] == null)
-											  {
-											  //if there is no attachment show nothing
-											  }
-										//
-										 if($file['land_ownership_document'] != null)
-											  {
-											   echo link_to('land_ownership_document', '/uploads/documents/investment_docs/'.$file['land_ownership_document'], array('target' => '_blank')); 
-										
-											  }
-										
-										
-										
-										?></li>
-										
-										<li><?php 
-										if($file['bill_of_quantiy'] == null)
-											  {
-											  //if there is no attachment show nothing
-											  }
-										 if($file['bill_of_quantiy'] != null)
-											  {
-											   echo link_to('bill_of_quantiy', '/uploads/documents/investment_docs/'.$file['bill_of_quantiy'], array('target' => '_blank')); 
-										
-											  }	  
-										
-										
-										?></li>
-										
-										<li><?php 
-										if($file['construction_permits'] == null)
-											  {
-											  //if there is no attachment show nothing
-											  }
-										if($file['construction_permits'] != null)
-											  {
-											  echo link_to('construction_permits', '/uploads/documents/investment_docs/'.$file['construction_permits'], array('target' => '_blank')); 
-										
-											  }		  
-										
-										
-										
-										?></li>
-										
-										<li>
-										<?php 
-										 if($file['drawings'] == null)
-											  {
-											  //if there is no attachment show nothing
-											  }
-										if($file['drawings'] != null)
-											  {
-											  echo link_to('drawings', '/uploads/documents/investment_docs/'.$file['drawings'], array('target' => '_blank'));
-										
-											  }	
-										 ?></li>
+										 <?php  if($file['exemption_on_machinery'] != null): ?>
+											  
+											  <li>
+											  <?php echo link_to('exemption_on_machinery', '/uploads/documents/investment_docs/'.$file['exemption_on_machinery'], array('target' => '_blank'));  ?>
+											  </li>
+									     <?php endif; ?>		 
+										<?php  if($file['exemption_on_machinery'] != null): ?>
+											  <li>
+											<?php   echo link_to('exemption_raw_materials', '/uploads/documents/investment_docs/'.$file['exemption_raw_materials'], array('target' => '_blank')); ?>
+											  </li>
+										<?php endif; ?>
+										<?php if($file['land_ownership_document'] != null): ?>
+											  <li>
+											  <?php echo link_to('land_ownership_document', '/uploads/documents/investment_docs/'.$file['land_ownership_document'], array('target' => '_blank')); ?>
+										      </li>
+										<?php endif; ?>	  
+										<?php  if($file['bill_of_quantiy'] != null): ?>
+											 <li>
+											 <?php 
+											   echo link_to('bill_of_quantiy', '/uploads/documents/investment_docs/'.$file['bill_of_quantiy'], array('target' => '_blank')); ?> 
+										     </li>    
+										<?php endif; ?>
+										<?php if($file['construction_permits'] != null): ?>
+											<li>
+											<?php echo link_to('construction_permits', '/uploads/documents/investment_docs/'.$file['construction_permits'], array('target' => '_blank')); ?>
+											</li>
+										<?php endif; ?>
+										<?php if($file['drawings'] != null): ?>
+											<li>
+												<?php  echo link_to('drawings', '/uploads/documents/investment_docs/'.$file['drawings'], array('target' => '_blank')); ?>
+										    </li>
+										 <?php endif; ?>
 										
 								  <?php } ?>
 									</ul>
@@ -547,8 +515,8 @@
 											<?php echo __("You are now processing application for investment certificate for") ?>  <font color="red">
 											<?php echo $name; ?></font>. 
 										</p>
-										<p><?php echo __("Download the attachments and read the business proposal on the left side of your screen.
-										When done Click on the Make report button to generate a business proposal summary.")?></p>
+										<p><?php echo __("Download the attachments (if any) and read the business proposal on the left side of your screen.
+										When done Click on the Make report button to generate a business proposal summary or click Request Resubmission for a resubmission request.")?></p>
 										
 									</div>
 								</div>
