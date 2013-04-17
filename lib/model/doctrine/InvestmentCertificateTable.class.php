@@ -29,7 +29,7 @@ class InvestmentCertificateTable extends Doctrine_Table
 	{
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc(
 	  "SELECT  investment_certificate.created_at,investment_certificate.serial_number,
-		 investment_application.name, investment_application.name,investment_application.representative_name,project_summary.employment_created,
+		 investment_application.name,investment_application.currency_type , investment_application.name,investment_application.representative_name,project_summary.employment_created,
 		 project_summary.business_sector,project_summary.planned_investment, sf_guard_user.first_name,sf_guard_user.last_name
 		 FROM investment_certificate LEFT JOIN  investment_application ON investment_certificate.business_id 
 		LEFT JOIN project_summary ON investment_certificate.business_id = project_summary.investment_id 

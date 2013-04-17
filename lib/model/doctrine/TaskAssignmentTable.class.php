@@ -46,7 +46,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.investmentapp_id,
 	 task_assignment.instructions,task_assignment.work_status,task_assignment.token,
-	 task_assignment.duedate, investment_application.name, investment_application.location FROM task_assignment 
+	 task_assignment.duedate, investment_application.name,investment_application.applicant_reference_number,  investment_application.location FROM task_assignment 
 	 LEFT JOIN investment_application ON 
 	 task_assignment.investmentapp_id = investment_application.id WHERE task_assignment.user_assigned ='$userId' AND 
 	 task_assignment.work_status != 'complete' AND task_assignment.work_status != 'notstarted'
@@ -261,7 +261,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	 $this->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
 	}
 	//the final part is after issuing of certificate.
-	public function updateUserTaskStatus4($taskId,$value)
+	public function updateUserTaskStatus4($taskId)
 	{
 	   $work_status = "complete" ;
 	  $q = Doctrine_Query::create()
@@ -271,28 +271,15 @@ class TaskAssignmentTable extends Doctrine_Table
 		 $q->execute();
 		
 		 ////////////////////////
-		 $date = date('Y');
-		 try  {
-						   $cert = new InvestmentCertificate();
-						   $cert->business_id = $taskId ;
-						   $cert->serial_number = "C/".($value)."/".$date ;
-						   $cert->save();
-						  }
-						  catch(Exception $ex)
-						  {
-						    throw new Exception('Error'.$ex->getMessage());
-						  }
-		 /////////////////////////
-		 
-		 return "success";
+		
 	}
 	//this method is called after successful confirmation of payment. parameter passed is name of business
-	public function updatingPaymentStatus($businesName)
+	public function getBusiness($name)
 	{
 	  $query =  Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
 	   SELECT task_assignment.id, task_assignment.investmentapp_id FROM task_assignment
 	   LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id
-	   WHERE investment_application.name = '$businesName'
+	   WHERE investment_application.name  = '$name'
 	  ");
 	  //
 	  return $query;

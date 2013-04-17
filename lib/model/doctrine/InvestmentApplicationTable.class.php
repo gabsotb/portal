@@ -365,7 +365,7 @@ business_plan.investment_id = investment_application.id left join  business_appl
 	//check existance of tin number.
 	public function checkTinNumber($tinNumber)
 	{
-	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name,investment_application.applicant_reference_number FROM  investment_application left join  investment_certificate on investment_application.id = investment_certificate.business_id where investment_application.registration_number = '$tinNumber' ");
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.name,investment_application.applicant_reference_number,investment_application.id FROM  investment_application left join  investment_certificate on investment_application.id = investment_certificate.business_id where investment_application.registration_number = '$tinNumber' ");
 	 //
 	 return $query;
 	}

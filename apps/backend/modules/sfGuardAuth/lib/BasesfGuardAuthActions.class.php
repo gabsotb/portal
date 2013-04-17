@@ -22,6 +22,9 @@ class BasesfGuardAuthActions extends sfActions
     $user = $this->getUser();
     if ($user->isAuthenticated())
     {
+	  //we will get the logged in user
+	 // $username = $this->getUser()->getGuardUser()->getUserName();
+	 // print  $username; exit;
       return $this->redirect('@homepage');
     }
 

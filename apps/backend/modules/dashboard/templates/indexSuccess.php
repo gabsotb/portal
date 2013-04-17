@@ -1186,7 +1186,7 @@ $(function () {
 											<font color="red"><?php echo __('Not Paid') ?></font>
 											 <?php endif; ?>
 											  <?php  if($notdone['work_status'] == "paymentconfirmed" ): ?>
-											<a href="<?php echo url_for('dashboard/investcert?business='.$notdone['name'].'&payment=paymentconfirmed') ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Issue Certificate') ?></button></a>
+											<a href="<?php echo url_for('dashboard/investcert?business='.$notdone['name']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Issue Certificate') ?></button></a>
 											 <?php endif; ?>
 											</td>
 											

@@ -40,4 +40,14 @@ class PaymentTable extends Doctrine_Table
 			 //print_r($query); exit;
 	return $query;
 	}
+
+	public function updatePaymentStatus($refno)
+	{
+	 $payment_status = "paid" ;
+	  $q = Doctrine_Query::create()
+	 ->UPDATE('Payment')
+	 ->SET('payment_status', '?' , $payment_status)
+	 ->WHERE('slip_number = ?', $refno);
+	 $q->execute();
+	}
 }

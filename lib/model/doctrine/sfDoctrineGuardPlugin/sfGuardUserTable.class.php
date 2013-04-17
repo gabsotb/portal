@@ -16,4 +16,10 @@ class sfGuardUserTable extends PluginsfGuardUserTable
     {
         return Doctrine_Core::getTable('sfGuardUser');
     }
+	///
+	public function getUserGroup($username_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select sf_guard_user_group.group_id from sf_guard_user left join sf_guard_user_group on sf_guard_user.id = sf_guard_user_group.user_id where sf_guard_user.id = '$username_id' ");
+	 return $query;
+	}
 }
