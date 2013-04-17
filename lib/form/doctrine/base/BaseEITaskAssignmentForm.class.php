@@ -44,6 +44,10 @@ abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
       'updated_by'    => new sfValidatorString(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'EITaskAssignment', 'column' => array('eiaproject_id')))
+    );
+
     $this->widgetSchema->setNameFormat('ei_task_assignment[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
