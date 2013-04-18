@@ -97,7 +97,17 @@ class projectImpactMeasuresActions extends sfActions
 	 }
 	 else if($queried_id  == null ) //new, we redirect to new method
 	 {
+		if($eia_project_impact_measures->getResubmit() == 'all')
+		{
+			$projectOperationPhase=Doctrine_Core::getTable('EIAProjectOperationPhase')->findByEiaprojectId($eia_project_impact_measures->getEiaproject_id());
+			$this->redirect('projectOperationPhase/edit?id='.$projectOperationPhase[0]['id']);
+		}elseif($eia_project_impact_measures->getResubmit() == 'only')
+		{
+			$this->redirect('@homepage');
+		}else
+		{
 	     $this->redirect('projectOperationPhase/new?id='.$eia_project_impact_measures->getId().'&token='.$eia_project_impact_measures->getToken());
+		}
 	 }
 		////////
 	  

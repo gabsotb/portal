@@ -136,6 +136,12 @@ class ProjectSummaryTable extends Doctrine_Table
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT id from project_summary where investment_id = '$id' ");
 	 return $query;
 	}
-	
+	//we want to calculate all investment data from this table, that have been issued with a certificate per sector
+	public function calculateInvestments()
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT business_sector, sum(planned_investment) from project_summary  left join investment_certificate ON project_summary.investment_id = investment_certificate.business_id left join  business_application_status on project_summary.investment_id = business_application_status.business_id WHERE business_application_status.application_status = 'certificateissued' group by business_sector ");
+	  return $query;
+	  
+	}
 	
 }

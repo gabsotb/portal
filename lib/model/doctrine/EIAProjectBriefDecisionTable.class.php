@@ -36,4 +36,20 @@ class EIAProjectBriefDecisionTable extends Doctrine_Table
 	{
 		return self::$actionReject;
 	}
+	public static $forms=array(
+		'all' => 'ALL FORMS',
+		'EIAProjectDetail' => 'Project Detail Form',
+		'EIAProjectDeveloper' => 'Project Developer Form',
+		'EIAProjectDescription' => 'Project Description Form',
+		'EIAProjectSurrounding' => 'Project Surrounding Form',
+		'EIAProjectSurroundingSpecies' => 'Project Surrounding Species Form',
+		'EIAProjectSocialEconomic' => 'Project Social Economic Form',
+		'EIAProjectImpactMeasures' => 'Project Impact Measures Form',
+		'EIAProjectOperationPhase' => 'Project Operation Phase Form',
+		'EIAProjectAttachment' => 'Project Attachment Form' 
+	);
+	public function getForms()
+	{
+		return self::$forms;
+	}
 }

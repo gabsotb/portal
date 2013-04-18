@@ -293,8 +293,12 @@
 					</a>
 					<ul class="sub">
 						<li class=""><a href ="<?php echo url_for('reports/issued')?>"><i class="icon-certificate"></i> <?php echo __('IC Issued') ?> </a></li>
-						<li class=""><a href ="<?php echo url_for('reports/sectors')?>"><i class="icon-certificate"></i> <?php echo __('IC Per Sector') ?> </a></li>
-						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
+						<li class=""><a href ="<?php echo url_for('reports/sectorsCert')?>"><i class="icon-certificate"></i> <?php echo __('IC Issued Per Sector') ?> </a></li>
+						<li class=""><a href ="<?php echo url_for('reports/sectors')?>"><i class="icon-certificate"></i> <?php echo __('Investments Per Sector') ?> </a></li>
+						
+						
+						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates Issued') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Per Sector') ?> </a></li>
 						<li class="">  <a href ="#"><i class="icon-certificate"></i> <?php echo __('Tax Exemptions') ?></a> </li>
 					</ul>
 				</li>
@@ -315,7 +319,33 @@
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE CONTAINER-->			
 			<div class="container-fluid">
-			
+			            <div id="styler" class="hidden-phone">
+							<i class="icon-cog"></i>
+							<span class="settings">
+							<span class="text">Style:</span>
+							<span class="colors">
+							<span class="color-default" data-style="default">
+							</span>
+							<span class="color-grey" data-style="grey">
+							</span>
+							<span class="color-navygrey" data-style="navygrey">
+							</span>											
+							<span class="color-red" data-style="red">
+							</span>	
+							</span>
+							<span class="layout">
+							<label class="hidden-phone">
+							<input type="checkbox" class="header" checked value="" />Sticky Header
+							</label><br />
+							<label><input type="checkbox" class="metro" value="" />Metro Style</label>
+							<span class="space5"></span>
+							<a class="btn fancybox-button" data-rel="fancybox-button" title="Conquer Large Desktop Preview" href="assets/img/demo/desktop.png"><i class="icon-eye-open"></i> Screenshots</a>
+							<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Notebook Preview" href="assets/img/demo/notebook.png"></a>
+							<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Tablet Preview" href="assets/img/demo/tablet.png"></a>
+							<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Phone Preview" href="assets/img/demo/phone.png"></a>
+							</span>
+							</span>
+						</div>
 				<!-- BEGIN PAGE HEADER-->
 				<!--<div class="row-fluid">-->
 					<!--<div class="span12">-->

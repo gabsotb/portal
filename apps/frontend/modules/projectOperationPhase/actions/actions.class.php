@@ -80,6 +80,7 @@ class projectOperationPhaseActions extends sfActions
     {
       $eia_project_operation_phase = $form->save();
        ///
+	   sfContext::getInstance()->getUser()->setAttribute('eiaprojectid',$eia_project_operation_phase->getEiaprojectId());
 	    ////////
 		 $query2 = Doctrine_Core::getTable('EIAProjectAttachment')->queryForId($project_id);
 	 $queried_id = null ;
@@ -97,7 +98,17 @@ class projectOperationPhaseActions extends sfActions
 	 }
 	 else if($queried_id  == null ) //new, we redirect to new method
 	 {
-	   $this->redirect('projectAttachment/new?id='.$eia_project_operation_phase->getId().'&token='.$eia_project_operation_phase->getToken());
+		if($eia_project_operation_phase->getResubmit() == 'all')
+		{
+			$developer=Doctrine_Core::getTable('EIAProjectAttachment')->findByEiaprojectId($eia_project_operation_phase->getEiaproject_id());
+			$this->redirect('projectAttachment/edit?id='.$developer[0]['id']);
+		}elseif($eia_project_operation_phase->getResubmit() == 'only')
+		{
+			$this->redirect('@homepage');
+		}else
+		{
+			$this->redirect('projectAttachment/new?id='.$eia_project_operation_phase->getId().'&token='.$eia_project_operation_phase->getToken());
+		}
 	 }
 		////////
       

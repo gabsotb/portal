@@ -166,8 +166,7 @@ ProjectSummary:
    updated: { name: updated_by,type: string} 
  columns:
   investment_id: {type: integer, notnull: true, unique: true}
-  business_sector: {type: string(255), notnull: true}
-  business_sector_description: {type: string(1000), notnull: true}
+  business_sector: {type: string(500), notnull: true}
   techinical_viability: {type: string(4000), notnull: true}
   planned_investment: {type: integer, notnull: true}
   employment_created: {type: integer, notnull: true}
@@ -297,6 +296,7 @@ EIAProjectDetail:
   province: {type: string(255), notnull: false}
   name: {type: string(255), notnull: false}
   token: {type: string(255), notnull: false} 
+  resubmit: {type: string, notnull: false}
 EIAProjectDeveloper: ##Details of the Developer
   actAs:
    Timestampable: ~
@@ -314,6 +314,7 @@ EIAProjectDeveloper: ##Details of the Developer
    communication_mode: { type: string(255), notnull: false}
    social_media_account: {type: string(255), notnull: false}
    token: {type: string(255), notnull: false} 
+   resubmit: {type: string, notnull: false}
   relations:
    EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIAProjectDeveloperDetails }
 EIAProjectDescription: ## Project Description
@@ -329,7 +330,7 @@ EIAProjectDescription: ## Project Description
   project_total_cost: {type: integer, notnull: true}
   project_working_capital: {type: integer, notnull: true}
   total_land_area: {type: integer, notnull: true}
-  existing_land_use: {type: integer, notnull: false}
+  existing_land_use: {type: string(255), notnull: false}
   site_location_developed_area: {type: boolean, notnull: false }
   site_location_undeveloped_area: {type: boolean, notnull: false }
   site_location_other: {type: boolean, notnull: false }
@@ -370,6 +371,7 @@ EIAProjectDescription: ## Project Description
   man_power_employment_operation: {type: integer, notnull: false}
   implementation_duration: {type: integer, notnull: false}
   token: {type: string(255), notnull: false} 
+  resubmit: {type: string, notnull: false}
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIAProjectDetailsDescription }
 EIAProjectSurrounding: ## For recording project sorroundings
@@ -411,7 +413,8 @@ EIAProjectSurrounding: ## For recording project sorroundings
   watershed_near_distance: {type: integer, notnull: false}
   watershed_near_distance_units: {type: string, notnull: false }
   watershed_within_name: {type: string(255), notnull: false}
-  token: {type: string(255), notnull: false} 
+  token: {type: string(255), notnull: false}
+  resubmit: {type: string, notnull: false}
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIAProjectDetailSurrounding }
 EIAProjectSurroundingSpecies: ## For project sorrounding species record
@@ -425,7 +428,8 @@ EIAProjectSurroundingSpecies: ## For project sorrounding species record
   birds_animals: {type: string(255), notnull: false}
   trees_vegetation: {type: string(255), notnull: false}
   fisheries: {type: string(255), notnull: false}
-  token: {type: string(255), notnull: false} 
+  token: {type: string(255), notnull: false}
+  resubmit: {type: string, notnull: false}  
  relations:
   EIAProjectSurrounding: {local: project_surrounding_id, foreign: id, foreignAlias: EIAProjectSurroundingSpecies }
 EIAProjectSocialEconomic: ## Records social economic impact
@@ -459,6 +463,7 @@ EIAProjectSocialEconomic: ## Records social economic impact
   social_others: {type: boolean, notnull: false}
   social_others_specify: {type: string(1000), notnull: false}
   token: {type: string(255), notnull: false}
+  resubmit: {type: string, notnull: false}
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIAProjectDetailSocialEconomic }
 EIAProjectImpactMeasures: ## Project Impact Measures
@@ -522,7 +527,8 @@ EIAProjectImpactMeasures: ## Project Impact Measures
   crimes_accidents: {type: boolean, notnull: false}
   crimes_accidents_safety_rules: {type: boolean, notnull: false}
   crime_accidents_remarks: {type: boolean, notnull: false}
-  token: {type: string(255), notnull: false} 
+  token: {type: string(255), notnull: false}
+  resubmit: {type: string, notnull: false}
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIAProjectDetailImpactMeasures }
 EIAProjectOperationPhase: ## For project operation phase
@@ -549,7 +555,8 @@ EIAProjectOperationPhase: ## For project operation phase
   fire_risk_extinguishers: {type: boolean, notnull: false}
   fire_risk_exit_stairs: {type: boolean, notnull: false}
   fire_risk_remarks:  {type: string(1000), notnull: false}
-  token: {type: string(255), notnull: false} 
+  token: {type: string(255), notnull: false}
+  resubmit: {type: string, notnull: false}
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIAProjectDetailOperationPhase }
 EIAProjectAttachment: ## for any attachment for a particula submitted application
@@ -569,7 +576,8 @@ EIAProjectAttachment: ## for any attachment for a particula submitted applicatio
   location_area_map:  {type: string(255), notnull: false}
   other_supporting_document:  {type: string(255), notnull: false}
   project_reference_number: {type: string(255), notnull:false}
-  token: {type: string(255), notnull: false} 
+  token: {type: string(255), notnull: false}
+  resubmit: {type: string, notnull: false}
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIAProjectDetailAttachment }
 ## Track the status of EIA Application   
@@ -577,7 +585,7 @@ EIApplicationStatus:
  actAs:
   Timestampable: ~
  columns:
-  eiaproject_id: {type: integer, notnull: true}
+  eiaproject_id: {type: integer, notnull: true, unique: true}
   application_status: {type: string(255), notnull: true}
   comments: {type: string(255), notnull: true}
   percentage: {type: integer, notnull: true}
@@ -595,6 +603,7 @@ EIAProjectBriefDecision: ## Allow the data admin to reject the applications imme
   decision: {type: string(255), notnull: true}
   comments: {type: string(255), notnull: true}
   processed_by: {type: integer, notnull: true}
+  form: {type: string, notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: ApplicationBriefDecision , onDelete: CASCADE}
@@ -615,8 +624,8 @@ EITaskAssignment:
   stage: {type: string, notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
-  EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: ApplicationAssigment , onDelete: CASCADE}
-  sfGuardUser: {local: user_assigned, foreign: id, foreignAlias: GuardEIAssignment}  
+  EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIApplicationAssigment , onDelete: CASCADE}
+  sfGuardUser: {local: user_assigned, foreign: id, foreignAlias: GuardEIAssignments}  
 #Records site visit day
 EIASiteVisit:
  actAs:
@@ -629,6 +638,7 @@ EIASiteVisit:
   site_visit: {type: date, notnull: true}
   remarks: {type: string(255), notnull: false}
   visited: {type: boolean, notnull: false}
+  approved: {type: boolean, notnull: false}
   token: {type: string(255), notnull: false}
  relations:
   EIAProjectDetail: {local:eiaproject_id, foreign: id, foreignAlias: EiaSiteVisit, onDelete:CASCADE } 
@@ -907,3 +917,14 @@ TaxExemptionItems:
   import_duties: {type: integer, notnull: false}
  relations:
   TaxExemptionDetails: {local: tax_details_id, foreign: id, foreignAlias: TaxDetailsItems, onDelete: CASCADE}
+####################################### Reporting Tables #############################################
+CertificationReport:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  investment_certificates: {type: integer, notnull: false}
+  eia_certificates: {type: integer, notnull: false}
+  tax_exemptions: {type: integer, notnull: false}

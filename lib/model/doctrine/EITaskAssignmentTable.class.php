@@ -45,12 +45,12 @@ class EITaskAssignmentTable extends Doctrine_Table
 		return $query;
 	}
 	
-	public function updateWorkStatus($Status,$id)
+	public function updateWorkStatus($eiaproject_id,$status)
 	{
 		$q = Doctrine_Query::create()
-			->UPDATE('EITaskAssignment')
-			->SET('work_status', '?', $Status)
-			->WHERE('user_assigned = ?', $id);	
+			->update('EITaskAssignment t')
+			->set('t.work_status', '?', $status)
+			->where('t.eiaproject_id = ?', $eiaproject_id);	
 		return $q->execute();
 	}
 	

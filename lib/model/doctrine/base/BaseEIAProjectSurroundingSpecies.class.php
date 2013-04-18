@@ -10,6 +10,7 @@
  * @property string $trees_vegetation
  * @property string $fisheries
  * @property string $token
+ * @property string $resubmit
  * @property EIAProjectSurrounding $EIAProjectSurrounding
  * 
  * @method integer                      getProjectSurroundingId()   Returns the current record's "project_surrounding_id" value
@@ -17,12 +18,14 @@
  * @method string                       getTreesVegetation()        Returns the current record's "trees_vegetation" value
  * @method string                       getFisheries()              Returns the current record's "fisheries" value
  * @method string                       getToken()                  Returns the current record's "token" value
+ * @method string                       getResubmit()               Returns the current record's "resubmit" value
  * @method EIAProjectSurrounding        getEIAProjectSurrounding()  Returns the current record's "EIAProjectSurrounding" value
  * @method EIAProjectSurroundingSpecies setProjectSurroundingId()   Sets the current record's "project_surrounding_id" value
  * @method EIAProjectSurroundingSpecies setBirdsAnimals()           Sets the current record's "birds_animals" value
  * @method EIAProjectSurroundingSpecies setTreesVegetation()        Sets the current record's "trees_vegetation" value
  * @method EIAProjectSurroundingSpecies setFisheries()              Sets the current record's "fisheries" value
  * @method EIAProjectSurroundingSpecies setToken()                  Sets the current record's "token" value
+ * @method EIAProjectSurroundingSpecies setResubmit()               Sets the current record's "resubmit" value
  * @method EIAProjectSurroundingSpecies setEIAProjectSurrounding()  Sets the current record's "EIAProjectSurrounding" value
  * 
  * @package    rdbeportal
@@ -59,6 +62,10 @@ abstract class BaseEIAProjectSurroundingSpecies extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('resubmit', 'string', null, array(
+             'type' => 'string',
+             'notnull' => false,
              ));
     }
 

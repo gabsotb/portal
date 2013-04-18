@@ -15,6 +15,7 @@
  * @property string $province
  * @property string $name
  * @property string $token
+ * @property string $resubmit
  * @property Doctrine_Collection $EIAProjectDeveloperDetails
  * @property Doctrine_Collection $EIAProjectDetailsDescription
  * @property Doctrine_Collection $EIAProjectDetailSurrounding
@@ -24,7 +25,7 @@
  * @property Doctrine_Collection $EIAProjectDetailAttachment
  * @property Doctrine_Collection $EIApplicationStatus
  * @property Doctrine_Collection $ApplicationBriefDecision
- * @property Doctrine_Collection $ApplicationAssigment
+ * @property Doctrine_Collection $EIApplicationAssigment
  * @property Doctrine_Collection $EiaSiteVisit
  * @property Doctrine_Collection $EIAProjectImpact
  * @property Doctrine_Collection $ApplicationImpactPass
@@ -42,6 +43,7 @@
  * @method string              getProvince()                       Returns the current record's "province" value
  * @method string              getName()                           Returns the current record's "name" value
  * @method string              getToken()                          Returns the current record's "token" value
+ * @method string              getResubmit()                       Returns the current record's "resubmit" value
  * @method Doctrine_Collection getEIAProjectDeveloperDetails()     Returns the current record's "EIAProjectDeveloperDetails" collection
  * @method Doctrine_Collection getEIAProjectDetailsDescription()   Returns the current record's "EIAProjectDetailsDescription" collection
  * @method Doctrine_Collection getEIAProjectDetailSurrounding()    Returns the current record's "EIAProjectDetailSurrounding" collection
@@ -51,7 +53,7 @@
  * @method Doctrine_Collection getEIAProjectDetailAttachment()     Returns the current record's "EIAProjectDetailAttachment" collection
  * @method Doctrine_Collection getEIApplicationStatus()            Returns the current record's "EIApplicationStatus" collection
  * @method Doctrine_Collection getApplicationBriefDecision()       Returns the current record's "ApplicationBriefDecision" collection
- * @method Doctrine_Collection getApplicationAssigment()           Returns the current record's "ApplicationAssigment" collection
+ * @method Doctrine_Collection getEIApplicationAssigment()         Returns the current record's "EIApplicationAssigment" collection
  * @method Doctrine_Collection getEiaSiteVisit()                   Returns the current record's "EiaSiteVisit" collection
  * @method Doctrine_Collection getEIAProjectImpact()               Returns the current record's "EIAProjectImpact" collection
  * @method Doctrine_Collection getApplicationImpactPass()          Returns the current record's "ApplicationImpactPass" collection
@@ -68,6 +70,7 @@
  * @method EIAProjectDetail    setProvince()                       Sets the current record's "province" value
  * @method EIAProjectDetail    setName()                           Sets the current record's "name" value
  * @method EIAProjectDetail    setToken()                          Sets the current record's "token" value
+ * @method EIAProjectDetail    setResubmit()                       Sets the current record's "resubmit" value
  * @method EIAProjectDetail    setEIAProjectDeveloperDetails()     Sets the current record's "EIAProjectDeveloperDetails" collection
  * @method EIAProjectDetail    setEIAProjectDetailsDescription()   Sets the current record's "EIAProjectDetailsDescription" collection
  * @method EIAProjectDetail    setEIAProjectDetailSurrounding()    Sets the current record's "EIAProjectDetailSurrounding" collection
@@ -77,7 +80,7 @@
  * @method EIAProjectDetail    setEIAProjectDetailAttachment()     Sets the current record's "EIAProjectDetailAttachment" collection
  * @method EIAProjectDetail    setEIApplicationStatus()            Sets the current record's "EIApplicationStatus" collection
  * @method EIAProjectDetail    setApplicationBriefDecision()       Sets the current record's "ApplicationBriefDecision" collection
- * @method EIAProjectDetail    setApplicationAssigment()           Sets the current record's "ApplicationAssigment" collection
+ * @method EIAProjectDetail    setEIApplicationAssigment()         Sets the current record's "EIApplicationAssigment" collection
  * @method EIAProjectDetail    setEiaSiteVisit()                   Sets the current record's "EiaSiteVisit" collection
  * @method EIAProjectDetail    setEIAProjectImpact()               Sets the current record's "EIAProjectImpact" collection
  * @method EIAProjectDetail    setApplicationImpactPass()          Sets the current record's "ApplicationImpactPass" collection
@@ -146,6 +149,10 @@ abstract class BaseEIAProjectDetail extends sfDoctrineRecord
              'notnull' => false,
              'length' => 255,
              ));
+        $this->hasColumn('resubmit', 'string', null, array(
+             'type' => 'string',
+             'notnull' => false,
+             ));
     }
 
     public function setUp()
@@ -187,7 +194,7 @@ abstract class BaseEIAProjectDetail extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'eiaproject_id'));
 
-        $this->hasMany('EITaskAssignment as ApplicationAssigment', array(
+        $this->hasMany('EITaskAssignment as EIApplicationAssigment', array(
              'local' => 'id',
              'foreign' => 'eiaproject_id'));
 

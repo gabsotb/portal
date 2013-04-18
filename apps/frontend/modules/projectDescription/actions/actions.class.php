@@ -80,8 +80,18 @@ class projectDescriptionActions extends sfActions
     if ($form->isValid())
     {
       $eia_project_description = $form->save();
+		if($eia_project_description->getResubmit() == 'all')
+		{
+			$eiaProjectSurrounding=Doctrine_Core::getTable('EIAProjectSurrounding')->findByEiaprojectId($eia_project_description->getEiaproject_id());
+			$this->redirect('eiaProjectSurrounding/edit?id='.$eiaProjectSurrounding[0]['id']);
+		}elseif($eia_project_description->getResubmit() == 'only')
+		{
+			$this->redirect('@homepage');
+		}else
+		{
 
-      $this->redirect('eiaProjectSurrounding/new?id='.$eia_project_description->getId().'&token='.$eia_project_description->getToken());
+			$this->redirect('eiaProjectSurrounding/new?id='.$eia_project_description->getId().'&token='.$eia_project_description->getToken());
+		}
     }
   }
 }

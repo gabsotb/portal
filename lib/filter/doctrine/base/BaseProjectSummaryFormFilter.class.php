@@ -13,33 +13,31 @@ abstract class BaseProjectSummaryFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'investment_id'               => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'), 'add_empty' => true)),
-      'business_sector'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'business_sector_description' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'techinical_viability'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'planned_investment'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'employment_created'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'job_categories'              => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'token'                       => new sfWidgetFormFilterInput(),
-      'created_at'                  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'updated_at'                  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'created_by'                  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
-      'updated_by'                  => new sfWidgetFormFilterInput(),
+      'investment_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'), 'add_empty' => true)),
+      'business_sector'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'techinical_viability' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'planned_investment'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'employment_created'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'job_categories'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'token'                => new sfWidgetFormFilterInput(),
+      'created_at'           => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'           => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'created_by'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
+      'updated_by'           => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'investment_id'               => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('InvestmentApplication'), 'column' => 'id')),
-      'business_sector'             => new sfValidatorPass(array('required' => false)),
-      'business_sector_description' => new sfValidatorPass(array('required' => false)),
-      'techinical_viability'        => new sfValidatorPass(array('required' => false)),
-      'planned_investment'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'employment_created'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'job_categories'              => new sfValidatorPass(array('required' => false)),
-      'token'                       => new sfValidatorPass(array('required' => false)),
-      'created_at'                  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'updated_at'                  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'created_by'                  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Creator'), 'column' => 'id')),
-      'updated_by'                  => new sfValidatorPass(array('required' => false)),
+      'investment_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('InvestmentApplication'), 'column' => 'id')),
+      'business_sector'      => new sfValidatorPass(array('required' => false)),
+      'techinical_viability' => new sfValidatorPass(array('required' => false)),
+      'planned_investment'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'employment_created'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'job_categories'       => new sfValidatorPass(array('required' => false)),
+      'token'                => new sfValidatorPass(array('required' => false)),
+      'created_at'           => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'updated_at'           => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'created_by'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Creator'), 'column' => 'id')),
+      'updated_by'           => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('project_summary_filters[%s]');
@@ -59,19 +57,18 @@ abstract class BaseProjectSummaryFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'                          => 'Number',
-      'investment_id'               => 'ForeignKey',
-      'business_sector'             => 'Text',
-      'business_sector_description' => 'Text',
-      'techinical_viability'        => 'Text',
-      'planned_investment'          => 'Number',
-      'employment_created'          => 'Number',
-      'job_categories'              => 'Text',
-      'token'                       => 'Text',
-      'created_at'                  => 'Date',
-      'updated_at'                  => 'Date',
-      'created_by'                  => 'ForeignKey',
-      'updated_by'                  => 'Text',
+      'id'                   => 'Number',
+      'investment_id'        => 'ForeignKey',
+      'business_sector'      => 'Text',
+      'techinical_viability' => 'Text',
+      'planned_investment'   => 'Number',
+      'employment_created'   => 'Number',
+      'job_categories'       => 'Text',
+      'token'                => 'Text',
+      'created_at'           => 'Date',
+      'updated_at'           => 'Date',
+      'created_by'           => 'ForeignKey',
+      'updated_by'           => 'Text',
     );
   }
 }

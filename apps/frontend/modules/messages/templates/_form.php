@@ -5,8 +5,19 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
+			<?php echo $form->renderGlobalErrors() ?>
 			<div class="control-group">
 			<div class="controls">
+				<?php echo $form['recepient']->renderError() ?>
+			     <label class="control-label"><strong><?php echo $form['recepient']->renderLabel() ?></strong></label>
+				<div class="input-prepend">
+					<?php echo $form['recepient']->render(array('class' => 'span8'))  ?>
+				</div>
+			</div>
+		    </div>
+			<div class="control-group">
+			<div class="controls">
+				<?php echo $form['cc_email']->renderError() ?>
 			     <label class="control-label"><strong><?php echo $form['cc_email']->renderLabel() ?></strong></label>
 				<div class="input-prepend">
 					<?php echo $form['cc_email']->render(array('class' => 'span8'))  ?>
@@ -15,6 +26,7 @@
 		    </div>
 			<div class="control-group">
 			<div class="controls">
+				<?php echo $form['message_subject']->renderError() ?>
 			    <label class="control-label"><strong><?php echo $form['message_subject']->renderLabel() ?></strong></label>
 				<div class="input-prepend">
 					<?php echo $form['message_subject']->render(array('class' => 'span8'))  ?>
@@ -32,6 +44,7 @@
     
           <div class="control-group">
 		   <div class="controls">
+		   <?php echo $form['message']->renderError() ?>
 		   <label class="control-label"><strong><?php echo $form['message']->renderLabel() ?></strong></label>
 				<div class="input-prepend">
 				<?php echo $form['message']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
@@ -40,6 +53,7 @@
 		    </div>
 			<div class="control-group"> 
                                  <div class="controls">
+								 <?php echo $form['attachement']->renderError() ?>
 								 <div class="input-prepend">
 								 <?php echo $form['attachement']->renderLabel(null,array('class' => 'control-label')) ?>
                                      <div class="fileupload fileupload-new" data-provides="fileupload">

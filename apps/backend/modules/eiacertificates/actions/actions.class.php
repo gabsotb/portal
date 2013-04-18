@@ -86,7 +86,7 @@ class eiacertificatesActions extends sfActions
 	  /*Certificate Values
 	  */
 	  //Incremental Number */
-	/*  $start = 1093 ;
+	  $start = 1 ;
 	  $newNumber = $start + 1;
 	  //We also make sure that the business is not already issued with a certificate if so we just print the existing certificate instead of
 	  //saving a new record
@@ -96,7 +96,7 @@ class eiacertificatesActions extends sfActions
 	  //since this business has been issued with certificate, we just print it.
 	  //do nothing
 	  }
-	/*  if(count($q) == 0)
+	  if(count($q) == 0)
 	  {
 						//this is the first time therefore we save and print the certificate
 						//but we want to increment it whenever a new record is inserted. hence we fast make sure that the $start number variable
@@ -126,8 +126,14 @@ class eiacertificatesActions extends sfActions
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
 						  //we also update the status of work for this data admin.
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);*/
+						  $eiaproject_id=Doctrine_Core::getTable('EIReport')->find($request->getParameter('id'))->getEiaprojectId();
+						  Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eiaproject_id,'certificate');
+						  Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eiaproject_id,'Certificate issued');
+						  Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage($eiaproject_id,100);
+						  $task_id=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($eiaproject_id);
+						  Doctrine_Core::getTable('EITaskAssignment')->find($task_id[0]['id'])->setWorkStatus('complete')->setStage('certificate')->save();
 					  }
-					/*  if($no == null)
+						if($no == null)
 					  {
 					   $no = $start ;
 					   //if this is the first record, then we set default value
@@ -145,16 +151,35 @@ class eiacertificatesActions extends sfActions
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
 						  //we also update the status of work for this data admin.
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);*/
-					  }*/
+						  $eiaproject_id=Doctrine_Core::getTable('EIReport')->find($request->getParameter('id'))->getEiaprojectId();
+						  Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eiaproject_id,'certificate');
+						  Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eiaproject_id,'Certificate issued');
+						  Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage($eiaproject_id,100);
+						  $task_id=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($eiaproject_id);
+						  Doctrine_Core::getTable('EITaskAssignment')->find($task_id[0]['id'])->setWorkStatus('complete')->setStage('certificate')->save();
+					  }
 	 
 		
 	  }
 	  
 	  
 	  ////Then we get the Applicant details for printing the certificate. we will use the business_id saved in the InvestmentCertificate Table
-	  /*$query =*/ //$report= Doctrine_Core::getTable('EIReport')->find($request->getParameter('id'));
-//	  $projectDetail=Doctrine_Core::getTable('EIAProjectDetail')->find($report->getEiaprojectId());
-	 
+	  /*$query =*/ $report= Doctrine_Core::getTable('EIReport')->find($request->getParameter('id'));
+	  $projectDetail=Doctrine_Core::getTable('EIAProjectDetail')->find($report->getEiaprojectId());
+	  $developer=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($report->getEiaprojectId());
+		$project_title=$projectDetail->getProjectTitle();
+		$plot_number=$projectDetail->getProjectPlotNumber();
+		$cell=$projectDetail->getCell();
+		$sector=$projectDetail->getSector();
+		$district=$projectDetail->getDistrict();
+		$province=$projectDetail->getProvince();
+		$developer_name=$developer[0]['developer_name']
+		$contact_person=$developer[0]['contact_person'];
+		$month=$projectDetail->getDateTimeObject('created_at')->format('m');
+		$year=$projectDetail->getDateTimeObject('created_at')->format('Y');
+		$cert=Docrtine_Core::getTable('EIACertificate')->findByEireportId($report->getEiaprojectId());
+		$serial=$cert[0]['serial_number'];
+		$refernce_no=str_replace("-","/",$projectDetail->getProjectReferenceNumber());
 	  //loop over the result and set necessary variables
 	/*  $date = null ;
 	  $year = null ;
@@ -194,7 +219,7 @@ class eiacertificatesActions extends sfActions
 	
 	  ////////////////////////////////////////////////////////////////////////////
 	  //execute action for printing pdf document of this report
-	   I have used another class specifically for investment Certificates only */
+	   /*I have used another class specifically for investment Certificates only */
 	      $config = sfTCPDFPluginConfigHandlerInvstCert::loadConfig('invst_configs');
           sfTCPDFPluginConfigHandlerInvstCert::includeLangFile($this->getUser()->getCulture());
 	///////////////////////////Certificate Configuration //////////////////////////////////////////////////////////////////////	  
@@ -264,13 +289,13 @@ $pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
 $html = '                               <div>
                                          <br/><br/><br/>
 										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Certificate No: EC/001/04/2013<b></b>
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Certificate No: <b>EC/'.$serial.'/'.$month.'/'.$year.'</b>
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   Ref: 02/PLS/27/12/012 <b></b>
+										   Ref: <b>'.$refernce_no.' </b>
 										 </p>
 										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;This is to certify that an EIA related to Professional Logistics Solutions(PLS)s &nbsp;&nbsp;&nbsp;project entitled .....Demo Title.......... represented by  ............Demo...................
-										  <br/> &nbsp;&nbsp;&nbsp;has been approved.This project is to be located on plot number ........... in Cell <br/>&nbsp;&nbsp;&nbsp;.......... Sector.......Demo........District........Demo......Province....Demo........
+										  &nbsp;This is to certify that an EIA related to ...'.$developer_name.'s &nbsp;&nbsp;&nbsp;project entitled ....<b>'.$project_title.'</b>......... represented by  ......<b>'.$contact_person.'</b>..................
+										  <br/> &nbsp;&nbsp;&nbsp;has been approved.This project is to be located on plot number ...<b>'.$plot_number.'</b>........ in Cell <br/>&nbsp;&nbsp;&nbsp;.....<b>'.$sector.'</b>..... Sector......<b>'.$district.'</b>.........District.......<b>'.$province.'</b>.....Province.
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										   &nbsp;This is in accordance with provisions of Organic law No04/2005 of 08/04/2005 <br/> &nbsp;&nbsp;&nbsp;determining the modalities of protection,conservation and promotion of the <br/> &nbsp;&nbsp;&nbsp;environment in Rwanda.
@@ -281,7 +306,7 @@ $html = '                               <div>
 										    <br/><br/><br/><br/>
 											&nbsp;&nbsp;<b>Chief Operating Officer</b><br/><br/>
 											&nbsp;&nbsp;<b>Please Note that;</b>
-											Rwanda Development Board (RDB) reserves a right to withdraw this <br/> &nbsp;&nbsp; certificate from PLS in case the latter is found non-compliant and Issued in <br/> &nbsp;&nbsp; quadruplicate is Original to developer, copies to; MINICOM, REMA & Gasabo district
+											Rwanda Development Board (RDB) reserves a right to withdraw this <br/> &nbsp;&nbsp; certificate from PLS in case the latter is found non-compliant and Issued in <br/> &nbsp;&nbsp; quadruplicate is Original to developer, copies to; MINICOM, REMA & ...'.$district.'.. district
 
 										      
 										 </p>
@@ -298,27 +323,27 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\eiacertificates\certificate.pdf','F'); //save
 	 
 	 //we will output the file and send it to the Investors email address. Get the email address of the investor
-	/* $userEmail = null;
-	 $email = Doctrine_Core::getTable('InvestmentCertificate')->getInvestorEmail($taskId);
+	 $userEmail = null;
+	 $email = Doctrine_Core::getTable('sfGuardUser')->find($projectDetail->getCreatedBy());
 	 //get email
-	 foreach($email as $em)
-	 {
-	    $userEmail = $em['email_address'] ;
-	 }
+	 /*foreach($email as $em)
+	 {*/
+	    $userEmail = $email->getEmailAddress() ;
+	 //}
 	 //
-	   /*$target_path = "uploads/documents/certificate.pdf";
+	   $target_path = "uploads/documents/eiacertificates/certificate.pdf";
 	
 			 
 	    $message = Swift_Message::newInstance()
 			  ->setFrom('admin@rdb.com')
 			  ->setTo($userEmail)
-			  ->setSubject('Investment Certificate')
-			  ->setBody('You have been issued with Investment Registration Certificate. Please download it. Thankyou')
+			  ->setSubject('Environmental Impact Certificate')
+			  ->setBody('You have been issued with Environmental Impact Certificate. Please download it. Thank you')
 			   ->attach(Swift_Attachment::fromPath($target_path));
 			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/;
 			 
 
-			$this->getMailer()->send($message); */
+			$this->getMailer()->send($message); 
 			/*$this->getMailer()->composeAndSend('noreply@rdb.com',
 										$userEmail ,
 										'Investment Registration Certificate ',
@@ -331,6 +356,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\eiacertificates\cer
 	
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
           // Stop symfony process */
+		  $this->redirect('@homepage');
           throw new sfStopException();
   }
 }

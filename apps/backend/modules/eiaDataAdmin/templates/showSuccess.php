@@ -56,8 +56,7 @@
 				<?php if(!is_null($developer->getMobilePhone())): ?>
 				<li><span><i class="icon-user"></i></span><b><?php echo __('Mobile Phone') ?></b>:&nbsp;<?php echo $developer->getMobilePhone() ?></li>
 				<?php endif; ?>
-				<p><?php echo __('E-mail') ?>:&nbsp;<?php //echo mail_to($developer->getEmailAddress()) ?></p>
-				<li><span><i class="icon-user"></i></span><b><?php echo __('E-mail') ?></b>:&nbsp;<?php echo $developer->getEmailAddress() ?></li>
+				<li><span><i class="icon-user"></i></span><b><?php echo __('E-mail') ?></b>:&nbsp;<?php echo mail_to($developer->getEmailAddress()) ?></li>
 				<li><span><i class="icon-eye-open"></i></span><b><?php echo __('Social Network') ?></b>:&nbsp;<?php echo $developer->getCommunicationMode() ?></li>
 				
 				<?php if(!is_null($developer->getCommunicationMode())): ?>
@@ -76,7 +75,7 @@
 			</div>
 			<div class="widget-body">
 				<div class="alert alert-info">
-				<?php echo $detail->getInstructions(); ?>
+				<?php echo html_entity_decode($detail->getInstructions()); ?>
 				</div>
 			</div>
 		</div>
@@ -1125,16 +1124,15 @@
 </div>
  <div id="widget-resubmission" class="modal hide">
 	<div class="modal-header">
-		<button data-dismiss="modal" class="close" type="button">×</button>
 		<h3><?php echo __('Request Resubmission') ?></h3>
 	</div>
 	<div class="modal-body">
-		<p><?php echo __('Your are about to request for a resubmission of the clients data')?>.</p>
-		<p><?php echo __('If you are sure about you decision, then click continue or just cancel') ?></p>
-		<?php echo button_to('continue','eiaDataAdmin/resubmission?id='.$detail->getEiaprojectId()) ?>
+		<p><?php echo __('Your are about to request for a resubmission of the applicants data')?>.</p>
+		<p><?php echo __('If you are sure about you this action proceed to state the reason') ?></p>
 	</div>
 	<div class="modal-footer">
-		<button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
+		<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
+		<?php echo button_to('Proceed','eiaDataAdmin/resubmission?id='.$detail->getEiaprojectId(),array('class' => 'btn btn-success')) ?>
 	</div>
 </div>
 <div id="widget-confirm" class="modal hide fade">
@@ -1167,10 +1165,11 @@
 		<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
 	</div>
 </div>
-
+<?php if(!$assessing): ?>
 <div class="form-actions">
 	<a href="#widget-resubmission" data-toggle="modal">
 	<button type="button" class="btn btn-inverse"><?php echo __('Request Resubmission') ?></button></a>
 	<a href="#widget-confirm" data-toggle="modal">
 	<button type="button" class="btn btn-success"><?php echo __('Site Visit') ?></button></a>
 </div>
+<?php endif; ?>

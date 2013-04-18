@@ -100,7 +100,18 @@ class projectSorroundingSpeciesActions extends sfActions
 	 }
 	 else if($queried_id  == null ) //new, we redirect to new method
 	 {
-	 $this->redirect('projectSocialEconomic/new?id='.$eia_project_surrounding_species->getId().'&token='.$eia_project_surrounding_species->getToken());
+		if($eia_project_surrounding_species->getResubmit() == 'all')
+		{
+			$eiaproject_id=Doctrine_Core::getTable('EIAProjectSurrounding')->find($eia_project_surrounding_species->getProjectSurroundingId())->getEiaproject_id();
+			$projectSocialEconomic=Doctrine_Core::getTable('EIAProjectSocialEconomic')->findByEiaprojectId($eiaproject_id);
+			$this->redirect('projectSocialEconomic/edit?id='.$projectSocialEconomic[0]['id']);
+		}elseif($eia_project_surrounding_species->getResubmit() == 'only')
+		{
+			$this->redirect('@homepage');
+		}else
+		{
+			$this->redirect('projectSocialEconomic/new?id='.$eia_project_surrounding_species->getId().'&token='.$eia_project_surrounding_species->getToken());
+		}
 	 }
 		///////////////
       
