@@ -465,6 +465,7 @@ class dashboardActions extends sfActions
 		$sector = $q['business_sector'] ;
 		$noofjobs = $q['employment_created'] ;
 		$invstment = $q['planned_investment'];
+		$currency = $q['currency_type'];
 		
 	  }
 	   $d = new DateTime($date);
@@ -536,7 +537,7 @@ $template_id = $pdf->startTemplate(95, 165);
 // ...................................................................
 
 $border = array('LRTB' => array('width' => 0.1, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
- $img_file = K_PATH_IMAGES.'bg.jpg';
+ $img_file = K_PATH_IMAGES.'edited2.jpg';
  
 $pdf->Image($img_file, 0, 0, 50, 50, 'JPG', '', '', false, 1000, '', false, false, $border, false, false, false);
  
@@ -553,47 +554,60 @@ $pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
 // ---------------------------------------------------------
  // Set some content to print
 $html = '                               <div style="text-align:center"> 
-                                         <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/rdblogo.jpg" alt="RDB" width="600" height="300" border="0" />
-										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
+                                       
 										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>'.$serial.'</b>
+										  <i>No</i>: <b>'.$serial.'</b>
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   Date: <b>'.$day.'</b>
-										 </p>
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   <i>Date:</i> <b>'.$day.'</b>
+										 </p><br/><br/>
 										 <p style= "font-size: xx-small;text-align:left ">
-										&nbsp;&nbsp;&nbsp;Issued To <b>'.$company.'</b> <br/> &nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp
-										Represented by <b>'.$rep.'</b>
+										Issued To .............<span style="border-bottom: 10px solid #f00;"><b>'.$company.'</b></span>........... Represented by <span style="border-bottom: 10px solid #f00;">........<b>'.$rep.'</b>.....</span>
+										<br/><br/>
+										Business Sector ...................<span style="border-bottom: 10px solid #f00;"><b>'.$sector.' </span></b> <br/><br/>
+										Planned investment amount ........................... <span style="border-bottom: 10px solid #f00;"><b>'.$invstment.'</span></b> '.$currency.'<br/><br/>
+										Total Number of jobs planned .....................<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b><br/><br/>
+										Local jobs..................<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b> and  Jobs For expatriates ........................ <span style="border-bottom: 10px solid #f00;"><b>'.$expjobs.'</span></b>
 										 </p>
-										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Business Sector <b>'.$sector.' </b>
-										 </p>
+										 
+									<p style= "font-size: xx-small;text-align:left ">
+										   This Certificate has been issued to <b>'.$company.'</b> under the seal of 
+										   RDB in accordance with law no 26/2005 EAC customs management act atests &nbsp;&nbsp;that the company is duly registered and entitled to the rights and obligations contained in the law.
+										  </p>
+										
 										  
 										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Planned investment amount <b>'.$invstment.'</b>
-										  </p>
-										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Total Number of jobs planned <b>'.$noofjobs.'</b>
-										  </p>
-										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> <br/> Jobs For expatriates <b>'.$expjobs.'</b>
-										 </p>
-										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;This Certificate has been issued to <b>'.$company.'</b> under the seal of <br/>
-										  &nbsp;&nbsp;&nbsp;RDB in accordance with law no 26/2005 EAC customs management act atests that <br/> &nbsp;&nbsp;&nbsp;the company is duly 
-										  registered and entitled to the rights and obligations <br/> &nbsp;&nbsp;&nbsp;contained in the law.
-										  </p>
-										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;&nbsp;THE CHIEF EXECUTIVE OFFICER, 
+										  &nbsp;&nbsp;<i>THE CHIEF EXECUTIVE OFFICER</i>, 
 										  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMPANY REPRESENTATIVE,
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   <i>COMPANY REPRESENTATIVE</i>,
 										  <br/>
 										   &nbsp;&nbsp;&nbsp;&nbsp;RDB,
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 										   '.$rep.'
 										   <br/>
 										   &nbsp;&nbsp;&nbsp;&nbsp;'.$issuerF.' '.$issuerL.'
@@ -757,7 +771,7 @@ $template_id = $pdf->startTemplate(95, 165);
 // ...................................................................
 
 $border = array('LRTB' => array('width' => 0.1, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
- $img_file = K_PATH_IMAGES.'cert6.jpg';
+ $img_file = K_PATH_IMAGES.'edited2.jpg';
  
 $pdf->Image($img_file, 0, 0, 50, 50, 'JPG', '', '', false, 1000, '', false, false, $border, false, false, false);
 
@@ -773,62 +787,60 @@ $pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
 // ---------------------------------------------------------
  // Set some content to print
 $html = '                               <div style="text-align:center"> 
-                                         <img src="../plugins/sfTCPDFPlugin/lib/tcpdf/images/rdblogo.jpg" alt="RDB" width="600" height="200" border="0" />
-										 <h1 style="font-size: medium; color: #3C7E98">Investment Registration Certificate</h1>
+                                       
 										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: <b>'.$serial.'</b>
+										  <i>No</i>: <b>'.$serial.'</b>
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   Date: <b>'.$day.'</b>
-										 </p>
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   <i>Date:</i> <b>'.$day.'</b>
+										 </p><br/><br/>
 										 <p style= "font-size: xx-small;text-align:left ">
-										&nbsp;&nbsp;&nbsp;Issued To <b>'.$company.'</b> Represented by <b>'.$rep.'</b>
+										Issued To .............<span style="border-bottom: 10px solid #f00;"><b>'.$company.'</b></span>........... Represented by <span style="border-bottom: 10px solid #f00;">........<b>'.$rep.'</b>.....</span>
+										<br/><br/>
+										Business Sector ...................<span style="border-bottom: 10px solid #f00;"><b>'.$sector.' </span></b> <br/><br/>
+										Planned investment amount ........................... <span style="border-bottom: 10px solid #f00;"><b>'.$invstment.'</span></b> '.$currency.'<br/><br/>
+										Total Number of jobs planned .....................<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b><br/><br/>
+										Local jobs..................<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b> and  Jobs For expatriates ........................ <span style="border-bottom: 10px solid #f00;"><b>'.$expjobs.'</span></b>
 										 </p>
-										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Business Sector <b>'.$sector.' </b>
-										 </p>
+										 
+									<p style= "font-size: xx-small;text-align:left ">
+										   This Certificate has been issued to <b>'.$company.'</b> under the seal of 
+										   RDB in accordance with law no 26/2005 EAC customs management act atests &nbsp;&nbsp;that the company is duly registered and entitled to the rights and obligations contained in the law.
+										  </p>
+										
 										  
 										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Planned investment amount <b>'.$invstment.'</b>&nbsp;&nbsp;<b>'.$currency.'</b>
-										  </p>
-										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Total Number of jobs planned <b>'.$noofjobs.'</b>
-										  </p>
-										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> and  Jobs For expatriates <b>'.$expjobs.'</b>
-										 </p>
-										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;This Certificate has been issued to <b>'.$company.'</b> under the seal of 
-										  RDB in <br/>&nbsp;&nbsp;&nbsp; accordance with law no 26/2005 EAC customs management act atests that the company is duly 
-										  registered and entitled to the <br/> &nbsp;&nbsp;&nbsp;&nbsp;rights and obligations contained in the law.
-										  </p>
-										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;&nbsp;THE CHIEF EXECUTIVE OFFICER, 
+										  &nbsp;&nbsp;<i>THE CHIEF EXECUTIVE OFFICER</i>, 
 										  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   COMPANY REPRESENTATIVE,
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   <i>COMPANY REPRESENTATIVE</i>,
 										  <br/>
 										   &nbsp;&nbsp;&nbsp;&nbsp;RDB,
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 										   '.$rep.'
 										   <br/>
 										   &nbsp;&nbsp;&nbsp;&nbsp;'.$issuerF.' '.$issuerL.'

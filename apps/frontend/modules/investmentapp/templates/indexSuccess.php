@@ -1,82 +1,68 @@
-<script type="text/javascript">
+<?php
+//reporting script
+$investment_certs = Doctrine_Core::getTable('InvestmentCertificate')->calculateCertificatesIssued();
+$eia_certs = Doctrine_Core::getTable('EIACertificate')->calculateCertificatesIssued();
+$tax_exemption = Doctrine_Core::getTable('TaxExemptionDetails')->calculateExemptionsGranted(); 
+//some small maths
+$total = $investment_certs + $eia_certs + $tax_exemption ;
+
+$ic = ($investment_certs / $total) * 100 ;
+$eia = ( $eia_certs / $total) * 100;
+$tax = ( $tax_exemption / $total) * 100 ;
+/////
+ ?>
+	
+	<script type="text/javascript">
 $(function () {
     var chart;
     $(document).ready(function() {
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'cont',
-                type: 'column',
-				height: 500,
-				width: 650
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
             },
             title: {
-                text: '<?php echo __('RDB Performance Analysis, year 2013')?>'
-            },
-            subtitle: {
-                text: '<?php echo __('Source: RDB E-portal System') ?>'
-            },
-            xAxis: {
-                categories: [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
-                ]
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: '<?php echo __('Number of Transaction Processed') ?>'
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                backgroundColor: '#FFFFFF',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                shadow: true
+                text: 'Certificate & Tax Exemption Processing Analysis,<?php echo 2013 ?> to date'
             },
             tooltip: {
-                formatter: function() {
-                    return ''+
-                        this.x +': '+ this.y +' ';
-                }
+        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+            	percentageDecimals: 1
             },
             plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                        }
+                    }
                 }
             },
-                series: [{
-                name: '<?php echo __('Investment Certificates Issued') ?>',
-                data: [49.9, 71.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    
-            }, {
-                name: '<?php echo __('EIA Certificates Issued')?>',
-                data: [83.6, 78.8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    
-            }, {
-                name: '<?php echo __('Tax Exemptions Granted') ?>',
-                data: [48.9, 38.8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    
+			
+				credits:
+				{
+					enabled: false
+				},
+            series: [{
+                type: 'pie',
+                name: 'No of Transactions',
+                data: [
+                    ['Investment Certificates',   <?php echo $ic  ?>],
+                    ['EIA Certificates',       <?php echo $eia ?>],
+                    ['Tax Exemptions',   <?php echo $tax ?>]
+                ]
             }]
         });
     });
     
 });
-	</script>
+		</script>
 <div id="page" class="dashboard">
          
 	<div class="row-fluid">
@@ -136,52 +122,45 @@ $(function () {
 							</p>
 				</div>
 				<div class="widget-body">
-					<div class="row-fluid stats-overview-cont">
-						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-							<div class="stats-overview block clearfix">
-								<div class="display stat ok huge">	
+					<div class="row-fluid">
+					    <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+							<div class="circle-stat block">
+								<div class="visual">
+									<input class="knobify" data-width="115" data-thickness=".2" data-skin="tron" data-displayprevious="true" value="6" data-max="100" data-min="-100" />
 								</div>
 								<div class="details">
-													<div class="title"><?php echo __('Number of Investment Certificates Issued')?></div>
-									<div class="numbers"><?php
-										echo "0";
-									?></div>
+									<div class="title"><?php echo __('Number of Investment Certificates Issued')?> <i class="icon-caret-up"></i></div>
+									<div class="number"><?php echo $investment_certs;  ?></div>
+									<span class="label label-info"><i class="icon-certificate"></i><?php echo $ic ?>%</span>
 								</div>
-								
 							</div>
-						</div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-							<div class="stats-overview block clearfix">
-								<div class="display stat good huge">
-									
-									
+						</div>
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+							<div class="circle-stat block">
+								<div class="visual">
+									<input class="knobify" data-width="115" data-fgcolor="#66EE66" data-thickness=".2" data-skin="tron" data-displayprevious="true" value="+19" data-max="100" data-min="-100" />
 								</div>
 								<div class="details">
-													<div class="title"><?php echo __('Number Of IEA Certificates Issued') ?></div>
-									<div class="numbers">
-									<?php
-									   // echo (count($overall_ieapplications)); 
-									   echo "0";
-									?>
-									</div>
+									<div class="title"><?php echo __('Number Of EIA Certificates Issued') ?> <i class="icon-caret-up"></i></div>
+									<div class="number"><?php
+									   echo $eia_certs;
+									?></div>
+									<span class="label label-success"><i class="icon-certificate"></i><?php echo $eia ?>%</span>
 									
 								</div>
 							</div>
 						</div>
-						<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
-							<div class="stats-overview block clearfix">
-								<div class="display stat bad huge">
-									
-									
+					<div class="span3 responsive" data-tablet="span6 fix-margin" data-desktop="span3">
+							<div class="circle-stat block">
+								<div class="visual">
+									<input class="knobify" data-width="115" data-fgcolor="#e23e29" data-thickness=".2" data-skin="tron" data-displayprevious="true" value="-12" data-max="100" data-min="-100" />
 								</div>
 								<div class="details">
-													<div class="title"><?php echo __('Tax Exemptions Granted') ?></div>
-									<div class="numbers"><?php 
-									$value = 0;
-									print $value;
-									
-									?></div>
-									
+									<div class="title"><?php echo __('Tax Exemptions Granted') ?> <i class="icon-caret-down down"></i></div>
+									<div class="number"><?php 
+									echo $tax_exemption;?></div>
+									<span class="label label-warning"><i class="icon-certificate"></i><?php echo $tax ?> % </span>
 								</div>
 							</div>
 						</div>
@@ -193,6 +172,7 @@ $(function () {
 				
 			</div>
 			<!-- Begin Graph for User to analyze RDB Processing Power -->
+			<div class="span11">
 			<div class="widget">
 				  <div class="widget-title">
 									<h4><i class="icon-signal"></i><?php echo __('Graphical Analysis - RDB Overall Perfomance Representation') ?></h4>
@@ -202,7 +182,7 @@ $(function () {
 					
 				</div>
 			</div> <!-- END Graph-->
-			
+			</div>
 			
 		</div>
 		<div class="span4">

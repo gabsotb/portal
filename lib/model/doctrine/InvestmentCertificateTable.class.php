@@ -41,7 +41,7 @@ class InvestmentCertificateTable extends Doctrine_Table
 	{
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc(
 	  "SELECT  investment_certificate.created_at,investment_certificate.serial_number,
-		 investment_application.name, investment_application.name,investment_application.representative_name,project_summary.employment_created,
+		 investment_application.name, investment_application.currency_type,investment_application.representative_name,project_summary.employment_created,
 		 project_summary.business_sector,project_summary.planned_investment, sf_guard_user.first_name,sf_guard_user.last_name
 		 FROM investment_certificate LEFT JOIN  investment_application ON investment_certificate.business_id 
 		LEFT JOIN project_summary ON investment_certificate.business_id = project_summary.investment_id 
@@ -90,7 +90,29 @@ class InvestmentCertificateTable extends Doctrine_Table
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.id, investment_application.name AS company, investment_application.office_telephone AS contact, investment_application.business_sector AS description, project_summary.business_sector AS sector, investment_certificate.serial_number, project_summary.planned_investment AS investment,project_summary.employment_created as jobs
 		FROM investment_application
 		LEFT JOIN investment_certificate ON investment_application.id = investment_certificate.business_id
-		LEFT JOIN project_summary ON investment_application.id = project_summary.investment_id");
+		LEFT JOIN project_summary ON investment_application.id = project_summary.investment_id
+		LEFT JOIN business_application_status ON investment_application.id  = business_application_status.business_id WHERE
+		business_application_status.application_status = 'certificateissued' ORDER BY serial_number ASC
+		");
+	 return $query;
+	}
+	///////a report function
+	public function calculateCertificatesIssued()
+	{
+	 $certs = 0;
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select count(serial_number) as total from investment_certificate");
+	 foreach($query  as $q)
+	 {
+	  $certs = $q['total'];
+	 }
+	 //
+	 return $certs;
+	}
+	//get certificates per sector
+	public function getInvestmentCertsPerSector()
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT count(serial_number), project_summary.business_sector from investment_certificate left join project_summary on investment_certificate.business_id = project_summary.investment_id group by project_summary.business_sector");
+	 //
 	 return $query;
 	}
 	  

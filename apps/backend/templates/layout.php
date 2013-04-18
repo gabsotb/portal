@@ -293,8 +293,12 @@
 					</a>
 					<ul class="sub">
 						<li class=""><a href ="<?php echo url_for('reports/issued')?>"><i class="icon-certificate"></i> <?php echo __('IC Issued') ?> </a></li>
-						<li class=""><a href ="<?php echo url_for('reports/sectors')?>"><i class="icon-certificate"></i> <?php echo __('IC Per Sector') ?> </a></li>
-						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
+						<li class=""><a href ="<?php echo url_for('reports/sectorsCert')?>"><i class="icon-certificate"></i> <?php echo __('IC Issued Per Sector') ?> </a></li>
+						<li class=""><a href ="<?php echo url_for('reports/sectors')?>"><i class="icon-certificate"></i> <?php echo __('Investments Per Sector') ?> </a></li>
+						
+						
+						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates Issued') ?> </a></li>
+						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Per Sector') ?> </a></li>
 						<li class="">  <a href ="#"><i class="icon-certificate"></i> <?php echo __('Tax Exemptions') ?></a> </li>
 					</ul>
 				</li>

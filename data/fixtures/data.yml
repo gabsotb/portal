@@ -1,3 +1,2351 @@
+BusinessApplicationStatus:
+  BusinessApplicationStatus_1:
+    InvestmentApplication: InvestmentApplication_1
+    application_status: certificateissued
+    comment: "Your Payment for Administrative Fee has been confirmed. Please wait for your Certificate of\r\n    investment Thankyou"
+    percentage: '90'
+    token: null
+    created_at: '2013-04-16 20:16:03'
+    updated_at: '2013-04-16 20:16:03'
+  BusinessApplicationStatus_2:
+    InvestmentApplication: InvestmentApplication_2
+    application_status: certificateissued
+    comment: "You have been issued with Investment Registration Certificate.\r\n       						 Please check your email for more information. Thankyou. "
+    percentage: '100'
+    token: null
+    created_at: '2013-04-16 21:23:57'
+    updated_at: '2013-04-16 21:23:57'
+  BusinessApplicationStatus_3:
+    InvestmentApplication: InvestmentApplication_3
+    application_status: certificateissued
+    comment: "You have been issued with Investment Registration Certificate.\r\n       						 Please check your email for more information. Thankyou. "
+    percentage: '100'
+    token: null
+    created_at: '2013-04-16 21:43:20'
+    updated_at: '2013-04-16 21:43:20'
+  BusinessApplicationStatus_4:
+    InvestmentApplication: InvestmentApplication_4
+    application_status: certificateissued
+    comment: "You have been issued with Investment Registration Certificate.\r\n       						 Please check your email for more information. Thankyou. "
+    percentage: '100'
+    token: null
+    created_at: '2013-04-16 22:00:50'
+    updated_at: '2013-04-16 22:00:50'
+  BusinessApplicationStatus_5:
+    InvestmentApplication: InvestmentApplication_5
+    application_status: awaitingResubmission
+    comment: 'Please Resubmit your work. Check your email and inbox messages for more. Thank you.'
+    percentage: '30'
+    token: null
+    created_at: '2013-04-17 00:14:04'
+    updated_at: '2013-04-17 00:14:04'
+  BusinessApplicationStatus_6:
+    InvestmentApplication: InvestmentApplication_6
+    application_status: submitted
+    comment: 'Documents Submitted Successfuly. Awaiting RDB admin to assign your application to a Staff'
+    percentage: '10'
+    token: null
+    created_at: '2013-04-17 15:54:00'
+    updated_at: '2013-04-17 15:54:00'
+BusinessPlan:
+  BusinessPlan_1:
+    InvestmentApplication: InvestmentApplication_1
+    project_brief: Summary
+    exemption_on_machinery: null
+    exemption_raw_materials: null
+    land_ownership_document: null
+    bill_of_quantiy: null
+    drawings: null
+    construction_permits: null
+    investment_allowances: yes
+    additional_incentives: ''
+    visa_work_permits: ''
+    token: 01676a24994d7c0840706c7cf561d7f3e1dcdce0
+    created_at: '2013-04-16 20:16:03'
+    updated_at: '2013-04-16 20:16:03'
+    Creator: sfGuardUser_2
+    updated_by: investor
+  BusinessPlan_2:
+    InvestmentApplication: InvestmentApplication_2
+    project_brief: Summary
+    exemption_on_machinery: null
+    exemption_raw_materials: null
+    land_ownership_document: null
+    bill_of_quantiy: null
+    drawings: null
+    construction_permits: null
+    investment_allowances: yes
+    additional_incentives: ''
+    visa_work_permits: ''
+    token: 38e59b792a3904ebbd5444d155e57cbcf5c679f1
+    created_at: '2013-04-16 21:23:57'
+    updated_at: '2013-04-16 21:23:57'
+    Creator: sfGuardUser_6
+    updated_by: investor2
+  BusinessPlan_3:
+    InvestmentApplication: InvestmentApplication_3
+    project_brief: 'some summary<br>'
+    exemption_on_machinery: null
+    exemption_raw_materials: null
+    land_ownership_document: null
+    bill_of_quantiy: null
+    drawings: null
+    construction_permits: null
+    investment_allowances: yes
+    additional_incentives: ''
+    visa_work_permits: ''
+    token: 8ee81df239c785a5d42995c266802a12bec1a75d
+    created_at: '2013-04-16 21:43:20'
+    updated_at: '2013-04-16 21:43:20'
+    Creator: sfGuardUser_9
+    updated_by: investor3
+  BusinessPlan_4:
+    InvestmentApplication: InvestmentApplication_4
+    project_brief: 'Summary <br>'
+    exemption_on_machinery: null
+    exemption_raw_materials: null
+    land_ownership_document: null
+    bill_of_quantiy: null
+    drawings: null
+    construction_permits: null
+    investment_allowances: yes
+    additional_incentives: ''
+    visa_work_permits: ''
+    token: 9dbd7a7c1da1f6c2a0d9790298ac112c0a39ee4b
+    created_at: '2013-04-16 22:00:50'
+    updated_at: '2013-04-16 22:00:50'
+    Creator: sfGuardUser_10
+    updated_by: investor4
+  BusinessPlan_5:
+    InvestmentApplication: InvestmentApplication_5
+    project_brief: Summary
+    exemption_on_machinery: null
+    exemption_raw_materials: null
+    land_ownership_document: null
+    bill_of_quantiy: null
+    drawings: null
+    construction_permits: null
+    investment_allowances: yes
+    additional_incentives: ''
+    visa_work_permits: ''
+    token: 630cd6a06c671111f84b0be6fe7dc8bdb856b084
+    created_at: '2013-04-17 00:14:04'
+    updated_at: '2013-04-17 00:14:04'
+    Creator: sfGuardUser_11
+    updated_by: investor5
+  BusinessPlan_6:
+    InvestmentApplication: InvestmentApplication_6
+    project_brief: 'Some Summary<br>'
+    exemption_on_machinery: null
+    exemption_raw_materials: null
+    land_ownership_document: null
+    bill_of_quantiy: null
+    drawings: null
+    construction_permits: null
+    investment_allowances: yes
+    additional_incentives: ''
+    visa_work_permits: ''
+    token: 71c790470f0093b09e88e0b79a22a5e343776f33
+    created_at: '2013-04-17 15:54:00'
+    updated_at: '2013-04-17 15:54:00'
+    Creator: sfGuardUser_12
+    updated_by: investor6
+BusinessRegistration:
+  BusinessRegistration_1:
+    business_name: 'otb africa'
+    business_regno: '100'
+    business_sector: gasabo
+    office_telephone: '+254202498997'
+    fax: '+254202498997'
+    post_box: '22918'
+    location: gasabo
+    sector: gasabo
+    district: gasabo
+    city_province: kigali
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_1999:
+    business_name: ''
+    business_regno: ''
+    business_sector: ''
+    office_telephone: ''
+    fax: ''
+    post_box: ''
+    location: ''
+    sector: ''
+    district: ''
+    city_province: ''
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_2000:
+    business_name: 'EASTERN AGRI-BUSINESS COMPANY (E.A.B.C) LTD'
+    business_regno: '102050085'
+    business_sector: 'Support activities to agriculture and post-harvest crop activities'
+    office_telephone: '0785685121'
+    fax: ''
+    post_box: ''
+    location: Remera
+    sector: Ngoma
+    district: Ngoma
+    city_province: Iburasirazuba
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_2001:
+    business_name: 'RAYAN GLOBAL LTD'
+    business_regno: '102050191'
+    business_sector: 'Specialized construction activities'
+    office_telephone: '0255112761'
+    fax: ''
+    post_box: ''
+    location: Nyarugenge
+    sector: Nyarugenge
+    district: Nyarugenge
+    city_province: 'Umujyi wa Kigali'
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_2002:
+    business_name: 'REPAIR & PAINTS MOTORS LTD'
+    business_regno: '102055787'
+    business_sector: 'Maintenance and repair of motor vehicles'
+    office_telephone: '0788779494'
+    fax: ''
+    post_box: '4200 Kigali'
+    location: Jali
+    sector: Gasabo
+    district: Gasabo
+    city_province: 'Umujyi wa Kigali'
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_2003:
+    business_name: 'JAFFERY FOREX BUREAU LTD'
+    business_regno: '102049557'
+    business_sector: 'Other monetary intermediation'
+    office_telephone: '0782154492'
+    fax: ''
+    post_box: ''
+    location: Nyarugenge
+    sector: Nyarugenge
+    district: Nyarugenge
+    city_province: 'Umujyi wa Kigali'
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_2004:
+    business_name: 'SWEDEN AFRICA TRADE CORPORATION LTD'
+    business_regno: '102049786'
+    business_sector: 'Retail sale in non-specialized stores'
+    office_telephone: '0788783905'
+    fax: ''
+    post_box: ''
+    location: Nyarugenge
+    sector: Nyarugenge
+    district: Nyarugenge
+    city_province: 'Umujyi wa Kigali'
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_2005:
+    business_name: 'SWEDEN AFRICA TRADE CORPORATION LTD'
+    business_regno: '102049786'
+    business_sector: 'Computer programming, consultancy and related activities'
+    office_telephone: '0788783905'
+    fax: ''
+    post_box: ''
+    location: Nyarugenge
+    sector: Nyarugenge
+    district: Nyarugenge
+    city_province: 'Umujyi wa Kigali'
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_2006:
+    business_name: 'SWEDEN AFRICA TRADE CORPORATION LTD'
+    business_regno: '102049786'
+    business_sector: Telecommunications
+    office_telephone: '0788783905'
+    fax: ''
+    post_box: ''
+    location: Nyarugenge
+    sector: Nyarugenge
+    district: Nyarugenge
+    city_province: 'Umujyi wa Kigali'
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_2007:
+    business_name: 'B.B SERVICES LTD'
+    business_regno: '102049794'
+    business_sector: 'Retail sale of hardware, paints and glass in specialized stores'
+    office_telephone: '0788754917'
+    fax: ''
+    post_box: '17 Kigali'
+    location: Rukoma
+    sector: Kamonyi
+    district: Kamonyi
+    city_province: Amajyepfo
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_2008:
+    business_name: 'BOUTIQUE EJOHAZAZA HEZA LTD'
+    business_regno: '102050207'
+    business_sector: 'Retail sale in non-specialized stores with food, beverages or tobacco predominating'
+    office_telephone: '0785558893'
+    fax: ''
+    post_box: ''
+    location: Kabarondo
+    sector: Kayonza
+    district: Kayonza
+    city_province: Iburasirazuba
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+  BusinessRegistration_2009:
+    business_name: 'CECOS COMPANY LTD'
+    business_regno: '102050231'
+    business_sector: 'Retail sale of information and communications equipment in specialized stores'
+    office_telephone: '0788857712'
+    fax: ''
+    post_box: ''
+    location: Gatenga
+    sector: Kicukiro
+    district: Kicukiro
+    city_province: 'Umujyi wa Kigali'
+    token: null
+    created_at: '0000-00-00 00:00:00'
+    updated_at: '0000-00-00 00:00:00'
+Costs:
+  Costs_1:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '67'
+    year2: '67'
+    year3: '67'
+    year4: '67'
+    year5: '67'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Costs_2:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '67'
+    year2: '67'
+    year3: '67'
+    year4: '67'
+    year5: '67'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Costs_3:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '67'
+    year2: '67'
+    year3: '67'
+    year4: '67'
+    year5: '67'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Costs_4:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '67'
+    year2: '67'
+    year3: '67'
+    year4: '67'
+    year5: '67'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Costs_5:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '67'
+    year2: '67'
+    year3: '67'
+    year4: '67'
+    year5: '67'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Costs_6:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '65'
+    year2: '65'
+    year3: '65'
+    year4: '65'
+    year5: '65'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Costs_7:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '65'
+    year2: '65'
+    year3: '65'
+    year4: '65'
+    year5: '65'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Costs_8:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '65'
+    year2: '65'
+    year3: '65'
+    year4: '65'
+    year5: '65'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Costs_9:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '65'
+    year2: '65'
+    year3: '65'
+    year4: '65'
+    year5: '65'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Costs_10:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '65'
+    year2: '65'
+    year3: '65'
+    year4: '65'
+    year5: '65'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Costs_11:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '44'
+    year2: '44'
+    year3: '44'
+    year4: '44'
+    year5: '44'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Costs_12:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '44'
+    year2: '44'
+    year3: '44'
+    year4: '44'
+    year5: '44'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Costs_13:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '44'
+    year2: '44'
+    year3: '44'
+    year4: '44'
+    year5: '44'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Costs_14:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '44'
+    year2: '44'
+    year3: '44'
+    year4: '44'
+    year5: '44'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Costs_15:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '44'
+    year2: '44'
+    year3: '44'
+    year4: '44'
+    year5: '44'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Costs_16:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '677'
+    year2: '677'
+    year3: '677'
+    year4: '677'
+    year5: '677'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Costs_17:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '677'
+    year2: '677'
+    year3: '677'
+    year4: '677'
+    year5: '677'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Costs_18:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '677'
+    year2: '677'
+    year3: '677'
+    year4: '677'
+    year5: '677'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Costs_19:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '677'
+    year2: '677'
+    year3: '677'
+    year4: '677'
+    year5: '677'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Costs_20:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '677'
+    year2: '677'
+    year3: '677'
+    year4: '677'
+    year5: '677'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Costs_21:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '555'
+    year2: '555'
+    year3: '555'
+    year4: '555'
+    year5: '555'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Costs_22:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '555'
+    year2: '555'
+    year3: '555'
+    year4: '555'
+    year5: '555'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Costs_23:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '555'
+    year2: '555'
+    year3: '555'
+    year4: '555'
+    year5: '555'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Costs_24:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '555'
+    year2: '555'
+    year3: '555'
+    year4: '555'
+    year5: '555'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Costs_25:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '555'
+    year2: '555'
+    year3: '555'
+    year4: '555'
+    year5: '555'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Costs_26:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '67'
+    year2: '67'
+    year3: '67'
+    year4: '67'
+    year5: '67'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Costs_27:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '67'
+    year2: '67'
+    year3: '67'
+    year4: '67'
+    year5: '67'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Costs_28:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '67'
+    year2: '67'
+    year3: '67'
+    year4: '67'
+    year5: '67'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Costs_29:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '67'
+    year2: '67'
+    year3: '67'
+    year4: '67'
+    year5: '67'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Costs_30:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '67'
+    year2: '67'
+    year3: '67'
+    year4: '67'
+    year5: '67'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+Employementforeign:
+  Employementforeign_1:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Employementforeign_2:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Employementforeign_3:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Employementforeign_4:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Employementforeign_5:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Employementforeign_6:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Employementforeign_7:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Employementforeign_8:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Employementforeign_9:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Employementforeign_10:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Employementforeign_11:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Employementforeign_12:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Employementforeign_13:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Employementforeign_14:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Employementforeign_15:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Employementforeign_16:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Employementforeign_17:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Employementforeign_18:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Employementforeign_19:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Employementforeign_20:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Employementforeign_21:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Employementforeign_22:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Employementforeign_23:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Employementforeign_24:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+Employementlocal:
+  Employementlocal_1:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Employementlocal_2:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Employementlocal_3:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Employementlocal_4:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Employementlocal_5:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Employementlocal_6:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Employementlocal_7:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Employementlocal_8:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Employementlocal_9:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Employementlocal_10:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Employementlocal_11:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Employementlocal_12:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Employementlocal_13:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Employementlocal_14:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Employementlocal_15:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Employementlocal_16:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Employementlocal_17:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Employementlocal_18:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Employementlocal_19:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Employementlocal_20:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Employementlocal_21:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Employementlocal_22:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Employementlocal_23:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Employementlocal_24:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+InvestmentApplication:
+  InvestmentApplication_1:
+    name: 'EASTERN AGRI-BUSINESS COMPANY (E.A.B.C) LTD'
+    registration_number: '102050085'
+    title_in_company: Manager
+    business_sector: 'Support activities to agriculture and post-harvest crop activities'
+    business_category: new
+    representative_name: 'James Kamau Njoro Boniface'
+    currency_type: Rwf
+    office_telephone: '0785685121'
+    fax: ''
+    post_box: ''
+    location: Remera
+    sector: Ngoma
+    district: Ngoma
+    city_province: Iburasirazuba
+    applicant_reference_number: 1-1000-2013
+    token: 77bf1d06f22b6f11c319919bd395a79f1128e281
+    created_at: '2013-04-16 20:15:16'
+    updated_at: '2013-04-16 20:15:16'
+    Creator: sfGuardUser_2
+    updated_by: investor
+  InvestmentApplication_2:
+    name: 'RAYAN GLOBAL LTD'
+    registration_number: '102050191'
+    title_in_company: Manager
+    business_sector: 'Specialized construction activities'
+    business_category: new
+    representative_name: 'Boniface James'
+    currency_type: rwf
+    office_telephone: '0255112761'
+    fax: ''
+    post_box: ''
+    location: Nyarugenge
+    sector: Nyarugenge
+    district: Nyarugenge
+    city_province: 'Umujyi wa Kigali'
+    applicant_reference_number: 2-1001-2013
+    token: 5b3e44c0ca1a72c21791b21e0a24fea06b72500f
+    created_at: '2013-04-16 21:23:01'
+    updated_at: '2013-04-16 21:23:01'
+    Creator: sfGuardUser_6
+    updated_by: investor2
+  InvestmentApplication_3:
+    name: 'REPAIR AND PAINTS MOTORS LTD'
+    registration_number: '102055787'
+    title_in_company: Manager
+    business_sector: 'Maintenance and repair of motor vehicles'
+    business_category: new
+    representative_name: 'Boniface James'
+    currency_type: USD
+    office_telephone: '0788779494'
+    fax: ''
+    post_box: '4200 Kigali'
+    location: Jali
+    sector: Gasabo
+    district: Gasabo
+    city_province: 'Umujyi wa Kigali'
+    applicant_reference_number: 3-1002-2013
+    token: f658edae62e8062b5784c5b32eada2c3b3c48c50
+    created_at: '2013-04-16 21:41:42'
+    updated_at: '2013-04-16 21:41:42'
+    Creator: sfGuardUser_9
+    updated_by: investor3
+  InvestmentApplication_4:
+    name: 'JAFFERY FOREX BUREAU LTD'
+    registration_number: '102049557'
+    title_in_company: Manager
+    business_sector: 'Other monetary intermediation'
+    business_category: new
+    representative_name: 'James Kamau'
+    currency_type: rwf
+    office_telephone: '0782154492'
+    fax: ''
+    post_box: ''
+    location: Nyarugenge
+    sector: Nyarugenge
+    district: Nyarugenge
+    city_province: 'Umujyi wa Kigali'
+    applicant_reference_number: 4-1003-2013
+    token: 5e8084bf84e26b4963b6b74c14653542f37ddcfd
+    created_at: '2013-04-16 22:00:04'
+    updated_at: '2013-04-16 22:00:04'
+    Creator: sfGuardUser_10
+    updated_by: investor4
+  InvestmentApplication_5:
+    name: 'SWEDEN AFRICA TRADE CORPORATION LTD'
+    registration_number: '102049786'
+    title_in_company: Manager
+    business_sector: 'Retail sale in non-specialized stores,Computer programming, consultancy and related activities,Telecommunications'
+    business_category: new
+    representative_name: 'James Kamau Smart'
+    currency_type: usd
+    office_telephone: '0788783905'
+    fax: '55'
+    post_box: '666'
+    location: Nyarugenge
+    sector: Nyarugenge
+    district: Nyarugenge
+    city_province: 'Umujyi wa Kigali'
+    applicant_reference_number: 5-1004-2013
+    token: 28dbb08b05fac1d19621aea47c823168587130e5
+    created_at: '2013-04-16 23:53:58'
+    updated_at: '2013-04-17 00:13:22'
+    Creator: sfGuardUser_11
+    updated_by: investor5
+  InvestmentApplication_6:
+    name: 'B.B SERVICES LTD'
+    registration_number: '102049794'
+    title_in_company: Manager
+    business_sector: 'Retail sale of hardware, paints and glass in specialized stores'
+    business_category: new
+    representative_name: 'Boniface James'
+    currency_type: rwf
+    office_telephone: '0788754917'
+    fax: '65'
+    post_box: '17 Kigali'
+    location: Rukoma
+    sector: Kamonyi
+    district: Kamonyi
+    city_province: Amajyepfo
+    applicant_reference_number: 6-1005-2013
+    token: 8a3f7f81e5b1e9eb1ba9b04118f284a54beb5a8b
+    created_at: '2013-04-17 15:48:12'
+    updated_at: '2013-04-17 15:48:12'
+    Creator: sfGuardUser_12
+    updated_by: investor6
+InvestmentCertificate:
+  InvestmentCertificate_1:
+    serial_number: C/1094/2013
+    InvestmentApplication: InvestmentApplication_1
+    token: null
+    created_at: '2013-04-16 20:54:20'
+    updated_at: '2013-04-16 20:54:20'
+    created_by: None
+    updated_by: bonie
+  InvestmentCertificate_3:
+    serial_number: C/1095/2013
+    InvestmentApplication: InvestmentApplication_2
+    token: null
+    created_at: '2013-04-16 21:39:51'
+    updated_at: '2013-04-16 21:39:51'
+    created_by: None
+    updated_by: bonie
+  InvestmentCertificate_4:
+    serial_number: C/1096/2013
+    InvestmentApplication: InvestmentApplication_3
+    token: null
+    created_at: '2013-04-16 21:56:32'
+    updated_at: '2013-04-16 21:56:32'
+    created_by: None
+    updated_by: investmentadmin
+  InvestmentCertificate_5:
+    serial_number: C/1097/2013
+    InvestmentApplication: InvestmentApplication_4
+    token: null
+    created_at: '2013-04-16 22:11:28'
+    updated_at: '2013-04-16 22:11:28'
+    created_by: None
+    updated_by: investmentadmin
+InvestmentRequests:
+  InvestmentRequests_1:
+    requestor: '3'
+    request_type: accept_application
+    status: accept
+    reference_number: 1-1000-2013
+    comments: 'go ahead<br>'
+    token: ''
+    created_at: '2013-04-16 20:23:13'
+    updated_at: '2013-04-16 20:23:13'
+    Creator: sfGuardUser_1
+    updated_by: manager
+  InvestmentRequests_2:
+    requestor: '3'
+    request_type: accept_application
+    status: accept
+    reference_number: 2-1001-2013
+    comments: 'go ahead<br>'
+    token: ''
+    created_at: '2013-04-16 21:29:29'
+    updated_at: '2013-04-16 21:29:29'
+    Creator: sfGuardUser_1
+    updated_by: manager
+  InvestmentRequests_3:
+    requestor: '4'
+    request_type: accept_application
+    status: accept
+    reference_number: 3-1002-2013
+    comments: 'go ahead<br>'
+    token: ''
+    created_at: '2013-04-16 21:49:34'
+    updated_at: '2013-04-16 21:49:34'
+    Creator: sfGuardUser_1
+    updated_by: manager
+  InvestmentRequests_4:
+    requestor: '4'
+    request_type: accept_application
+    status: accept
+    reference_number: 4-1003-2013
+    comments: 'go ahead<br>'
+    token: ''
+    created_at: '2013-04-16 22:08:43'
+    updated_at: '2013-04-16 22:08:43'
+    Creator: sfGuardUser_1
+    updated_by: manager
+InvestmentResubmission:
+  InvestmentResubmission_1:
+    business_id: '5'
+    message_subject: 'Please correct Financial information'
+    message: 'Please Correct data<br>'
+    created_at: '2013-04-17 16:24:44'
+    updated_at: '2013-04-17 16:24:44'
+    Creator: sfGuardUser_3
+    updated_by: bonie
+Messages:
+  Messages_1:
+    sender: noreply@rdb.com
+    recepient: investor
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "We are pleased to inform you that you application for investment certificate has been received. \n				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window\n				  in your account. Thank you"
+    attachement: ''
+    token: 722fbf4b1f531e2831833b0691ee69f1a1c36b3c
+    created_at: '2013-04-16 20:16:16'
+    updated_at: '2013-04-16 20:16:16'
+  Messages_2:
+    sender: noreply@rdb.com
+    recepient: manager
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "A New application for Investment Certificate has been received.\nfrom 'investor' Please Assign it to a data administrator"
+    attachement: ''
+    token: 92cb46645483f73b28b0d37a257d8b5e6c21a009
+    created_at: '2013-04-16 20:16:16'
+    updated_at: '2013-04-16 20:16:16'
+  Messages_3:
+    sender: noreply@rdb.com
+    recepient: investmentsupervisor
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "A New application for Investment Certificate has been received.\nfrom 'investor' Please Assign it to a data administrator"
+    attachement: ''
+    token: 4ae2eda0dc5e3e8c0f277d649a15828b3fe151f8
+    created_at: '2013-04-16 20:16:17'
+    updated_at: '2013-04-16 20:16:17'
+  Messages_4:
+    sender: noreply@rdb.com
+    recepient: bonie
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "The Manager Has assigned you a new task to process an application for investment certificate\n\n				  Please start working on it asap. Thank you"
+    attachement: ''
+    token: 5577f685ecf1d1a98b3c751123952c554b3d16e5
+    created_at: '2013-04-16 20:17:10'
+    updated_at: '2013-04-16 20:17:10'
+  Messages_5:
+    sender: bonie
+    recepient: manager
+    sender_email: bonie@gmail.com
+    recepient_email: ''
+    cc_email: ''
+    message_subject: 'Want to Accept application'
+    message: 'want to accept 1-1000-2013<br>'
+    attachement: ''
+    token: aa0687d8fc87e3dab1285188d06565649eb1b592
+    created_at: '2013-04-16 20:21:51'
+    updated_at: '2013-04-16 20:21:51'
+  Messages_6:
+    sender: noreply@rdb.com
+    recepient: bonie
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: 'accept-Your request for permission processed. Manager/Supervisor comments > go ahead<br>'
+    attachement: ''
+    token: f88b77495d0008ce38fba42331ab017cca460443
+    created_at: '2013-04-16 20:23:25'
+    updated_at: '2013-04-16 20:23:25'
+  Messages_7:
+    sender: noreply@rdb.com
+    recepient: investor2
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "We are pleased to inform you that you application for investment certificate has been received. \n				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window\n				  in your account. Thank you"
+    attachement: ''
+    token: d2efa44703ec2afb54347b2a681296e8ed0169ed
+    created_at: '2013-04-16 21:24:11'
+    updated_at: '2013-04-16 21:24:11'
+  Messages_8:
+    sender: noreply@rdb.com
+    recepient: manager
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "A New application for Investment Certificate has been received.\nfrom 'investor2' Please Assign it to a data administrator"
+    attachement: ''
+    token: 4ab748ad174e89064369838c2e8ae86d1fe71e99
+    created_at: '2013-04-16 21:24:11'
+    updated_at: '2013-04-16 21:24:11'
+  Messages_9:
+    sender: noreply@rdb.com
+    recepient: investmentsupervisor
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "A New application for Investment Certificate has been received.\nfrom 'investor2' Please Assign it to a data administrator"
+    attachement: ''
+    token: abc151be6df2dfd37b40599d9d5b25877528fdcc
+    created_at: '2013-04-16 21:24:11'
+    updated_at: '2013-04-16 21:24:11'
+  Messages_10:
+    sender: noreply@rdb.com
+    recepient: bonie
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "The Manager Has assigned you a new task to process an application for investment certificate\n\n				  Please start working on it asap. Thank you"
+    attachement: ''
+    token: f182b848441d37b71cd4fa4bc8dc8e498596277f
+    created_at: '2013-04-16 21:25:02'
+    updated_at: '2013-04-16 21:25:02'
+  Messages_11:
+    sender: bonie
+    recepient: manager
+    sender_email: bonie@gmail.com
+    recepient_email: ''
+    cc_email: ''
+    message_subject: 'Want to Accept application'
+    message: 'Want to Accept application 2-1001-2013<br>'
+    attachement: ''
+    token: 55d3eab535b4883ed33c0dbc0a7ba465755f6409
+    created_at: '2013-04-16 21:28:09'
+    updated_at: '2013-04-16 21:28:09'
+  Messages_12:
+    sender: noreply@rdb.com
+    recepient: bonie
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: 'accept-Your request for permission processed. Manager/Supervisor comments > go ahead<br>'
+    attachement: ''
+    token: 25be5e9630db0cfb0b059325697162daa1b60182
+    created_at: '2013-04-16 21:29:41'
+    updated_at: '2013-04-16 21:29:41'
+  Messages_13:
+    sender: noreply@rdb.com
+    recepient: investor3
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "We are pleased to inform you that you application for investment certificate has been received. \n				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window\n				  in your account. Thank you"
+    attachement: ''
+    token: f0129e94d1325213f84da02ac1d5c3bdc915a35e
+    created_at: '2013-04-16 21:43:34'
+    updated_at: '2013-04-16 21:43:34'
+  Messages_14:
+    sender: noreply@rdb.com
+    recepient: manager
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "A New application for Investment Certificate has been received.\nfrom 'investor3' Please Assign it to a data administrator"
+    attachement: ''
+    token: bddd9f260f308eeea0083e74966c57c6354e8093
+    created_at: '2013-04-16 21:43:34'
+    updated_at: '2013-04-16 21:43:34'
+  Messages_15:
+    sender: noreply@rdb.com
+    recepient: investmentsupervisor
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "A New application for Investment Certificate has been received.\nfrom 'investor3' Please Assign it to a data administrator"
+    attachement: ''
+    token: 42e4f9eccc15064e40648e4e1b07920bdca4501e
+    created_at: '2013-04-16 21:43:34'
+    updated_at: '2013-04-16 21:43:34'
+  Messages_16:
+    sender: noreply@rdb.com
+    recepient: investmentadmin
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "The Manager Has assigned you a new task to process an application for investment certificate\n\n				  Please start working on it asap. Thank you"
+    attachement: ''
+    token: bbe2a40998d6df3d6dacf08500ee94b722f5126e
+    created_at: '2013-04-16 21:44:26'
+    updated_at: '2013-04-16 21:44:26'
+  Messages_17:
+    sender: investmentadmin
+    recepient: manager
+    sender_email: investmentcertadmin@smartlinesolutions.net
+    recepient_email: ''
+    cc_email: ''
+    message_subject: 'Want to Accept application'
+    message: 'Want to Accept application 3-1002-2013<br>'
+    attachement: ''
+    token: a2990896f0f941dc2173129472fb6d2ff963e27d
+    created_at: '2013-04-16 21:47:30'
+    updated_at: '2013-04-16 21:47:30'
+  Messages_18:
+    sender: noreply@rdb.com
+    recepient: investmentadmin
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: 'accept-Your request for permission processed. Manager/Supervisor comments > go ahead<br>'
+    attachement: ''
+    token: e05806ade6d5698d3499c9101ebcc0a86bb56a13
+    created_at: '2013-04-16 21:49:47'
+    updated_at: '2013-04-16 21:49:47'
+  Messages_19:
+    sender: noreply@rdb.com
+    recepient: investor4
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "We are pleased to inform you that you application for investment certificate has been received. \n				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window\n				  in your account. Thank you"
+    attachement: ''
+    token: 5e4e4ac439abf9868092154f0d16e9d1b2581328
+    created_at: '2013-04-16 22:01:04'
+    updated_at: '2013-04-16 22:01:04'
+  Messages_20:
+    sender: noreply@rdb.com
+    recepient: manager
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "A New application for Investment Certificate has been received.\nfrom 'investor4' Please Assign it to a data administrator"
+    attachement: ''
+    token: fc0681e06955918888d46966a3e81c26aa177ebe
+    created_at: '2013-04-16 22:01:04'
+    updated_at: '2013-04-16 22:01:04'
+  Messages_21:
+    sender: noreply@rdb.com
+    recepient: investmentsupervisor
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "A New application for Investment Certificate has been received.\nfrom 'investor4' Please Assign it to a data administrator"
+    attachement: ''
+    token: d479925ce106a79122f25e7c9fb4c9e469aa6ea2
+    created_at: '2013-04-16 22:01:04'
+    updated_at: '2013-04-16 22:01:04'
+  Messages_22:
+    sender: noreply@rdb.com
+    recepient: investmentadmin
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "The Manager Has assigned you a new task to process an application for investment certificate\n\n				  Please start working on it asap. Thank you"
+    attachement: ''
+    token: 22a3fe422b5e12af7eb691e1a204150c13c0dc06
+    created_at: '2013-04-16 22:02:05'
+    updated_at: '2013-04-16 22:02:05'
+  Messages_23:
+    sender: investmentadmin
+    recepient: manager
+    sender_email: investmentcertadmin@smartlinesolutions.net
+    recepient_email: ''
+    cc_email: ''
+    message_subject: 'Want to Accept application'
+    message: 'i want to accept 4-1003-2013<br>'
+    attachement: ''
+    token: 6a743eebed2c739c428ae092d533fbc25d049a26
+    created_at: '2013-04-16 22:06:43'
+    updated_at: '2013-04-16 22:06:43'
+  Messages_24:
+    sender: noreply@rdb.com
+    recepient: investmentadmin
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: 'accept-Your request for permission processed. Manager/Supervisor comments > go ahead<br>'
+    attachement: ''
+    token: 0c163fadd39c5aa0611e1b0639e6534ad9524a89
+    created_at: '2013-04-16 22:08:56'
+    updated_at: '2013-04-16 22:08:56'
+  Messages_25:
+    sender: noreply@rdb.com
+    recepient: investor5
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "We are pleased to inform you that you application for investment certificate has been received. \n				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window\n				  in your account. Thank you"
+    attachement: ''
+    token: 6df03e19c1609abaeef11f1aa512ec20f5704df3
+    created_at: '2013-04-17 00:14:19'
+    updated_at: '2013-04-17 00:14:19'
+  Messages_26:
+    sender: noreply@rdb.com
+    recepient: manager
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "A New application for Investment Certificate has been received.\nfrom 'investor5' Please Assign it to a data administrator"
+    attachement: ''
+    token: cbd830b639ccc1ef6bb07c0cad3dab218eb4c70f
+    created_at: '2013-04-17 00:14:19'
+    updated_at: '2013-04-17 00:14:19'
+  Messages_27:
+    sender: noreply@rdb.com
+    recepient: investmentsupervisor
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "A New application for Investment Certificate has been received.\nfrom 'investor5' Please Assign it to a data administrator"
+    attachement: ''
+    token: 49ea2a75890bc1bb95a831a75d202cc50c2e6893
+    created_at: '2013-04-17 00:14:19'
+    updated_at: '2013-04-17 00:14:19'
+  Messages_28:
+    sender: noreply@rdb.com
+    recepient: bonie
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "The Manager Has assigned you a new task to process an application for investment certificate\n\n				  Please start working on it asap. Thank you"
+    attachement: ''
+    token: 17ea6f0c1df4421c4fa77ddd28bc676de9edcd28
+    created_at: '2013-04-17 15:56:02'
+    updated_at: '2013-04-17 15:56:02'
+  Messages_29:
+    sender: bonie@gmail.com
+    recepient: investor5
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: 'Please Correct data<br>'
+    attachement: ''
+    token: e0979ffcb09388cc5573caf9b6b3a73600e1b78b
+    created_at: '2013-04-17 16:24:59'
+    updated_at: '2013-04-17 16:24:59'
+  Messages_30:
+    sender: noreply@rbb.com
+    recepient: manager
+    sender_email: null
+    recepient_email: null
+    cc_email: null
+    message_subject: ''
+    message: "The Data Admin has sent a resubmission \n	                    request for processing Investment Certificate for\n										'investor5. This is Message Content ('Please Correct data<br>') sent to Investor by 'bonie@gmail.com' "
+    attachement: ''
+    token: c00ef899c470d798be24373e024ccea2e9916841
+    created_at: '2013-04-17 16:24:59'
+    updated_at: '2013-04-17 16:24:59'
+Notifications:
+  Notifications_1:
+    recepient: investor
+    message: 'Your application for investment certificate received'
+    token: null
+    created_at: '2013-04-16 20:16:16'
+    updated_at: '2013-04-16 20:16:16'
+  Notifications_2:
+    recepient: manager
+    message: 'New Application for Investment Certificate'
+    token: null
+    created_at: '2013-04-16 20:16:16'
+    updated_at: '2013-04-16 20:16:16'
+  Notifications_3:
+    recepient: investmentsupervisor
+    message: 'New Application for Investment Certificate'
+    token: null
+    created_at: '2013-04-16 20:16:17'
+    updated_at: '2013-04-16 20:16:17'
+  Notifications_4:
+    recepient: bonie
+    message: 'You have a New task!'
+    token: null
+    created_at: '2013-04-16 20:17:10'
+    updated_at: '2013-04-16 20:17:10'
+  Notifications_5:
+    recepient: bonie
+    message: 'accept-Your request for permission processed. '
+    token: null
+    created_at: '2013-04-16 20:23:25'
+    updated_at: '2013-04-16 20:23:25'
+  Notifications_6:
+    recepient: manager
+    message: 'Request processed. Permission to accept_application Granted to bonie'
+    token: null
+    created_at: '2013-04-16 20:23:25'
+    updated_at: '2013-04-16 20:23:25'
+  Notifications_7:
+    recepient: investor2
+    message: 'Your application for investment certificate received'
+    token: null
+    created_at: '2013-04-16 21:24:11'
+    updated_at: '2013-04-16 21:24:11'
+  Notifications_8:
+    recepient: manager
+    message: 'New Application for Investment Certificate'
+    token: null
+    created_at: '2013-04-16 21:24:11'
+    updated_at: '2013-04-16 21:24:11'
+  Notifications_9:
+    recepient: investmentsupervisor
+    message: 'New Application for Investment Certificate'
+    token: null
+    created_at: '2013-04-16 21:24:11'
+    updated_at: '2013-04-16 21:24:11'
+  Notifications_10:
+    recepient: bonie
+    message: 'You have a New task!'
+    token: null
+    created_at: '2013-04-16 21:25:01'
+    updated_at: '2013-04-16 21:25:02'
+  Notifications_11:
+    recepient: bonie
+    message: 'accept-Your request for permission processed. '
+    token: null
+    created_at: '2013-04-16 21:29:41'
+    updated_at: '2013-04-16 21:29:41'
+  Notifications_12:
+    recepient: manager
+    message: 'Request processed. Permission to accept_application Granted to bonie'
+    token: null
+    created_at: '2013-04-16 21:29:41'
+    updated_at: '2013-04-16 21:29:41'
+  Notifications_13:
+    recepient: investor3
+    message: 'Your application for investment certificate received'
+    token: null
+    created_at: '2013-04-16 21:43:34'
+    updated_at: '2013-04-16 21:43:34'
+  Notifications_14:
+    recepient: manager
+    message: 'New Application for Investment Certificate'
+    token: null
+    created_at: '2013-04-16 21:43:34'
+    updated_at: '2013-04-16 21:43:34'
+  Notifications_15:
+    recepient: investmentsupervisor
+    message: 'New Application for Investment Certificate'
+    token: null
+    created_at: '2013-04-16 21:43:34'
+    updated_at: '2013-04-16 21:43:34'
+  Notifications_16:
+    recepient: investmentadmin
+    message: 'You have a New task!'
+    token: null
+    created_at: '2013-04-16 21:44:26'
+    updated_at: '2013-04-16 21:44:26'
+  Notifications_17:
+    recepient: investmentadmin
+    message: 'accept-Your request for permission processed. '
+    token: null
+    created_at: '2013-04-16 21:49:47'
+    updated_at: '2013-04-16 21:49:47'
+  Notifications_18:
+    recepient: manager
+    message: 'Request processed. Permission to accept_application Granted to investmentadmin'
+    token: null
+    created_at: '2013-04-16 21:49:47'
+    updated_at: '2013-04-16 21:49:47'
+  Notifications_19:
+    recepient: investor4
+    message: 'Your application for investment certificate received'
+    token: null
+    created_at: '2013-04-16 22:01:04'
+    updated_at: '2013-04-16 22:01:04'
+  Notifications_20:
+    recepient: manager
+    message: 'New Application for Investment Certificate'
+    token: null
+    created_at: '2013-04-16 22:01:04'
+    updated_at: '2013-04-16 22:01:04'
+  Notifications_21:
+    recepient: investmentsupervisor
+    message: 'New Application for Investment Certificate'
+    token: null
+    created_at: '2013-04-16 22:01:04'
+    updated_at: '2013-04-16 22:01:04'
+  Notifications_22:
+    recepient: investmentadmin
+    message: 'You have a New task!'
+    token: null
+    created_at: '2013-04-16 22:02:05'
+    updated_at: '2013-04-16 22:02:05'
+  Notifications_23:
+    recepient: investmentadmin
+    message: 'accept-Your request for permission processed. '
+    token: null
+    created_at: '2013-04-16 22:08:56'
+    updated_at: '2013-04-16 22:08:56'
+  Notifications_24:
+    recepient: manager
+    message: 'Request processed. Permission to accept_application Granted to investmentadmin'
+    token: null
+    created_at: '2013-04-16 22:08:56'
+    updated_at: '2013-04-16 22:08:56'
+  Notifications_25:
+    recepient: investor5
+    message: 'Your application for investment certificate received'
+    token: null
+    created_at: '2013-04-17 00:14:19'
+    updated_at: '2013-04-17 00:14:19'
+  Notifications_26:
+    recepient: manager
+    message: 'New Application for Investment Certificate'
+    token: null
+    created_at: '2013-04-17 00:14:19'
+    updated_at: '2013-04-17 00:14:19'
+  Notifications_27:
+    recepient: investmentsupervisor
+    message: 'New Application for Investment Certificate'
+    token: null
+    created_at: '2013-04-17 00:14:19'
+    updated_at: '2013-04-17 00:14:19'
+  Notifications_28:
+    recepient: bonie
+    message: 'You have a New task!'
+    token: null
+    created_at: '2013-04-17 15:56:01'
+    updated_at: '2013-04-17 15:56:01'
+  Notifications_29:
+    recepient: investor5
+    message: 'Hi, You have been requested to resubmit your work for Investment Certificate Application. Check you email and inbox for more'
+    token: null
+    created_at: '2013-04-17 16:24:59'
+    updated_at: '2013-04-17 16:24:59'
+  Notifications_30:
+    recepient: bonie
+    message: 'Hi, Your request for document resubmission for client ''investor5'' was sent successfuly '
+    token: null
+    created_at: '2013-04-17 16:24:59'
+    updated_at: '2013-04-17 16:24:59'
+  Notifications_31:
+    recepient: manager
+    message: ' ''bonie'' has sent a resubmission request for application of Investment Certificates to investor5 '
+    token: null
+    created_at: '2013-04-17 16:24:59'
+    updated_at: '2013-04-17 16:24:59'
+Payment:
+  Payment_1:
+    business_id: '1'
+    payment_status: paid
+    slip_number: 1-1000-2013
+    token: a730a9b3feb2a86b04ab35ce30923f730a4aeaa7
+    created_at: '2013-04-16 20:25:20'
+    updated_at: '2013-04-16 20:25:20'
+    Creator: sfGuardUser_3
+    updated_by: bonie
+  Payment_2:
+    business_id: '2'
+    payment_status: paid
+    slip_number: 2-1001-2013
+    token: 4f9327e4ff8bbdae7fb7c74d8d42e0db71983f7e
+    created_at: '2013-04-16 21:30:26'
+    updated_at: '2013-04-16 21:30:26'
+    Creator: sfGuardUser_3
+    updated_by: bonie
+  Payment_3:
+    business_id: '3'
+    payment_status: paid
+    slip_number: 3-1002-2013
+    token: 8af35933ad64dfcfc7fcbef14756f2c58fae73bd
+    created_at: '2013-04-16 21:52:54'
+    updated_at: '2013-04-16 21:52:54'
+    Creator: sfGuardUser_4
+    updated_by: investmentadmin
+  Payment_4:
+    business_id: '4'
+    payment_status: paid
+    slip_number: 4-1003-2013
+    token: eca88ed4c288fdab4b96f89122674bb82080ffd1
+    created_at: '2013-04-16 22:09:30'
+    updated_at: '2013-04-16 22:09:30'
+    Creator: sfGuardUser_4
+    updated_by: investmentadmin
+Plannedperformance:
+  Plannedperformance_1:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Plannedperformance_2:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Plannedperformance_3:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Plannedperformance_4:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Plannedperformance_5:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Plannedperformance_6:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Plannedperformance_7:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Plannedperformance_8:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Plannedperformance_9:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Plannedperformance_10:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Plannedperformance_11:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Plannedperformance_12:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Plannedperformance_13:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Plannedperformance_14:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Plannedperformance_15:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Plannedperformance_16:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Plannedperformance_17:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Plannedperformance_18:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Plannedperformance_19:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Plannedperformance_20:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Plannedperformance_21:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Plannedperformance_22:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Plannedperformance_23:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Plannedperformance_24:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
 Portlets:
   Portlets_1:
     investment_certificate: "<b>Steps required to obtain investment certificate:</b><ul><li>Application for investment registration;</li><li>Notice of acceptance or refusal;</li><li>Issuance of investment registration certificate;</li></ul><span><br><b> The application for investment registration involves the following:</b><br>1.&nbsp;&nbsp; &nbsp;Application letter to the CEO of RDB requesting for investment registration;<br>2.&nbsp;&nbsp; &nbsp;Submission of a business plan or a feasibility study; <br>3.&nbsp;&nbsp; &nbsp;Shareholding structure sheet<br>4.&nbsp;&nbsp; &nbsp;Certificate of company incorporation <br><br><b>Your investment application letter should clearly indicate following:</b><br><br>1.&nbsp;&nbsp; &nbsp;The name and address of the proposed business enterprise, and&nbsp; its legal form;<br>2.&nbsp;&nbsp; &nbsp;The nature of the proposed business activity and the level of planned capital investment;<br>3.&nbsp;&nbsp; &nbsp;The estimated number of persons to be employed and categories of jobs to be created;<br>4.&nbsp;&nbsp;\r\n &nbsp;The nature and volume of waste which shall be generated by the \r\nenterprise’s operations, and the proposed methods, of its management;<br>5.&nbsp;&nbsp; &nbsp;The nature of support and facilitation which the investor is seeking from RDB.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br><b>Your investment business plan or feasibility study should clearly indicate following:</b><br>1.&nbsp;&nbsp;&nbsp; Executive summary of the project<br>2.&nbsp;&nbsp;&nbsp; Profile of the project promoter(s); <br>3.&nbsp;&nbsp; &nbsp;The project background; <br>4.&nbsp;&nbsp; &nbsp;Market study or market analysis;<br>5.&nbsp;&nbsp; &nbsp;Investment plan over five year period; <br>6.&nbsp;&nbsp;&nbsp; The level of loan and equity financing;<br>7.&nbsp;&nbsp; &nbsp;Projected statement of income and expenditure 5 years; <br>8.&nbsp;&nbsp; &nbsp;Projected balance sheet ( 5 years)) <br>9.&nbsp;&nbsp; &nbsp;Projected statement of cash flows (5 years) <br>10.&nbsp;&nbsp; &nbsp;Payback period, NPV and IRR <br>11.&nbsp;&nbsp; &nbsp;Loan amortization schedule for the bank loan (if any); <br>12.&nbsp;&nbsp; &nbsp;project implementation&nbsp; plan/ schedule) <br>13.&nbsp;&nbsp; &nbsp;Notes on assumption made in the business plan.<br><br><b>Notice of acceptance or refusal</b><br>Once your application for investment registration is approved we will send to you acceptance letter for your project. \r\n</span><br>"
@@ -8,36 +2356,129 @@ Portlets:
     updated_at: '2013-04-12 09:11:09'
     Creator: sfGuardUser_1
     updated_by: manager
+ProjectSummary:
+  ProjectSummary_1:
+    InvestmentApplication: InvestmentApplication_1
+    business_sector: Agriculture
+    business_sector_description: 'Support activities to agriculture and post-harvest crop activities'
+    techinical_viability: Good
+    planned_investment: '335'
+    employment_created: '0'
+    job_categories: manager
+    token: 3ee6d2cd7982ab9b91dafbbc6e708a0ca3d854b7
+    created_at: '2013-04-16 20:18:47'
+    updated_at: '2013-04-16 20:18:47'
+    Creator: sfGuardUser_3
+    updated_by: bonie
+  ProjectSummary_2:
+    InvestmentApplication: InvestmentApplication_2
+    business_sector: Tourism
+    business_sector_description: 'Specialized construction activities'
+    techinical_viability: good
+    planned_investment: '335'
+    employment_created: '7'
+    job_categories: managers
+    token: 26284792b497d08209e8c53bc6be39278252a908
+    created_at: '2013-04-16 21:26:51'
+    updated_at: '2013-04-16 21:26:51'
+    Creator: sfGuardUser_3
+    updated_by: bonie
+  ProjectSummary_3:
+    InvestmentApplication: InvestmentApplication_3
+    business_sector: Agriculture
+    business_sector_description: 'Maintenance and repair of motor vehicles'
+    techinical_viability: good
+    planned_investment: '335'
+    employment_created: '0'
+    job_categories: manager
+    token: 19865795547116ae27f09115e72c74d2c517d0b2
+    created_at: '2013-04-16 21:46:02'
+    updated_at: '2013-04-16 21:46:02'
+    Creator: sfGuardUser_4
+    updated_by: investmentadmin
+  ProjectSummary_4:
+    InvestmentApplication: InvestmentApplication_4
+    business_sector: Tourism
+    business_sector_description: 'Other monetary intermediation'
+    techinical_viability: Good
+    planned_investment: '335'
+    employment_created: '0'
+    job_categories: Manager
+    token: 562c49e27f7a7477a95dd6395b5c40c92bdd2d5d
+    created_at: '2013-04-16 22:05:40'
+    updated_at: '2013-04-16 22:05:40'
+    Creator: sfGuardUser_4
+    updated_by: investmentadmin
 Session:
-  Session_6evu437kmaa0lek01cc1mgfuu7:
-    id: 6evu437kmaa0lek01cc1mgfuu7
-    sessiondata: 'symfony/user/sfUser/lastRequest|i:1365750708;symfony/user/sfUser/authenticated|b:0;symfony/user/sfUser/credentials|a:0:{}symfony/user/sfUser/attributes|a:1:{s:30:"symfony/user/sfUser/attributes";a:1:{s:7:"referer";s:40:"http://localhost:81/frontend_dev.php/en/";}}symfony/user/sfUser/culture|s:2:"en";'
-    time: '1365750708'
+  Session_0r0sbqm981sh6c3knmdjouf1c4:
+    id: 0r0sbqm981sh6c3knmdjouf1c4
+    sessiondata: 'symfony/user/sfUser/lastRequest|i:1366211280;symfony/user/sfUser/authenticated|b:1;symfony/user/sfUser/credentials|a:0:{}symfony/user/sfUser/attributes|a:2:{s:30:"symfony/user/sfUser/attributes";a:2:{s:13:"first_request";b:0;s:19:"session_business_id";s:1:"6";}s:19:"sfGuardSecurityUser";a:1:{s:7:"user_id";s:2:"11";}}symfony/user/sfUser/culture|s:2:"en";'
+    time: '1366211281'
     token: null
-  Session_96idqmkbm43ubggmcnmbcsra24:
-    id: 96idqmkbm43ubggmcnmbcsra24
+  Session_0u7vu6jgu2r93od82ghmtkkij5:
+    id: 0u7vu6jgu2r93od82ghmtkkij5
     sessiondata: ''
-    time: '1362035549'
+    time: '1366206978'
     token: null
-  Session_dqbn92b3q92cvknev7euajmtj6:
-    id: dqbn92b3q92cvknev7euajmtj6
+  Session_29t6rdq3bbdhjqockbfafeps62:
+    id: 29t6rdq3bbdhjqockbfafeps62
     sessiondata: ''
-    time: '1365750164'
+    time: '1366206990'
     token: null
-  Session_ieoaucimet8rkkk3sk63f0r8i7:
-    id: ieoaucimet8rkkk3sk63f0r8i7
-    sessiondata: 'symfony/user/sfUser/lastRequest|i:1362035933;symfony/user/sfUser/authenticated|b:1;symfony/user/sfUser/credentials|a:1:{i:0;s:16:"investmentassign";}symfony/user/sfUser/attributes|a:5:{s:30:"symfony/user/sfUser/attributes";a:0:{}s:12:"admin_module";a:3:{s:16:"sfGuardUser.sort";a:2:{i:0;N;i:1;N;}s:17:"sfGuardGroup.sort";a:2:{i:0;N;i:1;N;}s:22:"sfGuardPermission.sort";a:2:{i:0;N;i:1;N;}}s:25:"symfony/user/sfUser/flash";a:0:{}s:32:"symfony/user/sfUser/flash/remove";a:0:{}s:19:"sfGuardSecurityUser";a:1:{s:7:"user_id";s:1:"7";}}symfony/user/sfUser/culture|s:2:"en";'
-    time: '1362035934'
-    token: null
-  Session_ne6dkoonqb6imdf6hdn9foplf7:
-    id: ne6dkoonqb6imdf6hdn9foplf7
+  Session_3ih5bfs39li4rg0kogvlkrr4l4:
+    id: 3ih5bfs39li4rg0kogvlkrr4l4
     sessiondata: ''
-    time: '1362035527'
+    time: '1366208740'
     token: null
-  Session_ulh8svok7dvdde31ctbpfta6k7:
-    id: ulh8svok7dvdde31ctbpfta6k7
-    sessiondata: 'symfony/user/sfUser/lastRequest|i:1365750746;symfony/user/sfUser/authenticated|b:1;symfony/user/sfUser/credentials|a:1:{i:0;s:9:"assignJob";}symfony/user/sfUser/attributes|a:2:{s:30:"symfony/user/sfUser/attributes";a:1:{s:13:"first_request";b:0;}s:19:"sfGuardSecurityUser";a:1:{s:7:"user_id";s:1:"1";}}symfony/user/sfUser/culture|s:2:"en";'
-    time: '1365750747'
+  Session_6j57vc4jucrc5jqsans62q4135:
+    id: 6j57vc4jucrc5jqsans62q4135
+    sessiondata: ''
+    time: '1366206370'
+    token: null
+  Session_9ef5q1re45b7ee18mpp1pmjaa1:
+    id: 9ef5q1re45b7ee18mpp1pmjaa1
+    sessiondata: ''
+    time: '1366208717'
+    token: null
+  Session_b4osifv795fgitoo0o81eumib7:
+    id: b4osifv795fgitoo0o81eumib7
+    sessiondata: 'symfony/user/sfUser/lastRequest|i:1366208718;symfony/user/sfUser/authenticated|b:0;symfony/user/sfUser/credentials|a:0:{}symfony/user/sfUser/attributes|a:1:{s:30:"symfony/user/sfUser/attributes";a:2:{s:13:"first_request";b:0;s:7:"referer";s:39:"http://localhost:81/backend_dev.php/en/";}}symfony/user/sfUser/culture|s:2:"en";'
+    time: '1366208718'
+    token: null
+  Session_hu4jru75p075tl0as82dr1usg5:
+    id: hu4jru75p075tl0as82dr1usg5
+    sessiondata: ''
+    time: '1366208721'
+    token: null
+  Session_ijg3ucrvnbt9un85ufctqo18u1:
+    id: ijg3ucrvnbt9un85ufctqo18u1
+    sessiondata: ''
+    time: '1366206410'
+    token: null
+  Session_jfk9ff7rvr8g29b2bcajgp4lm5:
+    id: jfk9ff7rvr8g29b2bcajgp4lm5
+    sessiondata: ''
+    time: '1366206442'
+    token: null
+  Session_jqalcspkt9ffa2d6snr0fklu03:
+    id: jqalcspkt9ffa2d6snr0fklu03
+    sessiondata: ''
+    time: '1366206401'
+    token: null
+  Session_oevra9ui10s8soqj4otvnd4i93:
+    id: oevra9ui10s8soqj4otvnd4i93
+    sessiondata: ''
+    time: '1366206452'
+    token: null
+  Session_tkqma2uhfm1ffrouungj4qo690:
+    id: tkqma2uhfm1ffrouungj4qo690
+    sessiondata: ''
+    time: '1366206910'
+    token: null
+  Session_v73t78jvlnalogcilet92od0q2:
+    id: v73t78jvlnalogcilet92od0q2
+    sessiondata: ''
+    time: '1366206900'
     token: null
 sfGuardGroup:
   sfGuardGroup_1:
@@ -128,9 +2569,9 @@ sfGuardUser:
     password: manager
     is_active: true
     is_super_admin: false
-    last_login: '2013-04-12 09:02:44'
+    last_login: '2013-04-17 15:55:10'
     created_at: '2013-02-11 14:40:30'
-    updated_at: '2013-04-12 09:02:44'
+    updated_at: '2013-04-17 15:55:10'
   sfGuardUser_2:
     first_name: Investor
     last_name: Investor
@@ -141,9 +2582,9 @@ sfGuardUser:
     password: investor
     is_active: true
     is_super_admin: false
-    last_login: '2013-02-17 19:48:49'
+    last_login: '2013-04-17 15:46:50'
     created_at: '2013-02-11 14:47:34'
-    updated_at: '2013-02-17 19:48:49'
+    updated_at: '2013-04-17 15:46:50'
   sfGuardUser_3:
     first_name: Bonie
     last_name: Bonie
@@ -154,9 +2595,9 @@ sfGuardUser:
     password: bonie
     is_active: true
     is_super_admin: false
-    last_login: '2013-02-11 19:20:49'
+    last_login: '2013-04-17 15:56:30'
     created_at: '2013-02-11 15:53:27'
-    updated_at: '2013-02-11 19:20:49'
+    updated_at: '2013-04-17 15:56:30'
   sfGuardUser_4:
     first_name: Investment
     last_name: admin
@@ -167,9 +2608,9 @@ sfGuardUser:
     password: investmentadmin
     is_active: true
     is_super_admin: false
-    last_login: '2013-02-13 11:52:12'
+    last_login: '2013-04-17 15:47:33'
     created_at: '2013-02-11 18:53:19'
-    updated_at: '2013-02-13 11:52:12'
+    updated_at: '2013-04-17 15:47:33'
   sfGuardUser_5:
     first_name: eia
     last_name: admin
@@ -180,9 +2621,9 @@ sfGuardUser:
     password: eiaadmin
     is_active: true
     is_super_admin: false
-    last_login: '2013-02-12 10:23:55'
+    last_login: '2013-04-16 22:57:24'
     created_at: '2013-02-11 18:56:37'
-    updated_at: '2013-02-12 10:23:55'
+    updated_at: '2013-04-16 22:57:24'
   sfGuardUser_6:
     first_name: Investor2
     last_name: Investor2
@@ -193,9 +2634,9 @@ sfGuardUser:
     password: investor2
     is_active: true
     is_super_admin: false
-    last_login: '2013-02-13 09:38:16'
+    last_login: '2013-04-16 23:49:19'
     created_at: '2013-02-13 09:37:05'
-    updated_at: '2013-02-13 09:38:16'
+    updated_at: '2013-04-16 23:49:19'
   sfGuardUser_7:
     first_name: Investment
     last_name: Supervisor
@@ -206,9 +2647,9 @@ sfGuardUser:
     password: investmentsupervisor
     is_active: true
     is_super_admin: false
-    last_login: '2013-02-28 08:12:29'
+    last_login: '2013-04-16 23:08:10'
     created_at: '2013-02-28 07:51:26'
-    updated_at: '2013-02-28 08:12:29'
+    updated_at: '2013-04-16 23:08:10'
   sfGuardUser_8:
     first_name: Eia
     last_name: Supervisor
@@ -219,9 +2660,9 @@ sfGuardUser:
     password: eiasupervisor
     is_active: true
     is_super_admin: false
-    last_login: null
+    last_login: '2013-04-16 22:57:08'
     created_at: '2013-02-28 07:52:58'
-    updated_at: '2013-02-28 07:52:58'
+    updated_at: '2013-04-16 22:57:08'
   sfGuardUser_9:
     first_name: Investor3
     last_name: Investor3
@@ -232,9 +2673,9 @@ sfGuardUser:
     password: investor3
     is_active: true
     is_super_admin: false
-    last_login: null
+    last_login: '2013-04-16 21:41:15'
     created_at: '2013-04-08 12:29:39'
-    updated_at: '2013-04-08 12:29:39'
+    updated_at: '2013-04-16 21:41:15'
   sfGuardUser_10:
     first_name: Investor4
     last_name: Investor4
@@ -245,9 +2686,9 @@ sfGuardUser:
     password: investor4
     is_active: true
     is_super_admin: false
-    last_login: null
+    last_login: '2013-04-16 21:59:09'
     created_at: '2013-04-08 12:30:28'
-    updated_at: '2013-04-08 12:30:28'
+    updated_at: '2013-04-16 21:59:09'
   sfGuardUser_11:
     first_name: Investor5
     last_name: Investor5
@@ -258,9 +2699,22 @@ sfGuardUser:
     password: investor5
     is_active: true
     is_super_admin: false
-    last_login: null
+    last_login: '2013-04-17 16:25:40'
     created_at: '2013-04-08 12:31:01'
-    updated_at: '2013-04-08 12:31:01'
+    updated_at: '2013-04-17 16:25:40'
+  sfGuardUser_12:
+    first_name: Investor6
+    last_name: Investor6
+    email_address: investor6@gmail.com
+    username: investor6
+    algorithm: sha1
+    salt: d0fdb1fe72ecc86c2c15538341a6b2f4
+    password: investor6
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-04-17 15:46:10'
+    created_at: '2013-04-17 15:45:52'
+    updated_at: '2013-04-17 15:46:10'
 sfGuardUserGroup:
   sfGuardUserGroup_1_2:
     User: sfGuardUser_1
@@ -323,3 +2777,637 @@ sfKoreroChannel:
     name: General
     description: 'General chat channel'
     slug: general
+Startupexpenses:
+  Startupexpenses_1:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Startupexpenses_2:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Startupexpenses_3:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Startupexpenses_4:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Startupexpenses_5:
+    InvestmentApplication: InvestmentApplication_1
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Startupexpenses_6:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Startupexpenses_7:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Startupexpenses_8:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Startupexpenses_9:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Startupexpenses_10:
+    InvestmentApplication: InvestmentApplication_2
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Startupexpenses_11:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Startupexpenses_12:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Startupexpenses_13:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Startupexpenses_14:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Startupexpenses_15:
+    InvestmentApplication: InvestmentApplication_3
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Startupexpenses_16:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Startupexpenses_17:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Startupexpenses_18:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Startupexpenses_19:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Startupexpenses_20:
+    InvestmentApplication: InvestmentApplication_4
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Startupexpenses_21:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Startupexpenses_22:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Startupexpenses_23:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Startupexpenses_24:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Startupexpenses_25:
+    InvestmentApplication: InvestmentApplication_5
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Startupexpenses_26:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Startupexpenses_27:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Startupexpenses_28:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Startupexpenses_29:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Startupexpenses_30:
+    InvestmentApplication: InvestmentApplication_6
+    year1: '0'
+    year2: '0'
+    year3: '0'
+    year4: '0'
+    year5: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+Structurefinancial:
+  Structurefinancial_1:
+    InvestmentApplication: InvestmentApplication_1
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Structurefinancial_2:
+    InvestmentApplication: InvestmentApplication_1
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Structurefinancial_3:
+    InvestmentApplication: InvestmentApplication_1
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Structurefinancial_4:
+    InvestmentApplication: InvestmentApplication_1
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '2'
+    updated_by: investor
+  Structurefinancial_5:
+    InvestmentApplication: InvestmentApplication_2
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Structurefinancial_6:
+    InvestmentApplication: InvestmentApplication_2
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Structurefinancial_7:
+    InvestmentApplication: InvestmentApplication_2
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Structurefinancial_8:
+    InvestmentApplication: InvestmentApplication_2
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '6'
+    updated_by: investor2
+  Structurefinancial_9:
+    InvestmentApplication: InvestmentApplication_3
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Structurefinancial_10:
+    InvestmentApplication: InvestmentApplication_3
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Structurefinancial_11:
+    InvestmentApplication: InvestmentApplication_3
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Structurefinancial_12:
+    InvestmentApplication: InvestmentApplication_3
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '9'
+    updated_by: investor3
+  Structurefinancial_13:
+    InvestmentApplication: InvestmentApplication_4
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Structurefinancial_14:
+    InvestmentApplication: InvestmentApplication_4
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Structurefinancial_15:
+    InvestmentApplication: InvestmentApplication_4
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Structurefinancial_16:
+    InvestmentApplication: InvestmentApplication_4
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '10'
+    updated_by: investor4
+  Structurefinancial_17:
+    InvestmentApplication: InvestmentApplication_5
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Structurefinancial_18:
+    InvestmentApplication: InvestmentApplication_5
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Structurefinancial_19:
+    InvestmentApplication: InvestmentApplication_5
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Structurefinancial_20:
+    InvestmentApplication: InvestmentApplication_5
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '11'
+    updated_by: investor5
+  Structurefinancial_21:
+    InvestmentApplication: InvestmentApplication_6
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Structurefinancial_22:
+    InvestmentApplication: InvestmentApplication_6
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Structurefinancial_23:
+    InvestmentApplication: InvestmentApplication_6
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+  Structurefinancial_24:
+    InvestmentApplication: InvestmentApplication_6
+    local_source: '0'
+    foreign_source: '0'
+    token: null
+    created_at: '2013-03-11 18:19:13'
+    updated_at: '2013-03-11 18:19:13'
+    created_by: '12'
+    updated_by: investor6
+TaskAssignment:
+  TaskAssignment_1:
+    sfGuardUser: sfGuardUser_3
+    InvestmentApplication: InvestmentApplication_1
+    instructions: 'Please do a good job<br>'
+    duedate: '2013-04-17 00:00:00'
+    work_status: complete
+    token: eddded5b2f467daa1998eb0074f0f92834e815ea
+    created_at: '2013-04-16 20:16:57'
+    updated_at: '2013-04-16 20:16:57'
+    Creator: sfGuardUser_1
+    updated_by: manager
+  TaskAssignment_2:
+    sfGuardUser: sfGuardUser_3
+    InvestmentApplication: InvestmentApplication_2
+    instructions: 'do work<br>'
+    duedate: '2013-04-17 00:00:00'
+    work_status: complete
+    token: 1d4007180731f017b93f5eddf5ac90cf2f087e0a
+    created_at: '2013-04-16 21:24:48'
+    updated_at: '2013-04-16 21:24:48'
+    Creator: sfGuardUser_1
+    updated_by: manager
+  TaskAssignment_3:
+    sfGuardUser: sfGuardUser_4
+    InvestmentApplication: InvestmentApplication_3
+    instructions: 'do a good job<br>'
+    duedate: '2013-04-17 00:00:00'
+    work_status: complete
+    token: 107de30f354fe405fdeb374f9b796dbd32231154
+    created_at: '2013-04-16 21:44:12'
+    updated_at: '2013-04-16 21:44:12'
+    Creator: sfGuardUser_1
+    updated_by: manager
+  TaskAssignment_4:
+    sfGuardUser: sfGuardUser_4
+    InvestmentApplication: InvestmentApplication_4
+    instructions: 'please&nbsp; do a good job<br>'
+    duedate: '2013-04-18 00:00:00'
+    work_status: complete
+    token: 0d7cc70dcfcf08fba25313b4e42277d8d310ca3d
+    created_at: '2013-04-16 22:01:51'
+    updated_at: '2013-04-16 22:01:51'
+    Creator: sfGuardUser_1
+    updated_by: manager
+  TaskAssignment_5:
+    sfGuardUser: sfGuardUser_3
+    InvestmentApplication: InvestmentApplication_5
+    instructions: 'Please do some work<br>'
+    duedate: '2013-04-18 00:00:00'
+    work_status: started
+    token: 9a6b8ca690265a8e413ffd2dacce91d109a991ad
+    created_at: '2013-04-17 15:55:47'
+    updated_at: '2013-04-17 15:55:47'
+    Creator: sfGuardUser_1
+    updated_by: manager

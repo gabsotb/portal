@@ -23,4 +23,18 @@ class TaxExemptionDetailsTable extends Doctrine_Table
 	 //
 	 return $query;
 	}
+	/////
+	///////a report function to calculate tax requests granted by rdb team
+	public function calculateExemptionsGranted()
+	{
+	 $total = 0;
+	 $status = "granted";
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select count(*) as total from  tax_exemption_details where status = ' $status' ");
+	 foreach($query  as $q)
+	 {
+	  $total = $q['total'];
+	 }
+	 //
+	 return $total;
+	}
 }

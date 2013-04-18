@@ -917,3 +917,14 @@ TaxExemptionItems:
   import_duties: {type: integer, notnull: false}
  relations:
   TaxExemptionDetails: {local: tax_details_id, foreign: id, foreignAlias: TaxDetailsItems, onDelete: CASCADE}
+####################################### Reporting Tables #############################################
+CertificationReport:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  investment_certificates: {type: integer, notnull: false}
+  eia_certificates: {type: integer, notnull: false}
+  tax_exemptions: {type: integer, notnull: false}

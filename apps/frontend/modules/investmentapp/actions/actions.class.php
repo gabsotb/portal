@@ -382,5 +382,11 @@ class investmentappActions extends sfActions
 	//$this->redirect('investmentapp/new');
 	//print "Value is ".$value ;exit
   }
+  //this function is used to populate the graph data
+  public function populateGraph()
+  {
+    $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT COUNT(serial_number) from investment_certificate");
+	
+  }
   
 }
