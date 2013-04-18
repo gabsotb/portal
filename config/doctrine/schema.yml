@@ -615,8 +615,8 @@ EITaskAssignment:
   stage: {type: string, notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
-  EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: ApplicationAssigment , onDelete: CASCADE}
-  sfGuardUser: {local: user_assigned, foreign: id, foreignAlias: GuardEIAssignment}  
+  EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: EIApplicationAssigment , onDelete: CASCADE}
+  sfGuardUser: {local: user_assigned, foreign: id, foreignAlias: GuardEIAssignments}  
 #Records site visit day
 EIASiteVisit:
  actAs:

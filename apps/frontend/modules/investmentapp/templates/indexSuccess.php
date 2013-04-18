@@ -4,11 +4,23 @@ $investment_certs = Doctrine_Core::getTable('InvestmentCertificate')->calculateC
 $eia_certs = Doctrine_Core::getTable('EIACertificate')->calculateCertificatesIssued();
 $tax_exemption = Doctrine_Core::getTable('TaxExemptionDetails')->calculateExemptionsGranted(); 
 //some small maths
+$ic = 0;
+$eia =0 ;
+$tax = 0;
 $total = $investment_certs + $eia_certs + $tax_exemption ;
-
+//avoid division by zero
+if($total = 0)
+{
+ //do not divide just pass default values
+ 
+}
+else if($total > 0)
+{
 $ic = ($investment_certs / $total) * 100 ;
 $eia = ( $eia_certs / $total) * 100;
 $tax = ( $tax_exemption / $total) * 100 ;
+}
+
 /////
  ?>
 	
@@ -178,9 +190,23 @@ $(function () {
 									<h4><i class="icon-signal"></i><?php echo __('Graphical Analysis - RDB Overall Perfomance Representation') ?></h4>
 											
 				</div>
-				<div id="cont" class="widget-body">
-					
-				</div>
+				<?php //if there is no data do not display a graph
+				 if($total == 0):?>
+				  <div id="graph_error"  class="widget-body">
+					   <div class="alert alert-block alert-error fade in">
+										<h4 class="alert-heading"><?php echo __('Graph Data Loading Problem') ?></h4>
+										<p>
+											<?php echo __('Sorry, There is no Graph data available. No Investment Certificates or EIA Certificates Issued. Try Later') ?>
+										</p>
+										
+					  </div>
+				   </div>
+				 <?php endif; ?>
+				<?php if($total > 0): ?>
+					<div id="cont"  class="widget-body">
+						
+					</div>
+				<?php endif; ?>
 			</div> <!-- END Graph-->
 			</div>
 			
