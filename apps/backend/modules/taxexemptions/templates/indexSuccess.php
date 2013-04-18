@@ -7,80 +7,49 @@ $(function () {
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'cont',
-                type: 'column',
-				height: 500,
-				width: 700
+                type: 'line',
+                marginRight: 130,
+                marginBottom: 25
             },
             title: {
-                text: '<?php echo __('RDB Tasks Performance Analysis. Year 2013') ?>'
+                text: 'Graph Representation of Tax Exemptions Requests Processed, Year 2013',
+                x: -20 //center
             },
             subtitle: {
-                text: '<?php echo __('Source: Rwanda Development Board') ?>'
+                text: 'Source: RDB  Investor E-portal',
+                x: -20
             },
             xAxis: {
-                categories: [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
-                ]
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
             },
             yAxis: {
-                min: 0,
                 title: {
-                    text: '<?php echo __('Number of Items Processed') ?>'
-                }
-            },
-			credits:
-				{
-					enabled: false
-				},
-            legend: {
-                layout: 'vertical',
-                backgroundColor: '#FFFFFF',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                shadow: true
+                    text: 'No of Processed Requests'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
             },
             tooltip: {
                 formatter: function() {
-                    return ''+
-                        this.x +': '+ this.y +' ';
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        this.x +': '+ this.y +'°C';
                 }
             },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -10,
+                y: 100,
+                borderWidth: 0
             },
-                series: [{
-                name: '<?php echo __('Investment Certificates') ?>',
-                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-    
-            }, {
-                name: '<?php echo __('EIA Certificates') ?>',
-                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-    
-            }, {
-                name: '<?php echo __('Tax Exemptions') ?>',
-                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-    
-            }, {
-                name: '<?php echo __('Visa Issued') ?>',
-                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-    
+            series: [{
+                name: 'Tax Exemptions Requests',
+                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
             }]
         });
     });
@@ -148,9 +117,9 @@ $(function () {
 								 <table class="table table-striped table-bordered" id="investmentcertsadmin">
 									  <thead>
 										<tr>
-										  <th><?php echo __('Company name') ?></th>
-										  <th><?php echo __('Investment Certificate') ?></th>
-										  <th><?php echo __('Company Tin')?></th>
+										  <th><?php echo __('COMPANY NAME') ?></th>
+										  <th><?php echo __('INVESTMENT CERTIFICATE NO') ?></th>
+										  <th><?php echo __('TIN NUMBER')?></th>
 										  <th><?php echo __('Action') ?></th>
 										</tr>
 									  </thead>
@@ -189,23 +158,21 @@ $(function () {
 									<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
 										<li>
 											<span class="label label-success"><i class="icon-bell"></i></span>
-											<span>New user registered.</span>
+											<span>A New Tax Exemptions Request.</span>
 											<span class="small italic">Just now</span>
 										</li>
 										<li>
 											<span class="label label-success"><i class="icon-bell"></i></span>
-											<span>New order received.</span>
+											<span>A New Tax Exemptions Request</span>
 											<span class="small italic">15 mins ago</span>
 										</li>
 										<li>
 											<span class="label label-warning"><i class="icon-bullhorn"></i></span>
-											<span>Alerting a user account balance.</span>
+											<span>Tax Exemption Request Processed</span>
 											<span class="small italic">2 hrs ago</span>
 										</li>	
 									</ul>
-									<div class="space5"></div>
-									<a href="#" class="pull-right">View all notifications</a>										
-									<div class="clearfix no-top-space no-bottom-space"></div>
+									
 								</div>
 							</div>
 							<!-- END NOTIFICATIONS PORTLET-->

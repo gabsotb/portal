@@ -25,7 +25,7 @@
  * @property Doctrine_Collection $sfKoreroMessage
  * @property Doctrine_Collection $GuardDocumentAssignment
  * @property Doctrine_Collection $GuardBriefDecision
- * @property Doctrine_Collection $GuardEIAssignment
+ * @property Doctrine_Collection $GuardEIAssignments
  * @property Doctrine_Collection $GuardImpactPass
  * @property Doctrine_Collection $GuardTorStatus
  * @property Doctrine_Collection $GuardComments
@@ -50,7 +50,7 @@
  * @method Doctrine_Collection   getSfKoreroMessage()         Returns the current record's "sfKoreroMessage" collection
  * @method Doctrine_Collection   getGuardDocumentAssignment() Returns the current record's "GuardDocumentAssignment" collection
  * @method Doctrine_Collection   getGuardBriefDecision()      Returns the current record's "GuardBriefDecision" collection
- * @method Doctrine_Collection   getGuardEIAssignment()       Returns the current record's "GuardEIAssignment" collection
+ * @method Doctrine_Collection   getGuardEIAssignments()      Returns the current record's "GuardEIAssignments" collection
  * @method Doctrine_Collection   getGuardImpactPass()         Returns the current record's "GuardImpactPass" collection
  * @method Doctrine_Collection   getGuardTorStatus()          Returns the current record's "GuardTorStatus" collection
  * @method Doctrine_Collection   getGuardComments()           Returns the current record's "GuardComments" collection
@@ -74,7 +74,7 @@
  * @method sfGuardUser           setSfKoreroMessage()         Sets the current record's "sfKoreroMessage" collection
  * @method sfGuardUser           setGuardDocumentAssignment() Sets the current record's "GuardDocumentAssignment" collection
  * @method sfGuardUser           setGuardBriefDecision()      Sets the current record's "GuardBriefDecision" collection
- * @method sfGuardUser           setGuardEIAssignment()       Sets the current record's "GuardEIAssignment" collection
+ * @method sfGuardUser           setGuardEIAssignments()      Sets the current record's "GuardEIAssignments" collection
  * @method sfGuardUser           setGuardImpactPass()         Sets the current record's "GuardImpactPass" collection
  * @method sfGuardUser           setGuardTorStatus()          Sets the current record's "GuardTorStatus" collection
  * @method sfGuardUser           setGuardComments()           Sets the current record's "GuardComments" collection
@@ -191,7 +191,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'processed_by'));
 
-        $this->hasMany('EITaskAssignment as GuardEIAssignment', array(
+        $this->hasMany('EITaskAssignment as GuardEIAssignments', array(
              'local' => 'id',
              'foreign' => 'user_assigned'));
 

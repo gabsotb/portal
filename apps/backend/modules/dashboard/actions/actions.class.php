@@ -1236,6 +1236,13 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 		$this->redirect('eiaAssessmentDecision/edit?id='.$accessments[0]['id']);
 	
 	}
+	//reporting functions
+	//calculate the number of investment certificates issued
+	public function getInvestmentCertificates()
+	{
+	 
+	}
+	
   
 }
 

@@ -1,3 +1,26 @@
+<?php
+$investment_certs = Doctrine_Core::getTable('InvestmentCertificate')->calculateCertificatesIssued();
+$eia_certs = Doctrine_Core::getTable('EIACertificate')->calculateCertificatesIssued();
+$tax_exemption = Doctrine_Core::getTable('TaxExemptionDetails')->calculateExemptionsGranted(); 
+//some small maths
+$ic = 0;
+$eia =0 ;
+$tax = 0;
+$total = $investment_certs + $eia_certs + $tax_exemption ;
+//avoid division by zero
+if($total = 0)
+{
+ //do not divide just pass default values
+ 
+}
+else if($total > 0)
+{
+$ic = ($investment_certs / $total) * 100 ;
+$eia = ( $eia_certs / $total) * 100;
+$tax = ( $tax_exemption / $total) * 100 ;
+}
+?>
+
 
 <!--some Javascripts for Loading High Charts Graph -->
  <script type="text/javascript">
@@ -67,19 +90,19 @@ $(function () {
             },
                 series: [{
                 name: '<?php echo __('Investment Certificates') ?>',
-                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                data: [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,0]
     
             }, {
                 name: '<?php echo __('EIA Certificates') ?>',
-                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+                data: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,0]
     
             }, {
                 name: '<?php echo __('Tax Exemptions') ?>',
-                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0]
     
             }, {
                 name: '<?php echo __('Visa Issued') ?>',
-                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0]
     
             }]
         });
@@ -138,82 +161,49 @@ $(function () {
 	  
 	  
 		<!-- BEGIN OVERVIEW STATISTIC BARS-->
-							<div class="row-fluid stats-overview-cont">
-								<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat ok huge">
-											<span class="line-chart">5, 6, 7, 11, 14, 10, 15, 19, 15, 2</span>
-											<div class="percent">+66%</div>
-										</div>
-										<div class="details">
-											<div class="title"><?php echo __('Total Registered Investors') ?></div>
-											<div class="numbers">1360</div>
-										</div>
-										<div class="progress progress-info">
-											<div class="bar" style="width: 66%"></div>
-										</div>
-									</div>
+							<div class="row-fluid">
+								 <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+							<div class="circle-stat block">
+								<div class="visual">
+									<input class="knobify" data-width="115" data-thickness=".2" data-skin="tron" data-displayprevious="true" value="6" data-max="100" data-min="-100" />
 								</div>
-								<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat good huge">
-											<span class="line-chart">2,6,8,12, 11, 15, 16, 11, 16, 11, 10, 3, 7, 8, 12, 19</span>
-											<div class="percent">+16%</div>
-										</div>
-										<div class="details">
-											<div class="title"><?php echo __('Total Investment Certificates Issued') ?></div>
-											<div class="numbers">1800</div>
-											<div class="progress progress-warning">
-												<div class="bar" style="width: 16%"></div>
-											</div>
-										</div>
-									</div>
+								<div class="details">
+									<div class="title"><?php echo __('Tota Investment Certificates Issued')?> <i class="icon-caret-up"></i></div>
+									<div class="number"><?php echo $investment_certs;  ?></div>
+									<span class="label label-info"><i class="icon-certificate"></i><?php echo $ic ?>%</span>
 								</div>
-								<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat bad huge">
-											<span class="line-chart">2,6,8,11, 14, 11, 12, 13, 15, 12, 9, 5, 11, 12, 15, 9,3</span>
-											<div class="percent">+6%</div>
-										</div>
-										<div class="details">
-											<div class="title"><?php echo __('Total EIA Certificates Issued') ?></div>
-											<div class="numbers">509</div>
-											<div class="progress progress-success">
-												<div class="bar" style="width: 16%"></div>
-											</div>
-										</div>
-									</div>
+							</div>
+						</div>
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+							<div class="circle-stat block">
+								<div class="visual">
+									<input class="knobify" data-width="115" data-fgcolor="#66EE66" data-thickness=".2" data-skin="tron" data-displayprevious="true" value="+19" data-max="100" data-min="-100" />
 								</div>
-								<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat bad huge">
-											<span class="line-chart">1,7,9,11, 14, 12, 6, 7, 4, 2, 9, 8, 11, 12, 14, 12, 10</span>
-											<div class="percent">+15%</div>
-										</div>
-										<div class="details">
-											<div class="title"><?php echo __('Tax Exemptions Granted') ?></div>
-											<div class="numbers">2090</div>
-											<div class="progress progress-success">
-												<div class="bar" style="width: 15%"></div>
-											</div>
-										</div>
-									</div>
+								<div class="details">
+									<div class="title"><?php echo __('Tota EIA Certificates Issued') ?> <i class="icon-caret-up"></i></div>
+									<div class="number"><?php
+									   echo $eia_certs;
+									?></div>
+									<span class="label label-success"><i class="icon-certificate"></i><?php echo $eia ?>%</span>
+									
 								</div>
-									<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat bad huge">
-											<span class="line-chart">1,7,9,11, 14, 12, 6, 7, 4, 2, 9, 8, 11, 12, 14, 12, 10</span>
-											<div class="percent">+15%</div>
-										</div>
-										<div class="details">
-											<div class="title"><?php echo __('Visa Issued by Immigration') ?></div>
-											<div class="numbers">2090</div>
-											<div class="progress progress-success">
-												<div class="bar" style="width: 15%"></div>
-											</div>
-										</div>
-									</div>
+							</div>
+						</div>
+					<div class="span3 responsive" data-tablet="span6 fix-margin" data-desktop="span3">
+							<div class="circle-stat block">
+								<div class="visual">
+									<input class="knobify" data-width="115" data-fgcolor="#e23e29" data-thickness=".2" data-skin="tron" data-displayprevious="true" value="-12" data-max="100" data-min="-100" />
 								</div>
+								<div class="details">
+									<div class="title"><?php echo __('Tax Exemptions Granted') ?> <i class="icon-caret-down down"></i></div>
+									<div class="number"><?php 
+									echo $tax_exemption;?></div>
+									<span class="label label-warning"><i class="icon-certificate"></i><?php echo $tax ?> % </span>
+								</div>
+							</div>
+						</div>
+						
 							</div>
 			</div>
 		<!-- END STATISTICS -->
@@ -396,6 +386,16 @@ $(function () {
 						 <?php 
 						  $user = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
 						 $notification = Doctrine_Core::getTable('Notifications')->getNotifications($user);?>
+						 <?php if($notification == null):?>
+						  <div class="alert alert-block alert-error fade in">
+										
+										<p>
+											<?php echo __('Sorry, No New Notifications') ?>
+										</p>
+										
+					        </div>
+						 <?php endif; ?>
+						 <?php if($notification != null): ?>
 						 <?php foreach($notification as $notify): ?>
 							   <li>
 									<span class="label label-success"><i class="icon-bell"></i></span>
@@ -408,7 +408,8 @@ $(function () {
 									
 									?></span>
 								</li>
-						<?php endforeach; ?>		
+						<?php endforeach; ?>	
+                         <?php endif; ?> 						
 						  </ul>
 						 </div>
 					 </div>
@@ -548,7 +549,7 @@ $(function () {
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?business='.$available['name']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?registration='.$available['registration_number'].'&token='.$available['token']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
