@@ -19,6 +19,7 @@ class dashboardActions extends sfActions
   {
 //		$bk = new BankOfKigaliPaymentCheck();
 //		$bk->checkPayments();
+		
        if (!$request->getParameter('sf_culture'))
 	  {
 		if ($this->getUser()->isFirstRequest())
@@ -31,8 +32,24 @@ class dashboardActions extends sfActions
 		{
 		  $culture = $this->getUser()->getCulture();
 		}
-	 
-		$this->redirect('localized_homepage');
+	     $username_id = $this->getUser()->getGuardUser()->getId();
+		 //we will get the group of this user.
+		// $query = Doctrine_Core::getTable('sfGuardUser')->getUserGroup($username_id);
+		// $group_id = null; 
+		// foreach($query as $q)
+		// {
+		 // $group_id = $q['group_id'];
+		// }
+		 
+		 /* if(!$group_id)
+		  {
+		   $this->forward404(sprintf('Error: Access Denied'));
+		  }
+			if($group_id) 
+			{
+			
+			}*/
+			$this->redirect('localized_homepage');
 	  }
     //$this->forward('default', 'module');
 	//we call method to select records from InvestmentApplications submitted who's status is submitted i.e. not assigned to a staff.
@@ -268,14 +285,14 @@ class dashboardActions extends sfActions
 	 
 	*/
 	 $param = $request->getParameter('business'); // now now now, let validate this business. we will reuse this function and retrieve the id
-	 $this->result = Doctrine_Core::getTable('TaskAssignment')->updatingPaymentStatus($param);
-	 
+	 $result = Doctrine_Core::getTable('TaskAssignment')->getBusiness($param);
+	
 		$taskId = null;
-		foreach($this->result as $r)
+		foreach($result as $r)
 		{
 		 $taskId = $r['investmentapp_id'] ;
 		}
-		
+		//print $taskId; exit;
 		//we will make sure that this business is legit and have paid
 	$this->status = Doctrine_Core::getTable('TaskAssignment')->getStatus($taskId);
 	 $st = null;
@@ -284,6 +301,7 @@ class dashboardActions extends sfActions
 	  {
 	    $st = $v['work_status'] ;
 	  }
+	  //print $st; exit;
 	  $x = "paymentconfirmed";
 	  $y = "complete" ;
 	 ////
@@ -292,6 +310,7 @@ class dashboardActions extends sfActions
 	   case $x :
 	    try{
 	    $this->scorpionPayment($taskId);
+	   //  print $x."-paymeny-".$taskId ; exit;
 		}
 		catch(Exception $ex)
 		{
@@ -301,7 +320,8 @@ class dashboardActions extends sfActions
 		break;
 	   case  $y:
 	    try{
-		$this->scorpionComplete($taskId);
+	    $this->scorpionComplete($taskId);
+		//print $y."Paid Just print"; exit;
 		}
 		catch(Exception $ex)
 		{
@@ -313,12 +333,12 @@ class dashboardActions extends sfActions
          $this->forward404();	   
          	   
 	 }
-	 exit;
+	 //exit;
 	 
 	  
   }
   ///this function will be called inside the switch statement
-  public function scorpionPayment($taskId)
+   public function scorpionPayment($taskId)
   {
       ///if payment is successful, continue
 	  //confirm that this business has not been issued with a Certificate
@@ -333,14 +353,19 @@ class dashboardActions extends sfActions
 	  //We also make sure that the business is not already issued with a certificate if so we just print the existing certificate instead of
 	  //saving a new record
 	  $q = Doctrine_Core::getTable('InvestmentCertificate')->searchBusiness($taskId);
+	  
 	  if(count($q) > 0)
 	  {
 	  //since this business has been issued with certificate, we just print it.
 	  //do nothing
+	   $this->scorpionComplete($taskId);
+	  // print_r($q)."Hello"; exit;
+	 // print "Hello1"; exit;
 	  }
 	  if(count($q) <= 0)
 	  {
-						//this is the first time therefore we save and print the certificate
+	   ///////////////////////////////////////////
+	     				//this is the first time therefore we save and print the certificate
 						//but we want to increment it whenever a new record is inserted. hence we fast make sure that the $start number variable
 					  //is not set in the database;
 					 $number = null ;
@@ -355,20 +380,18 @@ class dashboardActions extends sfActions
 					   $number = explode('/',$number); 
 					  // print "Number 2".$number[1];
 					   $incremental_no = $number[1] ;
+					   // print "Certificate Not Issued ".$incremental_no. "---".$primary_id ; exit;
 					  // exit;
 					  if($incremental_no != null && $primary_id != null)
 					  {
-					 //  print $number; exit;
-					   // $number = "C/1093/2013";
-                        //print "Number ".$incremental_no; exit;
-                        // echo $number[1];
+					 
 					   //we first check and make sure that there exist a number, then we increment it by 1
 					   //and save it.
 					      $value = $incremental_no + 1 ;
 						 // print $value; exit;
-		                  $id_value = $primary_id + $id ;
+		                //  $id_value = $primary_id + $id ;
 					      $date = date('Y');
-						  $cert = new InvestmentCertificate();
+			     		  $cert = new InvestmentCertificate();
 						  $cert->business_id = $taskId ;
 						  $cert->serial_number = "C/".($value)."/".$date ;
 						  $cert->save();
@@ -377,11 +400,16 @@ class dashboardActions extends sfActions
 						  //we set values
 						  $value1 = "certificateissued"; //status
 						  $value2 = "You have been issued with Investment Registration Certificate.
-       						 Please check your email and download the attached certificate. Thankyou. "; //comment
+       						 Please check your email for more information. Thankyou. "; //comment
 						  $value3 = 100; //percentage
-						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+						  
 						  //we also update the status of work for this data admin.
-						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);
+						  $query_update = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+						 // print $query_update; exit;
+						  $query_update_task = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId); 
+						  ///
+						 // print $query_update_task; exit;
+						  
 					  }
 					  if($incremental_no == null && $primary_id == null)
 					  {
@@ -389,23 +417,24 @@ class dashboardActions extends sfActions
 					   //if this is the first record, then we set default value
 					   //and save
 					   //$id."-".$start."-".$date;
-					    //  $date = date('Y');
+					      $date = date('Y');
 						  $cert = new InvestmentCertificate();
 						  $cert->business_id = $taskId ;
 						  $cert->serial_number = "C/".($number + 1)."/".$date ;
-						  $cert->save();
+						  $cert->save(); 
 						  //we then update the Status of application i.e. BusinessApplicationStatus
 						  //now this is the final step of application for investment certificate. 
 						  $value1 = "certificateissued"; //status
 						  $value2 = "You have been issued with Investment Registration Certificate.
        						 Please check your email and download the attached certificate. Thankyou. "; //comment
 						  $value3 = 100; //percentage
-						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
+						  /*$query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3); */
+						  $query_update = Doctrine_Core::getTable('TaskAssignment')->updateStatusAfterPayment($taskId,$value1,$value2,$value3);
 						  //we also update the status of work for this data admin.
-						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);
+						  $query_update_task = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);
+						  
 					  }
-	 
-		
+	   //////////////////////////////////////////
 	  }
 	  
 	  
@@ -452,7 +481,7 @@ class dashboardActions extends sfActions
 	  //execute action for printing pdf document of this report
 	  /* I have used another class specifically for investment Certificates only */
 	      $config = sfTCPDFPluginConfigHandlerInvstCert::loadConfig('invst_configs');
-          sfTCPDFPluginConfigHandlerInvstCert::includeLangFile($this->getUser()->getCulture());
+       //   sfTCPDFPluginConfigHandlerInvstCert::includeLangFile($this->getUser()->getCulture());
 	///////////////////////////Certificate Configuration //////////////////////////////////////////////////////////////////////	  
 //create new PDF document (document units are set by default to millimeters)
           $pdf = new sfTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true);
@@ -592,7 +621,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 	    $userEmail = $em['email_address'] ;
 	 }
 	 //
-	   /*$target_path = "uploads/documents/certificate.pdf";
+	   /*$target_path = "uploads/documents/certificate.pdf";  
 	
 			 
 	    $message = Swift_Message::newInstance()
@@ -601,11 +630,11 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 			  ->setSubject('Investment Certificate')
 			  ->setBody('You have been issued with Investment Registration Certificate. Please download it. Thankyou')
 			   ->attach(Swift_Attachment::fromPath($target_path));
-			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/;
+			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/; */
 			 
 
-			$this->getMailer()->send($message); */
-			$this->getMailer()->composeAndSend('noreply@rdb.com',
+			//$this->getMailer()->send($message);
+			sfContext::getInstance()->getMailer()->composeAndSend('noreply@rdb.com',
 										$userEmail ,
 										'Investment Registration Certificate ',
 										"Congratulations! You Have been Issued with The Investment Registration Certificate. \n
@@ -617,8 +646,9 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 	
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
           // Stop symfony process */
-		  $this->redirect('dashboard/index');
+		 $this->redirect('investmentcertificates/index');
         //  throw new sfStopException();
+		//exit;
   }
   //method to print and send certificate to an investor
   ///
@@ -626,7 +656,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
   {
      //We also make sure that the business is not already issued with a certificate if so we just print the existing certificate instead of
 	  //saving a new record
- 
+       //print "Scopion"; exit;
 	  ////Then we get the Applicant details for printing the certificate. we will use the business_id saved in the InvestmentCertificate Table
 	  $query = Doctrine_Core::getTable('InvestmentCertificate')->getApplicantDetails($taskId);
 	  //loop over the result and set necessary variables
@@ -641,6 +671,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 	  $nofojobs = null;
 	  $expjobs = 0;
 	  $invstment = 0;
+	  $currency = null ;
 	  foreach($query as $q)
 	  {
 	    $date = $q['created_at'] ;
@@ -653,6 +684,7 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\certificate.pdf','F
 		$sector = $q['business_sector'] ;
 		$noofjobs = $q['employment_created'] ;
 		$invstment = $q['planned_investment'];
+		$currency = $q['currency_type'];
 		
 	  }
 	   $d = new DateTime($date);
@@ -713,7 +745,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('courier', '', 18);
+$pdf->SetFont('times', '', 18);
 
 // add a page
 $pdf->AddPage();
@@ -748,6 +780,14 @@ $html = '                               <div style="text-align:center">
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   Date: <b>'.$day.'</b>
 										 </p>
 										 <p style= "font-size: xx-small;text-align:left ">
@@ -758,7 +798,7 @@ $html = '                               <div style="text-align:center">
 										 </p>
 										  
 										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;Planned investment amount <b>'.$invstment.'</b>
+										  &nbsp;Planned investment amount <b>'.$invstment.'</b>&nbsp;&nbsp;<b>'.$currency.'</b>
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;Total Number of jobs planned <b>'.$noofjobs.'</b>
@@ -767,20 +807,28 @@ $html = '                               <div style="text-align:center">
 										  &nbsp;Local jobs  <b>'.$noofjobs.'</b> and  Jobs For expatriates <b>'.$expjobs.'</b>
 										 </p>
 										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;This Certificate has been issued to <b>'.$company.'</b> <br/>&nbsp;&nbsp;&nbsp;under the seal of 
-										  RDB in accordance with law no 26/2005 EAC customs management act <br/> &nbsp;&nbsp;&nbsp;atests that the company is duly 
-										  registered and entitled to the rights and <br/> &nbsp;&nbsp;&nbsp;obligations contained in the law.
+										  &nbsp;This Certificate has been issued to <b>'.$company.'</b> under the seal of 
+										  RDB in <br/>&nbsp;&nbsp;&nbsp; accordance with law no 26/2005 EAC customs management act atests that the company is duly 
+										  registered and entitled to the <br/> &nbsp;&nbsp;&nbsp;&nbsp;rights and obligations contained in the law.
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;&nbsp;THE CHIEF EXECUTIVE OFFICER, 
 										  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMPANY REPRESENTATIVE,
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   COMPANY REPRESENTATIVE,
 										  <br/>
 										   &nbsp;&nbsp;&nbsp;&nbsp;RDB,
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   &nbsp; &nbsp;&nbsp;&nbsp;
 										   '.$rep.'
 										   <br/>
 										   &nbsp;&nbsp;&nbsp;&nbsp;'.$issuerF.' '.$issuerL.'
@@ -796,14 +844,15 @@ $html = '                               <div style="text-align:center">
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
          
 //Close and output PDF document
-    $pdf->Output('certificate.pdf', 'I'); // output 
+    $pdf->Output('certificates.pdf', 'I'); // output 
+	exit;
 	 /////////////////////////////////////////////////////////
 	 ////////////
 
-	
+	//print "Cert printed"; exit;
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
           // Stop symfony process */
-         // throw new sfStopException();
+          //throw new sfStopException();
   }
   //method to print an investor business proposal summary
    public function executeProposal(sfWebRequest $request)

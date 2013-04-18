@@ -209,12 +209,24 @@ class investmentappActions extends sfActions
 	$query_number = Doctrine_Core::getTable('InvestmentApplication')->checkTinNumber($tinNumber);
 	$company = null;
 	$reference_no = null;
+	$business_id = null;
 	foreach($query_number as $q)
     {
 	 $company = $q['name'];
 	 $reference_no = $q['applicant_reference_number'];
+	 $business_id = $q['id'];
 	}
-	if($company == null) //process application
+	//print $business_id; exit;
+	//then we check this id existance in the table with certificates information.
+	$check_id = Doctrine_Core::getTable('InvestmentCertificate')->searchBusiness($business_id);
+	$exists = null ;
+	/////
+	 foreach($check_id as $c)
+	 {
+	  $exists = $c['id'];
+	 }
+	/////
+	if($exists == null) //process application
 	{
 				   $investment_application = $form->save();
 				   //we will control the redirect procedure incase it is editing, we direct to edit of businessplan also
@@ -242,7 +254,7 @@ class investmentappActions extends sfActions
 				  $this->redirect('businessplan/edit?id='.$value.'&token='.$token);
 				 }
 	}
-	else if($company != null)
+	else if($exists != null)
 	{
 	 $this->redirect('investmentapp/issued?company='.$company.'&reference='.$reference_no);
 	}

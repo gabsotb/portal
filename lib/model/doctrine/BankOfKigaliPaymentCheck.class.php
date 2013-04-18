@@ -75,12 +75,15 @@ class BankOfKigaliPaymentCheck
 	*/
 	//print $params; exit;
 	//we get the parameter and confirm if the number exists
-	$confirmation = Doctrine_Core::getTable('Payment')->getPendingPayments();
+	$confirmation = Doctrine_Core::getTable('Payment')->getPendingPayments();//////
+	//print_r($confirmation); exit;
 	$serial = null;
+	$refno = null;
 	$business;
 	foreach($confirmation as $con)
 	{
 	 $serial = $this->transaction_number_exists($con['slip_number']);
+	 $refno = $con['slip_number'];
 	 $business=$con['business_id'];
 	}
 	   //if the returned serial is not equal to passed form variable
@@ -94,15 +97,20 @@ class BankOfKigaliPaymentCheck
 		{
 			//since payment was successful, let informed the user that payment was successful.
 			//we only have business name, since it is unique, we can use it to get the Taskid by joining TaskAssignment with InvestmentApplication
-			$investment=Doctrine_Core::getTable('InvestmentApplication')->find(array($business));
-			$result = Doctrine_Core::getTable('TaskAssignment')->updatingPaymentStatus($investment->getName());
+			$investment = Doctrine_Core::getTable('InvestmentApplication')->find(array($business));
+			$result = Doctrine_Core::getTable('TaskAssignment')->getBusiness($investment->getName());
 			$taskId = null;
 			foreach($result as $r)
 			{
 			 $taskId = $r['investmentapp_id'];
+			// print "Something3";
 			}
+			//print $taskId ; exit;
 			$update = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus3($taskId);
+			//$this->scorpionPayment($taskId);
+			$updatePayment = Doctrine_Core::getTable('Payment')->updatePaymentStatus($refno);//////			
 		}
 	
   }
+    
 }

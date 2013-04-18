@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
 <head>
 	<meta charset="utf-8" />
 	<title><?php include_slot('title', 'RDB - Investor Eportal System - Administration') ?></title>
@@ -47,6 +48,7 @@
 				<div class="top-nav">
 				
 					<!-- BEGIN QUICK SEARCH FORM -->
+					<?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign'), false)): ?>
 					<form class="navbar-search hidden-phone">
 						<div class="search-input-icon">
 							<input type="text" class="search-query dropdown-toggle" id="quick_search" placeholder="Search" data-toggle="dropdown" />
@@ -73,10 +75,10 @@
 							<!-- END QUICK SEARCH RESULT PREVIEW -->
 						</div>
 					</form>
-					
+					<?php endif; ?>
 					<!-- END QUICK SEARCH FORM -->
 					<!-- BEGIN TOP NAVIGATION MENU -->
-                    					
+                    <?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign'), false)): ?>					
 					<ul class="nav pull-right" id="top_menu">
 						<!-- BEGIN NOTIFICATION DROPDOWN -->	
 						<li class="dropdown" id="header_notification_bar">
@@ -210,13 +212,14 @@
 						</li>
 						<!-- END USER LOGIN DROPDOWN -->
 					</ul> 
-					
+					<?php endif; ?>
 					<!-- END TOP NAVIGATION MENU -->	
 				</div>
 			</div>
 		</div>
 		<!-- END TOP NAVIGATION BAR -->
 	</div>
+	
 	<!-- END HEADER -->
 	<!-- BEGIN CONTAINER -->
 	<div id="container" class="row-fluid">
@@ -232,7 +235,9 @@
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			<!-- BEGIN SIDEBAR MENU -->
 			<ul>
+			   <?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign'), false)): ?>	
 				<li class="active"><?php echo link_to('<i class="icon-home"></i> Dashboard', '@homepage') ?> </li>
+				<?php endif; ?>
 				<!-- We need to only show this if the user has adequate rights to manage and create users -->
 				<?php if($sf_user->hasCredential('assignJob')):?>
 				<li class="has-sub">
@@ -241,9 +246,9 @@
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-						<li><a href="<?php echo url_for('sf_guard_users') ?>"><i class="icon-key"></i> <?php echo __('User Accounts') ?></a> </li>
-						<li><a href="<?php echo url_for('sf_guard_user_groups') ?>"><i class="icon-key"></i> <?php echo __('User Groups') ?></a></li>
-						<li><a href="<?php echo url_for('sf_guard_user_permissions') ?>"><i class="icon-key"></i> <?php echo __('Groups Permissions') ?></a></li>
+						<li><a href="<?php echo url_for('sfGuardUser/index') ?>"><i class="icon-key"></i> <?php echo __('User Accounts') ?></a> </li>
+						<li><a href="<?php echo url_for('sfGuardGroup/index') ?>"><i class="icon-key"></i> <?php echo __('User Groups') ?></a></li>
+						<li><a href="<?php echo url_for('sfGuardPermission/index') ?>"><i class="icon-key"></i> <?php echo __('Groups Permissions') ?></a></li>
 					</ul>
 				</li>
 				<li class="has-sub">
@@ -270,6 +275,7 @@
 				
 				<?php endif ?>
 				<!-- end -->
+				<?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign'), false)): ?>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
 					<i class="icon-double-angle-up"></i> <?php echo __('Resubmission') ?> 
@@ -296,6 +302,7 @@
 				
 				<!--<li class="">  <a href ="<?php //echo url_for('sfKoreroChannel/index') ?>"><i class="icon-fire"></i> Managers Channel</a> </li>-->
 				<li><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-off"></i> <?php echo __('Logout') ?> </a></li>
+				<?php endif; ?>
 			</ul>
 		</div>
 		

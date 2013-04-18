@@ -38,7 +38,7 @@ class MessagesForm extends BaseMessagesForm
 	   ));
 	   //set labels
 	   $this->widgetSchema->setLabels(array('recepient' => 'Recepient(s):' ,'cc_email' => 'Cc:', 'message_subject' => 'Subject:','message' => 'Message:' ));
-	$this->widgetSchema['recepient'] = new sfWidgetFormInputHidden();
+	//$this->widgetSchema['recepient'] = new sfWidgetFormInputHidden();
 	$this->widgetSchema['sender_email'] = new sfWidgetFormInputHidden();
 	$this->widgetSchema['recepient_email'] = new sfWidgetFormInputHidden();
 	//$this->setDefault('sender_email', sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress());

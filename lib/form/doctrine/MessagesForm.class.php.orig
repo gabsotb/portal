@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * Messages form.
+ *
+ * @package    rdbeportal
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ */
+class MessagesForm extends BaseMessagesForm
+{
+  public function configure()
+  {
+    unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by'], $this['token']);
+	//$this->setDefault('created_at',date('Y-m-d 00:00:00'));
+	///
+	//$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+	$username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+	//
+	$this->setDefault('sender', $username);
+<<<<<<< HEAD
+=======
+	$this->setDefault('sender_email', sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress());
+>>>>>>> 9fa657ac751c98134f65c92097c6775424c0c085
+	//
+	$this->widgetSchema['sender'] = new sfWidgetFormInputHidden();
+	//$this->widgetSchema->setLabel('attachement','Any Attachment?');
+	///
+	$this->widgetSchema['attachement'] = new sfWidgetFormInputFileEditable(array(
+	   'label'=>'Attach File',
+	   'file_src' =>'/uploads/documents/messages_docs'.$this->getObject()->getAttachement(),
+	   #'is_image' => true,
+	   'edit_mode' => !$this->isNew(),
+	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
+	   ));
+	   //also change the default validator
+	  $this->validatorSchema['attachement'] = new sfValidatorFile(array(
+	   'required' => false,
+	   'path' =>sfConfig::get('sf_upload_dir').'/documents/messages_docs',
+	   ));
+	   //set labels
+	   $this->widgetSchema->setLabels(array('recepient' => 'Recepient(s):' ,'cc_email' => 'Cc:', 'message_subject' => 'Subject:','message' => 'Message:' ));
+	//$this->widgetSchema['recepient'] = new sfWidgetFormInputHidden();
+	$this->widgetSchema['sender_email'] = new sfWidgetFormInputHidden();
+	$this->widgetSchema['recepient_email'] = new sfWidgetFormInputHidden();
+	//$this->setDefault('sender_email', sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress());
+
+  }
+}

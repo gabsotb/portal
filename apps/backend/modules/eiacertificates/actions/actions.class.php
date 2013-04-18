@@ -86,7 +86,7 @@ class eiacertificatesActions extends sfActions
 	  /*Certificate Values
 	  */
 	  //Incremental Number */
-	  $start = 1093 ;
+	/*  $start = 1093 ;
 	  $newNumber = $start + 1;
 	  //We also make sure that the business is not already issued with a certificate if so we just print the existing certificate instead of
 	  //saving a new record
@@ -96,7 +96,7 @@ class eiacertificatesActions extends sfActions
 	  //since this business has been issued with certificate, we just print it.
 	  //do nothing
 	  }
-	  if(count($q) == 0)
+	/*  if(count($q) == 0)
 	  {
 						//this is the first time therefore we save and print the certificate
 						//but we want to increment it whenever a new record is inserted. hence we fast make sure that the $start number variable
@@ -127,7 +127,7 @@ class eiacertificatesActions extends sfActions
 						  //we also update the status of work for this data admin.
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);*/
 					  }
-					  if($no == null)
+					/*  if($no == null)
 					  {
 					   $no = $start ;
 					   //if this is the first record, then we set default value
@@ -145,18 +145,18 @@ class eiacertificatesActions extends sfActions
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateBusinessApplicationStatus($taskId,$value1,$value2,$value3);
 						  //we also update the status of work for this data admin.
 						  $query1 = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus4($taskId);*/
-					  }
+					  }*/
 	 
 		
 	  }
 	  
 	  
 	  ////Then we get the Applicant details for printing the certificate. we will use the business_id saved in the InvestmentCertificate Table
-	  /*$query =*/$report= Doctrine_Core::getTable('EIReport')->find($request->getParameter('id'));
-	  $projectDetail=Doctrine_Core::getTable('EIAProjectDetail')->find($report->getEiaprojectId());
+	  /*$query =*/ //$report= Doctrine_Core::getTable('EIReport')->find($request->getParameter('id'));
+//	  $projectDetail=Doctrine_Core::getTable('EIAProjectDetail')->find($report->getEiaprojectId());
 	 
 	  //loop over the result and set necessary variables
-	  $date = null ;
+	/*  $date = null ;
 	  $year = null ;
 	  $company = null ;
 	  $serial = null;
@@ -168,7 +168,7 @@ class eiacertificatesActions extends sfActions
 	  $expjobs = 0;
 	  $invstment = 0;
 	 // $applicant_name = null ;
-	  foreach($query as $q)
+	 /* foreach($query as $q)
 	  {
 	    $date = $q['created_at'] ;
 		$year = $q['created_at'] ;
@@ -186,7 +186,7 @@ class eiacertificatesActions extends sfActions
 	   $day = $d->format('d-m-Y');
 	   ///
 	   $y = new DateTime($year);
-	   $year =  $y->format('Y');
+	   $year =  $y->format('Y'); */
 	  
 	 // $serial = "C/$number/$year";
 	  
@@ -269,8 +269,8 @@ $html = '                               <div>
 										   Ref: 02/PLS/27/12/012 <b></b>
 										 </p>
 										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;This is to certify that an EIA related to Professional Logistics Solutions(PLS)s &nbsp;&nbsp;&nbsp;project entitled '.$project_title.'.......... represented by  ...............................
-										  <br/> &nbsp;&nbsp;&nbsp;has been approved.This project is to be located on plot number ........... in Cell <br/>&nbsp;&nbsp;&nbsp;........ Sector...............District..............Province............
+										  &nbsp;This is to certify that an EIA related to Professional Logistics Solutions(PLS)s &nbsp;&nbsp;&nbsp;project entitled .....Demo Title.......... represented by  ............Demo...................
+										  <br/> &nbsp;&nbsp;&nbsp;has been approved.This project is to be located on plot number ........... in Cell <br/>&nbsp;&nbsp;&nbsp;.......... Sector.......Demo........District........Demo......Province....Demo........
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										   &nbsp;This is in accordance with provisions of Organic law No04/2005 of 08/04/2005 <br/> &nbsp;&nbsp;&nbsp;determining the modalities of protection,conservation and promotion of the <br/> &nbsp;&nbsp;&nbsp;environment in Rwanda.

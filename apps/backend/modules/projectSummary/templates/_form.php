@@ -17,7 +17,14 @@
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['business_sector']->renderRow(array('class' => 'span8')) ?>
+					<?php echo $form['business_sector']->renderRow(array('class' => 'span7 chosen', 'data-placeholder' => 'Choose a Category', 'tabindex' => '1')) ?>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<div class="input-prepend">
+					<?php echo $form['business_sector_description']->renderRow(array('class' => 'span8')) ?>
 				</div>
 			</div>
 		</div>

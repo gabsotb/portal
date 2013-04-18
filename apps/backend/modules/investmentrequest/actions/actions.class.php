@@ -75,6 +75,20 @@ class investmentrequestActions extends sfActions
 	  $data_admin_id = $allFormValues['requestor'];
 	  //now get the username using data_admin value from the form
 	  $data_admin = Doctrine_Core::getTable('InvestmentRequests')->getUserName($data_admin_id);
+	  //before we allow this user to save we make sure that the user is assigned that task
+	  $reference_number =  $allFormValues['reference_number'];
+	  $id_task = Doctrine_Core::getTable('InvestmentApplication')->getIdFromReferenceNumber($reference_number);
+	  //////////Validation. Trying to give permission to a user who has not been assigned a task is an error.
+	 
+	  $query_assignments = Doctrine_Core::getTable('TaskAssignment')->checkAssignment($data_admin_id, $id_task);
+	//  print_r($query_assignments); exit;
+	  if($query_assignments == null)
+	  {
+	    $this->forward404(sprintf('Trying to Permit a user who has not been Assigned a task. Sorry Assign Task to This user '));
+	  }
+	  else if($query_assignments != null)
+	  {
+	     //////////
 	  $status =  $allFormValues['status'];
 	  $comments = $allFormValues['comments'];
 	  $permission_type = $allFormValues['request_type'];
@@ -104,6 +118,8 @@ class investmentrequestActions extends sfActions
 				  $notify2->save();
      // $this->redirect('investmentrequest/edit?id='.$investment_requests->getId());
 	 $this->redirect('investmentrequest/index');
+	  }
+	 
     }
   }
 }
