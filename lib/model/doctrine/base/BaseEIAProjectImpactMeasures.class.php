@@ -60,6 +60,7 @@
  * @property boolean $crimes_accidents_safety_rules
  * @property boolean $crime_accidents_remarks
  * @property string $token
+ * @property string $resubmit
  * @property EIAProjectDetail $EIAProjectDetail
  * 
  * @method integer                  getEiaprojectId()                               Returns the current record's "eiaproject_id" value
@@ -117,6 +118,7 @@
  * @method boolean                  getCrimesAccidentsSafetyRules()                 Returns the current record's "crimes_accidents_safety_rules" value
  * @method boolean                  getCrimeAccidentsRemarks()                      Returns the current record's "crime_accidents_remarks" value
  * @method string                   getToken()                                      Returns the current record's "token" value
+ * @method string                   getResubmit()                                   Returns the current record's "resubmit" value
  * @method EIAProjectDetail         getEIAProjectDetail()                           Returns the current record's "EIAProjectDetail" value
  * @method EIAProjectImpactMeasures setEiaprojectId()                               Sets the current record's "eiaproject_id" value
  * @method EIAProjectImpactMeasures setDustGeneration()                             Sets the current record's "dust_generation" value
@@ -173,6 +175,7 @@
  * @method EIAProjectImpactMeasures setCrimesAccidentsSafetyRules()                 Sets the current record's "crimes_accidents_safety_rules" value
  * @method EIAProjectImpactMeasures setCrimeAccidentsRemarks()                      Sets the current record's "crime_accidents_remarks" value
  * @method EIAProjectImpactMeasures setToken()                                      Sets the current record's "token" value
+ * @method EIAProjectImpactMeasures setResubmit()                                   Sets the current record's "resubmit" value
  * @method EIAProjectImpactMeasures setEIAProjectDetail()                           Sets the current record's "EIAProjectDetail" value
  * 
  * @package    rdbeportal
@@ -417,6 +420,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('resubmit', 'string', null, array(
+             'type' => 'string',
+             'notnull' => false,
              ));
     }
 

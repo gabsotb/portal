@@ -16,6 +16,7 @@
  * @property string $other_supporting_document
  * @property string $project_reference_number
  * @property string $token
+ * @property string $resubmit
  * @property EIAProjectDetail $EIAProjectDetail
  * 
  * @method integer              getEiaprojectId()              Returns the current record's "eiaproject_id" value
@@ -29,6 +30,7 @@
  * @method string               getOtherSupportingDocument()   Returns the current record's "other_supporting_document" value
  * @method string               getProjectReferenceNumber()    Returns the current record's "project_reference_number" value
  * @method string               getToken()                     Returns the current record's "token" value
+ * @method string               getResubmit()                  Returns the current record's "resubmit" value
  * @method EIAProjectDetail     getEIAProjectDetail()          Returns the current record's "EIAProjectDetail" value
  * @method EIAProjectAttachment setEiaprojectId()              Sets the current record's "eiaproject_id" value
  * @method EIAProjectAttachment setPanoramicView()             Sets the current record's "panoramic_view" value
@@ -41,6 +43,7 @@
  * @method EIAProjectAttachment setOtherSupportingDocument()   Sets the current record's "other_supporting_document" value
  * @method EIAProjectAttachment setProjectReferenceNumber()    Sets the current record's "project_reference_number" value
  * @method EIAProjectAttachment setToken()                     Sets the current record's "token" value
+ * @method EIAProjectAttachment setResubmit()                  Sets the current record's "resubmit" value
  * @method EIAProjectAttachment setEIAProjectDetail()          Sets the current record's "EIAProjectDetail" value
  * 
  * @package    rdbeportal
@@ -107,6 +110,10 @@ abstract class BaseEIAProjectAttachment extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('resubmit', 'string', null, array(
+             'type' => 'string',
+             'notnull' => false,
              ));
     }
 

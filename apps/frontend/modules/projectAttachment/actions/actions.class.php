@@ -25,7 +25,7 @@ class projectAttachmentActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-	if(!is_null($species=Doctrine_Core::getTable('EIAProjectOperationPhase')->find(array($request->getParameter('id')))) && $species->getToken()==$request->getParameter('token'))
+	if(!is_null($phase=Doctrine_Core::getTable('EIAProjectOperationPhase')->find(array($request->getParameter('id')))) && $phase->getToken()==$request->getParameter('token'))
 	{
 		$this->form = new EIAProjectAttachmentForm();
 		
@@ -79,6 +79,15 @@ class projectAttachmentActions extends sfActions
     if ($form->isValid())
     {
       $eia_project_attachment = $form->save();
+	  if(!$eia_project_attachment->getResubmit())
+	  {
+	  //Update status
+		$status = new EIApplicationStatus();
+		$status->eiaproject_id=$eia_project_attachment->getEiaprojectId();
+		$status->application_status='submitted';
+		$status->comments='Your Application has been submitted.Awaiting RDB admin to assign your application to a Staff';
+		$status->percentage=10;
+		$status->save();
      //we send message to the investor informing them of successful application
 	 //get the current logged in user email address
 				$email = sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
@@ -188,6 +197,7 @@ class projectAttachmentActions extends sfActions
 										 "http://198.154.203.38:8234/backend.php");
 				  
 	             /////////////////////////////////////////////////
+		}
       $this->redirect('@homepage');
     }
   }

@@ -53,7 +53,7 @@ class EIAProjectDescriptionForm extends BaseEIAProjectDescriptionForm
 	'solid_waste_others' => 'Others',
 	'solid_waste_others_specify' => 'Please Specify',
 	'total_land_area' => 'Total Land Area(in ha)',
-	'existing_land_use' => 'Existing Land use(in ha)',
+	'existing_land_use' => 'Existing Land use',
 	'project_total_cost' => 'Total Project Cost',
 	'project_working_capital' => 'Working Capital',
 	'project_objective' => 'Project Objectives',
@@ -70,6 +70,7 @@ class EIAProjectDescriptionForm extends BaseEIAProjectDescriptionForm
 	  'choices'  => Doctrine_Core::getTable('EIAProjectDescription')->getQuestionValues(),
 	  'expanded' => false,
     ));
-	
+	$this->widgetSchema['existing_land_use'] = new sfWidgetFormTextarea();
+	$this->widgetSchema['resubmit'] = new sfWidgetFormInputHidden();
   }
 }

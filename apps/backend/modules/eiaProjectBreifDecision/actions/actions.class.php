@@ -82,7 +82,21 @@ class eiaProjectBreifDecisionActions extends sfActions
     if ($form->isValid())
     {
       $eia_project_brief_decision = $form->save();
-
+	  
+	  if($eia_project_brief_decision->getDecision() == 'resubmit')
+	  {
+		Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eia_project_brief_decision->getEiaprojectId(),'resubmit');
+		Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eia_project_brief_decision->getEiaprojectId(),'Request for resubmission');
+		Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage($eia_project_brief_decision->getEiaprojectId(),40);
+		Doctrine_Core::getTable('EITaskAssignment')->updateWorkStatus($eia_project_brief_decision->getEiaprojectId(),"resubmission");
+	  }
+	  if($eia_project_brief_decision->getDecision() == 'rejected')
+	  {
+		Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eia_project_brief_decision->getEiaprojectId(),"rejected");
+		Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eia_project_brief_decision->getEiaprojectId(),"Application has been rejected");
+		Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage($eia_project_brief_decision->getEiaprojectId(),60);
+		Doctrine_Core::getTable('EITaskAssignment')->updateWorkStatus($eia_project_brief_decision->getEiaprojectId(),'rejected');
+	  }
       $this->redirect('@homepage');
     }
   }

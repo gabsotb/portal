@@ -43,6 +43,7 @@ class EIASiteVisitTable extends Doctrine_Table
 			->where('s.created_by = ?',$userId )
 			->andWhere('s.site_visit <= ?',date('Y-m-d',time()))
 			->andWhere('s.visited = ?',False)
+			->andWhere('s.approved = ?',true)
 			->orderBy('s.site_visit DESC');
 		return $q->fetchArray();
 	}

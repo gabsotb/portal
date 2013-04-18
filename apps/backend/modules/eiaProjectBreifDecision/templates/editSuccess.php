@@ -7,7 +7,7 @@
 		<div class="alert alert-block alert-info fade-in">
 			<h4 class="alert-heading"><?php echo $actionDetails['body'] ?></h4>
 		</div>
-		<?php include_partial('form', array('form' => $form)) ?>
+		<?php include_partial('form', array('form' => $form,'heading' => $actionDetails['heading'])) ?>
 		</div>
 	</div>
 </div>

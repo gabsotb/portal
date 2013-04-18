@@ -147,7 +147,7 @@
 					<!-- some action -->
 					<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
 					<?php if($projectImpact[0]['impact_level'] == 'level_1'): ?>
-					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id=',array('class' => 'btn btn-success')) ?></p>
+					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id='.$projectDetail['id'],array('class' => 'btn btn-success')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'level_2' || $projectImpact[0]['impact_level'] == 'level_3'): ?>
 					<?php echo button_to('Request TOR','eiaDataAdmin/messageTor?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary')) ?>

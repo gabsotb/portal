@@ -36,6 +36,10 @@ abstract class BaseEIApplicationStatusForm extends BaseFormDoctrine
       'updated_at'         => new sfValidatorDateTime(),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'EIApplicationStatus', 'column' => array('eiaproject_id')))
+    );
+
     $this->widgetSchema->setNameFormat('ei_application_status[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

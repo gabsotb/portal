@@ -37,5 +37,7 @@ class EIAProjectOperationPhaseForm extends BaseEIAProjectOperationPhaseForm
     ));
 	$this->widgetSchema['eiaproject_id'] = new sfWidgetFormInputHidden() ;
 	$this->setDefault('eiaproject_id', Doctrine_Core::getTable('EIAProjectDetail')->getProjectId());
+	$this->widgetSchema['resubmit'] = new sfWidgetFormInputHidden();
+	
   }
 }

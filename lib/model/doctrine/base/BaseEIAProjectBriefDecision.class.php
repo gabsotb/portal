@@ -9,6 +9,7 @@
  * @property string $decision
  * @property string $comments
  * @property integer $processed_by
+ * @property string $form
  * @property string $token
  * @property EIAProjectDetail $EIAProjectDetail
  * @property sfGuardUser $sfGuardUser
@@ -17,6 +18,7 @@
  * @method string                  getDecision()         Returns the current record's "decision" value
  * @method string                  getComments()         Returns the current record's "comments" value
  * @method integer                 getProcessedBy()      Returns the current record's "processed_by" value
+ * @method string                  getForm()             Returns the current record's "form" value
  * @method string                  getToken()            Returns the current record's "token" value
  * @method EIAProjectDetail        getEIAProjectDetail() Returns the current record's "EIAProjectDetail" value
  * @method sfGuardUser             getSfGuardUser()      Returns the current record's "sfGuardUser" value
@@ -24,6 +26,7 @@
  * @method EIAProjectBriefDecision setDecision()         Sets the current record's "decision" value
  * @method EIAProjectBriefDecision setComments()         Sets the current record's "comments" value
  * @method EIAProjectBriefDecision setProcessedBy()      Sets the current record's "processed_by" value
+ * @method EIAProjectBriefDecision setForm()             Sets the current record's "form" value
  * @method EIAProjectBriefDecision setToken()            Sets the current record's "token" value
  * @method EIAProjectBriefDecision setEIAProjectDetail() Sets the current record's "EIAProjectDetail" value
  * @method EIAProjectBriefDecision setSfGuardUser()      Sets the current record's "sfGuardUser" value
@@ -56,6 +59,10 @@ abstract class BaseEIAProjectBriefDecision extends sfDoctrineRecord
         $this->hasColumn('processed_by', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             ));
+        $this->hasColumn('form', 'string', null, array(
+             'type' => 'string',
+             'notnull' => false,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

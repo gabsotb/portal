@@ -54,6 +54,7 @@ abstract class BaseEITaskAssignment extends sfDoctrineRecord
         $this->hasColumn('eiaproject_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             'unique' => true,
              ));
         $this->hasColumn('instructions', 'string', 255, array(
              'type' => 'string',
