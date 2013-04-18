@@ -11,7 +11,7 @@
  * @property integer $project_total_cost
  * @property integer $project_working_capital
  * @property integer $total_land_area
- * @property integer $existing_land_use
+ * @property string $existing_land_use
  * @property boolean $site_location_developed_area
  * @property boolean $site_location_undeveloped_area
  * @property boolean $site_location_other
@@ -52,6 +52,7 @@
  * @property integer $man_power_employment_operation
  * @property integer $implementation_duration
  * @property string $token
+ * @property string $resubmit
  * @property EIAProjectDetail $EIAProjectDetail
  * 
  * @method integer               getEiaprojectId()                        Returns the current record's "eiaproject_id" value
@@ -60,7 +61,7 @@
  * @method integer               getProjectTotalCost()                    Returns the current record's "project_total_cost" value
  * @method integer               getProjectWorkingCapital()               Returns the current record's "project_working_capital" value
  * @method integer               getTotalLandArea()                       Returns the current record's "total_land_area" value
- * @method integer               getExistingLandUse()                     Returns the current record's "existing_land_use" value
+ * @method string                getExistingLandUse()                     Returns the current record's "existing_land_use" value
  * @method boolean               getSiteLocationDevelopedArea()           Returns the current record's "site_location_developed_area" value
  * @method boolean               getSiteLocationUndevelopedArea()         Returns the current record's "site_location_undeveloped_area" value
  * @method boolean               getSiteLocationOther()                   Returns the current record's "site_location_other" value
@@ -101,6 +102,7 @@
  * @method integer               getManPowerEmploymentOperation()         Returns the current record's "man_power_employment_operation" value
  * @method integer               getImplementationDuration()              Returns the current record's "implementation_duration" value
  * @method string                getToken()                               Returns the current record's "token" value
+ * @method string                getResubmit()                            Returns the current record's "resubmit" value
  * @method EIAProjectDetail      getEIAProjectDetail()                    Returns the current record's "EIAProjectDetail" value
  * @method EIAProjectDescription setEiaprojectId()                        Sets the current record's "eiaproject_id" value
  * @method EIAProjectDescription setProjectNature()                       Sets the current record's "project_nature" value
@@ -149,6 +151,7 @@
  * @method EIAProjectDescription setManPowerEmploymentOperation()         Sets the current record's "man_power_employment_operation" value
  * @method EIAProjectDescription setImplementationDuration()              Sets the current record's "implementation_duration" value
  * @method EIAProjectDescription setToken()                               Sets the current record's "token" value
+ * @method EIAProjectDescription setResubmit()                            Sets the current record's "resubmit" value
  * @method EIAProjectDescription setEIAProjectDetail()                    Sets the current record's "EIAProjectDetail" value
  * 
  * @package    rdbeportal
@@ -188,9 +191,10 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('existing_land_use', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('existing_land_use', 'string', 255, array(
+             'type' => 'string',
              'notnull' => false,
+             'length' => 255,
              ));
         $this->hasColumn('site_location_developed_area', 'boolean', null, array(
              'type' => 'boolean',
@@ -359,6 +363,10 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('resubmit', 'string', null, array(
+             'type' => 'string',
+             'notnull' => false,
              ));
     }
 

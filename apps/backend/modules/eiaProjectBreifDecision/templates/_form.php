@@ -14,6 +14,15 @@
 			  <?php echo $form['comments']->render(array('class' => 'span12 wysihtml5','rows' => '12')) ?>
 			</td>
 		</tr>
+		<?php if($heading == 'Resubmission'): ?>
+		<tr>
+			<td>
+			<div class="alert alert-info"><b>Select which form the applicant should resubmit</b></div>
+			  <?php echo $form['form']->renderError() ?>
+			  <?php echo $form['form'] ?>
+			</td>
+		</tr>
+		<?php endif; ?>
     </tbody>
   </table>
   <div class="form-actions">

@@ -822,7 +822,12 @@ $(function () {
 											<div style="width:<?php echo $status['percentage'] ?>%;" class="bar"></div>
 										</div>
 										<?php endif; ?>
-										<?php if($status['application_status'] != 'rejected'): ?>
+										<?php if($status['application_status'] == 'resubmit'): ?>
+										<div class="progress progress-warning">
+											<div style="width:<?php echo $status['percentage'] ?>%;" class="bar"></div>
+										</div>
+										<?php endif; ?>
+										<?php if($status['application_status'] != 'rejected' && $status['application_status'] != 'resubmit'): ?>
 										<div class="progress progress-striped progress-success active">
 											<div style="width:<?php echo $status['percentage'] ?>%;" class="bar"></div>
 										</div>
@@ -899,11 +904,45 @@ $(function () {
 	<!-- End overview -->
 <div id="widget-resubmission" class="modal hide">
 		<div class="modal-header">
+			<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
 			<h3><?php echo __('Reason for resubmission') ?></h3>
 		</div>
 		<div class="modal-body">
 			<p><?php echo html_entity_decode($briefDecision[0]['comments']) ?></p>
-			<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
+			
+		</div>
+		<div class="modal-footer">
+			<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
+			<?php if($briefDecision[0]['form'] == 'all'): ?>
+			<?php echo button_to('Proceed','projectDetail/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
+			<?php endif; ?>
+			<?php if($briefDecision[0]['form'] == 'EIAProjectDetail'): ?>
+			<?php echo button_to('Proceed','projectDetail/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
+			<?php endif; ?>
+			<?php if($briefDecision[0]['form'] == 'EIAProjectDeveloper'): ?>
+			<?php echo button_to('Proceed','eiaProjectDeveloper/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
+			<?php endif; ?>
+			<?php if($briefDecision[0]['form'] == 'EIAProjectDescription'): ?>
+			<?php echo button_to('Proceed','projectDescription/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
+			<?php endif; ?>
+			<?php if($briefDecision[0]['form'] == 'EIAProjectSurrounding'): ?>
+			<?php echo button_to('Proceed','eiaProjectSurrounding/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
+			<?php endif; ?>
+			<?php if($briefDecision[0]['form'] == 'EIAProjectSurroundingSpecies'): ?>
+			<?php echo button_to('Proceed','projectSorroundingSpecies/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
+			<?php endif; ?>
+			<?php if($briefDecision[0]['form'] == 'EIAProjectSocialEconomic'): ?>
+			<?php echo button_to('Proceed','projectSocialEconomic/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
+			<?php endif; ?>
+			<?php if($briefDecision[0]['form'] == 'EIAProjectImpactMeasures'): ?>
+			<?php echo button_to('Proceed','projectImpactMeasures/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
+			<?php endif; ?>
+			<?php if($briefDecision[0]['form'] == 'EIAProjectOperationPhase'): ?>
+			<?php echo button_to('Proceed','projectOperationPhase/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
+			<?php endif; ?>
+			<?php if($briefDecision[0]['form'] == 'EIAProjectAttachment'): ?>
+			<?php echo button_to('Proceed','projectAttachment/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
+			<?php endif; ?>
 		</div>
 </div>
 	

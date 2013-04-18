@@ -18,6 +18,7 @@ class EIAProjectDetailForm extends BaseEIAProjectDetailForm
 	$this->setDefault('project_reference_number', $number) ;
 	///
 	$this->widgetSchema['project_reference_number'] = new sfWidgetFormInputHidden();
+	$this->widgetSchema['resubmit'] = new sfWidgetFormInputHidden();
 	$this->setDefault('created_at',date('Y-m-d 00:00:00'));
 	//////we also generate a unique reference number for each application of a user
 	//set some default Fields Text

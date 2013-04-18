@@ -38,6 +38,7 @@
  * @property string $watershed_near_distance_units
  * @property string $watershed_within_name
  * @property string $token
+ * @property string $resubmit
  * @property EIAProjectDetail $EIAProjectDetail
  * @property Doctrine_Collection $EIAProjectSurroundingSpecies
  * 
@@ -74,6 +75,7 @@
  * @method string                getWatershedNearDistanceUnits()    Returns the current record's "watershed_near_distance_units" value
  * @method string                getWatershedWithinName()           Returns the current record's "watershed_within_name" value
  * @method string                getToken()                         Returns the current record's "token" value
+ * @method string                getResubmit()                      Returns the current record's "resubmit" value
  * @method EIAProjectDetail      getEIAProjectDetail()              Returns the current record's "EIAProjectDetail" value
  * @method Doctrine_Collection   getEIAProjectSurroundingSpecies()  Returns the current record's "EIAProjectSurroundingSpecies" collection
  * @method EIAProjectSurrounding setEiaprojectId()                  Sets the current record's "eiaproject_id" value
@@ -109,6 +111,7 @@
  * @method EIAProjectSurrounding setWatershedNearDistanceUnits()    Sets the current record's "watershed_near_distance_units" value
  * @method EIAProjectSurrounding setWatershedWithinName()           Sets the current record's "watershed_within_name" value
  * @method EIAProjectSurrounding setToken()                         Sets the current record's "token" value
+ * @method EIAProjectSurrounding setResubmit()                      Sets the current record's "resubmit" value
  * @method EIAProjectSurrounding setEIAProjectDetail()              Sets the current record's "EIAProjectDetail" value
  * @method EIAProjectSurrounding setEIAProjectSurroundingSpecies()  Sets the current record's "EIAProjectSurroundingSpecies" collection
  * 
@@ -265,6 +268,10 @@ abstract class BaseEIAProjectSurrounding extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('resubmit', 'string', null, array(
+             'type' => 'string',
+             'notnull' => false,
              ));
     }
 

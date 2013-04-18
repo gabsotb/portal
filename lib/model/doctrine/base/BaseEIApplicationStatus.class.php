@@ -38,6 +38,7 @@ abstract class BaseEIApplicationStatus extends sfDoctrineRecord
         $this->hasColumn('eiaproject_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             'unique' => true,
              ));
         $this->hasColumn('application_status', 'string', 255, array(
              'type' => 'string',

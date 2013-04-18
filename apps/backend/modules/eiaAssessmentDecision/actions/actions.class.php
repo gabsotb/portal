@@ -91,6 +91,12 @@ class eiaAssessmentDecisionActions extends sfActions
 		$notify->recepient=$eia_assessment_decision->getEITaskAssignment()->getSfGuardUser()->getUsername();
 		$notify->message="Request approved";
 		$notify->save();
+		if($eia_assessment_decision->getEiaStage() == 'site-visit')
+		{
+			$eiaproject_id=Doctrine_Core::getTable('EITaskAssignment')->find($eia_assessment_decision->getTaskassignmentId())->getEiaprojectId();
+			$sites_id=Doctrine_Core::getTable('EIASiteVisit')->findByEiaprojectId($eiaproject_id);
+			Doctrine_Core::getTable('EIASiteVisit')->find($sites_id[0]['id'])->setApproved(true)->save();
+		}
 	  }
 	  if($eia_assessment_decision->getVerdict() == 'decline')
 	  {

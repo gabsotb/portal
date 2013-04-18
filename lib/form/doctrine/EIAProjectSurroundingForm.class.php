@@ -37,7 +37,7 @@ class EIAProjectSurroundingForm extends BaseEIAProjectSurroundingForm
 	}
 	//function to retieve id
 	$this->setDefault('eiaproject_id', Doctrine_Core::getTable('EIAProjectDetail')->getProjectId());
-	
+	$this->widgetSchema['resubmit'] = new sfWidgetFormInputHidden();
     /*$this->widgetSchema->setLabels(array(
      ));*/
 	

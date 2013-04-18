@@ -97,7 +97,17 @@ class projectDetailActions extends sfActions
 	 }
 	 else if($queried_id  == null ) //new, we redirect to new method
 	 {
-	  $this->redirect('eiaProjectDeveloper/new?id='.$eia_project_detail->getId().'&token='.$eia_project_detail->getToken());
+		if($eia_project_detail->getResubmit() == 'all')
+		{
+			$developer=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($eia_project_detail->getId());
+			$this->redirect('eiaProjectDeveloper/edit?id='.$developer[0]['id']);
+		}elseif($eia_project_detail->getResubmit() == 'only')
+		{
+			$this->redirect('@homepage');
+		}else
+		{
+		$this->redirect('eiaProjectDeveloper/new?id='.$eia_project_detail->getId().'&token='.$eia_project_detail->getToken());
+		}
 	 }
       
     }

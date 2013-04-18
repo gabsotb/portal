@@ -96,7 +96,17 @@ class projectSocialEconomicActions extends sfActions
 	 }
 	 else if($queried_id  == null ) //new, we redirect to new method
 	 {
-	   $this->redirect('projectImpactMeasures/new?id='.$eia_project_social_economic->getId().'&token='.$eia_project_social_economic->getToken());
+		if($eia_project_social_economic->getResubmit() == 'all')
+		{
+			$projectImpactMeasures=Doctrine_Core::getTable('EIAProjectImpactMeasures')->findByEiaprojectId($eia_project_social_economic->getEiaproject_id());
+			$this->redirect('projectImpactMeasures/edit?id='.$projectImpactMeasures[0]['id']);
+		}elseif($eia_project_social_economic->getResubmit() == 'only')
+		{
+			$this->redirect('@homepage');
+		}else
+		{
+		$this->redirect('projectImpactMeasures/new?id='.$eia_project_social_economic->getId().'&token='.$eia_project_social_economic->getToken());
+		}
 	 }
 		////////
      

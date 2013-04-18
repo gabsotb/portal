@@ -23,6 +23,7 @@
  * @property boolean $fire_risk_exit_stairs
  * @property string $fire_risk_remarks
  * @property string $token
+ * @property string $resubmit
  * @property EIAProjectDetail $EIAProjectDetail
  * 
  * @method integer                  getEiaprojectId()                     Returns the current record's "eiaproject_id" value
@@ -43,6 +44,7 @@
  * @method boolean                  getFireRiskExitStairs()               Returns the current record's "fire_risk_exit_stairs" value
  * @method string                   getFireRiskRemarks()                  Returns the current record's "fire_risk_remarks" value
  * @method string                   getToken()                            Returns the current record's "token" value
+ * @method string                   getResubmit()                         Returns the current record's "resubmit" value
  * @method EIAProjectDetail         getEIAProjectDetail()                 Returns the current record's "EIAProjectDetail" value
  * @method EIAProjectOperationPhase setEiaprojectId()                     Sets the current record's "eiaproject_id" value
  * @method EIAProjectOperationPhase setDomesticInfluence()                Sets the current record's "domestic_influence" value
@@ -62,6 +64,7 @@
  * @method EIAProjectOperationPhase setFireRiskExitStairs()               Sets the current record's "fire_risk_exit_stairs" value
  * @method EIAProjectOperationPhase setFireRiskRemarks()                  Sets the current record's "fire_risk_remarks" value
  * @method EIAProjectOperationPhase setToken()                            Sets the current record's "token" value
+ * @method EIAProjectOperationPhase setResubmit()                         Sets the current record's "resubmit" value
  * @method EIAProjectOperationPhase setEIAProjectDetail()                 Sets the current record's "EIAProjectDetail" value
  * 
  * @package    rdbeportal
@@ -151,6 +154,10 @@ abstract class BaseEIAProjectOperationPhase extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('resubmit', 'string', null, array(
+             'type' => 'string',
+             'notnull' => false,
              ));
     }
 

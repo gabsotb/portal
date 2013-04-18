@@ -17,6 +17,6 @@ class EIAProjectSurroundingSpeciesForm extends BaseEIAProjectSurroundingSpeciesF
 	
 	$this->widgetSchema['project_surrounding_id'] = new sfWidgetFormInputHidden() ;
 	$this->setDefault('project_surrounding_id', Doctrine_Core::getTable('EIAProjectSurrounding')->getProjectSurroundingId());
-
+	$this->widgetSchema['resubmit'] = new sfWidgetFormInputHidden();
   }
 }

@@ -29,6 +29,7 @@
  * @property boolean $social_others
  * @property string $social_others_specify
  * @property string $token
+ * @property string $resubmit
  * @property EIAProjectDetail $EIAProjectDetail
  * 
  * @method integer                  getEiaprojectId()                   Returns the current record's "eiaproject_id" value
@@ -55,6 +56,7 @@
  * @method boolean                  getSocialOthers()                   Returns the current record's "social_others" value
  * @method string                   getSocialOthersSpecify()            Returns the current record's "social_others_specify" value
  * @method string                   getToken()                          Returns the current record's "token" value
+ * @method string                   getResubmit()                       Returns the current record's "resubmit" value
  * @method EIAProjectDetail         getEIAProjectDetail()               Returns the current record's "EIAProjectDetail" value
  * @method EIAProjectSocialEconomic setEiaprojectId()                   Sets the current record's "eiaproject_id" value
  * @method EIAProjectSocialEconomic setExistingSettlements()            Sets the current record's "existing_settlements" value
@@ -80,6 +82,7 @@
  * @method EIAProjectSocialEconomic setSocialOthers()                   Sets the current record's "social_others" value
  * @method EIAProjectSocialEconomic setSocialOthersSpecify()            Sets the current record's "social_others_specify" value
  * @method EIAProjectSocialEconomic setToken()                          Sets the current record's "token" value
+ * @method EIAProjectSocialEconomic setResubmit()                       Sets the current record's "resubmit" value
  * @method EIAProjectSocialEconomic setEIAProjectDetail()               Sets the current record's "EIAProjectDetail" value
  * 
  * @package    rdbeportal
@@ -195,6 +198,10 @@ abstract class BaseEIAProjectSocialEconomic extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('resubmit', 'string', null, array(
+             'type' => 'string',
+             'notnull' => false,
              ));
     }
 

@@ -35,6 +35,7 @@ class EIAProjectDeveloperForm extends BaseEIAProjectDeveloperForm
 		$this->validatorSchema['communication_mode'] = new sfValidatorChoice(array(
 		  'choices' => array_keys(Doctrine_Core::getTable('EIAProjectDeveloper')->getSocials()),
 		));
+		$this->widgetSchema['resubmit'] = new sfWidgetFormInputHidden();
 
 	}
 }

@@ -25,16 +25,7 @@ class EIAProjectAttachment extends BaseEIAProjectAttachment
 			$this->setToken(sha1(date().rand(11111, 99999)));
 			
 		  }
-		 	//Save status of application
-				$status = new EIApplicationStatus();
-				$status->eiaproject_id=$this->getEiaprojectId();
-				$status->application_status='submitted';
-				$status->comments='Your Application has been submitted.Awaiting RDB admin to assign your application to a Staff';
-				$status->percentage=10;
-				$status->save();
-				
-		 	 
-			  $ret = parent::save($conn);
+			$ret = parent::save($conn);
 				$conn->commit();
 				return $ret ;
 			

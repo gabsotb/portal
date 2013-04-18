@@ -94,7 +94,17 @@ class eiaProjectSurroundingActions extends sfActions
 	 }
 	 else if($queried_id  == null ) //new, we redirect to new method
 	 {
-	  $this->redirect('projectSorroundingSpecies/new?id='.$eia_project_surrounding->getId().'&token='.$eia_project_surrounding->getToken());
+		if($eia_project_surrounding->getResubmit() == 'all')
+		{
+			$projectSorroundingSpecies=Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->findByProjectSurroundingId($eia_project_surrounding->getId());
+			$this->redirect('projectSorroundingSpecies/edit?id='.$projectSorroundingSpecies[0]['id']);
+		}elseif($eia_project_surrounding->getResubmit() == 'only')
+		{
+			$this->redirect('@homepage');
+		}else
+		{
+			$this->redirect('projectSorroundingSpecies/new?id='.$eia_project_surrounding->getId().'&token='.$eia_project_surrounding->getToken());
+		}
 	 }
 	   
 	   

@@ -30,32 +30,28 @@ class EIApplicationStatusTable extends Doctrine_Table
 		
 		return $query;
 	}
-	public function updateApplicationStatus($appStatus,$id)
+	public function updateStatus($eiaProjectId,$status)
 	{
-		$q = Doctrine_Query::create()
-			->UPDATE('EIApplicationStatus')
-			->SET('application_status', '?', $appStatus)
-			->WHERE('company_id = ?', $id);	
+		$q= Doctrine_Query::create()
+		->update('EIApplicationStatus s')
+		->set('s.application_status', '?', $status)
+		->where('s.eiaproject_id = ?', $eiaProjectId);
 		return $q->execute();
 	}
-	
-	public function updateComment($comment,$id)
+	public function updateComment($eiaProjectId,$comment)
 	{
-		$q = Doctrine_Query::create()
-			->UPDATE('EIApplicationStatus')
-			->SET('comments', '?',$comment)
-			->WHERE('company_id = ?', $id);
-			
+		$q= Doctrine_Query::create()
+		->update('EIApplicationStatus s')
+		->set('s.comments', '?', $comment)
+		->where('s.eiaproject_id = ?', $eiaProjectId);
 		return $q->execute();
 	}
-	
-	public function updatePercentage($percent,$id)
+	public function updatePercentage($eiaProjectId,$percent)
 	{
-		$q = Doctrine_Query::create()
-			->UPDATE('EIApplicationStatus')
-			->SET('percentage', '?',$percent)
-			->WHERE('company_id = ?', $id);
-			
+		$q= Doctrine_Query::create()
+		->update('EIApplicationStatus s')
+		->set('s.percentage', '?', $percent)
+		->where('s.eiaproject_id = ?', $eiaProjectId);
 		return $q->execute();
 	}
 }

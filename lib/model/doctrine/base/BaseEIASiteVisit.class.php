@@ -9,6 +9,7 @@
  * @property date $site_visit
  * @property string $remarks
  * @property boolean $visited
+ * @property boolean $approved
  * @property string $token
  * @property EIAProjectDetail $EIAProjectDetail
  * @property Doctrine_Collection $EIASiteVisitReport
@@ -17,6 +18,7 @@
  * @method date                getSiteVisit()          Returns the current record's "site_visit" value
  * @method string              getRemarks()            Returns the current record's "remarks" value
  * @method boolean             getVisited()            Returns the current record's "visited" value
+ * @method boolean             getApproved()           Returns the current record's "approved" value
  * @method string              getToken()              Returns the current record's "token" value
  * @method EIAProjectDetail    getEIAProjectDetail()   Returns the current record's "EIAProjectDetail" value
  * @method Doctrine_Collection getEIASiteVisitReport() Returns the current record's "EIASiteVisitReport" collection
@@ -24,6 +26,7 @@
  * @method EIASiteVisit        setSiteVisit()          Sets the current record's "site_visit" value
  * @method EIASiteVisit        setRemarks()            Sets the current record's "remarks" value
  * @method EIASiteVisit        setVisited()            Sets the current record's "visited" value
+ * @method EIASiteVisit        setApproved()           Sets the current record's "approved" value
  * @method EIASiteVisit        setToken()              Sets the current record's "token" value
  * @method EIASiteVisit        setEIAProjectDetail()   Sets the current record's "EIAProjectDetail" value
  * @method EIASiteVisit        setEIASiteVisitReport() Sets the current record's "EIASiteVisitReport" collection
@@ -53,6 +56,10 @@ abstract class BaseEIASiteVisit extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('visited', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('approved', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
              ));

@@ -84,7 +84,7 @@
 									<div class="control-group">
 										<div class="controls">
 											<div class="input-prepend">
-												<?php echo $form['existing_land_use']->renderRow(array('class' => 'span4')) ?>
+												<?php echo $form['existing_land_use']->renderRow(array('class' => 'span6')) ?>
 											</div>
 										  </div>
 									</div>

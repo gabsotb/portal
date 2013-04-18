@@ -15,6 +15,7 @@
  * @property string $communication_mode
  * @property string $social_media_account
  * @property string $token
+ * @property string $resubmit
  * @property EIAProjectDetail $EIAProjectDetail
  * 
  * @method integer             getEiaprojectId()         Returns the current record's "eiaproject_id" value
@@ -27,6 +28,7 @@
  * @method string              getCommunicationMode()    Returns the current record's "communication_mode" value
  * @method string              getSocialMediaAccount()   Returns the current record's "social_media_account" value
  * @method string              getToken()                Returns the current record's "token" value
+ * @method string              getResubmit()             Returns the current record's "resubmit" value
  * @method EIAProjectDetail    getEIAProjectDetail()     Returns the current record's "EIAProjectDetail" value
  * @method EIAProjectDeveloper setEiaprojectId()         Sets the current record's "eiaproject_id" value
  * @method EIAProjectDeveloper setDeveloperName()        Sets the current record's "developer_name" value
@@ -38,6 +40,7 @@
  * @method EIAProjectDeveloper setCommunicationMode()    Sets the current record's "communication_mode" value
  * @method EIAProjectDeveloper setSocialMediaAccount()   Sets the current record's "social_media_account" value
  * @method EIAProjectDeveloper setToken()                Sets the current record's "token" value
+ * @method EIAProjectDeveloper setResubmit()             Sets the current record's "resubmit" value
  * @method EIAProjectDeveloper setEIAProjectDetail()     Sets the current record's "EIAProjectDetail" value
  * 
  * @package    rdbeportal
@@ -99,6 +102,10 @@ abstract class BaseEIAProjectDeveloper extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('resubmit', 'string', null, array(
+             'type' => 'string',
+             'notnull' => false,
              ));
     }
 
