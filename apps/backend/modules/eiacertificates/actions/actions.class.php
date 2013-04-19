@@ -130,6 +130,8 @@ class eiacertificatesActions extends sfActions
 						  Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eiaproject_id,'certificate');
 						  Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eiaproject_id,'Certificate issued');
 						  Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage($eiaproject_id,100);
+						  $task_id=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($eiaproject_id);
+						  Doctrine_Core::getTable('EITaskAssignment')->find($task_id[0]['id'])->setWorkStatus('complete')->setStage('certificate')->save();
 					  }
 						if($no == null)
 					  {
@@ -153,6 +155,8 @@ class eiacertificatesActions extends sfActions
 						  Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eiaproject_id,'certificate');
 						  Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eiaproject_id,'Certificate issued');
 						  Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage($eiaproject_id,100);
+						  $task_id=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($eiaproject_id);
+						  Doctrine_Core::getTable('EITaskAssignment')->find($task_id[0]['id'])->setWorkStatus('complete')->setStage('certificate')->save();
 					  }
 	 
 		

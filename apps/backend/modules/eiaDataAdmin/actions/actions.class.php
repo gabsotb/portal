@@ -374,7 +374,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 			Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage($request->getParameter('id'),100);
 			//update work status
 			$task_id=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
-			Doctrine_Core::getTable('EITaskAssignment')->find($task_id[0]['id'])->setWorkStatus('complete')->setStage('certificate')->save();
+			Doctrine_Core::getTable('EITaskAssignment')->find($task_id[0]['id'])->setWorkStatus('complete')->setStage('letter')->save();
 			//print $validate; exit;
 			//after sending email, we also need to change the status of this business application. 
 			
