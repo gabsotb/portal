@@ -169,11 +169,11 @@ class eiacertificatesActions extends sfActions
 		$sector=$projectDetail->getSector();
 		$district=$projectDetail->getDistrict();
 		$province=$projectDetail->getProvince();
-		$developer_name=$developer[0]['developer_name']
+		$developer_name=$developer[0]['developer_name'];
 		$contact_person=$developer[0]['contact_person'];
 		$month=$projectDetail->getDateTimeObject('created_at')->format('m');
 		$year=$projectDetail->getDateTimeObject('created_at')->format('Y');
-		$cert=Docrtine_Core::getTable('EIACertificate')->findByEireportId($report->getEiaprojectId());
+		$cert=Doctrine_Core::getTable('EIACertificate')->findByEireportId($report->getEiaprojectId());
 		$serial=$cert[0]['serial_number'];
 		$refernce_no=str_replace("-","/",$projectDetail->getProjectReferenceNumber());
 	  //loop over the result and set necessary variables
@@ -299,7 +299,7 @@ $html = '                               <div>
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;&nbsp;<b>Signed by </b>, 
-										    <br/><br/><br/><br/>
+										    <br/>
 											&nbsp;&nbsp;<b>Chief Operating Officer</b><br/><br/>
 											&nbsp;&nbsp;<b>Please Note that;</b>
 											Rwanda Development Board (RDB) reserves a right to withdraw this <br/> &nbsp;&nbsp; certificate from PLS in case the latter is found non-compliant and Issued in <br/> &nbsp;&nbsp; quadruplicate is Original to developer, copies to; MINICOM, REMA & ...'.$district.'.. district

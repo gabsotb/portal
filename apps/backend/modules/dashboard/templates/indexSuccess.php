@@ -1467,6 +1467,36 @@ $(function () {
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'resubmitted'): ?>
+										<div class="widget">
+										<div class="widget-title">
+										<h4><i class="icon-reorder"></i>Applications awaiting resubmission</h4>
+										</div>
+										<div class="widget-body">
+											<div class="well">
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
+														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn')); ?></td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
+										</div>
+										</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
 										<?php if($job->getWorkStatus() == 'complete'): ?>
 										<div class="widget">
 											<div class="widget-title">
