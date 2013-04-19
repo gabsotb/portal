@@ -303,7 +303,7 @@ $html = '                               <div>
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;&nbsp;<b>Signed by </b>, 
-										    <br/><br/><br/><br/>
+										    <br/>
 											&nbsp;&nbsp;<b>Chief Operating Officer</b><br/><br/>
 											&nbsp;&nbsp;<b>Please Note that;</b>
 											Rwanda Development Board (RDB) reserves a right to withdraw this <br/> &nbsp;&nbsp; certificate from PLS in case the latter is found non-compliant and Issued in <br/> &nbsp;&nbsp; quadruplicate is Original to developer, copies to; MINICOM, REMA & ...'.$district.'.. district

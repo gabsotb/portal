@@ -21,6 +21,8 @@
 				<p>Proposed Impact Level:&nbsp;&nbsp;<b><?php echo strtoupper(str_replace("_"," ",$projectImpact[0]['impact_level'])) ?></b></p>
 				<p><b>Remarks</b></p>
 				<p><?php echo html_entity_decode($projectImpact[0]['comments']) ?></p>
+				<br/>
+				<p><a href="#siteVisitReport" role="button" class="btn btn-inverse" data-toggle="modal">View site visit report</a></p>
 			</div>
 			<?php endif; ?>
 		<?php endif; ?>

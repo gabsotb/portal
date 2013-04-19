@@ -197,6 +197,15 @@ class projectAttachmentActions extends sfActions
 										 "http://198.154.203.38:8234/backend.php");
 				  
 	             /////////////////////////////////////////////////
+		}else
+		{
+			if($eia_project_attachment->getResubmit() == 'all')
+			{
+			$status_id=Doctrine_Core::getTable('EIApplicationStatus')->findByEiaprojectId($eia_project_attachment->getEiaprojectId());
+			Doctrine_Core::getTable('EIApplicationStatus')->find($status_id[0]['id'])->setApplicationStatus('Resubmitted')->save();
+			$task_id=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($eia_project_attachment->getEiaprojectId());
+			Doctrine_Core::getTable('EITaskAssignment')->find($task_id)->setWorkStatus('resubmitted')->save();
+			}
 		}
       $this->redirect('@homepage');
     }
