@@ -235,7 +235,7 @@ class eiaDataAdminActions extends sfActions
 	 $f_name=$applicant->getFirstName();
 	 $l_name=$applicant->getLastName();
 	 $developer=$developer[0]['developer_name'];
-	 $contactPerson=$developer[0]['contact_person'];
+	 $contact_person=$developer[0]['contact_person'];
 	 $project_title=$detail->getProjectTitle();
 	 $plot_number=$detail->getProjectPlotNumber();
 	 $cell=$detail->getCell();
@@ -243,6 +243,7 @@ class eiaDataAdminActions extends sfActions
 	 $district=$detail->getDistrict();
 	 $province=str_replace("_", " ",$detail->getProvince());
 	 $date=date('d/m/y');
+	 $serial=$detail->getProjectReferenceNumber();
 	 
 	// print_r($query); exit;
 	 /*$company = "default" ;
@@ -316,12 +317,10 @@ class eiaDataAdminActions extends sfActions
 		 // Set some content to print
 $html = <<<EOD
    <i>Mr/Ms $f_name $l_name </i> <br/>
-   <i>$company</i><br/>
-   <i>$address</i><br/>
-   <i>Date: $date </i>
+   <i>Serial No. $serial</i>
    
 <h2>RE: Clearence Letter</h2>
-<p>This letter certifies that a Environmental Impact Assessment related to <b>$developer</b>'s project entitled <b>$project_title</b> represented by <b>$contactPerson</b> has been approved.</p>
+<p>This letter certifies that a Environmental Impact Assessment related to <b>$developer</b>'s project entitled <b>$project_title</b> represented by <b>$contact_person</b> has been approved.</p>
 <p>This project is to be located on plot number <b>$plot_number</b> in <b>$cell</b> Cell, <b>$sector</b> Sector, <b>$district</b> District, <b>$province</b> Province.</p>
 <p>This is in accordance with the provisions of Organic law No 04/2005 of 08/04/2005 determining the modalities of protection, conservation and promotion of the environment in Rwanda.</p>
 

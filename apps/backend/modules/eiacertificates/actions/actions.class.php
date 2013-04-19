@@ -173,11 +173,11 @@ class eiacertificatesActions extends sfActions
 		$sector=$projectDetail->getSector();
 		$district=$projectDetail->getDistrict();
 		$province=$projectDetail->getProvince();
-		$developer_name=$developer[0]['developer_name']
+		$developer_name=$developer[0]['developer_name'];
 		$contact_person=$developer[0]['contact_person'];
 		$month=$projectDetail->getDateTimeObject('created_at')->format('m');
 		$year=$projectDetail->getDateTimeObject('created_at')->format('Y');
-		$cert=Docrtine_Core::getTable('EIACertificate')->findByEireportId($report->getEiaprojectId());
+		$cert=Doctrine_Core::getTable('EIACertificate')->findByEireportId($report->getEiaprojectId());
 		$serial=$cert[0]['serial_number'];
 		$refernce_no=str_replace("-","/",$projectDetail->getProjectReferenceNumber());
 	  //loop over the result and set necessary variables
