@@ -10,11 +10,7 @@
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-<<<<<<< HEAD
 abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
-=======
-abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
->>>>>>> 63e0eb2a4edfecde8d8f3dc77204d3dc9247e9b1
 {
   public function setup()
   {
