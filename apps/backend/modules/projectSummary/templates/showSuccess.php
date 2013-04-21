@@ -113,7 +113,8 @@
 										
 										<div class="span6">
 											<h3><?php echo __('Planned Capital Investment') ?></h3>
-											<p><?php echo $project_summary->getPlannedInvestment() ?></p>
+											<p><?php echo $project_summary->getPlannedInvestment() ?>
+											<?php echo $project_summary->getInvestmentApplication()->getCurrencyType() ?></p>
 										</div>
 									</div>
 									<div class="row-fluid">

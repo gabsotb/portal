@@ -1,5 +1,7 @@
 <?php
+//reporting script
 $investment_certs = Doctrine_Core::getTable('InvestmentCertificate')->calculateCertificatesIssued();
+//print $investment_certs; exit;
 $eia_certs = Doctrine_Core::getTable('EIACertificate')->calculateCertificatesIssued();
 $tax_exemption = Doctrine_Core::getTable('TaxExemptionDetails')->calculateExemptionsGranted(); 
 //some small maths
@@ -7,103 +9,72 @@ $ic = 0;
 $eia =0 ;
 $tax = 0;
 $total = $investment_certs + $eia_certs + $tax_exemption ;
+//$total = 0;
+//print $total; exit;
 //avoid division by zero
-if($total = 0)
+if($total == 0)
 {
  //do not divide just pass default values
  
 }
 else if($total > 0)
 {
-$ic = ($investment_certs / $total) * 100 ;
-$eia = ( $eia_certs / $total) * 100;
-$tax = ( $tax_exemption / $total) * 100 ;
+//print $total; exit;
+$ic = round(($investment_certs / $total) * 100 );
+$eia = round(( $eia_certs / $total) * 100);
+$tax = round(( $tax_exemption / $total) * 100) ;
 }
-?>
+
+/////
+ ?>
 
 
 <!--some Javascripts for Loading High Charts Graph -->
- <script type="text/javascript">
+<script type="text/javascript">
 $(function () {
     var chart;
     $(document).ready(function() {
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'cont',
-                type: 'column',
-				height: 500,
-				width: 700
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
             },
             title: {
-                text: '<?php echo __('RDB Tasks Performance Analysis. Year 2013') ?>'
+                text: 'Certificate & Tax Exemption Processing Analysis,<?php echo 2013 ?> to date'
             },
-            subtitle: {
-                text: '<?php echo __('Source: Rwanda Development Board') ?>'
+            tooltip: {
+        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+            	percentageDecimals: 1
             },
-            xAxis: {
-                categories: [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
-                ]
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: '<?php echo __('Number of Items Processed') ?>'
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                        }
+                    }
                 }
             },
-			credits:
+			
+				credits:
 				{
 					enabled: false
 				},
-            legend: {
-                layout: 'vertical',
-                backgroundColor: '#FFFFFF',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                shadow: true
-            },
-            tooltip: {
-                formatter: function() {
-                    return ''+
-                        this.x +': '+ this.y +' ';
-                }
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-                series: [{
-                name: '<?php echo __('Investment Certificates') ?>',
-                data: [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,0]
-    
-            }, {
-                name: '<?php echo __('EIA Certificates') ?>',
-                data: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,0]
-    
-            }, {
-                name: '<?php echo __('Tax Exemptions') ?>',
-                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0]
-    
-            }, {
-                name: '<?php echo __('Visa Issued') ?>',
-                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0]
-    
+            series: [{
+                type: 'pie',
+                name: 'No of Transactions',
+                data: [
+                    ['Investment Certificates',   <?php echo $ic  ?>],
+                    ['EIA Certificates',       <?php echo $eia ?>],
+                    ['Tax Exemptions',   <?php echo $tax ?>]
+                ]
             }]
         });
     });
@@ -336,15 +307,15 @@ $(function () {
 					<div class="row-fluid">
 						<div class="widget">
 							<div class="widget-title">
-								<h4><i class="icon-reorder"></i>EIA --- Awaiting Approval</h4>
+								<h4><i class="icon-reorder"></i><?php echo __('EIA --- Awaiting Approval') ?></h4>
 							</div>
 							<div class="widget-body">
 							<?php foreach($assessments as $assessment): ?>
 								<table class="table table-striped table-hover">
 								<tr>
-									<th>Project</th>
-									<th>Assigned to</th>
-									<th>Action</th>
+									<th><?php echo __('Project') ?></th>
+									<th><?php echo __('Assigned To') ?></th>
+									<th><?php echo __('Action') ?></th>
 								</tr>
 								<tr>
 									<td><?php echo $assessment['EIAProjectDetail']['project_title']?></td>
@@ -359,17 +330,31 @@ $(function () {
 					<?php endif; ?>
          <div class="row-fluid">
                  <div class="span8">
-						<div class="widget">
-						          <div class="widget-title">
-									<h4><i class="icon-signal"></i><?php echo __('RDB Task Processing Performance Pie Chart') ?></h4>
-															
-								</div>
-								<div id="cont" class="widget-body">
-									
-								</div>
-							</div>
-							
-				 </div>
+			<div class="widget">
+				  <div class="widget-title">
+									<h4><i class="icon-signal"></i><?php echo __('Graphical Analysis - RDB Overall Perfomance Representation') ?></h4>
+											
+				</div>
+				<?php //if there is no data do not display a graph
+				 if($total == 0):?>
+				  <div id="graph_error"  class="widget-body">
+					   <div class="alert alert-block alert-error fade in">
+										<h4 class="alert-heading"><?php echo __('Graph Data Loading Problem') ?></h4>
+										<p>
+											<?php echo __('Sorry, There is no Graph data available. No Investment Certificates or EIA Certificates Issued. Try Later') ?>
+											<?php //echo "Count value is".$total; ?>
+										</p>
+										
+					  </div>
+				   </div>
+				 <?php endif; ?>
+				<?php if($total > 0): ?>
+					<div id="cont"  class="widget-body">
+						
+					</div>
+				<?php endif; ?>
+			</div> <!-- END Graph-->
+			</div>
 				 <div class="span4">
 					 <div class="widget">
 					     <div class="widget-title">
@@ -413,6 +398,16 @@ $(function () {
 						  </ul>
 						 </div>
 					 </div>
+					 <div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-twitter"></i><?php echo __('Tweets @RDBrwanda') ?></h4>							
+								</div>
+									<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
+										<div id="js-twitter-feed-ivow" class="widget-body">
+										   
+										</div>
+									</ul>
+							</div>
 				 </div>
 				 
 	     </div>			
@@ -1742,4 +1737,30 @@ $(function () {
 
 
 </div>						
+<!-- For Twitter -->
+<script>
+$(function() {
+///
+var url = 'https://api.twitter.com/1/statuses/user_timeline.json?screen_name=RDBrwanda&count=3&include_rts=1',
+    tmpl_tweet = '<a href="{{tweet_url}}" target="_blank"><img src="{{profile_image_url}}" class="profile-image" alt="" /><span class="screen-name">{{screen_name}}</span><span class=".item-list scroller padding">{{tweet}}</span><time datetime="{{created_at_iso}}" title="{{created_at_formatted}}">{{created_at_formatted}}</time></a>';
 
+$('#js-twitter-feed-ivow').tweets( url, {
+  tmpl_tweet: tmpl_tweet
+});
+  // Get 5 tweets from @ivow
+ /* $('#js-twitter-feed-ivow').tweets('https://api.twitter.com/1/statuses/user_timeline.json?screen_name=CNN&count=5&include_rts=1', {
+	doneCallback: function(){
+	  try {
+		$('.twitter-feed time').timeago();
+	  } catch(e) {
+
+	  }
+	}
+  }); */
+
+  
+});
+</script>
+
+
+<!-- --->

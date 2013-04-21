@@ -1,0 +1,34 @@
+{
+  "name": "tweets",
+  "title": "jQuery Tweets",
+  "description": "Show tweets & cache them in sessionStorage to avoid API limit rate bust.",
+  "keywords": [
+    "twitter",
+    "tweets",
+    "social"
+  ],
+  "version": "1.0.9",
+  "author": {
+    "name": "Yves Van Broekhoven",
+    "url": "http://twitter.com/ivow"
+  },
+  "maintainers": [
+    {
+      "name": "Yves Van Broekhoven",
+      "url": "http://twitter.com/ivow"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/yvesvanbroekhoven/jquery-tweets/blob/master/MIT-LICENSE.txt"
+    }
+  ],
+  "bugs": "https://github.com/yvesvanbroekhoven/jquery-tweets/issues",
+  "homepage": "http://yvesvanbroekhoven.github.com/jquery-tweets/public/",
+  "docs": "https://github.com/yvesvanbroekhoven/jquery-tweets",
+  "download": "https://github.com/yvesvanbroekhoven/jquery-tweets/tags",
+  "dependencies": {
+    "jquery": ">=1.5"
+  }
+}
