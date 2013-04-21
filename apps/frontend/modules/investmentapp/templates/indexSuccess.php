@@ -1,6 +1,7 @@
 <?php
 //reporting script
 $investment_certs = Doctrine_Core::getTable('InvestmentCertificate')->calculateCertificatesIssued();
+//print $investment_certs; exit;
 $eia_certs = Doctrine_Core::getTable('EIACertificate')->calculateCertificatesIssued();
 $tax_exemption = Doctrine_Core::getTable('TaxExemptionDetails')->calculateExemptionsGranted(); 
 //some small maths
@@ -8,23 +9,26 @@ $ic = 0;
 $eia =0 ;
 $tax = 0;
 $total = $investment_certs + $eia_certs + $tax_exemption ;
+//$total = 0;
+//print $total; exit;
 //avoid division by zero
-if($total = 0)
+if($total == 0)
 {
  //do not divide just pass default values
  
 }
 else if($total > 0)
 {
-$ic = ($investment_certs / $total) * 100 ;
-$eia = ( $eia_certs / $total) * 100;
-$tax = ( $tax_exemption / $total) * 100 ;
+//print $total; exit;
+$ic = round(($investment_certs / $total) * 100) ;
+$eia = round(( $eia_certs / $total) * 100);
+$tax = round(( $tax_exemption / $total) * 100) ;
 }
 
 /////
  ?>
 	
-	<script type="text/javascript">
+<script type="text/javascript">
 $(function () {
     var chart;
     $(document).ready(function() {
@@ -75,6 +79,7 @@ $(function () {
     
 });
 		</script>
+	
 <div id="page" class="dashboard">
          
 	<div class="row-fluid">
@@ -184,7 +189,7 @@ $(function () {
 				
 			</div>
 			<!-- Begin Graph for User to analyze RDB Processing Power -->
-			<div class="span11">
+			<div class="span12">
 			<div class="widget">
 				  <div class="widget-title">
 									<h4><i class="icon-signal"></i><?php echo __('Graphical Analysis - RDB Overall Perfomance Representation') ?></h4>
@@ -197,6 +202,7 @@ $(function () {
 										<h4 class="alert-heading"><?php echo __('Graph Data Loading Problem') ?></h4>
 										<p>
 											<?php echo __('Sorry, There is no Graph data available. No Investment Certificates or EIA Certificates Issued. Try Later') ?>
+											<?php //echo "Count value is".$total; ?>
 										</p>
 										
 					  </div>
@@ -397,6 +403,9 @@ $(function () {
 												<br/> 
 												 <a href="<?php echo url_for('investmentapp/new') ?>">
 																 <button type="button" class="btn btn-primary"><?php echo __('Apply for Investment Certificate' ) ?></button>
+												 </a><br/><br/>
+												 <a href="<?php echo url_for('investmentapp/myCertificates') ?>">
+																 <button type="button" class="btn btn-warning"><?php echo __('My Certificate(s)' ) ?></button>
 												 </a>
 												<?php } ?>
 												<?php if($value <= 0 && $response != null) { ?>
@@ -887,7 +896,23 @@ $(function () {
 								<?php endif; ?>
 								<!-- end EIA -->	 
 								
-									
+								<!-- Tweets -->
+								
+							<!-- BEGIN NOTIFICATIONS PORTLET-->
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-twitter"></i><?php echo __('Tweets @RDBrwanda') ?></h4>							
+								</div>
+									<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
+										<div id="js-twitter-feed-ivow" class="widget-body">
+										   
+										</div>
+									</ul>
+							</div>
+							<!-- END NOTIFICATIONS PORTLET-->
+						
+								<!-- End Tweets -->
+								
 									
 						
 							</div>
@@ -970,3 +995,30 @@ $(function () {
 			<?php echo button_to('Proceed','eiReport/new',array('class' => 'btn btn-success')) ?>
 		</div>
 </div>
+<!-- For Twitter -->
+<script>
+$(function() {
+///
+var url = 'https://api.twitter.com/1/statuses/user_timeline.json?screen_name=RDBrwanda&count=3&include_rts=1',
+    tmpl_tweet = '<a href="{{tweet_url}}" target="_blank"><img src="{{profile_image_url}}" class="profile-image" alt="" /><span class="screen-name">{{screen_name}}</span><span class=".item-list scroller padding">{{tweet}}</span><time datetime="{{created_at_iso}}" title="{{created_at_formatted}}">{{created_at_formatted}}</time></a>';
+
+$('#js-twitter-feed-ivow').tweets( url, {
+  tmpl_tweet: tmpl_tweet
+});
+  // Get 5 tweets from @ivow
+ /* $('#js-twitter-feed-ivow').tweets('https://api.twitter.com/1/statuses/user_timeline.json?screen_name=CNN&count=5&include_rts=1', {
+	doneCallback: function(){
+	  try {
+		$('.twitter-feed time').timeago();
+	  } catch(e) {
+
+	  }
+	}
+  }); */
+
+  
+});
+</script>
+
+
+<!-- --->

@@ -31,9 +31,9 @@ class InvestmentCertificateTable extends Doctrine_Table
 	  "SELECT  investment_certificate.created_at,investment_certificate.serial_number,
 		 investment_application.name,investment_application.currency_type , investment_application.name,investment_application.representative_name,project_summary.employment_created,
 		 project_summary.business_sector,project_summary.planned_investment, sf_guard_user.first_name,sf_guard_user.last_name
-		 FROM investment_certificate LEFT JOIN  investment_application ON investment_certificate.business_id 
+		 FROM investment_certificate LEFT JOIN  investment_application ON investment_certificate.business_id  = investment_application.id
 		LEFT JOIN project_summary ON investment_certificate.business_id = project_summary.investment_id 
-		LEFT JOIN sf_guard_user ON sf_guard_user.id = project_summary.created_by WHERE investment_application.id = '$business_id' "
+		LEFT JOIN sf_guard_user ON sf_guard_user.id = project_summary.created_by WHERE investment_application.id = '$business_id`' "
 	  );
 	  return $query;
 	}
@@ -113,6 +113,13 @@ class InvestmentCertificateTable extends Doctrine_Table
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT count(serial_number), project_summary.business_sector from investment_certificate left join project_summary on investment_certificate.business_id = project_summary.investment_id group by project_summary.business_sector");
 	 //
+	 return $query;
+	}
+	//retrieve logged in user issued certificates
+	public function getMyCertificates($my_id)
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT investment_application.id as id,investment_application.token as token, investment_application.name as company, investment_application.registration_number as tin,investment_application.location as location,project_summary.business_sector as sector,investment_certificate.serial_number as cert FROM investment_application LEFT JOIN investment_certificate ON investment_application.id = investment_certificate.business_id LEFT JOIN project_summary ON investment_application.id = project_summary.investment_id WHERE investment_application.created_by = '$my_id' ");
+	 ////
 	 return $query;
 	}
 	  
