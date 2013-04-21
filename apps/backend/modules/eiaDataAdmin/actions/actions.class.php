@@ -47,6 +47,9 @@ class eiaDataAdminActions extends sfActions
 		if($site_visit=Doctrine_Core::getTable('EIASiteVisit')->find($site_id[0]['id']) || $brief_decision=Doctrine_Core::getTable('EIAProjectBriefDecision')->find($decision[0]['id']))
 		{
 			$this->assessing=true;
+		}else
+		{
+			$this->assessing=false;
 		}
 	}
   

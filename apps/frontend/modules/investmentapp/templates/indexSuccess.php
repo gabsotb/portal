@@ -836,11 +836,11 @@ $(function () {
 											<button type="button" class="close" data-dismiss="alert">x</button>
 											<p><?php echo $status['comments'] ?></p>
 											<!-- resubmission -->
-											<?php if($briefDecision[0]['decision'] == 'resubmit'): ?>
+											<?php if($briefDecision[0]['decision'] == 'resubmit' && $status['application_status'] == 'resubmit'): ?>
 											<a href="#widget-resubmission" data-toggle="modal">
 											<button type="button" class="btn btn-block"><?php echo __('More info') ?></button></a>
 											<?php endif; ?>	
-											<?php if($briefDecision[0]['decision'] == 'rejected'): ?>
+											<?php if($briefDecision[0]['decision'] == 'rejected' && $status['application_status'] != 'rejected'): ?>
 											<a href="#widget-rejected" data-toggle="modal">
 											<button type="button" class="btn btn-block"><?php echo __('More info') ?></button></a>
 											<?php endif; ?>	
