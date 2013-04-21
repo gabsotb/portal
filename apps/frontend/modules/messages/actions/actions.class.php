@@ -82,7 +82,7 @@ class messagesActions extends sfActions
     if ($form->isValid())
     {
       $messages = $form->save();
-	  if($messages->getRecepientEmail())
+	  if($messages->getRecepientEmail() && $messages->getMessage())
 	  {
 	  $this->getMailer()->composeAndSend('noreply@rdb.com',$messages->getRecepientEmail() ,$messages->getMessageSubject(),
 							"A new message has been sent to your account.\n".
