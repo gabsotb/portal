@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 /**
@@ -11,7 +12,6 @@
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
 abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
-<<<<<<< HEAD
 {
   public function setup()
   {
@@ -22,6 +22,7 @@ abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
       'instructions'  => new sfWidgetFormInputText(),
       'duedate'       => new sfWidgetFormDate(),
       'work_status'   => new sfWidgetFormInputText(),
+      'stage'         => new sfWidgetFormTextarea(),
       'token'         => new sfWidgetFormInputText(),
       'created_at'    => new sfWidgetFormDateTime(),
       'updated_at'    => new sfWidgetFormDateTime(),
@@ -36,12 +37,17 @@ abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
       'instructions'  => new sfValidatorString(array('max_length' => 255)),
       'duedate'       => new sfValidatorDate(),
       'work_status'   => new sfValidatorString(array('max_length' => 255)),
+      'stage'         => new sfValidatorString(),
       'token'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),
       'created_by'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
       'updated_by'    => new sfValidatorString(array('required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'EITaskAssignment', 'column' => array('eiaproject_id')))
+    );
 
     $this->widgetSchema->setNameFormat('ei_task_assignment[%s]');
 
@@ -59,6 +65,19 @@ abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
 
 }
 =======
+<?php
+
+/**
+ * EITaskAssignment form base class.
+ *
+ * @method EITaskAssignment getObject() Returns the current form's model object
+ *
+ * @package    rdbeportal
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
+ */
+abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -67,8 +86,9 @@ abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
       'user_assigned' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => false)),
       'eiaproject_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'), 'add_empty' => false)),
       'instructions'  => new sfWidgetFormInputText(),
-      'duedate'       => new sfWidgetFormDateTime(),
+      'duedate'       => new sfWidgetFormDate(),
       'work_status'   => new sfWidgetFormInputText(),
+      'stage'         => new sfWidgetFormTextarea(),
       'token'         => new sfWidgetFormInputText(),
       'created_at'    => new sfWidgetFormDateTime(),
       'updated_at'    => new sfWidgetFormDateTime(),
@@ -81,14 +101,19 @@ abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
       'user_assigned' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'))),
       'eiaproject_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'))),
       'instructions'  => new sfValidatorString(array('max_length' => 255)),
-      'duedate'       => new sfValidatorDateTime(),
+      'duedate'       => new sfValidatorDate(),
       'work_status'   => new sfValidatorString(array('max_length' => 255)),
+      'stage'         => new sfValidatorString(),
       'token'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),
       'created_by'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
       'updated_by'    => new sfValidatorString(array('required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'EITaskAssignment', 'column' => array('eiaproject_id')))
+    );
 
     $this->widgetSchema->setNameFormat('ei_task_assignment[%s]');
 
@@ -105,4 +130,4 @@ abstract class BaseEITaskAssignmentForm extends BaseFormDoctrine
   }
 
 }
->>>>>>> 8a45578a6c5c1cbed13662effd99c1202e646474
+>>>>>>> fe391e07eaa66ed2886d258609864a7e2b79eccd

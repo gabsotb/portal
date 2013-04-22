@@ -151,7 +151,9 @@
 					   <h4><?php echo __('LAND') ?></h4>
 					 </div>
 					<p><?php echo __('Total Land Area:') ?>&nbsp;<b><?php echo $description->getTotalLandArea() ?></b></p>
+					<?php if(!is_null($description->getExistingLandUse())): ?>
 					<p><?php echo __('Existing land use:') ?>&nbsp;<?php echo $description->getExistingLandUse() ?></p>
+					<?php endif; ?>
 				</div>
 				<div class="well">
 				

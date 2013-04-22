@@ -194,4 +194,13 @@ class eiaTaskAssignActions extends sfActions
       $this->redirect('@homepage');
     }
   }
+  /*public function executeTaskAssign(sfWebRequest $request)
+  {
+	$taskAssign = new EITaskAssignment();
+	$taskAssign->eiaproject_id=$request->getParameter('id');
+	$taskAssign->save();
+	$taskId=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
+	$this->redirect('eiaTaskAssign/edit?id='.$taskId[0]['id']);
+  }*/
+	
 }

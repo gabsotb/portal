@@ -85,7 +85,7 @@ class messagesActions extends sfActions
       $messages = $form->save();
 
       //$this->redirect('messages/edit?id='.$messages->getId());
-	  if($messages->getRecepientEmail())
+	  if($messages->getRecepientEmail() && $messages->getMessage())
 	  {
 	  $this->getMailer()->composeAndSend('noreply@rdb.com',$messages->getRecepientEmail() ,$messages->getMessageSubject(),
 							"A new message has been sent to your account.\n".
