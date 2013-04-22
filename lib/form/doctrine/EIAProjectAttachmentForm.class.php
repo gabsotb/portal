@@ -50,7 +50,7 @@ class EIAProjectAttachmentForm extends BaseEIAProjectAttachmentForm
 	   ));
 	   //also change the default validator
 	  $this->validatorSchema['preliminary_approval'] = new sfValidatorFile(array(
-	   'required' => true,
+	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/eia_documents',
 	   )); 
 	   ////

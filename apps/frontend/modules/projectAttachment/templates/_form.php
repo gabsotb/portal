@@ -54,7 +54,7 @@
 		<td><?php echo $form['location_area_map']->renderError() ?><?php echo $form['location_area_map']->render() ?></td>
 	   </tr>
 	   <tr>
-	      <td><?php echo("Other Usefull document (i.e: Terms of Reference)") ?></td>
+	      <td><?php echo("Other Usefull document") ?></td>
 		<td><?php echo $form['other_supporting_document']->renderError() ?><?php echo $form['other_supporting_document']->render() ?></td>
 	   </tr>
     </tbody> 
