@@ -50,7 +50,7 @@ class eiaProjectBreifDecisionActions extends sfActions
 		$this->actionDetails=Doctrine_Core::getTable('EIAProjectBriefDecision')->getActionReject();
 	}else
 	{
-		$this->actionDetails=array();
+		$this->actionDetails=array('heading' => 'Edit','body' => 'Edit Decision made');
 	}
     $this->form = new EIAProjectBriefDecisionForm($eia_project_brief_decision);
   }
@@ -59,6 +59,16 @@ class eiaProjectBreifDecisionActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($eia_project_brief_decision = Doctrine_Core::getTable('EIAProjectBriefDecision')->find(array($request->getParameter('id'))), sprintf('Object eia_project_brief_decision does not exist (%s).', $request->getParameter('id')));
+	if($request->getParameter('act') == 'Resubmission')
+	{
+		$this->actionDetails=Doctrine_Core::getTable('EIAProjectBriefDecision')->getActionResubmit();
+	}elseif($request->getParameter('act') == 'Rejection')
+	{
+		$this->actionDetails=Doctrine_Core::getTable('EIAProjectBriefDecision')->getActionReject();
+	}else
+	{
+		$this->actionDetails=array('heading' => 'Edit Decision','body' => 'Edit Decision made');
+	}
     $this->form = new EIAProjectBriefDecisionForm($eia_project_brief_decision);
 
     $this->processForm($request, $this->form);

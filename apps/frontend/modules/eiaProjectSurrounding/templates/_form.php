@@ -31,7 +31,7 @@
 			<h4> What is the general elevation of the project area:</h4>
 			</div>
 			<div class="span4">
-			<?php echo $form['project_general_elevation']->render(array('class' => 'span4')) ?>
+			<?php echo $form['project_general_elevation']->render(array('class' => 'span4 popovers','data-trigger' => 'hover','data-placement' => 'right','data-content' => 'Elevation in Meters Above Sea Level (m.a.s.l)','data-original-title' => 'General Elevation')) ?>
 			<span class="help-inline">in m.a.s.l</span>
 			</div>
 			</div>
@@ -104,6 +104,7 @@
 			<span class="help-inline"><?php echo $form['access_road_distance']->renderError() ?></span>
 			</div>
 			</div>
+			<h4>If true,state the type of access road:</h4>
 			<table class="table table-hover table-bordered">
 			<tr>
 			<td><?php echo $form['access_road_type']->renderLabel('Type of access road:') ?></td>

@@ -1256,11 +1256,7 @@ $(function () {
 									<?php foreach($jobAdmin as $job): ?>
 									<div class="row-fluid">
 										<?php if($job->getWorkStatus() == 'notstarted'): ?>
-										<div class="widget">
-										<div class="widget-title">
-										<h4><i class="icon-reorder"></i>New Applications</h4>
-										</div>
-										<div class="widget-body">
+										<h4>New Applications</h4>
 											<div class="well">
 											<table class="table table-striped table-bordered table-advance table-hover" >
 												<thead>
@@ -1276,51 +1272,41 @@ $(function () {
 														<td class="highlight"><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?> </td>
 														<td><?php echo $job->getSfGuardUser()->getLastName() ?></td>
-														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-inverse"><i class="icon-circle-blank"></i> Process</button></a></td>
+														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
 											
 													</tr>
 												</tbody>
 											</table>
 											</div>
-										</div>
-										</div>
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
 										<?php if($job->getWorkStatus() == 'started'): ?>
-										<div class="widget">
-										<div class="widget-title">
-										<h4><i class="icon-reorder"></i>Applications been processed</h4>
-										</div>
-										<div class="widget-body">
+										<h4>Applications been processed</h4>
 											<div class="well">
 											<table class="table table-striped table-hover" >
 												<thead>
 													<tr>
 														<th>Reference No.</th>
 														<th>Project Title</th>
+														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
+														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-info"><i class="icon-circle-blank"></i> Proceed</button></a></td>
 											
 													</tr>
 												</tbody>
 											</table>
 											</div>
-										</div>
-										</div>
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
 										<?php if($job->getWorkStatus() == 'assess'): ?>
-										<div class="widget">
-										<div class="widget-title">
-										<h4><i class="icon-reorder"></i>Applications awaiting assessment</h4>
-										</div>
-										<div class="widget-body">
+										<h4>Applications awaiting assessment</h4>
 											<div class="well">
 											<table class="table table-striped table-hover" >
 												<thead>
@@ -1338,17 +1324,11 @@ $(function () {
 												</tbody>
 											</table>
 											</div>
-										</div>
-										</div>
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
 										<?php if($job->getWorkStatus() == 'assessed'): ?>
-										<div class="widget">
-										<div class="widget-title">
-										<h4><i class="icon-reorder"></i>Applications assessed</h4>
-										</div>
-										<div class="widget-body">
+										<h4>Applications assessed</h4>
 											<div class="well">
 											<table class="table table-striped table-hover" >
 												<thead>
@@ -1362,113 +1342,61 @@ $(function () {
 													<tr>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
-														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn')); ?></td>
+														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn btn-primary')); ?></td>
 											
 													</tr>
 												</tbody>
 											</table>
 											</div>
-										</div>
-										</div>
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
 										<?php if($job->getWorkStatus() == 'rejected'): ?>
-										<div class="widget">
-										<div class="widget-title">
-										<h4><i class="icon-reorder"></i>Applications rejected</h4>
-										</div>
-										<div class="widget-body">
+										<h4>Applications rejected</h4>
 											<div class="well">
 											<table class="table table-striped table-hover" >
 												<thead>
 													<tr>
 														<th>Reference No.</th>
 														<th>Project Title</th>
-														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
-														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn')); ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
 											
 													</tr>
 												</tbody>
 											</table>
 											</div>
-										</div>
-										</div>
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
 										<?php if($job->getWorkStatus() == 'resubmission'): ?>
-										<div class="widget">
-										<div class="widget-title">
-										<h4><i class="icon-reorder"></i>Applications awaiting resubmission</h4>
-										</div>
-										<div class="widget-body">
+										<h4>Applications awaiting resubmission</h4>
 											<div class="well">
 											<table class="table table-striped table-hover" >
 												<thead>
 													<tr>
 														<th>Reference No.</th>
 														<th>Project Title</th>
-														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
-														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn')); ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
 											
 													</tr>
 												</tbody>
 											</table>
 											</div>
-										</div>
-										</div>
-										<?php endif; ?>
-									</div>
-									<div class="row-fluid"> 
-										<?php if($job->getWorkStatus() == 'resubmit'): ?>
-										<div class="widget">
-										<div class="widget-title">
-										<h4><i class="icon-reorder"></i>Applications awaiting resubmission</h4>
-										</div>
-										<div class="widget-body">
-											<div class="well">
-											<table class="table table-striped table-hover" >
-												<thead>
-													<tr>
-														<th>Reference No.</th>
-														<th>Project Title</th>
-														<th>Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
-														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn')); ?></td>
-											
-													</tr>
-												</tbody>
-											</table>
-											</div>
-										</div>
-										</div>
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
 										<?php if($job->getWorkStatus() == 'resubmitted'): ?>
-										<div class="widget">
-										<div class="widget-title">
-										<h4><i class="icon-reorder"></i>Applications awaiting resubmission</h4>
-										</div>
-										<div class="widget-body">
+										<h4>Applications resubmitted</h4>
 											<div class="well">
 											<table class="table table-striped table-hover" >
 												<thead>
@@ -1482,44 +1410,80 @@ $(function () {
 													<tr>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
-														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn')); ?></td>
+														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
 											
 													</tr>
 												</tbody>
 											</table>
 											</div>
-										</div>
-										</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'submit'): ?>
+										<h4>Applications awaiting report submission</h4>
+											<div class="well">
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
+														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn btn-primary')); ?></td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'submitted'): ?>
+										<h4>Applications report submitted</h4>
+											<div class="well">
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
 										<?php if($job->getWorkStatus() == 'complete'): ?>
-										<div class="widget">
-											<div class="widget-title">
-											<h4><i class="icon-reorder"></i>Applications Completed</h4>
-											</div>
-											<div class="widget-body">
+											<h4>Applications Completed</h4>
 											<div class="well">
 											<table class="table table-striped table-hover" >
 												<thead>
 													<tr>
 														<th>Reference No.</th>
 														<th>Project Title</th>
-														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
-														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn')); ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
 											
 													</tr>
 												</tbody>
 											</table>
 											</div>
-											</div>
-										</div>
 										<?php endif; ?>
 									</div>
 									<?php endforeach; ?>
@@ -1626,7 +1590,7 @@ $(function () {
 						</div>
 					</div>
 					<!-- Section For EIReports submitted by users -->
-					<?php if(count($eireports) != 0): ?>
+					<?php if(count($eireports) != 0 && $eireports[0]['status'] != "done"): ?>
 					<div class="row-fluid">
 					 
 					   <div class="11">
@@ -1692,12 +1656,12 @@ $(function () {
 												 <button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Approve') ?></button></a>
 												        <?php endif; ?>
 														 <?php if( $report['status'] == "done"): ?>
-														 <div class="alert alert-error">
+														 <!--div class="alert alert-error">
 														   <button class="close" data-dismiss="alert">×</button>
-														   <strong><?php echo __('Report approved') ?></strong>
+														   <strong><?php //echo __('Report approved') ?></strong>
 													      </div>
 														  <!-- ------>
-														  <a href="<?php echo url_for('eiacertificates/issue?id='.$report['id'])?>">
+														  <!--a href="<?php //echo url_for('eiacertificates/issue?id='.$report['id'])?>">
 												 <button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Issue Certificate') ?></button></a>
 														  <!-- ------->
 														 <?php endif; ?>

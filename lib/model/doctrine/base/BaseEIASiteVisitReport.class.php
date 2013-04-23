@@ -7,15 +7,18 @@
  * 
  * @property integer $eiasitevisit_id
  * @property string $report
+ * @property string $tor
  * @property string $token
  * @property EIASiteVisit $EIASiteVisit
  * 
  * @method integer            getEiasitevisitId()  Returns the current record's "eiasitevisit_id" value
  * @method string             getReport()          Returns the current record's "report" value
+ * @method string             getTor()             Returns the current record's "tor" value
  * @method string             getToken()           Returns the current record's "token" value
  * @method EIASiteVisit       getEIASiteVisit()    Returns the current record's "EIASiteVisit" value
  * @method EIASiteVisitReport setEiasitevisitId()  Sets the current record's "eiasitevisit_id" value
  * @method EIASiteVisitReport setReport()          Sets the current record's "report" value
+ * @method EIASiteVisitReport setTor()             Sets the current record's "tor" value
  * @method EIASiteVisitReport setToken()           Sets the current record's "token" value
  * @method EIASiteVisitReport setEIASiteVisit()    Sets the current record's "EIASiteVisit" value
  * 
@@ -34,10 +37,15 @@ abstract class BaseEIASiteVisitReport extends sfDoctrineRecord
              'notnull' => true,
              'unique' => true,
              ));
-        $this->hasColumn('report', 'string', 400, array(
+        $this->hasColumn('report', 'string', 1000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 1000,
+             ));
+        $this->hasColumn('tor', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

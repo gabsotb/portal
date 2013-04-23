@@ -35,6 +35,8 @@ class eiaProjectImpactActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
+	$visits=Doctrine_Core::getTable('EIASiteVisit')->findByEiaprojectId($request->getParameter('project'));
+	$this->reports=Doctrine_Core::getTable('EIASiteVisitReport')->findByEiasitevisitId($visits[0]['id']);
     $this->forward404Unless($project_impact = Doctrine_Core::getTable('ProjectImpact')->find(array($request->getParameter('id'))), sprintf('Object project_impact does not exist (%s).', $request->getParameter('id')));
     $this->form = new ProjectImpactForm($project_impact);
   }

@@ -44,7 +44,7 @@ class eiaDataAdminActions extends sfActions
 		$this->attachments=Doctrine_Core::getTable('EIAProjectAttachment')->findByEiaprojectId($this->detail->getEiaprojectId());
 		$site_id=Doctrine_Core::getTable('EIASiteVisit')->findByEiaprojectId($this->detail->getEiaprojectId());
 		$decision=Doctrine_Core::getTable('EIAProjectBriefDecision')->findByEiaprojectId($this->detail->getEiaprojectId());
-		if($site_visit=Doctrine_Core::getTable('EIASiteVisit')->find($site_id[0]['id']) || $brief_decision=Doctrine_Core::getTable('EIAProjectBriefDecision')->find($decision[0]['id']))
+		if( date('U',strtotime($site_id[0]['site_visit'])) != 0 || $decision[0]['decision'] == 'rejected')
 		{
 			$this->assessing=true;
 		}else
@@ -86,6 +86,11 @@ class eiaDataAdminActions extends sfActions
 	
 	public function executeImpact(sfWebRequest $request)
 	{
+		$impacts=Doctrine_Core::getTable('ProjectImpact')->findByEiaprojectId($request->getParameter('id'));
+		if(Doctrine_Core::getTable('ProjectImpact')->find($impacts[0]['id']))
+		{
+			$this->redirect('eiaProjectImpact/edit?id='.$impacts[0]['id'].'&project='.$request->getParameter('id'));
+		}else{
 		$impact= new ProjectImpact();
 		$impact->eiaproject_id=$request->getParameter('id');
 		$impact->save();
@@ -96,7 +101,8 @@ class eiaDataAdminActions extends sfActions
 		{
 			$impactId=$projetcImpact->getId();
 		}
-		$this->redirect('eiaProjectImpact/edit?id='.$impactId);
+		$this->redirect('eiaProjectImpact/edit?id='.$impactId.'&project='.$request->getParameter('id'));
+		}
 	}
 	
 	public function executeReject(sfWebRequest $request)
@@ -118,12 +124,18 @@ class eiaDataAdminActions extends sfActions
 	
 	public function executeSiteVisit(sfWebRequest $request)
 	{
+		$visit_id=Doctrine_Core::getTable('EIASiteVisit')->findByEiaprojectId($request->getParameter('id'));
+		if($visit=Doctrine_Core::getTable('EIASiteVisit')->find($visit_id[0]['id']))
+		{
+			$this->redirect('eiaSiteVisit/edit?id='.$visit->getId());
+		}else{
 		$site = new EIASiteVisit();
 		$site->eiaproject_id=$request->getParameter('id');
 		$site->visited=false;
 		$site->save();
 		$visits=Doctrine_Core::getTable('EIASiteVisit')->findByEiaprojectId($request->getParameter('id'));
 		$this->redirect('eiaSiteVisit/edit?id='.$visits[0]['id']);
+		}
 	}
 	public function executeProcess(sfWebRequest $request)
 	{
@@ -134,10 +146,10 @@ class eiaDataAdminActions extends sfActions
 		$this->tasks=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
 		$this->assessmentSiteVisit=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessment($this->tasks[0]['id'],'site-visit');
 		$this->assessmentImpact=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessment($this->tasks[0]['id'],'impact-level');
-		$this->assessmentTor=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessment($this->tasks[0]['id'],'tor');
+		$this->assessmentReport=Doctrine_Core::getTable('EIAAssessmentDecision')->getAssessment($this->tasks[0]['id'],'ei-report');
 		$this->applicantEmail=Doctrine_Core::getTable('sfGuardUser')->find($this->projectDetail['created_by']);
 		$this->projectImpact=Doctrine_Core::getTable('ProjectImpact')->findByEiaprojectId($request->getParameter('id'));
-		$this->torSubmit=Doctrine_Core::getTable('TorSubmit')->findByEiaprojectId($request->getParameter('id'));
+		$this->reports=Doctrine_Core::getTable('EIReport')->findByEiaprojectId($request->getParameter('id'));
 		
 	}
 	public function executeMessage(sfWebRequest $request)
@@ -183,12 +195,18 @@ class eiaDataAdminActions extends sfActions
 	}
 	public function executeSiteVisitReport(sfWebRequest $request)
 	{
+		$report_ids=Doctrine_Core::getTable('EIASiteVisitReport')->findByEiasitevisitId($request->getParameter('id'));
+		if(Doctrine_Core::getTable('EIASiteVisitReport')->find($report_ids[0]['id']))
+		{
+			$this->redirect('eiaSiteVisitReport/edit?id='.$report_ids[0]['id']); 
+		}else{
 		$report = new EIASiteVisitReport();
 		$report->eiasitevisit_id=$request->getParameter('id');
 		$report->save();
 		$report_id=Doctrine_Core::getTable('EIASiteVisitReport')->findByEiasitevisitId($request->getParameter('id'));
 		
 		$this->redirect('eiaSiteVisitReport/edit?id='.$report_id[0]['id']); 
+		}
 	}
 	public function executeTorSubmit(sfWebRequest $request)
 	{
@@ -206,11 +224,14 @@ class eiaDataAdminActions extends sfActions
 		$message->recepient=$request->getParameter('applicant');
 		$applicant=Doctrine_Core::getTable('sfGuardUser')->findByUsername($request->getParameter('applicant'));
 		$message->recepient_email=$applicant[0]['email_address'];
+		$message->message_subject="Environmental Impact Study";
 		$message->save();
 		//change status
-		Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($request->getParameter('id'),"EIR");
-		Doctrine_Core::getTable('EIApplicationStatus')->updateComment($request->getParameter('id'),"Environmental Impact Study assessment");
+		Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($request->getParameter('id'),"EIStudy");
+		Doctrine_Core::getTable('EIApplicationStatus')->updateComment($request->getParameter('id'),"Environmental Impact Study");
 		Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage($request->getParameter('id'),80);
+		$tasks=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
+		Doctrine_Core::getTable('EITaskAssignment')->find($tasks[0]['id'])->setWorkStatus('submit')->setStage('ei-study')->save();
 		/*$statusId=Doctrine_Core::getTable('EIApplicationStatus')->findByEiaprojectId($request->getParameter('id'));
 		$status=Doctrine_Core::getTable('EIApplicationStatus')->find($statusId[0]['id']);
 		$status->application_status="EIR";

@@ -82,7 +82,13 @@ class projectOperationPhaseActions extends sfActions
        ///
 	   sfContext::getInstance()->getUser()->setAttribute('eiaprojectid',$eia_project_operation_phase->getEiaprojectId());
 	    ////////
-		 $query2 = Doctrine_Core::getTable('EIAProjectAttachment')->queryForId($project_id);
+	if(sfContext::getInstance()->getUser()->getAttribute('eiaprojectid'))
+	{
+	  $project_id = sfContext::getInstance()->getUser()->getAttribute('eiaprojectid');
+	}else{
+	$project_id=$eia_project_operation_phase->getEiaprojectId();
+	}
+	 $query2 = Doctrine_Core::getTable('EIAProjectAttachment')->queryForId($project_id);
 	 $queried_id = null ;
 	 $queried_token = null;
 	 foreach($query2 as $q)
@@ -94,21 +100,33 @@ class projectOperationPhaseActions extends sfActions
 	 //
 	 if($queried_id != null) //edit, we redirect to editing method
 	 {
-	 $this->redirect('projectAttachment/edit?id='.$queried_id.'&token='.$queried_token);
+		if($eia_project_operation_phase->getResubmit() == 'all')
+		{
+		//$developer=Doctrine_Core::getTable('EIAProjectAttachment')->findByEiaprojectId($eia_project_operation_phase->getEiaproject_id());
+		$this->redirect('projectAttachment/edit?id='.$queried_id);
+		}elseif($eia_project_operation_phase->getResubmit() == 'only')
+		{
+			$resubmit=$this->getUser()->getAttribute('resubmit');
+			if($resubmit['EIAProjectAttachment'])
+			{
+			Doctrine_Core::getTable('EIAProjectOperationPhase')->find($eia_project_operation_phase->getId())->setResubmit('done')->save();
+				$this->redirect('projectAttachment/edit?id='.$resubmit['EIAProjectAttachment']);
+			}else{
+			Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eia_project_operation_phase->getEiaprojectId(),'resubmitted');
+			Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eia_project_operation_phase->getEiaprojectId(),'Resubmission assessment');
+			Doctrine_Core::getTable('EITaskAssignment')->updateWorkStatus($eia_project_operation_phase->getEiaprojectId(),'resubmitted');
+			Doctrine_Core::getTable('EIAProjectOperationPhase')->find($eia_project_operation_phase->getId())->setResubmit('done')->save();
+			sfContext::getInstance()->getUser()->resetResubmissionForm();
+			$this->redirect('@homepage');
+			}
+		}else
+		{
+		$this->redirect('projectAttachment/edit?id='.$queried_id.'&token='.$queried_token);
+		}
 	 }
 	 else if($queried_id  == null ) //new, we redirect to new method
 	 {
-		if($eia_project_operation_phase->getResubmit() == 'all')
-		{
-			$developer=Doctrine_Core::getTable('EIAProjectAttachment')->findByEiaprojectId($eia_project_operation_phase->getEiaproject_id());
-			$this->redirect('projectAttachment/edit?id='.$developer[0]['id']);
-		}elseif($eia_project_operation_phase->getResubmit() == 'only')
-		{
-			$this->redirect('@homepage');
-		}else
-		{
-			$this->redirect('projectAttachment/new?id='.$eia_project_operation_phase->getId().'&token='.$eia_project_operation_phase->getToken());
-		}
+		$this->redirect('projectAttachment/new?id='.$eia_project_operation_phase->getId().'&token='.$eia_project_operation_phase->getToken());
 	 }
 		////////
       

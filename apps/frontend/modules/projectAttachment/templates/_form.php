@@ -34,7 +34,7 @@
 		<td><?php echo $form['perspective_site_impact']->renderError() ?><?php echo $form['perspective_site_impact']->render() ?></td>
 	   </tr>
 	   <tr>
-	     <td><?php echo("Preliminary approval(for compliance with Master plan)") ?><font color="red">*******</font></td>
+	     <td><?php echo("Preliminary approval(for compliance with Master plan)") ?><!--font color="red">*******</font--></td>
 		<td><?php echo $form['preliminary_approval']->renderError() ?><?php echo $form['preliminary_approval']->render() ?></td>
 	   </tr>
 	   <tr>
@@ -42,7 +42,7 @@
 		<td><?php echo $form['land_ownership_doc']->renderError() ?><?php echo $form['land_ownership_doc']->render() ?></td>
 	   </tr>
 	   <tr>
-	     <td><?php echo("Relevant Ministrial Order Documents") ?></td>
+	     <td><?php echo("Relevant Ministerial Order Documents") ?></td>
 		<td><?php echo $form['ministrial_document']->renderError() ?><?php echo $form['ministrial_document']->render() ?></td>
 	   </tr>
 	   <tr>

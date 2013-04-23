@@ -82,7 +82,13 @@ class eiaProjectDeveloperActions extends sfActions
       $eia_project_developer = $form->save();
       ///
 	   //get the setAttribute
-	  $project_id = $this->getUser()->getAttribute('eiaprojectid');
+		if($this->getUser()->getAttribute('eiaprojectid'))
+		{
+		$project_id = $this->getUser()->getAttribute('eiaprojectid');
+		}else
+		{
+			$project_id=$eia_project_developer->getEiaprojectId();
+		}
 	  //we also control if it new or edit action to be execute for eiaprojectdeveloper module
 	  //
 	 $query2 = Doctrine_Core::getTable('EIAProjectDescription')->queryForId($project_id);
@@ -97,21 +103,57 @@ class eiaProjectDeveloperActions extends sfActions
 	 //
 	 if($queried_id != null) //edit, we redirect to editing method
 	 {
-	 $this->redirect('projectDescription/edit?id='.$queried_id.'&token='.$queried_token);
+		if($eia_project_developer->getResubmit() == 'all')
+		{
+		//$projectDescription=Doctrine_Core::getTable('EIAProjectDescription')->findByEiaprojectId($eia_project_developer->getEiaproject_id());
+			$this->redirect('projectDescription/edit?id='.$queried_id);
+		}elseif($eia_project_developer->getResubmit() == 'only')
+		{
+			$resubmit=$this->getUser()->getAttribute('resubmit');
+			if($resubmit['EIAProjectDescription'])
+			{
+			Doctrine_Core::getTable('EIAProjectDeveloper')->find($eia_project_developer->getId())->setResubmit('done')->save();
+				$this->redirect('projectDescription/edit?id='.$resubmit['EIAProjectDescription']);
+			}elseif($resubmit['EIAProjectSurrounding'])
+			{
+			Doctrine_Core::getTable('EIAProjectDeveloper')->find($eia_project_developer->getId())->setResubmit('done')->save();
+				$this->redirect('eiaProjectSurrounding/edit?id='.$resubmit['EIAProjectSurrounding']);
+			}elseif($resubmit['EIAProjectSurroundingSpecies'])
+			{
+			Doctrine_Core::getTable('EIAProjectDeveloper')->find($eia_project_developer->getId())->setResubmit('done')->save();
+				$this->redirect('projectSorroundingSpecies/edit?id='.$resubmit['EIAProjectSurroundingSpecies']);
+			}elseif($resubmit['EIAProjectSocialEconomic'])
+			{
+			Doctrine_Core::getTable('EIAProjectDeveloper')->find($eia_project_developer->getId())->setResubmit('done')->save();
+				$this->redirect('projectSocialEconomic/edit?id='.$resubmit['EIAProjectSocialEconomic']);
+			}elseif($resubmit['EIAProjectImpactMeasures'])
+			{
+			Doctrine_Core::getTable('EIAProjectDeveloper')->find($eia_project_developer->getId())->setResubmit('done')->save();
+				$this->redirect('projectImpactMeasures/edit?id='.$resubmit['EIAProjectImpactMeasures']);
+			}elseif($resubmit['EIAProjectOperationPhase'])
+			{
+			Doctrine_Core::getTable('EIAProjectDeveloper')->find($eia_project_developer->getId())->setResubmit('done')->save();
+				$this->redirect('projectOperationPhase/edit?id='.$resubmit['EIAProjectOperationPhase']);
+			}elseif($resubmit['EIAProjectAttachment'])
+			{
+			Doctrine_Core::getTable('EIAProjectDeveloper')->find($eia_project_developer->getId())->setResubmit('done')->save();
+				$this->redirect('projectAttachment/edit?id='.$resubmit['EIAProjectAttachment']);
+			}else{
+			Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eia_project_developer->getEiaprojectId(),'resubmitted');
+			Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eia_project_developer->getEiaprojectId(),'Resubmission assessment');
+			Doctrine_Core::getTable('EITaskAssignment')->updateWorkStatus($eia_project_developer->getEiaprojectId(),'resubmitted');
+			Doctrine_Core::getTable('EIAProjectDeveloper')->find($eia_project_developer->getId())->setResubmit('done')->save();
+			$this->getUser()->resetResubmissionForm();
+			$this->redirect('@homepage');
+			}
+		}else
+		{
+		$this->redirect('projectDescription/edit?id='.$queried_id.'&token='.$queried_token);
+		}
 	 }
 	 else if($queried_id  == null ) //new, we redirect to new method
 	 {
-		if($eia_project_developer->getResubmit() == 'all')
-		{
-			$projectDescription=Doctrine_Core::getTable('EIAProjectDescription')->findByEiaprojectId($eia_project_developer->getEiaproject_id());
-			$this->redirect('projectDescription/edit?id='.$projectDescription[0]['id']);
-		}elseif($eia_project_developer->getResubmit() == 'only')
-		{
-			$this->redirect('@homepage');
-		}else
-		{
-			$this->redirect('projectDescription/new?id='.$eia_project_developer->getId().'&token='.$eia_project_developer->getToken());
-		}
+		$this->redirect('projectDescription/new?id='.$eia_project_developer->getId().'&token='.$eia_project_developer->getToken());
 	 }
 	  
 	  ///

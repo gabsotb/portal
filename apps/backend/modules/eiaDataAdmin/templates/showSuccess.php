@@ -167,7 +167,7 @@
 					<p><?php echo __('Underdeveloped Area') ?></p>
 				<?php endif; ?>
 				<?php if($description->getSiteLocationOther()): ?>
-					<p><?php echo __('Other particulars:') ?>&nbsp;<?php echo $description->getSiteLocationOtherSpecify() ?></p>
+					<p><?php echo __('Other particulars:') ?>&nbsp;<?php echo html_entity_decode($description->getSiteLocationOtherSpecify()) ?></p>
 				<?php endif; ?>
 				</div>
 				<div class="well">
@@ -194,7 +194,7 @@
 					<li><?php echo __('Open Space') ?></li>
 				<?php endif; ?>
 				<?php if($description->getLandUseOther()): ?>
-					<p><?php echo __('Others:') ?>&nbsp;<?php echo $description->getLandUseOtherSpecify() ?></p>
+					<p><?php echo __('Others:') ?>&nbsp;<?php echo html_entity_decode($description->getLandUseOtherSpecify()) ?></p>
 				<?php endif; ?>
 				</ul>
 				</div>
@@ -202,14 +202,14 @@
 				<div class="alert alert-info">
 					   <h4><?php echo __('PROJECT COMPONENTS') ?></h4>
 				</div>
-				<p><?php echo $description->getProjectComponents() ?></p>
+				<p><?php echo html_entity_decode($description->getProjectComponents()) ?></p>
 				</div>
 				<!--  ----Project activities---- -->
 				<div class="well">
 				<div class="alert alert-info">
 					   <h4><?php echo __('PROJECT ACTIVITIES DURING ALL PHASES') ?></h4>
 				</div>
-				<p><?php echo $description->getProjectActivities() ?></p>
+				<p><?php echo html_entity_decode($description->getProjectActivities()) ?></p>
 				</div>
 				<!---  ------- -->
 				<div class="well">
@@ -268,7 +268,7 @@
 						<li><?php echo __('Biogas plant') ?></li>
 					<?php endif; ?>
 					<?php if($description->getSewageSystemOther()): ?>
-						<p><?php echo __('Others')?>:&nbsp;<?php echo $description->getSewageSystemOtherSpecify() ?></p>
+						<li><?php echo __('Others')?>:&nbsp;<?php echo html_entity_decode($description->getSewageSystemOtherSpecify()) ?></li>
 					<?php endif; ?>
 					</ul>
 					<br/>
@@ -287,7 +287,7 @@
 						<li><?php echo __('Own Generator:') ?>&nbsp;<b><?php echo $description->getPowerSupplyOwnGeneratorCapacity() ?></b></li>
 					<?php endif; ?>
 					<?php if($description->getPowerSupplyOther()): ?>
-						<p><?php echo __('Others:') ?>&nbsp;<?php echo $description->getPowerSupplyOtherSpecify() ?></p>
+						<li><?php echo __('Others:') ?>&nbsp;<?php echo html_entity_decode($description->getPowerSupplyOtherSpecify()) ?></li>
 					<?php endif; ?>
 					</ul>
 					</div>
@@ -299,9 +299,6 @@
 				        </div>
 				<b><?php echo __('Disposal system:') ?></b><br/>
 				<ul>
-				<?php if($description->getSolidWasteEcological()): ?>
-					<li><?php echo __('Ecological solid waste management') ?></li>
-				<?php endif; ?>
 				<?php if($description->getSolidWasteDumpsite()): ?>
 					<li><?php echo __('Open dumpsite outside of the project site') ?></li>
 				<?php endif; ?>
@@ -309,7 +306,7 @@
 					<li><?php echo __('Municipal/City landfill area') ?></li>
 				<?php endif; ?>
 				<?php if($description->getSolidWasteOthers()): ?>
-					<p><?php echo __('Other:') ?>&nbsp;<?php echo $description->getSolidWasteOthersSpecify() ?></p>
+					<li><?php echo __('Other:') ?>&nbsp;<?php echo html_entity_decode($description->getSolidWasteOthersSpecify()) ?></li>
 				<?php endif; ?>
 				</ul>
 				</div>
@@ -366,7 +363,7 @@
 					<li><?php echo __('Unstable slopes') ?></li>
 					<?php endif; ?>
 					<?php if($surrounding->getSoilErosionOthers()): ?>
-					<p><?php echo __('Others:') ?>&nbsp;<?php echo $surrounding->getSoilErosionOthersSpecify() ?></p>
+					<p><?php echo __('Others:') ?>&nbsp;<?php echo html_entity_decode($surrounding->getSoilErosionOthersSpecify()) ?></p>
 					<?php endif; ?>
 					</ul>
 				<?php endif; ?>
@@ -383,7 +380,7 @@
 				<p> <?php echo __('Water bodies found near/ within the site') ?></p>
 					<div class="well">
 					<h4><?php echo __('Remarks') ?></h4>
-					<p><?php echo $surrounding->getExistingWaterBodyRemark() ?></p>
+					<p><?php echo html_entity_decode($surrounding->getExistingWaterBodyRemark()) ?></p>
 					</div>
 				<?php endif; ?>
 				<?php if(!$surrounding->getExistingWaterBody()): ?>
@@ -411,14 +408,14 @@
 				<p><?php echo __('Conforms to the approves land use plan of the city/District') ?></p>
 					<div class="well">
 					<h4><?php echo __('Remarks') ?></h4>
-					<p><?php echo $surrounding->getSiteConformRemark() ?></p>
+					<p><?php echo html_entity_decode($surrounding->getSiteConformRemark()) ?></p>
 					</div>
 				<?php endif; ?>
 				<?php if(!$surrounding->getSiteConformApproval()): ?>
 				<p><?php echo __('Does not conform to the approves land use plan of the city/District') ?></p>
 					<div class="well">
 					<h4><?php echo __('Remarks') ?></h4>
-					<p><?php echo $surrounding->getSiteConformRemark() ?></p>
+					<p><?php echo html_entity_decode($surrounding->getSiteConformRemark()) ?></p>
 					</div>
 				<?php endif; ?>
 				</div>
@@ -431,7 +428,7 @@
 				<p><?php echo __('Existence of structures/developments around the site') ?></p>
 					<div class="well">
 					<h4><?php echo __('Remarks') ?></h4>
-					<p><?php echo $surrounding->getSiteExistingRemark() ?></p>
+					<p><?php echo html_entity_decode($surrounding->getSiteExistingRemark()) ?></p>
 					</div>
 				<?php endif; ?>
 				<?php if(!$surrounding->getSiteExistingStructure()): ?>
@@ -456,7 +453,7 @@
 				<li><?php echo __('Marshland') ?></li>
 				<?php endif; ?>
 				<?php if($surrounding->getLandUseOther()): ?>
-				<p><?php echo __('Others:') ?>&nbsp;<?php echo $surrounding->getLandUseOtherSpecify() ?></p>
+				<p><?php echo __('Others:') ?>&nbsp;<?php echo html_entity_decode($surrounding->getLandUseOtherSpecify()) ?></p>
 				<?php endif; ?>
 				</ul>
 				</div>
@@ -471,7 +468,7 @@
 				<p><?php echo __('Existence of trees and other types of vegetation in the site') ?></p>
 				<div class="well">
 				<h4><?php echo __('Examples of vegetation:') ?></h4>
-				<p><?php echo $surrounding->getExistingTreesRemark() ?></p>
+				<p><?php echo html_entity_decode($surrounding->getExistingTreesRemark()) ?></p>
 				</div>
 				<?php endif; ?>
 				<?php if(!$surrounding->getExistingTrees()): ?>
@@ -484,14 +481,14 @@
 				<p><?php echo __('Existence of birds and other wildlife found in the site') ?></p>
 				<div class="well">
 				<h4><?php echo __('Remarks') ?></h4>
-				<p><?php echo $surrounding->getWildlifeExistingRemark() ?></p>
+				<p><?php echo html_entity_decode($surrounding->getWildlifeExistingRemark()) ?></p>
 				</div>
 				<?php endif; ?>
 				<?php if(!$surrounding->getWildlifeExisting()): ?>
 				<p><?php echo __('No existence of birds and other wildlife found in the site') ?></p>
 				<div class="well">
 				<h4><?php echo __('Remarks') ?></h4>
-				<p><?php echo $surrounding->getWildlifeExistingRemark() ?></p>
+				<p><?php echo html_entity_decode($surrounding->getWildlifeExistingRemark()) ?></p>
 				</div>
 				<?php endif; ?>
 				</div>
@@ -501,14 +498,14 @@
 				<p><?php echo __('Existence of fishery resources in water bodies found near/within the site') ?></p>
 				<div class="well">
 				<h4><?php echo __('Remarks') ?></h4>
-				<p><?php echo $surrounding->getFisheryExistingRemark() ?></p>
+				<p><?php echo html_entity_decode($surrounding->getFisheryExistingRemark()) ?></p>
 				</div>
 				<?php endif; ?>
 				<?php if(!$surrounding->getFisheryExisting()): ?>
 				<p><?php echo __('No existence of fishery resources in water bodies found near/within the site') ?></p>
 				<div class="well">
 				<h4><?php echo __('Remarks')?></h4>
-				<p><?php echo $surrounding->getFisheryExistingRemark() ?></p>
+				<p><?php echo html_entity_decode($surrounding->getFisheryExistingRemark()) ?></p>
 				</div>
 				<?php endif; ?>
 				</div>
@@ -525,7 +522,7 @@
 					<blockquote><?php echo __('Watershed/forest reservation area is within') ?></blockquote>
 						<div class="well">
 						<h4><?php echo __('Watershed/forest reservation area names:')?></h4>
-						<p><?php echo $surrounding->getWatershedWithinName() ?></p>
+						<p><?php echo html_entity_decode($surrounding->getWatershedWithinName()) ?></p>
 						</div>
 					<?php endif; ?>
 				<?php endif; ?>
@@ -564,14 +561,14 @@
 				<p><?php echo __('Existing settlements in the project')?></p>
 				<div class="well">
 				<h4><?php echo __('Remarks') ?></h4>
-				<p><?php echo $economic->getExistingSettlementsRemark() ?></p>
+				<p><?php echo html_entity_decode($economic->getExistingSettlementsRemark()) ?></p>
 				</div>
 				<?php endif; ?>
 				<?php if(!$economic->getExistingSettlements()): ?>
 				<p><?php echo __('No existing settlements in the project')?></p>
 				<div class="well">
 				<h4><?php echo __('Remarks') ?></h4>
-				<p><?php echo $economic->getExistingSettlementsRemark() ?></p>
+				<p><?php echo html_entity_decode($economic->getExistingSettlementsRemark()) ?></p>
 				</div>
 				<?php endif; ?>
 				</div>
@@ -594,7 +591,7 @@
 					<li><?php echo __('Vending') ?></li>
 				<?php endif; ?>
 				<?php if($economic->getLivelihoodOthers()): ?>
-					<p><?php echo __('Others:')?>&nbsp;<?php echo $economic->getLivelihoodOthersSpecify() ?></p>
+					<p><?php echo __('Others:')?>&nbsp;<?php echo html_entity_decode($economic->getLivelihoodOthersSpecify()) ?></p>
 				<?php endif; ?>
 				</ul>
 				<?php if(!is_null($economic->getLivelihoodRemarks())): ?>

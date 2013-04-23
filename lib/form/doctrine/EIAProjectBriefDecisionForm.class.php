@@ -16,13 +16,13 @@ class EIAProjectBriefDecisionForm extends BaseEIAProjectBriefDecisionForm
 			$this['token'], $this['processed_by'], $this['eiaproject_id'], $this['decision'] );
 			
 	$this->widgetSchema['comments']=new sfWidgetFormTextarea();
-	$this->widgetSchema['form'] = new sfWidgetFormChoice(array(
+	/*$this->widgetSchema['form'] = new sfWidgetFormChoice(array(
 	'choices'  => Doctrine_Core::getTable('EIAProjectBriefDecision')->getForms(),
-	'multiple' => false,
-	'expanded' => false,
+	'multiple' => true,
+	'expanded' => true,
 	));
 	$this->validatorSchema['form'] = new sfValidatorChoice(array(
 	'choices' => array_keys(Doctrine_Core::getTable('EIAProjectBriefDecision')->getForms()),
-	));
+	));*/
   }
 }

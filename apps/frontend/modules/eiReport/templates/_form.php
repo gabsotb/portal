@@ -48,9 +48,9 @@
 		      </div>
 			<div class="controls">
 				<div class="">
-				<input type="submit" class="btn btn-success" value="Submit" />
 				<a href="<?php echo url_for('investmentapp/index') ?>">
 				  <input type="button" class="btn btn-danger" value="<?php echo __('Cancel') ?>">
+				<input type="submit" class="btn btn-success" value="Submit" />
 				</a>
 				</div>
 			</div>

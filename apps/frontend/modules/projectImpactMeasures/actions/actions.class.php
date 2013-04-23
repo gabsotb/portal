@@ -81,6 +81,12 @@ class projectImpactMeasuresActions extends sfActions
       $eia_project_impact_measures = $form->save();
       ///
 	   ////////
+	if($this->getUser()->getAttribute('eiaprojectid'))
+	{
+	  $project_id = $this->getUser()->getAttribute('eiaprojectid');
+	}else{
+		$project_id=$eia_project_impact_measures->getEiaprojectId();
+	}
      $query2 = Doctrine_Core::getTable('EIAProjectOperationPhase')->queryForId($project_id);
 	 $queried_id = null ;
 	 $queried_token = null;
@@ -93,21 +99,37 @@ class projectImpactMeasuresActions extends sfActions
 	 //
 	 if($queried_id != null) //edit, we redirect to editing method
 	 {
-	 $this->redirect('projectOperationPhase/edit?id='.$queried_id.'&token='.$queried_token);
+		if($eia_project_impact_measures->getResubmit() == 'all')
+		{
+		//$projectOperationPhase=Doctrine_Core::getTable('EIAProjectOperationPhase')->findByEiaprojectId($eia_project_impact_measures->getEiaproject_id());
+		$this->redirect('projectOperationPhase/edit?id='.$queried_id);
+		}elseif($eia_project_impact_measures->getResubmit() == 'only')
+		{
+			$resubmit=$this->getUser()->getAttribute('resubmit');
+			if($resubmit['EIAProjectOperationPhase'])
+			{
+			Doctrine_Core::getTable('EIAProjectImpactMeasures')->find($eia_project_impact_measures->getId())->setResubmit('done')->save();
+				$this->redirect('projectOperationPhase/edit?id='.$resubmit['EIAProjectOperationPhase']);
+			}elseif($resubmit['EIAProjectAttachment'])
+			{
+			Doctrine_Core::getTable('EIAProjectImpactMeasures')->find($eia_project_impact_measures->getId())->setResubmit('done')->save();
+				$this->redirect('projectAttachment/edit?id='.$resubmit['EIAProjectAttachment']);
+			}else{
+			Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eia_project_impact_measures->getEiaprojectId(),'resubmitted');
+			Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eia_project_impact_measures->getEiaprojectId(),'Resubmission assessment');
+			Doctrine_Core::getTable('EITaskAssignment')->updateWorkStatus($eia_project_impact_measures->getEiaprojectId(),'resubmitted');
+			Doctrine_Core::getTable('EIAProjectImpactMeasures')->find($eia_project_impact_measures->getId())->setResubmit('done')->save();
+			$this->getUser()->resetResubmissionForm();
+			$this->redirect('@homepage');
+			}
+		}else
+		{
+			$this->redirect('projectOperationPhase/edit?id='.$queried_id.'&token='.$queried_token);
+		}
 	 }
 	 else if($queried_id  == null ) //new, we redirect to new method
 	 {
-		if($eia_project_impact_measures->getResubmit() == 'all')
-		{
-			$projectOperationPhase=Doctrine_Core::getTable('EIAProjectOperationPhase')->findByEiaprojectId($eia_project_impact_measures->getEiaproject_id());
-			$this->redirect('projectOperationPhase/edit?id='.$projectOperationPhase[0]['id']);
-		}elseif($eia_project_impact_measures->getResubmit() == 'only')
-		{
-			$this->redirect('@homepage');
-		}else
-		{
 	     $this->redirect('projectOperationPhase/new?id='.$eia_project_impact_measures->getId().'&token='.$eia_project_impact_measures->getToken());
-		}
 	 }
 		////////
 	  

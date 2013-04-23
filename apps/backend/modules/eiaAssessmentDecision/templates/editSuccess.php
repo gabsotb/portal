@@ -22,17 +22,18 @@
 				<p><b>Remarks</b></p>
 				<p><?php echo html_entity_decode($projectImpact[0]['comments']) ?></p>
 				<br/>
-				<p><a href="#siteVisitReport" role="button" class="btn btn-inverse" data-toggle="modal">View site visit report</a></p>
+				<p><a href="#siteVisitReport" role="button" class="btn btn-inverse tooltips" data-toggle="modal" data-placement="left" data-original-title="View Site visit report">Report</a>
+				<?php if(isset($report[0]['tor'])): ?>
+				<?php echo button_to('T.O.R','/uploads/documents/eia_documents/tor/'.$report[0]['tor'],array('target' => '_blank','class' => 'btn btn-primary tooltips','data-placement' => 'right', 'data-original-title' => 'Download Terms of Reference')) ?>
+				<?php endif; ?></p>
 			</div>
 			<?php endif; ?>
 		<?php endif; ?>
-		<?php if(count($tor) != 0 && $eiaprojectId['stage']=='tor'): ?>
-			<div class="alert alert-block alert-warning fade in">
-			<h4>Terms of Reference</h4>
-			<p><b>Remarks</b></p>
-			<?php echo html_entity_decode($tor[0]['remarks']) ?>
+		<?php if(count($eireport) != 0 && $eiaprojectId['stage']=='ei-report'): ?>
+			<div class="alert alert-block alert-info fade in">
+			<h4>Environmental Impact Report</h4>
 			<br/>
-			<p>Download &nbsp;&nbsp;<?php echo link_to('download', '/uploads/documents/eia_documents/tor/'.$tor[0]['attachement'], array('target' => '_blank','class' => 'btn')); ?></p>
+			<p><?php echo link_to('Report', '/uploads/documents/eia_documents/user_eireports/'.$eireport[0]['pdf_doc'], array('target' => '_blank','class' => 'btn btn-primary tooltips', 'data-placement' => 'right','data-original-title' => 'View EI Report')); ?></p>
 			</div>
 		<?php endif; ?>
 		<?php if(count($sites) != 0 && $eiaprojectId['stage']=='site-visit'): ?>

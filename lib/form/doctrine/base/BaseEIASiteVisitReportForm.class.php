@@ -18,6 +18,7 @@ abstract class BaseEIASiteVisitReportForm extends BaseFormDoctrine
       'id'              => new sfWidgetFormInputHidden(),
       'eiasitevisit_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIASiteVisit'), 'add_empty' => false)),
       'report'          => new sfWidgetFormTextarea(),
+      'tor'             => new sfWidgetFormInputText(),
       'token'           => new sfWidgetFormInputText(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
@@ -28,7 +29,8 @@ abstract class BaseEIASiteVisitReportForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'eiasitevisit_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIASiteVisit'))),
-      'report'          => new sfValidatorString(array('max_length' => 400)),
+      'report'          => new sfValidatorString(array('max_length' => 1000)),
+      'tor'             => new sfValidatorString(array('max_length' => 255)),
       'token'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),

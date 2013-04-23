@@ -64,7 +64,7 @@ class investmentappActions extends sfActions
 			//Resubmission
 			if($briefDecision[0]['decision'] == 'resubmit')
 			{
-				if($briefDecision[0]['form'] == 'all')
+				if($briefDecision[0]['all_form'])
 				{
 					Doctrine_Core::getTable('EIAProjectDetail')->find($this->eiaStatus[0]['id'])->setResubmit('all')->save();
 					$EIAProjectDeveloper=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($this->eiaStatus[0]['id']);
@@ -85,61 +85,71 @@ class investmentappActions extends sfActions
 					$EIAProjectAttachment=Doctrine_Core::getTable('EIAProjectAttachment')->findByEiaprojectId($this->eiaStatus[0]['id']);
 					Doctrine_Core::getTable('EIAProjectAttachment')->find($EIAProjectAttachment[0]['id'])->setResubmit('all')->save();
 					$this->resubmit_id=$this->eiaStatus[0]['id'];
+					//$this->getUser()->addResubmissionForm('all',$this->eiaStatus[0]['id']);
 					
 				}
-				if($briefDecision[0]['form'] == 'EIAProjectDetail')
+				if($briefDecision[0]['project_detail'])
 				{
 					Doctrine_Core::getTable('EIAProjectDetail')->find($this->eiaStatus[0]['id'])->setResubmit('only')->save();
 					$this->resubmit_id=$this->eiaStatus[0]['id'];
+					//$this->getUser()->addResubmissionForm('EIAProjectDetail',$this->eiaStatus[0]['id']);
 				}
-				if($briefDecision[0]['form'] == 'EIAProjectDeveloper')
+				if($briefDecision[0]['project_developer'])
 				{
 					$form_id=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($this->eiaStatus[0]['id']);
 					Doctrine_Core::getTable('EIAProjectDeveloper')->find($form_id[0]['id'])->setResubmit('only')->save();
 					$this->resubmit_id=$form_id[0]['id'];
+					$this->getUser()->addResubmissionForm('EIAProjectDeveloper',$form_id[0]['id']);
 				}
-				if($briefDecision[0]['form'] == 'EIAProjectDescription')
+				if($briefDecision[0]['project_description'])
 				{
 					$form_id=Doctrine_Core::getTable('EIAProjectDescription')->findByEiaprojectId($this->eiaStatus[0]['id']);
 					Doctrine_Core::getTable('EIAProjectDescription')->find($form_id[0]['id'])->setResubmit('only')->save();
 					$this->resubmit_id=$form_id[0]['id'];
+					$this->getUser()->addResubmissionForm('EIAProjectDescription',$form_id[0]['id']);
 				}
-				if($briefDecision[0]['form'] == 'EIAProjectSurrounding')
+				if($briefDecision[0]['project_surrounding'])
 				{
 					$form_id=Doctrine_Core::getTable('EIAProjectSurrounding')->findByEiaprojectId($this->eiaStatus[0]['id']);
 					Doctrine_Core::getTable('EIAProjectSurrounding')->find($form_id[0]['id'])->setResubmit('only')->save();
 					$this->resubmit_id=$form_id[0]['id'];
+					$this->getUser()->addResubmissionForm('EIAProjectSurrounding',$form_id[0]['id']);
 				}
-				if($briefDecision[0]['form'] == 'EIAProjectSurroundingSpecies')
+				if($briefDecision[0]['project_surrounding_species'])
 				{
 					$surroundings=Doctrine_Core::getTable('EIAProjectSurrounding')->findByEiaprojectId($this->eiaStatus[0]['id']);
 					$form_id=Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->findByProjectSurroundingId($surroundings[0]['id']);
 					Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->find($form_id[0]['id'])->setResubmit('only')->save();
 					$this->resubmit_id=$form_id[0]['id'];
+					$this->getUser()->addResubmissionForm('EIAProjectSurroundingSpecies',$form_id[0]['id']);
 				}
-				if($briefDecision[0]['form'] == 'EIAProjectSocialEconomic')
+				if($briefDecision[0]['project_social_economic'])
 				{
 					$form_id=Doctrine_Core::getTable('EIAProjectSocialEconomic')->findByEiaprojectId($this->eiaStatus[0]['id']);
 					Doctrine_Core::getTable('EIAProjectSocialEconomic')->find($form_id[0]['id'])->setResubmit('only')->save();
 					$this->resubmit_id=$form_id[0]['id'];
+					$this->getUser()->addResubmissionForm('EIAProjectSocialEconomic',$form_id[0]['id']);
 				}
-				if($briefDecision[0]['form'] == 'EIAProjectImpactMeasures')
+				if($briefDecision[0]['project_impact_measures'])
 				{
 					$form_id=Doctrine_Core::getTable('EIAProjectImpactMeasures')->findByEiaprojectId($this->eiaStatus[0]['id']);
 					Doctrine_Core::getTable('EIAProjectImpactMeasures')->find($form_id[0]['id'])->setResubmit('only')->save();
 					$this->resubmit_id=$form_id[0]['id'];
+					$this->getUser()->addResubmissionForm('EIAProjectImpactMeasures',$form_id[0]['id']);
 				}
-				if($briefDecision[0]['form'] == 'EIAProjectOperationPhase')
+				if($briefDecision[0]['project_operation_phase'])
 				{
 					$form_id=Doctrine_Core::getTable('EIAProjectOperationPhase')->findByEiaprojectId($this->eiaStatus[0]['id']);
 					Doctrine_Core::getTable('EIAProjectOperationPhase')->find($form_id[0]['id'])->setResubmit('only')->save();
 					$this->resubmit_id=$form_id[0]['id'];
+					$this->getUser()->addResubmissionForm('EIAProjectOperationPhase',$form_id[0]['id']);
 				}
-				if($briefDecision[0]['form'] == 'EIAProjectAttachment')
+				if($briefDecision[0]['project_attachment'])
 				{
 					$form_id=Doctrine_Core::getTable('EIAProjectAttachment')->findByEiaprojectId($this->eiaStatus[0]['id']);
 					Doctrine_Core::getTable('EIAProjectAttachment')->find($form_id[0]['id'])->setResubmit('only')->save();
 					$this->resubmit_id=$form_id[0]['id'];
+					$this->getUser()->addResubmissionForm('EIAProjectAttachment',$form_id[0]['id']);
 				}
 			}
 		}

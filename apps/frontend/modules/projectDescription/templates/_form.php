@@ -252,7 +252,14 @@
 										<td><?php echo $form['sewage_system_biogas']->render() ?></td>
 										<td><?php echo $form['sewage_system_biogas']->renderLabel() ?></td>
 										</tr>
-										
+										<tr>
+										<td><?php echo $form['sewage_system_other']->render(array('onclick' => 'return SewageSpecify(eia_project_description_sewage_system_other_specify)')) ?></td>
+										<td><?php echo $form['sewage_system_other']->renderLabel() ?></td>
+										</tr>
+										<tr>
+										<td><?php echo $form['sewage_system_other_specify']->renderLabel('Others') ?></td>
+										<td><?php echo $form['sewage_system_other_specify']->render(array('class' => 'span8 wysihtml5' ,'rows' => '10')) ?></td>
+										</tr>
 										 </div>
 									
 									</tbody>
@@ -319,12 +326,6 @@
                                      <tbody>
 										<div class="controls" id="checkbox_other6">
 										<tr>
-										<td><?php echo $form['solid_waste_ecological']->render() ?></td>
-										<td><?php echo $form['solid_waste_ecological']->renderLabel() ?></td>
-										
-										
-										</tr>
-										<tr>
 										<td><?php echo $form['solid_waste_dumpsite']->render() ?></td>
 										<td><?php echo $form['solid_waste_dumpsite']->renderLabel() ?></td>
 										
@@ -379,6 +380,7 @@
    $(document).ready(function() {
    $('#eia_project_description_site_location_other_specify').parent().parent().hide();
     $('#eia_project_description_land_use_other_specify').parent().parent().hide();
+    $('#eia_project_description_sewage_system_other_specify').parent().parent().hide();
    });
    function ProjectSiteSpecify(check)
      {
@@ -388,7 +390,10 @@
      {
       $('#eia_project_description_land_use_other_specify').parent().parent().show();
 	 }
-	 
+	 function SewageSpecify(check)
+     {
+      $('#eia_project_description_sewage_system_other_specify').parent().parent().show();
+	 }
 	 
 	  
 </script>
