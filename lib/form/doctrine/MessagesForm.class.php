@@ -42,6 +42,9 @@ class MessagesForm extends BaseMessagesForm
 	$this->widgetSchema['sender_email'] = new sfWidgetFormInputHidden();
 	$this->widgetSchema['recepient_email'] = new sfWidgetFormInputHidden();
 	//$this->setDefault('sender_email', sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress());
+	//we will also set default recepient username
+	$this->setDefault('recepient', sfContext::getInstance()->getUser()->getAttribute('recepient'));
+	$this->setDefault('message_subject', sfContext::getInstance()->getUser()->getAttribute('message_subject'));
 
   }
 }

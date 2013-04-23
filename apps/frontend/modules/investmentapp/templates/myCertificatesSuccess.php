@@ -23,8 +23,8 @@
 					<tr>
 					<td><?php echo $certs['company'] ?></td>
 					<td><?php echo $certs['tin'] ?></td>
-					<td><?php echo $certs['location'] ?></td>
 					<td><?php echo $certs['sector'] ?></td>
+					<td><?php echo $certs['location'] ?></td>
 					<td><?php echo $certs['cert'] ?></td>
 					<td>
 					<a href="<?php echo url_for('investmentapp/PrintCert?id='.$certs['id'].'&token='.$certs['token']) ?>"

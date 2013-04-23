@@ -42,6 +42,9 @@ class investmentrequestActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($investment_requests = Doctrine_Core::getTable('InvestmentRequests')->find(array($request->getParameter('id'))), sprintf('Object investment_requests does not exist (%s).', $request->getParameter('id')));
+	//////
+	//remove set variables
+	
     $this->form = new InvestmentRequestsForm($investment_requests);
   }
 

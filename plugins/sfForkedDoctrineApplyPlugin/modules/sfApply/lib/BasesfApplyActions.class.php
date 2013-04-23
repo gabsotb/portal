@@ -399,6 +399,7 @@ class BasesfApplyActions extends sfActions
     $message->setTo(array($options['email'] => $options['fullname']));
 
     //Sending email
+	 
     $this->getMailer()->send($message);
   }
 

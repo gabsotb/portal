@@ -236,7 +236,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 	
 	*/
 	//save pdf
-	$pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\letter.pdf','F');
+	$pdf->Output(sfConfig::get('sf_web_dir').'/uploads/documents/letter.pdf','F');
 	$target_path = "uploads/documents/letter.pdf";
 	$this->updatestatus = Doctrine_Core::getTable('TaskAssignment')->updateUserTaskStatus2($validate);
 			 

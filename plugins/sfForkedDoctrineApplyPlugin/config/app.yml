@@ -4,7 +4,7 @@ all:
     enabled: false
   sfApplyPlugin:
    from:
-    email: noreply@chores.com
+    email: noreply@smartlinesolutions.com
     fullname: "System Administrator"
   sfForkedApply:
     applyForm: sfApplyApplyForm

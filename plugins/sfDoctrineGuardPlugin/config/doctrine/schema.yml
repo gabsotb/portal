@@ -63,6 +63,10 @@ sfGuardUser:
       type: string(255)
       notnull: true
       unique: true
+    outlook_address:
+      type: string(255)
+      notnull: false
+      unique: true
     username:
       type: string(128)
       notnull: true

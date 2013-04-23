@@ -6,10 +6,6 @@
 						</div>
 						<div class="modal-body">
 							<p><?php echo __('You are About to Accept this Investor application for Issuance of Investment Registration Certificate.')?>.</p>
-							<p><?php echo __('You have been permitted to accept this applicant application.')?>.</p>
-							
-							
-							
 							 <?php //we will query for permission for accepting this user application for investment certificate
 							  $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 							  //we query for applicant_reference_number
@@ -35,8 +31,17 @@
 							  ?>
 							  </font> 
 							  <br/>
-							 
-							  <a href="<?php echo url_for('messages/new')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a>
+							  <?php //we will also check the requests table and prevent this user from sending multiple requests
+							     $search_ref_no =  Doctrine_Core::getTable('InvestmentRequests')->checkReferenceNumberExistance($applicant_reference);
+							   ?>
+							   <?php if(count($search_ref_no) != 0): ?>
+							    <font color="red">
+							    <?php echo __('A request for permission Sent by you to manager/supervisor is being processed. please wait') ?>
+								</font>
+							   <?php endif; ?>
+							   <?php if(count($search_ref_no) == 0): ?>
+							  <a href="<?php echo url_for('messages/new?business='.$project_summary->getInvestmentId().'&token='.$project_summary->getToken().'&request_type=accept_application')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a>
+							  <?php endif; ?>
 							<?php endif; ?>
 							
 							  <?php if(count($permission) != 0): ?>
@@ -55,11 +60,41 @@
 						</div>
 						<div class="modal-body">
 							<p><?php echo __('You are About to Decline this Investor application for Issuance of Investment Registration Certificate.')?>.</p>
+							 <?php //we will query for permission for accepting this user application for investment certificate
+							  $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+							  //we query for applicant_reference_number
+							   $applicant_reference = Doctrine_Core::getTable('ProjectSummary')->getApplicantReferenceNumber(
+							   $project_summary->getInvestmentId());
+							  // print "ssss". $project_summary->getInvestmentId(); exit;
+							 // print $applicant_reference;
+							 // print $username; exit;
+                               $permission2 = Doctrine_Core::getTable('InvestmentRequests')->queryDeclinePermission($applicant_reference, $user_id);
+							  // print_r($permission); exit;
+							 ?>
 							<p><?php echo __('To do this you will need permission from the Manager/ Supervisor who assigned this Task.')?>.</p>
-							<p><?php echo __('Are you sure about this')?>? </p>
 							
-							 <button data-dismiss="modal" class="btn btn-success" type="button"><?php echo __('Request Permission') ?></button>
-							 <a href="<?php echo url_for('projectSummary/accept?id='.$project_summary->getInvestmentId()) ?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> </a>&nbsp;&nbsp;&nbsp;
+							
+							 <?php if(count($permission2) == 0): ?>
+							   <?php //we will also check the requests table and prevent this user from sending multiple requests
+							     $search_ref_no =  Doctrine_Core::getTable('InvestmentRequests')->checkReferenceNumberExistance($applicant_reference);
+							   ?>
+							   <?php if(count($search_ref_no) != 0): ?>
+							    <font color="red">
+							    <?php echo __('A request for permission Sent by you to manager/supervisor is being processed. please wait') ?>
+								</font>
+							   <?php endif; ?>
+							   <?php if(count($search_ref_no) == 0): ?>
+							 
+							 <a href="<?php echo url_for('messages/new?business='.$project_summary->getInvestmentId().'&token='.$project_summary->getToken().'&request_type=decline_application')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a>
+							   <?php endif; ?>
+							 
+							 <?php endif; ?>
+							 
+							 <?php if(count($permission2) != 0): ?>
+							 <p><?php echo __('Are you sure about this')?>? </p>
+							 <a href="<?php echo url_for('investment_reject')?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Continue') ?></button> </a>
+							 <?php endif; ?>
+							 &nbsp;&nbsp;&nbsp;
 							 <button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
 							
 						</div>

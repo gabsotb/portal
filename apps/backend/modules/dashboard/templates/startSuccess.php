@@ -81,7 +81,7 @@
 						</div>
 						<div class="modal-body">
 							<p><?php echo __('Your are about to decline this applicant application. It is a good idea to inform the Manager and share your decision. You can send a message to the Manager/ Supervisor who assigned you this task and inform them of your
-							decision by clicking')?> <a href="<?php echo url_for('messages/new?value=decline')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a></p>
+							decision by clicking')?> <a href="<?php echo url_for('messages/new?business='.$id.'&token='.$token.'&request_type=decline_application')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Send Request Message') ?></button></a></p>
 							
 							
 							<?php 

@@ -400,5 +400,30 @@ class TaskAssignmentTable extends Doctrine_Table
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection("SELECT * FROM task_assignment WHERE investmentapp_id = '$id_task' and  user_assigned = '$data_admin_id' ");
 	 return $query;
 	}
-	
+	//get the person who assigned a specific task to a user
+	public function getUserAssignedTask($business_id)
+	{
+	  $assignee = null ;
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.updated_by
+	  from task_assignment
+	  WHERE investmentapp_id = '$business_id' limit 1 ");
+	  foreach($query as $q)
+	  {
+	   $assignee = $q['updated_by'] ;
+	  }
+	  return $assignee;
+	}
+	//get the applicant ref number from task assignment table
+	public function getApplicantReference($business_id)
+	{
+	  $applicant_ref = null ;
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT task_assignment.updated_by,investment_application.applicant_reference_number  from task_assignment
+      LEFT JOIN investment_application ON task_assignment.investmentapp_id = investment_application.id
+	  WHERE investmentapp_id = '$business_id' limit 1 ");
+	  foreach($query as $q)
+	  {
+	   $applicant_ref = $q['applicant_reference_number'] ;
+	  }
+	  return $applicant_ref;
+	}
 }
