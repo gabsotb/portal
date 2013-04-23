@@ -48,37 +48,18 @@
 				<div class="top-nav">
 				
 					<!-- BEGIN QUICK SEARCH FORM -->
-					<?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign'), false)): ?>
-					<form class="navbar-search hidden-phone">
+					<?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign','usermanagement'), false)): ?>
+					<form class="navbar-search hidden-phone" action="<?php echo url_for('investment_search') ?>" method="get">
 						<div class="search-input-icon">
-							<input type="text" class="search-query dropdown-toggle" id="quick_search" placeholder="Search" data-toggle="dropdown" />
-							<i class="icon-search"></i>
-							<!-- BEGIN QUICK SEARCH RESULT PREVIEW -->
-							<ul class="dropdown-menu extended">								
-								<li>
-									<span class="arrow"></span>
-									<p>Found 23 results</p>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-warning"><i class="icon-comment"></i></span>
-									Re: Nick Dalton, Sep 11:...<i class="icon icon-arrow-right"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-important"><i class="icon-bullhorn"></i></span>
-									Office Setup, Mar 12...<i class="icon icon-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-							<!-- END QUICK SEARCH RESULT PREVIEW -->
+							<input type="text" name="query" value="<?php echo $sf_request->getParameter('query') ?>" class="search-query dropdown-toggle" id="quick_search" placeholder="Search" data-toggle="dropdown" />
+                           <input type="submit" value="search" class="btn btn-primary"/>
+							
 						</div>
 					</form>
 					<?php endif; ?>
 					<!-- END QUICK SEARCH FORM -->
 					<!-- BEGIN TOP NAVIGATION MENU -->
-                    <?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign'), false)): ?>					
+                    <?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign','usermanagement'), false)): ?>					
 					<ul class="nav pull-right" id="top_menu">
 						<!-- BEGIN NOTIFICATION DROPDOWN -->	
 						<li class="dropdown" id="header_notification_bar">
@@ -235,11 +216,12 @@
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			<!-- BEGIN SIDEBAR MENU -->
 			<ul>
-			   <?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign'), false)): ?>	
+			   <?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign', 'usermanagement'), false)): ?>	
 				<li class="active"><?php echo link_to('<i class="icon-home"></i> Dashboard', '@homepage') ?> </li>
 				<?php endif; ?>
 				<!-- We need to only show this if the user has adequate rights to manage and create users -->
-				<?php if($sf_user->hasCredential('assignJob')):?>
+				<?php if($sf_user->hasCredential(array('assignJob', 'investmentassign', 'eiaassign', 'usermanagement'), false)):?>
+				  <?php if($sf_user->hasCredential(array('usermanagement', 'assignJob'), false)):?>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
 					<i class="icon-group"></i> <?php echo __('User Management') ?>
@@ -251,6 +233,8 @@
 						<li><a href="<?php echo url_for('sfGuardPermission/index') ?>"><i class="icon-key"></i> <?php echo __('Groups Permissions') ?></a></li>
 					</ul>
 				</li>
+				   <?php endif; ?>
+				   <?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign'), false)): ?>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
 					<i class="icon-bar-chart"></i> <?php echo __('Tax Exemptions') ?>
@@ -260,6 +244,8 @@
 					    <li class=""><a href ="<?php echo url_for('taxexemptions/index')?>"><i class="icon-fire"></i> <?php echo __('Process Request') ?> </a></li>
 					</ul>
 				</li>
+				 <?php endif; ?>
+				<?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign'), false)): ?>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
 					<i class="icon-unlock"></i> <?php echo __('Approve Requests') ?>
@@ -272,20 +258,10 @@
 					</ul>
 				</li>
 				<li> <a href ="<?php echo url_for('information_portlets') ?>"><i class="icon-book"></i> <?php echo __('Information Portlets') ?> </a> </li>
-				
-				<?php endif ?>
+				    	<?php endif; ?>
+				<?php endif; ?>
 				<!-- end -->
 				<?php if($sf_user->hasCredential(array('assignJob', 'eiacert', 'investmentcert', 'investmentassign', 'eiaassign'), false)): ?>
-				<li class="has-sub">
-					<a href="javascript:;" class="">
-					<i class="icon-double-angle-up"></i> <?php echo __('Resubmission') ?> 
-					<span class="arrow"></span>
-					</a>
-					<ul class="sub">
-						<li class=""><a href ="#"><i class="icon-check"></i> <?php echo __('View Requests') ?> </a></li>
-						
-					</ul>
-				</li>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
 					<i class="icon-bar-chart"></i> <?php echo __('Reporting') ?>
@@ -302,9 +278,12 @@
 						<li class="">  <a href ="#"><i class="icon-certificate"></i> <?php echo __('Tax Exemptions') ?></a> </li>
 					</ul>
 				</li>
-				<li class="">  <a href ="#"><i class="icon-lightbulb"></i> <?php echo __('Help') ?></a> </li>
+				
 				
 				<!--<li class="">  <a href ="<?php //echo url_for('sfKoreroChannel/index') ?>"><i class="icon-fire"></i> Managers Channel</a> </li>-->
+				<?php endif; ?>
+				<?php if($sf_user->hasCredential(array('assignJob', 'investmentassign', 'eiaassign', 'usermanagement', 'eiacert', 'investmentcert'), false)):?>
+				<li class="">  <a href ="#"><i class="icon-lightbulb"></i> <?php echo __('Help') ?></a> </li>
 				<li><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-off"></i> <?php echo __('Logout') ?> </a></li>
 				<?php endif; ?>
 			</ul>

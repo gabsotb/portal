@@ -49,6 +49,7 @@ class InvestmentRequestsTable extends Doctrine_Table
 	");
 	return $query;
   }
+  //query for permission to accept
   public function queryAcceptPermission($reference, $username)
   {
  // print $reference; exit;
@@ -57,6 +58,22 @@ class InvestmentRequestsTable extends Doctrine_Table
     and request_type = 'accept_application' and reference_number = '$reference'
 	");
 	return $query;
+  }
+  //query for decline permission
+  public function queryDeclinePermission($reference, $username)
+  {
+ // print $reference; exit;
+    $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT request_type from investment_requests WHERE 
+	 investment_requests.requestor = '$username' and status = 'accept'
+    and request_type = 'decline_application' and reference_number = '$reference'
+	");
+	return $query;
+  }
+  //check if a certain reference number exists in requests table
+  public function checkReferenceNumberExistance($number)
+  {
+   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * FROM investment_requests WHERE reference_number = '$number' ");
+   return $query;
   }
   //get username using supplied id
   public function getUserName($id)

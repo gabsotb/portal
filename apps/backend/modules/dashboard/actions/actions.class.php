@@ -1242,7 +1242,12 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 	{
 	 
 	}
-	
+	//search function
+	public function executeSearch(sfWebRequest $request)
+	{
+	 $this->forwardUnless($query = $request->getParameter('query'), 'dashboard', 'index');
+	 $this->investor = Doctrine_Core::getTable('InvestmentApplication')->getForLuceneQuery($query);
+	}
   
 }
 

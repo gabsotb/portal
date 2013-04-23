@@ -49,6 +49,7 @@
 									  <th><?php echo __('Applicant Reference Number') ?></th>
 									  <th><?php echo __('Comments') ?></th>
 									  <th><?php echo __('Date') ?></th>
+									  <th><?php echo __('Action')?></th>
 									  
 									</tr>
 								  </thead>
@@ -66,12 +67,23 @@
 									  <td><?php echo $investment_requests->getReferenceNumber() ?></td>
 									  <td><?php echo $investment_requests->getComments() ?></td>
 									  <td><?php echo $investment_requests->getCreatedAt() ?></td>
-									 
+									  <td>
+									  <?php $status = $investment_requests->getStatus(); ?>
+									  
+									  <?php if($status == "accept" || $status == "decline"): ?>
+									       <font color="green"> <?php echo __('Processed') ?> </font>
+									  <?php endif; ?>
+									  <?php if($status == "notset"): ?>
+									  <a href="<?php echo url_for('investmentrequest/edit?id='.$investment_requests->getId()) ?>"><button type="button" class="btn btn-primary"><?php echo __('Process') ?></button></a>
+									  <?php endif; ?>
+									  
+									  
+									  </td>
 									</tr>
 									<?php endforeach; ?>
 								  </tbody>
 								</table>
-                                   <a href="<?php echo url_for('investmentrequest/new') ?>"><button type="button" class="btn btn-warning"><?php echo __('New') ?></button></a>
+                                  
 							    </div>
 	 </div>
       

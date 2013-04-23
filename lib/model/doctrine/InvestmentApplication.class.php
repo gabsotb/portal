@@ -26,19 +26,9 @@ class InvestmentApplication extends BaseInvestmentApplication
    $conn->beginTransaction();
 		  try
 		  {
-	/*	if (!$this->getToken() && !$this->getApplicantReferenceNumber())
-		  {
-			$this->setToken(sha1(date().rand(11111, 99999)));
-			//get the incremental number and set it
-			 $number = Doctrine_Core::getTable('InvestmentApplication')->createIncrementalReferenceNumber();
-		     $this->setApplicantReferenceNumber($number);
-		  } */
-		  
-		 
-		  
-		  
 			  ///
 			  $ret = parent::save($conn);
+			  $this->updateLuceneIndex();
 			  $conn->commit();
 			  return $ret ;
 			
@@ -56,6 +46,43 @@ class InvestmentApplication extends BaseInvestmentApplication
    AND business_regno = '$regno'");
   // print_r($query); exit;
    return $query;
+  }
+  //method to update index every time an application is created
+  public function updateLuceneIndex()
+  {
+   $index = InvestmentApplicationTable::getLuceneIndex();
+   //remove existing entries
+   foreach($index->find('pk:'.$this->getId()) as $hit)
+   {
+     $index->delete($hit->id);
+   }
+   //
+   $doc = new Zend_Search_Lucene_Document();
+   //store application primary key to identify it in the search results
+   $doc->addField(Zend_Search_Lucene_Field::Keyword('pk',$this->getId()));
+   //index investor application fields
+   $doc->addField(Zend_Search_Lucene_Field::UnStored('name',$this->getName(),'utf-8'));
+   $doc->addField(Zend_Search_Lucene_Field::UnStored('location',$this->getLocation(),'utf-8'));
+   $doc->addField(Zend_Search_Lucene_Field::UnStored('registration_number',$this->getRegistrationNumber(),'utf-8'));
+   $doc->addField(Zend_Search_Lucene_Field::UnStored('sector',$this->getSector(),'utf-8'));
+   $doc->addField(Zend_Search_Lucene_Field::UnStored('district',$this->getDistrict(),'utf-8'));
+   $doc->addField(Zend_Search_Lucene_Field::UnStored('city_province',$this->getCityProvince(),'utf-8'));
+   ///add application to index
+   $index->addDocument($doc);
+   $index->commit();
+   
+  }
+  //override default delete method to remove index of deleted jobs
+  public function delete(Doctrine_Connection $conn = null)
+  {
+   $index = InvestmentApplication::getLuceneIndex();
+   //
+   foreach($index->find('pk:'.$this->getId()) as $hit)
+   {
+    $index->delete($hit->id);
+   }
+   //
+   return parent::delete($conn);
   }
   
 }
