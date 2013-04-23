@@ -295,7 +295,7 @@ $html = '                               <div>
 										 </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										  &nbsp;This is to certify that an EIA related to ...'.$developer_name.'s &nbsp;&nbsp;&nbsp;project entitled ....<b>'.$project_title.'</b>......... represented by  ......<b>'.$contact_person.'</b>..................
-										  <br/> &nbsp;&nbsp;&nbsp;has been approved.This project is to be located on plot number ...<b>'.$plot_number.'</b>........ in Cell <br/>&nbsp;&nbsp;&nbsp;.....<b>'.$sector.'</b>..... Sector......<b>'.$district.'</b>.........District.......<b>'.$province.'</b>.....Province.
+										  <br/> &nbsp;&nbsp;&nbsp;has been approved.This project is to be located on plot number ...<b>'.$plot_number.'</b>........ in Cell <br/>&nbsp;&nbsp;&nbsp;.....<b>'.$sector.'</b>Sector<b>'.$district.'</b>District<b>'.$province.'</b>Province.
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">
 										   &nbsp;This is in accordance with provisions of Organic law No04/2005 of 08/04/2005 <br/> &nbsp;&nbsp;&nbsp;determining the modalities of protection,conservation and promotion of the <br/> &nbsp;&nbsp;&nbsp;environment in Rwanda.
@@ -306,7 +306,7 @@ $html = '                               <div>
 										    <br/>
 											&nbsp;&nbsp;<b>Chief Operating Officer</b><br/><br/>
 											&nbsp;&nbsp;<b>Please Note that;</b>
-											Rwanda Development Board (RDB) reserves a right to withdraw this <br/> &nbsp;&nbsp; certificate from PLS in case the latter is found non-compliant and Issued in <br/> &nbsp;&nbsp; quadruplicate is Original to developer, copies to; MINICOM, REMA & ...'.$district.'.. district
+											Rwanda Development Board (RDB) reserves a right to withdraw this <br/> &nbsp;&nbsp; certificate from PLS in case the latter is found non-compliant and Issued in <br/> &nbsp;&nbsp; quadruplicate is Original to developer, copies to; MINICOM, REMA & '.$district.'district
 
 										      
 										 </p>

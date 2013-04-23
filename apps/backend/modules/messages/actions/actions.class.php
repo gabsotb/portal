@@ -110,7 +110,7 @@ class messagesActions extends sfActions
       $messages = $form->save();
       // print $this->getUser()->getAttribute('request_type') ; exit;
       //$this->redirect('messages/edit?id='.$messages->getId());
-	 /* if($messages->getRecepientEmail())
+	  if($messages->getRecepientEmail() && $messages->getMessage())
 	  {
 	  
 	  $this->getMailer()->composeAndSend('noreply@rdb.com',$messages->getRecepientEmail() ,$messages->getMessageSubject(),
