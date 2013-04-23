@@ -293,20 +293,20 @@ $html = '                               <div>
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   Ref: <b>'.$refernce_no.' </b>
 										 </p>
-										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;This is to certify that an EIA related to ...'.$developer_name.'s &nbsp;&nbsp;&nbsp;project entitled ....<b>'.$project_title.'</b>......... represented by  ......<b>'.$contact_person.'</b>..................
-										  <br/> &nbsp;&nbsp;&nbsp;has been approved.This project is to be located on plot number ...<b>'.$plot_number.'</b>........ in Cell <br/>&nbsp;&nbsp;&nbsp;.....<b>'.$sector.'</b>Sector<b>'.$district.'</b>District<b>'.$province.'</b>Province.
+									 <p style= "font-size: xx-small;text-align:left ">
+										  This is to certify that an EIA Certificate related to '.$developer_name.'s <br/> &nbsp; project entitled <b>'.$project_title.'</b> represented by <b>'.$contact_person.'</b>
+										  has been approved. <br/> &nbsp; This project is to be located on plot number <b>'.$plot_number.'</b> in Cell<b> '.$sector.'</b> <br/> &nbsp; Sector<b> '.$district.'</b> District<b> '.$province.' </b> .
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">
-										   &nbsp;This is in accordance with provisions of Organic law No04/2005 of 08/04/2005 <br/> &nbsp;&nbsp;&nbsp;determining the modalities of protection,conservation and promotion of the <br/> &nbsp;&nbsp;&nbsp;environment in Rwanda.
+										   This is in accordance with provisions of Organic law No04/2005 of 08/04/2005 <br/> &nbsp; determining the modalities of protection,conservation and promotion of the <br/> &nbsp;&nbsp;environment in Rwanda.
 
 										  </p>
 										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;&nbsp;<b>Signed by </b>, 
+										  <b>Signed by </b>, 
 										    <br/>
-											&nbsp;&nbsp;<b>Chief Operating Officer</b><br/><br/>
+											&nbsp;&nbsp;<b>Chief Operating Officer</b><br/><br/><br/><br/>
 											&nbsp;&nbsp;<b>Please Note that;</b>
-											Rwanda Development Board (RDB) reserves a right to withdraw this <br/> &nbsp;&nbsp; certificate from PLS in case the latter is found non-compliant and Issued in <br/> &nbsp;&nbsp; quadruplicate is Original to developer, copies to; MINICOM, REMA & '.$district.'district
+											Rwanda Development Board (RDB) reserves a right to withdraw this <br/> &nbsp;&nbsp; certificate from PLS in case the latter is found non-compliant and Issued in <br/> &nbsp;&nbsp; quadruplicate is Original to developer, copies to; MINICOM, REMA &'.$district.'  <br/> &nbsp;&nbsp; district
 
 										      
 										 </p>
@@ -319,17 +319,16 @@ $html = '                               <div>
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
          
 //Close and output PDF document
-//$pdf->Output('certificate.pdf', 'I');
-$pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\eiacertificates\certificate.pdf','F'); //save
+$pdf->Output('certificate.pdf', 'I');
+/*$pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\eiacertificates\certificate.pdf','F'); //save
 	 
 	 //we will output the file and send it to the Investors email address. Get the email address of the investor
 	 $userEmail = null;
 	 $email = Doctrine_Core::getTable('sfGuardUser')->find($projectDetail->getCreatedBy());
 	 //get email
-	 /*foreach($email as $em)
-	 {*/
+	 
 	    $userEmail = $email->getEmailAddress() ;
-	 //}
+	
 	 //
 	   $target_path = "uploads/documents/eiacertificates/certificate.pdf";
 	
@@ -340,23 +339,17 @@ $pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\eiacertificates\cer
 			  ->setSubject('Environmental Impact Certificate')
 			  ->setBody('You have been issued with Environmental Impact Certificate. Please download it. Thank you')
 			   ->attach(Swift_Attachment::fromPath($target_path));
-			 // $file =  sfConfig::get('sf_web_dir')/beibora/web/uploads/companies/;
+			
 			 
 
 			$this->getMailer()->send($message); 
-			/*$this->getMailer()->composeAndSend('noreply@rdb.com',
-										$userEmail ,
-										'Investment Registration Certificate ',
-										"Congratulations! You Have been Issued with The Investment Registration Certificate. \n
-										You are advised to come and collect it at our Offices at Rwanda Development Board (RDB). Thankyou and
-										welcome."
-													  ); 
+			 
 	 /////////////////////////////////////////////
 	 //
 	
 	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
           // Stop symfony process */
-		  $this->redirect('@homepage');
+		 // $this->redirect('@homepage');
           throw new sfStopException();
   }
 }

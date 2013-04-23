@@ -19,6 +19,7 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'first_name'       => new sfWidgetFormInputText(),
       'last_name'        => new sfWidgetFormInputText(),
       'email_address'    => new sfWidgetFormInputText(),
+      'outlook_address'  => new sfWidgetFormInputText(),
       'username'         => new sfWidgetFormInputText(),
       'algorithm'        => new sfWidgetFormInputText(),
       'salt'             => new sfWidgetFormInputText(),
@@ -37,6 +38,7 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'first_name'       => new sfValidatorString(array('max_length' => 255)),
       'last_name'        => new sfValidatorString(array('max_length' => 255)),
       'email_address'    => new sfValidatorString(array('max_length' => 255)),
+      'outlook_address'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'username'         => new sfValidatorString(array('max_length' => 128)),
       'algorithm'        => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'salt'             => new sfValidatorString(array('max_length' => 128, 'required' => false)),
@@ -53,6 +55,7 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
     $this->validatorSchema->setPostValidator(
       new sfValidatorAnd(array(
         new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('email_address'))),
+        new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('outlook_address'))),
         new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('username'))),
       ))
     );

@@ -61,6 +61,12 @@ investment_certificate_report:
 investment_per_sector:
  url: /:sf_culture/investment/sectors/report
  param: {module: reports, action: sectors}
+backup_system:
+ url: /:sf_culture/database/backup
+ param: {module: dashboard, action: dashboardBackup}
+eiaissued_certificate_report:
+ url: /:sf_culture/eiacertificates/issued
+ param: {module: eiareporting, action: issuedEIA}
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 channel:

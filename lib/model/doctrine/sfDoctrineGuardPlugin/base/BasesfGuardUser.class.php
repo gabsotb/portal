@@ -8,6 +8,7 @@
  * @property string $first_name
  * @property string $last_name
  * @property string $email_address
+ * @property string $outlook_address
  * @property string $username
  * @property string $algorithm
  * @property string $salt
@@ -33,6 +34,7 @@
  * @method string                getFirstName()               Returns the current record's "first_name" value
  * @method string                getLastName()                Returns the current record's "last_name" value
  * @method string                getEmailAddress()            Returns the current record's "email_address" value
+ * @method string                getOutlookAddress()          Returns the current record's "outlook_address" value
  * @method string                getUsername()                Returns the current record's "username" value
  * @method string                getAlgorithm()               Returns the current record's "algorithm" value
  * @method string                getSalt()                    Returns the current record's "salt" value
@@ -57,6 +59,7 @@
  * @method sfGuardUser           setFirstName()               Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()                Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()            Sets the current record's "email_address" value
+ * @method sfGuardUser           setOutlookAddress()          Sets the current record's "outlook_address" value
  * @method sfGuardUser           setUsername()                Sets the current record's "username" value
  * @method sfGuardUser           setAlgorithm()               Sets the current record's "algorithm" value
  * @method sfGuardUser           setSalt()                    Sets the current record's "salt" value
@@ -102,6 +105,12 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasColumn('email_address', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
+             'unique' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('outlook_address', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
              'unique' => true,
              'length' => 255,
              ));

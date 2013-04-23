@@ -273,7 +273,7 @@
 						<li class=""><a href ="<?php echo url_for('reports/sectors')?>"><i class="icon-certificate"></i> <?php echo __('Investments Per Sector') ?> </a></li>
 						
 						
-						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates Issued') ?> </a></li>
+						<li class=""> <a href ="<?php echo url_for('eiareporting/issuedEIA')?>"><i class="icon-certificate"></i> <?php echo __('EIA Certificates Issued') ?> </a></li>
 						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Per Sector') ?> </a></li>
 						<li class="">  <a href ="#"><i class="icon-certificate"></i> <?php echo __('Tax Exemptions') ?></a> </li>
 					</ul>

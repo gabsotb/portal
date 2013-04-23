@@ -30,17 +30,44 @@ class EIAProjectDetailTable extends Doctrine_Table
 			  );
 			  //
 			  static public $districts = array(
-				'nyarungenge' => 'Nyarungenge',
-				'gasoba' => 'Gasoba',
-				'kicukiro' => 'Kicukiro',
+				           'Bugesera' => 'Bugesera',
+						   'Gatsibo' => 'Gatsibo',
+						   'Kayonza' => 'Kayonza',
+						   'Kirehe' => 'Kirehe',
+						   'Ngoma' => 'Ngoma',
+						   'Nyagatare' => 'Nyagatare',
+						   'Rwamagana' => 'Rwamagana',
+						   'Gasabo' => 'Gasabo',
+						   'Kicukiro' => 'Kicukiro',
+						   'Nyarugenge' => 'Nyarugenge',
+						   'Burera' => 'Burera',
+						   'Gakenke'=> 'Gakenke',
+						   'Gicumbi' => 'Gicumbi',
+						   'Musanze' => 'Musanze',
+						   'Rulindo' => 'Rulindo',
+						   'Gisagara' => 'Gisagara',
+						   'Huye' => 'Huye',
+						   'Kamonyi' => 'Kamonyi',
+						   'Muhanga' => 'Muhanga',
+						   'Nyamagabe' => 'Nyamagabe',
+						   'Nyanza' => 'Nyanza',
+						   'Nyaruguru' => 'Nyaruguru',
+						   'Ruhango' => 'Ruhango',
+						   'Karongi' => 'Karongi',
+						   'Ngororero' => 'Ngororero',
+						   'Nyabihu' => 'Nyabihu',
+						  'Nyamasheke' => 'Nyamasheke',
+						   'Rubavu' => 'Rubavu',
+						   'Rusizi' => 'Rusizi',
+						   'Rutsiro' => 'Rutsiro',
 				
 			  );
 			  static public $provinces = array(
-				'umunji_wa_kigali' => 'Umunji Wa Kigali',
-				'amajyepfo' => 'Amajyepfo',
-				'iburengerazuba' => 'Iburengerazuba',
-				'amajyaruguru' => 'Amajyaruguru',
-				'iburasirazuba' => 'Iburasirazuba',
+				'East Province' => 'East Province',
+				'Kigali Province' => 'Kigali Province',
+				'North Province' => 'North Province',
+				'South Province' => 'South Province',
+				'West Province' => 'West Province',
 			  );
   /* Functions to return  sectors, provinces and district names in Rwanda */
      

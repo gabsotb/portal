@@ -1735,7 +1735,153 @@ $(function () {
 					<?php endif; ?>				
 <?php endif; ?>		
 <!-- ********************************************************************** -->
+<?php if($sf_user->hasCredential('usermanagement')): ?>
+<!-- System Adminstrators section --->
+<div class="row-fluid">
+ <div class="span12">
+						<!-- BEGIN STYLE CUSTOMIZER-->
+						<!-- END STYLE CUSTOMIZER-->    	
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
+						<h3 class="page-title">
+							<?php echo __('System Administrator Accounts') ?>
+							<small><?php echo __('Create, Update and Delete Users. Assign Permission and Groups to Users')?></small>
+						</h3>
+							<ul class="breadcrumb">
+							<li>
+								<i class="icon-home"></i>
+								<a href="<?php echo url_for('dashboard/index')?>"><?php echo __('Dashboard') ?></a> <span class="divider">/</span>
+							</li>
+							<li>
+							<i class="icon-desktop"></i>
+							<a href="<?php echo url_for('dashboard/index')?>"><?php echo __('Administrator') ?></a></li> <span class="divider">/</span>
+							<li>
+							<i class="icon-user"></i>
+							<a href="#">
+							   <b>
+								  <font color="blue">
+									<?php $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+                                      print 'Welcome, You are logged in as '.$username;
+									?>
+									</font>
+								</b>
+							</a></li>
+							<li class="pull-right dashboard-report-li">
+							<i class="icon-time"></i>
+				              <?php echo __('Logged in on') ?> <font color="blue">
+									<?php
+                                       $date = date("F j, Y");
+									   print $date;
+									?>
+									</font>
+							</li>
+							
+						</ul>
+						<!-- END PAGE TITLE & BREADCRUMB-->
+					</div>
+  <div class="row-fluid stats-overview-cont">
+						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat ok huge">
+									<span class="line-chart">5, 6, 7, 11, 14, 10, 15, 19, 15, 2</span>
+									<div class="percent">66%</div>
+								</div>
+								<div class="details">
+									<div class="title">Registered Users i.e. Investors</div>
+									<div class="numbers">1360</div>
+								</div>
+								<div class="progress progress-info">
+									<div class="bar" style="width: 66%"></div>
+								</div>
+							</div>
+						</div>
+						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat good huge">
+									<span class="line-chart">2,6,8,12, 11, 15, 16, 11, 16, 11, 10, 3, 7, 8, 12, 19</span>
+									<div class="percent">16%</div>
+								</div>
+								<div class="details">
+									<div class="title">Investment Officers Registered</div>
+									<div class="numbers">18000</div>
+									<div class="progress progress-warning">
+										<div class="bar" style="width: 16%"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat bad huge">
+									<span class="line-chart">2,6,8,11, 14, 11, 12, 13, 15, 12, 9, 5, 11, 12, 15, 9,3</span>
+									<div class="percent">6%</div>
+								</div>
+								<div class="details">
+									<div class="title">EIA Officers Registered</div>
+									<div class="numbers">509</div>
+									<div class="progress progress-success">
+										<div class="bar" style="width: 16%"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span2 responsive " data-tablet="span4 fix-margin" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat good huge">
+									<span class="bar-chart">1,4,9,12, 10, 11, 12, 15, 12, 11, 9, 12, 15, 19, 14, 13, 15</span>
+									<div class="percent">86%</div>
+								</div>
+								<div class="details">
+									<div class="title">Investment Managers/Supervisors</div>
+									<div class="numbers">1550</div>
+									<div class="progress progress-warning">
+										<div class="bar" style="width: 56%"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat ok huge">
+									<span class="line-chart">2,6,8,12, 11, 15, 16, 17, 14, 12, 10, 8, 10, 2, 4, 12, 19</span>
+									<div class="percent">72%</div>
+								</div>
+								<div class="details">
+									<div class="title">EIA Managers/Supervisors</div>
+									<div class="numbers">9600</div>
+									<div class="progress progress-danger">
+										<div class="bar" style="width: 72%"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+							</div>
+			<div class="row-fluid">
+			    <div class="span7">
+				    <div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-cloud-upload"></i>System Database Backup</h4>						
+								</div>
+								<div class="widget-body">
+									 	<div class="alert alert-block alert-success fade in">
+										<h4 class="alert-heading">Backup</h4>
+										<p>
+											This will create a backup file.sql which can be used to restore the system database incase of severe failure
+										</p>
+										<p>
+											<a class="btn btn-success" href="<?php
+                                             echo url_for('dashboard/databaseBackup')
+											?>">Execute Backup</a>
+										</p>
+									</div>
+								</div>
+							</div>
+				</div>
+			</div>				
 
+<?php endif; ?>		
+<!-- ***************************** --->
 
 </div>						
 <!-- For Twitter -->

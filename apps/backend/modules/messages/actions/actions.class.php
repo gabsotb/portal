@@ -120,7 +120,7 @@ class messagesActions extends sfActions
 										  ); 
 										  
 		
-	  } */
+	  } 
 	  /////we also save details to InvestmentRequest if we have the variable set
        if($this->getUser()->getAttribute('request_type') == "accept_application")
 	   {

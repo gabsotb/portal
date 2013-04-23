@@ -35,4 +35,13 @@ class EIACertificateTable extends Doctrine_Table
 	 //
 	 return $certs;
 	}
+	public function getAllIssuedEIACertificates()
+	{
+	
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT e_i_a_project_detail.id as id,e_i_a_project_detail.project_title as project_name,  e_i_a_project_description.project_nature as business_sector,  e_i_a_project_detail.project_plot_number as plot_number,e_i_a_project_detail.district as district,e_i_a_project_detail.province as province, e_i_a_project_detail.updated_by as developer_names, e_i_a_certificate.serial_number as certficate_no from e_i_a_project_detail
+left join e_i_a_project_description on e_i_a_project_detail.id = e_i_a_project_description.eiaproject_id left join e_i_a_certificate on 	e_i_a_project_detail.id = e_i_a_certificate.eireport_id 
+		");
+	 return $query; 
+	 
+	}
 }
