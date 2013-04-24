@@ -67,6 +67,7 @@ class dashboardActions extends sfActions
 	$this->assigning=Doctrine_Core::getTable('EIApplicationStatus')->getApplicationStatus('assigning');
 	$this->assessments=Doctrine_Core::getTable('EITaskAssignment')->getAwaitingApproval();
 	$this->jobAdmin= Doctrine_Core::getTable('EITaskAssignment')->findByUserAssigned($userId);
+	$this->assigned_by=Doctrine_Core::getTable('sfGuardUser')->find($this->jobAdmin[0]['created_by']);
 	$this->siteVisitsReport=Doctrine_Core::getTable('EIASiteVisit')->getSiteVisitReport();
 	$this->siteVisits=Doctrine_Core::getTable('EIASiteVisit')->getSiteVisit();
 	   //////////TOR/////

@@ -242,7 +242,7 @@ $(function () {
 								<?php endif; ?>
 								<?php if(count($unassigned)>0): ?>
 								  
-									<?php foreach($unassigned as $unassign): ?>
+									
 									<table class="table table-striped table-bordered" id="eia_manager">
 										<thead>
 											<tr class="odd gradeX">
@@ -253,6 +253,7 @@ $(function () {
 											</tr>
 										</thead>
 										<tbody>
+										<?php foreach($unassigned as $unassign): ?>
 											<tr>
 												<td><?php echo $unassign['project_reference_number'] ?></td>
 												<td><?php echo $unassign['project_title'] ?> </td>
@@ -260,9 +261,10 @@ $(function () {
 												<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$unassign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
 									
 											</tr>
+										<?php endforeach; ?>	
 										</tbody>
 									</table>
-									<?php endforeach; ?>
+									
 								<?php endif; ?>
 								<?php if(count($assigning)>0): ?>
 								<?php //we will delete the session variable if any available incase this user fails to assign a task for a sessionid we have created
@@ -272,7 +274,7 @@ $(function () {
 								  
 								  ?>
 								
-									<?php foreach($assigning as $assign): ?>
+									
 									<table class="table table-striped table-bordered" id="eia_manager">
 										<thead>
 											<tr class="odd gradeX">
@@ -283,6 +285,7 @@ $(function () {
 											</tr>
 										</thead>
 										<tbody>
+										<?php foreach($assigning as $assign): ?>
 											<tr>
 												<td><?php echo $assign['project_reference_number']."".$session_eai_id ?></td>
 												<td><?php echo $assign['project_title'] ?> </td>
@@ -291,9 +294,10 @@ $(function () {
 												<?php echo __('Assign') ?></button></a></td>
 									
 											</tr>
+										<?php endforeach; ?>	
 										</tbody>
 									</table>
-									<?php endforeach; ?>
+									
 								<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
@@ -310,20 +314,22 @@ $(function () {
 								<h4><i class="icon-reorder"></i><?php echo __('EIA --- Awaiting Approval') ?></h4>
 							</div>
 							<div class="widget-body">
-							<?php foreach($assessments as $assessment): ?>
+							
 								<table class="table table-striped table-hover">
 								<tr>
 									<th><?php echo __('Project') ?></th>
 									<th><?php echo __('Assigned To') ?></th>
 									<th><?php echo __('Action') ?></th>
 								</tr>
+								<?php foreach($assessments as $assessment): ?>
 								<tr>
 									<td><?php echo $assessment['EIAProjectDetail']['project_title']?></td>
 									<td><?php echo $assessment['sfGuardUser']['last_name'] ?></td>
 									<td><?php echo button_to('Assess','dashboard/assessmentDecision?id='.$assessment['id'],array('class' => 'btn')); ?></td>
 								</tr>
+								<?php endforeach; ?>
 								</table>
-							<?php endforeach; ?>
+							
 							</div>
 						</div>
 					</div>
@@ -765,7 +771,7 @@ $(function () {
 									</div>
 								<?php endif; ?>
 									<?php if(count($unassigned) != 0): ?>
-										<?php foreach($unassigned as $unassign): ?>
+										
 										<h4>Application not assigned</h4>
 										<table class="table table-striped table-bordered" id="eia_manager">
 											<thead>
@@ -777,6 +783,7 @@ $(function () {
 												</tr>
 											</thead>
 											<tbody>
+											<?php foreach($unassigned as $unassign): ?>
 												<tr>
 													<td><?php echo $unassign['project_reference_number'] ?></td>
 													<td><?php echo $unassign['project_title'] ?> </td>
@@ -784,12 +791,13 @@ $(function () {
 													<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$unassign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 										
 												</tr>
+											<?php endforeach; ?>	
 											</tbody>
 										</table>
-										<?php endforeach; ?>
+										
 									<?php endif; ?>
 									<?php if(count($assigning) != 0): ?>
-										<?php foreach($assigning as $assign): ?>
+										
 										<h4>Application assigning </h4>
 										<table class="table table-striped table-bordered" id="eia_manager">
 											<thead>
@@ -801,6 +809,7 @@ $(function () {
 												</tr>
 											</thead>
 											<tbody>
+											<?php foreach($assigning as $assign): ?>
 												<tr>
 													<td><?php echo $assign['project_reference_number'] ?></td>
 													<td><?php echo $assign['project_title'] ?> </td>
@@ -808,9 +817,10 @@ $(function () {
 													<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$assign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 										
 												</tr>
+											<?php endforeach; ?>
 											</tbody>
 										</table>
-										<?php endforeach; ?>
+										
 									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
@@ -865,20 +875,22 @@ $(function () {
 								<h4><i class="icon-reorder"></i>EIA --- Awaiting Approval</h4>
 							</div>
 							<div class="widget-body">
-							<?php foreach($assessments as $assessment): ?>
+							
 								<table class="table table-striped table-hover">
 								<tr>
 									<th>Project</th>
 									<th>Assigned to</th>
 									<th>Action</th>
 								</tr>
+								<?php foreach($assessments as $assessment): ?>
 								<tr>
 									<td><?php echo $assessment['EIAProjectDetail']['project_title']?></td>
 									<td><?php echo $assessment['sfGuardUser']['last_name'] ?></td>
 									<td><?php echo button_to('Assess','dashboard/assessmentDecision?id='.$assessment['id'],array('class' => 'btn')); ?></td>
 								</tr>
+								<?php endforeach; ?>
 								</table>
-							<?php endforeach; ?>
+							
 							</div>
 						</div>
 					</div>
@@ -1268,13 +1280,15 @@ $(function () {
 													</tr>
 												</thead>
 												<tbody>
+													<?php foreach($job as $j): ?>
 													<tr>
-														<td class="highlight"><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?> </td>
-														<td><?php echo $job->getSfGuardUser()->getLastName() ?></td>
-														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
+														<td class="highlight"><?php echo $j->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><?php echo $j->getEIAProjectDetail()->getProjectTitle() ?> </td>
+														<td><?php echo $assigned_by->getLastName() ?></td>
+														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$j->getId()) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
 											
 													</tr>
+													<?php endforeach; ?>
 												</tbody>
 											</table>
 											</div>
@@ -1386,7 +1400,7 @@ $(function () {
 												<tbody>
 													<tr>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+														<td><!--a href="<?php //echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"--><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?><!--/a--> </td>
 											
 													</tr>
 												</tbody>
@@ -1498,12 +1512,13 @@ $(function () {
 									</div>
 									<div class="widget-body">
 									<table class="table table-striped table-hover">
-									<?php foreach($siteVisitsReport as $siteVisitReport): ?>
+									
 										<tr>
 											<th>Reference No.</th>
 											<th>Title</th>
 											<th>Action</th>
 										</tr>
+										<?php foreach($siteVisitsReport as $siteVisitReport): ?>
 										<tr>
 											<td><?php echo $siteVisitReport['EIAProjectDetail']['project_reference_number'] ?></td>
 											<td><?php echo $siteVisitReport['EIAProjectDetail']['project_title'] ?></td>

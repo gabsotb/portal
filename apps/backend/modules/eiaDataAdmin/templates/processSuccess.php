@@ -35,7 +35,7 @@
 				<p><b>Telephone:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['telephone'] ?></p>
 				<p><b>mobile_phone:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['mobile_phone'] ?></p>
 				<p><b>Email address:</b>&nbsp;&nbsp;<?php echo mail_to($projectDeveloper[0]['email_address'],'Email Developer',array('class' => 'btn')) ?></p>
-				<p><b>Social media account:</b>&nbsp;&nbsp;<?php echo link_to($projectDeveloper[0]['social_media_account'],$projectDeveloper[0]['communication_mode'].'.com/'.$projectDeveloper[0]['social_media_account'],array('absolute' => true)) ?></p>
+				<!--p><b>Social media account:</b>&nbsp;&nbsp;<?php //echo link_to($projectDeveloper[0]['social_media_account'],$projectDeveloper[0]['communication_mode'].'.com/'.$projectDeveloper[0]['social_media_account'],array('absolute' => true)) ?></p-->
 				</div>
 				<div class="slimScrollBar ui-draggable"></div>
 				<div class="slimScrollRail"></div>
@@ -145,7 +145,7 @@
 					<p><?php echo html_entity_decode($assessmentImpact[0]['remarks']) ?></p>
 					<br/>
 					<!-- some action -->
-					<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
+					<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-primary')) ?>
 					<?php if($projectImpact[0]['impact_level'] == 'level_1'): ?>
 					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id='.$projectDetail['id'],array('class' => 'btn btn-success')) ?></p>
 					<?php endif; ?>

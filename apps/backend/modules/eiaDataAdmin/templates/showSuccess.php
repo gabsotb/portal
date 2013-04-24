@@ -572,12 +572,12 @@
 				</div>
 				<?php endif; ?>
 				</div>
-				<div class="well">
 				<?php if(!is_null($economic->getAverageFamilySize())): ?>
+				<div class="well">
 				<h4><?php echo __('Family:') ?></h4>
 				<p><?php echo __('Average family size:')?>&nbsp;<b><?php echo $economic->getAverageFamilySize() ?></b></p>
-				<?php endif; ?>
 				</div>
+				<?php endif; ?>
 				<div class="well">
 				<h4><?php echo __('Sources of livelihood:') ?></h4>
 				<ul>

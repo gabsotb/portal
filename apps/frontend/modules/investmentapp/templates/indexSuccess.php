@@ -860,6 +860,9 @@ $(function () {
 											<?php if($status['application_status'] == 'certificate'): ?>
 											<?php echo button_to('Certificate','/uploads/documents/eiacertificates/certificate.pdf',array('target' => '_blank','class' => 'btn btn-success btn-block')) ?>
 											<?php endif; ?>	
+											<?php if($status['application_status'] == 'letter'): ?>
+											<?php echo button_to('Letter','/uploads/documents/eia_letter/letter.pdf',array('target' => '_blank','class' => 'btn btn-success btn-block')) ?>
+											<?php endif; ?>	
 										</div>
 										<?php endif; ?>
 									</div>

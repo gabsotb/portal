@@ -7,10 +7,10 @@
             <div class="widget-body">
 			<div class="alert alert-block alert-info fade in">
 														
-							<h4 class="alert-heading">Step 7</h4>
-							<p>
-								Project Design and Implementation Phase
-							</p>
+							<!--h4 class="alert-heading">Step 7</h4>
+							<p-->
+								<h4>Project Design and Implementation Phase</h4>
+							<!--/p-->
 						 </div>
 			         <?php include_partial('form', array('form' => $form)) ?>
 		    </div>			 

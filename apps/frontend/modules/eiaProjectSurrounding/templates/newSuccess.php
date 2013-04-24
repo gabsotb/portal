@@ -6,8 +6,8 @@
 			</div>
 			<div class="widget-body">
 				<div class="alert alert-block alert-info fade in">
-					<h4 class="alert-heading"> Step 4</h4>
-					<p> Please provide below details about the project area surroundings as accurately as you can. </p>
+					<!--h4 class="alert-heading"> Step 4</h4>
+					<p--> <h4>Please provide below details about the project area surroundings as accurately as you can.</h4> <!--/p-->
 				</div>
 			<?php include_partial('form', array('form' => $form)) ?>
 			

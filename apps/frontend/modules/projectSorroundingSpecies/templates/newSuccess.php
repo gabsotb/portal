@@ -7,10 +7,10 @@
             <div class="widget-body">
 			<div class="alert alert-block alert-info fade in">
 														
-							<h4 class="alert-heading">Step 5</h4>
-							<p>
-								Please Provide Examples of Species of animals/plants (common or local name) neigbouring your project location below
-							</p>
+							<!--h4 class="alert-heading">Step 5</h4>
+							<p-->
+								<h4>Please Provide Examples of Species of animals/plants (common or local name) neigbouring your project location below</h4>
+							<!--/p-->
 						 </div>
 			         <?php include_partial('form', array('form' => $form)) ?>
 		    </div>			 

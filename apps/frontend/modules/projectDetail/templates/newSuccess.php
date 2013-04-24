@@ -7,10 +7,10 @@
             <div class="widget-body">
 			<div class="alert alert-block alert-info fade in">
 														
-							<h4 class="alert-heading">Step 1</h4>
-							<p>
-								Please Provide Below Fields to Start your application
-							</p>
+							<!--h4 class="alert-heading">Step 1</h4>
+							<p-->
+								<h4>Please Provide Below Fields to Start your application</h4>
+							<!--/p -->
 						 </div>
 			         <?php include_partial('form', array('form' => $form)) ?>
 		    </div>			 

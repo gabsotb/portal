@@ -339,23 +339,23 @@ class eiaDataAdminActions extends sfActions
 		  $pdf->setPrintFooter(true);
 
 		 // Set some content to print
-$html = <<<EOD
-   <i>Mr/Ms $f_name $l_name </i> <br/>
-   <i>Serial No. $serial</i>
+$html ='
+   <i>Mr/Ms '.$f_name.' '.$l_name.' </i> <br/>
+   <i>Serial No. '.$serial.'</i>
    
 <h2>RE: Clearence Letter</h2>
-<p>This letter certifies that a Environmental Impact Assessment related to <b>$developer</b>'s project entitled <b>$project_title</b> represented by <b>$contact_person</b> has been approved.</p>
-<p>This project is to be located on plot number <b>$plot_number</b> in <b>$cell</b> Cell, <b>$sector</b> Sector, <b>$district</b> District, <b>$province</b> Province.</p>
+<p>This letter certifies that a Environmental Impact Assessment related to <b>'.$developer.'</b>s project entitled <b>'.$project_title.'</b> represented by <b>'.$contact_person.'</b> has been approved.</p>
+<p>This project is to be located on plot number <b>'.$plot_number.'</b> in <b>'.$cell.'</b> Cell, <b>'.$sector.'</b> Sector, <b>'.$district.'</b> District, <b>'.$province.'</b> Province.</p>
 <p>This is in accordance with the provisions of Organic law No 04/2005 of 08/04/2005 determining the modalities of protection, conservation and promotion of the environment in Rwanda.</p>
 
-<p>Dated this $date</p>
+<p>Dated this '.$date.'</p>
 
 <p><b>Note that:</b><br/>
-   <i>RDB reserves a right to withdraw this letter from $developer in case the latter is found non-compliant</i> <br/>
-   <i>Issued in quadruplicate: Original to developer, copies to: MINICOM,REMA and $district district</i>
+   <i>RDB reserves a right to withdraw this letter from '.$developer.' in case the latter is found non-compliant</i> <br/>
+   <i>Issued in quadruplicate: Original to developer, copies to: MINICOM,REMA and '.$district.' district</i>
 
 <p>
-EOD;
+'
 
 // Print text using writeHTMLCell()
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
@@ -389,13 +389,21 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 
 			$this->getMailer()->send($message);
 			//Update status
-			Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($request->getParameter('id'),'certificate');
-			Doctrine_Core::getTable('EIApplicationStatus')->updateComment($request->getParameter('id'),'Certificate issued');
+			Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($request->getParameter('id'),'letter');
+			Doctrine_Core::getTable('EIApplicationStatus')->updateComment($request->getParameter('id'),'Letter issued');
 			Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage($request->getParameter('id'),100);
 			//update work status
 			$task_id=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
 			Doctrine_Core::getTable('EITaskAssignment')->find($task_id[0]['id'])->setWorkStatus('complete')->setStage('letter')->save();
 			//print $validate; exit;
+			$notify = new Notifications();
+			$notify->recepient=$applicant->getUsername();
+			$notify->message="Clearance letter issued";
+			$notify->save();
+			$notify = new Notifications();
+			$notify->recepient=sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+			$notify->message="Clearance letter issued successfully";
+			$notify->save();
 			//after sending email, we also need to change the status of this business application. 
 			
 		   $this->redirect('@homepage');

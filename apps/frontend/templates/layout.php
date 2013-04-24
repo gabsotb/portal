@@ -532,10 +532,15 @@
 				<?php if(count($eiaStatus)>0): ?>
 				 <?php foreach($eiaStatus as $status): ?>
 				  <li class=""><a href ="#"><i class="icon-certificate"></i><span class="label label-success"> <?php echo $status['application_status'] ?> </span> <i class="icon-certificate"></i></a></li>
-				  <?php endforeach; ?>
-				<?php endif; ?>
+				  
+				
+				<?php if($status['application_status'] == 'EIStudy'): ?>
 				<!-- end Custom Code ------>
-                <li class=""> <a href="<?php echo url_for('eireport/new')?>"> <i class="icon-edit"></i> <?php echo __('EIReport') ?> </a></li>						
+                <li class=""> <a href="<?php echo url_for('eireport/new')?>"> <i class="icon-edit"></i> <?php echo __('EIReport') ?> </a></li>
+				<?php endif; ?>
+				<?php endforeach; ?>
+				<?php endif; ?>
+				
 				</ul>
 					
 				</li>

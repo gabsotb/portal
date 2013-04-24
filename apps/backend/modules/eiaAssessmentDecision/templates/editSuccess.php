@@ -23,7 +23,7 @@
 				<p><?php echo html_entity_decode($projectImpact[0]['comments']) ?></p>
 				<br/>
 				<p><a href="#siteVisitReport" role="button" class="btn btn-inverse tooltips" data-toggle="modal" data-placement="left" data-original-title="View Site visit report">Report</a>
-				<?php if(isset($report[0]['tor'])): ?>
+				<?php if(!empty($report[0]['tor'])): ?>
 				<?php echo button_to('T.O.R','/uploads/documents/eia_documents/tor/'.$report[0]['tor'],array('target' => '_blank','class' => 'btn btn-primary tooltips','data-placement' => 'right', 'data-original-title' => 'Download Terms of Reference')) ?>
 				<?php endif; ?></p>
 			</div>
