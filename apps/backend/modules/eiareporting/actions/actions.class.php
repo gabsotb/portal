@@ -89,7 +89,7 @@ class eiareportingActions extends sfActions
 //style="background-color:#f9f9f9; font-size: 7; width: 2200;border: 1 cellspacing: 3px cellpadding: 4"
          // Set some content to print
             $head = '
-			<h4 style="background-color:#fff;color:#427DD6; font-size:10">A List of Investment Certificates Issued to Investors</h4>
+			<h4 style="background-color:#fff;color:#427DD6; font-size:10">A List of EIA Certificates Issued to Investors</h4>
 			<br/>
 			<table border="1" cellspacing="3" cellpadding="4" width ="2100">
 			  <thead>
