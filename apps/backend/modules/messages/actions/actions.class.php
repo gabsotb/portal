@@ -54,7 +54,7 @@ class messagesActions extends sfActions
 	//print $this->getUser()->getAttribute('request_type') ; exit;
     $this->form = new MessagesForm();
 	}
-	
+	 $this->form = new MessagesForm();
   }
 
   public function executeCreate(sfWebRequest $request)

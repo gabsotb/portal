@@ -31,6 +31,8 @@ class MessagesForm extends BaseMessagesForm
 	   'edit_mode' => !$this->isNew(),
 	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
 	   ));
+	    $this->widgetSchema['attachement_delete'] = new sfWidgetFormInputHidden();
+	   $this->validatorSchema['attachement_delete'] = new sfValidatorPass(); 
 	   //also change the default validator
 	  $this->validatorSchema['attachement'] = new sfValidatorFile(array(
 	   'required' => false,

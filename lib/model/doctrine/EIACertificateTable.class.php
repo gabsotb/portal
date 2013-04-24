@@ -38,10 +38,16 @@ class EIACertificateTable extends Doctrine_Table
 	public function getAllIssuedEIACertificates()
 	{
 	
-	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT e_i_a_project_detail.id as id,e_i_a_project_detail.project_title as project_name,  e_i_a_project_description.project_nature as business_sector,  e_i_a_project_detail.project_plot_number as plot_number,e_i_a_project_detail.district as district,e_i_a_project_detail.province as province, e_i_a_project_detail.updated_by as developer_names, e_i_a_certificate.serial_number as certficate_no from e_i_a_project_detail
-left join e_i_a_project_description on e_i_a_project_detail.id = e_i_a_project_description.eiaproject_id left join e_i_a_certificate on 	e_i_a_project_detail.id = e_i_a_certificate.eireport_id 
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT  e_i_report.eiaproject_id as id,e_i_a_project_detail.project_title as project_name,  e_i_a_project_description.project_nature as business_sector,  e_i_a_project_detail.project_plot_number as plot_number,e_i_a_project_detail.district as district,e_i_a_project_detail.province as province, e_i_a_project_detail.updated_by as developer_names, e_i_a_certificate.serial_number as certficate_no,e_i_a_certificate.created_at as date from e_i_report left join e_i_a_project_detail on e_i_report.eiaproject_id = e_i_a_project_detail.id
+left join e_i_a_project_description on e_i_a_project_detail.id = e_i_a_project_description.eiaproject_id left join e_i_a_certificate on e_i_report.id = e_i_a_certificate.eireport_id 
 		");
 	 return $query; 
 	 
+	}
+	public function getEIACertsPerSector()
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT count(serial_number), e_i_a_project_description.project_nature  from e_i_a_certificate left join  e_i_a_project_description on e_i_a_certificate.eireport_id  = e_i_a_project_description.eiaproject_id group by e_i_a_project_description.project_nature ");
+	 //
+	 return $query;
 	}
 }
