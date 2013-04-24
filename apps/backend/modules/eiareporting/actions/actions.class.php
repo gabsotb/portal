@@ -34,7 +34,7 @@ class eiareportingActions extends sfActions
   public function executeSectorsCert(sfWebRequest $request)
   {
     //get certificates number grouped by sectors
-	$this->sectors_certs = Doctrine_Core::getTable('InvestmentCertificate')->getInvestmentCertsPerSector();
+	$this->sectors_certs = Doctrine_Core::getTable('EIACertificate')->getEIACertsPerSector();
   }
   //method to print all investor EIA certificates details
   public function executeList()
@@ -168,17 +168,25 @@ class eiareportingActions extends sfActions
  public function executePrintCertificate(sfWebRequest $request)
    {
     $id_param = $request->getParameter('reference');
-	//print $id_param; exit;
-	$query = Doctrine_Core::getTable('InvestmentCertificate')->getApplicantCertificateDetails($id_param);
-	if($query == null)
-	{
-	 //invalid
-	 $this->forward404();
-	}
-	else if($query != null)
-	{
-	   ////////////////////////////
-	  $date = null ;
+	   ////Then we get the Applicant details for printing the certificate. we will use the business_id saved in the InvestmentCertificate Table
+	  /*$query =*/ $report= Doctrine_Core::getTable('EIReport')->find($request->getParameter('id'));
+	  $projectDetail=Doctrine_Core::getTable('EIAProjectDetail')->find($report->getEiaprojectId());
+	  $developer=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($report->getEiaprojectId());
+		$project_title=$projectDetail->getProjectTitle();
+		$plot_number=$projectDetail->getProjectPlotNumber();
+		$cell=$projectDetail->getCell();
+		$sector=$projectDetail->getSector();
+		$district=$projectDetail->getDistrict();
+		$province=$projectDetail->getProvince();
+		$developer_name=$developer[0]['developer_name'];
+		$contact_person=$developer[0]['contact_person'];
+		$month=$projectDetail->getDateTimeObject('created_at')->format('m');
+		$year=$projectDetail->getDateTimeObject('created_at')->format('Y');
+		$cert=Doctrine_Core::getTable('EIACertificate')->findByEireportId($report->getEiaprojectId());
+		$serial=$cert[0]['serial_number'];
+		$refernce_no=str_replace("-","/",$projectDetail->getProjectReferenceNumber());
+	  //loop over the result and set necessary variables
+	/*  $date = null ;
 	  $year = null ;
 	  $company = null ;
 	  $serial = null;
@@ -189,7 +197,8 @@ class eiareportingActions extends sfActions
 	  $nofojobs = null;
 	  $expjobs = 0;
 	  $invstment = 0;
-	  foreach($query as $q)
+	 // $applicant_name = null ;
+	 /* foreach($query as $q)
 	  {
 	    $date = $q['created_at'] ;
 		$year = $q['created_at'] ;
@@ -201,14 +210,13 @@ class eiareportingActions extends sfActions
 		$sector = $q['business_sector'] ;
 		$noofjobs = $q['employment_created'] ;
 		$invstment = $q['planned_investment'];
-		$currency = $q['currency_type'];
 		
 	  }
 	   $d = new DateTime($date);
 	   $day = $d->format('d-m-Y');
 	   ///
 	   $y = new DateTime($year);
-	   $year =  $y->format('Y');
+	   $year =  $y->format('Y'); */
 	  
 	 // $serial = "C/$number/$year";
 	  
@@ -216,19 +224,13 @@ class eiareportingActions extends sfActions
 	
 	  ////////////////////////////////////////////////////////////////////////////
 	  //execute action for printing pdf document of this report
-	  /* I have used another class specifically for investment Certificates only */
+	   /*I have used another class specifically for investment Certificates only */
 	      $config = sfTCPDFPluginConfigHandlerInvstCert::loadConfig('invst_configs');
           sfTCPDFPluginConfigHandlerInvstCert::includeLangFile($this->getUser()->getCulture());
 	///////////////////////////Certificate Configuration //////////////////////////////////////////////////////////////////////	  
 //create new PDF document (document units are set by default to millimeters)
           $pdf = new sfTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true);
-         // set document information
-/*$pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Nicola Asuni');
-$pdf->SetTitle('TCPDF Example 062');
-$pdf->SetSubject('TCPDF Tutorial');
-$pdf->SetKeywords('TCPDF, PDF, example, test, guide'); */
-
+     
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 062', PDF_HEADER_STRING);
 
@@ -252,7 +254,6 @@ $pdf->setPrintFooter(false);
 //$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 $pdf->SetAutoPageBreak(false);
 
-
 //set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
@@ -260,13 +261,9 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 //$pdf->setLanguageArray($l);
 
 // ---------------------------------------------------------
-$pdf->SetAlpha(0.5);
-$img_file = K_PATH_IMAGES.'alpha.png';
-$pdf->Image($img_file, 50, 80, 40, 40, '', '', '', true, 72); 
-// -------------------------------------------------------------
 
 // set font
-$pdf->SetFont('times', '', 18);
+$pdf->SetFont('courier', '', 18);
 
 // add a page
 $pdf->AddPage();
@@ -278,10 +275,11 @@ $template_id = $pdf->startTemplate(95, 165);
 // ...................................................................
 
 $border = array('LRTB' => array('width' => 0.1, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
- $img_file = K_PATH_IMAGES.'edited2.jpg';
+ $img_file = K_PATH_IMAGES.'eia_CERT.jpg';
  
 $pdf->Image($img_file, 0, 0, 50, 50, 'JPG', '', '', false, 1000, '', false, false, $border, false, false, false);
-
+ 
+ 
 //Image Calling inside the html has a problem hence we hand code it but we will change it later - Boniface Irunguh
 // ...................................................................
 
@@ -293,69 +291,32 @@ $pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
 
 // ---------------------------------------------------------
  // Set some content to print
-$html = '                               <div style="text-align:center"> 
-                                       
+$html = '                               <div>
+                                         <br/><br/><br/>
 										 <p style= "font-size: xx-small;text-align:left ">
-										  <i>No</i>: <b>'.$serial.'</b>
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Certificate No: <b>EC/'.$serial.'/'.$month.'/'.$year.'</b>
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   <i>Date:</i> <b>'.$day.'</b>
-										 </p><br/><br/>
-										 <p style= "font-size: xx-small;text-align:left ">
-										Issued To .............<span style="border-bottom: 10px solid #f00;"><b>'.$company.'</b></span>........... Represented by <span style="border-bottom: 10px solid #f00;">........<b>'.$rep.'</b>.....</span>
-										<br/><br/>
-										Business Sector ...................<span style="border-bottom: 10px solid #f00;"><b>'.$sector.' </span></b> <br/><br/>
-										Planned investment amount ........................... <span style="border-bottom: 10px solid #f00;"><b>'.$invstment.'</span></b> '.$currency.'<br/><br/>
-										Total Number of jobs planned .....................<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b><br/><br/>
-										Local jobs..................<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b> and  Jobs For expatriates ........................ <span style="border-bottom: 10px solid #f00;"><b>'.$expjobs.'</span></b>
+										   Ref: <b>'.$refernce_no.' </b>
 										 </p>
-										 
-									<p style= "font-size: xx-small;text-align:left ">
-										   This Certificate has been issued to <b>'.$company.'</b> under the seal of 
-										   RDB in accordance with law no 26/2005 EAC customs management act atests &nbsp;&nbsp;that the company is duly registered and entitled to the rights and obligations contained in the law.
+									 <p style= "font-size: xx-small;text-align:left ">
+										  This is to certify that an EIA Certificate related to '.$developer_name.'s <br/> &nbsp; project entitled <b>'.$project_title.'</b> represented by <b>'.$contact_person.'</b>
+										  has been approved. <br/> &nbsp; This project is to be located on plot number <b>'.$plot_number.'</b> in Cell<b> '.$sector.'</b> <br/> &nbsp; Sector<b> '.$district.'</b> District<b> '.$province.' </b> .
 										  </p>
-										
-										  
 										  <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;&nbsp;<i>THE CHIEF EXECUTIVE OFFICER</i>, 
-										  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   <i>COMPANY REPRESENTATIVE</i>,
-										  <br/>
-										   &nbsp;&nbsp;&nbsp;&nbsp;RDB,
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-										   '.$rep.'
-										   <br/>
-										   &nbsp;&nbsp;&nbsp;&nbsp;'.$issuerF.' '.$issuerL.'
+										   This is in accordance with provisions of Organic law No04/2005 of 08/04/2005 <br/> &nbsp; determining the modalities of protection,conservation and promotion of the <br/> &nbsp;&nbsp;environment in Rwanda.
+
+										  </p>
+										  <p style= "font-size: xx-small;text-align:left ">
+										  <b>Signed by </b>, 
 										    <br/>
-										   
+											&nbsp;&nbsp;<b>Chief Operating Officer</b><br/><br/><br/><br/>
+											&nbsp;&nbsp;<b>Please Note that;</b>
+											Rwanda Development Board (RDB) reserves a right to withdraw this <br/> &nbsp;&nbsp; certificate from PLS in case the latter is found non-compliant and Issued in <br/> &nbsp;&nbsp; quadruplicate is Original to developer, copies to; MINICOM, REMA &'.$district.'  <br/> &nbsp;&nbsp; district
+
+										      
 										 </p>
-										 </div> 
-										
+										  
+										</div>
                                       
 ';
 
@@ -363,9 +324,37 @@ $html = '                               <div style="text-align:center">
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
          
 //Close and output PDF document
-    $pdf->Output('certificate.pdf', 'I'); // output
-	throw new sfStopException();
-	   //////////////////////////////
-	}
+$pdf->Output('certificate.pdf', 'I');
+/*$pdf->Output(sfConfig::get('sf_web_dir').'\uploads\documents\eiacertificates\certificate.pdf','F'); //save
+	 
+	 //we will output the file and send it to the Investors email address. Get the email address of the investor
+	 $userEmail = null;
+	 $email = Doctrine_Core::getTable('sfGuardUser')->find($projectDetail->getCreatedBy());
+	 //get email
+	 
+	    $userEmail = $email->getEmailAddress() ;
+	
+	 //
+	   $target_path = "uploads/documents/eiacertificates/certificate.pdf";
+	
+			 
+	    $message = Swift_Message::newInstance()
+			  ->setFrom('admin@rdb.com')
+			  ->setTo($userEmail)
+			  ->setSubject('Environmental Impact Certificate')
+			  ->setBody('You have been issued with Environmental Impact Certificate. Please download it. Thank you')
+			   ->attach(Swift_Attachment::fromPath($target_path));
+			
+			 
+
+			$this->getMailer()->send($message); 
+			 
+	 /////////////////////////////////////////////
+	 //
+	
+	///////////////////////////////End Certificate Configuration ///////////////////////////////////////////
+          // Stop symfony process */
+		 // $this->redirect('@homepage');
+          throw new sfStopException();
    }
 }

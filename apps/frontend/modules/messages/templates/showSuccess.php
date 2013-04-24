@@ -39,7 +39,12 @@
 												<?php echo html_entity_decode($messages['message']) ?>
 											</p>
 											<p>
-											 <?php echo $messages['attachement'] ?>
+											 <?php if($messages['attachement'] == null): ?>
+												  <?php echo __('No Attachment') ?>
+												  <?php endif; ?>
+												  <?php if($messages['attachement'] != null): ?>
+												  <?php echo link_to('download', '/uploads/documents/messages_docs/'.$messages['attachement'], array('target' => '_blank')); ?>
+												  <?php endif; ?>
 											</p>
 											<p>
 											  <a href="<?php echo url_for('messages/index') ?>">

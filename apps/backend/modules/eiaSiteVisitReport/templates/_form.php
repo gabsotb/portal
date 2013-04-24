@@ -31,21 +31,7 @@
 		<th><?php echo $form['tor']->renderLabel() ?></th>
 		<td>
 			 <div class="controls">
-				 <div class="fileupload fileupload-new" data-provides="fileupload">
-				 <div class="input-append">
-					<div class="uneditable-input span3">
-						<i class="icon-file fileupload-exists"></i>
-						<span class="fileupload-preview"></span>
-					</div>
-				  <span class="btn btn-file">
-					<span class="fileupload-new">Select File</span>
-					<span class="fileupload-exists">Change</span>
-					<?php echo $form['tor']->render(array('class' => 'default'))?>
-					</span>
-				  <span class="fileupload-preview"></span>
-				  <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-				</div>
-				</div>
+				 <?php echo $form['tor']->render(array('class' => 'default'))?>
 			</div>
 		</td>
 	</tr>
