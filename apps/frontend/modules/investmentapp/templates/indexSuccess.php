@@ -849,13 +849,16 @@ $(function () {
 											<a href="#widget-resubmission" data-toggle="modal">
 											<button type="button" class="btn btn-block"><?php echo __('More info') ?></button></a>
 											<?php endif; ?>	
-											<?php if($briefDecision[0]['decision'] == 'rejected' && $status['application_status'] != 'rejected'): ?>
+											<?php if($briefDecision[0]['decision'] == 'rejected' && $status['application_status'] == 'rejected'): ?>
 											<a href="#widget-rejected" data-toggle="modal">
 											<button type="button" class="btn btn-block"><?php echo __('More info') ?></button></a>
 											<?php endif; ?>	
-											<?php if($status['application_status'] == 'EIR'): ?>
+											<?php if($status['application_status'] == 'EIStudy'): ?>
 											<a href="#widget-EIR" data-toggle="modal">
 											<button type="button" class="btn btn-block"><?php echo __('More info') ?></button></a>
+											<?php endif; ?>	
+											<?php if($status['application_status'] == 'certificate'): ?>
+											<?php echo button_to('Certificate','/uploads/documents/eiacertificates/certificate.pdf',array('target' => '_blank','class' => 'btn btn-success btn-block')) ?>
 											<?php endif; ?>	
 										</div>
 										<?php endif; ?>
@@ -938,46 +941,52 @@ $(function () {
 		</div>
 		<div class="modal-footer">
 			<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
-			<?php if($briefDecision[0]['form'] == 'all'): ?>
+			<?php if($briefDecision[0]['all_form']): ?>
 			<?php echo button_to('Proceed','projectDetail/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
-			<?php endif; ?>
-			<?php if($briefDecision[0]['form'] == 'EIAProjectDetail'): ?>
+			<?php //endif; ?>
+			<?php elseif($briefDecision[0]['project_detail']): ?>
 			<?php echo button_to('Proceed','projectDetail/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
-			<?php endif; ?>
-			<?php if($briefDecision[0]['form'] == 'EIAProjectDeveloper'): ?>
+			<?php //endif; ?>
+			<?php elseif($briefDecision[0]['project_developer']): ?>
 			<?php echo button_to('Proceed','eiaProjectDeveloper/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
-			<?php endif; ?>
-			<?php if($briefDecision[0]['form'] == 'EIAProjectDescription'): ?>
+			<?php //endif; ?>
+			<?php elseif($briefDecision[0]['project_description']): ?>
 			<?php echo button_to('Proceed','projectDescription/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
-			<?php endif; ?>
-			<?php if($briefDecision[0]['form'] == 'EIAProjectSurrounding'): ?>
+			<?php //endif; ?>
+			<?php elseif($briefDecision[0]['project_surrounding']): ?>
 			<?php echo button_to('Proceed','eiaProjectSurrounding/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
-			<?php endif; ?>
-			<?php if($briefDecision[0]['form'] == 'EIAProjectSurroundingSpecies'): ?>
+			<?php //endif; ?>
+			<?php elseif($briefDecision[0]['project_surrounding_species']): ?>
 			<?php echo button_to('Proceed','projectSorroundingSpecies/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
-			<?php endif; ?>
-			<?php if($briefDecision[0]['form'] == 'EIAProjectSocialEconomic'): ?>
+			<?php //endif; ?>
+			<?php elseif($briefDecision[0]['project_social_economic']): ?>
 			<?php echo button_to('Proceed','projectSocialEconomic/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
-			<?php endif; ?>
-			<?php if($briefDecision[0]['form'] == 'EIAProjectImpactMeasures'): ?>
+			<?php //endif; ?>
+			<?php elseif($briefDecision[0]['project_impact_measures']): ?>
 			<?php echo button_to('Proceed','projectImpactMeasures/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
-			<?php endif; ?>
-			<?php if($briefDecision[0]['form'] == 'EIAProjectOperationPhase'): ?>
+			<?php //endif; ?>
+			<?php elseif($briefDecision[0]['project_operation_phase']): ?>
 			<?php echo button_to('Proceed','projectOperationPhase/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
-			<?php endif; ?>
-			<?php if($briefDecision[0]['form'] == 'EIAProjectAttachment'): ?>
+			<?php //endif; ?>
+			<?php elseif($briefDecision[0]['project_attachment']): ?>
 			<?php echo button_to('Proceed','projectAttachment/edit?id='.$resubmit_id,array('class' => 'btn btn-success')) ?>
 			<?php endif; ?>
 		</div>
 </div>
 	
+
 <div id="widget-rejected" class="modal hide">
 		<div class="modal-header">
-			<h3><?php echo __('Reason for rejection') ?></h3>
+			<h3><?php echo __('Application Rejected') ?></h3>
 		</div>
 		<div class="modal-body">
-			<p><?php echo html_entity_decode($briefDecision[0]['comments']) ?></p>
-			<button data-dismiss="modal" class="close" type="button"><?php echo __('X') ?></button>
+			<p><?php echo __('Your application has been rejected.More information below') ?>.</p>
+			<blockquote><p><?php echo html_entity_decode($briefDecision[0]['comments']) ?></p></blockquote>
+			<p><?php echo __('Proceed toapply for a new application') ?>.</p>
+		</div>
+		<div class="modal-footer">
+			<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
+			<?php echo button_to('Proceed','projectDetail/new',array('class' => 'btn btn-success')) ?>
 		</div>
 </div>
 <div id="widget-EIR" class="modal hide">

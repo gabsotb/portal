@@ -31,7 +31,7 @@
 			<h4> What is the general elevation of the project area:</h4>
 			</div>
 			<div class="span4">
-			<?php echo $form['project_general_elevation']->render(array('class' => 'span4')) ?>
+			<?php echo $form['project_general_elevation']->render(array('class' => 'span4 popovers','data-trigger' => 'hover','data-placement' => 'right','data-content' => 'Elevation in Meters Above Sea Level (m.a.s.l)','data-original-title' => 'General Elevation')) ?>
 			<span class="help-inline">in m.a.s.l</span>
 			</div>
 			</div>
@@ -81,7 +81,7 @@
 			<h4> If true,enumerate/mention the water bodies and their location/distance from the project site:</h4>
 			<table class="table table-hover table-bordered">
 			<tr>
-			<td><?php echo $form['existing_water_body_remark']->renderLabel('Water bodies name and loaction/distance from site') ?></td>
+			<td><?php echo $form['existing_water_body_remark']->renderLabel('Water bodies name and location/distance from site') ?></td>
 			<td><?php echo $form['existing_water_body_remark']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?></td>
 			<span class="help-inline"><?php echo $form['existing_water_body_remark']->renderError() ?></span>
 			</tr>
@@ -104,6 +104,7 @@
 			<span class="help-inline"><?php echo $form['access_road_distance']->renderError() ?></span>
 			</div>
 			</div>
+			<h4>If true,state the type of access road:</h4>
 			<table class="table table-hover table-bordered">
 			<tr>
 			<td><?php echo $form['access_road_type']->renderLabel('Type of access road:') ?></td>
@@ -119,7 +120,7 @@
 			<span class="help-inline"><?php echo $form['site_conform_approval']->renderError() ?></span>
 			</tr>
 			</table>
-			<h4>Remarks on land use:</h4>
+			<h4>Remarks on zoning:</h4>
 			<table class="table table-hover table-bordered">
 			<tr>
 			<td><?php echo $form['site_conform_remark']->renderLabel('Remarks:') ?></td>

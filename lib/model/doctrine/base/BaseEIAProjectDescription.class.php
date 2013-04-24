@@ -43,7 +43,6 @@
  * @property integer $power_supply_own_generator_capacity
  * @property boolean $power_supply_other
  * @property string $power_supply_other_specify
- * @property boolean $solid_waste_ecological
  * @property boolean $solid_waste_dumpsite
  * @property boolean $solid_waste_municipal
  * @property boolean $solid_waste_others
@@ -93,7 +92,6 @@
  * @method integer               getPowerSupplyOwnGeneratorCapacity()     Returns the current record's "power_supply_own_generator_capacity" value
  * @method boolean               getPowerSupplyOther()                    Returns the current record's "power_supply_other" value
  * @method string                getPowerSupplyOtherSpecify()             Returns the current record's "power_supply_other_specify" value
- * @method boolean               getSolidWasteEcological()                Returns the current record's "solid_waste_ecological" value
  * @method boolean               getSolidWasteDumpsite()                  Returns the current record's "solid_waste_dumpsite" value
  * @method boolean               getSolidWasteMunicipal()                 Returns the current record's "solid_waste_municipal" value
  * @method boolean               getSolidWasteOthers()                    Returns the current record's "solid_waste_others" value
@@ -142,7 +140,6 @@
  * @method EIAProjectDescription setPowerSupplyOwnGeneratorCapacity()     Sets the current record's "power_supply_own_generator_capacity" value
  * @method EIAProjectDescription setPowerSupplyOther()                    Sets the current record's "power_supply_other" value
  * @method EIAProjectDescription setPowerSupplyOtherSpecify()             Sets the current record's "power_supply_other_specify" value
- * @method EIAProjectDescription setSolidWasteEcological()                Sets the current record's "solid_waste_ecological" value
  * @method EIAProjectDescription setSolidWasteDumpsite()                  Sets the current record's "solid_waste_dumpsite" value
  * @method EIAProjectDescription setSolidWasteMunicipal()                 Sets the current record's "solid_waste_municipal" value
  * @method EIAProjectDescription setSolidWasteOthers()                    Sets the current record's "solid_waste_others" value
@@ -292,10 +289,10 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('sewage_system_other_specify', 'string', 255, array(
+        $this->hasColumn('sewage_system_other_specify', 'string', 400, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 400,
              ));
         $this->hasColumn('sewage_system_capacity', 'integer', null, array(
              'type' => 'integer',
@@ -325,10 +322,6 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 400,
-             ));
-        $this->hasColumn('solid_waste_ecological', 'boolean', null, array(
-             'type' => 'boolean',
-             'notnull' => false,
              ));
         $this->hasColumn('solid_waste_dumpsite', 'boolean', null, array(
              'type' => 'boolean',

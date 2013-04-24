@@ -80,7 +80,13 @@ class projectSorroundingSpeciesActions extends sfActions
     {
       $eia_project_surrounding_species = $form->save();
        ///we get the session value and search for it in the table e_i_a_project_social_economic
+	   if($this->getUser()->getAttribute('eiaprojectid'))
+	   {
 	    $project_id = $this->getUser()->getAttribute('eiaprojectid');
+		}else{
+		$eiaproject_id=Doctrine_Core::getTable('EIAProjectSurrounding')->find($eia_project_surrounding_species->getProjectSurroundingId())->getEiaprojectId();
+		$project_id=$eiaproject_id;
+		}
 		//////////////
 		//we also control if it new or edit action to be execute for eiaprojectdeveloper module
 	  //
@@ -96,22 +102,46 @@ class projectSorroundingSpeciesActions extends sfActions
 	 //
 	 if($queried_id != null) //edit, we redirect to editing method
 	 {
-	 $this->redirect('projectSocialEconomic/edit?id='.$queried_id.'&token='.$queried_token);
-	 }
-	 else if($queried_id  == null ) //new, we redirect to new method
-	 {
 		if($eia_project_surrounding_species->getResubmit() == 'all')
 		{
-			$eiaproject_id=Doctrine_Core::getTable('EIAProjectSurrounding')->find($eia_project_surrounding_species->getProjectSurroundingId())->getEiaproject_id();
-			$projectSocialEconomic=Doctrine_Core::getTable('EIAProjectSocialEconomic')->findByEiaprojectId($eiaproject_id);
-			$this->redirect('projectSocialEconomic/edit?id='.$projectSocialEconomic[0]['id']);
+		//$eiaproject_id=Doctrine_Core::getTable('EIAProjectSurrounding')->find($eia_project_surrounding_species->getProjectSurroundingId())->getEiaproject_id();
+		//$projectSocialEconomic=Doctrine_Core::getTable('EIAProjectSocialEconomic')->findByEiaprojectId($eiaproject_id);
+		$this->redirect('projectSocialEconomic/edit?id='.$queried_id);
 		}elseif($eia_project_surrounding_species->getResubmit() == 'only')
 		{
+			$resubmit=$this->getUser()->getAttribute('resubmit');
+			if($resubmit['EIAProjectSocialEconomic'])
+			{
+			Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->find($eia_project_surrounding_species->getId())->setResubmit('done')->save();
+				$this->redirect('projectSocialEconomic/edit?id='.$resubmit['EIAProjectSocialEconomic']);
+			}elseif($resubmit['EIAProjectImpactMeasures'])
+			{
+			Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->find($eia_project_surrounding_species->getId())->setResubmit('done')->save();
+				$this->redirect('projectImpactMeasures/edit?id='.$resubmit['EIAProjectImpactMeasures']);
+			}elseif($resubmit['EIAProjectOperationPhase'])
+			{
+			Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->find($eia_project_surrounding_species->getId())->setResubmit('done')->save();
+				$this->redirect('projectOperationPhase/edit?id='.$resubmit['EIAProjectOperationPhase']);
+			}elseif($resubmit['EIAProjectAttachment'])
+			{
+			Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->find($eia_project_surrounding_species->getId())->setResubmit('done')->save();
+				$this->redirect('projectAttachment/edit?id='.$resubmit['EIAProjectAttachment']);
+			}else{
+			Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($project_id,'resubmitted');
+			Doctrine_Core::getTable('EIApplicationStatus')->updateComment($project_id,'Resubmission assessment');
+			Doctrine_Core::getTable('EITaskAssignment')->updateWorkStatus($project_id,'resubmitted');
+			Doctrine_Core::getTable('EIAProjectSurroundingSpecies')->find($eia_project_surrounding_species->getId())->setResubmit('done')->save();
+			$this->getUser()->resetResubmissionForm();
 			$this->redirect('@homepage');
+			}
 		}else
 		{
-			$this->redirect('projectSocialEconomic/new?id='.$eia_project_surrounding_species->getId().'&token='.$eia_project_surrounding_species->getToken());
+			$this->redirect('projectSocialEconomic/edit?id='.$queried_id.'&token='.$queried_token);
 		}
+	}
+	 else if($queried_id  == null ) //new, we redirect to new method
+	 {
+		$this->redirect('projectSocialEconomic/new?id='.$eia_project_surrounding_species->getId().'&token='.$eia_project_surrounding_species->getToken());
 	 }
 		///////////////
       

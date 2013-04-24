@@ -80,13 +80,55 @@ class projectDescriptionActions extends sfActions
     if ($form->isValid())
     {
       $eia_project_description = $form->save();
+	  if($this->getUser()->getAttribute('eiaprojectid'))
+	  {
+	  $project_id = $this->getUser()->getAttribute('eiaprojectid');
+	  }else{
+	  $project_id =$eia_project_description->getEiaprojectId();
+	  }
+	  $surrounding=Doctrine_Core::getTable('EIAProjectSurrounding')->queryForId($project_id);
+	 if($surrounding[0]['id'] != null)
+	  {
 		if($eia_project_description->getResubmit() == 'all')
 		{
-			$eiaProjectSurrounding=Doctrine_Core::getTable('EIAProjectSurrounding')->findByEiaprojectId($eia_project_description->getEiaproject_id());
-			$this->redirect('eiaProjectSurrounding/edit?id='.$eiaProjectSurrounding[0]['id']);
+		//$eiaProjectSurrounding=Doctrine_Core::getTable('EIAProjectSurrounding')->findByEiaprojectId($eia_project_description->getEiaproject_id());
+			$this->redirect('eiaProjectSurrounding/edit?id='.$surrounding[0]['id']);
 		}elseif($eia_project_description->getResubmit() == 'only')
 		{
+			$resubmit=$this->getUser()->getAttribute('resubmit');
+			if($resubmit['EIAProjectSurrounding'])
+			{
+			Doctrine_Core::getTable('EIAProjectDescription')->find($eia_project_description->getId())->setResubmit('done')->save();
+				$this->redirect('eiaProjectSurrounding/edit?id='.$resubmit['EIAProjectSurrounding']);
+			}elseif($resubmit['EIAProjectSurroundingSpecies'])
+			{
+			Doctrine_Core::getTable('EIAProjectDescription')->find($eia_project_description->getId())->setResubmit('done')->save();
+				$this->redirect('projectSorroundingSpecies/edit?id='.$resubmit['EIAProjectSurroundingSpecies']);
+			}elseif($resubmit['EIAProjectSocialEconomic'])
+			{
+			Doctrine_Core::getTable('EIAProjectDescription')->find($eia_project_description->getId())->setResubmit('done')->save();
+				$this->redirect('projectSocialEconomic/edit?id='.$resubmit['EIAProjectSocialEconomic']);
+			}elseif($resubmit['EIAProjectImpactMeasures'])
+			{
+			Doctrine_Core::getTable('EIAProjectDescription')->find($eia_project_description->getId())->setResubmit('done')->save();
+				$this->redirect('projectImpactMeasures/edit?id='.$resubmit['EIAProjectImpactMeasures']);
+			}elseif($resubmit['EIAProjectOperationPhase'])
+			{
+			Doctrine_Core::getTable('EIAProjectDescription')->find($eia_project_description->getId())->setResubmit('done')->save();
+				$this->redirect('projectOperationPhase/edit?id='.$resubmit['EIAProjectOperationPhase']);
+			}elseif($resubmit['EIAProjectAttachment'])
+			{
+			Doctrine_Core::getTable('EIAProjectDescription')->find($eia_project_description->getId())->setResubmit('done')->save();
+				$this->redirect('projectAttachment/edit?id='.$resubmit['EIAProjectAttachment']);
+			}else{
+			Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eia_project_description->getEiaprojectId(),'resubmitted');
+			Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eia_project_description->getEiaprojectId(),'Resubmission assessment');
+			Doctrine_Core::getTable('EITaskAssignment')->updateWorkStatus($eia_project_description->getEiaprojectId(),'resubmitted');
+			Doctrine_Core::getTable('EIAProjectDescription')->find($eia_project_description->getId())->setResubmit('done')->save();
+			$this->getUser()->resetResubmissionForm();
 			$this->redirect('@homepage');
+			}
+		}
 		}else
 		{
 

@@ -104,7 +104,7 @@ class eiaReportActions extends sfActions
 	 $q->execute();
 	 //Notifications
 	 //Infor Data admin of successful approval
-	 $notify = new Notifications();
+	 /*$notify = new Notifications();
 	 $notify->recepient = $username;
 	 $notify->message = "EIReport Approved Successfuly";
 	 $notify->created_at = date('Y-m-d H:i:s');
@@ -121,7 +121,9 @@ class eiaReportActions extends sfActions
 	 $notify2->recepient = $investor_name;
 	 $notify2->message = "Congrats Your EIReport has been Approved!";
 	 $notify2->created_at = date('Y-m-d H:i:s');
-	 $notify2->save();
+	 $notify2->save();*/
+	 $tasks=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($request->getParameter('id'));
+	 Doctrine_Core::getTable('EITaskAssignment')->find($tasks[0]['id'])->setWorkStatus('assess')->setStage('ei-report')->save();
 	 
 	 //redirect
 	 $this->redirect('dashboard/index');

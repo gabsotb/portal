@@ -79,6 +79,11 @@ class eireportActions extends sfActions
 	  $project_id = $allFormValues['eiaproject_id'];
 	  //we access a method that updates the status in EIReport and EIReportSubmission
 	  $this->updateStatus($project_id);
+	  $tasks=Doctrine_Core::getTable('EITaskAssignment')->findByEiaprojectId($ei_report->getEiaprojectId());
+	  Doctrine_Core::getTable('EITaskAssignment')->find($tasks[0]['id'])->setWorkStatus('submitted')->setStage('ei-report')->save();
+	  Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($ei_report->getEiaprojectId(),'EIReport');
+	  Doctrine_Core::getTable('EIApplicationStatus')->updateComment($ei_report->getEiaprojectId(),'Environmental Impact Report Assessment');
+	  Doctrine_Core::getTable('EIApplicationStatus')->updatePercentage($ei_report->getEiaprojectId(),90);
      // $this->redirect('eireport/edit?id='.$ei_report->getId());
 	 $this->redirect('investmentapp/index');
     }

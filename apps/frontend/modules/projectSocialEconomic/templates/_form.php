@@ -93,7 +93,7 @@
 									<h4>Local Organizations</h4>						
 								</div>
 								<div class="widget-body">
-								 <p>Are there existing local organization in the area? </p> <?php echo $form['local_organization']->render() ?>
+								 <p>Are there existing local organizations in the area? </p> <?php echo $form['local_organization']->render() ?>
 								 <p>If yes, please list down these organized groups e.g. associations, cooperatives etc</p>
 								 <?php echo $form['local_organization_description']->render() ?>
 								 

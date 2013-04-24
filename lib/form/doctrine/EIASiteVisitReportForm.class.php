@@ -13,5 +13,17 @@ class EIASiteVisitReportForm extends BaseEIASiteVisitReportForm
   public function configure()
   {
 	unset($this['created_at'],$this['updated_at'], $this['created_by'], $this['updated_by'] , $this['token'], $this['eiasitevisit_id']);
+	$this->widgetSchema['tor'] = new sfWidgetFormInputFileEditable(array(
+	   'label'=>'Terms of Reference',
+	   'file_src' =>'/uploads/documents/eia_documents/tor'.$this->getObject()->getTor(),
+	   #'is_image' => true,
+	   'edit_mode' => !$this->isNew(),
+	   'template' => '<div>%file%<br/>%input%<br/>%delete% %delete_label%</div>',
+	   ));
+	   //also change the default validator
+	  $this->validatorSchema['tor'] = new sfValidatorFile(array(
+	   'required' => false,
+	   'path' =>sfConfig::get('sf_upload_dir').'/documents/eia_documents/tor',
+	   ));
   }
 }

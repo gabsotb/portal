@@ -9,7 +9,7 @@
 														
 							<h4 class="alert-heading"><?php echo __('Last Step') ?></h4>
 							<p>
-								<?php echo __('Please Attach the following documents where applicable, The item(s) marked ** are mandatory.') ?>
+								<?php echo __('Please Attach the following documents for concessions where applicable.') ?>
 							</p>
 						 </div>
 			         <?php include_partial('form', array('form' => $form)) ?>

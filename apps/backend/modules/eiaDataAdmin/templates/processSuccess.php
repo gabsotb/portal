@@ -67,7 +67,7 @@
 			<h4><i class="icon-reorder"></i>Recommendations</h4>
 		</div>
 		<div class="widget-body">
-		<?php if(count($siteVisit) != 0): ?> 
+		<?php if(count($siteVisit) != 0 && $siteVisit[0]['visited'] != 1): ?> 
 			<div class="widget">
 				<div class="widget-title">
 					<h4><i class="reorder"></i>Site Visit</h4>
@@ -119,7 +119,7 @@
 				</div>
 			</div>
 		<?php endif; ?>
-		<?php if(count($projectImpact) != 0): ?>
+		<?php if(count($projectImpact) != 0 && count($reports) == 0): ?>
 			<div class="widget">
 				<div class="widget-title">
 					<h4><i class="icon-reorder"></i>Project Impact</h4>
@@ -150,8 +150,7 @@
 					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id='.$projectDetail['id'],array('class' => 'btn btn-success')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'level_2' || $projectImpact[0]['impact_level'] == 'level_3'): ?>
-					<?php echo button_to('Request TOR','eiaDataAdmin/messageTor?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary')) ?>
-					<?php echo button_to('Submit TOR','eiaDataAdmin/torSubmit?id='.$projectDeveloper[0]['id'],array('class' => 'btn btn-info')) ?> </p>
+					<?php echo button_to('EI study','eiaDataAdmin/messageEIReport?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary tooltips','data-placement' => 'bottom','data-original-title' => 'Request applicant to proceed with the EI study')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
 					<a href="#widget-reject" data-toggle="modal">
@@ -166,7 +165,8 @@
 					<p><?php echo html_entity_decode($assessmentImpact[0]['remarks']) ?></p>
 					<br/>
 					<!-- some action -->
-					<?php button_to('Review','eiaDataAdmin/show?id='.$tasks[0]['id'],array('class' => 'btn btn-inverse')) ?>
+					<p><a href="#widget-resubmit" data-toggle="modal">
+					<button type="button" class="btn btn-primary tooltips" data-placement="right" data-original-title="Resubmit your request"><?php echo __('Resubmit') ?></button></a></p>
 					</div>
 					<?php endif; ?>
 					<?php if($assessmentImpact[0]['verdict'] == 'reviewed'): ?>
@@ -176,11 +176,10 @@
 					<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
 					<!-- some action -->
 					<?php if($projectImpact[0]['impact_level'] == 'level_1'): ?>
-					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id=',array('class' => 'btn btn-success')) ?></p>
+					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id='.$projectDetail['id'],array('class' => 'btn btn-success')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'level_2' || $projectImpact[0]['impact_level'] == 'level_3'): ?>
-					<?php echo button_to('Request TOR','eiaDataAdmin/messageTor?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary')) ?>
-					<?php echo button_to('Submit TOR','eiaDataAdmin/torSubmit?id='.$projectDeveloper[0]['id'],array('class' => 'btn btn-info')) ?></p>
+					<?php echo button_to('EI study','eiaDataAdmin/messageEIReport?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary tooltips','data-placement' => 'bottom','data-original-title' => 'Request applicant to proceed with the EI study')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
 					<a href="#widget-reject" data-toggle="modal">
@@ -201,41 +200,47 @@
 				</div>
 			</div>
 		<?php endif; ?>
-		<?php if(count($torSubmit) != 0): ?>
+		<?php if(count($reports) != 0): ?>
 		<div class="widget">
 			<div class="widget-title">
-				<h4><i class="icon-reorder"></i>Terms Of Reference</h4>
+				<h4><i class="icon-reorder"></i>Environmental Impact Report</h4>
 			</div>
 			<div class="widget-body">
 				<div class="alert alert-block alert-info">
-				<p>Download &nbsp;&nbsp;<?php echo link_to('download', '/uploads/documents/eia_documents/tor/'.$torSubmit[0]['attachement'], array('target' => '_blank')); ?></p>
+				<p><b>View Report</b> &nbsp;<?php echo link_to('Report', '/uploads/documents/eia_documents/user_eireports/'.$reports[0]['pdf_doc'], array('target' => '_blank','class' => 'btn btn-info tooltips', 'data-placement' => 'bottom', 'data-original-title' => 'View EI report')); ?></p>
 				</div>
 				<div class="well">
 					<h4>Supervisor verdict</h4>
-					<?php if($assessmentTor[0]['verdict'] == 'accept'): ?>
+					<?php if($assessmentReport[0]['verdict'] == 'accept'): ?>
 					<div class="alert alert-block alert-success fade in">
-					<h4>TOR Approved</h4>
+					<h4>Request Approved</h4>
 					<p><b>Remarks</b></p>
-					<p><?php echo html_entity_decode($assessmentTor[0]['remarks']) ?></p>
+					<p><?php echo html_entity_decode($assessmentReport[0]['remarks']) ?></p>
 					<br/>
-					<p><?php echo button_to('Request EI study','eiaDataAdmin/messageEIReport?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary')) ?></p>
+					<p><?php echo button_to('Info lead agencies','messages/new',array('class' => 'btn btn-primary')) ?>
+					<?php echo button_to('Info local governments','messages/new',array('class' => 'btn btn-primary')) ?>
+					<?php echo button_to('Info general public','messages/new',array('class' => 'btn btn-primary')) ?>
+					<?php echo button_to('Issue certificate','eiacertificates/issue?id='.$reports[0]['id'],array('class' => 'btn btn-success')) ?></p>
 					</div>
 					<?php endif; ?>
-					<?php if($assessmentTor[0]['verdict'] == 'decline'): ?>
+					<?php if($assessmentReport[0]['verdict'] == 'decline'): ?>
 					<div class="alert alert-block alert-error fade in">
-					<h4>TOR declined</h4>
+					<h4>Request declined</h4>
 					<p><b>Remarks</b></p>
-					<p><?php echo html_entity_decode($assessmentTor[0]['remarks']) ?></p>
+					<p><?php echo html_entity_decode($assessmentReport[0]['remarks']) ?></p>
 					<br/>
-					<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
-					<?php echo button_to('Resubmit TOR','eiaDataAdmin/torSubmit?id='.$projectDeveloper[0]['id'],array('class' => 'btn btn-info')) ?></p>
+					<p><a href="#widget-resubmit-report" data-toggle="modal">
+					<button type="button" class="btn btn-primary tooltips" data-placement="right" data-original-title="Resubmit your request"><?php echo __('Resubmit') ?></button></a></p>
 					</div>
 					<?php endif; ?>
-					<?php if($assessmentTor[0]['verdict'] == 'reviewed'): ?>
+					<?php if($assessmentReport[0]['verdict'] == 'reviewed'): ?>
 					<div class="alert alert-block alert-info fade in">
 					<h4 class="alert-heading">Request reviewed</h4>
 					<br/>
-					<p><?php echo button_to('Request EI study','eiaDataAdmin/messageEIReport?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary')) ?></p>
+					<p><?php echo button_to('Info lead agencies','messages/new',array('class' => 'btn btn-primary')) ?>
+					<?php echo button_to('Info local governments','messages/new',array('class' => 'btn btn-primary')) ?>
+					<?php echo button_to('Info general public','messages/new',array('class' => 'btn btn-primary')) ?>
+					<?php echo button_to('Issue certificate','eiacertificates/issue?id='.$reports[0]['id'],array('class' => 'btn btn-success')) ?></p>
 					</div>
 					<?php endif; ?>
 				</div>
@@ -271,5 +276,33 @@
 	<div class="modal-footer">
 		<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
 		<?php echo button_to('Proceed','eiaDataAdmin/reject?id='.$projectDetail['id'],array('class' => 'btn btn-success')) ?>
+	</div>
+</div>
+<div id="widget-resubmit" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button">×</button>
+		<h3><?php echo __('Resubmit') ?></h3>
+	</div>
+	<div class="modal-body">
+		<p><?php echo __('This confirms you have read and understood what is required for resubmission for assessment by the supervisor') ?>.</p> 
+		<p><?php echo __('Proceed to make the relevant changes') ?>.</p>
+	</div>
+	<div class="modal-footer">
+		<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
+		<?php echo button_to('Proceed','eiaDataAdmin/siteVisitReport?id='.$siteVisit[0]['id'],array('class' => 'btn btn-success')) ?>
+	</div>
+</div>
+<div id="widget-resubmit-report" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button">×</button>
+		<h3><?php echo __('Resubmit EI Report') ?></h3>
+	</div>
+	<div class="modal-body">
+		<p><?php echo __('This confirms you have read and understood what is required for resubmission for assessment by the supervisor') ?>.</p> 
+		<p><?php echo __('Proceed to make the relevant changes') ?>.</p>
+	</div>
+	<div class="modal-footer">
+		<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
+		<?php echo button_to('Proceed','eireportresubmit/new?id='.$reports[0]['eiaproject_id'],array('class' => 'btn btn-success')) ?>
 	</div>
 </div>

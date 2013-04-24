@@ -9,27 +9,54 @@
  * @property string $decision
  * @property string $comments
  * @property integer $processed_by
- * @property string $form
+ * @property boolean $all_form
+ * @property boolean $project_detail
+ * @property boolean $project_developer
+ * @property boolean $project_description
+ * @property boolean $project_surrounding
+ * @property boolean $project_surrounding_species
+ * @property boolean $project_social_economic
+ * @property boolean $project_impact_measures
+ * @property boolean $project_operation_phase
+ * @property boolean $project_attachment
  * @property string $token
  * @property EIAProjectDetail $EIAProjectDetail
  * @property sfGuardUser $sfGuardUser
  * 
- * @method integer                 getEiaprojectId()     Returns the current record's "eiaproject_id" value
- * @method string                  getDecision()         Returns the current record's "decision" value
- * @method string                  getComments()         Returns the current record's "comments" value
- * @method integer                 getProcessedBy()      Returns the current record's "processed_by" value
- * @method string                  getForm()             Returns the current record's "form" value
- * @method string                  getToken()            Returns the current record's "token" value
- * @method EIAProjectDetail        getEIAProjectDetail() Returns the current record's "EIAProjectDetail" value
- * @method sfGuardUser             getSfGuardUser()      Returns the current record's "sfGuardUser" value
- * @method EIAProjectBriefDecision setEiaprojectId()     Sets the current record's "eiaproject_id" value
- * @method EIAProjectBriefDecision setDecision()         Sets the current record's "decision" value
- * @method EIAProjectBriefDecision setComments()         Sets the current record's "comments" value
- * @method EIAProjectBriefDecision setProcessedBy()      Sets the current record's "processed_by" value
- * @method EIAProjectBriefDecision setForm()             Sets the current record's "form" value
- * @method EIAProjectBriefDecision setToken()            Sets the current record's "token" value
- * @method EIAProjectBriefDecision setEIAProjectDetail() Sets the current record's "EIAProjectDetail" value
- * @method EIAProjectBriefDecision setSfGuardUser()      Sets the current record's "sfGuardUser" value
+ * @method integer                 getEiaprojectId()                Returns the current record's "eiaproject_id" value
+ * @method string                  getDecision()                    Returns the current record's "decision" value
+ * @method string                  getComments()                    Returns the current record's "comments" value
+ * @method integer                 getProcessedBy()                 Returns the current record's "processed_by" value
+ * @method boolean                 getAllForm()                     Returns the current record's "all_form" value
+ * @method boolean                 getProjectDetail()               Returns the current record's "project_detail" value
+ * @method boolean                 getProjectDeveloper()            Returns the current record's "project_developer" value
+ * @method boolean                 getProjectDescription()          Returns the current record's "project_description" value
+ * @method boolean                 getProjectSurrounding()          Returns the current record's "project_surrounding" value
+ * @method boolean                 getProjectSurroundingSpecies()   Returns the current record's "project_surrounding_species" value
+ * @method boolean                 getProjectSocialEconomic()       Returns the current record's "project_social_economic" value
+ * @method boolean                 getProjectImpactMeasures()       Returns the current record's "project_impact_measures" value
+ * @method boolean                 getProjectOperationPhase()       Returns the current record's "project_operation_phase" value
+ * @method boolean                 getProjectAttachment()           Returns the current record's "project_attachment" value
+ * @method string                  getToken()                       Returns the current record's "token" value
+ * @method EIAProjectDetail        getEIAProjectDetail()            Returns the current record's "EIAProjectDetail" value
+ * @method sfGuardUser             getSfGuardUser()                 Returns the current record's "sfGuardUser" value
+ * @method EIAProjectBriefDecision setEiaprojectId()                Sets the current record's "eiaproject_id" value
+ * @method EIAProjectBriefDecision setDecision()                    Sets the current record's "decision" value
+ * @method EIAProjectBriefDecision setComments()                    Sets the current record's "comments" value
+ * @method EIAProjectBriefDecision setProcessedBy()                 Sets the current record's "processed_by" value
+ * @method EIAProjectBriefDecision setAllForm()                     Sets the current record's "all_form" value
+ * @method EIAProjectBriefDecision setProjectDetail()               Sets the current record's "project_detail" value
+ * @method EIAProjectBriefDecision setProjectDeveloper()            Sets the current record's "project_developer" value
+ * @method EIAProjectBriefDecision setProjectDescription()          Sets the current record's "project_description" value
+ * @method EIAProjectBriefDecision setProjectSurrounding()          Sets the current record's "project_surrounding" value
+ * @method EIAProjectBriefDecision setProjectSurroundingSpecies()   Sets the current record's "project_surrounding_species" value
+ * @method EIAProjectBriefDecision setProjectSocialEconomic()       Sets the current record's "project_social_economic" value
+ * @method EIAProjectBriefDecision setProjectImpactMeasures()       Sets the current record's "project_impact_measures" value
+ * @method EIAProjectBriefDecision setProjectOperationPhase()       Sets the current record's "project_operation_phase" value
+ * @method EIAProjectBriefDecision setProjectAttachment()           Sets the current record's "project_attachment" value
+ * @method EIAProjectBriefDecision setToken()                       Sets the current record's "token" value
+ * @method EIAProjectBriefDecision setEIAProjectDetail()            Sets the current record's "EIAProjectDetail" value
+ * @method EIAProjectBriefDecision setSfGuardUser()                 Sets the current record's "sfGuardUser" value
  * 
  * @package    rdbeportal
  * @subpackage model
@@ -44,7 +71,6 @@ abstract class BaseEIAProjectBriefDecision extends sfDoctrineRecord
         $this->hasColumn('eiaproject_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'unique' => true,
              ));
         $this->hasColumn('decision', 'string', 255, array(
              'type' => 'string',
@@ -60,8 +86,44 @@ abstract class BaseEIAProjectBriefDecision extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('form', 'string', null, array(
-             'type' => 'string',
+        $this->hasColumn('all_form', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('project_detail', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('project_developer', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('project_description', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('project_surrounding', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('project_surrounding_species', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('project_social_economic', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('project_impact_measures', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('project_operation_phase', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
+             ));
+        $this->hasColumn('project_attachment', 'boolean', null, array(
+             'type' => 'boolean',
              'notnull' => false,
              ));
         $this->hasColumn('token', 'string', 255, array(
