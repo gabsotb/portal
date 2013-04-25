@@ -131,15 +131,15 @@ abstract class BaseTaxExemptionDetails extends sfDoctrineRecord
              'type' => 'timestamp',
              'notnull' => false,
              ));
-        $this->hasColumn('revenue_officer_remarks', 'string', 1000, array(
+        $this->hasColumn('revenue_officer_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
-        $this->hasColumn('rdb_officer_remarks', 'string', 1000, array(
+        $this->hasColumn('rdb_officer_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('status', 'string', 255, array(
              'type' => 'string',

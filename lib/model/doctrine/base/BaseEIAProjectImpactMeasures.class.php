@@ -213,10 +213,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('dust_generation_remarks', 'string', 1000, array(
+        $this->hasColumn('dust_generation_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('soil_removal', 'boolean', null, array(
              'type' => 'boolean',
@@ -230,10 +230,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('soil_removal_remarks', 'string', 1000, array(
+        $this->hasColumn('soil_removal_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('erosion_from_cuts', 'boolean', null, array(
              'type' => 'boolean',
@@ -251,10 +251,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('erosion_remarks', 'string', 1000, array(
+        $this->hasColumn('erosion_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('sedimentation', 'boolean', null, array(
              'type' => 'boolean',
@@ -272,10 +272,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('sedimentation_remarks', 'string', 1000, array(
+        $this->hasColumn('sedimentation_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('pollution', 'boolean', null, array(
              'type' => 'boolean',
@@ -293,10 +293,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('pollution_remarks', 'string', 1000, array(
+        $this->hasColumn('pollution_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('vegetation_loss', 'boolean', null, array(
              'type' => 'boolean',
@@ -318,10 +318,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('vegetation_remarks', 'string', 1000, array(
+        $this->hasColumn('vegetation_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('disturbance', 'boolean', null, array(
              'type' => 'boolean',
@@ -339,10 +339,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('disturbance_remarks', 'string', 1000, array(
+        $this->hasColumn('disturbance_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('noise_generation', 'boolean', null, array(
              'type' => 'boolean',
@@ -356,10 +356,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('noise_generation_remark', 'string', 1000, array(
+        $this->hasColumn('noise_generation_remark', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('generation_employment', 'boolean', null, array(
              'type' => 'boolean',
@@ -369,10 +369,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('generation_employment_remarks', 'string', 1000, array(
+        $this->hasColumn('generation_employment_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('conflicts', 'boolean', null, array(
              'type' => 'boolean',
@@ -382,10 +382,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('conflict_remarks', 'string', 1000, array(
+        $this->hasColumn('conflict_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('traffic_congestion', 'boolean', null, array(
              'type' => 'boolean',
@@ -399,10 +399,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('traffic_congestion_remarks', 'string', 1000, array(
+        $this->hasColumn('traffic_congestion_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('crimes_accidents', 'boolean', null, array(
              'type' => 'boolean',

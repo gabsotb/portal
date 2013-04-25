@@ -210,4 +210,5 @@ class EIAProjectDetailTable extends Doctrine_Table
 	 }
 	 return $number;
 	}
+	///
 }

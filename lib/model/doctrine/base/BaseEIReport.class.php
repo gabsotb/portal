@@ -64,10 +64,10 @@ abstract class BaseEIReport extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('comments', 'string', 1000, array(
+        $this->hasColumn('comments', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

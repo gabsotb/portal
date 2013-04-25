@@ -1,86 +1,80 @@
+<?php
+//reporting script
+$investment_certs = Doctrine_Core::getTable('InvestmentCertificate')->calculateCertificatesIssued();
+//print $investment_certs; exit;
+$eia_certs = Doctrine_Core::getTable('EIACertificate')->calculateCertificatesIssued();
+$tax_exemption = Doctrine_Core::getTable('TaxExemptionDetails')->calculateExemptionsGranted(); 
+//some small maths
+$ic = 0;
+$eia =0 ;
+$tax = 0;
+$total = $investment_certs + $eia_certs + $tax_exemption ;
+//$total = 0;
+//print $total; exit;
+//avoid division by zero
+if($total == 0)
+{
+ //do not divide just pass default values
+ 
+}
+else if($total > 0)
+{
+//print $total; exit;
+$ic = round(($investment_certs / $total) * 100 );
+$eia = round(( $eia_certs / $total) * 100);
+$tax = round(( $tax_exemption / $total) * 100) ;
+}
+
+/////
+ ?>
+
 
 <!--some Javascripts for Loading High Charts Graph -->
- <script type="text/javascript">
+<script type="text/javascript">
 $(function () {
     var chart;
     $(document).ready(function() {
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'cont',
-                type: 'column',
-				height: 500,
-				width: 700
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
             },
             title: {
-                text: '<?php echo __('RDB Tasks Performance Analysis. Year 2013') ?>'
+                text: 'Certificate & Tax Exemption Processing Analysis,<?php echo 2013 ?> to date'
             },
-            subtitle: {
-                text: '<?php echo __('Source: Rwanda Development Board') ?>'
+            tooltip: {
+        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+            	percentageDecimals: 1
             },
-            xAxis: {
-                categories: [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
-                ]
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: '<?php echo __('Number of Items Processed') ?>'
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                        }
+                    }
                 }
             },
-			credits:
+			
+				credits:
 				{
 					enabled: false
 				},
-            legend: {
-                layout: 'vertical',
-                backgroundColor: '#FFFFFF',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                shadow: true
-            },
-            tooltip: {
-                formatter: function() {
-                    return ''+
-                        this.x +': '+ this.y +' ';
-                }
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-                series: [{
-                name: '<?php echo __('Investment Certificates') ?>',
-                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-    
-            }, {
-                name: '<?php echo __('EIA Certificates') ?>',
-                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-    
-            }, {
-                name: '<?php echo __('Tax Exemptions') ?>',
-                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-    
-            }, {
-                name: '<?php echo __('Visa Issued') ?>',
-                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-    
+            series: [{
+                type: 'pie',
+                name: 'No of Transactions',
+                data: [
+                    ['Investment Certificates',   <?php echo $ic  ?>],
+                    ['EIA Certificates',       <?php echo $eia ?>],
+                    ['Tax Exemptions',   <?php echo $tax ?>]
+                ]
             }]
         });
     });
@@ -138,82 +132,49 @@ $(function () {
 	  
 	  
 		<!-- BEGIN OVERVIEW STATISTIC BARS-->
-							<div class="row-fluid stats-overview-cont">
-								<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat ok huge">
-											<span class="line-chart">5, 6, 7, 11, 14, 10, 15, 19, 15, 2</span>
-											<div class="percent">+66%</div>
-										</div>
-										<div class="details">
-											<div class="title"><?php echo __('Total Registered Investors') ?></div>
-											<div class="numbers">1360</div>
-										</div>
-										<div class="progress progress-info">
-											<div class="bar" style="width: 66%"></div>
-										</div>
-									</div>
+							<div class="row-fluid">
+								 <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+							<div class="circle-stat block">
+								<div class="visual">
+									<input class="knobify" data-width="115" data-thickness=".2" data-skin="tron" data-displayprevious="true" value="6" data-max="100" data-min="-100" />
 								</div>
-								<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat good huge">
-											<span class="line-chart">2,6,8,12, 11, 15, 16, 11, 16, 11, 10, 3, 7, 8, 12, 19</span>
-											<div class="percent">+16%</div>
-										</div>
-										<div class="details">
-											<div class="title"><?php echo __('Total Investment Certificates Issued') ?></div>
-											<div class="numbers">1800</div>
-											<div class="progress progress-warning">
-												<div class="bar" style="width: 16%"></div>
-											</div>
-										</div>
-									</div>
+								<div class="details">
+									<div class="title"><?php echo __('Total Investment Certificates Issued')?> <i class="icon-caret-up"></i></div>
+									<div class="number"><?php echo $investment_certs;  ?></div>
+									<span class="label label-info"><i class="icon-certificate"></i><?php echo $ic ?>%</span>
 								</div>
-								<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat bad huge">
-											<span class="line-chart">2,6,8,11, 14, 11, 12, 13, 15, 12, 9, 5, 11, 12, 15, 9,3</span>
-											<div class="percent">+6%</div>
-										</div>
-										<div class="details">
-											<div class="title"><?php echo __('Total EIA Certificates Issued') ?></div>
-											<div class="numbers">509</div>
-											<div class="progress progress-success">
-												<div class="bar" style="width: 16%"></div>
-											</div>
-										</div>
-									</div>
+							</div>
+						</div>
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+							<div class="circle-stat block">
+								<div class="visual">
+									<input class="knobify" data-width="115" data-fgcolor="#66EE66" data-thickness=".2" data-skin="tron" data-displayprevious="true" value="+19" data-max="100" data-min="-100" />
 								</div>
-								<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat bad huge">
-											<span class="line-chart">1,7,9,11, 14, 12, 6, 7, 4, 2, 9, 8, 11, 12, 14, 12, 10</span>
-											<div class="percent">+15%</div>
-										</div>
-										<div class="details">
-											<div class="title"><?php echo __('Tax Exemptions Granted') ?></div>
-											<div class="numbers">2090</div>
-											<div class="progress progress-success">
-												<div class="bar" style="width: 15%"></div>
-											</div>
-										</div>
-									</div>
+								<div class="details">
+									<div class="title"><?php echo __('Total EIA Certificates Issued') ?> <i class="icon-caret-up"></i></div>
+									<div class="number"><?php
+									   echo $eia_certs;
+									?></div>
+									<span class="label label-success"><i class="icon-certificate"></i><?php echo $eia ?>%</span>
+									
 								</div>
-									<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
-									<div class="stats-overview block clearfix">
-										<div class="display stat bad huge">
-											<span class="line-chart">1,7,9,11, 14, 12, 6, 7, 4, 2, 9, 8, 11, 12, 14, 12, 10</span>
-											<div class="percent">+15%</div>
-										</div>
-										<div class="details">
-											<div class="title"><?php echo __('Visa Issued by Immigration') ?></div>
-											<div class="numbers">2090</div>
-											<div class="progress progress-success">
-												<div class="bar" style="width: 15%"></div>
-											</div>
-										</div>
-									</div>
+							</div>
+						</div>
+					<div class="span3 responsive" data-tablet="span6 fix-margin" data-desktop="span3">
+							<div class="circle-stat block">
+								<div class="visual">
+									<input class="knobify" data-width="115" data-fgcolor="#e23e29" data-thickness=".2" data-skin="tron" data-displayprevious="true" value="-12" data-max="100" data-min="-100" />
 								</div>
+								<div class="details">
+									<div class="title"><?php echo __('Tax Exemptions Granted') ?> <i class="icon-caret-down down"></i></div>
+									<div class="number"><?php 
+									echo $tax_exemption;?></div>
+									<span class="label label-warning"><i class="icon-certificate"></i><?php echo $tax ?> % </span>
+								</div>
+							</div>
+						</div>
+						
 							</div>
 			</div>
 		<!-- END STATISTICS -->
@@ -275,13 +236,13 @@ $(function () {
 								<div class="widget-body">
 								<?php if(count($unassigned) == 0 && count($assigning)==0): ?>
 									<div class="alert alert-block alert-info fade in">
-									<h4 class="alert-heading"><?php echo __('No recent application has been found
-									Please try again later/ Refresh the page') ?> </h4>
+									<h4 class="alert-heading"><?php echo __('No recent application has been found') ?></h4>
+									<p><?php echo __('Please try again later/ Refresh the page') ?> </p>
 									</div>
 								<?php endif; ?>
 								<?php if(count($unassigned)>0): ?>
 								  
-									<?php foreach($unassigned as $unassign): ?>
+									
 									<table class="table table-striped table-bordered" id="eia_manager">
 										<thead>
 											<tr class="odd gradeX">
@@ -292,6 +253,7 @@ $(function () {
 											</tr>
 										</thead>
 										<tbody>
+										<?php foreach($unassigned as $unassign): ?>
 											<tr>
 												<td><?php echo $unassign['project_reference_number'] ?></td>
 												<td><?php echo $unassign['project_title'] ?> </td>
@@ -299,9 +261,10 @@ $(function () {
 												<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$unassign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
 									
 											</tr>
+										<?php endforeach; ?>	
 										</tbody>
 									</table>
-									<?php endforeach; ?>
+									
 								<?php endif; ?>
 								<?php if(count($assigning)>0): ?>
 								<?php //we will delete the session variable if any available incase this user fails to assign a task for a sessionid we have created
@@ -311,7 +274,7 @@ $(function () {
 								  
 								  ?>
 								
-									<?php foreach($assigning as $assign): ?>
+									
 									<table class="table table-striped table-bordered" id="eia_manager">
 										<thead>
 											<tr class="odd gradeX">
@@ -322,6 +285,7 @@ $(function () {
 											</tr>
 										</thead>
 										<tbody>
+										<?php foreach($assigning as $assign): ?>
 											<tr>
 												<td><?php echo $assign['project_reference_number']."".$session_eai_id ?></td>
 												<td><?php echo $assign['project_title'] ?> </td>
@@ -330,9 +294,10 @@ $(function () {
 												<?php echo __('Assign') ?></button></a></td>
 									
 											</tr>
+										<?php endforeach; ?>	
 										</tbody>
 									</table>
-									<?php endforeach; ?>
+									
 								<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
@@ -346,40 +311,303 @@ $(function () {
 					<div class="row-fluid">
 						<div class="widget">
 							<div class="widget-title">
-								<h4><i class="icon-reorder"></i>EIA --- Awaiting Approval</h4>
+								<h4><i class="icon-reorder"></i><?php echo __('EIA --- Awaiting Approval') ?></h4>
 							</div>
 							<div class="widget-body">
-							<?php foreach($assessments as $assessment): ?>
+							
 								<table class="table table-striped table-hover">
 								<tr>
-									<th>Project</th>
-									<th>Assigned to</th>
-									<th>Action</th>
+									<th><?php echo __('Project') ?></th>
+									<th><?php echo __('Assigned To') ?></th>
+									<th><?php echo __('Action') ?></th>
 								</tr>
+								<?php foreach($assessments as $assessment): ?>
 								<tr>
 									<td><?php echo $assessment['EIAProjectDetail']['project_title']?></td>
 									<td><?php echo $assessment['sfGuardUser']['last_name'] ?></td>
 									<td><?php echo button_to('Assess','dashboard/assessmentDecision?id='.$assessment['id'],array('class' => 'btn')); ?></td>
 								</tr>
+								<?php endforeach; ?>
 								</table>
-							<?php endforeach; ?>
+							
 							</div>
 						</div>
 					</div>
 					<?php endif; ?>
-         <div class="row-fluid">
-                 <div class="span8">
+					<!-- Manager processing EIA applications -->
+					<?php if(count($taskNew)!= 0): ?>
+					<div class="row-fluid">
 						<div class="widget">
-						          <div class="widget-title">
-									<h4><i class="icon-signal"></i><?php echo __('RDB Task Processing Performance Pie Chart') ?></h4>
-															
-								</div>
-								<div id="cont" class="widget-body">
+							<div class="widget-title">
+								<h4><i class="icon-reorder"></i>EIA Applications available for processing</h4>
+							</div>
+							<div class="widget-body">
+							<div class="alert alert-info"><h4><?php echo __('Assigned tasks') ?></h4></div>
+							<table class="table table-striped">
+							<thead>
+								<tr>
+									<th><?php echo __('Reference number') ?></th>
+									<th><?php echo __('Title') ?></th>
+									<th><?php echo __('Assigned by') ?></th>
+									<th><?php echo __('Action') ?></th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php foreach($taskNew as $tasks): ?>
+								<tr>
+									<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+									<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+									<td><?php echo Doctrine_Core::getTable('sfGuardUser')->find($tasks['created_by'])->getFirstName() ?>&nbsp;<?php echo Doctrine_Core::getTable('sfGuardUser')->find($tasks['created_by'])->getLastName() ?></td>
+									<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$tasks['id']) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
+								</tr>
+							<?php endforeach; ?>
+							</tbody>
+							</table>
 									
+							</div>
+						</div>
+					</div>
+					<?php endif; ?>
+							<?php if(count($taskProcessing)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications been processed</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications currently been reviwed') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskProcessing as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$tasks['id']) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
 								</div>
 							</div>
-							
-				 </div>
+							<?php endif; ?>
+							<?php if(count($taskResubmission)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications awaiting resubmission</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications awaiting applicants resubmission') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskResubmission as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td> <a href="<?php echo url_for('eiaDataAdmin/message?applicant='.$tasks['EIAProjectDetail']['updated_by']) ?>"><button class="btn btn-info">&#64; Contact applicant</button></a></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+								</div>
+							</div>
+							<?php endif; ?>
+							<?php if(count($taskResubmitted)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications resubmitted</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications resubmitted by the applicants') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskResubmitted as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$tasks['id']) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+								</div>
+							</div>
+							<?php endif; ?>
+							<?php if(count($taskAccessed)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications accessed</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications that have been accessed by the supervisor/manager') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskAccessed as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$tasks['eiaproject_id'],array('class' => 'btn btn-success')); ?></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+								</div>
+							</div>
+							<?php endif; ?>
+							<?php if(count($taskSubmit)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications awaiting report submission</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications that are awiting for applicant to submit environmental impact report') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskSubmit as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td> <a href="<?php echo url_for('eiaDataAdmin/message?applicant='.$tasks['EIAProjectDetail']['updated_by']) ?>"><button class="btn btn-info">&#64; Contact applicant</button></a></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+								</div>
+							</div>
+							<?php endif; ?>
+					<!-- Section For EIReports submitted by users -->
+					<?php if(count($eireports) != 0 && count($taskSubmitted) != 0): ?>
+					<div class="row-fluid">
+					      <div class="widget">
+								<div class="widget-title">
+									<h4><?php echo __('Environmental Impact Assessment Report - A List of EIReport Submitted By Applicants') ?></h4>						
+								</div>
+								<div class="widget-body">
+								
+								<div class="alert alert-info">
+								 <h4><?php echo __('Applications that the applicant has submitted there environmental impact report') ?></h4>
+									<h4><?php echo __('Download the documents below to view and analyse. These are the EIReports as you requested from the applicant(s).') ?></h4>
+								</div>
+								      <table class="table table-striped table-bordered" id="tasks_monitor">
+										<thead>
+											<tr>
+												<th><i class="icon-user"></i> <span class="hidden-phone"><?php echo __(' Reference No') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Title') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Word Document') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('PDF Document') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Date Submitted') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Status') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Actions') ?></span></th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php foreach($eireports as $report): ?>
+											<tr class="odd gradeX">
+												<td class="highlight"><?php echo $report['EIAProjectDetail']['project_reference_number'] ?></td>
+												<td><?php echo $report['EIAProjectDetail']['project_title'] ?></td>
+												<td>
+												<?php echo link_to('Download Doc', '/uploads/documents/eia_documents/user_eireports/'.$report['word_doc'], array('target' => '_blank')); ?>
+												</td>
+												<td>
+												  <?php echo link_to('Download Doc', '/uploads/documents/eia_documents/user_eireports/'.$report['pdf_doc'], array('target' => '_blank')); ?>
+												</td>
+												<td> <?php echo $report['created_at'] ?> </td>
+												<td> 
+												   <div class="alert alert-success">
+														<?php echo $report['status'] ?>
+													</div>
+												   
+												</td>
+												<td>
+												<?php if( $report['status'] == "awaitingresubmission"): ?>
+												   <div class="alert alert-error">
+														<button class="close" data-dismiss="alert">×</button>
+														<strong><?php echo __('Sorry Not Available') ?></strong>
+													</div>
+												 <?php endif; ?>
+												 <?php if( $report['status'] != "awaitingresubmission"): ?>
+												    <?php if( $report['status'] != "done"): ?>
+												 <a href="#widget-resubmit" data-toggle="modal"><button class="btn btn-danger"><i class="icon-remove icon-white"></i> <?php 
+												$project_id = $report['eiaproject_id'] ;
+												$token = $report['token'];
+												echo __('Resubmit') ?></button></a>
+												
+												<a href="<?php echo url_for('eiaReport/approve?id='.$project_id.'&token='.$token)?>">
+												 <button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Approve') ?></button></a>
+												        <?php endif; ?>
+												 <?php endif; ?>
+												</td>
+											</tr>
+											<?php endforeach; ?>
+										
+										</tbody>
+									</table>
+								   
+								</div>
+						  </div>
+					   </div>
+					<?php endif; ?>					
+		<!-- End manage processing EIA application -->
+         <div class="row-fluid">
+                 <div class="span8">
+			<div class="widget">
+				  <div class="widget-title">
+									<h4><i class="icon-signal"></i><?php echo __('Graphical Analysis - RDB Overall Perfomance Representation') ?></h4>
+											
+				</div>
+				<?php //if there is no data do not display a graph
+				 if($total == 0):?>
+				  <div id="graph_error"  class="widget-body">
+					   <div class="alert alert-block alert-error fade in">
+										<h4 class="alert-heading"><?php echo __('Graph Data Loading Problem') ?></h4>
+										<p>
+											<?php echo __('Sorry, There is no Graph data available. No Investment Certificates or EIA Certificates Issued. Try Later') ?>
+											<?php //echo "Count value is".$total; ?>
+										</p>
+										
+					  </div>
+				   </div>
+				 <?php endif; ?>
+				<?php if($total > 0): ?>
+					<div id="cont"  class="widget-body">
+						
+					</div>
+				<?php endif; ?>
+			</div> <!-- END Graph-->
+			</div>
 				 <div class="span4">
 					 <div class="widget">
 					     <div class="widget-title">
@@ -396,6 +624,16 @@ $(function () {
 						 <?php 
 						  $user = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
 						 $notification = Doctrine_Core::getTable('Notifications')->getNotifications($user);?>
+						 <?php if($notification == null):?>
+						  <div class="alert alert-block alert-error fade in">
+										
+										<p>
+											<?php echo __('Sorry, No New Notifications') ?>
+										</p>
+										
+					        </div>
+						 <?php endif; ?>
+						 <?php if($notification != null): ?>
 						 <?php foreach($notification as $notify): ?>
 							   <li>
 									<span class="label label-success"><i class="icon-bell"></i></span>
@@ -408,10 +646,21 @@ $(function () {
 									
 									?></span>
 								</li>
-						<?php endforeach; ?>		
+						<?php endforeach; ?>	
+                         <?php endif; ?> 						
 						  </ul>
 						 </div>
 					 </div>
+					 <div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-twitter"></i><?php echo __('Tweets @RDBrwanda') ?></h4>							
+								</div>
+									<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
+										<div id="js-twitter-feed-ivow" class="widget-body">
+										   
+										</div>
+									</ul>
+							</div>
 				 </div>
 				 
 	     </div>			
@@ -548,7 +797,7 @@ $(function () {
 												</td>
 												<td><?php echo $available['name'] ?></td>
 												<td> <?php echo $available['created_at'] ?> </td>
-												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?business='.$available['name']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
+												<td> <a href="<?php echo url_for('InvestmentCertTaskAssignment/new?registration='.$available['registration_number'].'&token='.$available['token']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Assign') ?></button></a></td>
 											</tr>
 										<?php endforeach;?>	
 										
@@ -762,14 +1011,15 @@ $(function () {
 									<h4><?php echo __('Recent Applications for  EIA Certificates') ?></h4>						
 								</div>
 								<div class="widget-body">
-									<?php if(count($unassigned) == 0 ): ?>
+								<?php if(count($unassigned) == 0 && count($assigning)==0): ?>
 									<div class="alert alert-block alert-info fade in">
 									<h4 class="alert-heading">No recent application has been found</h4>
 									<p>Please try again later/ Refresh the page</p>
 									</div>
-									<?php endif; ?>
-									<?php if(count($unassigned) > 0): ?>
-										<?php foreach($unassigned as $unassign): ?>
+								<?php endif; ?>
+									<?php if(count($unassigned) != 0): ?>
+										
+										<h4>Application not assigned</h4>
 										<table class="table table-striped table-bordered" id="eia_manager">
 											<thead>
 												<tr class="odd gradeX">
@@ -780,6 +1030,7 @@ $(function () {
 												</tr>
 											</thead>
 											<tbody>
+											<?php foreach($unassigned as $unassign): ?>
 												<tr>
 													<td><?php echo $unassign['project_reference_number'] ?></td>
 													<td><?php echo $unassign['project_title'] ?> </td>
@@ -787,9 +1038,36 @@ $(function () {
 													<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$unassign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
 										
 												</tr>
+											<?php endforeach; ?>	
 											</tbody>
 										</table>
-										<?php endforeach; ?>
+										
+									<?php endif; ?>
+									<?php if(count($assigning) != 0): ?>
+										
+										<h4>Application assigning </h4>
+										<table class="table table-striped table-bordered" id="eia_manager">
+											<thead>
+												<tr class="odd gradeX">
+												  <th>Reference No.</th>
+													<th>Title</th>
+													<th>Developer</th>
+													<th>Actions</th>
+												</tr>
+											</thead>
+											<tbody>
+											<?php foreach($assigning as $assign): ?>
+												<tr>
+													<td><?php echo $assign['project_reference_number'] ?></td>
+													<td><?php echo $assign['project_title'] ?> </td>
+													<td><?php echo $assign['developer_name'] ?></td>
+													<td> <a href="<?php echo url_for('eiaTaskAssign/new?id='.$assign['id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Assign</button></a></td>
+										
+												</tr>
+											<?php endforeach; ?>
+											</tbody>
+										</table>
+										
 									<?php endif; ?>
 									<div class="space7"></div>
 									<div class="clearfix">
@@ -837,6 +1115,33 @@ $(function () {
 
 
 </div>
+					<?php if(count($assessments) != 0): ?>
+					<div class="row-fluid">
+						<div class="widget">
+							<div class="widget-title">
+								<h4><i class="icon-reorder"></i>EIA --- Awaiting Approval</h4>
+							</div>
+							<div class="widget-body">
+							
+								<table class="table table-striped table-hover">
+								<tr>
+									<th>Project</th>
+									<th>Assigned to</th>
+									<th>Action</th>
+								</tr>
+								<?php foreach($assessments as $assessment): ?>
+								<tr>
+									<td><?php echo $assessment['EIAProjectDetail']['project_title']?></td>
+									<td><?php echo $assessment['sfGuardUser']['last_name'] ?></td>
+									<td><?php echo button_to('Assess','dashboard/assessmentDecision?id='.$assessment['id'],array('class' => 'btn')); ?></td>
+								</tr>
+								<?php endforeach; ?>
+								</table>
+							
+							</div>
+						</div>
+					</div>
+					<?php endif; ?>
 <div class="row-fluid">
    <div class="span12">
        <div class="widget">
@@ -1133,7 +1438,8 @@ $(function () {
 											<a href="<?php echo url_for('projectSummary/show?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i><?php echo __('Accept or Decline') ?> </button></a>
 											 <?php endif; ?>
 											 <?php  if($notdone['work_status'] == "awaitingpayment" ): ?>
-											<a href="<?php echo url_for('confirm/index?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Confirm Payment') ?> </button></a>
+											<font color="red"><?php echo __('Not Paid') ?></font>
+<!--											<a href="<?php echo url_for('confirm/index?id='.$notdone['investmentapp_id']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> Confirm Payment </button></a>-->
 											 <?php endif; ?>
 											  <?php  if($notdone['work_status'] == "paymentconfirmed" ): ?>
 											<a href="<?php echo url_for('dashboard/investcert?business='.$notdone['name']) ?>"><button class="btn btn-inverse"><i class="icon-refresh icon-white"></i> <?php echo __('Issue Certificate') ?></button></a>
@@ -1171,7 +1477,6 @@ $(function () {
 <!-- This section is for users with less administrative privealenges The data admins belong to this -->
   		<!-- BEGIN OVERVIEW STATISTIC BARS-->
 	<div class="row-fluid">
-		<a href="#" class="icon-btn span3"><i class="icon-building"></i><div>Projects</div><span class="badge badge-important"><?php echo count($jobAdmin) ?></span></a>
 		<?php
 			 $messages = 0 ;
 			 //we call a message that will return the number of messages available for the current logged in user
@@ -1187,8 +1492,9 @@ $(function () {
 			   
 		?>
 
-		<a href="<?php echo url_for('my_inbox') ?>" class="icon-btn span3"><i class="icon-envelope"></i><div>Inbox</div><span class="badge badge-info"><?php echo $messages ?></span></a>
-		<a href="#" class="icon-btn span3"><i class="icon-bar-chart"></i><div>Reports</div></a>
+		<a href="<?php echo url_for('my_inbox') ?>" class="icon-btn span3"><i class="icon-inbox"></i><div>Inbox</div><span class="badge badge-info"><?php echo $messages ?></span></a>
+		<a href="#widget_complete" data-toggle="modal" class="icon-btn span3"><i class="icon-folder-close-alt"></i><div>Application Processed</div><span class="badge badge-success"><?php echo count($taskComplete) ?></span></a>
+		<a href="#widget_rejected" data-toggle="modal" class="icon-btn span3"><i class="icon-folder-close"></i><div>Application Rejected</div><span class="badge badge-success"><?php echo count($taskRejected) ?></span></a>
    </div>
    <!-- END STATISTICS -->	
 <!-- When logged, they can only see tasks assigned to them by the department administrators -->	
@@ -1197,19 +1503,213 @@ $(function () {
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-reorder"></i>EIA Certificates Applications</h4>
+									<h4><i class="icon-reorder"></i>New EIA Applications</h4>
 								</div>
 								<div class="widget-body">
-								<?php if(count($jobAdmin)== 0): ?>
+								<?php if(count($taskNew)== 0): ?>
 									<div class="alert alert-block alert-info fade in">
-									<h4 class="alert-heading">No new task has been found</h4>
+									<h4 class="alert-heading">No new application has been found</h4>
 									<p>Please try again later/ Reload the page</p>
 									</div>
 								<?php endif; ?>
+<<<<<<< HEAD
+								<?php if(count($taskNew) != 0): ?>
+								<div class="alert alert-info"><h4><?php echo __('Recently assigned tasks') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Assigned by') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskNew as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td><?php echo Doctrine_Core::getTable('sfGuardUser')->find($tasks['created_by'])->getFirstName() ?>&nbsp;<?php echo Doctrine_Core::getTable('sfGuardUser')->find($tasks['created_by'])->getLastName() ?></td>
+										<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$tasks['id']) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+								<?php endif; ?>
+										
+								</div>
+							</div>
+							<?php if(count($taskProcessing)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications been processed</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications currently been reviwed') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskProcessing as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$tasks['id']) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+								</div>
+							</div>
+							<?php endif; ?>
+							<?php if(count($taskResubmission)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications awaiting resubmission</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications awaiting applicants resubmission') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskResubmission as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td> <a href="<?php echo url_for('eiaDataAdmin/message?applicant='.$tasks['EIAProjectDetail']['updated_by']) ?>"><button class="btn btn-info">&#64; Contact applicant</button></a></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+								</div>
+							</div>
+							<?php endif; ?>
+							<?php if(count($taskResubmitted)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications resubmitted</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications resubmitted by the applicants') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskResubmitted as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$tasks['id']) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+								</div>
+							</div>
+							<?php endif; ?>
+							<?php if(count($taskAccess)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications awaiting assessment</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications awaiting assessment from the supervisor/manager') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskAccess as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td> <a href="<?php echo url_for('eiaDataAdmin/message?applicant='.Doctrine_Core::getTable('sfGuardUser')->find($tasks['created_by'])->getUsername()) ?>"><button class="btn btn-info">&#64; Contact assigner</button></a></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+								</div>
+							</div>
+							<?php endif; ?>
+							<?php if(count($taskAccessed)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications assessed</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications that have been assessed by the supervisor/manager') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskAccessed as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$tasks['eiaproject_id'],array('class' => 'btn btn-success')); ?></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+								</div>
+							</div>
+							<?php endif; ?>
+							<?php if(count($taskSubmit)!= 0): ?>
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-reorder"></i>Applications awaiting report submission</h4>
+								</div>
+								<div class="widget-body">
+								<div class="alert alert-info"><h4><?php echo __('Applications that are awiting for applicant to submit environmental impact report') ?></h4></div>
+								<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><?php echo __('Reference number') ?></th>
+										<th><?php echo __('Title') ?></th>
+										<th><?php echo __('Action') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach($taskSubmit as $tasks): ?>
+									<tr>
+										<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+										<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+										<td> <a href="<?php echo url_for('eiaDataAdmin/message?applicant='.$tasks['EIAProjectDetail']['updated_by']) ?>"><button class="btn btn-info">&#64; Contact applicant</button></a></td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
+								</table>
+=======
 									<?php foreach($jobAdmin as $job): ?>
 									<div class="row-fluid">
 										<?php if($job->getWorkStatus() == 'notstarted'): ?>
 										<h4>New Applications</h4>
+											<div class="well">
 											<table class="table table-striped table-bordered table-advance table-hover" >
 												<thead>
 													<tr>
@@ -1223,57 +1723,19 @@ $(function () {
 													<tr>
 														<td class="highlight"><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?> </td>
-														<td><?php echo $job->getSfGuardUser()->getLastName() ?></td>
-														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-inverse"><i class="icon-circle-blank"></i> Process</button></a></td>
+														<td><?php echo $assigned_by->getLastName() ?></td>
+														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
 											
 													</tr>
 												</tbody>
 											</table>
+											</div>
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
 										<?php if($job->getWorkStatus() == 'started'): ?>
 										<h4>Applications been processed</h4>
-											<table class="table table-striped table-hover" >
-												<thead>
-													<tr>
-														<th>Reference No.</th>
-														<th>Project Title</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
-											
-													</tr>
-												</tbody>
-											</table>
-										<?php endif; ?>
-									</div>
-									<div class="row-fluid"> 
-										<?php if($job->getWorkStatus() == 'assess'): ?>
-										<h4>Applications awaiting assessment</h4>
-											<table class="table table-striped table-hover" >
-												<thead>
-													<tr>
-														<th>Reference No.</th>
-														<th>Project Title</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
-											
-													</tr>
-												</tbody>
-											</table>
-										<?php endif; ?>
-									</div>
-									<div class="row-fluid"> 
-										<?php if($job->getWorkStatus() == 'assessed'): ?>
-										<h4>Applications assessed</h4>
+											<div class="well">
 											<table class="table table-striped table-hover" >
 												<thead>
 													<tr>
@@ -1286,18 +1748,205 @@ $(function () {
 													<tr>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
-														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn')); ?></td>
+														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-info"><i class="icon-circle-blank"></i> Proceed</button></a></td>
 											
 													</tr>
 												</tbody>
 											</table>
+											</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'assess'): ?>
+										<h4>Applications awaiting assessment</h4>
+											<div class="well">
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'assessed'): ?>
+										<h4>Applications assessed</h4>
+											<div class="well">
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
+														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn btn-primary')); ?></td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'rejected'): ?>
+										<h4>Applications rejected</h4>
+											<div class="well">
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'resubmission'): ?>
+										<h4>Applications awaiting resubmission</h4>
+											<div class="well">
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><!--a href="<?php //echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"--><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?><!--/a--> </td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'resubmitted'): ?>
+										<h4>Applications resubmitted</h4>
+											<div class="well">
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
+														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'submit'): ?>
+										<h4>Applications awaiting report submission</h4>
+											<div class="well">
+											<table class="table table-striped table-hover" >
+												<thead>
+													<tr>
+														<th>Reference No.</th>
+														<th>Project Title</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></td>
+														<td><?php echo button_to('Process','eiaDataAdmin/process?id='.$job->getEiaprojectId(),array('class' => 'btn btn-primary')); ?></td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'submitted'): ?> <!-- submitted -->
+										<h4><?php echo __('Applications report submitted') ?></h4>
+											<div class="well">
+											<table class="table table-striped table-bordered" id="tasks_monitor2">
+												<thead>
+													<tr>
+														<th><?php echo __('Reference No.')?></th>
+														<th><?php echo __('Project Title')?></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
+										<?php endif; ?>
+									</div>
+									<div class="row-fluid"> 
+										<?php if($job->getWorkStatus() == 'complete'): ?> <!-- complete -->
+											<h4><?php echo __('Applications Completed')?></h4>
+											<div class="well">
+											<table class="table table-striped table-bordered" id="tasks_monitor">
+												<thead>
+													<tr>
+														<th><?php echo __('Reference No.')?></th>
+														<th><?php echo __('Project Title')?></th>
+														<th><?php echo __('EIA Certificate')?></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+														<td><a href="#">Certificate</a> </td>
+											
+													</tr>
+												</tbody>
+											</table>
+											</div>
 										<?php endif; ?>
 									</div>
 									<?php endforeach; ?>
 									
 									<div class="space7"></div>
+>>>>>>> d33c9df79fa7933a44a03f90a73e504f5fd267c1
 								</div>
 							</div>
+							<?php endif; ?>
 							<?php if(count($siteVisitsReport)!=0): ?>
 								<div class="widget">
 									<div class="widget-title">
@@ -1305,12 +1954,13 @@ $(function () {
 									</div>
 									<div class="widget-body">
 									<table class="table table-striped table-hover">
-									<?php foreach($siteVisitsReport as $siteVisitReport): ?>
+									
 										<tr>
 											<th>Reference No.</th>
 											<th>Title</th>
 											<th>Action</th>
 										</tr>
+										<?php foreach($siteVisitsReport as $siteVisitReport): ?>
 										<tr>
 											<td><?php echo $siteVisitReport['EIAProjectDetail']['project_reference_number'] ?></td>
 											<td><?php echo $siteVisitReport['EIAProjectDetail']['project_title'] ?></td>
@@ -1351,13 +2001,15 @@ $(function () {
 										</li>
 								<?php endforeach; ?>
 								<?php if($notification == null){ ?>
-										<?php echo __('No New Notifications......') ?>  
+								<div class="alert alert-info">
+										<h4><?php echo __('No New Notifications......') ?></h4>
+								</div>
 									 
 								<?php } ?>
 								  </ul>
 								 </div>
 							</div>
-							<?php if(count($siteVisits)!=0): ?>
+							<?php if(count($siteVisits)!=0 ): ?>
 								<div class="widget">
 									<div class="widget-title">
 										<h4><i class="icon-tasks"></i>Site Visits</h4>
@@ -1365,6 +2017,7 @@ $(function () {
 									<div class="widget-body">
 										<ul class="item-list todo">
 										<?php foreach($siteVisits as $siteVisit): ?>
+											<?php if($siteVisit['visited'] == 0): ?>
 											<li><?php echo link_to($siteVisit['EIAProjectDetail']['project_title'],'eiaDataAdmin/process?id='.$siteVisit['eiaproject_id']) ?>
 											<?php if(strtotime($siteVisit['site_visit']) <= time() && (strtotime($siteVisit['site_visit'])+86400) >= time())
 													{ 
@@ -1381,34 +2034,42 @@ $(function () {
 											<?php echo $siteDate ?>
 											</span>
 											</li>
+											<?php endif; ?>
 										<?php endforeach; ?>
 										</ul>
+									<?php if($siteVisit['visited'] ==1 ): ?>
+									<div class="alert alert-block alert-info fade in">
+										<button type="button" class="close" data-dismiss="alert">x</button>
+										<h4>No upcoming site visits</h4>
+									</div>
+									<?php endif; ?>
 									</div>
 								</div>
 							<?php endif; ?>	
 						</div>
 					</div>
-<<<<<<< HEAD
-									
-=======
 					<!-- Section For EIReports submitted by users -->
+<<<<<<< HEAD
+					<?php if(count($eireports) != 0 && count($taskSubmitted) != 0): ?>
+=======
+					<?php if(count($eireports) != 0 ): ?>
+>>>>>>> d33c9df79fa7933a44a03f90a73e504f5fd267c1
 					<div class="row-fluid">
-					 
-					   <div class="11">
 					      <div class="widget">
 								<div class="widget-title">
 									<h4><?php echo __('Environmental Impact Assessment Report - A List of EIReport Submitted By Applicants') ?></h4>						
 								</div>
 								<div class="widget-body">
-								 <div class="alert alert-success">
-										<button class="close" data-dismiss="alert">×</button>
-										<strong><?php echo __('Information!')?> </strong> <?php echo __('Download Below Documents to view and analyse. These are the EIReports as you requested from the applicant(s).') ?>
+								
+								<div class="alert alert-info">
+								 <h4><?php echo __('Applications that the applicant has submitted there environmental impact report') ?></h4>
+									<h4><?php echo __('Download the documents below to view and analyse. These are the EIReports as you requested from the applicant(s).') ?></h4>
 								</div>
-								   <?php foreach($eireports as $report): ?>
 								      <table class="table table-striped table-bordered" id="tasks_monitor">
 										<thead>
 											<tr>
 												<th><i class="icon-user"></i> <span class="hidden-phone"><?php echo __(' Reference No') ?></span></th>
+												<th><span class="hidden-phone"><?php echo __('Title') ?></span></th>
 												<th><span class="hidden-phone"><?php echo __('Word Document') ?></span></th>
 												<th><span class="hidden-phone"><?php echo __('PDF Document') ?></span></th>
 												<th><span class="hidden-phone"><?php echo __('Date Submitted') ?></span></th>
@@ -1417,15 +2078,14 @@ $(function () {
 											</tr>
 										</thead>
 										<tbody>
+<<<<<<< HEAD
+										<?php foreach($eireports as $report): ?>
+=======
+								   <?php foreach($eireports as $report): ?>
+>>>>>>> d33c9df79fa7933a44a03f90a73e504f5fd267c1
 											<tr class="odd gradeX">
-												<td class="highlight">
-													<?php 
-													 
-													//
-													 $value = Doctrine_Core::getTable('EIAProjectDetail')->getReferenceNo($report['eiaproject_id']);
-													//
-													echo $value;
-													?></td>
+												<td class="highlight"><?php echo $report['EIAProjectDetail']['project_reference_number'] ?></td>
+												<td><?php echo $report['EIAProjectDetail']['project_title'] ?></td>
 												<td>
 												<?php echo link_to('Download Doc', '/uploads/documents/eia_documents/user_eireports/'.$report['word_doc'], array('target' => '_blank')); ?>
 												</td>
@@ -1456,20 +2116,20 @@ $(function () {
 												<a href="<?php echo url_for('eiaReport/approve?id='.$project_id.'&token='.$token)?>">
 												 <button class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo __('Approve') ?></button></a>
 												        <?php endif; ?>
-														 <?php if( $report['status'] == "done"): ?>
-														 <div class="alert alert-error">
-														   <button class="close" data-dismiss="alert">×</button>
-														   <strong><?php echo __('Report approved') ?></strong>
-													      </div>
-														 <?php endif; ?>
 												 <?php endif; ?>
 												</td>
 											</tr>
-											
+<<<<<<< HEAD
+											<?php endforeach; ?>
 										
 										</tbody>
 									</table>
+								   
+=======
 								   <?php endforeach; ?>
+										
+										</tbody>
+									</table>
 								     <div id="widget-resubmit" class="modal hide">
 										<div class="modal-header">
 											<button data-dismiss="modal" class="close" type="button">×</button>
@@ -1489,15 +2149,271 @@ $(function () {
 											
 										</div>
 				                      </div>
+>>>>>>> d33c9df79fa7933a44a03f90a73e504f5fd267c1
 								</div>
 						  </div>
 					   </div>
-					</div>
-					
->>>>>>> 8a45578a6c5c1cbed13662effd99c1202e646474
-<?php endif; ?>		
+					<?php endif; ?>		
+<?php endif; ?>						
 <!-- ********************************************************************** -->
+<?php if($sf_user->hasCredential('usermanagement')): ?>
+<!-- System Adminstrators section --->
+<div class="row-fluid">
+ <div class="span12">
+						<!-- BEGIN STYLE CUSTOMIZER-->
+						<!-- END STYLE CUSTOMIZER-->    	
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
+						<h3 class="page-title">
+							<?php echo __('System Administrator Accounts') ?>
+							<small><?php echo __('Create, Update and Delete Users. Assign Permission and Groups to Users')?></small>
+						</h3>
+							<ul class="breadcrumb">
+							<li>
+								<i class="icon-home"></i>
+								<a href="<?php echo url_for('dashboard/index')?>"><?php echo __('Dashboard') ?></a> <span class="divider">/</span>
+							</li>
+							<li>
+							<i class="icon-desktop"></i>
+							<a href="<?php echo url_for('dashboard/index')?>"><?php echo __('Administrator') ?></a></li> <span class="divider">/</span>
+							<li>
+							<i class="icon-user"></i>
+							<a href="#">
+							   <b>
+								  <font color="blue">
+									<?php $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+                                      print 'Welcome, You are logged in as '.$username;
+									?>
+									</font>
+								</b>
+							</a></li>
+							<li class="pull-right dashboard-report-li">
+							<i class="icon-time"></i>
+				              <?php echo __('Logged in on') ?> <font color="blue">
+									<?php
+                                       $date = date("F j, Y");
+									   print $date;
+									?>
+									</font>
+							</li>
+							
+						</ul>
+						<!-- END PAGE TITLE & BREADCRUMB-->
+					</div>
+  <div class="row-fluid stats-overview-cont">
+						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat ok huge">
+									<span class="line-chart">5, 6, 7, 11, 14, 10, 15, 19, 15, 2</span>
+									<div class="percent">66%</div>
+								</div>
+								<div class="details">
+									<div class="title">Registered Users i.e. Investors</div>
+									<div class="numbers">1360</div>
+								</div>
+								<div class="progress progress-info">
+									<div class="bar" style="width: 66%"></div>
+								</div>
+							</div>
+						</div>
+						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat good huge">
+									<span class="line-chart">2,6,8,12, 11, 15, 16, 11, 16, 11, 10, 3, 7, 8, 12, 19</span>
+									<div class="percent">16%</div>
+								</div>
+								<div class="details">
+									<div class="title">Investment Officers Registered</div>
+									<div class="numbers">18000</div>
+									<div class="progress progress-warning">
+										<div class="bar" style="width: 16%"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat bad huge">
+									<span class="line-chart">2,6,8,11, 14, 11, 12, 13, 15, 12, 9, 5, 11, 12, 15, 9,3</span>
+									<div class="percent">6%</div>
+								</div>
+								<div class="details">
+									<div class="title">EIA Officers Registered</div>
+									<div class="numbers">509</div>
+									<div class="progress progress-success">
+										<div class="bar" style="width: 16%"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span2 responsive " data-tablet="span4 fix-margin" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat good huge">
+									<span class="bar-chart">1,4,9,12, 10, 11, 12, 15, 12, 11, 9, 12, 15, 19, 14, 13, 15</span>
+									<div class="percent">86%</div>
+								</div>
+								<div class="details">
+									<div class="title">Investment Managers/Supervisors</div>
+									<div class="numbers">1550</div>
+									<div class="progress progress-warning">
+										<div class="bar" style="width: 56%"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat ok huge">
+									<span class="line-chart">2,6,8,12, 11, 15, 16, 17, 14, 12, 10, 8, 10, 2, 4, 12, 19</span>
+									<div class="percent">72%</div>
+								</div>
+								<div class="details">
+									<div class="title">EIA Managers/Supervisors</div>
+									<div class="numbers">9600</div>
+									<div class="progress progress-danger">
+										<div class="bar" style="width: 72%"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+							</div>
+			<div class="row-fluid">
+			    <div class="span7">
+				    <div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-cloud-upload"></i>System Database Backup</h4>						
+								</div>
+								<div class="widget-body">
+									 	<div class="alert alert-block alert-success fade in">
+										<h4 class="alert-heading">Backup</h4>
+										<p>
+											This will create a backup file.sql which can be used to restore the system database incase of severe failure
+										</p>
+										<p>
+											<a class="btn btn-success" href="<?php
+                                             echo url_for('dashboard/databaseBackup')
+											?>">Execute Backup</a>
+										</p>
+									</div>
+								</div>
+							</div>
+				</div>
+			</div>				
+
+<?php endif; ?>		
+<!-- ***************************** --->
+
+</div>	
+<div id="widget_complete" class="modal hide">
+	<div class="modal-header">
+		<h3><?php echo __('Applications issued') ?></h3>
+	</div>
+	<div class="modal-body">
+		<div class="alert alert-block alert-info"><?php echo __('Table of application issued with either clearence letter or certificate') ?>.</div> 
+		<?php if(count($taskComplete) == 0): ?>
+		<div class="alert alert-block alert-error fade in"><h4><?php echo __('No application found') ?></h4></div>
+		<?php endif; ?>
+		<?php if(count($taskComplete) != 0): ?>
+		<table class="table table-striped">
+		<thead>
+			<tr>
+				<th><?php echo __('Reference number') ?></th>
+				<th><?php echo __('Title') ?></th>
+				<th><?php echo __('Issued with') ?></th>
+				<th><?php echo __('Action') ?></th>
+			<tr>
+		</thead>
+		<tbody>
+			<?php foreach($taskComplete as $tasks): ?>
+			<tr>
+				<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+				<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+				<td><?php echo strtoupper($tasks['stage']) ?></td>
+				<td></td>
+			</tr>
+			<?php endforeach; ?>
+		</tbody>
+		</table>
+		<?php endif; ?>
+	</div>
+</div>
+<div id="widget_rejected" class="modal hide">
+	<div class="modal-header">
+		<h3><?php echo __('Applications rejected') ?></h3>
+	</div>
+	<div class="modal-body">
+		<div class="alert alert-block alert-info"><?php echo __('Table of application rejected') ?>.</div> 
+		<?php if(count($taskRejected) == 0): ?>
+		<div class="alert alert-block alert-error fade in"><h4><?php echo __('No application found') ?></h4></div>
+		<?php endif; ?>
+		<?php if(count($taskRejected) != 0): ?>
+		<table class="table table-striped">
+		<thead>
+			<tr>
+				<th><?php echo __('Reference number') ?></th>
+				<th><?php echo __('Title') ?></th>
+				<th><?php echo __('Stage') ?></th>
+				<th><?php echo __('Action') ?></th>
+			<tr>
+		</thead>
+		<tbody>
+			<?php foreach($taskRejected as $tasks): ?>
+			<tr>
+				<td><?php echo $tasks['EIAProjectDetail']['project_reference_number'] ?></td>
+				<td><?php echo $tasks['EIAProjectDetail']['project_title'] ?></td>
+				<td><?php echo strtoupper(str_replace("-"," ",$tasks['stage'])) ?></td>
+				<td></td>
+			</tr>
+			<?php endforeach; ?>
+		</tbody>
+		</table>
+		<?php endif; ?>
+	</div>
+</div>
+<div id="widget-resubmit" class="modal hide">
+<div class="modal-header">
+	<button data-dismiss="modal" class="close" type="button">×</button>
+	<h3><?php echo __('Request EIReport Resubmission') ?></h3>
+</div>
+<div class="modal-body">
+	<p><?php echo __('Please Note that You are about to request this client to resubmit data. This therefore means the client 
+	documents processing will continue after he/she resubmits. You will not be able to process the application untill
+	the client resubmits his/her IERepport Documents')?>.</p>
+	<p><?php echo __('Are you sure')?>? </p>
+	
+	 <a href="<?php echo url_for('eireportresubmit/new?id='.$project_id)?>"><button class="btn btn-warning"><i class="icon-plus icon-white"></i> <?php echo __('Okay I understand') ?></button> </a>&nbsp;&nbsp;&nbsp;
+	 <button data-dismiss="modal" class="close" type="button"><?php echo __('Cancel') ?></button>
+	
+	
+	
+	
+</div>
+</div>
+<!-- For Twitter -->
+<script>
+$(function() {
+///
+var url = 'https://api.twitter.com/1/statuses/user_timeline.json?screen_name=RDBrwanda&count=3&include_rts=1',
+    tmpl_tweet = '<a href="{{tweet_url}}" target="_blank"><img src="{{profile_image_url}}" class="profile-image" alt="" /><span class="screen-name">{{screen_name}}</span><span class=".item-list scroller padding">{{tweet}}</span><time datetime="{{created_at_iso}}" title="{{created_at_formatted}}">{{created_at_formatted}}</time></a>';
+
+$('#js-twitter-feed-ivow').tweets( url, {
+  tmpl_tweet: tmpl_tweet
+});
+  // Get 5 tweets from @ivow
+ /* $('#js-twitter-feed-ivow').tweets('https://api.twitter.com/1/statuses/user_timeline.json?screen_name=CNN&count=5&include_rts=1', {
+	doneCallback: function(){
+	  try {
+		$('.twitter-feed time').timeago();
+	  } catch(e) {
+
+	  }
+	}
+  }); */
+
+  
+});
+</script>
 
 
-</div>						
-
+<!-- --->

@@ -17,11 +17,30 @@ class EIAProjectDescriptionTable extends Doctrine_Table
         return Doctrine_Core::getTable('EIAProjectDescription');
     }
     static public $natures = array(
-				'construction_and_repair_of_roads' => 'Construction and repair of international roads, national roads, district roads and repair of large bridges',
-				'construction_of_industries_and_factories' => 'Construction of industries, factories and activities carried out in those industries',
-				'construction_of_hydro_dams_electric_lines' => 'Construction of hydro-dams and electrical lines',
-				'construction_of_public_dams' => 'Construction of Public dams for water Conservation, rain water harvesting for agricultural activities and artificial lakes',
-				'construction_of_oil_pipeline_and_products' => 'Construction of oil pipelines and its products,gases and storage tanks',
+				'Agriculture forestry and fishing' => 'Agriculture, forestry and fishing',
+				'Mining and quarrying'=> 'Mining and quarrying ',
+				'Manufacturing' => 'Manufacturing',
+				'Electricity, gas, steam and air conditioning supply' => 'Electricity, gas, steam and air conditioning supply',
+				'Water supply; sewerage, waste management and remediation activities' => 'Water supply; sewerage, waste management and remediation activities',
+				'Construction' => 'Construction',
+				'Wholesale and retail trade; repair of motor vehicles and motorcycles' => 'Wholesale and retail trade; repair of motor vehicles and motorcycles',
+				'Transportation and storage' => 'Transportation and storage',
+				'Accommodation and food service activities'=> 'Accommodation and food service activities',
+				'Information and communication'=> 'Information and communication',
+				'Financial and insurance activities' => 'Financial and insurance activities',
+				'Real estate activities' => 'Real estate activities',
+				'Professional, scientific and technical activities' => 'Professional, scientific and technical activities ',
+				'Administrative and support service activities' => 'Administrative and support service activities',
+				'Public administration and defence; compulsory social security' => 'Public administration and defence; compulsory social security',
+				'Education' => 'Education',
+				'Human health and social work activities' => 'Human health and social work activities',
+				'Arts, entertainment and recreation' => 'Arts, entertainment and recreation',
+				'Other service activities' => 'Other service activities',
+				'Activities of households as employers; undifferentiated goods- and  
+services-producing activities of households for own use' => 'Activities of households as employers; undifferentiated goods- and  
+services-producing activities of households for own use',
+				'Activities of extraterritorial organizations and bodies' => 'Activities of extraterritorial organizations and bodies',
+				
 			  );
 	public function getNatures()
 	{

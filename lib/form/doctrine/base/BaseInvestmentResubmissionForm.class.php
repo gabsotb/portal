@@ -29,7 +29,7 @@ abstract class BaseInvestmentResubmissionForm extends BaseFormDoctrine
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'business_id'     => new sfValidatorInteger(),
       'message_subject' => new sfValidatorString(array('max_length' => 255)),
-      'message'         => new sfValidatorString(array('max_length' => 2000)),
+      'message'         => new sfValidatorString(array('max_length' => 5000)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
       'created_by'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),

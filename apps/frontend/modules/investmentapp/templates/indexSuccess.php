@@ -878,9 +878,12 @@ $(function () {
 									//$attachment = null ;
 									foreach($query_status as $q)
 									{
-									 $value_status = $q['eiaproject_id'];
+									 //$value_status = $q['eiaproject_id'];
+									  $value_status = $q['id'];
 									 $value_status_name = $q['status'];
 									}
+									////retrieve record created by this user in EIReport table that requires resubmission
+									//$query_status2 = 
 				                    ?>
 								<?php if($value_status != null): ?>
 								<a href="<?php echo url_for('eiReport/edit?id='.$value_status.'&status='.$value_status_name) ?>">
@@ -1004,7 +1007,7 @@ $(function () {
 		</div>
 		<div class="modal-footer">
 			<button data-dismiss="modal" class="btn" aria-hidden="true"><?php echo __('Close') ?></button>
-			<?php echo button_to('Proceed','eiReport/new',array('class' => 'btn btn-success')) ?>
+			<?php echo button_to('Proceed','eiReport/new?id='.$eiaStatus[0]['id'],array('class' => 'btn btn-success')) ?>
 		</div>
 </div>
 <!-- For Twitter -->

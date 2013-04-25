@@ -13,7 +13,7 @@ InvestmentApplication: ## Contains the application details from the investors
   name: {type: string(255), notnull: true}  
   registration_number: {type: string(255), notnull: true}
   title_in_company: { type: string(255), notnull: false }
-  business_sector: {type: string(1000), notnull: true}
+  business_sector: {type: string(2000), notnull: true}
   business_category: {type: string(255), notnull: true}
   representative_name: {type: string(255), notnull: true}
   currency_type: {type: string(255), notnull: true}
@@ -36,7 +36,7 @@ BusinessPlan:
  columns:
   investment_id: {type: integer, notnull: true, unique: true}
   ### Project Brief Information
-  project_brief: {type: string(4000), notnull: true}
+  project_brief: {type: string(20000), notnull: true}
   ### Applied on Incentives
   exemption_on_machinery: {type: string(255), notnull: false}
   exemption_raw_materials: {type: string(4000), notnull: false}
@@ -60,7 +60,7 @@ InvestmentResubmission:
  columns:
   business_id : {type: integer, notnull: true, unique: true}
   message_subject: {type: string(255), notnull: true}
-  message: {type: string(2000), notnull: true}
+  message: {type: string(5000), notnull: true}
 ######  table for testing auto saving and loading
 Structurefinancial: ## for Start up expenses costs
   actAs:
@@ -168,10 +168,10 @@ ProjectSummary:
   investment_id: {type: integer, notnull: true, unique: true}
   business_sector: {type: string(500), notnull: true}
   business_sector_description: {type: string(500), notnull: true}
-  techinical_viability: {type: string(4000), notnull: true}
+  techinical_viability: {type: string(20000), notnull: true}
   planned_investment: {type: integer, notnull: true}
   employment_created: {type: integer, notnull: true}
-  job_categories: {type: string(4000), notnull: true}
+  job_categories: {type: string(5000), notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
   InvestmentApplication: {local:investment_id, foreign: id, foreignAlias: InvestmentSummary, onDelete: CASCADE }
@@ -185,7 +185,7 @@ TaskAssignment:
  columns:
   user_assigned: {type: integer, notnull: true}
   investmentapp_id: {type: integer, notnull: true, unique: true }
-  instructions: {type: string(1000), notnull: true}
+  instructions: {type: string(5000), notnull: true}
   duedate: {type: timestamp, notnull: true}
   work_status: {type: string(255), notnull: true}
   token: {type: string(255), notnull: false} 
@@ -214,7 +214,7 @@ InvestmentRequests:
   request_type: {type: string(255), notnull: true}
   status: {type: string(255), notnull: true}
   reference_number: {type: string(255), notnull: true, unique: true}
-  comments: {type: string(1000), notnull: true}
+  comments: {type: string(4000), notnull: true}
   token: {type: string(255), notnull: false}
 ApprovedApplications: # Shows approved businesses application
  actAs:
@@ -227,7 +227,7 @@ ApprovedApplications: # Shows approved businesses application
   applicant_reference_number: {type: string(255), notnull: true, unique: true}
   business_registration: {type: integer, notnull:true}
   application_type: {type: string(255), notnull: true}
-  comment: {type: string(255), notnull: false}
+  comment: {type: string(4000), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
   InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentApprovedBusiness, onDelete: CASCADE}
@@ -242,8 +242,8 @@ RejectedApplications: # Shows rejected businesses application
   applicant_reference_number: {type: string(255), notnull: true, unique: true}
   business_registration: {type: integer, notnull:true}
   application_type: {type: string(255), notnull: true}
-  reasons: {type: string(1000), notnull: false}
-  comments: {type: string(1000), notnull: false}
+  reasons: {type: string(5000), notnull: false}
+  comments: {type: string(5000), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
   InvestmentApplication: {local: business_id, foreign: id, foreignAlias: InvestmentRejectedBusiness, onDelete: CASCADE}
@@ -271,6 +271,7 @@ InvestmentCertificate:
  columns:
   serial_number: {type: string(255), notnull: true, unique: true}
   business_id: {type: integer, notnull: true, unique: true}
+  active: {type: boolean, notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
   InvestmentApplication: {local: business_id, foreign:id , foreignAlias: InvestmentCertificate, onDelete: CASCADE}
@@ -327,15 +328,15 @@ EIAProjectDescription: ## Project Description
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
   project_nature: {type: string(255), notnull: true}
-  project_objective: {type: string(1000), notnull: true}
-  project_total_cost: {type: integer, notnull: true}
-  project_working_capital: {type: integer, notnull: true}
-  total_land_area: {type: integer, notnull: true}
-  existing_land_use: {type: string(255), notnull: false}
+  project_objective: {type: string(20000), notnull: true}
+  project_total_cost: {type: string(255), notnull: true}
+  project_working_capital: {type: string(255), notnull: true}
+  total_land_area: {type: string(255), notnull: true}
+  existing_land_use: {type: string(3000), notnull: false}
   site_location_developed_area: {type: boolean, notnull: false }
   site_location_undeveloped_area: {type: boolean, notnull: false }
   site_location_other: {type: boolean, notnull: false }
-  site_location_other_specify: {type: string(400),notnull: false }
+  site_location_other_specify: {type: string(2000),notnull: false }
   land_use_residential: {type: boolean,notnull: false }
   land_use_industrial: {type: boolean,notnull: false }
   land_use_tourism: {type: boolean,notnull: false }
@@ -343,9 +344,9 @@ EIAProjectDescription: ## Project Description
   land_use_instituational: {type: boolean,notnull: false }
   land_use_openspace: {type: boolean,notnull: false }
   land_use_other: {type: boolean,notnull: false }
-  land_use_other_specify: {type: string(1000),notnull: false }
-  project_components: {type: string(1000),notnull: false }
-  project_activities: {type: string(1000),notnull: false }
+  land_use_other_specify: {type: string(2000),notnull: false }
+  project_components: {type: string(2000),notnull: false }
+  project_activities: {type: string(2000),notnull: false }
   water_demand_during_implementation: {type: integer, notnull: false}
   water_demand_during_operation: {type: integer, notnull: false}
   public_water_supply: {type: boolean, notnull: false }
@@ -355,18 +356,18 @@ EIAProjectDescription: ## Project Description
   sewage_system_ecosan: {type: boolean, notnull: false }
   sewage_system_biogas: {type: boolean, notnull: false }
   sewage_system_other: {type: boolean,notnull: false }
-  sewage_system_other_specify: {type: string(400),notnull: false }
+  sewage_system_other_specify: {type: string(2000),notnull: false }
   sewage_system_capacity: {type: integer, notnull: false}
   power_supply_local_electricity: {type: boolean, notnull: false }
   power_supply_own_generator: {type: boolean ,notnull: false }
   power_supply_local_electricity_size: {type: integer,notnull: false }
   power_supply_own_generator_capacity: {type: integer,notnull: false }
   power_supply_other: {type: boolean, notnull: false }
-  power_supply_other_specify: {type: string(400),notnull: false }
+  power_supply_other_specify: {type: string(2000),notnull: false }
   solid_waste_dumpsite: {type: boolean, notnull: false }
   solid_waste_municipal: {type: boolean, notnull: false }
   solid_waste_others: {type: boolean, notnull: false }
-  solid_waste_others_specify: {type: string(1000), notnull: false }
+  solid_waste_others_specify: {type: string(2000), notnull: false }
   man_power_employment_implementation: {type: integer, notnull: false}
   man_power_employment_operation: {type: integer, notnull: false}
   implementation_duration: {type: integer, notnull: false}
@@ -387,32 +388,32 @@ EIAProjectSurrounding: ## For recording project sorroundings
   soil_erosion_heavy_rains: {type: boolean, notnull: false}
   soil_erosion_unstable: {type: boolean, notnull: false}
   soil_erosion_others: {type: boolean, notnull: false}
-  soil_erosion_others_specify: {type: string(255), notnull: false}
+  soil_erosion_others_specify: {type: string(2000), notnull: false}
   existing_water_body: {type: boolean, notnull: false}
-  existing_water_body_remark: {type: string(255), notnull: false}
+  existing_water_body_remark: {type: string(2000), notnull: false}
   access_road: {type: boolean, notnull: false}
   access_road_distance: {type: integer, notnull: false}
-  access_road_type: {type: string(255), notnull: false}
+  access_road_type: {type: string(2000), notnull: false}
   site_conform_approval: {type: boolean, notnull: false}
-  site_conform_remark: {type: string(255), notnull: false}
+  site_conform_remark: {type: string(2000), notnull: false}
   site_existing_structure: {type: boolean, notnull: false}
-  site_existing_remark: {type: string(255), notnull: false}
+  site_existing_remark: {type: string(2000), notnull: false}
   land_use_agriculture: {type: boolean, notnull: false}
   land_use_grassland: {type: boolean, notnull: false}
   land_use_builtup: {type: boolean, notnull: false}
   land_use_marshland: {type: boolean, notnull: false}
   land_use_other: {type: boolean, notnull: false}
-  land_use_other_specify: {type: string(255), notnull: false}
+  land_use_other_specify: {type: string(2000), notnull: false}
   existing_trees: {type: boolean, notnull: false}
-  existing_trees_remark: {type: string(255), notnull: false}
+  existing_trees_remark: {type: string(2000), notnull: false}
   wildlife_existing: {type: boolean, notnull: false}
-  wildlife_existing_remark: {type: string(255), notnull: false}
+  wildlife_existing_remark: {type: string(2000), notnull: false}
   fishery_existing: {type: boolean, notnull: false}
-  fishery_existing_remark: {type: string(255), notnull: false}
+  fishery_existing_remark: {type: string(2000), notnull: false}
   watershed_existing: {type: boolean, notnull: false}
   watershed_near_distance: {type: integer, notnull: false}
   watershed_near_distance_units: {type: string, notnull: false }
-  watershed_within_name: {type: string(255), notnull: false}
+  watershed_within_name: {type: string(2000), notnull: false}
   token: {type: string(255), notnull: false}
   resubmit: {type: string, notnull: false}
  relations:
@@ -425,9 +426,9 @@ EIAProjectSurroundingSpecies: ## For project sorrounding species record
    updated: { name: updated_by,type: string}
  columns:
   project_surrounding_id: {type: integer, notnull: true, unique: true}
-  birds_animals: {type: string(255), notnull: false}
-  trees_vegetation: {type: string(255), notnull: false}
-  fisheries: {type: string(255), notnull: false}
+  birds_animals: {type: string(5000), notnull: false}
+  trees_vegetation: {type: string(5000), notnull: false}
+  fisheries: {type: string(5000), notnull: false}
   token: {type: string(255), notnull: false}
   resubmit: {type: string, notnull: false}  
  relations:
@@ -441,17 +442,17 @@ EIAProjectSocialEconomic: ## Records social economic impact
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
   existing_settlements: {type: boolean, notnull: false}
-  existing_settlements_remark: {type: string(800), notnull: false}
+  existing_settlements_remark: {type: string(2000), notnull: false}
   average_family_size: {type: integer, notnull: false}
-  average_family_size_remark: {type: string(800), notnull: false}
+  average_family_size_remark: {type: string(2000), notnull: false}
   livelihood_farming: {type: boolean, notnull: false}
   livelihood_fishing: {type: boolean, notnull: false}
   livelihood_vending: {type: boolean, notnull: false}
   livelihood_others: {type: boolean, notnull: false}
-  livelihood_others_specify: {type: string(1000), notnull: false}
-  livelihood_remarks: {type: string(1000), notnull: false}
+  livelihood_others_specify: {type: string(3000), notnull: false}
+  livelihood_remarks: {type: string(2000), notnull: false}
   local_organization: {type: boolean, notnull: false}
-  local_organization_description: {type: string(1000), notnull: false}
+  local_organization_description: {type: string(2000), notnull: false}
   social_infrastructures: {type: boolean, notnull: false}
   social_schools: {type: boolean, notnull: false}
   social_health_centers: {type: boolean, notnull: false}
@@ -461,7 +462,7 @@ EIAProjectSocialEconomic: ## Records social economic impact
   social_churches: {type: boolean, notnull: false}
   social_roads: {type: boolean, notnull: false}
   social_others: {type: boolean, notnull: false}
-  social_others_specify: {type: string(1000), notnull: false}
+  social_others_specify: {type: string(2000), notnull: false}
   token: {type: string(255), notnull: false}
   resubmit: {type: string, notnull: false}
  relations:
@@ -479,51 +480,51 @@ EIAProjectImpactMeasures: ## Project Impact Measures
   dust_generation_remove_soil: {type: boolean, notnull: false}
   dust_generation_hauling_trucks: {type: boolean, notnull: false}
   dust_generation_temporary_fence: {type: boolean, notnull: false}
-  dust_generation_remarks: {type: string(1000), notnull: false}
+  dust_generation_remarks: {type: string(2000), notnull: false}
   soil_removal: {type: boolean, notnull: false}  
   soil_removal_mitigate_stockpile: {type: boolean, notnull: false}
   soil_removal_mitigate_revegetate: {type: boolean, notnull: false}
-  soil_removal_remarks: {type: string(1000), notnull: false}
+  soil_removal_remarks: {type: string(2000), notnull: false}
   erosion_from_cuts: {type: boolean, notnull: false}
   erosion_mitigate_construct_dryseason: {type: boolean, notnull: false}
   erosion_mitigate_avoid_exposure: {type: boolean, notnull: false}
   erosion_mitigate_barrier_nets: {type: boolean, notnull: false}
-  erosion_remarks: {type: string(1000), notnull: false}
+  erosion_remarks: {type: string(2000), notnull: false}
   sedimentation: {type: boolean, notnull: false}
   sedimentation_mitigate_silt_trap: {type: boolean, notnull: false}
   sedimentation_mitigate_proper_stockpilling: {type: boolean, notnull: false}
   sedimentation_mitigate_filling_materials: {type: boolean, notnull: false}
-  sedimentation_remarks: {type: string(1000), notnull: false} 
+  sedimentation_remarks: {type: string(2000), notnull: false} 
   pollution: {type: boolean, notnull: false}
   pollution_mitigate_temporary_disposal: {type: boolean, notnull: false}
   pollution_mitigate_toilet_facilities: {type: boolean, notnull: false}
   pollution_mitigate_contract_observe: {type: boolean, notnull: false}
-  pollution_remarks: {type: string(1000), notnull: false}  
+  pollution_remarks: {type: string(2000), notnull: false}  
   vegetation_loss: {type: boolean, notnull: false}
   vegetation_limit_clearing: {type: boolean, notnull: false}
   vegetation_provide_clearing: {type: boolean, notnull: false}
   vegetation_use_markers: {type: boolean, notnull: false}
   vegetation_replant: {type: boolean, notnull: false}
-  vegetation_remarks: {type: string(1000), notnull: false}
+  vegetation_remarks: {type: string(2000), notnull: false}
   disturbance: {type: boolean, notnull: false}
   disturbance_reestablish: {type: boolean, notnull: false}
   disturbance_schedule: {type: boolean, notnull: false}
   disturbance_maintenance: {type: boolean, notnull: false}
-  disturbance_remarks: {type: string(1000), notnull: false}
+  disturbance_remarks: {type: string(2000), notnull: false}
   noise_generation: {type: boolean, notnull: false}
   nosie_generation_schedule: {type: boolean, notnull: false}
   noise_generation_undertake: {type: boolean, notnull: false}
-  noise_generation_remark: {type: string(1000), notnull: false}
+  noise_generation_remark: {type: string(2000), notnull: false}
   generation_employment: {type: boolean, notnull: false}
   generation_employment_hiring: {type: boolean, notnull: false}
-  generation_employment_remarks: {type: string(1000), notnull: false}
+  generation_employment_remarks: {type: string(2000), notnull: false}
   conflicts: {type: boolean, notnull: false}
   conflict_conslutation: {type: boolean, notnull: false}
-  conflict_remarks: {type: string(1000), notnull: false}
+  conflict_remarks: {type: string(2000), notnull: false}
   traffic_congestion: {type: boolean, notnull: false}
   traffic_rules_adherance: {type: boolean, notnull: false}
   traffice_aid_provision: {type: boolean, notnull: false}
-  traffic_congestion_remarks: {type: string(1000), notnull: false}
+  traffic_congestion_remarks: {type: string(2000), notnull: false}
   crimes_accidents: {type: boolean, notnull: false}
   crimes_accidents_safety_rules: {type: boolean, notnull: false}
   crime_accidents_remarks: {type: string(1000), notnull: false}
@@ -541,20 +542,20 @@ EIAProjectOperationPhase: ## For project operation phase
   eiaproject_id: {type: integer, notnull: true, unique: true}
   domestic_influence: {type: boolean, notnull: false}
   domestic_wastewater_treatment: {type: boolean, notnull: false}
-  domestic_influence_remarks: {type: string(1000), notnull: false}
+  domestic_influence_remarks: {type: string(2000), notnull: false}
   solid_wastes: {type: boolean, notnull: false}
   solid_wastes_segregation: {type: boolean, notnull: false}
   solid_wastes_proper_collection: {type: boolean, notnull: false}
   solid_wastes_proper_housekeeping: {type: boolean, notnull: false}
-  solid_wastes_remarks: {type: string(1000), notnull: false}
+  solid_wastes_remarks: {type: string(2000), notnull: false}
   increased_traffic: {type: boolean, notnull: false}
   increased_traffic_rules_adhere: {type: boolean, notnull: false}
   increased_traffic_signables: {type: boolean, notnull: false}
-  increased_traffice_remarks:  {type: string(1000), notnull: false}
+  increased_traffice_remarks:  {type: string(2000), notnull: false}
   fire_risk: {type: boolean, notnull: false}
   fire_risk_extinguishers: {type: boolean, notnull: false}
   fire_risk_exit_stairs: {type: boolean, notnull: false}
-  fire_risk_remarks:  {type: string(1000), notnull: false}
+  fire_risk_remarks:  {type: string(2000), notnull: false}
   token: {type: string(255), notnull: false}
   resubmit: {type: string, notnull: false}
  relations:
@@ -627,7 +628,7 @@ EITaskAssignment:
  columns:
   user_assigned: {type: integer, notnull: true}
   eiaproject_id: {type: integer, notnull: true, unique: true}
-  instructions: {type: string(255), notnull: true}
+  instructions: {type: string(2000), notnull: true}
   duedate: {type: date, notnull: true}
   work_status: {type: string(255), notnull: true}
   stage: {type: string, notnull: true}
@@ -645,7 +646,7 @@ EIASiteVisit:
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
   site_visit: {type: date, notnull: true}
-  remarks: {type: string(255), notnull: false}
+  remarks: {type: string(2000), notnull: false}
   visited: {type: boolean, notnull: false}
   approved: {type: boolean, notnull: false}
   token: {type: string(255), notnull: false}
@@ -659,7 +660,7 @@ EIASiteVisitReport:
    updated: { name: updated_by,type: string}
  columns:
   eiasitevisit_id: { type: integer , notnull: true, unique: true}
-  report: { type: string(1000) ,notnull: true}
+  report: { type: string(2000) ,notnull: true}
   tor: { type: string(255), notnull: true }
   token: {type: string(255), notnull: false}
  relations:
@@ -674,7 +675,7 @@ ProjectImpact:
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
   impact_level: {type: string, notnull: true}
-  comments: {type: string(400), notnull: false}
+  comments: {type: string(2000), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
   EIAProjectDetail: {local:eiaproject_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE } 
@@ -689,7 +690,7 @@ EIAAssessmentDecision:
   taskassignment_id: {type: integer, notnull: true}
   eia_stage: {type: string, notnull: true}
   verdict: {type: string, notnull: true }
-  remarks: {type: string(255), notnull: false }
+  remarks: {type: string(2000), notnull: false }
   token: {type: string(255), notnull: false} 
  relations:
   EITaskAssignment: {local:taskAssignment_id, foreign: id, foreignAlias: EiaAssessmentDecision, onDelete:CASCADE } 
@@ -703,7 +704,7 @@ EIAProjectImpactPass: ## This table will store all project that do not require i
   eiaproject_id: {type: integer, notnull: true}
   processed_by: {type: integer, notnull: true}
   letter_status: {type: integer, notnull: true}
-  comments: {type: string(255), notnull: true}
+  comments: {type: string(2000), notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: ApplicationImpactPass , onDelete: CASCADE}
@@ -718,7 +719,7 @@ TorSubmit:
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true} 
   attachement: {type: string(255), notnull: true}
-  remarks: {type: string(400), notnull: true}
+  remarks: {type: string(2000), notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
    EIAProjectDetail: {local:eiaproject_id, foreign: id, foreignAlias: EIAProjectImpact, onDelete:CASCADE }  
@@ -731,7 +732,7 @@ EIATorStatus: ## Stores details about tor, if sent to the client or not if proje
  columns:
   eiaproject_id: {type: integer, notnull: true}
   sent_by: {type: integer, notnull: true}
-  comments: {type: string(255), notnull: true}
+  comments: {type: string(2000), notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
   EIAProjectDetail: {local: eiaproject_id, foreign: id, foreignAlias: ApplicationTorStatus , onDelete: CASCADE}
@@ -748,7 +749,7 @@ EIReport:
   word_doc: {type: string(255), notnull: true}
   pdf_doc: {type: string(255), notnull: true}
   status: {type: string(255), notnull: true}
-  comments: {type: string(1000), notnull: false}
+  comments: {type: string(2000), notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
   EIAProjectDetail: {local:eiaproject_id, foreign: id, foreignAlias: EIAStudyUploads, onDelete:CASCADE } 
@@ -761,7 +762,7 @@ EIReportResubmission:
  columns:
   eiaproject_id: {type: integer, notnull: true, unique: true}
   status: {type: string(255), notnull: true}
-  comments: {type: string(10000}, notnull: true}
+  comments: {type: string(20000}, notnull: true}
   commets_doc: {type: string(255), notnull: true}
 EIComments: ## We allow the data admin to attach documents he/she has processed and send copies to manager
   actAs:
@@ -786,7 +787,7 @@ EIApplicationDecision: ##
  columns:
   eireport_id: {type: integer, notnull: true}
   status: {type: string(255), notnull: true}
-  comments: {type: string(255), notnull: true}
+  comments: {type: string(2000), notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
   EIReport: {local:eireport_id, foreign: id, foreignAlias: StudyDecision, onDelete:CASCADE } 
@@ -799,7 +800,7 @@ EIApplicationCertificatePermission: ## Allow data admins to send request permiss
  columns:
   send_to: {type: integer, notnull: true}
   sent_by: {type: integer, notnull: true}
-  message: {type: string(255), notnull: true}
+  message: {type: string(5000), notnull: true}
   eireport_id: {type: integer, notnull: true}
   token: {type: string(255), notnull: false} 
  relations:
@@ -809,8 +810,9 @@ EIACertificate:
  actAs:
   Timestampable: ~
  columns:
-  serial_number: {type: integer, notnull: true, unique: true}
+  serial_number: {type: string(255), notnull: true, unique: true}
   eireport_id: {type: integer, notnull: true, unique: true}
+  active: {type: boolean, notnull: false}
   token: {type: string(255), notnull: false} 
  relations:
   EIReport: {local:eireport_id, foreign: id, foreignAlias: DataAdminPermissionRequest, onDelete:CASCADE }
@@ -823,8 +825,8 @@ Messages:
   sender_email: {type: string(255), notnull: false}
   recepient_email: {type: string(255), notnull: false}
   cc_email: {type: string(255), notnull: false}
-  message_subject: {type: string(255), notnull: true}
-  message: {type: string(10000), notnull: true}
+  message_subject: {type: string(256), notnull: true}
+  message: {type: string(20000), notnull: true}
   attachement: {type: string(255), notnull: true}
   token: {type: string(255), notnull: false} 
 Notifications:
@@ -880,9 +882,9 @@ Portlets:
    created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
    updated: { name: updated_by,type: string}
  columns:
-  investment_certificate: {type: string(7000), notnull: true}
-  eia_certificate: {type: string(7000), notnull: true}
-  tax_exemptions: {type: string(7000), notnull: true}
+  investment_certificate: {type: string(20000), notnull: true}
+  eia_certificate: {type: string(20000), notnull: true}
+  tax_exemptions: {type: string(20000), notnull: true}
   token: {type: string(255), notnull: false} 
 ###### Tax Exemption Processing #######
 ##Table to store tax exemption details
@@ -906,8 +908,8 @@ TaxExemptionDetails:
   customs_declaration_reference: {type: string(255), notnull: false}
   revenue_officer: {type: string(255), notnull: false}
   revenue_officer_e_verification_date: {type: timestamp, notnull: false}
-  revenue_officer_remarks: {type: string(1000), notnull: false}
-  rdb_officer_remarks: {type: string(1000), notnull: false}
+  revenue_officer_remarks: {type: string(2000), notnull: false}
+  rdb_officer_remarks: {type: string(2000), notnull: false}
   status: {type: string(255), notnull: false}
 ### Table to Store tax exemption items
 TaxExemptionItems:
@@ -938,3 +940,14 @@ CertificationReport:
   investment_certificates: {type: integer, notnull: false}
   eia_certificates: {type: integer, notnull: false}
   tax_exemptions: {type: integer, notnull: false}
+######### A table to Record Communications between Officers, Supervisors/Managers and Applicants.
+MessageLogs:
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
+ columns:
+  message_sender: {type: string(255), notnull: true}
+  message_recipient: {type: string(255), notnull: true}
+  message: {type: string(50000), notnull: true}

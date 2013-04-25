@@ -43,10 +43,10 @@ abstract class BaseInvestmentResubmission extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('message', 'string', 2000, array(
+        $this->hasColumn('message', 'string', 5000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 2000,
+             'length' => 5000,
              ));
     }
 

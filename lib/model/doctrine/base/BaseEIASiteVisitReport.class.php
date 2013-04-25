@@ -37,10 +37,10 @@ abstract class BaseEIASiteVisitReport extends sfDoctrineRecord
              'notnull' => true,
              'unique' => true,
              ));
-        $this->hasColumn('report', 'string', 1000, array(
+        $this->hasColumn('report', 'string', 2000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('tor', 'string', 255, array(
              'type' => 'string',

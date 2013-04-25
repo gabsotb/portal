@@ -312,7 +312,7 @@ class TaskAssignmentTable extends Doctrine_Table
 	public function getUserEmailAddress($id)
 	{
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	 SELECT email_address,username from sf_guard_user where sf_guard_user.id = '$id'
+	 SELECT outlook_address,username from sf_guard_user where sf_guard_user.id = '$id'
 	 ");
 	 return $query;
 	}

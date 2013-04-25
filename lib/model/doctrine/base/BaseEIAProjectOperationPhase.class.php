@@ -90,10 +90,10 @@ abstract class BaseEIAProjectOperationPhase extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('domestic_influence_remarks', 'string', 1000, array(
+        $this->hasColumn('domestic_influence_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('solid_wastes', 'boolean', null, array(
              'type' => 'boolean',
@@ -111,10 +111,10 @@ abstract class BaseEIAProjectOperationPhase extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('solid_wastes_remarks', 'string', 1000, array(
+        $this->hasColumn('solid_wastes_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('increased_traffic', 'boolean', null, array(
              'type' => 'boolean',
@@ -128,10 +128,10 @@ abstract class BaseEIAProjectOperationPhase extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('increased_traffice_remarks', 'string', 1000, array(
+        $this->hasColumn('increased_traffice_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('fire_risk', 'boolean', null, array(
              'type' => 'boolean',
@@ -145,10 +145,10 @@ abstract class BaseEIAProjectOperationPhase extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('fire_risk_remarks', 'string', 1000, array(
+        $this->hasColumn('fire_risk_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

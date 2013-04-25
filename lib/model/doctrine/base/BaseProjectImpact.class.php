@@ -41,10 +41,10 @@ abstract class BaseProjectImpact extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              ));
-        $this->hasColumn('comments', 'string', 400, array(
+        $this->hasColumn('comments', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 400,
+             'length' => 2000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

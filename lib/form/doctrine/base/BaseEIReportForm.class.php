@@ -34,7 +34,7 @@ abstract class BaseEIReportForm extends BaseFormDoctrine
       'word_doc'      => new sfValidatorString(array('max_length' => 255)),
       'pdf_doc'       => new sfValidatorString(array('max_length' => 255)),
       'status'        => new sfValidatorString(array('max_length' => 255)),
-      'comments'      => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
+      'comments'      => new sfValidatorString(array('max_length' => 2000, 'required' => false)),
       'token'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),

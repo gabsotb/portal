@@ -43,20 +43,20 @@ abstract class BaseEIAProjectSurroundingSpecies extends sfDoctrineRecord
              'notnull' => true,
              'unique' => true,
              ));
-        $this->hasColumn('birds_animals', 'string', 255, array(
+        $this->hasColumn('birds_animals', 'string', 5000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 5000,
              ));
-        $this->hasColumn('trees_vegetation', 'string', 255, array(
+        $this->hasColumn('trees_vegetation', 'string', 5000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 5000,
              ));
-        $this->hasColumn('fisheries', 'string', 255, array(
+        $this->hasColumn('fisheries', 'string', 5000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 5000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

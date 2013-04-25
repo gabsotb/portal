@@ -18,6 +18,7 @@ abstract class BaseEIACertificateForm extends BaseFormDoctrine
       'id'            => new sfWidgetFormInputHidden(),
       'serial_number' => new sfWidgetFormInputText(),
       'eireport_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EIReport'), 'add_empty' => false)),
+      'active'        => new sfWidgetFormInputCheckbox(),
       'token'         => new sfWidgetFormInputText(),
       'created_at'    => new sfWidgetFormDateTime(),
       'updated_at'    => new sfWidgetFormDateTime(),
@@ -25,8 +26,9 @@ abstract class BaseEIACertificateForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'serial_number' => new sfValidatorInteger(),
+      'serial_number' => new sfValidatorString(array('max_length' => 255)),
       'eireport_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIReport'))),
+      'active'        => new sfValidatorBoolean(array('required' => false)),
       'token'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),

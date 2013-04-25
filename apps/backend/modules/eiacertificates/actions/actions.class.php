@@ -88,13 +88,15 @@ class eiacertificatesActions extends sfActions
 	  //Incremental Number */
 	  $start = 1 ;
 	  $newNumber = $start + 1;
+	  
 	  //We also make sure that the business is not already issued with a certificate if so we just print the existing certificate instead of
 	  //saving a new record
 	  $q = Doctrine_Core::getTable('EIACertificate')->findByEireportId($request->getParameter('id'));
 	  if(count($q) != 0)
 	  {
 	  //since this business has been issued with certificate, we just print it.
-	  //do nothing
+	  //call print function
+	  $this->printEIACertificate($q[0]['eireport_id']);
 	  }
 	  if(count($q) == 0)
 	  {
@@ -109,12 +111,21 @@ class eiacertificatesActions extends sfActions
 					   }
 					  if($no != null)
 					  {
-					   
+					   ////Magic here
+					  // $number = "EC/1/04/2013";
+					   $no = explode('/',$no); 
+					   $incremental_no = $no[1] ;
+					  
+					   ////
+					    $value = $incremental_no + 1 ;
+					    $date = date('Y');
+					    $month = date('m'); 
 					   //we first check and make sure that there exist a number, then we increment it by 1
 					   //and save it.
 						  $cert = new EIACertificate();
 						  $cert->eireport_id = $request->getParameter('id') ;
-						  $cert->serial_number = $no + 1 ;
+						  $cert->serial_number = "EC/".($value)."/".$month."/".$date ;
+						  $cert->active = 1; // meaning verified and can be used
 						  $cert->save();
 						  //we then update the Status of application i.e. BusinessApplicationStatus
 						  //now this is the final step of application for investment certificate. 
@@ -135,12 +146,16 @@ class eiacertificatesActions extends sfActions
 					  }
 						if($no == null)
 					  {
-					   $no = $start ;
+					    $no = $start ;
+					   // $value = null;
+					    $date = date('Y');
+					    $month = date('m'); 
 					   //if this is the first record, then we set default value
 					   //and save
 						  $cert = new EIACertificate();
 						  $cert->eireport_id = $request->getParameter('id') ;
-						  $cert->serial_number = $no + 1 ;
+						  $cert->serial_number = "EC/".($no + 1)."/".$month."/".$date ;
+						  $cert->active = 1; // meaning verified and can be used
 						  $cert->save();
 						  //we then update the Status of application i.e. BusinessApplicationStatus
 						  //now this is the final step of application for investment certificate. 
@@ -289,7 +304,7 @@ $pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
 $html = '                               <div>
                                          <br/><br/><br/>
 										 <p style= "font-size: xx-small;text-align:left ">
-										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Certificate No: <b>EC/'.$serial.'/'.$month.'/'.$year.'</b>
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Certificate No: <b>E'.$serial.'</b>
 										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										   Ref: <b>'.$refernce_no.' </b>
 										 </p>
@@ -351,5 +366,166 @@ $pdf->Output('certificate.pdf', 'I');
           // Stop symfony process */
 		 // $this->redirect('@homepage');
           throw new sfStopException();
+  }
+  //print certificate function
+  public function printEIACertificate($eireport_id)
+  {
+      ////Then we get the Applicant details for printing the certificate. we will use the business_id saved in the InvestmentCertificate Table
+	  /*$query =*/ $report= $eireport_id;
+	  $projectDetail=Doctrine_Core::getTable('EIAProjectDetail')->find($report);
+	  $developer=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($report);
+		$project_title=$projectDetail->getProjectTitle();
+		$plot_number=$projectDetail->getProjectPlotNumber();
+		$cell=$projectDetail->getCell();
+		$sector=$projectDetail->getSector();
+		$district=$projectDetail->getDistrict();
+		$province=$projectDetail->getProvince();
+		$developer_name=$developer[0]['developer_name'];
+		$contact_person=$developer[0]['contact_person'];
+		$month=$projectDetail->getDateTimeObject('created_at')->format('m');
+		$year=$projectDetail->getDateTimeObject('created_at')->format('Y');
+		$cert=Doctrine_Core::getTable('EIACertificate')->findByEireportId($report);
+		$serial=$cert[0]['serial_number'];
+		$refernce_no=str_replace("-","/",$projectDetail->getProjectReferenceNumber());
+	  //loop over the result and set necessary variables
+	/*  $date = null ;
+	  $year = null ;
+	  $company = null ;
+	  $serial = null;
+	  $rep = null;
+	  $issuerF = null;
+	  $issuerL = null;
+	  $sector = null;
+	  $nofojobs = null;
+	  $expjobs = 0;
+	  $invstment = 0;
+	 // $applicant_name = null ;
+	 /* foreach($query as $q)
+	  {
+	    $date = $q['created_at'] ;
+		$year = $q['created_at'] ;
+		$company = $q['name'] ;
+		$serial = $q['serial_number'] ;
+		$rep = $q['representative_name'] ;
+		$issuerF = $q['first_name'] ;
+		$issuerL = $q['last_name'] ;
+		$sector = $q['business_sector'] ;
+		$noofjobs = $q['employment_created'] ;
+		$invstment = $q['planned_investment'];
+		
+	  }
+	   $d = new DateTime($date);
+	   $day = $d->format('d-m-Y');
+	   ///
+	   $y = new DateTime($year);
+	   $year =  $y->format('Y'); */
+	  
+	 // $serial = "C/$number/$year";
+	  
+	  ////////////////////////////////////////////////////////////////////////////
+	
+	  ////////////////////////////////////////////////////////////////////////////
+	  //execute action for printing pdf document of this report
+	   /*I have used another class specifically for investment Certificates only */
+	      $config = sfTCPDFPluginConfigHandlerInvstCert::loadConfig('invst_configs');
+          sfTCPDFPluginConfigHandlerInvstCert::includeLangFile($this->getUser()->getCulture());
+	///////////////////////////Certificate Configuration //////////////////////////////////////////////////////////////////////	  
+//create new PDF document (document units are set by default to millimeters)
+          $pdf = new sfTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true);
+     
+// set default header data
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 062', PDF_HEADER_STRING);
+
+// set header and footer fonts
+$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+// set default monospaced font
+$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+//set margins
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+// remove default header/footer
+$pdf->setPrintHeader(false);
+$pdf->setPrintFooter(false);
+
+//set auto page breaks
+//$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+$pdf->SetAutoPageBreak(false);
+
+//set image scale factor
+$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+//set some language-dependent strings
+//$pdf->setLanguageArray($l);
+
+// ---------------------------------------------------------
+
+// set font
+$pdf->SetFont('courier', '', 18);
+
+// add a page
+$pdf->AddPage();
+
+// start a new XObject Template
+$template_id = $pdf->startTemplate(95, 165);
+
+// create Template content
+// ...................................................................
+
+$border = array('LRTB' => array('width' => 0.1, 'cap' => 'square', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)));
+ $img_file = K_PATH_IMAGES.'eia_CERT.jpg';
+ 
+$pdf->Image($img_file, 0, 0, 50, 50, 'JPG', '', '', false, 1000, '', false, false, $border, false, false, false);
+ 
+ 
+//Image Calling inside the html has a problem hence we hand code it but we will change it later - Boniface Irunguh
+// ...................................................................
+
+// end the current Template
+$pdf->endTemplate();
+
+// print the selected Template various times
+$pdf->printTemplate($template_id, 0, 0, 550, 710, '', '', false);
+
+// ---------------------------------------------------------
+ // Set some content to print
+$html = '                               <div>
+                                         <br/><br/><br/>
+										 <p style= "font-size: xx-small;text-align:left ">
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Certificate No: <b>'.$serial.'</b>
+										   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										   Ref: <b>'.$refernce_no.' </b>
+										 </p>
+									 <p style= "font-size: xx-small;text-align:left ">
+										  This is to certify that an EIA Certificate related to '.$developer_name.'s <br/> &nbsp; project entitled <b>'.$project_title.'</b> represented by <b>'.$contact_person.'</b>
+										  has been approved. <br/> &nbsp; This project is to be located on plot number <b>'.$plot_number.'</b> in Cell<b> '.$sector.'</b> <br/> &nbsp; Sector<b> '.$district.'</b> District<b> '.$province.' </b> .
+										  </p>
+										  <p style= "font-size: xx-small;text-align:left ">
+										   This is in accordance with provisions of Organic law No04/2005 of 08/04/2005 <br/> &nbsp; determining the modalities of protection,conservation and promotion of the <br/> &nbsp;&nbsp;environment in Rwanda.
+
+										  </p>
+										  <p style= "font-size: xx-small;text-align:left ">
+										  <b>Signed by </b>, 
+										    <br/>
+											&nbsp;&nbsp;<b>Chief Operating Officer</b><br/><br/><br/><br/>
+											&nbsp;&nbsp;<b>Please Note that;</b>
+											Rwanda Development Board (RDB) reserves a right to withdraw this <br/> &nbsp;&nbsp; certificate from PLS in case the latter is found non-compliant and Issued in <br/> &nbsp;&nbsp; quadruplicate is Original to developer, copies to; MINICOM, REMA &'.$district.'  <br/> &nbsp;&nbsp; district
+
+										      
+										 </p>
+										  
+										</div>
+                                      
+';
+
+// Print text using writeHTMLCell()
+$pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+         
+//Close and output PDF document
+$pdf->Output('certificate.pdf', 'I');
   }
 }

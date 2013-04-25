@@ -28,9 +28,9 @@ abstract class BasePortletsForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'investment_certificate' => new sfValidatorString(array('max_length' => 7000)),
-      'eia_certificate'        => new sfValidatorString(array('max_length' => 7000)),
-      'tax_exemptions'         => new sfValidatorString(array('max_length' => 7000)),
+      'investment_certificate' => new sfValidatorString(array('max_length' => 20000)),
+      'eia_certificate'        => new sfValidatorString(array('max_length' => 20000)),
+      'tax_exemptions'         => new sfValidatorString(array('max_length' => 20000)),
       'token'                  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'             => new sfValidatorDateTime(),
       'updated_at'             => new sfValidatorDateTime(),

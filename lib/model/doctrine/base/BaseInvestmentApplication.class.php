@@ -119,10 +119,10 @@ abstract class BaseInvestmentApplication extends sfDoctrineRecord
              'notnull' => false,
              'length' => 255,
              ));
-        $this->hasColumn('business_sector', 'string', 1000, array(
+        $this->hasColumn('business_sector', 'string', 2000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('business_category', 'string', 255, array(
              'type' => 'string',

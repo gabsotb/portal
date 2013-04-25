@@ -63,7 +63,19 @@
 										   <?php foreach ($messagess as $messages): ?>
 											<tr class="odd gradeX">
 												<td><?php echo $messages['sender'] ?></td>
-												<td><?php echo html_entity_decode($messages['message'])?></td>
+												<td><?php //limit the number of characters
+												$string = strip_tags($messages['message']);
+
+														if (strlen($string) > 200) {
+
+															// truncate string
+															$stringCut = substr($string, 0, 200);
+
+															// make sure it ends in a word so assassinate doesn't become ass...
+															$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...........'; 
+														}
+														echo html_entity_decode($string);
+														?></td>
 												<td> <?php if($messages['attachement'] == null): ?>
 												  <?php echo __('No Attachment') ?>
 												  <?php endif; ?>

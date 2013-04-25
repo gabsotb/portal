@@ -48,4 +48,5 @@ class EIReportTable extends Doctrine_Table
 	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select updated_by from  e_i_a_project_detail where id = '$project_id' ");
 	  return $query;
 	}
+	
 }

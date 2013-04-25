@@ -42,10 +42,10 @@ abstract class BaseTorSubmit extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('remarks', 'string', 400, array(
+        $this->hasColumn('remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 400,
+             'length' => 2000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

@@ -47,10 +47,10 @@ abstract class BaseEIAAssessmentDecision extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              ));
-        $this->hasColumn('remarks', 'string', 255, array(
+        $this->hasColumn('remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

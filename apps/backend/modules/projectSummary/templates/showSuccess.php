@@ -101,12 +101,12 @@
 	 </div>
  <!-- END OVERVIEW STATISTIC BARS-->
 					<div class="row-fluid" id="right_column">
-						<div class="span8">
+						<div class="span9">
 							<!-- BEGIN SITE VISITS PORTLET-->
 							<!-- BEGIN GENERAL PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
-									<h4><?php echo __('Business Proposal for') ?> <?php  ?></h4>
+									<h4><?php echo strtoupper(__('Business Proposal for')) ?> <?php  ?></h4>
 															
 								</div>
 								<div class="widget-body">
@@ -127,47 +127,90 @@
 									</div>
 									<div class="row-fluid">
 										 <div class="span6">
-											<h3><?php echo __('Project Classification') ?></h3>
-											<p>
-											<?php echo $project_summary->getBusinessSector() ?>
-											</p>
+										 <div class="widget">
+										        <div class="widget-title">
+											    <h3><?php echo strtoupper(__('Project Classification')) ?></h3>
+											    </div>
+												<div class="widget-body">
+													<p>
+													<?php echo $project_summary->getBusinessSector() ?>
+													</p>
+											    </div>
+										  </div>
 										</div>
 										<div class="span6">
-											<h3><?php echo __('Name of Company') ?></h3>
+										   <div class="widget">
+										    <div class="widget-title">
+											<h3><?php echo strtoupper(__('Name of Company')) ?></h3>
+											</div>
+											 <div class="widget-body">
 											<p>
 											<?php echo $project_summary->getInvestmentApplication()->getName() ?>
 											</p>
+											</div>
+											</div>
 										</div>
 									</div>
 									<div class="row-fluid">
 										
 										<div class="span6">
-											<h3><?php echo __('Place and Address of Company') ?></h3>
-											<p><?php echo $project_summary->getInvestmentApplication()->getLocation() ?></p>
+										    <div class="widget">
+										        <div class="widget-title">
+												 <h3><?php echo strtoupper(__('Place and Address of Company')) ?></h3>
+												</div>
+												<div class="widget-body">
+												<p><?php echo $project_summary->getInvestmentApplication()->getLocation() ?></p>
+												</div>
+											</div>
 										</div>
 										
 										<div class="span6">
-											<h3><?php echo __('Planned Capital Investment') ?></h3>
-											<p><?php echo $project_summary->getPlannedInvestment() ?>
-											<?php echo $project_summary->getInvestmentApplication()->getCurrencyType() ?></p>
+										    <div class="widget">
+										        <div class="widget-title">
+											    <h3><?php echo strtoupper(__('Planned Capital Investment')) ?></h3>
+											     </div>
+												<div class="widget-body"> 
+											   <p><?php echo $project_summary->getPlannedInvestment() ?>
+											   <?php echo $project_summary->getInvestmentApplication()->getCurrencyType() ?></p>
+											   </div>
+											   </div>
 										</div>
 									</div>
 									<div class="row-fluid">
 										
 										<div class="span6">
-											<h3><?php echo __('Employment Created') ?></h3>
-											<p><?php echo $project_summary->getEmploymentCreated() ?></p>
+										       <div class="widget">
+										        <div class="widget-title">
+											    <h3><?php echo strtoupper(__('Employment Created')) ?></h3>
+											    </div>
+											     <div class="widget-body"> 
+											     <p><?php echo $project_summary->getEmploymentCreated()?></p>
+											     </div> 
+											   </div>
 											
 										</div>
 										<div class="span6">
-											<h3><?php echo __('Technical Viability') ?></h3>
-											<p><?php echo $project_summary->getTechinicalViability() ?></p>
+										   <div class="widget">
+										        <div class="widget-title"> 
+											     <h3><?php echo strtoupper(__('Technical Viability')) ?></h3>
+												 </div>
+												 <div class="widget-body"> 
+											   <p><?php echo html_entity_decode($project_summary->getTechinicalViability()) ?></p>
+											    </div>
+												</div>
 										</div>
 									</div>
 									<div class="row-fluid">
 										<div class="span6">
-											<h3><?php echo __('Categories of Jobs Created') ?></h3>
-											<p><?php echo $project_summary->getJobCategories() ?></p>
+										   <div class="widget">
+										        <div class="widget-title">
+											     <h3><?php echo strtoupper(__('Categories of Jobs Created')) ?></h3>
+												</div> 
+												<div class="widget-body"> 
+											     <p><?php echo html_entity_decode($project_summary->getJobCategories()) ?></p>
+												 </div>
+												 </div>
+												 
 										</div>
 										
 									</div>
@@ -186,7 +229,7 @@
 							<!-- END GENERAL PORTLET-->
 							<!-- END SITE VISITS PORTLET-->
 						</div>
-						<div class="span4">
+						<div class="span3">
 							<!-- BEGIN NOTIFICATIONS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
@@ -198,8 +241,8 @@
 									</span>							
 								</div>
 								<div class="widget-body">
-									<a href="#widget-accept" data-toggle="modal"> <button type="button" class="btn btn-success"><?php echo __('Accept Application') ?></button> </a>
-									<a href="#widget-decline" data-toggle="modal"> <button type="button" class="btn btn-danger"><?php echo __('Decline Application') ?></button> </a>
+									<a href="#widget-accept" data-toggle="modal"> <button type="button" class="btn btn-success"><?php echo __('Accept') ?></button> </a>
+									<a href="#widget-decline" data-toggle="modal"> <button type="button" class="btn btn-danger"><?php echo __('Decline') ?></button> </a>
 								</div>
 							</div>
 							<!-- END NOTIFICATIONS PORTLET-->

@@ -25,6 +25,9 @@ class eireportActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
+    ////
+	 $this->getUser()->setAttribute('project_id', $request->getParameter('id'));
+	////
     $this->form = new EIReportForm();
   }
 
@@ -74,6 +77,8 @@ class eireportActions extends sfActions
     if ($form->isValid())
     {
       $ei_report = $form->save();
+	  /////
+	  $this->getUser()->getAttributeHolder()->remove('project_id');
       ///
 	  $allFormValues = $request->getParameter($this->form->getName());
 	  $project_id = $allFormValues['eiaproject_id'];

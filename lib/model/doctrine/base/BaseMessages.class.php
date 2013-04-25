@@ -69,15 +69,15 @@ abstract class BaseMessages extends sfDoctrineRecord
              'notnull' => false,
              'length' => 255,
              ));
-        $this->hasColumn('message_subject', 'string', 255, array(
+        $this->hasColumn('message_subject', 'string', 300, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 255,
+             'length' => 300,
              ));
-        $this->hasColumn('message', 'string', 10000, array(
+        $this->hasColumn('message', 'string', 20000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 10000,
+             'length' => 20000,
              ));
         $this->hasColumn('attachement', 'string', 255, array(
              'type' => 'string',

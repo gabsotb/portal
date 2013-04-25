@@ -29,7 +29,7 @@ abstract class BaseEIASiteVisitReportForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'eiasitevisit_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIASiteVisit'))),
-      'report'          => new sfValidatorString(array('max_length' => 1000)),
+      'report'          => new sfValidatorString(array('max_length' => 2000)),
       'tor'             => new sfValidatorString(array('max_length' => 255)),
       'token'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'      => new sfValidatorDateTime(),

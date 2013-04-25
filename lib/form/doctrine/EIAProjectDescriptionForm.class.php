@@ -56,8 +56,8 @@ class EIAProjectDescriptionForm extends BaseEIAProjectDescriptionForm
 	'existing_land_use' => 'Existing Land use',
 	'project_total_cost' => 'Total Project Cost',
 	'project_working_capital' => 'Working Capital',
-	'project_objective' => 'Project Objectives',
-	'project_nature' => 'Project Nature',
+	'project_objective' => 'Project Description & Objectives',
+	'project_nature' => 'Project Nature(ISIC Rev 4 UN 2008 Stardards)',
 	));
 	///
 	 $this->widgetSchema['public_water_supply'] = new sfWidgetFormChoice(array(

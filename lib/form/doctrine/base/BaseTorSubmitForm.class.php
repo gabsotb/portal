@@ -30,7 +30,7 @@ abstract class BaseTorSubmitForm extends BaseFormDoctrine
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'eiaproject_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EIAProjectDetail'))),
       'attachement'   => new sfValidatorString(array('max_length' => 255)),
-      'remarks'       => new sfValidatorString(array('max_length' => 400)),
+      'remarks'       => new sfValidatorString(array('max_length' => 2000)),
       'token'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),

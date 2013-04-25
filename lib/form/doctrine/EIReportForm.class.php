@@ -20,7 +20,11 @@ class EIReportForm extends BaseEIReportForm
    $this->setDefault('status', $status);
    $this->widgetSchema['status'] = new sfWidgetFormInputHidden();
    ///
-   $this->setDefault('eiaproject_id', 2); // we will set it later
+     $project_id = sfContext::getInstance()->getUser()->getAttribute('project_id');
+	 
+	 //print $project_id; exit;
+   ////
+   $this->setDefault('eiaproject_id',  $project_id ); // we will set it later
    $this->widgetSchema['token'] = new sfWidgetFormInputHidden();
    $token = sha1(date('Y-m-d').rand(11111, 99999));
    $this->setDefault('token',$token); 

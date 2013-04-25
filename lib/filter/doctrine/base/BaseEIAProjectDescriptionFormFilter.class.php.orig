@@ -236,7 +236,6 @@ abstract class BaseEIAProjectDescriptionFormFilter extends BaseFormFilterDoctrin
       'power_supply_own_generator_capacity' => new sfWidgetFormFilterInput(),
       'power_supply_other'                  => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'power_supply_other_specify'          => new sfWidgetFormFilterInput(),
-      'solid_waste_ecological'              => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'solid_waste_dumpsite'                => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'solid_waste_municipal'               => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'solid_waste_others'                  => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
@@ -256,8 +255,8 @@ abstract class BaseEIAProjectDescriptionFormFilter extends BaseFormFilterDoctrin
       'eiaproject_id'                       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('EIAProjectDetail'), 'column' => 'id')),
       'project_nature'                      => new sfValidatorPass(array('required' => false)),
       'project_objective'                   => new sfValidatorPass(array('required' => false)),
-      'project_total_cost'                  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'project_working_capital'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'project_total_cost'                  => new sfValidatorPass(array('required' => false)),
+      'project_working_capital'             => new sfValidatorPass(array('required' => false)),
       'total_land_area'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'existing_land_use'                   => new sfValidatorPass(array('required' => false)),
       'site_location_developed_area'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
@@ -291,7 +290,6 @@ abstract class BaseEIAProjectDescriptionFormFilter extends BaseFormFilterDoctrin
       'power_supply_own_generator_capacity' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'power_supply_other'                  => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'power_supply_other_specify'          => new sfValidatorPass(array('required' => false)),
-      'solid_waste_ecological'              => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'solid_waste_dumpsite'                => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'solid_waste_municipal'               => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'solid_waste_others'                  => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
@@ -328,8 +326,8 @@ abstract class BaseEIAProjectDescriptionFormFilter extends BaseFormFilterDoctrin
       'eiaproject_id'                       => 'ForeignKey',
       'project_nature'                      => 'Text',
       'project_objective'                   => 'Text',
-      'project_total_cost'                  => 'Number',
-      'project_working_capital'             => 'Number',
+      'project_total_cost'                  => 'Text',
+      'project_working_capital'             => 'Text',
       'total_land_area'                     => 'Number',
       'existing_land_use'                   => 'Text',
       'site_location_developed_area'        => 'Boolean',
@@ -363,7 +361,6 @@ abstract class BaseEIAProjectDescriptionFormFilter extends BaseFormFilterDoctrin
       'power_supply_own_generator_capacity' => 'Number',
       'power_supply_other'                  => 'Boolean',
       'power_supply_other_specify'          => 'Text',
-      'solid_waste_ecological'              => 'Boolean',
       'solid_waste_dumpsite'                => 'Boolean',
       'solid_waste_municipal'               => 'Boolean',
       'solid_waste_others'                  => 'Boolean',
@@ -380,4 +377,4 @@ abstract class BaseEIAProjectDescriptionFormFilter extends BaseFormFilterDoctrin
     );
   }
 }
->>>>>>> 29608c35b1fa820e580357cc31be556cf77cc6c0
+>>>>>>> d33c9df79fa7933a44a03f90a73e504f5fd267c1

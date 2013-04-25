@@ -43,10 +43,10 @@ abstract class BaseEIATorStatus extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('comments', 'string', 255, array(
+        $this->hasColumn('comments', 'string', 2000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

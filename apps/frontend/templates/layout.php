@@ -18,10 +18,10 @@
 	     <div id="widget-language" class="modal hide">
 						<div class="modal-header">
 							<button data-dismiss="modal" class="close" type="button">×</button>
-							<h3>Language Change</h3>
+							<h3><?php echo __('Language Change') ?></h3>
 						</div>
 						<div class="modal-body">
-							<b>Please Select your prefered Language:</b> <br/>
+							<b><?php echo __('Please Select your prefered Language:')?></b> <br/>
 							
 							 <?php include_component('language', 'language') ?>
 						</div>
@@ -125,7 +125,17 @@
 									<span class="time"><?php echo $messages['created_at'] ?></span>
 									</span>
 									<span class="message">
-									<?php echo $messages['message'] ?>
+									<?php $string = strip_tags($messages['message']);
+
+										if (strlen($string) > 50) {
+
+											// truncate string
+											$stringCut = substr($string, 0, 50);
+
+											// make sure it ends in a word so assassinate doesn't become ass...
+											$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...........'; 
+										}
+										echo html_entity_decode($string); ?>
 									
 									</span>  
 									</a>
