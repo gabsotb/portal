@@ -579,12 +579,12 @@ $html = '                               <div style="text-align:center">
 										   <i>Date:</i> <b>'.$day.'</b>
 										 </p><br/><br/>
 										 <p style= "font-size: xx-small;text-align:left ">
-										Issued To .............<span style="border-bottom: 10px solid #f00;"><b>'.$company.'</b></span>........... Represented by <span style="border-bottom: 10px solid #f00;">........<b>'.$rep.'</b>.....</span>
+										Issued To &nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom: 10px solid #f00;"><b>'.$company.'</b></span>&nbsp;&nbsp;&nbsp; Represented by <span style="border-bottom: 10px solid #f00;">&nbsp;<b>'.$rep.'</b>&nbsp;</span>
 										<br/><br/>
-										Business Sector ...................<span style="border-bottom: 10px solid #f00;"><b>'.$sector.' </span></b> <br/><br/>
-										Planned investment amount ........................... <span style="border-bottom: 10px solid #f00;"><b>'.$invstment.'</span></b> '.$currency.'<br/><br/>
-										Total Number of jobs planned .....................<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b><br/><br/>
-										Local jobs..................<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b> and  Jobs For expatriates ........................ <span style="border-bottom: 10px solid #f00;"><b>'.$expjobs.'</span></b>
+										Business Sector&nbsp;&nbsp;&nbsp;<span style="border-bottom: 10px solid #f00;"><b>'.$sector.' </span></b> <br/><br/>
+										Planned investment amount &nbsp;&nbsp;&nbsp;&nbsp; <span style="border-bottom: 10px solid #f00;"><b>'.$invstment.'</span></b> '.$currency.'<br/><br/>
+										Total Number of jobs planned &nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b><br/><br/>
+										Local jobs&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b> and  Jobs For expatriates &nbsp;&nbsp;&nbsp;&nbsp; <span style="border-bottom: 10px solid #f00;"><b>'.$expjobs.'</span></b>
 										 </p>
 										 
 									<p style= "font-size: xx-small;text-align:left ">
@@ -812,12 +812,12 @@ $html = '                               <div style="text-align:center">
 										   <i>Date:</i> <b>'.$day.'</b>
 										 </p><br/><br/>
 										 <p style= "font-size: xx-small;text-align:left ">
-										Issued To .............<span style="border-bottom: 10px solid #f00;"><b>'.$company.'</b></span>........... Represented by <span style="border-bottom: 10px solid #f00;">........<b>'.$rep.'</b>.....</span>
+										Issued To &nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom: 10px solid #f00;"><b>'.$company.'</b></span>&nbsp;&nbsp;&nbsp; Represented by <span style="border-bottom: 10px solid #f00;">&nbsp;<b>'.$rep.'</b>&nbsp;</span>
 										<br/><br/>
-										Business Sector ...................<span style="border-bottom: 10px solid #f00;"><b>'.$sector.' </span></b> <br/><br/>
-										Planned investment amount ........................... <span style="border-bottom: 10px solid #f00;"><b>'.$invstment.'</span></b> '.$currency.'<br/><br/>
-										Total Number of jobs planned .....................<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b><br/><br/>
-										Local jobs..................<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b> and  Jobs For expatriates ........................ <span style="border-bottom: 10px solid #f00;"><b>'.$expjobs.'</span></b>
+										Business Sector&nbsp;&nbsp;&nbsp;<span style="border-bottom: 10px solid #f00;"><b>'.$sector.' </span></b> <br/><br/>
+										Planned investment amount &nbsp;&nbsp;&nbsp;&nbsp; <span style="border-bottom: 10px solid #f00;"><b>'.$invstment.'</span></b> '.$currency.'<br/><br/>
+										Total Number of jobs planned &nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b><br/><br/>
+										Local jobs&nbsp;&nbsp;&nbsp;&nbsp;<span style="border-bottom: 10px solid #f00;"><b>'.$noofjobs.'</span></b> and  Jobs For expatriates &nbsp;&nbsp;&nbsp;&nbsp; <span style="border-bottom: 10px solid #f00;"><b>'.$expjobs.'</span></b>
 										 </p>
 										 
 									<p style= "font-size: xx-small;text-align:left ">

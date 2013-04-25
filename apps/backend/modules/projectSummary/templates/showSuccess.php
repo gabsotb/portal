@@ -129,7 +129,7 @@
 										 <div class="span6">
 										 <div class="widget">
 										        <div class="widget-title">
-											    <h3><?php echo strtoupper(__('Project Classification')) ?></h3>
+											    <h3><?php echo __('Project Classification') ?></h3>
 											    </div>
 												<div class="widget-body">
 													<p>
@@ -141,7 +141,7 @@
 										<div class="span6">
 										   <div class="widget">
 										    <div class="widget-title">
-											<h3><?php echo strtoupper(__('Name of Company')) ?></h3>
+											<h3><?php echo __('Name of Company') ?></h3>
 											</div>
 											 <div class="widget-body">
 											<p>
@@ -156,7 +156,7 @@
 										<div class="span6">
 										    <div class="widget">
 										        <div class="widget-title">
-												 <h3><?php echo strtoupper(__('Place and Address of Company')) ?></h3>
+												 <h3><?php echo __('Location of Business') ?></h3>
 												</div>
 												<div class="widget-body">
 												<p><?php echo $project_summary->getInvestmentApplication()->getLocation() ?></p>
@@ -167,7 +167,7 @@
 										<div class="span6">
 										    <div class="widget">
 										        <div class="widget-title">
-											    <h3><?php echo strtoupper(__('Planned Capital Investment')) ?></h3>
+											    <h3><?php echo __('Planned Capital Investment') ?></h3>
 											     </div>
 												<div class="widget-body"> 
 											   <p><?php echo $project_summary->getPlannedInvestment() ?>
@@ -181,7 +181,7 @@
 										<div class="span6">
 										       <div class="widget">
 										        <div class="widget-title">
-											    <h3><?php echo strtoupper(__('Employment Created')) ?></h3>
+											    <h3><?php echo __('Employment Created') ?></h3>
 											    </div>
 											     <div class="widget-body"> 
 											     <p><?php echo $project_summary->getEmploymentCreated()?></p>
@@ -192,7 +192,7 @@
 										<div class="span6">
 										   <div class="widget">
 										        <div class="widget-title"> 
-											     <h3><?php echo strtoupper(__('Technical Viability')) ?></h3>
+											     <h3><?php echo __('Technical Viability') ?></h3>
 												 </div>
 												 <div class="widget-body"> 
 											   <p><?php echo html_entity_decode($project_summary->getTechinicalViability()) ?></p>
@@ -204,7 +204,7 @@
 										<div class="span6">
 										   <div class="widget">
 										        <div class="widget-title">
-											     <h3><?php echo strtoupper(__('Categories of Jobs Created')) ?></h3>
+											     <h3><?php echo __('Categories of Jobs Created') ?></h3>
 												</div> 
 												<div class="widget-body"> 
 											     <p><?php echo html_entity_decode($project_summary->getJobCategories()) ?></p>

@@ -273,9 +273,8 @@
 					<span class="arrow"></span>
 					</a>
 					<ul class="sub">
-					    <li class=""><a href ="<?php echo url_for('investment_request') ?>"><i class="icon-trash"></i> <?php echo __('IC Applications') ?> </a></li>
-						<li class=""><a href ="#"><i class="icon-certificate"></i> <?php echo __('Investment Certificates') ?> </a></li>
-						<li class=""> <a href ="#"><i class="icon-certificate"></i> <?php echo __('EIA Certificates') ?> </a></li>
+					    <li class=""><a href ="<?php echo url_for('investment_request') ?>"><i class="icon-trash"></i> <?php echo __('Investment Certificates') ?> </a></li>
+						
 					</ul>
 				</li>
 				<li> <a href ="<?php echo url_for('information_portlets') ?>"><i class="icon-book"></i> <?php echo __('Information Portlets') ?> </a> </li>

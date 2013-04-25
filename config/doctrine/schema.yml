@@ -825,7 +825,7 @@ Messages:
   sender_email: {type: string(255), notnull: false}
   recepient_email: {type: string(255), notnull: false}
   cc_email: {type: string(255), notnull: false}
-  message_subject: {type: string(256), notnull: true}
+  message_subject: {type: string(255), notnull: true}
   message: {type: string(20000), notnull: true}
   attachement: {type: string(255), notnull: true}
   token: {type: string(255), notnull: false} 
