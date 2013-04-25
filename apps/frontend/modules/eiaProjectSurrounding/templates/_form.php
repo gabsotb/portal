@@ -19,7 +19,6 @@
 <?php endif; ?>
 
 <div class="row-fluid">
-	
 		<div class="widget">
 			<div class="widget-title">
 				<h4> Physical Environment</h4>
@@ -31,6 +30,7 @@
 			<h4> What is the general elevation of the project area:</h4>
 			</div>
 			<div class="span4">
+			<?php echo $form['project_general_elevation']->renderError() ?>
 			<?php echo $form['project_general_elevation']->render(array('class' => 'span4 popovers','data-trigger' => 'hover','data-placement' => 'right','data-content' => 'Elevation in Meters Above Sea Level (m.a.s.l)','data-original-title' => 'General Elevation')) ?>
 			<span class="help-inline">in m.a.s.l</span>
 			</div>
@@ -256,14 +256,14 @@
 				</div>
 				<div class="span6">
 				<?php echo $form['watershed_near_distance'] ?>
-				<span class="help-inline"><?php echo $form['watershed_near_distance_units']->render(array('class' => 'span12')) ?></span>
+				<span class="help-inline"><?php echo $form['watershed_near_distance_units']->renderError() ?><?php echo $form['watershed_near_distance_units']->render(array('class' => 'span12')) ?></span>
 				</div>
 				</div>
 				<h4>If within, indicate name of the watershed/forest reservation area:</h4>
 				<table class="table table-hover table-bordered">
 				<tr>
 				<td><?php echo $form['watershed_within_name']->renderLabel('Watershed/forest reservation:') ?></td>
-				<td><?php echo $form['watershed_within_name']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?></td>
+				<td><?php echo $form['watershed_within_name']->renderError() ?><?php echo $form['watershed_within_name']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10')) ?></td>
 				</tr>
 				</table>
 				</div>

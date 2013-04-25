@@ -526,7 +526,7 @@ EIAProjectImpactMeasures: ## Project Impact Measures
   traffic_congestion_remarks: {type: string(1000), notnull: false}
   crimes_accidents: {type: boolean, notnull: false}
   crimes_accidents_safety_rules: {type: boolean, notnull: false}
-  crime_accidents_remarks: {type: boolean, notnull: false}
+  crime_accidents_remarks: {type: string(1000), notnull: false}
   token: {type: string(255), notnull: false}
   resubmit: {type: string, notnull: false}
  relations:

@@ -86,6 +86,7 @@ class eiaSiteVisitActions extends sfActions
 		$status->comments="Application is been reviewed";
 		$status->percentage=40;
 		$status->save();
+		
 		$notify= new Notifications();
 		$notify->recepient=Doctrine_Core::getTable('sfGuardUser')->find($tasks[0]['created_by'])->getUsername();
 		$notify->message="An application is awaiting assessment";

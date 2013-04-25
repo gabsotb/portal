@@ -84,7 +84,11 @@ class messagesActions extends sfActions
       $messages = $form->save();
 	  if($messages->getRecepientEmail() && $messages->getMessage())
 	  {
-	  $this->getMailer()->composeAndSend('noreply@rdb.com',$messages->getRecepientEmail() ,$messages->getMessageSubject(),
+	  $recepients=Doctrine_Core::getTable('sfGuardUser')->findByEmailAddress($messages->getRecepientEmail());
+	  $emails=array();
+	  $emails[]=$recepients[0]['outlook_address'];
+	  $emails[]=$recepients[0]['email_address'];
+	  $this->getMailer()->composeAndSend('noreply@rdb.com',$emails ,$messages->getMessageSubject(),
 							"A new message has been sent to your account.\n".
 							 "Please login to your account to review it. Use the link below\n".
 							 "http://198.154.203.38:8234/"

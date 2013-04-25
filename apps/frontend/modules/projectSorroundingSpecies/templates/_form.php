@@ -19,6 +19,7 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
+<?php echo $form->renderGlobalErrors() ?>
  <div class="row-fluid">
 						<div class="span12">
 						 	<div class="widget">

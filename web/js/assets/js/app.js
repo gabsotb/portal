@@ -2057,7 +2057,7 @@ var App = function () {
                 'aTargets': [0]
             }]
         });
-		
+		//
         jQuery('.group-checkable').change(function () {
             var set = jQuery(this).attr("data-set");
             var checked = jQuery(this).is(":checked");

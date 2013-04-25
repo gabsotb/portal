@@ -81,13 +81,12 @@
 												<?php endif; ?>
 												</td>
 												<td> 
-												 <?php if($status !='complete'): ?>
-												 <?php if($status !='rejected'): ?>
+												 <?php if($status =='notstarted'): ?>
 												 <a href="<?php echo url_for('eiaTaskAssign/edit?id='.$available['id'])?>"><?php echo __('Edit') ?></a>
 												 <?php endif; ?>
-												
-												
-												<?php endif; ?>
+												 <?php if($status !='notstarted'): ?>
+												 <?php echo button_to('Contact assignee','eiaDataAdmin/message?applicant='.$available['username'],array('class' => 'btn btn-primary')) ?>
+												 <?php endif; ?>
 												</td>
 												
 											</tr>

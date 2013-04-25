@@ -22,6 +22,7 @@
   <div class="widget">
      <div class="widget-body">
   <table class="table table-striped table-bordered" id="eia_table2">
+  <?php echo $form->renderGlobalErrors() ?>
   <tbody>
       <div class="control-group">
 			<div class="controls">
@@ -102,26 +103,26 @@
                                      <tbody>
 										<div class="controls">
 										 <tr>
-										 <td><?php echo $form['site_location_developed_area']->render() ?>	</td>
+										 <td><?php echo $form['site_location_developed_area']->renderError() ?><?php echo $form['site_location_developed_area']->render() ?>	</td>
 										 <td><?php echo $form['site_location_developed_area']->renderLabel() ?>	</td>
 										 </tr>
 										 	
 										</div>
 										<div class="controls">
 										<tr>
-										<td><?php echo $form['site_location_undeveloped_area']->render() ?></td>
+										<td><?php echo $form['site_location_undeveloped_area']->renderError() ?><?php echo $form['site_location_undeveloped_area']->render() ?></td>
 										<td><?php echo $form['site_location_undeveloped_area']->renderLabel() ?></td>
 										</tr>
 										 
 										</div>
 										<div class="controls" id="checkbox_other">
 										<tr>
-										<td> <?php echo $form['site_location_other']->render(array('onclick' => 'return ProjectSiteSpecify(eia_project_description_site_location_other_specify)')) ?></td>
+										<td><?php echo $form['site_location_other']->renderError() ?> <?php echo $form['site_location_other']->render(array('onclick' => 'return ProjectSiteSpecify(eia_project_description_site_location_other_specify)')) ?></td>
 										<td><?php echo $form['site_location_other']->renderLabel() ?></td>
 										</tr>
 										<tr>
 										<td><?php echo $form['site_location_other_specify']->renderLabel() ?></td>
-										<td><?php echo $form['site_location_other_specify']->render(array('class' => 'span8 wysihtml5' ,'rows' => '10')) ?></td>
+										<td><?php echo $form['site_location_other_specify']->renderError() ?><?php echo $form['site_location_other_specify']->render(array('class' => 'span8 wysihtml5' ,'rows' => '10')) ?></td>
 										</tr>
 										 
 										 </div>
@@ -140,36 +141,36 @@
                                      <tbody>
 										<div class="controls" id="checkbox_other">
 										<tr>
-										<td><?php echo $form['land_use_residential']->render() ?></td>
+										<td><?php echo $form['land_use_residential']->renderError() ?><?php echo $form['land_use_residential']->render() ?></td>
 										<td><?php echo $form['land_use_residential']->renderLabel() ?></td>
 										</tr>
 										<tr>
-										<td><?php echo $form['land_use_industrial']->render() ?></td>
+										<td><?php echo $form['land_use_industrial']->renderError() ?><?php echo $form['land_use_industrial']->render() ?></td>
 										<td><?php echo $form['land_use_industrial']->renderLabel() ?></td>
 										</tr>
 										 <tr>
-										<td><?php echo $form['land_use_tourism']->render() ?></td>
+										<td><?php echo $form['land_use_tourism']->renderError() ?><?php echo $form['land_use_tourism']->render() ?></td>
 										<td><?php echo $form['land_use_tourism']->renderLabel() ?></td>
 										</tr>
 										<tr>
-										<td><?php echo $form['land_use_commercial']->render() ?></td>
+										<td><?php echo $form['land_use_commercial']->renderError() ?><?php echo $form['land_use_commercial']->render() ?></td>
 										<td><?php echo $form['land_use_commercial']->renderLabel() ?></td>
 										</tr>
 										<tr>
-										<td><?php echo $form['land_use_instituational']->render() ?></td>
+										<td><?php echo $form['land_use_instituational']->renderError() ?><?php echo $form['land_use_instituational']->render() ?></td>
 										<td><?php echo $form['land_use_instituational']->renderLabel() ?></td>
 										</tr>
 										<tr>
-										<td><?php echo $form['land_use_openspace']->render() ?></td>
+										<td><?php echo $form['land_use_openspace']->renderError() ?><?php echo $form['land_use_openspace']->render() ?></td>
 										<td><?php echo $form['land_use_openspace']->renderLabel() ?></td>
 										</tr>
 										<tr>
-										<td><?php echo $form['land_use_other']->render(array('onclick' => 'return LandUseSpecify(eia_project_description_land_use_other_specify)')) ?></td>
+										<td><?php echo $form['land_use_other']->renderError() ?><?php echo $form['land_use_other']->render(array('onclick' => 'return LandUseSpecify(eia_project_description_land_use_other_specify)')) ?></td>
 										<td><?php echo $form['land_use_other']->renderLabel() ?></td>
 										</tr>
 										<tr>
 										<td><?php echo $form['land_use_other_specify']->renderLabel() ?></td>
-										<td><?php echo $form['land_use_other_specify']->render(array('class' => 'span8 wysihtml5' ,'rows' => '10')) ?></td>
+										<td><?php echo $form['land_use_other_specify']->renderError() ?><?php echo $form['land_use_other_specify']->render(array('class' => 'span8 wysihtml5' ,'rows' => '10')) ?></td>
 										</tr>
 										 </div>
 									
@@ -183,7 +184,7 @@
 									<h4>Project Components - List All Project Components Below</h4>						
 								</div>
 								<div class="widget-body">
-								 <?php echo $form['project_components']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
+								 <?php echo $form['project_components']->renderError() ?><?php echo $form['project_components']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
 								</div>
 </div>
 <div class="widget">
@@ -191,7 +192,7 @@
 									<h4>Project Activities  - Activities During all phases(Design, Implementation, Operation, Decommissioning)</h4>						
 								</div>
 								<div class="widget-body">
-								 <?php echo $form['project_activities']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
+								 <?php echo $form['project_activities']->renderError() ?><?php echo $form['project_activities']->render(array('class' => 'span12 wysihtml5' ,'rows' => '10'))?>
 								</div>
 </div>
 <div class="widget">
@@ -205,8 +206,8 @@
 										   </div>
 										   <div class="widget-body">
 										    <h4>What is the estimated daily water requirement for entire project during: </h4>
-                                             <b>Project Implementation?(in cubic meter) </b> &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <?php echo $form['water_demand_during_implementation']->render(array('class' => 'input-small')) ?> <br/>	
-											 <b>Water Demand During operation? (in cubic meter)</b> &nbsp; &nbsp;&nbsp;<?php echo $form['water_demand_during_operation']->render(array('class' => 'input-small')) ?> <br/>	
+                                             <b>Project Implementation?(in cubic meter) </b> &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <?php echo $form['water_demand_during_implementation']->renderError() ?><?php echo $form['water_demand_during_implementation']->render(array('class' => 'input-small')) ?> <br/>	
+											 <b>Water Demand During operation? (in cubic meter)</b> &nbsp; &nbsp;&nbsp;<?php echo $form['water_demand_during_operation']->renderError() ?><?php echo $form['water_demand_during_operation']->render(array('class' => 'input-small')) ?> <br/>	
 											 
 										   </div>
 									   
@@ -217,7 +218,7 @@
 										   </div>
 										   <div class="widget-body">
 										     <h4>Is the project going to connect to an existing public water supply system?</h4>
-                                             	<?php echo $form['public_water_supply']->render(array()) ?>										 
+                                             	<?php echo $form['public_water_supply']->renderError() ?><?php echo $form['public_water_supply']->render(array()) ?>										 
 										   </div>
 									   
 									   </div>
@@ -227,7 +228,7 @@
 										   </div>
 										   <div class="widget-body">
 										     <h4>Is there provision for water treatment?</h4>
-                                             	<?php echo $form['water_treatment']->render(array()) ?>										 
+                                             	<?php echo $form['water_treatment']->renderError() ?><?php echo $form['water_treatment']->render(array()) ?>										 
 										   </div>
 									   
 									   </div>
@@ -241,24 +242,24 @@
                                      <tbody>
 										<div class="controls" id="checkbox_other1">
 										<tr>
-										<td><?php echo $form['sewage_system_modern']->render() ?></td>
+										<td><?php echo $form['sewage_system_modern']->renderError() ?><?php echo $form['sewage_system_modern']->render() ?></td>
 										<td><?php echo $form['sewage_system_modern']->renderLabel() ?></td>
 										</tr>
 										<tr>
-										<td><?php echo $form['sewage_system_ecosan']->render() ?></td>
+										<td><?php echo $form['sewage_system_ecosan']->renderError() ?><?php echo $form['sewage_system_ecosan']->render() ?></td>
 										<td><?php echo $form['sewage_system_ecosan']->renderLabel() ?></td>
 										</tr>
 										<tr>
-										<td><?php echo $form['sewage_system_biogas']->render() ?></td>
+										<td><?php echo $form['sewage_system_biogas']->renderError() ?><?php echo $form['sewage_system_biogas']->render() ?></td>
 										<td><?php echo $form['sewage_system_biogas']->renderLabel() ?></td>
 										</tr>
 										<tr>
-										<td><?php echo $form['sewage_system_other']->render(array('onclick' => 'return SewageSpecify(eia_project_description_sewage_system_other_specify)')) ?></td>
+										<td><?php echo $form['sewage_system_other']->renderError() ?><?php echo $form['sewage_system_other']->render(array('onclick' => 'return SewageSpecify(eia_project_description_sewage_system_other_specify)')) ?></td>
 										<td><?php echo $form['sewage_system_other']->renderLabel() ?></td>
 										</tr>
 										<tr>
 										<td><?php echo $form['sewage_system_other_specify']->renderLabel('Others') ?></td>
-										<td><?php echo $form['sewage_system_other_specify']->render(array('class' => 'span8 wysihtml5' ,'rows' => '10')) ?></td>
+										<td><?php echo $form['sewage_system_other_specify']->renderError() ?><?php echo $form['sewage_system_other_specify']->render(array('class' => 'span8 wysihtml5' ,'rows' => '10')) ?></td>
 										</tr>
 										 </div>
 									
@@ -267,7 +268,7 @@
 									<br/>
 									<p>
 										<?php echo $form['sewage_system_capacity']->renderLabel() ?>
-										<?php echo $form['sewage_system_capacity']->render() ?> </p>
+										<?php echo $form['sewage_system_capacity']->renderError() ?><?php echo $form['sewage_system_capacity']->render() ?> </p>
 																		
 										   </div>
 									   
@@ -284,28 +285,28 @@
                                      <tbody>
 										<div class="controls" id="checkbox_other1">
 										<tr>
-										<td><?php echo $form['power_supply_local_electricity']->render() ?></td>
+										<td><?php echo $form['power_supply_local_electricity']->renderError() ?><?php echo $form['power_supply_local_electricity']->render() ?></td>
 										<td><?php echo $form['power_supply_local_electricity']->renderLabel() ?>
 										    <?php echo $form['power_supply_local_electricity_size']->renderLabel() ?>
-										    <?php echo $form['power_supply_local_electricity_size']->render() ?>
+										    <?php echo $form['power_supply_local_electricity_size']->renderError() ?><?php echo $form['power_supply_local_electricity_size']->render() ?>
 										</td>
 										
 										
 										</tr>
 										<tr>
-										<td><?php echo $form['power_supply_own_generator']->render() ?></td>
+										<td><?php echo $form['power_supply_own_generator']->renderError() ?><?php echo $form['power_supply_own_generator']->render() ?></td>
 										<td><?php echo $form['power_supply_own_generator']->renderLabel() ?>
 										    <?php echo $form['power_supply_own_generator_capacity']->renderLabel() ?>
-										    <?php echo $form['power_supply_own_generator_capacity']->render() ?>
+										    <?php echo $form['power_supply_own_generator_capacity']->renderError() ?><?php echo $form['power_supply_own_generator_capacity']->render() ?>
 										</td>
 										
 										
 										</tr>
 										<tr>
-										<td><?php echo $form['power_supply_other']->render() ?></td>
+										<td><?php echo $form['power_supply_other']->renderError() ?><?php echo $form['power_supply_other']->render() ?></td>
 										<td><?php echo $form['power_supply_other']->renderLabel() ?>
 										   <?php echo $form['power_supply_other_specify']->renderLabel() ?>
-										   <?php echo $form['power_supply_other_specify']->render() ?>
+										   <?php echo $form['power_supply_other_specify']->renderError() ?><?php echo $form['power_supply_other_specify']->render() ?>
 										</td>
 										</tr>
 										
@@ -326,20 +327,20 @@
                                      <tbody>
 										<div class="controls" id="checkbox_other6">
 										<tr>
-										<td><?php echo $form['solid_waste_dumpsite']->render() ?></td>
+										<td><?php echo $form['solid_waste_dumpsite']->renderError() ?><?php echo $form['solid_waste_dumpsite']->render() ?></td>
 										<td><?php echo $form['solid_waste_dumpsite']->renderLabel() ?></td>
 										
 										
 										</tr>
 										<tr>
-										<td><?php echo $form['solid_waste_municipal']->render() ?></td>
+										<td><?php echo $form['solid_waste_municipal']->renderError() ?><?php echo $form['solid_waste_municipal']->render() ?></td>
 										<td><?php echo $form['solid_waste_municipal']->renderLabel() ?></td>
 										</tr>
 										<tr>
-										<td><?php echo $form['solid_waste_others']->render() ?></td>
+										<td><?php echo $form['solid_waste_others']->renderError() ?><?php echo $form['solid_waste_others']->render() ?></td>
 										<td><?php echo $form['solid_waste_others']->renderLabel() ?>
 										<?php echo $form['solid_waste_others_specify']->renderLabel() ?>
-										<?php echo $form['solid_waste_others_specify']->render() ?>
+										<?php echo $form['solid_waste_others_specify']->renderError() ?><?php echo $form['solid_waste_others_specify']->render() ?>
 										</td>
 										</tr>
 																				 </div>
@@ -354,8 +355,8 @@
 								</div>
 								<div class="widget-body">
 								<h4>How many people will be employed by the project?</h4>
-								<b>During the Design/Implementation period: </b> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<?php echo $form['man_power_employment_implementation']->render(array('class' => 'input-small')) ?><br/>
-								<b>During the operation and maintenance period:</b> &nbsp;&nbsp; <?php echo $form['man_power_employment_operation']->render(array('class' => 'input-small')) ?>
+								<b>During the Design/Implementation period: </b> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<?php echo $form['man_power_employment_implementation']->renderError() ?><?php echo $form['man_power_employment_implementation']->render(array('class' => 'input-small')) ?><br/>
+								<b>During the operation and maintenance period:</b> &nbsp;&nbsp; <?php echo $form['man_power_employment_operation']->renderError() ?><?php echo $form['man_power_employment_operation']->render(array('class' => 'input-small')) ?>
 								  
 								</div>
 </div>
@@ -365,7 +366,7 @@
 								</div>
 								<div class="widget-body">
 								<h4>How long will the implementation/construction period take? </h4>
-							    <?php echo $form['implementation_duration']->render(array('class' => 'input-small')) ?> Months
+							    <?php echo $form['implementation_duration']->renderError() ?><?php echo $form['implementation_duration']->render(array('class' => 'input-small')) ?> Months
 								  
 								</div>
 </div>

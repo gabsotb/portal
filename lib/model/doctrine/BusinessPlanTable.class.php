@@ -55,7 +55,7 @@ class BusinessPlanTable extends Doctrine_Table
 	public function getUsers($role)
 	{
 	   $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
-	    SELECT sf_guard_user.email_address,sf_guard_user.username
+	    SELECT sf_guard_user.email_address,sf_guard_user.username,sf_guard_user.outlook_address
 		from sf_guard_user_group left join sf_guard_group on sf_guard_user_group.group_id = sf_guard_group.id
 		left join sf_guard_user on sf_guard_user_group.user_id = sf_guard_user.id
 		 where sf_guard_group.name = '$role'

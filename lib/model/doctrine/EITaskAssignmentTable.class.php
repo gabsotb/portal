@@ -79,4 +79,14 @@ class EITaskAssignmentTable extends Doctrine_Table
 	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select id from  e_i_task_assignment where eiaproject_id = '$eiaproject_id' ");
 	 return $query;
 	}
+	public function getAssignedTasks($status)
+	{
+		$q= $this->createQuery('t')
+		->select('t.id,t.eiaproject_id,t.stage,t.created_by,d.project_reference_number,d.project_title,d.updated_by')
+		->leftJoin('t.EIAProjectDetail d')
+		->where('t.user_assigned = ?',sfContext::getInstance()->getUser()->getGuardUser()->getId())
+		->andWhere('t.work_status = ?',$status);
+		
+		return $q->fetchArray();
+	}
 }

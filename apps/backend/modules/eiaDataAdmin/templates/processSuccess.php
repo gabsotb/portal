@@ -150,7 +150,7 @@
 					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id='.$projectDetail['id'],array('class' => 'btn btn-success')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'level_2' || $projectImpact[0]['impact_level'] == 'level_3'): ?>
-					<?php echo button_to('EI study','eiaDataAdmin/messageEIReport?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary tooltips','data-placement' => 'bottom','data-original-title' => 'Request applicant to proceed with the EI study')) ?></p>
+					<?php echo button_to('EI study','eiaDataAdmin/messageEIReport?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-success tooltips','data-placement' => 'bottom','data-original-title' => 'Request applicant to proceed with the EI study')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
 					<a href="#widget-reject" data-toggle="modal">
@@ -179,7 +179,7 @@
 					<?php echo button_to('Issue Clearence Letter','eiaDataAdmin/clearenceLetter?id='.$projectDetail['id'],array('class' => 'btn btn-success')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'level_2' || $projectImpact[0]['impact_level'] == 'level_3'): ?>
-					<?php echo button_to('EI study','eiaDataAdmin/messageEIReport?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-primary tooltips','data-placement' => 'bottom','data-original-title' => 'Request applicant to proceed with the EI study')) ?></p>
+					<?php echo button_to('EI study','eiaDataAdmin/messageEIReport?applicant='.$projectDetail['updated_by'].'&id='.$projectDetail['id'],array('class' => 'btn btn-success tooltips','data-placement' => 'bottom','data-original-title' => 'Request applicant to proceed with the EI study')) ?></p>
 					<?php endif; ?>
 					<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
 					<a href="#widget-reject" data-toggle="modal">

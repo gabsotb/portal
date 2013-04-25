@@ -126,7 +126,7 @@ class eiaProjectSurroundingActions extends sfActions
 			Doctrine_Core::getTable('EIApplicationStatus')->updateStatus($eia_project_surrounding->getEiaprojectId(),'resubmitted');
 			Doctrine_Core::getTable('EIApplicationStatus')->updateComment($eia_project_surrounding->getEiaprojectId(),'Resubmission assessment');
 			Doctrine_Core::getTable('EITaskAssignment')->updateWorkStatus($eia_project_surrounding->getEiaprojectId(),'resubmitted');
-			Doctrine_Core::getTable('EIAProjectSurrounding')->find($eia_project_surrounding->getId())->setResubmit('done')->save();
+			Doctrine_Core::getTable('EIAProjectSurrounding')->updateResubmit('done',$eia_project_surrounding->getId());
 			$this->getUser()->resetResubmissionForm();
 			$this->redirect('@homepage');
 			}

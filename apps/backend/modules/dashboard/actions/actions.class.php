@@ -66,8 +66,16 @@ class dashboardActions extends sfActions
 	$this->unassigned= Doctrine_Core::getTable('EIApplicationStatus')->getApplicationStatus('submitted');
 	$this->assigning=Doctrine_Core::getTable('EIApplicationStatus')->getApplicationStatus('assigning');
 	$this->assessments=Doctrine_Core::getTable('EITaskAssignment')->getAwaitingApproval();
-	$this->jobAdmin= Doctrine_Core::getTable('EITaskAssignment')->findByUserAssigned($userId);
-	$this->assigned_by=Doctrine_Core::getTable('sfGuardUser')->find($this->jobAdmin[0]['created_by']);
+	$this->taskNew= Doctrine_Core::getTable('EITaskAssignment')->getAssignedTasks('notstarted');
+	$this->taskProcessing= Doctrine_Core::getTable('EITaskAssignment')->getAssignedTasks('started');
+	$this->taskResubmission= Doctrine_Core::getTable('EITaskAssignment')->getAssignedTasks('resubmission');
+	$this->taskResubmitted= Doctrine_Core::getTable('EITaskAssignment')->getAssignedTasks('resubmitted');
+	$this->taskAccess= Doctrine_Core::getTable('EITaskAssignment')->getAssignedTasks('assess');
+	$this->taskAccessed= Doctrine_Core::getTable('EITaskAssignment')->getAssignedTasks('assessed');
+	$this->taskRejected= Doctrine_Core::getTable('EITaskAssignment')->getAssignedTasks('rejected');
+	$this->taskSubmit= Doctrine_Core::getTable('EITaskAssignment')->getAssignedTasks('submit');
+	$this->taskSubmitted= Doctrine_Core::getTable('EITaskAssignment')->getAssignedTasks('submitted');
+	$this->taskComplete= Doctrine_Core::getTable('EITaskAssignment')->getAssignedTasks('complete');
 	$this->siteVisitsReport=Doctrine_Core::getTable('EIASiteVisit')->getSiteVisitReport();
 	$this->siteVisits=Doctrine_Core::getTable('EIASiteVisit')->getSiteVisit();
 	   //////////TOR/////

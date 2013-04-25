@@ -6,7 +6,6 @@
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
   <table>
-           
             <div class="control-group">
 							<div class="controls">
 								<div class="input-prepend">

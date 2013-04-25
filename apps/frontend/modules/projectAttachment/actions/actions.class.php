@@ -134,7 +134,7 @@ class projectAttachmentActions extends sfActions
 				  $notify = new Notifications();
 				  foreach($manager as $v)
 				  {
-				    $manageraddresses  [] = $v['email_address'];
+				    $manageraddresses  [] = $v['outlook_address'];
 					//System Internal Notifications
 					//Messages to All Managers
 			          $msg->sender = "noreply@rdb.com";
@@ -163,7 +163,7 @@ class projectAttachmentActions extends sfActions
 					 //
 				 foreach($supervisors as $v)
 				  {
-				    $eiasupervisorsaddresses  [] = $v['email_address'];
+				    $eiasupervisorsaddresses  [] = $v['outlook_address'];
 					//System Internal Notifications
 					//Messages to All Managers
 			          $msg2->sender = "noreply@rdb.com";

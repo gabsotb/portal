@@ -17,11 +17,19 @@ class EIReportTable extends Doctrine_Table
         return Doctrine_Core::getTable('EIReport');
     }
 	//get eireports submitted by users
-	public function getEIReports()
+	/*public function getEIReports()
 	{
-	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT * from e_i_report");
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT EIReport.*,EIAProjectDetail.project_reference_number, EIAProjectDetail.project_title from EIReport LEFT JOIN EIAProjectDetail on EIReport.eiaproject_id = EIAProjectDetail.id ORDER BY EIReport.id DESC");
 	 //
 	 return $query;
+	}*/
+	public function getEIReports()
+	{
+	 $q = $this->createQuery('r')
+	 ->select('r.*,d.project_reference_number,d.project_title')
+	 ->leftJoin('r.EIAProjectDetail d');
+	 
+	 return $q->fetchArray();
 	}
 	//updates status after a user resubmits successfuly
 	public function updateStatus($project_id)

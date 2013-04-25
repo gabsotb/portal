@@ -8,6 +8,7 @@
  <table class="table table-striped table-bordered" id="eia_table1">
      <tbody>
       <div class="control-group">
+		<?php echo $form->renderGlobalErrors(); ?>
 			<div class="controls">
 				<div class="input-prepend">
 					<?php echo $form['project_title']->renderRow(array('class' => 'span10 popovers' ,'size' => '20', 'data-content' => 'Enter Your Project Title' , 'data-trigger' => 'hover', 'data-original-title' => 'Title of Project')) ?>

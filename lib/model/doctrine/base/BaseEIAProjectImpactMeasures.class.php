@@ -58,7 +58,7 @@
  * @property string $traffic_congestion_remarks
  * @property boolean $crimes_accidents
  * @property boolean $crimes_accidents_safety_rules
- * @property boolean $crime_accidents_remarks
+ * @property string $crime_accidents_remarks
  * @property string $token
  * @property string $resubmit
  * @property EIAProjectDetail $EIAProjectDetail
@@ -116,7 +116,7 @@
  * @method string                   getTrafficCongestionRemarks()                   Returns the current record's "traffic_congestion_remarks" value
  * @method boolean                  getCrimesAccidents()                            Returns the current record's "crimes_accidents" value
  * @method boolean                  getCrimesAccidentsSafetyRules()                 Returns the current record's "crimes_accidents_safety_rules" value
- * @method boolean                  getCrimeAccidentsRemarks()                      Returns the current record's "crime_accidents_remarks" value
+ * @method string                   getCrimeAccidentsRemarks()                      Returns the current record's "crime_accidents_remarks" value
  * @method string                   getToken()                                      Returns the current record's "token" value
  * @method string                   getResubmit()                                   Returns the current record's "resubmit" value
  * @method EIAProjectDetail         getEIAProjectDetail()                           Returns the current record's "EIAProjectDetail" value
@@ -412,9 +412,10 @@ abstract class BaseEIAProjectImpactMeasures extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('crime_accidents_remarks', 'boolean', null, array(
-             'type' => 'boolean',
+        $this->hasColumn('crime_accidents_remarks', 'string', 1000, array(
+             'type' => 'string',
              'notnull' => false,
+             'length' => 1000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

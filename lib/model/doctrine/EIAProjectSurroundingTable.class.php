@@ -56,4 +56,12 @@ class EIAProjectSurroundingTable extends Doctrine_Table
 	 
 	 return $query;
 	}
+	public function updateResubmit($status,$id)
+	{
+		$q=Doctrine_Query::create()
+		->update('EIAProjectSurrounding s')
+		->set('s.resubmit','?',$status)
+		->where('s.eiaproject_id = ?',$id);
+		$q->execute();
+	}
 }
