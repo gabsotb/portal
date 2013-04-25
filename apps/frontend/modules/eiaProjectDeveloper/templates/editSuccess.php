@@ -6,7 +6,7 @@
 			</div>
 			<div class="widget-body">
 				<div class="alert alert-block alert-info fade in">
-					<h4 class="alert-heading"> Please provide below details about the project developer</h4>
+					<h4 class="alert-heading"> Edit project developer details form</h4>
 				</div>
 			<?php include_partial('form', array('form' => $form)) ?>
 			

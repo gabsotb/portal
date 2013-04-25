@@ -858,7 +858,8 @@ $(function () {
 											<button type="button" class="btn btn-block"><?php echo __('More info') ?></button></a>
 											<?php endif; ?>	
 											<?php if($status['application_status'] == 'certificate'): ?>
-											<?php echo button_to('Certificate','/uploads/documents/eiacertificates/certificate.pdf',array('target' => '_blank','class' => 'btn btn-success btn-block')) ?>
+											<?php $reports=Doctrine_Core::getTable('EIReport')->findByEiaprojectId($status['eiaproject_id']); ?>
+											<?php echo button_to('Certificate','eiacertificates/issue?id='.$reports[0]['id'],array('target' => '_blank','class' => 'btn btn-success btn-block')) ?>
 											<?php endif; ?>	
 											<?php if($status['application_status'] == 'letter'): ?>
 											<?php echo button_to('Letter','/uploads/documents/eia_letter/letter.pdf',array('target' => '_blank','class' => 'btn btn-success btn-block')) ?>
@@ -878,7 +879,7 @@ $(function () {
 									//$attachment = null ;
 									foreach($query_status as $q)
 									{
-									 //$value_status = $q['eiaproject_id'];
+									 $eiaproject_id = $q['eiaproject_id'];
 									  $value_status = $q['id'];
 									 $value_status_name = $q['status'];
 									}
@@ -889,7 +890,7 @@ $(function () {
 								<a href="<?php echo url_for('eiReport/edit?id='.$value_status.'&status='.$value_status_name) ?>">
 											<button type="button" class="btn btn-block"><?php echo __('Resubmit Report') ?></button></a>
 								<!-- --------------->			
-									<?php	$query_doc = Doctrine_Core::getTable('EIReportResubmission')->getCommentsDocument( $value_status);	
+									<?php	$query_doc = Doctrine_Core::getTable('EIReportResubmission')->getCommentsDocument( $eiaproject_id);	
 									$attachment = null ;
 									///
 									foreach($query_doc as $doc)

@@ -255,11 +255,12 @@ class eiaDataAdminActions extends sfActions
 	 //$query = Doctrine_Core::getTable('ProjectSummary')->getApplicantDetails($request->getParameter('id'));
 	 $detail=Doctrine_Core::getTable('EIAProjectDetail')->find($request->getParameter('id'));
 	 $developer=Doctrine_Core::getTable('EIAProjectDeveloper')->findByEiaprojectId($request->getParameter('id'));
+	 $developers=Doctrine_Core::getTable('EIAProjectDeveloper')->find($developer[0]['id']);
 	 $applicant=Doctrine_Core::getTable('sfGuardUser')->find($detail->getCreatedBy());
 	 $f_name=$applicant->getFirstName();
 	 $l_name=$applicant->getLastName();
-	 $developer=$developer[0]['developer_name'];
-	 $contact_person=$developer[0]['contact_person'];
+	 $developer=$developers->getDeveloperName();
+		$contact_person=$developers->getContactPerson();
 	 $project_title=$detail->getProjectTitle();
 	 $plot_number=$detail->getProjectPlotNumber();
 	 $cell=$detail->getCell();
@@ -406,8 +407,10 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 			$notify->save();
 			//after sending email, we also need to change the status of this business application. 
 			
-		   $this->redirect('@homepage');
+		   //$this->redirect('@homepage');
 		  // Stop symfony process
+		      $pdf->Output('letter.pdf', 'I'); // output 
+
 		  throw new sfStopException();
 		  
   }

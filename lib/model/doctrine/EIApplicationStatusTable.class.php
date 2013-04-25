@@ -20,7 +20,7 @@ class EIApplicationStatusTable extends Doctrine_Table
 	public function getUserStatus()
 	{
 		$userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
-		$query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT e_i_a_project_detail.project_title,e_i_a_project_detail.id,e_i_application_status.application_status,e_i_application_status.comments,e_i_application_status.percentage FROM e_i_application_status LEFT JOIN e_i_a_project_detail ON e_i_a_project_detail.id = e_i_application_status.eiaproject_id WHERE e_i_a_project_detail.created_by = '$userId' ");
+		$query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT e_i_a_project_detail.project_title,e_i_a_project_detail.id,e_i_application_status.application_status,e_i_application_status.comments,e_i_application_status.percentage,e_i_application_status.eiaproject_id FROM e_i_application_status LEFT JOIN e_i_a_project_detail ON e_i_a_project_detail.id = e_i_application_status.eiaproject_id WHERE e_i_a_project_detail.created_by = '$userId' ");
 		 
 		return $query;
 	}	

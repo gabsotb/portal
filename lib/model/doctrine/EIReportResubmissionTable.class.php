@@ -19,7 +19,7 @@ class EIReportResubmissionTable extends Doctrine_Table
 	//check if this user EIReport submission requires resubmission
 	public function checkResubmissionStatus($user_id)
 	{
-	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select id, status from e_i_report where status = 'awaitingresubmission' ");
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("select id,eiaproject_id, status from e_i_report where status = 'awaitingresubmission' ");
 	 return $query;
 	}
 	//select document from EIReportResubmission with status awaitingresubmission

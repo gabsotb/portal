@@ -2,7 +2,7 @@
 	<div class="span11">
 		<div class="widget">
 			<div class="widget-title">
-				<h4> Environmental Impact Assessment --- Project Surroundings </h4>
+				<h4>Edit Environmental Impact Assessment --- Project Surroundings </h4>
 			</div>
 			<div class="widget-body">
 			<?php include_partial('form', array('form' => $form)) ?>

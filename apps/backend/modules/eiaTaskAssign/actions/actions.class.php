@@ -99,7 +99,7 @@ class eiaTaskAssignActions extends sfActions
 				$receiver = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
 				$namesAdmin=$ei_task_assignment->getSfGuardUser();
 				$nameAdmin=$ei_task_assignment->getSfGuardUser()->getUserName();
-				$adminMail=$ei_task_assignment->getSfGuardUser()->getEmailAddress();
+				$adminMail=$ei_task_assignment->getSfGuardUser()->getOutlookAddress();
 				$project=$ei_task_assignment->getEIAProjectDetail()->getProjectTitle();
 				$investor=$ei_task_assignment->getEIAProjectDetail()->getUpdatedBy();
 				$due=date('D, j M y g:i a',$ei_task_assignment->getDateTimeobject('duedate')->format('U'));
