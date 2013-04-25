@@ -10,7 +10,7 @@
  * @property string $project_objective
  * @property string $project_total_cost
  * @property string $project_working_capital
- * @property integer $total_land_area
+ * @property string $total_land_area
  * @property string $existing_land_use
  * @property boolean $site_location_developed_area
  * @property boolean $site_location_undeveloped_area
@@ -59,7 +59,7 @@
  * @method string                getProjectObjective()                    Returns the current record's "project_objective" value
  * @method string                getProjectTotalCost()                    Returns the current record's "project_total_cost" value
  * @method string                getProjectWorkingCapital()               Returns the current record's "project_working_capital" value
- * @method integer               getTotalLandArea()                       Returns the current record's "total_land_area" value
+ * @method string                getTotalLandArea()                       Returns the current record's "total_land_area" value
  * @method string                getExistingLandUse()                     Returns the current record's "existing_land_use" value
  * @method boolean               getSiteLocationDevelopedArea()           Returns the current record's "site_location_developed_area" value
  * @method boolean               getSiteLocationUndevelopedArea()         Returns the current record's "site_location_undeveloped_area" value
@@ -186,9 +186,10 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('total_land_area', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('total_land_area', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
+             'length' => 255,
              ));
         $this->hasColumn('existing_land_use', 'string', 3000, array(
              'type' => 'string',

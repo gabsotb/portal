@@ -1142,7 +1142,7 @@ class businessplanActions extends sfActions
 				  //
 				  foreach($manager as $v)
 				  {
-				    $manageraddresses  [] = $v['email_address'];
+				    $manageraddresses  [] = $v['outlook_address'];
 					//System Internal Notifications
 					//Messages to All Managers
 			          $msg->sender = "noreply@rdb.com";
@@ -1171,7 +1171,7 @@ class businessplanActions extends sfActions
 					 //
 				 foreach($supervisors as $v)
 				  {
-				    $investsupervisorsaddresses  [] = $v['email_address'];
+				    $investsupervisorsaddresses  [] = $v['outlook_address'];
 					//System Internal Notifications
 					//Messages to All Managers
 			          $msg2->sender = "noreply@rdb.com";

@@ -75,7 +75,7 @@ class investmentresubmitActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
-      $investment_resubmission = $form->save();
+     $investment_resubmission = $form->save();
        //we also remove the variable from session
 	  sfContext::getInstance()->getUser()->getAttributeHolder()->remove('business_id');
 	  //we send message to the manager who assigned this particular task to this data admin and also we notify the client
@@ -105,7 +105,7 @@ class investmentresubmitActions extends sfActions
 	 ///
 	 foreach($data_admin_query as $q)
 	 {
-	  $admin_email = $q['email_address'];
+	  $admin_email = $q['outlook_address'];
 	  $admin_name = $q['username'];
 	 }
 	 //send an email to the Investor
@@ -142,7 +142,7 @@ class investmentresubmitActions extends sfActions
 	  ///
 	  foreach($data_manager_query as $q)
 	  {
-	   $manager_email = $q['email_address'] ;
+	   $manager_email = $q['outlook_address'] ;
 	   $manager_name = $q['username'] ;
 	  }
 	  //

@@ -76,7 +76,7 @@ abstract class BaseEIAProjectDescriptionForm extends BaseFormDoctrine
       'project_objective'                   => new sfValidatorString(array('max_length' => 20000)),
       'project_total_cost'                  => new sfValidatorString(array('max_length' => 255)),
       'project_working_capital'             => new sfValidatorString(array('max_length' => 255)),
-      'total_land_area'                     => new sfValidatorInteger(),
+      'total_land_area'                     => new sfValidatorString(array('max_length' => 255)),
       'existing_land_use'                   => new sfValidatorString(array('max_length' => 3000, 'required' => false)),
       'site_location_developed_area'        => new sfValidatorBoolean(array('required' => false)),
       'site_location_undeveloped_area'      => new sfValidatorBoolean(array('required' => false)),
