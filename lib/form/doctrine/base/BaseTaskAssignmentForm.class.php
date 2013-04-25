@@ -32,7 +32,7 @@ abstract class BaseTaskAssignmentForm extends BaseFormDoctrine
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_assigned'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'))),
       'investmentapp_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
-      'instructions'     => new sfValidatorString(array('max_length' => 1000)),
+      'instructions'     => new sfValidatorString(array('max_length' => 5000)),
       'duedate'          => new sfValidatorDateTime(),
       'work_status'      => new sfValidatorString(array('max_length' => 255)),
       'token'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),

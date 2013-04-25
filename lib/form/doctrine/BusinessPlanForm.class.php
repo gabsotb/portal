@@ -45,6 +45,8 @@ class BusinessPlanForm extends BaseBusinessPlanForm
 	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/investment_docs',
 	   )); 
+	    $this->widgetSchema['exemption_on_machinery_delete'] = new sfWidgetFormInputHidden();
+	   $this->validatorSchema['exemption_on_machinery_delete'] = new sfValidatorPass(); 
 	   /////
 	    $this->widgetSchema['exemption_raw_materials'] = new sfWidgetFormInputFileEditable(array(
 	  # 'label'=>'ShareHolders List',
@@ -58,6 +60,8 @@ class BusinessPlanForm extends BaseBusinessPlanForm
 	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/investment_docs',
 	   )); 
+	    $this->widgetSchema['exemption_raw_materials_delete'] = new sfWidgetFormInputHidden();
+	   $this->validatorSchema['exemption_raw_materials_delete'] = new sfValidatorPass(); 
 	   ///
 	     $this->widgetSchema['land_ownership_document'] = new sfWidgetFormInputFileEditable(array(
 	  # 'label'=>'ShareHolders List',
@@ -71,6 +75,8 @@ class BusinessPlanForm extends BaseBusinessPlanForm
 	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/investment_docs',
 	   ));
+	   $this->widgetSchema['land_ownership_document_delete'] = new sfWidgetFormInputHidden();
+	   $this->validatorSchema['land_ownership_document_delete'] = new sfValidatorPass(); 
 	   ///
 	     $this->widgetSchema['bill_of_quantiy'] = new sfWidgetFormInputFileEditable(array(
 	  # 'label'=>'ShareHolders List',
@@ -84,6 +90,8 @@ class BusinessPlanForm extends BaseBusinessPlanForm
 	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/investment_docs',
 	   ));
+	   $this->widgetSchema['bill_of_quantiy_delete'] = new sfWidgetFormInputHidden();
+	   $this->validatorSchema['bill_of_quantiy_delete'] = new sfValidatorPass(); 
 	   //
 	        $this->widgetSchema['construction_permits'] = new sfWidgetFormInputFileEditable(array(
 	  # 'label'=>'ShareHolders List',
@@ -98,6 +106,8 @@ class BusinessPlanForm extends BaseBusinessPlanForm
 	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/investment_docs',
 	   ));
+	   $this->widgetSchema['drawings_delete'] = new sfWidgetFormInputHidden();
+	   $this->validatorSchema['drawings_delete'] = new sfValidatorPass(); 
 	   //
 	   $this->widgetSchema['drawings'] = new sfWidgetFormInputFileEditable(array(
 	  # 'label'=>'ShareHolders List',
@@ -112,8 +122,10 @@ class BusinessPlanForm extends BaseBusinessPlanForm
 	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/investment_docs',
 	   ));
+	     $this->widgetSchema['construction_permits_delete'] = new sfWidgetFormInputHidden();
+	   $this->validatorSchema['construction_permits_delete'] = new sfValidatorPass(); 
 	   //
-	    $this->validatorSchema['file_delete'] = new sfValidatorPass();
+	   // $this->validatorSchema['file_delete'] = new sfValidatorPass();
 		//Input choice
 		$this->widgetSchema['investment_allowances'] = new sfWidgetFormChoice(array(
 		#  'label' => 'Category',

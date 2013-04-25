@@ -540,9 +540,9 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><?php echo $species->getBirdsAnimals() ?></td>
-						<td><?php echo $species->getTreesVegetation() ?></td>
-						<td><?php echo $species->getFisheries() ?></td>
+						<td><?php echo html_entity_decode($species->getBirdsAnimals()) ?></td>
+						<td><?php echo html_entity_decode($species->getTreesVegetation()) ?></td>
+						<td><?php echo html_entity_decode($species->getFisheries()) ?></td>
 					</tr>
 				</tbody>
 				</table>

@@ -25,5 +25,7 @@ class EIASiteVisitReportForm extends BaseEIASiteVisitReportForm
 	   'required' => false,
 	   'path' =>sfConfig::get('sf_upload_dir').'/documents/eia_documents/tor',
 	   ));
+	    $this->widgetSchema['tor_delete'] = new sfWidgetFormInputHidden();
+	   $this->validatorSchema['tor_delete'] = new sfValidatorPass(); 
   }
 }

@@ -8,8 +8,8 @@
  * @property integer $eiaproject_id
  * @property string $project_nature
  * @property string $project_objective
- * @property integer $project_total_cost
- * @property integer $project_working_capital
+ * @property string $project_total_cost
+ * @property string $project_working_capital
  * @property integer $total_land_area
  * @property string $existing_land_use
  * @property boolean $site_location_developed_area
@@ -57,8 +57,8 @@
  * @method integer               getEiaprojectId()                        Returns the current record's "eiaproject_id" value
  * @method string                getProjectNature()                       Returns the current record's "project_nature" value
  * @method string                getProjectObjective()                    Returns the current record's "project_objective" value
- * @method integer               getProjectTotalCost()                    Returns the current record's "project_total_cost" value
- * @method integer               getProjectWorkingCapital()               Returns the current record's "project_working_capital" value
+ * @method string                getProjectTotalCost()                    Returns the current record's "project_total_cost" value
+ * @method string                getProjectWorkingCapital()               Returns the current record's "project_working_capital" value
  * @method integer               getTotalLandArea()                       Returns the current record's "total_land_area" value
  * @method string                getExistingLandUse()                     Returns the current record's "existing_land_use" value
  * @method boolean               getSiteLocationDevelopedArea()           Returns the current record's "site_location_developed_area" value
@@ -171,27 +171,29 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('project_objective', 'string', 1000, array(
+        $this->hasColumn('project_objective', 'string', 20000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 1000,
+             'length' => 20000,
              ));
-        $this->hasColumn('project_total_cost', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('project_total_cost', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
+             'length' => 255,
              ));
-        $this->hasColumn('project_working_capital', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('project_working_capital', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
+             'length' => 255,
              ));
         $this->hasColumn('total_land_area', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('existing_land_use', 'string', 255, array(
+        $this->hasColumn('existing_land_use', 'string', 3000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 3000,
              ));
         $this->hasColumn('site_location_developed_area', 'boolean', null, array(
              'type' => 'boolean',
@@ -205,10 +207,10 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('site_location_other_specify', 'string', 400, array(
+        $this->hasColumn('site_location_other_specify', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 400,
+             'length' => 2000,
              ));
         $this->hasColumn('land_use_residential', 'boolean', null, array(
              'type' => 'boolean',
@@ -238,20 +240,20 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('land_use_other_specify', 'string', 1000, array(
+        $this->hasColumn('land_use_other_specify', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
-        $this->hasColumn('project_components', 'string', 1000, array(
+        $this->hasColumn('project_components', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
-        $this->hasColumn('project_activities', 'string', 1000, array(
+        $this->hasColumn('project_activities', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('water_demand_during_implementation', 'integer', null, array(
              'type' => 'integer',
@@ -289,10 +291,10 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('sewage_system_other_specify', 'string', 400, array(
+        $this->hasColumn('sewage_system_other_specify', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 400,
+             'length' => 2000,
              ));
         $this->hasColumn('sewage_system_capacity', 'integer', null, array(
              'type' => 'integer',
@@ -318,10 +320,10 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('power_supply_other_specify', 'string', 400, array(
+        $this->hasColumn('power_supply_other_specify', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 400,
+             'length' => 2000,
              ));
         $this->hasColumn('solid_waste_dumpsite', 'boolean', null, array(
              'type' => 'boolean',
@@ -335,10 +337,10 @@ abstract class BaseEIAProjectDescription extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('solid_waste_others_specify', 'string', 1000, array(
+        $this->hasColumn('solid_waste_others_specify', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('man_power_employment_implementation', 'integer', null, array(
              'type' => 'integer',

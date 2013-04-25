@@ -50,10 +50,10 @@ abstract class BaseTaskAssignment extends sfDoctrineRecord
              'notnull' => true,
              'unique' => true,
              ));
-        $this->hasColumn('instructions', 'string', 1000, array(
+        $this->hasColumn('instructions', 'string', 5000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 1000,
+             'length' => 5000,
              ));
         $this->hasColumn('duedate', 'timestamp', null, array(
              'type' => 'timestamp',

@@ -50,10 +50,10 @@ abstract class BaseEIASiteVisit extends sfDoctrineRecord
              'type' => 'date',
              'notnull' => true,
              ));
-        $this->hasColumn('remarks', 'string', 255, array(
+        $this->hasColumn('remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('visited', 'boolean', null, array(
              'type' => 'boolean',

@@ -26,20 +26,38 @@
 									<table class="table table-striped table-bordered" id="sample_7">
 										<thead>
 											<tr>
-												<th>No</th>
-												<th>Birds and Other Wildlife</th>
-												<th>Trees and Other Important Vegetation</th>
-												<th>Fisheries Resources</th>
-												
+												<th><?php echo __('Birds and Other Wildlife') ?></th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td>1</td>
-												<td><div class="input-prepend"><?php echo $form['birds_animals']->render() ?></div></td>
-												<td><div class="input-prepend"><?php echo $form['trees_vegetation']->render() ?></div></td>
-												<td><div class="input-prepend"><?php echo $form['fisheries']->render() ?></div></td>
-												
+												<td><?php echo $form['birds_animals']->render(array('class' => 'span12 wysihtml5' ,'rows' => '5')) ?></td>
+											</tr>
+										</tbody>
+									</table> <br/>
+									<table class="table table-striped table-bordered" id="sample_8">
+										<thead>
+											<tr>
+												<th><?php echo __('Trees and Other Important Vegetation') ?></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><?php echo $form['trees_vegetation']->render(array('class' => 'span12 wysihtml5' ,'rows' => '5')) ?></td>
+											</tr>
+											
+											
+										</tbody>
+									</table>
+									<table class="table table-striped table-bordered" id="sample_8">
+										<thead>
+											<tr>
+												<th><?php echo __('Fisheries Resources') ?></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><?php echo $form['fisheries']->render(array('class' => 'span12 wysihtml5' ,'rows' => '5')) ?></td>
 											</tr>
 											
 											

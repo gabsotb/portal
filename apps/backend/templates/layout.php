@@ -76,6 +76,12 @@
 							    $no = $count['COUNT(notifications.message)'];
 							   }
 							   echo $no;
+							   
+							   
+							   
+							   
+							   
+							   
 							  ?>
 							
 							
@@ -139,7 +145,22 @@
 									<span class="time"><?php echo $messages['created_at'] ?></span>
 									</span>
 									<span class="message">
-									<?php echo $messages['message'] ?>
+									<?php 
+									//number of characters displayed
+									// echo 
+									$string = strip_tags($messages['message']);
+
+										if (strlen($string) > 50) {
+
+											// truncate string
+											$stringCut = substr($string, 0, 50);
+
+											// make sure it ends in a word so assassinate doesn't become ass...
+											$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...........'; 
+										}
+										echo html_entity_decode($string);
+									
+									 ?>
 									
 									</span>  
 									</a>

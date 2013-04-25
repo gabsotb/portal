@@ -104,19 +104,19 @@ abstract class BaseEIAProjectSocialEconomic extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('existing_settlements_remark', 'string', 800, array(
+        $this->hasColumn('existing_settlements_remark', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 800,
+             'length' => 2000,
              ));
         $this->hasColumn('average_family_size', 'integer', null, array(
              'type' => 'integer',
              'notnull' => false,
              ));
-        $this->hasColumn('average_family_size_remark', 'string', 800, array(
+        $this->hasColumn('average_family_size_remark', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 800,
+             'length' => 2000,
              ));
         $this->hasColumn('livelihood_farming', 'boolean', null, array(
              'type' => 'boolean',
@@ -134,24 +134,24 @@ abstract class BaseEIAProjectSocialEconomic extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('livelihood_others_specify', 'string', 1000, array(
+        $this->hasColumn('livelihood_others_specify', 'string', 3000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 3000,
              ));
-        $this->hasColumn('livelihood_remarks', 'string', 1000, array(
+        $this->hasColumn('livelihood_remarks', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('local_organization', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('local_organization_description', 'string', 1000, array(
+        $this->hasColumn('local_organization_description', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('social_infrastructures', 'boolean', null, array(
              'type' => 'boolean',
@@ -189,10 +189,10 @@ abstract class BaseEIAProjectSocialEconomic extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('social_others_specify', 'string', 1000, array(
+        $this->hasColumn('social_others_specify', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 1000,
+             'length' => 2000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

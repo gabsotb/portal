@@ -150,19 +150,19 @@ abstract class BaseEIAProjectSurrounding extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('soil_erosion_others_specify', 'string', 255, array(
+        $this->hasColumn('soil_erosion_others_specify', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('existing_water_body', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('existing_water_body_remark', 'string', 255, array(
+        $this->hasColumn('existing_water_body_remark', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('access_road', 'boolean', null, array(
              'type' => 'boolean',
@@ -172,28 +172,28 @@ abstract class BaseEIAProjectSurrounding extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => false,
              ));
-        $this->hasColumn('access_road_type', 'string', 255, array(
+        $this->hasColumn('access_road_type', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('site_conform_approval', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('site_conform_remark', 'string', 255, array(
+        $this->hasColumn('site_conform_remark', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('site_existing_structure', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('site_existing_remark', 'string', 255, array(
+        $this->hasColumn('site_existing_remark', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('land_use_agriculture', 'boolean', null, array(
              'type' => 'boolean',
@@ -215,37 +215,37 @@ abstract class BaseEIAProjectSurrounding extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('land_use_other_specify', 'string', 255, array(
+        $this->hasColumn('land_use_other_specify', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('existing_trees', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('existing_trees_remark', 'string', 255, array(
+        $this->hasColumn('existing_trees_remark', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('wildlife_existing', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('wildlife_existing_remark', 'string', 255, array(
+        $this->hasColumn('wildlife_existing_remark', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('fishery_existing', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('fishery_existing_remark', 'string', 255, array(
+        $this->hasColumn('fishery_existing_remark', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('watershed_existing', 'boolean', null, array(
              'type' => 'boolean',
@@ -259,10 +259,10 @@ abstract class BaseEIAProjectSurrounding extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              ));
-        $this->hasColumn('watershed_within_name', 'string', 255, array(
+        $this->hasColumn('watershed_within_name', 'string', 2000, array(
              'type' => 'string',
              'notnull' => false,
-             'length' => 255,
+             'length' => 2000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

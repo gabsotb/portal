@@ -43,10 +43,10 @@ abstract class BaseEIApplicationCertificatePermission extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('message', 'string', 255, array(
+        $this->hasColumn('message', 'string', 5000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 255,
+             'length' => 5000,
              ));
         $this->hasColumn('eireport_id', 'integer', null, array(
              'type' => 'integer',

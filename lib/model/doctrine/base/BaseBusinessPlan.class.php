@@ -61,10 +61,10 @@ abstract class BaseBusinessPlan extends sfDoctrineRecord
              'notnull' => true,
              'unique' => true,
              ));
-        $this->hasColumn('project_brief', 'string', 4000, array(
+        $this->hasColumn('project_brief', 'string', 20000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 4000,
+             'length' => 20000,
              ));
         $this->hasColumn('exemption_on_machinery', 'string', 255, array(
              'type' => 'string',

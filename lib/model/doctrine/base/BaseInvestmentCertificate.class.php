@@ -7,15 +7,18 @@
  * 
  * @property string $serial_number
  * @property integer $business_id
+ * @property boolean $active
  * @property string $token
  * @property InvestmentApplication $InvestmentApplication
  * 
  * @method string                getSerialNumber()          Returns the current record's "serial_number" value
  * @method integer               getBusinessId()            Returns the current record's "business_id" value
+ * @method boolean               getActive()                Returns the current record's "active" value
  * @method string                getToken()                 Returns the current record's "token" value
  * @method InvestmentApplication getInvestmentApplication() Returns the current record's "InvestmentApplication" value
  * @method InvestmentCertificate setSerialNumber()          Sets the current record's "serial_number" value
  * @method InvestmentCertificate setBusinessId()            Sets the current record's "business_id" value
+ * @method InvestmentCertificate setActive()                Sets the current record's "active" value
  * @method InvestmentCertificate setToken()                 Sets the current record's "token" value
  * @method InvestmentCertificate setInvestmentApplication() Sets the current record's "InvestmentApplication" value
  * 
@@ -39,6 +42,10 @@ abstract class BaseInvestmentCertificate extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              'unique' => true,
+             ));
+        $this->hasColumn('active', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => false,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

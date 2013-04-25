@@ -30,7 +30,7 @@ abstract class BaseEIReportResubmissionForm extends BaseFormDoctrine
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'eiaproject_id' => new sfValidatorInteger(),
       'status'        => new sfValidatorString(array('max_length' => 255)),
-      'comments'      => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
+      'comments'      => new sfValidatorString(array('max_length' => 2000, 'required' => false)),
       'commets_doc'   => new sfValidatorString(array('max_length' => 255)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),

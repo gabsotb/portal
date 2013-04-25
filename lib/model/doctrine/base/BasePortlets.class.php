@@ -29,20 +29,20 @@ abstract class BasePortlets extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('portlets');
-        $this->hasColumn('investment_certificate', 'string', 7000, array(
+        $this->hasColumn('investment_certificate', 'string', 20000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 7000,
+             'length' => 20000,
              ));
-        $this->hasColumn('eia_certificate', 'string', 7000, array(
+        $this->hasColumn('eia_certificate', 'string', 20000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 7000,
+             'length' => 20000,
              ));
-        $this->hasColumn('tax_exemptions', 'string', 7000, array(
+        $this->hasColumn('tax_exemptions', 'string', 20000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 7000,
+             'length' => 20000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

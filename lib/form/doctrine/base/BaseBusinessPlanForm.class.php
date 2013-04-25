@@ -37,7 +37,7 @@ abstract class BaseBusinessPlanForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                      => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'investment_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('InvestmentApplication'))),
-      'project_brief'           => new sfValidatorString(array('max_length' => 4000)),
+      'project_brief'           => new sfValidatorString(array('max_length' => 20000)),
       'exemption_on_machinery'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'exemption_raw_materials' => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
       'land_ownership_document' => new sfValidatorString(array('max_length' => 255, 'required' => false)),

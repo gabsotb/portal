@@ -34,7 +34,7 @@ abstract class BaseInvestmentRequestsForm extends BaseFormDoctrine
       'request_type'     => new sfValidatorString(array('max_length' => 255)),
       'status'           => new sfValidatorString(array('max_length' => 255)),
       'reference_number' => new sfValidatorString(array('max_length' => 255)),
-      'comments'         => new sfValidatorString(array('max_length' => 1000)),
+      'comments'         => new sfValidatorString(array('max_length' => 4000)),
       'token'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),

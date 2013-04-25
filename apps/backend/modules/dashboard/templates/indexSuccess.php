@@ -1280,15 +1280,13 @@ $(function () {
 													</tr>
 												</thead>
 												<tbody>
-													<?php foreach($job as $j): ?>
 													<tr>
-														<td class="highlight"><?php echo $j->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
-														<td><?php echo $j->getEIAProjectDetail()->getProjectTitle() ?> </td>
+														<td class="highlight"><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
+														<td><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?> </td>
 														<td><?php echo $assigned_by->getLastName() ?></td>
-														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$j->getId()) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
+														<td> <a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><button class="btn btn-primary"><i class="icon-circle-blank"></i> Process</button></a></td>
 											
 													</tr>
-													<?php endforeach; ?>
 												</tbody>
 											</table>
 											</div>
@@ -1457,14 +1455,14 @@ $(function () {
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
-										<?php if($job->getWorkStatus() == 'submitted'): ?>
-										<h4>Applications report submitted</h4>
+										<?php if($job->getWorkStatus() == 'submitted'): ?> <!-- submitted -->
+										<h4><?php echo __('Applications report submitted') ?></h4>
 											<div class="well">
-											<table class="table table-striped table-hover" >
+											<table class="table table-striped table-bordered" id="tasks_monitor2">
 												<thead>
 													<tr>
-														<th>Reference No.</th>
-														<th>Project Title</th>
+														<th><?php echo __('Reference No.')?></th>
+														<th><?php echo __('Project Title')?></th>
 													</tr>
 												</thead>
 												<tbody>
@@ -1479,20 +1477,22 @@ $(function () {
 										<?php endif; ?>
 									</div>
 									<div class="row-fluid"> 
-										<?php if($job->getWorkStatus() == 'complete'): ?>
-											<h4>Applications Completed</h4>
+										<?php if($job->getWorkStatus() == 'complete'): ?> <!-- complete -->
+											<h4><?php echo __('Applications Completed')?></h4>
 											<div class="well">
-											<table class="table table-striped table-hover" >
+											<table class="table table-striped table-bordered" id="tasks_monitor">
 												<thead>
 													<tr>
-														<th>Reference No.</th>
-														<th>Project Title</th>
+														<th><?php echo __('Reference No.')?></th>
+														<th><?php echo __('Project Title')?></th>
+														<th><?php echo __('EIA Certificate')?></th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td><?php echo $job->getEIAProjectDetail()->getProjectReferenceNumber() ?></td>
 														<td><a href="<?php echo url_for('eiaDataAdmin/show?id='.$job->getId()) ?>"><?php echo $job->getEIAProjectDetail()->getProjectTitle() ?></a> </td>
+														<td><a href="#">Certificate</a> </td>
 											
 													</tr>
 												</tbody>
@@ -1605,7 +1605,7 @@ $(function () {
 						</div>
 					</div>
 					<!-- Section For EIReports submitted by users -->
-					<?php if(count($eireports) != 0 && $eireports[0]['status'] != "done"): ?>
+					<?php if(count($eireports) != 0 ): ?>
 					<div class="row-fluid">
 					 
 					   <div class="11">
@@ -1618,7 +1618,6 @@ $(function () {
 										<button class="close" data-dismiss="alert">×</button>
 										<strong><?php echo __('Information!')?> </strong> <?php echo __('Download Below Documents to view and analyse. These are the EIReports as you requested from the applicant(s).') ?>
 								</div>
-								   <?php foreach($eireports as $report): ?>
 								      <table class="table table-striped table-bordered" id="tasks_monitor">
 										<thead>
 											<tr>
@@ -1631,6 +1630,7 @@ $(function () {
 											</tr>
 										</thead>
 										<tbody>
+								   <?php foreach($eireports as $report): ?>
 											<tr class="odd gradeX">
 												<td class="highlight">
 													<?php 
@@ -1683,11 +1683,10 @@ $(function () {
 												 <?php endif; ?>
 												</td>
 											</tr>
-											
+								   <?php endforeach; ?>
 										
 										</tbody>
 									</table>
-								   <?php endforeach; ?>
 								     <div id="widget-resubmit" class="modal hide">
 										<div class="modal-header">
 											<button data-dismiss="modal" class="close" type="button">×</button>

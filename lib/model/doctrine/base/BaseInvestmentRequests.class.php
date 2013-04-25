@@ -56,10 +56,10 @@ abstract class BaseInvestmentRequests extends sfDoctrineRecord
              'unique' => true,
              'length' => 255,
              ));
-        $this->hasColumn('comments', 'string', 1000, array(
+        $this->hasColumn('comments', 'string', 4000, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 1000,
+             'length' => 4000,
              ));
         $this->hasColumn('token', 'string', 255, array(
              'type' => 'string',

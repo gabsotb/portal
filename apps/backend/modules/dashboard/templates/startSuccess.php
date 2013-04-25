@@ -164,7 +164,7 @@
 										      <div class="widget-body">
 												<div class="alert alert-block alert-info">
 												<p>
-												<?php echo $project_brief; ?> 
+												<?php echo html_entity_decode($project_brief); ?> 
 												</p>
 												</div>
 												

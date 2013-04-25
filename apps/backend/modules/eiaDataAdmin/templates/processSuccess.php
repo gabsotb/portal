@@ -2,18 +2,18 @@
 	<div class="span4 sortable ui-sortable">
 		<div class="widget">
 			<div class="widget-title">
-				<h4><i class="icon-reorder"></i>Project Details</h4>
+				<h4><i class="icon-reorder"></i><?php echo __('Project Details') ?></h4>
 			</div>
 			<div class="widget-body">
 				<div class="slimScrollDiv">
 				<div class="scroller" data-height="200px">
-				<p><b>Project title:</b>&nbsp;&nbsp;<?php echo $projectDetail['project_title'] ?></p>
-				<p><b>Plot number:</b>&nbsp;&nbsp;<?php echo $projectDetail['project_plot_number'] ?></p>
-				<p><b>Village:</b>&nbsp;&nbsp;<?php echo $projectDetail['village'] ?></p>
-				<p><b>Cell:</b>&nbsp;&nbsp;<?php echo $projectDetail['cell'] ?></p>
-				<p><b>Sector:</b>&nbsp;&nbsp;<?php echo strtoupper($projectDetail['sector']) ?></p>
-				<p><b>District:</b>&nbsp;&nbsp;<?php echo strtoupper($projectDetail['district']) ?></p>
-				<p><b>Province:</b>&nbsp;&nbsp;<?php echo strtoupper(str_replace("_"," ",$projectDetail['province'])) ?></p>
+				<p><b><?php echo __('Project title')?>:</b>&nbsp;&nbsp;<?php echo $projectDetail['project_title'] ?></p>
+				<p><b><?php echo __('Plot number') ?>:</b>&nbsp;&nbsp;<?php echo $projectDetail['project_plot_number'] ?></p>
+				<p><b><?php echo __('Village')?>:</b>&nbsp;&nbsp;<?php echo $projectDetail['village'] ?></p>
+				<p><b><?php echo __('Cell') ?>:</b>&nbsp;&nbsp;<?php echo $projectDetail['cell'] ?></p>
+				<p><b><?php echo __('Sector') ?>:</b>&nbsp;&nbsp;<?php echo strtoupper($projectDetail['sector']) ?></p>
+				<p><b><?php echo __('District') ?>:</b>&nbsp;&nbsp;<?php echo strtoupper($projectDetail['district']) ?></p>
+				<p><b><?php echo __('Province') ?>:</b>&nbsp;&nbsp;<?php echo strtoupper(str_replace("_"," ",$projectDetail['province'])) ?></p>
 				</div>
 				<div class="slimScrollBar ui-draggable"></div>
 				<div class="slimScrollRail"></div>
@@ -24,17 +24,17 @@
 	<div class="span4 sortable ui-sortable">
 		<div class="widget">
 			<div class="widget-title">
-				<h4><i class="icon-reorder"></i>Project Developer</h4>
+				<h4><i class="icon-reorder"></i><?php echo __('Project Developer') ?></h4>
 			</div>
 			<div class="widget-body">
 				<div class="slimScrollDiv">
 				<div class="scroller" data-height="200px">
-				<p><b>Developer name:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['developer_name'] ?></p>
-				<p><b>Contact person:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['contact_person'] ?></p>
-				<p><b>Address:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['address'] ?></p>
-				<p><b>Telephone:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['telephone'] ?></p>
-				<p><b>mobile_phone:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['mobile_phone'] ?></p>
-				<p><b>Email address:</b>&nbsp;&nbsp;<?php echo mail_to($projectDeveloper[0]['email_address'],'Email Developer',array('class' => 'btn')) ?></p>
+				<p><b><?php echo __('Developer name') ?>:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['developer_name'] ?></p>
+				<p><b><?php echo __('Contact person')?>:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['contact_person'] ?></p>
+				<p><b><?php echo __('Address') ?>:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['address'] ?></p>
+				<p><b><?php echo __('Telephone') ?>:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['telephone'] ?></p>
+				<p><b><?php echo __('Mobile_phone')?>:</b>&nbsp;&nbsp;<?php echo $projectDeveloper[0]['mobile_phone'] ?></p>
+				<p><b><?php echo __('Email address')?>:</b>&nbsp;&nbsp;<?php echo mail_to($projectDeveloper[0]['email_address'],'Email Developer',array('class' => 'btn')) ?></p>
 				<!--p><b>Social media account:</b>&nbsp;&nbsp;<?php //echo link_to($projectDeveloper[0]['social_media_account'],$projectDeveloper[0]['communication_mode'].'.com/'.$projectDeveloper[0]['social_media_account'],array('absolute' => true)) ?></p-->
 				</div>
 				<div class="slimScrollBar ui-draggable"></div>
@@ -46,13 +46,13 @@
 	<div class="span4 sortable ui-sortable">
 		<div class="widget">
 			<div class="widget-title">
-				<h4><i class="icon-reorder"></i>Project Developer</h4>
+				<h4><i class="icon-reorder"></i><?php echo __('Project Nature and Description')?></h4>
 			</div>
 			<div class="widget-body">
 				<div class="slimScrollDiv">
 				<div class="scroller" data-height="200px">
-				<p><b>Project nature:</b>&nbsp;&nbsp;<?php echo strtoupper(str_replace("_"," ",$projectDescription[0]['project_nature'])) ?></p>
-				<p><b>Project objective:</b>&nbsp;&nbsp;<?php echo html_entity_decode($projectDescription[0]['project_objective']) ?></p>
+				<p><b><?php echo __('Project nature')?>:</b>&nbsp;&nbsp;<?php echo strtoupper(str_replace("_"," ",$projectDescription[0]['project_nature'])) ?></p>
+				<p><b><?php echo __('Project objective')?>:</b>&nbsp;&nbsp;<?php echo html_entity_decode($projectDescription[0]['project_objective']) ?></p>
 				</div>
 				<div class="slimScrollBar ui-draggable"></div>
 				<div class="slimScrollRail"></div>
@@ -64,35 +64,35 @@
 <div class="row-fluid">
 	<div class="widget">
 		<div class="widget-title">
-			<h4><i class="icon-reorder"></i>Recommendations</h4>
+			<h4><i class="icon-reorder"></i><?php echo __('Recommendations')?></h4>
 		</div>
 		<div class="widget-body">
 		<?php if(count($siteVisit) != 0 && $siteVisit[0]['visited'] != 1): ?> 
 			<div class="widget">
 				<div class="widget-title">
-					<h4><i class="reorder"></i>Site Visit</h4>
+					<h4><i class="reorder"></i><?php echo __('Site Visit')?></h4>
 				</div>
 				<div class="widget-body">
 				<div class="alert alert-info">
-				<p><strong>Date:</strong>&nbsp;&nbsp;<?php echo date('D jS F Y',strtotime($siteVisit[0]['site_visit'])) ?></p>
+				<p><strong><?php echo __('Date')?>:</strong>&nbsp;&nbsp;<?php echo date('D jS F Y',strtotime($siteVisit[0]['site_visit'])) ?></p>
 				</div>
 				<?php if(count($assessmentSiteVisit) != 0): ?>
 				<div class="well">
-				<h4>Supervisor verdict</h4>
+				<h4><?php echo __('Supervisor verdict') ?></h4>
 				<?php if($assessmentSiteVisit[0]['verdict']=='accept' ): ?>
 				<div class="alert alert-block alert-success fade in">
-				<h4 class="alert-heading">Request accepted</h4>
-				<p><strong>Remarks</strong></p>
+				<h4 class="alert-heading"><?php echo __('Request accepted')?></h4>
+				<p><strong><?php echo __('Remarks')?></strong></p>
 				<p><?php echo html_entity_decode($assessmentSiteVisit[0]['remarks']) ?></p>
 				<br/>
 				<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
-				<a href="#newSiteDate" role="button" class="btn btn-warning" data-toggle="modal">New site visit</a></p>
+				<a href="#newSiteDate" role="button" class="btn btn-warning" data-toggle="modal"><?php echo __('New site visit')?></a></p>
 				</div>
 				<?php endif; ?>
 				<?php if($assessmentSiteVisit[0]['verdict'] == 'decline'): ?>
 				<div class="alert alert-block alert-error fade in">
-				<h4 class="alert-heading">Request declined</h4>
-				<p><strong>Remarks</strong></p>
+				<h4 class="alert-heading"><?php echo __('Request declined')?></h4>
+				<p><strong><?php echo __('Remarks') ?></strong></p>
 				<p><?php echo html_entity_decode($assessmentSiteVisit[0]['remarks']) ?></p>
 				<br/>
 				<p><?php echo button_to('Reschedule','eiaSiteVisit/edit?id='.$siteVisit[0]['id'].'&act=reschedule',array('class' => 'btn btn-primary')) ?></p>
@@ -100,10 +100,10 @@
 				<?php endif; ?>
 				<?php if($assessmentSiteVisit[0]['verdict'] == 'reviewed'): ?>
 				<div class="alert alert-block alert-info fade in">
-				<h4 class="alert-heading">Request reviewed</h4>
+				<h4 class="alert-heading"><?php echo __('Request reviewed')?></h4>
 				<br/>
 				<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
-				<a href="#newSiteDate" role="button" class="btn btn-warning" data-toggle="modal">New site visit</a></p>
+				<a href="#newSiteDate" role="button" class="btn btn-warning" data-toggle="modal"><?php echo __('New site visit')?></a></p>
 				</div>
 				<?php endif; ?>
 				</div>
@@ -111,8 +111,8 @@
 				<?php if(count($assessmentSiteVisit) == 0): ?>
 				<div class="alert alert-block alert-info fade in">
 					<button type="button" class="close" data-dismiss="alert">x</button>
-					<h4>Awaiting supervisor assessment on selected site visit date</h4>
-					<p>Refresh Page/Come back Later</p>
+					<h4><?php echo __('Awaiting supervisor assessment on selected site visit date')?></h4>
+					<p><?php echo __('Refresh Page/Come back Later')?></p>
 					<!-- some actions -->
 				</div>
 				<?php endif; ?>
@@ -122,26 +122,26 @@
 		<?php if(count($projectImpact) != 0 && count($reports) == 0): ?>
 			<div class="widget">
 				<div class="widget-title">
-					<h4><i class="icon-reorder"></i>Project Impact</h4>
+					<h4><i class="icon-reorder"></i><?php echo __('Project Impact') ?></h4>
 				</div>
 				<div class="widget-body">
 				<?php if($projectImpact[0]['impact_level'] == 'reject'): ?>
 				<div class="alert">
-				<p><strong>Project Recommendation:</strong> Rejection</p>
+				<p><strong><?php echo __('Project Recommendation')?>:</strong> <?php echo __('Rejection')?></p>
 				</div>
 				<?php endif; ?>
 				<?php if($projectImpact[0]['impact_level'] != 'reject'): ?>
 				<div class="alert alert-info">
-				<p>Project Impact:&nbsp;&nbsp;<b><?php echo strtoupper(str_replace("_"," ",$projectImpact[0]['impact_level']))?></b></p>
+				<p><?php echo __('Project Impact')?>:&nbsp;&nbsp;<b><?php echo strtoupper(str_replace("_"," ",$projectImpact[0]['impact_level']))?></b></p>
 				</div>
 				<?php endif; ?>
 				<?php if(count($assessmentImpact) != 0): ?>
 				<div class="well">
-					<h4>Supervisor verdict</h4>
+					<h4><?php echo __('Supervisor verdict')?></h4>
 					<?php if($assessmentImpact[0]['verdict']=='accept' ): ?>
 					<div class="alert alert-block alert-success fade in">
-					<h4 class="alert-heading">Request accepted</h4>
-					<p><strong>Remarks</strong></p>
+					<h4 class="alert-heading"><?php echo __('Request accepted')?></h4>
+					<p><strong><?php echo __('Remarks')?></strong></p>
 					<p><?php echo html_entity_decode($assessmentImpact[0]['remarks']) ?></p>
 					<br/>
 					<!-- some action -->
@@ -160,8 +160,8 @@
 					<?php endif; ?>
 					<?php if($assessmentImpact[0]['verdict'] == 'decline'): ?>
 					<div class="alert alert-block alert-error fade in">
-					<h4 class="alert-heading">Request declined</h4>
-					<p><strong>Remarks</strong></p>
+					<h4 class="alert-heading"><?php echo __('Request declined')?></h4>
+					<p><strong><?php echo __('Remarks')?></strong></p>
 					<p><?php echo html_entity_decode($assessmentImpact[0]['remarks']) ?></p>
 					<br/>
 					<!-- some action -->
@@ -171,7 +171,7 @@
 					<?php endif; ?>
 					<?php if($assessmentImpact[0]['verdict'] == 'reviewed'): ?>
 					<div class="alert alert-block alert-info fade in">
-					<h4 class="alert-heading">Request reviewed</h4>
+					<h4 class="alert-heading"><?php echo __('Request reviewed') ?></h4>
 					<br/>
 					<p><?php echo button_to('Info Applicant','eiaDataAdmin/message?applicant='.$projectDetail['updated_by'],array('class' => 'btn btn-success')) ?>
 					<!-- some action -->
@@ -192,8 +192,8 @@
 				<?php if(count($assessmentImpact) == 0): ?>
 				<div class="alert alert-block alert-info fade in">
 					<button type="button" class="close" data-dismiss="alert">x</button>
-					<h4>Awaiting supervisor assessment on your recommendation</h4>
-					<p>Refresh Page/Come back Later</p>
+					<h4><?php echo __('Awaiting supervisor assessment on your recommendation')?></h4>
+					<p><?php echo __('Refresh Page/Come back Later')?></p>
 					<!-- some actions -->
 				</div>
 				<?php endif; ?>
@@ -203,18 +203,18 @@
 		<?php if(count($reports) != 0): ?>
 		<div class="widget">
 			<div class="widget-title">
-				<h4><i class="icon-reorder"></i>Environmental Impact Report</h4>
+				<h4><i class="icon-reorder"></i><?php echo __('Environmental Impact Report')?></h4>
 			</div>
 			<div class="widget-body">
 				<div class="alert alert-block alert-info">
-				<p><b>View Report</b> &nbsp;<?php echo link_to('Report', '/uploads/documents/eia_documents/user_eireports/'.$reports[0]['pdf_doc'], array('target' => '_blank','class' => 'btn btn-info tooltips', 'data-placement' => 'bottom', 'data-original-title' => 'View EI report')); ?></p>
+				<p><b><?php echo __('View Report')?></b> &nbsp;<?php echo link_to('Report', '/uploads/documents/eia_documents/user_eireports/'.$reports[0]['pdf_doc'], array('target' => '_blank','class' => 'btn btn-info tooltips', 'data-placement' => 'bottom', 'data-original-title' => 'View EI report')); ?></p>
 				</div>
 				<div class="well">
-					<h4>Supervisor verdict</h4>
+					<h4><?php echo __('Supervisor verdict')?></h4>
 					<?php if($assessmentReport[0]['verdict'] == 'accept'): ?>
 					<div class="alert alert-block alert-success fade in">
-					<h4>Request Approved</h4>
-					<p><b>Remarks</b></p>
+					<h4><?php echo __('Request Approved')?></h4>
+					<p><b><?php echo __('Remarks')?></b></p>
 					<p><?php echo html_entity_decode($assessmentReport[0]['remarks']) ?></p>
 					<br/>
 					<p><?php echo button_to('Info lead agencies','messages/new',array('class' => 'btn btn-primary')) ?>
@@ -225,8 +225,8 @@
 					<?php endif; ?>
 					<?php if($assessmentReport[0]['verdict'] == 'decline'): ?>
 					<div class="alert alert-block alert-error fade in">
-					<h4>Request declined</h4>
-					<p><b>Remarks</b></p>
+					<h4><?php echo __('Request declined')?></h4>
+					<p><b><?php echo __('Remarks')?></b></p>
 					<p><?php echo html_entity_decode($assessmentReport[0]['remarks']) ?></p>
 					<br/>
 					<p><a href="#widget-resubmit-report" data-toggle="modal">
@@ -235,7 +235,7 @@
 					<?php endif; ?>
 					<?php if($assessmentReport[0]['verdict'] == 'reviewed'): ?>
 					<div class="alert alert-block alert-info fade in">
-					<h4 class="alert-heading">Request reviewed</h4>
+					<h4 class="alert-heading"><?php echo __('Request reviewed')?></h4>
 					<br/>
 					<p><?php echo button_to('Info lead agencies','messages/new',array('class' => 'btn btn-primary')) ?>
 					<?php echo button_to('Info local governments','messages/new',array('class' => 'btn btn-primary')) ?>
@@ -253,14 +253,14 @@
 <div id="newSiteDate" class="modal hide fade" role="dialog" aria-hidden="true">
 	<div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-	<h3>Site visit change</h3>
+	<h3><?php echo __('Site visit change')?></h3>
 	</div>
 	<div class="modal-body">
-	<p>Request for a new site visit date</p>
-	<p>Proceed if sure of this action</p>
+	<p><?php echo __('Request for a new site visit date')?></p>
+	<p><?php echo __('Proceed if sure of this action')?></p>
 	</div>
 	<div class="modal-footer">
-	<button type="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	<button type="btn" data-dismiss="modal" aria-hidden="true"><?php echo __('Close')?></button>
 	<?php echo button_to('Proceed','eiaSiteVisit/edit?id='.$siteVisit[0]['id'],array('class' => 'btn btn-success')) ?>
 	</div>
 </div>
