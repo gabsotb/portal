@@ -35,7 +35,8 @@
 		<div class="control-group">
 			<div class="controls">
 				<div class="input-prepend">
-					<?php echo $form['name']->renderRow(array('class' => 'span6 popovers' , 'data-trigger' => 'hover', 'data-content' =>  $name, 'data-original-title' => $name2)) ?>
+					<?php echo $form['name']->renderRow(array('class' => 'span6 popovers',
+					'data-trigger' => 'hover', 'data-content' =>  $name, 'data-original-title' => $name2)) ?>
 				</div>
 			</div>
 		</div>
@@ -147,6 +148,8 @@
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php //echo link_to('Delete', 'investmentapp/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
           <?php endif; ?>
+		  <!-- save draft button -->
+		 <!-- <a href="#"><button type="button" class="btn btn-warning"><?php //echo __('Save As Draft') ?></button></a> -->
           <input type="submit" class="btn btn-primary" value="<?php echo __('Submit') ?>" />
 		  <?php //$form->validatorSchema->setOption('allow_extra_fields', true); ?>
         </td>
@@ -160,6 +163,14 @@
 <!-- We want to create Javascript code that can autofill fields from database if a users enters a valid Tin Number -->
 
 <script type="text/javascript">
+<!-- Draft save -->
+ function getName(name)
+ {
+  var n = name;
+  return n;
+  //alert(name);
+ }
+<!-- End Draft save	-->
       function showDetails(str)
 				{
 				  var minlength = 3;
@@ -203,9 +214,25 @@
 				  }
 				xmlhttp.open("GET", "details?id="+id, true);
 				xmlhttp.send(); 
+				///
+			/*   setInterval(function (){
+				var name =   document.getElementById('investment_application_name').value; 
+				var business_sector=$("#investment_application_business_sector").val();
+				//DATA = 'name=' + name + '&business_sector=' + business_sector;
+				$.ajax({
+				type: "POST",
+				url: "draft?name="+name,
+				//data: DATA,
+				cache: false,
+				success: function(){
+				$(".done").show().html("Saved as a draft!");
+				}
+				});
+				});	*/
+				///
 
 }
-	
+
 </script>
 
 <!-- end -->

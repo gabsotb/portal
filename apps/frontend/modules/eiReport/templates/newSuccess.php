@@ -17,7 +17,7 @@
 	                                 //print "value is ".$id; exit; 
 									 
 									 ?>
-								 <?php include_partial('eireport/form', array('form' => $form)) ?>
+								  <?php include_partial('form', array('form' => $form)) ?>
 					         </div>			 
 
 			    </div>

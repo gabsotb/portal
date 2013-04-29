@@ -564,11 +564,15 @@
 					<li class=""><a href="<?php echo url_for('messages/index') ?>"> <i class="icon-envelope-alt"></i> <?php echo __('View') ?> </a></li>
 					</ul>
 				</li>
-				<li class="">
-					<a href="" >
-					<i class="icon-lightbulb"></i> <?php echo __('Help') ?>
-					</a>
-					
+				<li class="has-sub">  
+				<a href="javascript:;" class="">
+					<i class="icon-info-sign"></i> <?php echo __('Help') ?>
+					<span class="arrow"></span>
+				   <ul class="sub">
+				    <li class=""><a href ="#"><i class="icon-download"></i> <?php echo __('User Manaul') ?> </a></li>
+					<li class=""><a href ="#"><i class="icon-user"></i> <?php echo __('EIA Experts') ?> </a></li>
+					<li class=""><a href ="#"><i class="icon-file-alt"></i> <?php echo __('Endangered Animals') ?> </a></li>
+				   </ul>
 				</li>				
 				<li> 
 				<li class=""><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-off"></i> <?php echo __('Logout') ?> </a></li>

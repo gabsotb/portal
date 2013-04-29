@@ -184,7 +184,7 @@
 											<span><?php echo __('PLANNED COMPANY PERFORMANCE') ?></span>
 										</p>
 								    </div>						 
-										<!-- **************************************8 -->
+										<!-- ************************************** -->
 									<div>
 												  <div class="descLayout3">
 													<div class="pad3">

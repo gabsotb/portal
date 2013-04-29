@@ -111,8 +111,8 @@ $(function () {
 							   <b>
 								  <font color="blue">
 									<?php $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
-                                      print 'Welcome, You are logged in as '.$username;
-									?>
+                                      print 'Welcome, You are logged in as '.$username; 
+									?> <!--<a href="#" id="add-sticky">Add Sticky</a> -->
 									</font>
 								</b>
 							</a></li>
@@ -1296,7 +1296,7 @@ $(function () {
 										<?php foreach($mytasks as $tasks):  ?>
 											<tr class="odd gradeX">
 												<td><?php echo $tasks['name'] ?></td>
-												<td><?php echo $tasks['instructions'] ?></td>
+												<td><?php echo html_entity_decode($tasks['instructions']) ?></td>
 												<td><?php echo $tasks['work_status'] ?></td>
 												<td><?php echo $tasks['duedate'] ?></td>
 												<td> <a href="<?php echo url_for('dashboard/start?id='.$tasks['investmentapp_id'].'&token='.$tasks['token']) ?>"><button class="btn btn-small btn-primary"><?php echo __('Start') ?></button></a></td>
@@ -1925,32 +1925,54 @@ $(function () {
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>
   <div class="row-fluid stats-overview-cont">
+                         <?php 
+						    //we will call functions that will return the calculations for users categorized
+							//return total users
+							$total_users = Doctrine_Core::getTable('sfGuardUser')->getTotalUsers();
+							$staff = Doctrine_Core::getTable('sfGuardUser')->getUserWithGroup();
+							$investors = $total_users - $staff ;
+							//get investment officers
+							$investment_admins  = Doctrine_Core::getTable('sfGuardUser')->countUsers('investmentcertadmins');
+							//get eia officers
+							$eia_offices = Doctrine_Core::getTable('sfGuardUser')->countUsers('eiacertadmins');
+							//investment_managers
+							$investment_supervisors = Doctrine_Core::getTable('sfGuardUser')->countUsers('eiacertadmins');
+							$eia_supervisors = Doctrine_Core::getTable('sfGuardUser')->countUsers('eiasupervisors');
+							$managers = Doctrine_Core::getTable('sfGuardUser')->countUsers('departmentadmins');
+						 
+						 ?>
 						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
 							<div class="stats-overview block clearfix">
 								<div class="display stat ok huge">
-									<span class="line-chart">5, 6, 7, 11, 14, 10, 15, 19, 15, 2</span>
-									<div class="percent">66%</div>
+									<span class="line-chart"></span>
+									<div class="percent"><?php 
+									 $investor_percent = round($investors/$total_users * 100) ;
+									 echo $investor_percent."%";
+									?></div>
 								</div>
 								<div class="details">
-									<div class="title">Registered Users i.e. Investors</div>
-									<div class="numbers">1360</div>
+									<div class="title"><?php echo __('Registered Users i.e. Investors')?></div>
+									<div class="numbers"><?php echo $investors; ?></div>
 								</div>
 								<div class="progress progress-info">
-									<div class="bar" style="width: 66%"></div>
+									<div class="bar" style="width: <?php 
+									 $investor_percent = round($investors/$total_users * 100) ;
+									 echo $investor_percent."%";
+									?>"></div>
 								</div>
 							</div>
 						</div>
 						<div class="span2 responsive" data-tablet="span4" data-desktop="span2">
 							<div class="stats-overview block clearfix">
 								<div class="display stat good huge">
-									<span class="line-chart">2,6,8,12, 11, 15, 16, 11, 16, 11, 10, 3, 7, 8, 12, 19</span>
-									<div class="percent">16%</div>
+									<span class="line-chart"></span>
+									<div class="percent"><?php echo round($investment_admins/ $total_users * 100)."%"?> </div>
 								</div>
 								<div class="details">
-									<div class="title">Investment Officers Registered</div>
-									<div class="numbers">18000</div>
+									<div class="title"><?php echo __('Investment Officers Registered')?></div>
+									<div class="numbers"><?php echo $investment_admins; ?></div>
 									<div class="progress progress-warning">
-										<div class="bar" style="width: 16%"></div>
+										<div class="bar" style="width: <?php echo round($investment_admins/ $total_users * 100)."%"?>"></div>
 									</div>
 								</div>
 							</div>
@@ -1958,14 +1980,14 @@ $(function () {
 						<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
 							<div class="stats-overview block clearfix">
 								<div class="display stat bad huge">
-									<span class="line-chart">2,6,8,11, 14, 11, 12, 13, 15, 12, 9, 5, 11, 12, 15, 9,3</span>
-									<div class="percent">6%</div>
+									<span class="line-chart"></span>
+									<div class="percent"><?php echo round($eia_offices/ $total_users * 100)."%"?></div>
 								</div>
 								<div class="details">
-									<div class="title">EIA Officers Registered</div>
-									<div class="numbers">509</div>
+									<div class="title"><?php echo __('EIA Officers Registered')?></div>
+									<div class="numbers"><?php echo $eia_offices; ?></div>
 									<div class="progress progress-success">
-										<div class="bar" style="width: 16%"></div>
+										<div class="bar" style="width: <?php echo round($eia_offices/ $total_users * 100)."%"?>"></div>
 									</div>
 								</div>
 							</div>
@@ -1973,14 +1995,14 @@ $(function () {
 						<div class="span2 responsive " data-tablet="span4 fix-margin" data-desktop="span2">
 							<div class="stats-overview block clearfix">
 								<div class="display stat good huge">
-									<span class="bar-chart">1,4,9,12, 10, 11, 12, 15, 12, 11, 9, 12, 15, 19, 14, 13, 15</span>
-									<div class="percent">86%</div>
+									<span class="bar-chart"></span>
+									<div class="percent"><?php echo round($investment_supervisors/ $total_users * 100)."%"?></div>
 								</div>
 								<div class="details">
-									<div class="title">Investment Managers/Supervisors</div>
-									<div class="numbers">1550</div>
+									<div class="title"><?php echo __('Investment Supervisors')?></div>
+									<div class="numbers"><?php echo $investment_supervisors; ?></div>
 									<div class="progress progress-warning">
-										<div class="bar" style="width: 56%"></div>
+										<div class="bar" style="width: <?php echo round($investment_supervisors/ $total_users * 100)."%"?>"></div>
 									</div>
 								</div>
 							</div>
@@ -1988,43 +2010,137 @@ $(function () {
 						<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
 							<div class="stats-overview block clearfix">
 								<div class="display stat ok huge">
-									<span class="line-chart">2,6,8,12, 11, 15, 16, 17, 14, 12, 10, 8, 10, 2, 4, 12, 19</span>
-									<div class="percent">72%</div>
+									<span class="line-chart"></span>
+									<div class="percent"><?php echo round($eia_supervisors/ $total_users * 100)."%"?></div>
 								</div>
 								<div class="details">
-									<div class="title">EIA Managers/Supervisors</div>
-									<div class="numbers">9600</div>
+									<div class="title"><?php echo __('EIA Registered Supervisors') ?></div>
+									<div class="numbers"><?php echo $eia_supervisors ?></div>
 									<div class="progress progress-danger">
-										<div class="bar" style="width: 72%"></div>
+										<div class="bar" style="width: <?php echo round($eia_supervisors/ $total_users * 100)."%"?>"></div>
 									</div>
 								</div>
 							</div>
 						</div>
-						
+						<div class="span2 responsive " data-tablet="span4" data-desktop="span2">
+							<div class="stats-overview block clearfix">
+								<div class="display stat ok huge">
+									<span class="line-chart"></span>
+									<div class="percent"><?php echo round($managers/ $total_users * 100)."%"?></div>
+								</div>
+								<div class="details">
+									<div class="title"><?php echo __('Department Registered Managers') ?></div>
+									<div class="numbers"><?php echo $managers ?></div>
+									<div class="progress progress-danger">
+										<div class="bar" style="width: <?php echo round($managers/ $total_users * 100)."%"?>"></div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 							</div>
 			<div class="row-fluid">
-			    <div class="span7">
+			    <div class="span5">
 				    <div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-cloud-upload"></i>System Database Backup</h4>						
+									<h4><i class="icon-cloud-upload"></i><?php echo __('System Database Backup')?></h4>						
 								</div>
 								<div class="widget-body">
 									 	<div class="alert alert-block alert-success fade in">
-										<h4 class="alert-heading">Backup</h4>
+										<h4 class="alert-heading"><?php echo __('Backup') ?></h4>
 										<p>
-											This will create a backup file.sql which can be used to restore the system database incase of severe failure
+											<?php echo __('This will create a backup file.sql which can be used to restore the system database incase of severe failure') ?>
 										</p>
 										<p>
 											<a class="btn btn-success" href="<?php
                                              echo url_for('dashboard/databaseBackup')
-											?>">Execute Backup</a>
+											?>"><?php echo __('Execute Backup') ?></a>
 										</p>
-									</div>
+									  </div>
+									  
+									  
 								</div>
 							</div>
 				</div>
-			</div>				
+				<div class="span5">
+				    <div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-bell-alt"></i><?php echo __('Notifications')?></h4>						
+								</div>
+								<div class="widget-body">
+									 		  <ul class="item-list scroller padding" data-height="307" data-always-visible="1">
+						  
+						 <?php 
+						  $user = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+						 $notification = Doctrine_Core::getTable('Notifications')->getNotifications($user);?>
+						 <?php if($notification == null):?>
+						  <div class="alert alert-block alert-error fade in">
+										
+										<p>
+											<?php echo __('Sorry, No New Notifications') ?>
+										</p>
+										
+					        </div>
+						 <?php endif; ?>
+						 <?php if($notification != null): ?>
+						 <?php foreach($notification as $notify): ?>
+							   <li>
+									<span class="label label-success"><i class="icon-bell"></i></span>
+									<span><?php echo $notify['message']; ?></span><br/>
+									<span class="small italic"><?php 
+									date_default_timezone_set('UTC');
+									$time = date("H:i:s", strtotime($notify['created_at'])) ;
+									echo "Received at ".$time  ;
+									
+									
+									?></span>
+								</li>
+						<?php endforeach; ?>	
+                         <?php endif; ?> 						
+						  </ul>
+									  
+									  
+								</div>
+							</div>
+				</div>
+				
+			</div>		
+       <div class="row-fluid">	
+	         <div class="span12">
+				    <div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-envelope"></i><?php echo __('System Message Logs - Logs All Messages Sent via this system')?>
+							<a href="#" id="add-sticky">Add Sticky</a>	
+									</h4>						
+								</div>
+								<div class="widget-body">
+									  <table class="table table-striped table-bordered" id="message_logs">
+										<thead>
+											<tr>
+												<th><?php echo __('Sender') ?></th>
+												<th><?php echo __('Recepient') ?></th>
+												<th><?php echo __('Message Content') ?></th>
+												<th><?php echo __('Status') ?></th>
+												<th><?php echo __('Date Sent') ?></th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php foreach($message_logs as $logs): ?>
+										 <tr>
+										  <td><?php echo $logs['message_sender'] ?></td>
+										  <td><?php echo $logs['message_recipient'] ?></td>
+										  <td><?php echo html_entity_decode($logs['message']) ?></td>
+										  <td><font color="red"><?php echo $logs['status'] ?></font></td>
+										  <td><?php echo $logs['created_at'] ?></td>
+										 </tr>
+										 <?php endforeach; ?>
+										</tbody>
+										</table>
+									  
+								</div>
+							</div>
+				</div>
+       </div>	   
 
 <?php endif; ?>		
 <!-- ***************************** --->
@@ -2139,6 +2255,54 @@ $('#js-twitter-feed-ivow').tweets( url, {
   
 });
 </script>
+<script type="text/javascript">
 
+	$(function(){
+
+		// global setting override
+        /*
+		$.extend($.gritter.options, {
+		    class_name: 'gritter-light', // for light notifications (can be added directly to $.gritter.add too)
+		    position: 'bottom-left', // possibilities: bottom-left, bottom-right, top-left, top-right
+			fade_in_speed: 100, // how fast notifications fade in (string or int)
+			fade_out_speed: 100, // how fast the notices fade out
+			time: 3000 // hang on the screen for...
+		});
+        */
+
+		$('#add-sticky').click(function(){
+
+			var unique_id = $.gritter.add({
+				// (string | mandatory) the heading of the notification
+				title: 'Notifications',
+				// (string | mandatory) the text inside the notification
+				text: 'A new Application for Investment Certificate Received',
+				// (string | optional) the image to display on the left
+				image: 'http://s3.amazonaws.com/twitter_production/profile_images/132499022/myface_bigger.jpg',
+				// (bool | optional) if you want it to fade out on its own or just sit there
+				sticky: true,
+				// (int | optional) the time you want it to be alive for before fading out
+				time: '',
+				// (string | optional) the class name you want to apply to that specific message
+				class_name: 'my-sticky-class'
+			});
+
+			// You can have it return a unique id, this can be used to manually remove it later using
+			/*
+			setTimeout(function(){
+
+				$.gritter.remove(unique_id, {
+					fade: true,
+					speed: 'slow'
+				});
+
+			}, 6000)
+			*/
+
+			return false;
+
+		});
+	});
+</script>
 
 <!-- --->

@@ -47,6 +47,15 @@ abstract class BaseNotifications extends sfDoctrineRecord
     {
         parent::setUp();
         $timestampable0 = new Doctrine_Template_Timestampable();
+        $signable0 = new Doctrine_Template_Signable(array(
+             'created:{ name' => 'created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}',
+             'updated' => 
+             array(
+              'name' => 'updated_by',
+              'type' => 'string',
+             ),
+             ));
         $this->actAs($timestampable0);
+        $this->actAs($signable0);
     }
 }

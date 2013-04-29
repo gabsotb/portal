@@ -16,4 +16,12 @@ class MessageLogsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('MessageLogs');
     }
+	//get message logs
+	public function getMessageLog()
+	{
+	 $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("
+	 Select message_sender, message_recipient , message, status, created_at from message_logs order by created_at desc
+	 ");
+	 return $query;
+	}
 }

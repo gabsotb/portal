@@ -21,6 +21,8 @@ abstract class BaseNotificationsForm extends BaseFormDoctrine
       'token'      => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
+      'created_by' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
+      'updated_by' => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
@@ -30,6 +32,8 @@ abstract class BaseNotificationsForm extends BaseFormDoctrine
       'token'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
+      'created_by' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
+      'updated_by' => new sfValidatorString(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('notifications[%s]');

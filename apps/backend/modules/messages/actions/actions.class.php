@@ -18,6 +18,8 @@ class messagesActions extends sfActions
 	  $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
 	  //a user can only see messages sent to him/her
 	  $this->messagess = Doctrine_Core::getTable('Messages')->retrieveAllMessages($username);
+	  ///get messages sent by the current logged user
+	  $this->sent_messages = Doctrine_Core::getTable('Messages')->retrieveSentMessages($username);
   }
 
   public function executeShow(sfWebRequest $request)

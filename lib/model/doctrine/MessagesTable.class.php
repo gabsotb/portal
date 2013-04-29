@@ -33,6 +33,13 @@ class MessagesTable extends Doctrine_Table
 	 ");
 	 return $query;
 	}
+	//we retrieve messages created by this user. this will represent sent messages for us
+	public function retrieveSentMessages($logged_user)
+	{
+	  $query = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc("SELECT messages.id,messages.sender,messages.created_at,messages.message FROM messages WHERE updated_by = '$logged_user'  ORDER BY created_at DESC ");
+	  //
+	  return $query;
+	}
 	//retrieve all message for the logged in user
 	public function retrieveAllMessages($username)
 	{

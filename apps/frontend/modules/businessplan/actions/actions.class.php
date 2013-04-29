@@ -1090,30 +1090,28 @@ class businessplanActions extends sfActions
 	  //new application
 	  if($id == null)
 		 {
-		   //////
-      $business_plan = $form->save();
+		
        try{
+	           $business_plan = $form->save();
      //we send message to the investor informing them of successful application
 	 //get the current logged in user email address
 				  $email = sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
 				  $receiver = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
 				  $message = Swift_Message::newInstance()
-				  ->setFrom('noreply@rdb.com')
+				  ->setFrom('noreply@rdbeportal.rw')
 				  ->setTo($email)
 				  ->setSubject('Application For Investment Certifcate')
 				  ->setBody('We are pleased to inform you that you application for investment certificate has been received. 
-				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window
-				  in your account. Thank you');
+				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window in your account. Thank you');
 				  $this->getMailer()->send($message);
 				 ///we also send a mail to user inbox account of our system
 				  $msg = new Messages();
 				  
 				  //set message content
-				  $sender = "noreply@rdb.com";
+				  $sender = "noreply@rdbeportal.rw";
 				  $receipient = $receiver;
 				  $content = "We are pleased to inform you that you application for investment certificate has been received. 
-				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window
-				  in your account. Thank you" ;
+				  Your documents will be assigned to a staff for further processing. Please monitor the status using the Progress monitor window in your account. Thank you" ;
 				  //
 				  $msg3 = new Messages();
 				  $msg3->sender = $sender;
@@ -1145,7 +1143,7 @@ class businessplanActions extends sfActions
 				    $manageraddresses  [] = $v['outlook_address'];
 					//System Internal Notifications
 					//Messages to All Managers
-			          $msg->sender = "noreply@rdb.com";
+			          $msg->sender = "noreply@rdbeportal.rw";
 					  $msg->recepient = $v['username'];
 					  $msg->message = $managercontent;
 					  $msg->created_at = date('Y-m-d H:i:s');
@@ -1165,7 +1163,7 @@ class businessplanActions extends sfActions
 					  $investsupervisorsaddresses = array() ;
 					  $group = "investmentsupervisors";
 					  $supervisors = Doctrine_Core::getTable('BusinessPlan')->getUsers($group);
-					  $supervisorscontent = "A New application for Investment Certificate has been received.\n".
+					  $supervisorscontent = "A New application for Investment Certificate has been received".
 											 "from '$receipient' Please Assign it to a data administrator";
 					 $supervisorsnotification = "New Application for Investment Certificate";
 					 //
@@ -1188,7 +1186,7 @@ class businessplanActions extends sfActions
 				   $msg2->save();
 				   $notify2->save();
 				  //send mail to managers
-				  $this->getMailer()->composeAndSend('noreply@rdb.com',
+				  $this->getMailer()->composeAndSend('noreply@rdbeportal.rw',
 										$manageraddresses ,
 										'New Application for Investment Registration Certificate ',
 										"A New application for Investment Certificate has been received.\n".
@@ -1197,7 +1195,7 @@ class businessplanActions extends sfActions
 													  ); 
 				  //////////////////////////////////////////
 				  ///send mail to investment registration supervisors
-				  $this->getMailer()->composeAndSend('noreply@rdb.com',
+				  $this->getMailer()->composeAndSend('noreply@rdbeportal.rw',
 										$investsupervisorsaddresses ,
 										'New Application for Investment Registration Certificate ',
 										"A New application for Investment Certificate has been received.\n".
@@ -1206,7 +1204,10 @@ class businessplanActions extends sfActions
 				//  $this->getUser()->getAttributeHolder()->clear(); //clear all set attributes
 	             /////////////////////////////////////////////////
 				 //remove attribute from session
-	  $this->getUser()->getAttributeHolder()->remove('session_business_id');
+	            $this->getUser()->getAttributeHolder()->remove('session_business_id');
+				////we will log these messages sent to the data admin by system
+				
+	  
 	    $this->redirect('investmentapp/index');
 		}
 		catch(Exception $ex)
@@ -1235,7 +1236,7 @@ class businessplanActions extends sfActions
 			  ///send email
 			  $username = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
 			  $email = sfContext::getInstance()->getUser()->getGuardUser()->getEmailAddress();
-			  $this->getMailer()->composeAndSend('noreply@rdb.com',
+			  $this->getMailer()->composeAndSend('noreply@rdbeportal.rw',
 										$admin_email ,
 										'Applicant Edited Documents ',
 										"'$username' has resubmitted his/her application for investment certificate application. Please 
@@ -1244,7 +1245,7 @@ class businessplanActions extends sfActions
 			          $msg = new Messages(); 
 				      $notify = new Notifications(); 
 				  ////notify admin first
-				      $msg->sender = "noreply@rdb.com";
+				      $msg->sender = "noreply@rdbeportal.rw";
 					  $msg->recepient = $admin_name ;
 					  $msg->message = "'$username' has resubmitted his/her application for investment certificate application. Please 
 										login to your account and process it. Link http://198.154.203.38:8234/backend.php ";

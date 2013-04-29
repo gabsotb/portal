@@ -83,7 +83,9 @@ class dashboardActions extends sfActions
 	   //////////////////////////
      //method to retrieve all EIReport submitted by investors for which this EIA data admin is processing
 	 $this->eireports = Doctrine_Core::getTable('EIReport')->getEIReports();
-   	
+	 //get message logs of all messages sent.
+   	$this->message_logs = Doctrine_Core::getTable('MessageLogs')->getMessageLog();
+	///automatic backup of database
   } 
   ///////////////////////////////////////////////////////////////////////////////////////////
   //function for start work

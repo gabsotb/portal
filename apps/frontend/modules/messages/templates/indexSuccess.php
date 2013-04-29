@@ -29,12 +29,12 @@
 								 <div class="widget-body">
 									  <div class="alert alert-block alert-info">
 											
-											<h4 class="alert-heading">Empty!</h4>
+											<h4 class="alert-heading"><?php echo __('Empty!') ?></h4>
 											<p>
-												No New Messages Found
+												<?php echo __('No New Messages Found') ?>
 											</p>
 											<p>
-												<a class="btn btn-danger" href="<?php echo url_for('dashboard/index')?>">Dashboard</a> <a class="btn" href="<?php echo url_for('messages/new')?>">Create</a>
+												<a class="btn btn-danger" href="<?php echo url_for('investmentapp/index')?>"><?php echo __('Dashboard') ?></a> <a class="btn" href="<?php echo url_for('messages/new')?>"><?php echo __('Create') ?></a>
 											</p>
 										</div>
 							   </div>

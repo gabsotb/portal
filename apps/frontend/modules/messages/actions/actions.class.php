@@ -81,7 +81,15 @@ class messagesActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
-      $messages = $form->save();
+       $messages = $form->save();
+	  //we log all messages sent to a user
+	  $messageLog = new MessageLogs();
+	  $messageLog->message_sender = $messages->getSender();
+	  $messageLog->message_recipient = $messages->getRecepient();
+	  $messageLog->message = $messages->getMessage();
+	  $messageLog->status = "delivered";
+      $messageLog->save();
+	  
 	  if($messages->getRecepientEmail() && $messages->getMessage())
 	  {
 	  $recepients=Doctrine_Core::getTable('sfGuardUser')->findByEmailAddress($messages->getRecepientEmail());

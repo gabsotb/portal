@@ -3,7 +3,25 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title><?php include_slot('title', 'RDB - Investor Eportal System - Administration') ?></title>
+	<title>
+	<?php
+							/* $messages = 0 ;
+							 //we call a message that will return the number of messages available for the current logged in user
+							 //am not sure if this is the right way???????
+	                         $username = sfContext::getInstance()->getUser()->getGuardUser()->getUserName();
+	                         $this->countmsgs = Doctrine_Core::getTable('Messages')->countMessages($username);
+							 foreach( $this->countmsgs as $msg)
+								{
+								 $messages  = $msg['COUNT(message)'];
+								}
+								echo $messages; */
+								
+							?>
+	
+	<?php include_slot('title', 'RDB - Investor Eportal System - Administration') ?>
+	
+	 
+	</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -251,7 +269,7 @@
 					<ul class="sub">
 						<li><a href="<?php echo url_for('sfGuardUser/index') ?>"><i class="icon-key"></i> <?php echo __('User Accounts') ?></a> </li>
 						<li><a href="<?php echo url_for('sfGuardGroup/index') ?>"><i class="icon-key"></i> <?php echo __('User Groups') ?></a></li>
-						<li><a href="<?php echo url_for('sfGuardPermission/index') ?>"><i class="icon-key"></i> <?php echo __('Groups Permissions') ?></a></li>
+					<!--	<li><a href="<?php //echo url_for('sfGuardPermission/index') ?>"><i class="icon-key"></i> <?php echo __('Groups Permissions') ?></a></li> -->
 					</ul>
 				</li>
 				   <?php endif; ?>
@@ -303,7 +321,16 @@
 				<!--<li class="">  <a href ="<?php //echo url_for('sfKoreroChannel/index') ?>"><i class="icon-fire"></i> Managers Channel</a> </li>-->
 				<?php endif; ?>
 				<?php if($sf_user->hasCredential(array('assignJob', 'investmentassign', 'eiaassign', 'usermanagement', 'eiacert', 'investmentcert'), false)):?>
-				<li class="">  <a href ="#"><i class="icon-lightbulb"></i> <?php echo __('Help') ?></a> </li>
+				<li class="has-sub">  
+				<a href="javascript:;" class="">
+					<i class="icon-info-sign"></i> <?php echo __('Help') ?>
+					<span class="arrow"></span>
+				   <ul class="sub">
+				    <li class=""><a href ="#"><i class="icon-download"></i> <?php echo __('User Manaul') ?> </a></li>
+					<li class=""><a href ="#"><i class="icon-user"></i> <?php echo __('EIA Experts') ?> </a></li>
+					<li class=""><a href ="#"><i class="icon-file-alt"></i> <?php echo __('Endangered Animals') ?> </a></li>
+				   </ul>
+				</li>
 				<li><a href ="<?php echo url_for('@sf_guard_signout') ?>"><i class="icon-off"></i> <?php echo __('Logout') ?> </a></li>
 				<?php endif; ?>
 			</ul>
@@ -318,33 +345,7 @@
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<!-- BEGIN PAGE CONTAINER-->			
 			<div class="container-fluid">
-			            <div id="styler" class="hidden-phone">
-							<i class="icon-cog"></i>
-							<span class="settings">
-							<span class="text">Style:</span>
-							<span class="colors">
-							<span class="color-default" data-style="default">
-							</span>
-							<span class="color-grey" data-style="grey">
-							</span>
-							<span class="color-navygrey" data-style="navygrey">
-							</span>											
-							<span class="color-red" data-style="red">
-							</span>	
-							</span>
-							<span class="layout">
-							<label class="hidden-phone">
-							<input type="checkbox" class="header" checked value="" />Sticky Header
-							</label><br />
-							<label><input type="checkbox" class="metro" value="" />Metro Style</label>
-							<span class="space5"></span>
-							<a class="btn fancybox-button" data-rel="fancybox-button" title="Conquer Large Desktop Preview" href="assets/img/demo/desktop.png"><i class="icon-eye-open"></i> Screenshots</a>
-							<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Notebook Preview" href="assets/img/demo/notebook.png"></a>
-							<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Tablet Preview" href="assets/img/demo/tablet.png"></a>
-							<a class="fancybox-button" data-rel="fancybox-button" title="Conquer Phone Preview" href="assets/img/demo/phone.png"></a>
-							</span>
-							</span>
-						</div>
+			           
 				<!-- BEGIN PAGE HEADER-->
 				<!--<div class="row-fluid">-->
 					<!--<div class="span12">-->

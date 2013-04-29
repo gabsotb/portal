@@ -1,7 +1,4 @@
-
 <div id="page" class="dashboard">
-
-
 					<div class="row-fluid">
 					<?php if($sf_user->hasCredential('assignJob')): ?>
 					    <div class="span12">
@@ -9,24 +6,24 @@
 						<!-- END STYLE CUSTOMIZER-->    	
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->		
 						<h3 class="page-title">
-							Managers Account
-							<small>Assign Tasks and Manage User Accounts</small>
+							<?php echo __('Managers Account') ?>
+							<small><?php echo __('Assign Tasks and Manage User Accounts')?></small>
 						</h3>
 							<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="#">Dashboard</a> <span class="divider">/</span>
+								<a href="#"><?php echo __('Dashboard') ?></a> <span class="divider">/</span>
 							</li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Manager</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('Manager') ?></a></li> <span class="divider">/</span>
 							<li>
 							<li>
 							<i class="icon-desktop"></i>
-							<a href="#">Inbox Messages</a></li> <span class="divider">/</span>
+							<a href="#"><?php echo __('Inbox Messages') ?></a></li> <span class="divider">/</span>
 							<li class="pull-right dashboard-report-li">
 							<i class="icon-time"></i>
-				              Logged in on <font color="blue">
+				             <?php echo __('Logged in on') ?> <font color="blue">
 									<?php
                                        $date = date("F j, Y");
 									   print $date;
@@ -42,18 +39,18 @@
 						
 						<div class="widget">
 								<div class="widget-title">
-									<h4><i class="icon-envelope-alt"></i>System Inbox Messages: </h4>						
+									<h4><i class="icon-envelope-alt"></i><?php echo __('System Inbox Messages') ?>: </h4>						
 								</div>
 								<div class="widget-body">
 									<table class="table table-striped table-bordered" id="inboxbackend">
 										<thead>
 											<tr>
 												
-												<th>From</th>
-												<th class="hidden-phone">Message</th>
-												<th class="hidden-phone">Attachment</th>
-												<th class="hidden-phone">Date</th>
-												<th>Actions</th>
+												<th><?php echo __('From') ?></th>
+												<th class="hidden-phone"><?php echo __('Message') ?></th>
+												<th class="hidden-phone"><?php echo __('Attachment') ?></th>
+												<th class="hidden-phone"><?php echo __('Date')?></th>
+												<th><?php echo __('Actions') ?></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -91,18 +88,21 @@
 												<td><?php echo $messages['created_at']?></td>
 												<td class="center">
 												<?php echo link_to('Delete', 'messages/delete?id='.$messages['id'], array('method' => 'delete', 'confirm' => 'Are you sure?')) ?><i class="icon-remove"></i>
-												<a href="<?php echo url_for('messages/show?id='.$messages['id']) ?>"><i class="icon-zoom-in"></i>View</a>
+												<a href="<?php echo url_for('messages/show?id='.$messages['id']) ?>"><i class="icon-zoom-in"></i><?php echo __('View') ?></a>
 												
 												</td>
 											</tr>
 										  <?php endforeach; ?>
 			
 										</tbody>
+										
 									</table>
+									<a href="<?php echo url_for('messages/new')?> "><button class="btn btn-success"><i class=" icon-edit"></i><?php echo __('Compose') ?></button></a>
+									<a href="<?php echo url_for('messages/new')?> "><button class="btn btn-primary"><i class="icon-envelope"></i> <?php echo __('Sent') ?> </button></a>
 								</div>
 								
 							</div>
-						<a href="<?php echo url_for('messages/new')?> "><button class="btn btn-success"><i class="icon-ok icon-white"></i> Create Message</button></a>
+						
 						
 						</div>	
 					</div>	

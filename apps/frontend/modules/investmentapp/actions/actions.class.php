@@ -601,6 +601,10 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 	//$this->redirect('investmentapp/new');
 	//print "Value is ".$value ;exit
   }
+   public function executeDraft(sfWebRequest $request)
+   {
+     
+   }
   //this function is used to populate the graph data
   public function populateGraph()
   {

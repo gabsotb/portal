@@ -818,7 +818,11 @@ EIACertificate:
   EIReport: {local:eireport_id, foreign: id, foreignAlias: DataAdminPermissionRequest, onDelete:CASCADE }
 ############################ End EIA Certificate Application Process Tables ###############################
 Messages:
- actAs: {Timestampable: ~}
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
  columns:
   sender: {type: string(255), notnull: true}
   recepient: {type: string(255), notnull: true}
@@ -830,7 +834,11 @@ Messages:
   attachement: {type: string(255), notnull: true}
   token: {type: string(255), notnull: false} 
 Notifications:
- actAs: {Timestampable: ~}
+ actAs:
+  Timestampable: ~
+  Signable:
+   created:{ name: created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}
+   updated: { name: updated_by,type: string}
  columns:
   recepient: {type: string(255), notnull: true}
   message: {type: string(4000), notnull: true}
@@ -951,3 +959,4 @@ MessageLogs:
   message_sender: {type: string(255), notnull: true}
   message_recipient: {type: string(255), notnull: true}
   message: {type: string(50000), notnull: true}
+  status: {type:string(255), notnull: true}

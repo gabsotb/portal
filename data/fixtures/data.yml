@@ -14,10 +14,25 @@ Session:
     sessiondata: 'symfony/user/sfUser/lastRequest|i:1366732270;symfony/user/sfUser/authenticated|b:1;symfony/user/sfUser/credentials|a:1:{i:0;s:9:"assignJob";}symfony/user/sfUser/attributes|a:5:{s:30:"symfony/user/sfUser/attributes";a:1:{s:13:"first_request";b:0;}s:19:"sfGuardSecurityUser";a:1:{s:7:"user_id";s:1:"1";}s:12:"admin_module";a:3:{s:16:"sfGuardUser.sort";a:2:{i:0;N;i:1;N;}s:17:"sfGuardGroup.sort";a:2:{i:0;N;i:1;N;}s:22:"sfGuardPermission.sort";a:2:{i:0;N;i:1;N;}}s:25:"symfony/user/sfUser/flash";a:0:{}s:32:"symfony/user/sfUser/flash/remove";a:0:{}}symfony/user/sfUser/culture|s:2:"en";'
     time: '1366732271'
     token: null
+  Session_dq73vc9u4pg5avj79e287rpte3:
+    id: dq73vc9u4pg5avj79e287rpte3
+    sessiondata: 'symfony/user/sfUser/lastRequest|i:1366928308;symfony/user/sfUser/authenticated|b:1;symfony/user/sfUser/credentials|a:1:{i:0;s:14:"usermanagement";}symfony/user/sfUser/attributes|a:5:{s:30:"symfony/user/sfUser/attributes";a:1:{s:13:"first_request";b:0;}s:19:"sfGuardSecurityUser";a:1:{s:7:"user_id";s:2:"21";}s:12:"admin_module";a:2:{s:16:"sfGuardUser.sort";a:2:{i:0;N;i:1;N;}s:16:"sfGuardUser.page";s:1:"1";}s:25:"symfony/user/sfUser/flash";a:0:{}s:32:"symfony/user/sfUser/flash/remove";a:0:{}}symfony/user/sfUser/culture|s:2:"en";'
+    time: '1366928309'
+    token: null
+  Session_fnd17ujr0chc3f6snh98eldto1:
+    id: fnd17ujr0chc3f6snh98eldto1
+    sessiondata: ''
+    time: '1366927977'
+    token: null
   Session_pkn9btb0o4iid46nfdft36tq76:
     id: pkn9btb0o4iid46nfdft36tq76
     sessiondata: ''
     time: '1366730788'
+    token: null
+  Session_sqak4ktpj4tlkrn63a5qd6clc5:
+    id: sqak4ktpj4tlkrn63a5qd6clc5
+    sessiondata: 'symfony/user/sfUser/lastRequest|i:1366927964;symfony/user/sfUser/authenticated|b:0;symfony/user/sfUser/credentials|a:0:{}symfony/user/sfUser/attributes|a:1:{s:30:"symfony/user/sfUser/attributes";a:1:{s:7:"referer";s:40:"http://localhost:81/frontend_dev.php/en/";}}symfony/user/sfUser/culture|s:2:"en";'
+    time: '1366927964'
     token: null
 sfGuardGroup:
   sfGuardGroup_1:
@@ -112,7 +127,7 @@ sfGuardUser:
     first_name: Admin
     last_name: Admin
     email_address: manager@smartlinesolutions.net
-    outlook_address: null
+    outlook_address: manager@smartlinesolutions.net
     username: manager
     algorithm: sha1
     salt: 0c0a8c48ef139c954f1d4a94a27c596d
@@ -121,12 +136,12 @@ sfGuardUser:
     is_super_admin: false
     last_login: '2013-04-23 17:26:28'
     created_at: '2013-02-11 14:40:30'
-    updated_at: '2013-04-23 17:26:28'
+    updated_at: '2013-04-26 00:13:39'
   sfGuardUser_2:
     first_name: Investor
     last_name: Investor
     email_address: Mwendia.bonface4@gmail.com
-    outlook_address: null
+    outlook_address: Mwendia.bonface4@gmail.com
     username: investor
     algorithm: sha1
     salt: 34ee4498771273e07acc9ec759ccb2fd
@@ -135,12 +150,12 @@ sfGuardUser:
     is_super_admin: false
     last_login: '2013-02-17 19:48:49'
     created_at: '2013-02-11 14:47:34'
-    updated_at: '2013-02-17 19:48:49'
+    updated_at: '2013-04-26 00:14:10'
   sfGuardUser_3:
     first_name: Bonie
     last_name: Bonie
     email_address: bonie@gmail.com
-    outlook_address: null
+    outlook_address: bonie@gmail.com
     username: bonie
     algorithm: sha1
     salt: 158c19be6adba06a5834ba80c2d745c0
@@ -149,12 +164,12 @@ sfGuardUser:
     is_super_admin: false
     last_login: '2013-02-11 19:20:49'
     created_at: '2013-02-11 15:53:27'
-    updated_at: '2013-02-11 19:20:49'
+    updated_at: '2013-04-26 00:14:51'
   sfGuardUser_4:
     first_name: Investment
     last_name: admin
     email_address: investmentcertadmin@smartlinesolutions.net
-    outlook_address: null
+    outlook_address: investmentcertadmin@smartlinesolutions.net
     username: investmentadmin
     algorithm: sha1
     salt: f5de406cba10ea73fe17264545b9d5f7
@@ -163,12 +178,12 @@ sfGuardUser:
     is_super_admin: false
     last_login: '2013-02-13 11:52:12'
     created_at: '2013-02-11 18:53:19'
-    updated_at: '2013-02-13 11:52:12'
+    updated_at: '2013-04-26 00:18:13'
   sfGuardUser_5:
     first_name: eia
     last_name: admin
     email_address: eiacertadmin@smartlinesolutions.net
-    outlook_address: null
+    outlook_address: eiacertadmin@smartlinesolutions.net
     username: eiaadmin
     algorithm: sha1
     salt: a8ef1a86054b381e871e71464bb395d1
@@ -177,12 +192,12 @@ sfGuardUser:
     is_super_admin: false
     last_login: '2013-02-12 10:23:55'
     created_at: '2013-02-11 18:56:37'
-    updated_at: '2013-02-12 10:23:55'
+    updated_at: '2013-04-26 00:15:23'
   sfGuardUser_6:
     first_name: Investor2
     last_name: Investor2
     email_address: investor2@gmail.com
-    outlook_address: null
+    outlook_address: investor2@gmail.com
     username: investor2
     algorithm: sha1
     salt: b3e5a86974794277ed3df359e580036b
@@ -196,7 +211,7 @@ sfGuardUser:
     first_name: Investment
     last_name: Supervisor
     email_address: investsupervisor@otbafrica.com
-    outlook_address: null
+    outlook_address: investsupervisor@otbafrica.com
     username: investmentsupervisor
     algorithm: sha1
     salt: 5f0dff2daa264c29309e21e2ff2e97f3
@@ -205,12 +220,12 @@ sfGuardUser:
     is_super_admin: false
     last_login: '2013-02-28 08:12:29'
     created_at: '2013-02-28 07:51:26'
-    updated_at: '2013-02-28 08:12:29'
+    updated_at: '2013-04-26 00:15:54'
   sfGuardUser_8:
     first_name: Eia
     last_name: Supervisor
     email_address: eiasupervisor@otbafrica.com
-    outlook_address: null
+    outlook_address: eiasupervisor@otbafrica.com
     username: eiasupervisor
     algorithm: sha1
     salt: 067a15870a52a75a114ae6918d6df349
@@ -219,12 +234,12 @@ sfGuardUser:
     is_super_admin: false
     last_login: null
     created_at: '2013-02-28 07:52:58'
-    updated_at: '2013-02-28 07:52:58'
+    updated_at: '2013-04-26 00:16:26'
   sfGuardUser_9:
     first_name: Investor3
     last_name: Investor3
     email_address: investor3@gmail.com
-    outlook_address: null
+    outlook_address: investor3@gmail.com
     username: investor3
     algorithm: sha1
     salt: ee8fad9e2e4075573d4f168fbb3af81b
@@ -238,7 +253,7 @@ sfGuardUser:
     first_name: Investor4
     last_name: Investor4
     email_address: investor4@gmail.com
-    outlook_address: null
+    outlook_address: investor4@gmail.com
     username: investor4
     algorithm: sha1
     salt: 53df2ba4275731089e060617dc501847
@@ -252,7 +267,7 @@ sfGuardUser:
     first_name: Investor5
     last_name: Investor5
     email_address: investor5@gmail.com
-    outlook_address: null
+    outlook_address: investor5@gmail.com
     username: investor5
     algorithm: sha1
     salt: 46a4f0ccc47cefd44787d8fbce3fc163
@@ -399,9 +414,79 @@ sfGuardUser:
     password: 12345
     is_active: true
     is_super_admin: false
-    last_login: null
+    last_login: '2013-04-26 00:12:57'
     created_at: '2013-04-23 17:51:04'
-    updated_at: '2013-04-23 17:51:04'
+    updated_at: '2013-04-26 00:12:57'
+  sfGuardUser_22:
+    first_name: investor6
+    last_name: investor6
+    email_address: investor6@gmail.com
+    outlook_address: null
+    username: investor6
+    algorithm: sha1
+    salt: 54d4cbadb095818cc12c6f9924e1777f
+    password: 12345
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2013-04-26 03:09:33'
+    updated_at: '2013-04-26 03:09:33'
+  sfGuardUser_23:
+    first_name: investor7
+    last_name: investor7
+    email_address: investor7@gmail.com
+    outlook_address: null
+    username: investor7
+    algorithm: sha1
+    salt: 963cf9ef277c0f37edac1bf1c6c63bfc
+    password: 12345
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2013-04-26 03:10:09'
+    updated_at: '2013-04-26 03:10:09'
+  sfGuardUser_24:
+    first_name: investor8
+    last_name: investor8
+    email_address: investor8@gmail.com
+    outlook_address: null
+    username: investor8
+    algorithm: sha1
+    salt: 7349a6777ec2d1fb2e0f67e603dfcefb
+    password: 12345
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2013-04-26 03:10:44'
+    updated_at: '2013-04-26 03:10:44'
+  sfGuardUser_25:
+    first_name: investor9
+    last_name: investor9
+    email_address: investor9@gmail.com
+    outlook_address: null
+    username: investor9
+    algorithm: sha1
+    salt: 2fc8f42a4c2ef65c36432fc9a3a83ba9
+    password: 12345
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2013-04-26 03:11:15'
+    updated_at: '2013-04-26 03:11:15'
+  sfGuardUser_26:
+    first_name: investor10
+    last_name: investor10
+    email_address: investor10@gmail.com
+    outlook_address: null
+    username: investor10
+    algorithm: sha1
+    salt: 5f966b70bbd31e80ed92f8005820707c
+    password: 12345
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    created_at: '2013-04-26 03:11:52'
+    updated_at: '2013-04-26 03:11:52'
 sfGuardUserGroup:
   sfGuardUserGroup_1_2:
     User: sfGuardUser_1

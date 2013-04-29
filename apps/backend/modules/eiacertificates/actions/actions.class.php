@@ -193,8 +193,8 @@ class eiacertificatesActions extends sfActions
 		$month=$projectDetail->getDateTimeObject('created_at')->format('m');
 		$year=$projectDetail->getDateTimeObject('created_at')->format('Y');
 		$cert=Doctrine_Core::getTable('EIACertificate')->findByEireportId($report->getEiaprojectId());
-		$certs=Doctrine_Core::getTable('EIACertificate')->find($cert[0]['id']);
-		$serial=$certs->getSerialNumber();
+		//$certs=Doctrine_Core::getTable('EIACertificate')->find($cert[0]['id']);
+		$serial=$cert[0]['serial_number'];
 		$refernce_no=str_replace("-","/",$projectDetail->getProjectReferenceNumber());
 	  //loop over the result and set necessary variables
 	/*  $date = null ;

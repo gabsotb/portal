@@ -69,10 +69,10 @@ abstract class BaseMessages extends sfDoctrineRecord
              'notnull' => false,
              'length' => 255,
              ));
-        $this->hasColumn('message_subject', 'string', 256, array(
+        $this->hasColumn('message_subject', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 256,
+             'length' => 255,
              ));
         $this->hasColumn('message', 'string', 20000, array(
              'type' => 'string',
@@ -95,6 +95,15 @@ abstract class BaseMessages extends sfDoctrineRecord
     {
         parent::setUp();
         $timestampable0 = new Doctrine_Template_Timestampable();
+        $signable0 = new Doctrine_Template_Signable(array(
+             'created:{ name' => 'created_by,type: string,onUpdate: CASCADE,onDelete: SET NULL,options: {notnull: true,default: None}}',
+             'updated' => 
+             array(
+              'name' => 'updated_by',
+              'type' => 'string',
+             ),
+             ));
         $this->actAs($timestampable0);
+        $this->actAs($signable0);
     }
 }
